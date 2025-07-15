@@ -1,0 +1,25 @@
+(
+(define-fun mult_mxint_exp (
+  (m1 (_ BitVec 4)) 
+  (e1 (_ BitVec 4)) 
+  (m2 (_ BitVec 4)) 
+  (e2 (_ BitVec 4))
+) (_ BitVec 4)
+  (ite 
+    (or (= m1 #b0000) (= m2 #b0000))
+    e1
+    (let ((e1_ext ((_ zero_extend 1) e1))
+          (e2_ext ((_ zero_extend 1) e2)))
+      (let ((sum_ext (bvadd e1_ext e2_ext)))
+        (let ((res_ext (bvsub sum_ext #b00001)))
+          (ite (bvugt res_ext #b01111)
+               #b1111
+               ((_ extract 3 0) res_ext)
+          )
+        )
+      )
+    )
+  )
+)
+
+)
