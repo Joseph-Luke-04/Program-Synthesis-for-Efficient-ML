@@ -20,6 +20,8 @@ The file **evaluate.ipynb** compares the SMT-LIB multiplication code generated b
 
 We have managed to succesfully synthethise a function for the multiplication of 2 MXint4 values. The SMT-LIB code for calculating the mantissa and exponent of the product is below. The statistics/results can be replicated with **evaluate.ipynb**
 
+TODO: Reuse merge functions to reuse mult!!!
+
 
 ```lisp
 (
