@@ -1,9 +1,27 @@
 # Approximate Program Synthesis for Efficient Machine Learning
 
-This repository contains the code and results for a summer research project on automatically generating hardware logic for approximate multiplication in low-precision number formats used for machine learning.
+This repository contains the code and results for a summer research project on automatically generating hardware logic for operations in low-precision number formats used in machine learning.
 
-Details of experiments are in REPORT.MD
+This project was completed under the supervision of Dr. Jianyi Cheng and Dr. Elizabeth Polgreen.
 
+## Reproducing the Results
 
-Project was under the supervision of Dr Jianyi Cheng and Dr Elizabeth Polgreen.
+**Prerequisites:**
+*   Python 3.8+
+*   [CVC5 SMT Solver](https://cvc5.github.io/)
 
+**Instructions:**
+1.  Clone the repository:
+    ```bash
+    git clone <your-repo-url>
+    cd <repo-name>
+    ```
+
+2.  Install the required Python packages:
+    ```bash
+    pip install -r requirements.txt
+    ```
+4.  **Run the Synthesis:**
+    ```bash
+    python src/synthesis.py
+    ```
