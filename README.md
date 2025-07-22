@@ -26,8 +26,6 @@ We use Syntax-Guided Synthesis (SyGuS) to automatically discover hardware logic.
 
 3.  **Configure and Run Synthesis**
 
-    All synthesis runs are controlled from the main driver script.
-
     a. **Open `src/synthesis_driver.py`** and go to the `if __name__ == "__main__":` block at the bottom.
 
     b. **Edit the configuration** to choose which operation and component you want to synthesize. For example, to synthesize the mantissa multiplication `mant`:
