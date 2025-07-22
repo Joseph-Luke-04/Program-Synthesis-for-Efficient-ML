@@ -28,15 +28,28 @@ We use Syntax-Guided Synthesis (SyGuS) to automatically discover hardware logic.
 
     a. **Open `src/synthesis_driver.py`** and go to the `if __name__ == "__main__":` block at the bottom.
 
-    b. **Edit the configuration** to choose which operation and component you want to synthesize. For example, to synthesize the mantissa multiplication logic:
+    b. **Edit the configuration** to choose which operation and component you want to synthesize. The available targets are:
+
+    *   **For `MultiplicationTarget()`**:
+        *   `"mant"`: Synthesizes the 4-bit mantissa logic.
+        *   `"exp"`: Synthesizes the 4-bit exponent logic.
+        *   `"renorm_flag"`: Synthesizes the 1-bit renormalization flag.
+
+    *   **For `AdditionTarget()`**:
+        *   *TODO:*
+
+    Below is an example configuration for synthesizing the **exponent** logic for **multiplication**:
     ```python
     # In src/synthesis_driver.py
 
-    # Step 1: Choose the Operation
+    # --- Step 1: Choose the Operation ---
+    # Options: MultiplicationTarget(), AdditionTarget()
     target_operation = MultiplicationTarget()
 
-    # Step 2: Choose the Component
-    target_component = "mant"
+    # --- Step 2: Choose the Component ---
+    # For Multiplication: "mant", "exponent", "renorm_flag", "mant_flag"
+    # For Addition: "TODO"
+    target_component = "exp"
     ```
 
     c. **Execute the driver** from the project's main directory:
