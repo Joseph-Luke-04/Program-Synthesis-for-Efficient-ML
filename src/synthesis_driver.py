@@ -96,6 +96,7 @@ def synthesis_loop(
         
 
         new_constraint = constraint_generator(ground_truth_data, config)
+        print(new_constraint)
         constraints_to_test = accepted_constraints + [new_constraint]
         
         sygus_query = (
@@ -115,12 +116,12 @@ def synthesis_loop(
             print(f"SKIPPED: Constraint from ({f1:.3f}, {f2:.3f}) caused timeout or error.")
 
     print("\n\n--- Synthesis Complete! ---")
+    print(f"\nConstraints accepted: {len(accepted_constraints)}/{len(test_cases)}")
     if current_best_program:
         print("\n--- Final Synthesized Program ---")
         print(current_best_program)
     else:
         print("Could not find a valid program that satisfies any constraints.")
-        
     return current_best_program
 
 
@@ -128,8 +129,19 @@ if __name__ == "__main__":
     config = SynthesisConfig()
 
     max_val = math.sqrt(112)
-    synthesis_test_cases = [(random.uniform(-max_val, max_val), random.uniform(-max_val, max_val)) 
-                             for _ in range(config.NUM_ITERATIONS)]
+    
+    custom_cases = [
+        (1.5, 1.5), (0.75, 1.0), (7.5, 0.25), (0.25, 0.5),
+        (4.0, 4.0), (-2.0, 3.5), (1.0, 1.0), (7.5, 7.5)
+    ]
+
+    num_needed = config.NUM_ITERATIONS - len(custom_cases)
+    if num_needed > 0:
+        random_cases = [(random.uniform(-max_val, max_val), random.uniform(-max_val, max_val))
+                        for _ in range(num_needed)]
+        synthesis_test_cases = custom_cases + random_cases
+    else:
+        synthesis_test_cases = custom_cases[:config.NUM_ITERATIONS]
 
  
 
@@ -139,9 +151,9 @@ if __name__ == "__main__":
 
     
     # Components for AdditionTarget: todo
-    # Components for MultiplicationTarget: "renorm_flag", "mantissa", "exponent"
+    # Components for MultiplicationTarget: "renorm_flag", "mant_flag", "mantissa", "exponent"
     
-    target_component = "renorm_flag"
+    target_component = "mant_flag"
 
     # ===================================================================
 
