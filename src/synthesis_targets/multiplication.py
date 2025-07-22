@@ -55,7 +55,7 @@ class MultiplicationTarget:
         renorm_flag_bv = to_smt_bitvec(data["renorm_flag"], 1) 
         final_exp_bv = to_smt_bitvec(data["final_exp"], config.EXPONENT_WIDTH)
 
-        synth_call = f"(mult_mxint_exp_flag {e1_bv} {e2_bv} {renorm_flag_bv})"
+        synth_call = f"(mult_mxint_exp {e1_bv} {e2_bv} {renorm_flag_bv})"
         return f"(constraint (= {synth_call} {final_exp_bv}))"
     
     def gen_mant_constraint(self, data: Dict, config) -> str:
