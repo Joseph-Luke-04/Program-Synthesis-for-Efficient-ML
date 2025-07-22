@@ -56,4 +56,4 @@ We use Syntax-Guided Synthesis (SyGuS) to automatically discover hardware logic.
     ```bash
     python -m src.synthesis_driver
     ```
-    The results will be saved in the `results/` folder.
+    The results will be printed in the terminal and saved in the `results/` folder.
