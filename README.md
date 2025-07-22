@@ -10,20 +10,40 @@ We use Syntax-Guided Synthesis (SyGuS) to automatically discover hardware logic.
 
 **Prerequisites:**
 *   Python 3.8+
-*   [CVC5 SMT Solver](https://cvc5.github.io/)
+*   [CVC5 SMT Solver](https://cvc5.github.io/): Ensure the `cvc5` executable is installed and available in your system's PATH.
 
 **Instructions:**
-1.  Clone the repository:
+
+1.  **Clone the Repository**
     ```bash
-    git clone <https://github.com/misha7b/Program-Synthesis-for-Efficient-ML>
-    cd <cd Program-Synthesis-for-Efficient-ML>
+    git clone https://github.com/misha7b/Program-Synthesis-for-Efficient-ML
+    cd Program-Synthesis-for-Efficient-ML
     ```
 
-2.  Install the required Python packages:
+2.  **Install Dependencies**
     ```bash
     pip install -r requirements.txt
     ```
-4.  **Run the Synthesis:**
-    ```bash
-    python src/synthesis.py
+
+3.  **Configure and Run Synthesis**
+
+    All synthesis runs are controlled from the main driver script.
+
+    a. **Open `src/synthesis_driver.py`** and go to the `if __name__ == "__main__":` block at the bottom.
+
+    b. **Edit the configuration** to choose which operation and component you want to synthesize. For example, to synthesize the multiplication `renorm_flag`:
+    ```python
+    # In src/synthesis_driver.py
+
+    # Step 1: Choose the Operation
+    target_operation = MultiplicationTarget()
+
+    # Step 2: Choose the Component
+    target_component = "renorm_flag"
     ```
+
+    c. **Execute the driver** from the project's main directory:
+    ```bash
+    python -m src.synthesis_driver
+    ```
+    The results will be saved in the `results/` folder.
