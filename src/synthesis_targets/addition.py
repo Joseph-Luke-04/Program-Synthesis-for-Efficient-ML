@@ -54,7 +54,6 @@ class AdditionTarget:
         return f"(constraint (= {synth_call} {final_result_bv}))"
     
     def get_components(self) -> Dict:
-        """Returns a dictionary of all synthesizable components for addition."""
         return {
             "finalization": {
                 "template": "sygus_grammars/add_finalize_template.sl",

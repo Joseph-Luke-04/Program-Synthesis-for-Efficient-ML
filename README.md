@@ -10,8 +10,7 @@ We use Syntax-Guided Synthesis (SyGuS) to automatically discover hardware logic.
 
 **Prerequisites:**
 *   Python 3.8+
-*   [CVC5 SMT Solver](https://cvc5.github.io/): Ensure the `cvc5` executable is installed and available in your system's PATH.
-
+*   [CVC5 SMT Solver](https://cvc5.github.io/)
 **Instructions:**
 
 1.  **Clone the Repository**

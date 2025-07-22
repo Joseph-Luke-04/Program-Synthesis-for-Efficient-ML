@@ -2,7 +2,7 @@ import torch
 from functools import partial
 import torch.nn.functional as F
 from torch import Tensor
-from chop.nn.quantized.modules.linear import _LinearBase
+#from chop.nn.quantized.modules.linear import _LinearBase
 from .utils import reshape_to_block, reshape_back
 
 
