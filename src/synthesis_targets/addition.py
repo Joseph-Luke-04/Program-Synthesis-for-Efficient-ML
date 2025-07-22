@@ -76,6 +76,26 @@ class AdditionTarget:
         raw_sum_bv = to_smt_bitvec(data["raw_sum_mantissa"], config.RAW_SUM_MANTISSA_WIDTH)
         flag_bv = to_smt_bitvec(data["overflow_flag"], 1)
         return f"(constraint (= (detect_overflow {raw_sum_bv}) {flag_bv}))"
+    
+    def gen_mant_constraint(self, data: Dict, config) -> str:
+        m1_bv = to_smt_bitvec(data["m1"], config.MANTISSA_WIDTH)
+        e1_bv = to_smt_bitvec(data["e1"], config.EXPONENT_WIDTH)
+        m2_bv = to_smt_bitvec(data["m2"], config.MANTISSA_WIDTH)
+        e2_bv = to_smt_bitvec(data["e2"], config.EXPONENT_WIDTH)
+        final_mant_bv = to_smt_bitvec(data["final_mant"], config.MANTISSA_WIDTH)
+        
+        synth_call = f"(add_mxint_mant {m1_bv} {e1_bv} {m2_bv} {e2_bv})"
+        return f"(constraint (= {synth_call} {final_mant_bv}))"
+
+    def gen_exp_constraint(self, data: Dict, config) -> str:
+        m1_bv = to_smt_bitvec(data["m1"], config.MANTISSA_WIDTH)
+        e1_bv = to_smt_bitvec(data["e1"], config.EXPONENT_WIDTH)
+        m2_bv = to_smt_bitvec(data["m2"], config.MANTISSA_WIDTH)
+        e2_bv = to_smt_bitvec(data["e2"], config.EXPONENT_WIDTH)
+        final_exp_bv = to_smt_bitvec(data["final_exp"], config.EXPONENT_WIDTH)
+
+        synth_call = f"(add_mxint_exp {m1_bv} {e1_bv} {m2_bv} {e2_bv})"
+        return f"(constraint (= {synth_call} {final_exp_bv}))"
 
     def gen_finalization_constraint(self, data: Dict, config) -> str:
         raw_sum_bv = to_smt_bitvec(data["raw_sum_mantissa"], config.RAW_SUM_MANTISSA_WIDTH)

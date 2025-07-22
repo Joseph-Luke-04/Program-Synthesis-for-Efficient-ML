@@ -1,0 +1,23 @@
+
+(
+(define-fun add_mxint_mant ((m1 (_ BitVec 4)) (e1 (_ BitVec 4))
+                               (m2 (_ BitVec 4)) (e2 (_ BitVec 4)))
+                              (_ BitVec 4)
+  (let ((cond_ge (bvsge e1 e2)))
+  (let ((aligned_m1 (ite cond_ge m1 (bvashr m1 (bvsub e2 e1)))))
+  (let ((aligned_m2 (ite cond_ge (bvashr m2 (bvsub e1 e2)) m2)))
+  (let ((aligned_concat (concat aligned_m1 aligned_m2)))
+  (let ((a1 ((_ extract 7 4) aligned_concat)))
+  (let ((a2 ((_ extract 3 0) aligned_concat)))
+  (let ((sum5 (bvadd ((_ sign_extend 1) a1) ((_ sign_extend 1) a2))))
+  (let ((overflow (ite (or (bvsgt sum5 #b00111) (bvslt sum5 #b11000)) #b1 #b0)))
+  (let ((abs_sum (ite (bvslt sum5 #b00000) (bvneg sum5) sum5)))
+  (let ((shift_amt (ite (bvslt abs_sum #b00100)
+                        (ite (bvslt abs_sum #b00010) #b0010 #b0001)
+                        #b0000)))
+    ;; The final expression is the calculation for the normalized mantissa
+    (ite (= overflow #b1)
+         ((_ extract 3 0) (bvashr sum5 #b00001))
+         ((_ extract 3 0) (bvshl sum5 ((_ zero_extend 1) shift_amt))))
+  )))))))))))
+)
