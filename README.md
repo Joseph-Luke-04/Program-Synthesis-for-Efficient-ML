@@ -4,7 +4,7 @@ This repository contains the code and results for a summer research project on a
 
 This project was completed under the supervision of Dr. Jianyi Cheng and Dr. Elizabeth Polgreen.
 
-We used Syntax-Guided Synthesis (SyGuS) to automatically discover hardware logic. The core of the project is an iterative loop that builds a solution by incrementally adding constraints. For more specific details of my results and experiments, check out *REPORT.MD*.
+We used Syntax-Guided Synthesis (SyGuS) to automatically discover hardware logic. The core of the project is an iterative loop that builds a solution by incrementally adding constraints. For more specific details of my results and experiments, check out **REPORT.MD**.
 
 ## Reproducing the Results
 
@@ -39,7 +39,7 @@ We used Syntax-Guided Synthesis (SyGuS) to automatically discover hardware logic
     *   **For `AdditionTarget()`**:
         *   `"alignment"`: Synthesizes the logic to select the target exponent and shift the mantissas accordingly.
         *   `"raw_sum"`: Synthesizes the logic to add the two aligned mantissas into a wider (5-bit) sum.
-        *   `"overflow"`: Synthesizes the logic to detect if the *raw_sum* is outside the representable range of the final format.
+        *   `"overflow"`: Synthesizes the logic to detect if the **raw_sum** is outside the representable range of the final format.
 
     Below is an example configuration for synthesizing the **exponent** logic for **multiplication**:
     ```python
