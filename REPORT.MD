@@ -15,10 +15,10 @@ For this investigation, i focused on the **MXInt** format, allocating **4 bits f
 
 # 2. What Worked Well
 
-## 2.1 Multiplier
+## 2.1. Multiplier
 I started with the multiplication operation as it is the simplest. Attempting to synthesize the entire operation `f(m1, e1, m2, e2) -> (m_out, e_out)` in one go proved too difficult, as the solver struggled with the large search space and kept timing out. Synthesizing component-wise was a lot more effective.
 
 #### Mantissa and Renormalization Flag
 I first synthesised a function that took two 4-bit mantissas and produced both the final 4-bit product mantissa and the 1-bit `renorm_flag`. This flag is asserted (`1`) if the product of the true mantissas is less than or equal to `0.5`, telling us that an exponent correction is needed.
 
-## 2.2 Adder
+## 2.2. Adder
