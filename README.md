@@ -4,7 +4,7 @@ This repository contains the code and results for a summer research project on a
 
 This project was completed under the supervision of Dr. Jianyi Cheng and Dr. Elizabeth Polgreen.
 
-We used Syntax-Guided Synthesis (SyGuS) to automatically discover hardware logic. The core of the project is an iterative loop that builds a solution by incrementally adding constraints. For more specific details of my results and experiments, check out **REPORT.MD**.
+We use Syntax-Guided Synthesis (SyGuS) to automatically discover hardware logic. The core of the project is an iterative loop that builds a solution by incrementally adding constraints. For more specific details of my results and experiments, check out [REPORT.MD](REPORT.MD).
 
 ## Reproducing the Results
 
