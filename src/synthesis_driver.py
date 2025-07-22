@@ -151,9 +151,9 @@ if __name__ == "__main__":
 
     
     # Components for AdditionTarget: todo
-    # Components for MultiplicationTarget: "renorm_flag", "mant_flag", "mantissa", "exponent"
+    # Components for MultiplicationTarget: "renorm_flag", "mant", "exp"
     
-    target_component = "mant_flag"
+    target_component = "exp"
 
     # ===================================================================
 

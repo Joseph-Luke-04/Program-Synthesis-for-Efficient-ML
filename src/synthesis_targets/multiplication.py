@@ -49,36 +49,23 @@ class MultiplicationTarget:
         synth_call = f"(mult_renorm_flag {m1_bv} {m2_bv})"
         return f"(constraint (= {synth_call} {flag_bv}))"
 
-    def gen_mantissa_constraint(self, data: Dict, config) -> str:
-        m1_bv = to_smt_bitvec(data["m1"], config.MANTISSA_WIDTH)
-        m2_bv = to_smt_bitvec(data["m2"], config.MANTISSA_WIDTH)
-        final_mant_bv = to_smt_bitvec(data["final_mant"], config.MANTISSA_WIDTH)
-        
-        synth_call = f"(mult_mxint_mant {m1_bv} {m2_bv})"
-        return f"(constraint (= {synth_call} {final_mant_bv}))"
-
-    def gen_exponent_constraint(self, data: Dict, config) -> str:
+    def gen_exp_constraint(self, data: Dict, config) -> str:
         e1_bv = to_smt_bitvec(data["e1"], config.EXPONENT_WIDTH)
         e2_bv = to_smt_bitvec(data["e2"], config.EXPONENT_WIDTH)
         renorm_flag_bv = to_smt_bitvec(data["renorm_flag"], 1) 
         final_exp_bv = to_smt_bitvec(data["final_exp"], config.EXPONENT_WIDTH)
 
-        synth_call = f"(mult_mxint_exp {e1_bv} {e2_bv} {renorm_flag_bv})"
+        synth_call = f"(mult_mxint_exp_flag {e1_bv} {e2_bv} {renorm_flag_bv})"
         return f"(constraint (= {synth_call} {final_exp_bv}))"
     
-    def gen_mant_flag_constraint(self, data: Dict, config) -> str:
+    def gen_mant_constraint(self, data: Dict, config) -> str:
         m1_bv = to_smt_bitvec(data["m1"], config.MANTISSA_WIDTH)
         m2_bv = to_smt_bitvec(data["m2"], config.MANTISSA_WIDTH)
 
-        final_mant_bv = to_smt_bitvec(data["final_mant"], config.MANTISSA_WIDTH)
-        renorm_flag_bv = to_smt_bitvec(data["renorm_flag"], 1)
-    
-        final_mant_bits = final_mant_bv[2:]
-        renorm_flag_bit = renorm_flag_bv[2:]
-        oracle_bv5 = f"#b{final_mant_bits}{renorm_flag_bit}"
+        oracle_bv4 = to_smt_bitvec(data["final_mant"], config.MANTISSA_WIDTH)
 
-        synth_call = f"(mult_mxint_mant_flag {m1_bv} {m2_bv})"
-        return f"(constraint (= {synth_call} {oracle_bv5}))"
+        synth_call = f"(mult_mxint_mant {m1_bv} {m2_bv})"
+        return f"(constraint (= {synth_call} {oracle_bv4}))"
 
     def get_components(self) -> Dict:
     
@@ -87,16 +74,12 @@ class MultiplicationTarget:
                 "template": "sygus_grammars/mult_renorm_flag_template.sl",
                 "generator": self.gen_renorm_flag_constraint,
             },
-            "mantissa": {
-                "template": "sygus_grammars/mult_mant_template.sl",
-                "generator": self.gen_mantissa_constraint,
-            },
-            "exponent": {
+            "exp": {
                 "template": "sygus_grammars/mult_exp_template.sl",
-                "generator": self.gen_exponent_constraint,
+                "generator": self.gen_exp_constraint,
             },
-            "mant_flag": {
-                "template": "sygus_grammars/mult_mant_flag_template.sl",
-                "generator": self.gen_mant_flag_constraint,
+            "mant": {
+                "template": "sygus_grammars/mult_mant_template.sl",
+                "generator": self.gen_mant_constraint,
             },
         }

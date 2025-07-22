@@ -1,11 +1,10 @@
 (set-logic BV)
 
-(synth-fun mult_mxint_mant_flag ((m1 (_ BitVec 4)) (m2 (_ BitVec 4))) (_ BitVec 5)
+(synth-fun mult_mxint_mant ((m1 (_ BitVec 4)) (m2 (_ BitVec 4))) (_ BitVec 4)
 
     (
-        (Start5 (_ BitVec 5))
-        (FinalMant4 (_ BitVec 4))
-        (FinalFlag1 (_ BitVec 1))
+        (Start4 (_ BitVec 4)) 
+
         (Intermediate8 (_ BitVec 8))
         (Condition Bool)
         (OriginalProduct8 (_ BitVec 8))
@@ -13,16 +12,8 @@
     )
 
     (
-      (Start5 (_ BitVec 5) (
-        (concat FinalMant4 FinalFlag1)
-      ))
-
-      (FinalMant4 (_ BitVec 4) (
+      (Start4 (_ BitVec 4) (
         ((_ extract 3 0) Intermediate8)
-      ))
-
-      (FinalFlag1 (_ BitVec 1) (
-        (ite Condition #b1 #b0)
       ))
 
       (Intermediate8 (_ BitVec 8) (
@@ -47,6 +38,3 @@
       ))
     )
 )
-
-(declare-var m1 (_ BitVec 4))
-(declare-var m2 (_ BitVec 4))
