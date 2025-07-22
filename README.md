@@ -4,6 +4,8 @@ This repository contains the code and results for a summer research project on a
 
 This project was completed under the supervision of Dr. Jianyi Cheng and Dr. Elizabeth Polgreen.
 
+We use Syntax-Guided Synthesis (SyGuS) to automatically discover hardware logic. The core of the project is an iterative loop that builds a solution by incrementally adding constraints:
+
 ## Reproducing the Results
 
 **Prerequisites:**
@@ -13,8 +15,8 @@ This project was completed under the supervision of Dr. Jianyi Cheng and Dr. Eli
 **Instructions:**
 1.  Clone the repository:
     ```bash
-    git clone <your-repo-url>
-    cd <repo-name>
+    git clone <https://github.com/misha7b/Program-Synthesis-for-Efficient-ML>
+    cd <cd Program-Synthesis-for-Efficient-ML>
     ```
 
 2.  Install the required Python packages:
