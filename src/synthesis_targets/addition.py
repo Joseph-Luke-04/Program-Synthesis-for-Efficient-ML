@@ -99,11 +99,11 @@ class AdditionTarget:
                 "generator": self.gen_raw_sum_constraint,
             },
             "overflow": {
-                "template": "sygus_grammars/add_overflow_template.sl",
+                "template": "sygus_grammars/add_detect_overflow_template.sl",
                 "generator": self.gen_overflow_flag_constraint,
             },
-            "finalization": {
-                "template": "sygus_grammars/add_finalize_template.sl",
-                "generator": self.gen_finalization_constraint,
-            },
+            #"finalization": {
+            #    "template": "sygus_grammars/add_finalize_template.sl",
+            #    "generator": self.gen_finalization_constraint,
+            #},
         }

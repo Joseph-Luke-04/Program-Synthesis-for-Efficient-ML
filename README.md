@@ -48,8 +48,8 @@ We use Syntax-Guided Synthesis (SyGuS) to automatically discover hardware logic.
     target_operation = MultiplicationTarget()
 
     # --- Step 2: Choose the Component ---
-    # For Multiplication: "mant", "exponent", "renorm_flag"
-    # For Addition: "TODO"
+    # For Multiplication: "mant", "exp", "renorm_flag"
+    # For Addition: " "alignment", "raw_sum", "overflow"
     target_component = "exp"
     ```
 

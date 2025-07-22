@@ -151,10 +151,10 @@ if __name__ == "__main__":
     target_operation = AdditionTarget()
     #target_operation = MultiplicationTarget()
     
-    # Components for AdditionTarget: "alignment", "raw_sum", "overflow", "finalization"
+    # Components for AdditionTarget: "alignment", "raw_sum", "overflow"
     # Components for MultiplicationTarget: "renorm_flag", "mant", "exp"
     
-    target_component = "alignment"
+    target_component = "overflow"
 
     # ===================================================================
 
