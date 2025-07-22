@@ -128,6 +128,9 @@ def synthesis_loop(
 if __name__ == "__main__":
     config = SynthesisConfig()
 
+    # Representable range is +-112
+    
+    #max_val = 66
     max_val = math.sqrt(112)
     
     custom_cases = [
@@ -145,15 +148,13 @@ if __name__ == "__main__":
 
  
 
+    target_operation = AdditionTarget()
+    #target_operation = MultiplicationTarget()
     
-    # target_operation = AdditionTarget()
-    target_operation = MultiplicationTarget()
-
-    
-    # Components for AdditionTarget: todo
+    # Components for AdditionTarget: "alignment", "raw_sum", "overflow", "finalization"
     # Components for MultiplicationTarget: "renorm_flag", "mant", "exp"
     
-    target_component = "exp"
+    target_component = "alignment"
 
     # ===================================================================
 
