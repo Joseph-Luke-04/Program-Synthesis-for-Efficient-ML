@@ -1,4 +1,3 @@
-
 (
 (define-fun add_mxint_mant ((m1 (_ BitVec 4)) (e1 (_ BitVec 4))
                                (m2 (_ BitVec 4)) (e2 (_ BitVec 4)))
