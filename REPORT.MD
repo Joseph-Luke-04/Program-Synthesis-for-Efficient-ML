@@ -67,4 +67,6 @@ I also attempted a couple of experiments with genetic programming using the DEAP
 
 # 4. Next Steps
 
-For a next goal, I would attempt to synthesize a satisfactory dot product function. This would be more challenging since the MXInt data format shares the exponent across all mantissas.
+### Dot Product
+The most logical next goal would be to synthesize a satisfactory **dot product function**, since a dot product is the core of matrix multiplication. This introduces a new challenge: the MXInt data format shares the exponent across all elements in the vector.
+
