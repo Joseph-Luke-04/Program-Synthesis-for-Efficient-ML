@@ -55,48 +55,48 @@ This project was completed under the supervision of Dr. Jianyi Cheng and Dr. Eli
     target_component = "exp"
     ```
 
-## Step 3: Execute the Synthesis Driver
+    c. **Execute the Synthesis Driver**
 
-From the project's main directory, run:
-
-```bash
-python -m src.synthesis_driver
-```
-
-This will start the synthesis process.
-
-### Example output:
-
-```bash
-python -m src.synthesis_driver
---- Starting Synthesis for [MultiplicationTarget -> renorm_flag] ---
-
---- Iteration 1/30 ---
-Generating new constraint with inputs: (-2.790110127032232, 6.220312281964439)
-(constraint (= (mult_renorm_flag #b1010 #b0110) #b0))
-SUCCESS: Constraint accepted. Total constraints: 1
-
-...
-
---- Iteration 30/30 ---
-Generating new constraint with inputs: (3.418870565422649, -10.004808356462656)
-(constraint (= (mult_renorm_flag #b0110 #b1010) #b0))
-SUCCESS: Constraint accepted. Total constraints: 30
-
---- Synthesis Complete! ---
-
-Constraints accepted: 30/30
-
---- Final Synthesized Program ---
-(
-(define-fun mult_renorm_flag ((m1 (_ BitVec 4)) (m2 (_ BitVec 4))) (_ BitVec 1)
-  (let ((_let_1 (bvmul ((_ sign_extend 4) m1) ((_ sign_extend 4) m2))))
-    (ite (bvsle
-           (ite (bvslt _let_1 #b00000000)
-                (bvneg _let_1)
-                _let_1)
-           #b00011111)
-         #b1
-         #b0)))
-)
-```
+    From the project's main directory, run:
+    
+    ```bash
+    python -m src.synthesis_driver
+    ```
+    
+    This will start the synthesis process.
+    
+    ### Example output:
+    
+    ```bash
+    python -m src.synthesis_driver
+    --- Starting Synthesis for [MultiplicationTarget -> renorm_flag] ---
+    
+    --- Iteration 1/30 ---
+    Generating new constraint with inputs: (-2.790110127032232, 6.220312281964439)
+    (constraint (= (mult_renorm_flag #b1010 #b0110) #b0))
+    SUCCESS: Constraint accepted. Total constraints: 1
+    
+    ...
+    
+    --- Iteration 30/30 ---
+    Generating new constraint with inputs: (3.418870565422649, -10.004808356462656)
+    (constraint (= (mult_renorm_flag #b0110 #b1010) #b0))
+    SUCCESS: Constraint accepted. Total constraints: 30
+    
+    --- Synthesis Complete! ---
+    
+    Constraints accepted: 30/30
+    
+    --- Final Synthesized Program ---
+    (
+    (define-fun mult_renorm_flag ((m1 (_ BitVec 4)) (m2 (_ BitVec 4))) (_ BitVec 1)
+      (let ((_let_1 (bvmul ((_ sign_extend 4) m1) ((_ sign_extend 4) m2))))
+        (ite (bvsle
+               (ite (bvslt _let_1 #b00000000)
+                    (bvneg _let_1)
+                    _let_1)
+               #b00011111)
+             #b1
+             #b0)))
+    )
+    ```
