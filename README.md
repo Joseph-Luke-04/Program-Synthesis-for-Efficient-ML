@@ -59,4 +59,14 @@ This project was completed under the supervision of Dr. Jianyi Cheng and Dr. Eli
     ```bash
     python -m src.synthesis_driver
     ```
+    #Example output:
+    ```bash
+    python -m src.synthesis_driver
+--- Starting Synthesis for [MultiplicationTarget -> renorm_flag] ---
+
+--- Iteration 1/30 ---
+Generating new constraint with inputs: (-2.790110127032232, 6.220312281964439)
+(constraint (= (mult_renorm_flag #b1010 #b0110) #b0))
+SUCCESS: Constraint accepted. Total constraints: 1
+    ```
     The results will be printed in the terminal and saved in the `results/` folder.
