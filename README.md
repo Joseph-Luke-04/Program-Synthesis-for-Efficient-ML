@@ -10,7 +10,7 @@ This project was completed under the supervision of Dr. Jianyi Cheng and Dr. Eli
 
 **Prerequisites:**
 *   Python 3.8+
-*   [CVC5 SMT Solver](https://cvc5.github.io/)
+*   [CVC5 SMT Solver](https://cvc5.github.io/) (Version 1.2.2-dev.335.a5f64f218)
 
 **Instructions:**
 
