@@ -8,40 +8,37 @@ def to_smt_bitvec(value: int, bits: int) -> str:
     return f"#b{value & mask:0{bits}b}"
 
 class DotProductTarget:
-    """
-    Encapsulates all logic for synthesizing a simple 2-element dot product.
-    A dot product is defined as: (a1*b1) + (a2*b2)
-    """
+    
 
     def calculate_ground_truth(
-        self, 
-        vec1_floats: List[float], 
-        vec2_floats: List[float], 
-        config
+    self, 
+    vec1_floats: List[float], 
+    vec2_floats: List[float], 
+    config
     ) -> Optional[Dict]:
+        
+        vec_len = len(vec1_floats)
+        dot_product_parallelism = [1, vec_len]
         
         vec1_tensor = torch.tensor([vec1_floats])
         vec2_tensor = torch.tensor([vec2_floats])
 
-        dequant1_tensor, m1_tensor, e1_tensor = mxint_hardware(vec1_tensor, config.Q_CONFIG_IN, config.PARALLELISM)
-        dequant2_tensor, m2_tensor, e2_tensor = mxint_hardware(vec2_tensor, config.Q_CONFIG_IN, config.PARALLELISM)
+        q_vec1, m1_tensor, e1_tensor = mxint_hardware(vec1_tensor, config.Q_CONFIG_IN, dot_product_parallelism)
+        q_vec2, m2_tensor, e2_tensor = mxint_hardware(vec2_tensor, config.Q_CONFIG_IN, dot_product_parallelism)
 
-    
-        dot_product_result = torch.dot(dequant1_tensor.flatten(), dequant2_tensor.flatten())
-        
+        dot_product_result = torch.dot(q_vec1.flatten(), q_vec2.flatten())
         
         result_tensor = torch.tensor([[dot_product_result]])
-        _, final_mant_t, final_exp_t = mxint_hardware(result_tensor, config.Q_CONFIG_OUT, config.PARALLELISM)
-
+        _, final_mant_t, final_exp_t = mxint_hardware(result_tensor, config.Q_CONFIG_OUT, [1, 1])
 
         m1s = [int(v) for v in m1_tensor.flatten()]
-        e1s = [int(v) for v in e1_tensor.flatten()]
+        e1s = [int(e1_tensor.flatten()[0])] * vec_len
         m2s = [int(v) for v in m2_tensor.flatten()]
-        e2s = [int(v) for v in e2_tensor.flatten()]
+        e2s = [int(e2_tensor.flatten()[0])] * vec_len
 
         return {
-            "m1s": m1s, "e1s": e1s, 
-            "m2s": m2s, "e2s": e2s, 
+            "m1s": m1s, "e1s": e1s,
+            "m2s": m2s, "e2s": e2s,
             "final_mant": int(final_mant_t.item()),
             "final_exp": int(final_exp_t.item()),
         }

@@ -7,6 +7,8 @@ from typing import List, Tuple, Dict, Optional, Callable
 
 from .synthesis_targets.addition import AdditionTarget
 from .synthesis_targets.multiplication import MultiplicationTarget
+from .synthesis_targets.dot_product import DotProductTarget
+
 
 class SynthesisConfig:
     """Configuration settings for the SyGuS synthesis."""
@@ -86,12 +88,14 @@ def synthesis_loop(
     accepted_constraints = []
     current_best_program = None
 
-    for i, (f1, f2) in enumerate(test_cases):
+    for i, args in enumerate(test_cases):
         print(f"\n--- Iteration {i+1}/{len(test_cases)} ---")
+        print(f"Generating new constraint with inputs: {args}")
         
-        ground_truth_data = target.calculate_ground_truth(f1, f2, config)
+        ground_truth_data = target.calculate_ground_truth(*args, config)
+        
         if not ground_truth_data:
-            print(f"Could not generate ground truth for floats ({f1:.3f}, {f2:.3f}). Skipping.")
+            print(f"Could not generate ground truth for inputs {args}. Skipping.")
             continue
         
 
@@ -138,6 +142,7 @@ if __name__ == "__main__":
         (4.0, 4.0), (-2.0, 3.5), (1.0, 1.0), (7.5, 7.5)
     ]
 
+    """
     num_needed = config.NUM_ITERATIONS - len(custom_cases)
     if num_needed > 0:
         random_cases = [(random.uniform(-max_val, max_val), random.uniform(-max_val, max_val))
@@ -145,16 +150,34 @@ if __name__ == "__main__":
         synthesis_test_cases = custom_cases + random_cases
     else:
         synthesis_test_cases = custom_cases[:config.NUM_ITERATIONS]
-
+    """
  
-
-    target_operation = AdditionTarget()
-    #target_operation = MultiplicationTarget()
+    #target_operation = DotProductTarget()
+    #target_operation = AdditionTarget()
+    target_operation = MultiplicationTarget()
     
     # Components for AdditionTarget: "alignment", "raw_sum", "overflow"
     # Components for MultiplicationTarget: "renorm_flag", "mant", "exp"
     
-    target_component = "overflow"
+    #target_component = "dot_product_2_element"  
+    target_component = "renorm_flag"
+    
+    synthesis_test_cases = []
+    if isinstance(target_operation, (AdditionTarget, MultiplicationTarget)):
+        max_val = 66 if isinstance(target_operation, AdditionTarget) else math.sqrt(112)
+        for _ in range(config.NUM_ITERATIONS):
+            f1 = random.uniform(-max_val, max_val)
+            f2 = random.uniform(-max_val, max_val)
+            synthesis_test_cases.append((f1, f2))
+            
+    elif isinstance(target_operation, DotProductTarget):
+        #
+        vec_len = 2 
+        max_val = 10 
+        for _ in range(config.NUM_ITERATIONS):
+            vec1 = [random.uniform(-max_val, max_val) for _ in range(vec_len)]
+            vec2 = [random.uniform(-max_val, max_val) for _ in range(vec_len)]
+            synthesis_test_cases.append((vec1, vec2))
 
     # ===================================================================
 
