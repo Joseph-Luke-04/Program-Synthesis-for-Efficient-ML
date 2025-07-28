@@ -51,6 +51,15 @@ I tested the synthesized multiplier on a set of 1000 random inputs, comparing th
 
 ## 2.2. Adder
 
+
+| Metric                   | Mantissa | Exponent | Dequantized Value |
+| :----------------------- | :------- | :------- | :---------------- |
+| **Total Test Cases**     | 1000     | 1000     | 1000              |
+| **Exact Matches**        | 88.30%   | 89.80%   | 90.50%            |
+| **Mean Absolute Error**  | 0.2650   | 0.5730   | 0.5127            |
+| **Median Absolute Error**| 0.0   | 0.0   | 0.00           |
+| **Max Absolute Error**   | 4        | 15       | 127.9976          |     |
+
 TODO! The results can be seen in `notebooks/evaluate.ipynb`. 
 
 # 3. What Didn't Work Well (for me)
