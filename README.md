@@ -55,7 +55,7 @@ This project was completed under the supervision of Dr. Jianyi Cheng and Dr. Eli
     target_component = "exp"
     ```
 
-     ## Step 3: Execute the Synthesis Driver
+## Step 3: Execute the Synthesis Driver
 
 From the project's main directory, run:
 
