@@ -60,7 +60,7 @@ I tested the synthesized multiplier on a set of 1000 random inputs, comparing th
 | **Median Absolute Error**| 0.0   | 0.0   | 0.00           |
 | **Max Absolute Error**   | 4        | 15       | 127.9976          |     |
 
-TODO! The results can be seen in `notebooks/evaluate.ipynb`. 
+The results can be visualised by running `notebooks/evaluate.ipynb`. 
 
 # 3. What Didn't Work Well (for me)
 
