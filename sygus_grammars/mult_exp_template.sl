@@ -1,6 +1,6 @@
 (set-logic BV)
 
-(synth-fun mult_mxint_exp_flag ((e1 (_ BitVec 4)) (e2 (_ BitVec 4)) (renorm_flag (_ BitVec 1))) (_ BitVec 4)
+(synth-fun mult_mxint_exp ((e1 (_ BitVec 4)) (e2 (_ BitVec 4)) (renorm_flag (_ BitVec 1))) (_ BitVec 4)
 
     (
         (Start4 (_ BitVec 4))

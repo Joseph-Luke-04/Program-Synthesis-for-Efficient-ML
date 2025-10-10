@@ -3,11 +3,38 @@ import random
 import math
 import subprocess
 import tempfile
+from pathlib import Path
 from typing import List, Tuple, Dict, Optional, Callable
 
 from .synthesis_targets.addition import AdditionTarget
 from .synthesis_targets.multiplication import MultiplicationTarget
 from .synthesis_targets.dot_product import DotProductTarget
+
+
+def unwrap_extra_parens(solution_text: str) -> str:
+    """Remove a single outer s-expression wrapper when present.
+
+    CVC5 usually returns solutions in the form "(define-fun ...)". Occasionally it
+    wraps the solution in an extra layer like "(\n(define-fun ...)\n)". We detect
+    that pattern by checking for an opening parenthesis with another s-expression as
+    the next non-whitespace token, and safely strip only that redundant wrapper.
+    """
+
+    stripped = solution_text.strip()
+    if not stripped or stripped[0] != '(':
+        return stripped
+
+    # Find the first non-whitespace character after the initial "(".
+    idx = 1
+    length = len(stripped)
+    while idx < length and stripped[idx].isspace():
+        idx += 1
+
+    # Only unwrap if the next significant token is another "(".
+    if idx < length and stripped[idx] == '(' and stripped[-1] == ')':
+        return stripped[1:-1].strip()
+
+    return stripped
 
 
 class SynthesisConfig:
@@ -43,6 +70,10 @@ def run_cvc5_synthesis(sygus_query: str, timeout: int) -> Optional[str]:
 
         solution_text = result.stdout.strip()
         if "(define-fun" in solution_text:
+            # CVC5 sometimes wraps the solution in an extra top-level s-expression
+            # like "(\n(define-fun ...)\n)", which complicates downstream parsing.
+            # We remove that outer wrapper while keeping the inner definitions intact.
+            solution_text = unwrap_extra_parens(solution_text)
             return solution_text
         else:
             print(f"[CVC5] Solver did not return a valid solution.\n[STDOUT]:\n{solution_text}")
@@ -153,14 +184,14 @@ if __name__ == "__main__":
     """
  
     #target_operation = DotProductTarget()
-    #target_operation = AdditionTarget()
-    target_operation = MultiplicationTarget()
+    target_operation = AdditionTarget()
+    #target_operation = MultiplicationTarget()
     
     # Components for AdditionTarget: "alignment", "raw_sum", "overflow"
     # Components for MultiplicationTarget: "renorm_flag", "mant", "exp"
     
     #target_component = "dot_product_2_element"  
-    target_component = "renorm_flag"
+    target_component = "overflow"
     
     synthesis_test_cases = []
     if isinstance(target_operation, (AdditionTarget, MultiplicationTarget)):
@@ -194,11 +225,24 @@ if __name__ == "__main__":
         output_filename = f"solution_{op_name}_{target_component}.smt2"
         
 
-        if not os.path.exists('results'):
-            os.makedirs('results')
-            
-        output_path = os.path.join('results', output_filename)
+        # Create organized results subdirectories
+        smt_dir = os.path.join('results', 'smt2')
+        c_dir = os.path.join('results', 'c')
+        cpp_dir = os.path.join('results', 'cpp')
+        os.makedirs(smt_dir, exist_ok=True)
+        os.makedirs(c_dir, exist_ok=True)
+        os.makedirs(cpp_dir, exist_ok=True)
+
+        output_path = os.path.join(smt_dir, output_filename)
 
         with open(output_path, "w") as f:
             f.write(final_program)
         print(f"\n Solution saved to: {output_path}")
+
+        # Run the smt2c translation to get the C-like code
+        from src.translate_smt_to_c import run_smt2c_translation
+        c_output_path = run_smt2c_translation(output_path, c_dir)
+
+        # Convert the generated C code to HLS-compatible C++
+        from src.translate_to_hls_cpp import run_hls_conversion
+        run_hls_conversion(c_output_path)
