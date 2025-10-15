@@ -1,0 +1,14 @@
+{
+    "0": {
+        "name": "mult_mxint_exp",
+        "file": "solution_multiplication_exp.cpp",
+        "fileloc": "3",
+        "instructions": "15",
+        "total_instructions": "15",
+        "calls": "",
+        "basicblocks": "1",
+        "memory_accesses": "0",
+        "control_depth": "0",
+        "def_use_depth": "4"
+    }
+}

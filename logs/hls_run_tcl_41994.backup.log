@@ -1,0 +1,22 @@
+  **** HLS Build v2025.1 6135595
+Sourcing Tcl script '/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/vitis.tcl'
+INFO: [HLS 200-1510] Running: open_project -reset solution_addition_overflow_hls 
+WARNING: [HLS 200-2182] The 'solution_addition_overflow_hls' project will not automatically appear within Vitis IDE workspaces and is meant only for TCL batch use.  Please use open_component instead of open_project/open_solution to generate Vitis IDE compatible component files and directory structure.
+Resolution: For help on HLS 200-2182 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2025.1%20English&url=ug1448-hls-guidance&resourceid=200-2182.html
+INFO: [HLS 200-10] Creating and opening solution '/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/solution_addition_overflow_hls'.
+INFO: [HLS 200-1510] Running: set_top addition_overflow 
+INFO: [HLS 200-1510] Running: add_files /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_addition_overflow.cpp 
+INFO: [HLS 200-10] Adding design file '/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_addition_overflow.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files -tb /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_addition_overflow.cpp 
+INFO: [HLS 200-10] Adding test bench file '/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_addition_overflow.cpp' to the project
+INFO: [HLS 200-1510] Running: set_part xcvu9p-flga2104-2-i 
+ERROR: [HLS 200-71] Command 'set_part' is ignored. There is no active solution.
+command 'ap_source' returned error code
+    while executing
+"source /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/vitis.tcl"
+    ("uplevel" body line 1)
+    invoked from within
+"uplevel \#0 [list source $tclfile] "
+
+INFO: [HLS 200-112] Total CPU user time: 0.83 seconds. Total CPU system time: 0.27 seconds. Total elapsed time: 1.22 seconds; peak allocated memory: 137.816 MB.
+INFO: [vitis-run 60-1662] Stopping dispatch session having empty uuid.

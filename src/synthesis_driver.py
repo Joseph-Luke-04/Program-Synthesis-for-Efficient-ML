@@ -184,14 +184,14 @@ if __name__ == "__main__":
     """
  
     #target_operation = DotProductTarget()
-    target_operation = AdditionTarget()
-    #target_operation = MultiplicationTarget()
+    #target_operation = AdditionTarget()
+    target_operation = MultiplicationTarget()
     
     # Components for AdditionTarget: "alignment", "raw_sum", "overflow"
     # Components for MultiplicationTarget: "renorm_flag", "mant", "exp"
     
     #target_component = "dot_product_2_element"  
-    target_component = "overflow"
+    target_component = "mant"
     
     synthesis_test_cases = []
     if isinstance(target_operation, (AdditionTarget, MultiplicationTarget)):
@@ -246,3 +246,8 @@ if __name__ == "__main__":
         # Convert the generated C code to HLS-compatible C++
         from src.translate_to_hls_cpp import run_hls_conversion
         run_hls_conversion(c_output_path)
+
+        # Run the conversion from C++ to Verilog using Vitis HLS
+        from src.run_vitis_hls import run_vitis_hls
+        hls_cpp_path = os.path.join("results", "cpp", f"solution_{op_name}_{target_component}.cpp")
+        run_vitis_hls(hls_cpp_path)

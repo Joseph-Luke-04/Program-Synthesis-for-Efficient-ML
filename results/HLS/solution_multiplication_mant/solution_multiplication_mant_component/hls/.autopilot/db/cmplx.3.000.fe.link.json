@@ -1,0 +1,20 @@
+{
+  "0": {
+    "basicblocks": 7,
+    "calls": "",
+    "control_depth": 0,
+    "def_use_depth": 5,
+    "file": "solution_multiplication_mant.cpp",
+    "fileloc": 3,
+    "instructions": 97,
+    "loads": {
+      "L": 1
+    },
+    "memory_accesses": 0,
+    "name": "mult_mxint_mant",
+    "stores": {
+      "L": 2
+    },
+    "total_instructions": 541
+  }
+}

@@ -1,0 +1,12 @@
+--- !Missed
+Pass:            inline
+Name:            NeverInline
+Function:        apatb_mult_mxint_mant_ir
+Args:            
+  - Callee:          'mult_mxint_mant(ap_uint<4>, ap_uint<4>)'
+    DebugLoc:        { File: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_mant.cpp, 
+                       Line: 3, Column: 0 }
+  - String:          ' not inlined into '
+  - Caller:          apatb_mult_mxint_mant_ir
+  - String:          ' because it should never be inlined (cost=never)'
+...

@@ -1,0 +1,43 @@
+  **** HLS Build v2025.1 6135595
+Sourcing Tcl script '/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/vitis.tcl'
+INFO: [HLS 200-1510] Running: open_component -reset solution_addition_overflow_component -flow_target vivado 
+INFO: [HLS 200-10] Creating and opening component '/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/solution_addition_overflow_component'.
+INFO: [HLS 200-10] Cleaning up the component database.
+INFO: [HLS 200-1505] Using flow_target 'vivado'
+Resolution: For help on HLS 200-1505 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2025.1%20English&url=ug1448-hls-guidance&resourceid=200-1505.html
+INFO: [HLS 200-2176] Writing Vitis IDE component file /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/solution_addition_overflow_component/vitis-comp.json
+INFO: [HLS 200-1915] Writing HLS config ini file /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/solution_addition_overflow_component/hls_config.cfg
+INFO: [HLS 200-1510] Running: set_top addition_overflow 
+INFO: [HLS 200-1510] Running: add_files /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_addition_overflow.cpp 
+INFO: [HLS 200-10] Adding design file '/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_addition_overflow.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files -tb /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_addition_overflow_tb.cpp 
+INFO: [HLS 200-10] Adding test bench file '/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_addition_overflow_tb.cpp' to the project
+INFO: [HLS 200-1510] Running: set_part xc7z020clg400-1 
+INFO: [HLS 200-1611] Setting target device to 'xc7z020-clg400-1'
+INFO: [HLS 200-1510] Running: create_clock -period 4 
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 4ns.
+INFO: [HLS 200-1510] Running: csim_design 
+INFO: [HLS 200-1915] Writing HLS config ini file /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/solution_addition_overflow_component/hls_config.cfg
+INFO: [SIM 211-2] *************** CSIM start ***************
+INFO: [SIM 211-4] CSIM will launch CLANG as the compiler.
+INFO: [HLS 200-2036] Building debug C Simulation binaries
+   Compiling ../../../../results/HLS/solution_addition_overflow_tb.cpp in debug mode
+   Compiling ../../../../results/cpp/solution_addition_overflow.cpp in debug mode
+   Generating csim.exe
+ld.lld: error: undefined symbol: addition_overflow(ap_uint<4>, ap_uint<4>)
+>>> referenced by solution_addition_overflow_tb.cpp:6 (../../../../results/HLS/solution_addition_overflow_tb.cpp:6)
+>>>               obj/solution_addition_overflow_tb.o:(main)
+clang++: error: linker command failed with exit code 1 (use -v to see invocation)
+make: *** [Makefile.rules:349: csim.exe] Error 1
+ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s).
+INFO: [SIM 211-3] *************** CSIM finish ***************
+INFO: [HLS 200-2161] Finished Command csim_design Elapsed time: 00:00:05; Allocated memory: 16.000 MB.
+4
+    while executing
+"source /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/vitis.tcl"
+    ("uplevel" body line 1)
+    invoked from within
+"uplevel \#0 [list source $tclfile] "
+
+INFO: [HLS 200-112] Total CPU user time: 4.25 seconds. Total CPU system time: 0.53 seconds. Total elapsed time: 7.21 seconds; peak allocated memory: 264.754 MB.
+INFO: [vitis-run 60-1662] Stopping dispatch session having empty uuid.

@@ -1,0 +1,36 @@
+  **** HLS Build v2025.1 6135595
+Sourcing Tcl script '/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_addition_overflow/vitis.tcl'
+INFO: [HLS 200-1510] Running: open_component -reset solution_addition_overflow_component -flow_target vivado 
+INFO: [HLS 200-10] Creating and opening component '/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_addition_overflow/solution_addition_overflow_component'.
+INFO: [HLS 200-10] Cleaning up the component database.
+INFO: [HLS 200-1505] Using flow_target 'vivado'
+Resolution: For help on HLS 200-1505 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2025.1%20English&url=ug1448-hls-guidance&resourceid=200-1505.html
+INFO: [HLS 200-2176] Writing Vitis IDE component file /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_addition_overflow/solution_addition_overflow_component/vitis-comp.json
+INFO: [HLS 200-1915] Writing HLS config ini file /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_addition_overflow/solution_addition_overflow_component/hls_config.cfg
+INFO: [HLS 200-1510] Running: set_top addition_overflow 
+INFO: [HLS 200-1510] Running: add_files /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_addition_overflow.cpp 
+INFO: [HLS 200-10] Adding design file '/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_addition_overflow.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files -tb /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_addition_overflow.cpp 
+INFO: [HLS 200-10] Adding test bench file '/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_addition_overflow.cpp' to the project
+INFO: [HLS 200-1510] Running: set_part xc7z020clg400-1 
+INFO: [HLS 200-1611] Setting target device to 'xc7z020-clg400-1'
+INFO: [HLS 200-1510] Running: create_clock -period 4 
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 4ns.
+INFO: [HLS 200-1510] Running: csynth_design 
+INFO: [HLS 200-1915] Writing HLS config ini file /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_addition_overflow/solution_addition_overflow_component/hls_config.cfg
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.43 seconds. CPU system time: 0.06 seconds. Elapsed time: 3.05 seconds; current allocated memory: 264.754 MB.
+INFO: [HLS 200-10] Analyzing design file '/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_addition_overflow.cpp' ... 
+WARNING: [HLS 200-1986] Could not apply TOP directive, invalid function, label, or variable (/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_addition_overflow/vitis.tcl:14)
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 2.66 seconds. CPU system time: 0.34 seconds. Elapsed time: 3.22 seconds; current allocated memory: 266.293 MB.
+ERROR: [HLS 214-157] Top function not found: there is no function named 'addition_overflow'
+error: Top function not found: there is no function named 'addition_overflow'
+INFO: [HLS 200-2161] Finished Command csynth_design Elapsed time: 00:00:08; Allocated memory: 17.836 MB.
+Error in opt
+    while executing
+"source /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_addition_overflow/vitis.tcl"
+    ("uplevel" body line 1)
+    invoked from within
+"uplevel \#0 [list source $tclfile] "
+
+INFO: [HLS 200-112] Total CPU user time: 5.84 seconds. Total CPU system time: 0.8 seconds. Total elapsed time: 9.43 seconds; peak allocated memory: 266.590 MB.
+INFO: [vitis-run 60-1662] Stopping dispatch session having empty uuid.
