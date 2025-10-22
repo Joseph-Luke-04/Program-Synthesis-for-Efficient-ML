@@ -15,22 +15,22 @@
         <PipelineType>no</PipelineType>
         <SummaryOfTimingAnalysis>
             <unit>ns</unit>
-            <EstimatedClockPeriod>2.894</EstimatedClockPeriod>
+            <EstimatedClockPeriod>5.415</EstimatedClockPeriod>
         </SummaryOfTimingAnalysis>
         <SummaryOfOverallLatency>
             <unit>clock cycles</unit>
-            <Best-caseLatency>2</Best-caseLatency>
-            <Average-caseLatency>2</Average-caseLatency>
-            <Worst-caseLatency>2</Worst-caseLatency>
-            <Best-caseRealTimeLatency>8.000 ns</Best-caseRealTimeLatency>
-            <Average-caseRealTimeLatency>8.000 ns</Average-caseRealTimeLatency>
-            <Worst-caseRealTimeLatency>8.000 ns</Worst-caseRealTimeLatency>
-            <Interval-min>3</Interval-min>
-            <Interval-max>3</Interval-max>
+            <Best-caseLatency>6</Best-caseLatency>
+            <Average-caseLatency>6</Average-caseLatency>
+            <Worst-caseLatency>6</Worst-caseLatency>
+            <Best-caseRealTimeLatency>32.490 ns</Best-caseRealTimeLatency>
+            <Average-caseRealTimeLatency>32.490 ns</Average-caseRealTimeLatency>
+            <Worst-caseRealTimeLatency>32.490 ns</Worst-caseRealTimeLatency>
+            <Interval-min>7</Interval-min>
+            <Interval-max>7</Interval-max>
             <PerformancePragma>-</PerformancePragma>
         </SummaryOfOverallLatency>
         <SummaryOfViolations>
-            <IssueType>-</IssueType>
+            <IssueType>Timing Violation</IssueType>
             <ViolationType>-</ViolationType>
             <SourceLocation>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_mant.cpp:3</SourceLocation>
         </SummaryOfViolations>
@@ -38,8 +38,8 @@
     <AreaEstimates>
         <Resources>
             <DSP>0</DSP>
-            <FF>33</FF>
-            <LUT>72</LUT>
+            <FF>138</FF>
+            <LUT>176</LUT>
             <BRAM_18K>0</BRAM_18K>
             <URAM>0</URAM>
         </Resources>
@@ -157,7 +157,7 @@
     <RTLDesignHierarchy>
         <TopModule MAX_DEPTH="2">
             <ModuleName>mult_mxint_mant</ModuleName>
-            <BindInstances>mul_4s_4s_8_1_1_U1 sub_ln5_fu_92_p2 select_ln5_fu_104_p3 icmp_ln5_fu_110_p2 ap_return</BindInstances>
+            <BindInstances>mul_4s_4s_8_1_1_U1 mul_8ns_8ns_16_5_1_U2 sub_ln4_fu_96_p2 icmp_ln4_fu_84_p2 select_ln4_fu_119_p3 ap_return</BindInstances>
         </TopModule>
     </RTLDesignHierarchy>
     <ModuleInformation>
@@ -167,21 +167,21 @@
                 <SummaryOfTimingAnalysis>
                     <TargetClockPeriod>4.00</TargetClockPeriod>
                     <ClockUncertainty>1.08</ClockUncertainty>
-                    <EstimatedClockPeriod>2.894</EstimatedClockPeriod>
+                    <EstimatedClockPeriod>5.415</EstimatedClockPeriod>
                 </SummaryOfTimingAnalysis>
                 <SummaryOfOverallLatency>
-                    <Best-caseLatency>2</Best-caseLatency>
-                    <Average-caseLatency>2</Average-caseLatency>
-                    <Worst-caseLatency>2</Worst-caseLatency>
-                    <Best-caseRealTimeLatency>8.000 ns</Best-caseRealTimeLatency>
-                    <Average-caseRealTimeLatency>8.000 ns</Average-caseRealTimeLatency>
-                    <Worst-caseRealTimeLatency>8.000 ns</Worst-caseRealTimeLatency>
-                    <PipelineInitiationInterval>3</PipelineInitiationInterval>
+                    <Best-caseLatency>6</Best-caseLatency>
+                    <Average-caseLatency>6</Average-caseLatency>
+                    <Worst-caseLatency>6</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>32.490 ns</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>32.490 ns</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>32.490 ns</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>7</PipelineInitiationInterval>
                     <PipelineType>no</PipelineType>
                     <PerformancePragma>-</PerformancePragma>
                 </SummaryOfOverallLatency>
                 <SummaryOfViolations>
-                    <IssueType>-</IssueType>
+                    <IssueType>Timing Violation</IssueType>
                     <ViolationType>-</ViolationType>
                     <SourceLocation>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_mant.cpp:3</SourceLocation>
                 </SummaryOfViolations>
@@ -191,10 +191,10 @@
                     <DSP>0</DSP>
                     <AVAIL_DSP>220</AVAIL_DSP>
                     <UTIL_DSP>0</UTIL_DSP>
-                    <FF>33</FF>
+                    <FF>138</FF>
                     <AVAIL_FF>106400</AVAIL_FF>
                     <UTIL_FF>~0</UTIL_FF>
-                    <LUT>72</LUT>
+                    <LUT>176</LUT>
                     <AVAIL_LUT>53200</AVAIL_LUT>
                     <UTIL_LUT>~0</UTIL_LUT>
                     <BRAM_18K>0</BRAM_18K>
@@ -206,11 +206,12 @@
                 </Resources>
             </AreaEstimates>
             <BindNodes>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_4s_4s_8_1_1_U1" SOURCE="/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_mant.cpp:5" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln5" VISIBLE="true"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln5_fu_92_p2" SOURCE="/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_mant.cpp:5" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln5" VISIBLE="true"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op select" DSP="0" ID="" IMPL="auto_sel" LATENCY="0" LOOP="" OPTYPE="select" PRAGMA="" RTLNAME="select_ln5_fu_104_p3" SOURCE="/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_mant.cpp:5" STORAGESUBTYPE="" URAM="0" VARIABLE="select_ln5" VISIBLE="false"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op setlt" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="setlt" PRAGMA="" RTLNAME="icmp_ln5_fu_110_p2" SOURCE="/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_mant.cpp:5" STORAGESUBTYPE="" URAM="0" VARIABLE="icmp_ln5" VISIBLE="false"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op select" DSP="0" ID="" IMPL="auto_sel" LATENCY="0" LOOP="" OPTYPE="select" PRAGMA="" RTLNAME="ap_return" SOURCE="/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_mant.cpp:5" STORAGESUBTYPE="" URAM="0" VARIABLE="select_ln5_1" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_4s_4s_8_1_1_U1" SOURCE="/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_mant.cpp:4" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln4" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="0" ID="" IMPL="auto" LATENCY="4" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_8ns_8ns_16_5_1_U2" SOURCE="/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_mant.cpp:4" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln4_1" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln4_fu_96_p2" SOURCE="/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_mant.cpp:4" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln4" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op setlt" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="setlt" PRAGMA="" RTLNAME="icmp_ln4_fu_84_p2" SOURCE="/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_mant.cpp:4" STORAGESUBTYPE="" URAM="0" VARIABLE="icmp_ln4" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op select" DSP="0" ID="" IMPL="auto_sel" LATENCY="0" LOOP="" OPTYPE="select" PRAGMA="" RTLNAME="select_ln4_fu_119_p3" SOURCE="/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_mant.cpp:4" STORAGESUBTYPE="" URAM="0" VARIABLE="select_ln4" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op select" DSP="0" ID="" IMPL="auto_sel" LATENCY="0" LOOP="" OPTYPE="select" PRAGMA="" RTLNAME="ap_return" SOURCE="/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_mant.cpp:4" STORAGESUBTYPE="" URAM="0" VARIABLE="select_ln4_1" VISIBLE="false"/>
             </BindNodes>
         </Module>
     </ModuleInformation>

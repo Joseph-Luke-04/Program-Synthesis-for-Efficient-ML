@@ -6201,10 +6201,10 @@ operator/(const complex<ap_ufixed<_AP_W, _AP_I, _AP_Q, _AP_O, _AP_N>> &__x, cons
 # 365 "/tools/Xilinx/2025.1/Vitis/common/technology/autopilot/ap_int.h" 2
 # 2 "/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_exp.cpp" 2
 
-__attribute__((sdx_kernel("mult_mxint_exp", 0))) ap_uint<4> mult_mxint_exp(ap_uint<4> e1, ap_uint<4> e2, ap_uint<1> renorm_flag) {
-#line 12 "/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_multiplication_exp/vitis.tcl"
+__attribute__((sdx_kernel("mult_mxint_exp", 0))) ap_uint<4> mult_mxint_exp(ap_uint<4> e1, ap_uint<4> e2, bool renorm_flag) {
+#line 6 "/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_multiplication_exp/hls.tcl"
 #pragma HLSDIRECTIVE TOP name=mult_mxint_exp
 # 3 "/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_exp.cpp"
 
-  if (renorm_flag == 1) return (e1 + e2) - 1; else return e1 + e2;
+  return renorm_flag ? ap_uint<4>(((e1 + e2) - 1)) : ap_uint<4>((e1 + e2));
 }

@@ -4,7 +4,7 @@
 == Synthesis Summary Report of 'mult_mxint_exp'
 ================================================================
 + General Information: 
-    * Date:           Wed Oct 15 16:11:03 2025
+    * Date:           Wed Oct 22 01:43:34 2025
     * Version:        2025.1 (Build 6135595 on May 21 2025)
     * Project:        solution_multiplication_exp_component
     * Solution:       hls (Vivado IP Flow Target)
@@ -55,7 +55,7 @@
 +-------------+-----------+------------+
 | e1          | in        | ap_uint<4> |
 | e2          | in        | ap_uint<4> |
-| renorm_flag | in        | ap_uint<1> |
+| renorm_flag | in        | bool       |
 | return      | out       | ap_uint<4> |
 +-------------+-----------+------------+
 

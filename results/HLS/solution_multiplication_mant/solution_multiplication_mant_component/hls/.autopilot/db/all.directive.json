@@ -16,8 +16,8 @@
       ]
     },
     "slx": false,
-    "sourceFile": "/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_multiplication_mant/vitis.tcl",
-    "sourceLine": 12,
+    "sourceFile": "/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_multiplication_mant/hls.tcl",
+    "sourceLine": 6,
     "success": true
   }
 ]

@@ -1,0 +1,7 @@
+<pragmas>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int<4>::ap_int<4>(ap_uint<4> const&)" off="0" region="0" recursive="0"/>
+<pragma file="/tools/Xilinx/2025.1/Vitis/common/technology/autopilot/etc/ap_common.h" line="534" pragmaType="inline" parentfunction="_ZN8ssdm_intILi4ELb1EEC2EDq4_i" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<4, true>::ap_int_base<4, false>(ap_int_base<4, false> const&)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="bool ap_int_base<4, true>::operator>=<4, true>(ap_int_base<4, true> const&) const" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="checkOverflowCsim" off="0" region="0" recursive="0"/>
+</pragmas>

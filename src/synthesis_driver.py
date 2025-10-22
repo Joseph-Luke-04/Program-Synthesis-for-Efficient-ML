@@ -192,6 +192,10 @@ if __name__ == "__main__":
     
     #target_component = "dot_product_2_element"  
     target_component = "mant"
+
+    # False for a quick post-synthesis estimate (-p)
+    # True for a full post-implementation run (-i)
+    RUN_IMPLEMENTATION = True
     
     synthesis_test_cases = []
     if isinstance(target_operation, (AdditionTarget, MultiplicationTarget)):
@@ -250,4 +254,4 @@ if __name__ == "__main__":
         # Run the conversion from C++ to Verilog using Vitis HLS
         from src.run_vitis_hls import run_vitis_hls
         hls_cpp_path = os.path.join("results", "cpp", f"solution_{op_name}_{target_component}.cpp")
-        run_vitis_hls(hls_cpp_path)
+        run_vitis_hls(hls_cpp_path, impl=RUN_IMPLEMENTATION)

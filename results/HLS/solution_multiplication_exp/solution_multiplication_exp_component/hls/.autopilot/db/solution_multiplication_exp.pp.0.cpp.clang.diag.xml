@@ -7,9 +7,9 @@
       <key>level</key>
       <string>warning</string>
       <key>filename</key>
-      <string>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_multiplication_exp/vitis.tcl</string>
+      <string>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_multiplication_exp/hls.tcl</string>
       <key>line</key>
-      <integer>12</integer>
+      <integer>6</integer>
       <key>column</key>
       <integer>9</integer>
       <key>message</key>

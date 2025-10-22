@@ -1,0 +1,12 @@
+--- !Missed
+Pass:            inline
+Name:            NeverInline
+Function:        apatb_select_exponent_ir
+Args:            
+  - Callee:          'select_exponent(ap_uint<4>, ap_uint<4>)'
+    DebugLoc:        { File: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_addition_alignment.cpp, 
+                       Line: 3, Column: 0 }
+  - String:          ' not inlined into '
+  - Caller:          apatb_select_exponent_ir
+  - String:          ' because it should never be inlined (cost=never)'
+...

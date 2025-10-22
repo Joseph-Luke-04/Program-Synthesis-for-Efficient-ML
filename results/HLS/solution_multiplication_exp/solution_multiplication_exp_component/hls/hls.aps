@@ -15,10 +15,10 @@
         <library value="xilinx/zynq/zynq" name="DefaultPlatform"/>
     </libraryList>
     <clockList>
-        <clock name="default" period="4" default="false"/>
+        <clock name="default" period="4ns" default="false"/>
     </clockList>
     <config>
-        <config_export format="ip_catalog" output="/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_multiplication_exp/solution_multiplication_exp_export" rtl="verilog"/>
+        <config_export rtl="verilog"/>
     </config>
 </AutoPilot:solution>
 

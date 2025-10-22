@@ -11,7 +11,7 @@
           <constraint constraint_type="pragma interface" mode="ap_none" register_option="0"/>
         </hw>
       </arg>
-      <arg id="2" access_type="r" src_name="renorm_flag" src_type="ap_uint&lt;1&gt;" src_isptr="1" src_bitwidth="8" src_size_or_depth="1">
+      <arg id="2" access_type="r" src_name="renorm_flag" src_type="bool" src_isptr="0" src_bitwidth="1" src_size_or_depth="1">
         <hw hw_usage="data" hw_interface="Register" hw_name="renorm_flag" hw_bitwidth="1" hw_size_or_depth="1" hw_kernel_support="false">
           <constraint constraint_type="pragma interface" mode="ap_none" register_option="0"/>
         </hw>

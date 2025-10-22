@@ -3,10 +3,10 @@
     "basicblocks": 7,
     "calls": "",
     "control_depth": 0,
-    "def_use_depth": 5,
+    "def_use_depth": 4,
     "file": "solution_multiplication_mant.cpp",
     "fileloc": 3,
-    "instructions": 97,
+    "instructions": 100,
     "loads": {
       "L": 1
     },
@@ -15,6 +15,6 @@
     "stores": {
       "L": 2
     },
-    "total_instructions": 541
+    "total_instructions": 566
   }
 }

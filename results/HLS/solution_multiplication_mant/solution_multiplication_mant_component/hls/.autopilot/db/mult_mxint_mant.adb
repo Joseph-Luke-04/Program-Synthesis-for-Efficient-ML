@@ -85,7 +85,7 @@
         </item>
       </ports>
       <nodes class_id="8" tracking_level="0" version="0">
-        <count>14</count>
+        <count>17</count>
         <item_version>0</item_version>
         <item class_id="9" tracking_level="1" version="0" object_id="_3">
           <Value>
@@ -132,14 +132,14 @@
           <oprand_edges>
             <count>2</count>
             <item_version>0</item_version>
-            <item>25</item>
-            <item>26</item>
+            <item>28</item>
+            <item>29</item>
           </oprand_edges>
           <opcode>read</opcode>
           <m_Display>0</m_Display>
-          <m_isOnCriticalPath>0</m_isOnCriticalPath>
+          <m_isOnCriticalPath>1</m_isOnCriticalPath>
           <m_isLCDNode>0</m_isLCDNode>
-          <m_isStartOfPath>0</m_isStartOfPath>
+          <m_isStartOfPath>1</m_isStartOfPath>
           <m_delay>0.00</m_delay>
           <m_topoIndex>1</m_topoIndex>
           <m_clusterGroupNumber>-1</m_clusterGroupNumber>
@@ -189,8 +189,8 @@
           <oprand_edges>
             <count>2</count>
             <item_version>0</item_version>
-            <item>27</item>
-            <item>28</item>
+            <item>30</item>
+            <item>31</item>
           </oprand_edges>
           <opcode>read</opcode>
           <m_Display>0</m_Display>
@@ -206,10 +206,10 @@
             <Obj>
               <type>0</type>
               <id>11</id>
-              <name>sext_ln5</name>
+              <name>sext_ln4</name>
               <fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_mant.cpp</fileName>
               <fileDirectory>../.</fileDirectory>
-              <lineNumber>5</lineNumber>
+              <lineNumber>4</lineNumber>
               <contextFuncName>mult_mxint_mant</contextFuncName>
               <contextNormFuncName>mult_mxint_mant</contextNormFuncName>
               <inlineStackInfo>
@@ -225,13 +225,13 @@
                         <first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_mant.cpp</first>
                         <second>mult_mxint_mant</second>
                       </first>
-                      <second>5</second>
+                      <second>4</second>
                     </item>
                   </second>
                 </item>
               </inlineStackInfo>
               <originalName></originalName>
-              <rtlName></rtlName>
+              <rtlName>sext_ln4_fu_52_p1</rtlName>
               <control></control>
               <opType></opType>
               <implIndex></implIndex>
@@ -246,7 +246,7 @@
           <oprand_edges>
             <count>1</count>
             <item_version>0</item_version>
-            <item>29</item>
+            <item>32</item>
           </oprand_edges>
           <opcode>sext</opcode>
           <m_Display>0</m_Display>
@@ -262,10 +262,10 @@
             <Obj>
               <type>0</type>
               <id>12</id>
-              <name>sext_ln5_1</name>
+              <name>sext_ln4_1</name>
               <fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_mant.cpp</fileName>
               <fileDirectory>../.</fileDirectory>
-              <lineNumber>5</lineNumber>
+              <lineNumber>4</lineNumber>
               <contextFuncName>mult_mxint_mant</contextFuncName>
               <contextNormFuncName>mult_mxint_mant</contextNormFuncName>
               <inlineStackInfo>
@@ -281,13 +281,13 @@
                         <first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_mant.cpp</first>
                         <second>mult_mxint_mant</second>
                       </first>
-                      <second>5</second>
+                      <second>4</second>
                     </item>
                   </second>
                 </item>
               </inlineStackInfo>
               <originalName></originalName>
-              <rtlName></rtlName>
+              <rtlName>sext_ln4_1_fu_56_p1</rtlName>
               <control></control>
               <opType></opType>
               <implIndex></implIndex>
@@ -302,11 +302,11 @@
           <oprand_edges>
             <count>1</count>
             <item_version>0</item_version>
-            <item>30</item>
+            <item>33</item>
           </oprand_edges>
           <opcode>sext</opcode>
           <m_Display>0</m_Display>
-          <m_isOnCriticalPath>0</m_isOnCriticalPath>
+          <m_isOnCriticalPath>1</m_isOnCriticalPath>
           <m_isLCDNode>0</m_isLCDNode>
           <m_isStartOfPath>0</m_isStartOfPath>
           <m_delay>0.00</m_delay>
@@ -318,10 +318,10 @@
             <Obj>
               <type>0</type>
               <id>13</id>
-              <name>mul_ln5</name>
+              <name>mul_ln4</name>
               <fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_mant.cpp</fileName>
               <fileDirectory>../.</fileDirectory>
-              <lineNumber>5</lineNumber>
+              <lineNumber>4</lineNumber>
               <contextFuncName>mult_mxint_mant</contextFuncName>
               <contextNormFuncName>mult_mxint_mant</contextNormFuncName>
               <inlineStackInfo>
@@ -337,7 +337,7 @@
                         <first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_mant.cpp</first>
                         <second>mult_mxint_mant</second>
                       </first>
-                      <second>5</second>
+                      <second>4</second>
                     </item>
                   </second>
                 </item>
@@ -358,8 +358,8 @@
           <oprand_edges>
             <count>2</count>
             <item_version>0</item_version>
-            <item>31</item>
-            <item>32</item>
+            <item>34</item>
+            <item>35</item>
           </oprand_edges>
           <opcode>mul</opcode>
           <m_Display>0</m_Display>
@@ -375,66 +375,10 @@
             <Obj>
               <type>0</type>
               <id>14</id>
-              <name>trunc_ln5</name>
-              <fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_mant.cpp</fileName>
-              <fileDirectory>../.</fileDirectory>
-              <lineNumber>5</lineNumber>
-              <contextFuncName>mult_mxint_mant</contextFuncName>
-              <contextNormFuncName>mult_mxint_mant</contextNormFuncName>
-              <inlineStackInfo>
-                <count>1</count>
-                <item_version>0</item_version>
-                <item>
-                  <first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_multiplication_mant</first>
-                  <second>
-                    <count>1</count>
-                    <item_version>0</item_version>
-                    <item>
-                      <first>
-                        <first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_mant.cpp</first>
-                        <second>mult_mxint_mant</second>
-                      </first>
-                      <second>5</second>
-                    </item>
-                  </second>
-                </item>
-              </inlineStackInfo>
-              <originalName></originalName>
-              <rtlName>trunc_ln5_fu_68_p1</rtlName>
-              <control></control>
-              <opType></opType>
-              <implIndex></implIndex>
-              <coreName></coreName>
-              <isStorage>0</isStorage>
-              <storageDepth>0</storageDepth>
-              <coreId>4294967295</coreId>
-              <rtlModuleName></rtlModuleName>
-            </Obj>
-            <bitwidth>7</bitwidth>
-          </Value>
-          <oprand_edges>
-            <count>1</count>
-            <item_version>0</item_version>
-            <item>33</item>
-          </oprand_edges>
-          <opcode>trunc</opcode>
-          <m_Display>0</m_Display>
-          <m_isOnCriticalPath>0</m_isOnCriticalPath>
-          <m_isLCDNode>0</m_isLCDNode>
-          <m_isStartOfPath>0</m_isStartOfPath>
-          <m_delay>0.00</m_delay>
-          <m_topoIndex>6</m_topoIndex>
-          <m_clusterGroupNumber>-1</m_clusterGroupNumber>
-        </item>
-        <item class_id_reference="9" object_id="_9">
-          <Value>
-            <Obj>
-              <type>0</type>
-              <id>15</id>
               <name>tmp_2</name>
               <fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_mant.cpp</fileName>
               <fileDirectory>../.</fileDirectory>
-              <lineNumber>5</lineNumber>
+              <lineNumber>4</lineNumber>
               <contextFuncName>mult_mxint_mant</contextFuncName>
               <contextNormFuncName>mult_mxint_mant</contextNormFuncName>
               <inlineStackInfo>
@@ -450,13 +394,13 @@
                         <first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_mant.cpp</first>
                         <second>mult_mxint_mant</second>
                       </first>
-                      <second>5</second>
+                      <second>4</second>
                     </item>
                   </second>
                 </item>
               </inlineStackInfo>
               <originalName></originalName>
-              <rtlName>tmp_2_fu_97_p3</rtlName>
+              <rtlName>tmp_2_fu_89_p3</rtlName>
               <control></control>
               <opType></opType>
               <implIndex></implIndex>
@@ -471,9 +415,9 @@
           <oprand_edges>
             <count>3</count>
             <item_version>0</item_version>
-            <item>35</item>
-            <item>36</item>
+            <item>37</item>
             <item>38</item>
+            <item>40</item>
           </oprand_edges>
           <opcode>bitselect</opcode>
           <m_Display>0</m_Display>
@@ -481,18 +425,18 @@
           <m_isLCDNode>0</m_isLCDNode>
           <m_isStartOfPath>0</m_isStartOfPath>
           <m_delay>0.00</m_delay>
-          <m_topoIndex>10</m_topoIndex>
+          <m_topoIndex>11</m_topoIndex>
           <m_clusterGroupNumber>1</m_clusterGroupNumber>
         </item>
-        <item class_id_reference="9" object_id="_10">
+        <item class_id_reference="9" object_id="_9">
           <Value>
             <Obj>
               <type>0</type>
-              <id>16</id>
-              <name>sub_ln5</name>
+              <id>15</id>
+              <name>zext_ln4</name>
               <fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_mant.cpp</fileName>
               <fileDirectory>../.</fileDirectory>
-              <lineNumber>5</lineNumber>
+              <lineNumber>4</lineNumber>
               <contextFuncName>mult_mxint_mant</contextFuncName>
               <contextNormFuncName>mult_mxint_mant</contextNormFuncName>
               <inlineStackInfo>
@@ -508,13 +452,238 @@
                         <first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_mant.cpp</first>
                         <second>mult_mxint_mant</second>
                       </first>
-                      <second>5</second>
+                      <second>4</second>
                     </item>
                   </second>
                 </item>
               </inlineStackInfo>
               <originalName></originalName>
-              <rtlName>sub_ln5_fu_92_p2</rtlName>
+              <rtlName>grp_fu_74_p10</rtlName>
+              <control></control>
+              <opType></opType>
+              <implIndex></implIndex>
+              <coreName></coreName>
+              <isStorage>0</isStorage>
+              <storageDepth>0</storageDepth>
+              <coreId>4294967295</coreId>
+              <rtlModuleName></rtlModuleName>
+            </Obj>
+            <bitwidth>16</bitwidth>
+          </Value>
+          <oprand_edges>
+            <count>1</count>
+            <item_version>0</item_version>
+            <item>41</item>
+          </oprand_edges>
+          <opcode>zext</opcode>
+          <m_Display>0</m_Display>
+          <m_isOnCriticalPath>0</m_isOnCriticalPath>
+          <m_isLCDNode>0</m_isLCDNode>
+          <m_isStartOfPath>0</m_isStartOfPath>
+          <m_delay>0.00</m_delay>
+          <m_topoIndex>6</m_topoIndex>
+          <m_clusterGroupNumber>-1</m_clusterGroupNumber>
+        </item>
+        <item class_id_reference="9" object_id="_10">
+          <Value>
+            <Obj>
+              <type>0</type>
+              <id>16</id>
+              <name>zext_ln4_1</name>
+              <fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_mant.cpp</fileName>
+              <fileDirectory>../.</fileDirectory>
+              <lineNumber>4</lineNumber>
+              <contextFuncName>mult_mxint_mant</contextFuncName>
+              <contextNormFuncName>mult_mxint_mant</contextNormFuncName>
+              <inlineStackInfo>
+                <count>1</count>
+                <item_version>0</item_version>
+                <item>
+                  <first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_multiplication_mant</first>
+                  <second>
+                    <count>1</count>
+                    <item_version>0</item_version>
+                    <item>
+                      <first>
+                        <first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_mant.cpp</first>
+                        <second>mult_mxint_mant</second>
+                      </first>
+                      <second>4</second>
+                    </item>
+                  </second>
+                </item>
+              </inlineStackInfo>
+              <originalName></originalName>
+              <rtlName>grp_fu_74_p00</rtlName>
+              <control></control>
+              <opType></opType>
+              <implIndex></implIndex>
+              <coreName></coreName>
+              <isStorage>0</isStorage>
+              <storageDepth>0</storageDepth>
+              <coreId>4294967295</coreId>
+              <rtlModuleName></rtlModuleName>
+            </Obj>
+            <bitwidth>16</bitwidth>
+          </Value>
+          <oprand_edges>
+            <count>1</count>
+            <item_version>0</item_version>
+            <item>42</item>
+          </oprand_edges>
+          <opcode>zext</opcode>
+          <m_Display>0</m_Display>
+          <m_isOnCriticalPath>1</m_isOnCriticalPath>
+          <m_isLCDNode>0</m_isLCDNode>
+          <m_isStartOfPath>0</m_isStartOfPath>
+          <m_delay>0.00</m_delay>
+          <m_topoIndex>7</m_topoIndex>
+          <m_clusterGroupNumber>-1</m_clusterGroupNumber>
+        </item>
+        <item class_id_reference="9" object_id="_11">
+          <Value>
+            <Obj>
+              <type>0</type>
+              <id>17</id>
+              <name>mul_ln4_1</name>
+              <fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_mant.cpp</fileName>
+              <fileDirectory>../.</fileDirectory>
+              <lineNumber>4</lineNumber>
+              <contextFuncName>mult_mxint_mant</contextFuncName>
+              <contextNormFuncName>mult_mxint_mant</contextNormFuncName>
+              <inlineStackInfo>
+                <count>1</count>
+                <item_version>0</item_version>
+                <item>
+                  <first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_multiplication_mant</first>
+                  <second>
+                    <count>1</count>
+                    <item_version>0</item_version>
+                    <item>
+                      <first>
+                        <first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_mant.cpp</first>
+                        <second>mult_mxint_mant</second>
+                      </first>
+                      <second>4</second>
+                    </item>
+                  </second>
+                </item>
+              </inlineStackInfo>
+              <originalName></originalName>
+              <rtlName>mul_8ns_8ns_16_5_1_U2</rtlName>
+              <control>auto</control>
+              <opType>mul</opType>
+              <implIndex>auto</implIndex>
+              <coreName>Multiplier</coreName>
+              <isStorage>0</isStorage>
+              <storageDepth>0</storageDepth>
+              <coreId>3</coreId>
+              <rtlModuleName></rtlModuleName>
+            </Obj>
+            <bitwidth>16</bitwidth>
+          </Value>
+          <oprand_edges>
+            <count>2</count>
+            <item_version>0</item_version>
+            <item>43</item>
+            <item>44</item>
+          </oprand_edges>
+          <opcode>mul</opcode>
+          <m_Display>0</m_Display>
+          <m_isOnCriticalPath>1</m_isOnCriticalPath>
+          <m_isLCDNode>0</m_isLCDNode>
+          <m_isStartOfPath>0</m_isStartOfPath>
+          <m_delay>5.41</m_delay>
+          <m_topoIndex>8</m_topoIndex>
+          <m_clusterGroupNumber>-1</m_clusterGroupNumber>
+        </item>
+        <item class_id_reference="9" object_id="_12">
+          <Value>
+            <Obj>
+              <type>0</type>
+              <id>18</id>
+              <name>trunc_ln4</name>
+              <fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_mant.cpp</fileName>
+              <fileDirectory>../.</fileDirectory>
+              <lineNumber>4</lineNumber>
+              <contextFuncName>mult_mxint_mant</contextFuncName>
+              <contextNormFuncName>mult_mxint_mant</contextNormFuncName>
+              <inlineStackInfo>
+                <count>1</count>
+                <item_version>0</item_version>
+                <item>
+                  <first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_multiplication_mant</first>
+                  <second>
+                    <count>1</count>
+                    <item_version>0</item_version>
+                    <item>
+                      <first>
+                        <first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_mant.cpp</first>
+                        <second>mult_mxint_mant</second>
+                      </first>
+                      <second>4</second>
+                    </item>
+                  </second>
+                </item>
+              </inlineStackInfo>
+              <originalName></originalName>
+              <rtlName>trunc_ln4_fu_80_p1</rtlName>
+              <control></control>
+              <opType></opType>
+              <implIndex></implIndex>
+              <coreName></coreName>
+              <isStorage>0</isStorage>
+              <storageDepth>0</storageDepth>
+              <coreId>4294967295</coreId>
+              <rtlModuleName></rtlModuleName>
+            </Obj>
+            <bitwidth>4</bitwidth>
+          </Value>
+          <oprand_edges>
+            <count>1</count>
+            <item_version>0</item_version>
+            <item>45</item>
+          </oprand_edges>
+          <opcode>trunc</opcode>
+          <m_Display>0</m_Display>
+          <m_isOnCriticalPath>0</m_isOnCriticalPath>
+          <m_isLCDNode>0</m_isLCDNode>
+          <m_isStartOfPath>0</m_isStartOfPath>
+          <m_delay>0.00</m_delay>
+          <m_topoIndex>9</m_topoIndex>
+          <m_clusterGroupNumber>-1</m_clusterGroupNumber>
+        </item>
+        <item class_id_reference="9" object_id="_13">
+          <Value>
+            <Obj>
+              <type>0</type>
+              <id>19</id>
+              <name>sub_ln4</name>
+              <fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_mant.cpp</fileName>
+              <fileDirectory>../.</fileDirectory>
+              <lineNumber>4</lineNumber>
+              <contextFuncName>mult_mxint_mant</contextFuncName>
+              <contextNormFuncName>mult_mxint_mant</contextNormFuncName>
+              <inlineStackInfo>
+                <count>1</count>
+                <item_version>0</item_version>
+                <item>
+                  <first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_multiplication_mant</first>
+                  <second>
+                    <count>1</count>
+                    <item_version>0</item_version>
+                    <item>
+                      <first>
+                        <first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_mant.cpp</first>
+                        <second>mult_mxint_mant</second>
+                      </first>
+                      <second>4</second>
+                    </item>
+                  </second>
+                </item>
+              </inlineStackInfo>
+              <originalName></originalName>
+              <rtlName>sub_ln4_fu_96_p2</rtlName>
               <control>auto</control>
               <opType>sub</opType>
               <implIndex>fabric</implIndex>
@@ -524,32 +693,32 @@
               <coreId>1</coreId>
               <rtlModuleName></rtlModuleName>
             </Obj>
-            <bitwidth>7</bitwidth>
+            <bitwidth>4</bitwidth>
           </Value>
           <oprand_edges>
             <count>2</count>
             <item_version>0</item_version>
-            <item>40</item>
-            <item>41</item>
+            <item>47</item>
+            <item>48</item>
           </oprand_edges>
           <opcode>sub</opcode>
           <m_Display>0</m_Display>
           <m_isOnCriticalPath>0</m_isOnCriticalPath>
           <m_isLCDNode>0</m_isLCDNode>
           <m_isStartOfPath>0</m_isStartOfPath>
-          <m_delay>1.87</m_delay>
-          <m_topoIndex>9</m_topoIndex>
+          <m_delay>1.73</m_delay>
+          <m_topoIndex>12</m_topoIndex>
           <m_clusterGroupNumber>-1</m_clusterGroupNumber>
         </item>
-        <item class_id_reference="9" object_id="_11">
+        <item class_id_reference="9" object_id="_14">
           <Value>
             <Obj>
               <type>0</type>
-              <id>17</id>
-              <name>select_ln5</name>
+              <id>20</id>
+              <name>icmp_ln4</name>
               <fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_mant.cpp</fileName>
               <fileDirectory>../.</fileDirectory>
-              <lineNumber>5</lineNumber>
+              <lineNumber>4</lineNumber>
               <contextFuncName>mult_mxint_mant</contextFuncName>
               <contextNormFuncName>mult_mxint_mant</contextNormFuncName>
               <inlineStackInfo>
@@ -565,71 +734,13 @@
                         <first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_mant.cpp</first>
                         <second>mult_mxint_mant</second>
                       </first>
-                      <second>5</second>
+                      <second>4</second>
                     </item>
                   </second>
                 </item>
               </inlineStackInfo>
               <originalName></originalName>
-              <rtlName>select_ln5_fu_104_p3</rtlName>
-              <control>auto</control>
-              <opType>select</opType>
-              <implIndex>auto_sel</implIndex>
-              <coreName>Sel</coreName>
-              <isStorage>0</isStorage>
-              <storageDepth>0</storageDepth>
-              <coreId>73</coreId>
-              <rtlModuleName></rtlModuleName>
-            </Obj>
-            <bitwidth>7</bitwidth>
-          </Value>
-          <oprand_edges>
-            <count>3</count>
-            <item_version>0</item_version>
-            <item>42</item>
-            <item>43</item>
-            <item>44</item>
-          </oprand_edges>
-          <opcode>select</opcode>
-          <m_Display>0</m_Display>
-          <m_isOnCriticalPath>0</m_isOnCriticalPath>
-          <m_isLCDNode>0</m_isLCDNode>
-          <m_isStartOfPath>0</m_isStartOfPath>
-          <m_delay>0.00</m_delay>
-          <m_topoIndex>11</m_topoIndex>
-          <m_clusterGroupNumber>1</m_clusterGroupNumber>
-        </item>
-        <item class_id_reference="9" object_id="_12">
-          <Value>
-            <Obj>
-              <type>0</type>
-              <id>18</id>
-              <name>icmp_ln5</name>
-              <fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_mant.cpp</fileName>
-              <fileDirectory>../.</fileDirectory>
-              <lineNumber>5</lineNumber>
-              <contextFuncName>mult_mxint_mant</contextFuncName>
-              <contextNormFuncName>mult_mxint_mant</contextNormFuncName>
-              <inlineStackInfo>
-                <count>1</count>
-                <item_version>0</item_version>
-                <item>
-                  <first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_multiplication_mant</first>
-                  <second>
-                    <count>1</count>
-                    <item_version>0</item_version>
-                    <item>
-                      <first>
-                        <first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_mant.cpp</first>
-                        <second>mult_mxint_mant</second>
-                      </first>
-                      <second>5</second>
-                    </item>
-                  </second>
-                </item>
-              </inlineStackInfo>
-              <originalName></originalName>
-              <rtlName>icmp_ln5_fu_110_p2</rtlName>
+              <rtlName>icmp_ln4_fu_84_p2</rtlName>
               <control>auto</control>
               <opType>setlt</opType>
               <implIndex>auto</implIndex>
@@ -644,134 +755,16 @@
           <oprand_edges>
             <count>2</count>
             <item_version>0</item_version>
-            <item>45</item>
-            <item>47</item>
+            <item>49</item>
+            <item>51</item>
           </oprand_edges>
           <opcode>icmp</opcode>
           <m_Display>0</m_Display>
           <m_isOnCriticalPath>0</m_isOnCriticalPath>
           <m_isLCDNode>0</m_isLCDNode>
           <m_isStartOfPath>0</m_isStartOfPath>
-          <m_delay>1.87</m_delay>
-          <m_topoIndex>12</m_topoIndex>
-          <m_clusterGroupNumber>1</m_clusterGroupNumber>
-        </item>
-        <item class_id_reference="9" object_id="_13">
-          <Value>
-            <Obj>
-              <type>0</type>
-              <id>19</id>
-              <name>tmp</name>
-              <fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_mant.cpp</fileName>
-              <fileDirectory>../.</fileDirectory>
-              <lineNumber>5</lineNumber>
-              <contextFuncName>mult_mxint_mant</contextFuncName>
-              <contextNormFuncName>mult_mxint_mant</contextNormFuncName>
-              <inlineStackInfo>
-                <count>1</count>
-                <item_version>0</item_version>
-                <item>
-                  <first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_multiplication_mant</first>
-                  <second>
-                    <count>1</count>
-                    <item_version>0</item_version>
-                    <item>
-                      <first>
-                        <first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_mant.cpp</first>
-                        <second>mult_mxint_mant</second>
-                      </first>
-                      <second>5</second>
-                    </item>
-                  </second>
-                </item>
-              </inlineStackInfo>
-              <originalName></originalName>
-              <rtlName>tmp_reg_133</rtlName>
-              <control></control>
-              <opType></opType>
-              <implIndex></implIndex>
-              <coreName></coreName>
-              <isStorage>0</isStorage>
-              <storageDepth>0</storageDepth>
-              <coreId>4294967295</coreId>
-              <rtlModuleName></rtlModuleName>
-            </Obj>
-            <bitwidth>4</bitwidth>
-          </Value>
-          <oprand_edges>
-            <count>4</count>
-            <item_version>0</item_version>
-            <item>49</item>
-            <item>50</item>
-            <item>52</item>
-            <item>54</item>
-          </oprand_edges>
-          <opcode>partselect</opcode>
-          <m_Display>0</m_Display>
-          <m_isOnCriticalPath>0</m_isOnCriticalPath>
-          <m_isLCDNode>0</m_isLCDNode>
-          <m_isStartOfPath>0</m_isStartOfPath>
-          <m_delay>0.00</m_delay>
-          <m_topoIndex>7</m_topoIndex>
-          <m_clusterGroupNumber>-1</m_clusterGroupNumber>
-        </item>
-        <item class_id_reference="9" object_id="_14">
-          <Value>
-            <Obj>
-              <type>0</type>
-              <id>20</id>
-              <name>tmp_1</name>
-              <fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_mant.cpp</fileName>
-              <fileDirectory>../.</fileDirectory>
-              <lineNumber>5</lineNumber>
-              <contextFuncName>mult_mxint_mant</contextFuncName>
-              <contextNormFuncName>mult_mxint_mant</contextNormFuncName>
-              <inlineStackInfo>
-                <count>1</count>
-                <item_version>0</item_version>
-                <item>
-                  <first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_multiplication_mant</first>
-                  <second>
-                    <count>1</count>
-                    <item_version>0</item_version>
-                    <item>
-                      <first>
-                        <first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_mant.cpp</first>
-                        <second>mult_mxint_mant</second>
-                      </first>
-                      <second>5</second>
-                    </item>
-                  </second>
-                </item>
-              </inlineStackInfo>
-              <originalName></originalName>
-              <rtlName>tmp_1_reg_138</rtlName>
-              <control></control>
-              <opType></opType>
-              <implIndex></implIndex>
-              <coreName></coreName>
-              <isStorage>0</isStorage>
-              <storageDepth>0</storageDepth>
-              <coreId>4294967295</coreId>
-              <rtlModuleName></rtlModuleName>
-            </Obj>
-            <bitwidth>4</bitwidth>
-          </Value>
-          <oprand_edges>
-            <count>4</count>
-            <item_version>0</item_version>
-            <item>55</item>
-            <item>56</item>
-            <item>58</item>
-            <item>60</item>
-          </oprand_edges>
-          <opcode>partselect</opcode>
-          <m_Display>0</m_Display>
-          <m_isOnCriticalPath>0</m_isOnCriticalPath>
-          <m_isLCDNode>0</m_isLCDNode>
-          <m_isStartOfPath>0</m_isStartOfPath>
-          <m_delay>0.00</m_delay>
-          <m_topoIndex>8</m_topoIndex>
+          <m_delay>2.07</m_delay>
+          <m_topoIndex>10</m_topoIndex>
           <m_clusterGroupNumber>-1</m_clusterGroupNumber>
         </item>
         <item class_id_reference="9" object_id="_15">
@@ -779,10 +772,10 @@
             <Obj>
               <type>0</type>
               <id>21</id>
-              <name>select_ln5_1</name>
+              <name>tmp</name>
               <fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_mant.cpp</fileName>
               <fileDirectory>../.</fileDirectory>
-              <lineNumber>5</lineNumber>
+              <lineNumber>4</lineNumber>
               <contextFuncName>mult_mxint_mant</contextFuncName>
               <contextNormFuncName>mult_mxint_mant</contextNormFuncName>
               <inlineStackInfo>
@@ -798,7 +791,183 @@
                         <first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_mant.cpp</first>
                         <second>mult_mxint_mant</second>
                       </first>
-                      <second>5</second>
+                      <second>4</second>
+                    </item>
+                  </second>
+                </item>
+              </inlineStackInfo>
+              <originalName></originalName>
+              <rtlName>tmp_fu_101_p4</rtlName>
+              <control></control>
+              <opType></opType>
+              <implIndex></implIndex>
+              <coreName></coreName>
+              <isStorage>0</isStorage>
+              <storageDepth>0</storageDepth>
+              <coreId>4294967295</coreId>
+              <rtlModuleName></rtlModuleName>
+            </Obj>
+            <bitwidth>4</bitwidth>
+          </Value>
+          <oprand_edges>
+            <count>4</count>
+            <item_version>0</item_version>
+            <item>53</item>
+            <item>54</item>
+            <item>56</item>
+            <item>58</item>
+          </oprand_edges>
+          <opcode>partselect</opcode>
+          <m_Display>0</m_Display>
+          <m_isOnCriticalPath>0</m_isOnCriticalPath>
+          <m_isLCDNode>0</m_isLCDNode>
+          <m_isStartOfPath>0</m_isStartOfPath>
+          <m_delay>0.00</m_delay>
+          <m_topoIndex>13</m_topoIndex>
+          <m_clusterGroupNumber>1</m_clusterGroupNumber>
+        </item>
+        <item class_id_reference="9" object_id="_16">
+          <Value>
+            <Obj>
+              <type>0</type>
+              <id>22</id>
+              <name>tmp_1</name>
+              <fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_mant.cpp</fileName>
+              <fileDirectory>../.</fileDirectory>
+              <lineNumber>4</lineNumber>
+              <contextFuncName>mult_mxint_mant</contextFuncName>
+              <contextNormFuncName>mult_mxint_mant</contextNormFuncName>
+              <inlineStackInfo>
+                <count>1</count>
+                <item_version>0</item_version>
+                <item>
+                  <first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_multiplication_mant</first>
+                  <second>
+                    <count>1</count>
+                    <item_version>0</item_version>
+                    <item>
+                      <first>
+                        <first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_mant.cpp</first>
+                        <second>mult_mxint_mant</second>
+                      </first>
+                      <second>4</second>
+                    </item>
+                  </second>
+                </item>
+              </inlineStackInfo>
+              <originalName></originalName>
+              <rtlName>tmp_1_fu_110_p4</rtlName>
+              <control></control>
+              <opType></opType>
+              <implIndex></implIndex>
+              <coreName></coreName>
+              <isStorage>0</isStorage>
+              <storageDepth>0</storageDepth>
+              <coreId>4294967295</coreId>
+              <rtlModuleName></rtlModuleName>
+            </Obj>
+            <bitwidth>4</bitwidth>
+          </Value>
+          <oprand_edges>
+            <count>4</count>
+            <item_version>0</item_version>
+            <item>59</item>
+            <item>60</item>
+            <item>62</item>
+            <item>64</item>
+          </oprand_edges>
+          <opcode>partselect</opcode>
+          <m_Display>0</m_Display>
+          <m_isOnCriticalPath>0</m_isOnCriticalPath>
+          <m_isLCDNode>0</m_isLCDNode>
+          <m_isStartOfPath>0</m_isStartOfPath>
+          <m_delay>0.00</m_delay>
+          <m_topoIndex>14</m_topoIndex>
+          <m_clusterGroupNumber>1</m_clusterGroupNumber>
+        </item>
+        <item class_id_reference="9" object_id="_17">
+          <Value>
+            <Obj>
+              <type>0</type>
+              <id>23</id>
+              <name>select_ln4</name>
+              <fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_mant.cpp</fileName>
+              <fileDirectory>../.</fileDirectory>
+              <lineNumber>4</lineNumber>
+              <contextFuncName>mult_mxint_mant</contextFuncName>
+              <contextNormFuncName>mult_mxint_mant</contextNormFuncName>
+              <inlineStackInfo>
+                <count>1</count>
+                <item_version>0</item_version>
+                <item>
+                  <first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_multiplication_mant</first>
+                  <second>
+                    <count>1</count>
+                    <item_version>0</item_version>
+                    <item>
+                      <first>
+                        <first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_mant.cpp</first>
+                        <second>mult_mxint_mant</second>
+                      </first>
+                      <second>4</second>
+                    </item>
+                  </second>
+                </item>
+              </inlineStackInfo>
+              <originalName></originalName>
+              <rtlName>select_ln4_fu_119_p3</rtlName>
+              <control>auto</control>
+              <opType>select</opType>
+              <implIndex>auto_sel</implIndex>
+              <coreName>Sel</coreName>
+              <isStorage>0</isStorage>
+              <storageDepth>0</storageDepth>
+              <coreId>73</coreId>
+              <rtlModuleName></rtlModuleName>
+            </Obj>
+            <bitwidth>4</bitwidth>
+          </Value>
+          <oprand_edges>
+            <count>3</count>
+            <item_version>0</item_version>
+            <item>65</item>
+            <item>66</item>
+            <item>67</item>
+          </oprand_edges>
+          <opcode>select</opcode>
+          <m_Display>0</m_Display>
+          <m_isOnCriticalPath>0</m_isOnCriticalPath>
+          <m_isLCDNode>0</m_isLCDNode>
+          <m_isStartOfPath>0</m_isStartOfPath>
+          <m_delay>0.00</m_delay>
+          <m_topoIndex>15</m_topoIndex>
+          <m_clusterGroupNumber>1</m_clusterGroupNumber>
+        </item>
+        <item class_id_reference="9" object_id="_18">
+          <Value>
+            <Obj>
+              <type>0</type>
+              <id>24</id>
+              <name>select_ln4_1</name>
+              <fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_mant.cpp</fileName>
+              <fileDirectory>../.</fileDirectory>
+              <lineNumber>4</lineNumber>
+              <contextFuncName>mult_mxint_mant</contextFuncName>
+              <contextNormFuncName>mult_mxint_mant</contextNormFuncName>
+              <inlineStackInfo>
+                <count>1</count>
+                <item_version>0</item_version>
+                <item>
+                  <first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_multiplication_mant</first>
+                  <second>
+                    <count>1</count>
+                    <item_version>0</item_version>
+                    <item>
+                      <first>
+                        <first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_mant.cpp</first>
+                        <second>mult_mxint_mant</second>
+                      </first>
+                      <second>4</second>
                     </item>
                   </second>
                 </item>
@@ -819,9 +988,9 @@
           <oprand_edges>
             <count>3</count>
             <item_version>0</item_version>
-            <item>61</item>
-            <item>62</item>
-            <item>63</item>
+            <item>68</item>
+            <item>69</item>
+            <item>70</item>
           </oprand_edges>
           <opcode>select</opcode>
           <m_Display>0</m_Display>
@@ -829,18 +998,18 @@
           <m_isLCDNode>0</m_isLCDNode>
           <m_isStartOfPath>0</m_isStartOfPath>
           <m_delay>1.02</m_delay>
-          <m_topoIndex>13</m_topoIndex>
-          <m_clusterGroupNumber>-1</m_clusterGroupNumber>
+          <m_topoIndex>16</m_topoIndex>
+          <m_clusterGroupNumber>1</m_clusterGroupNumber>
         </item>
-        <item class_id_reference="9" object_id="_16">
+        <item class_id_reference="9" object_id="_19">
           <Value>
             <Obj>
               <type>0</type>
-              <id>22</id>
-              <name>_ln9</name>
+              <id>25</id>
+              <name>_ln4</name>
               <fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_mant.cpp</fileName>
               <fileDirectory>../.</fileDirectory>
-              <lineNumber>9</lineNumber>
+              <lineNumber>4</lineNumber>
               <contextFuncName>mult_mxint_mant</contextFuncName>
               <contextNormFuncName>mult_mxint_mant</contextNormFuncName>
               <inlineStackInfo>
@@ -856,7 +1025,7 @@
                         <first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_mant.cpp</first>
                         <second>mult_mxint_mant</second>
                       </first>
-                      <second>9</second>
+                      <second>4</second>
                     </item>
                   </second>
                 </item>
@@ -877,7 +1046,7 @@
           <oprand_edges>
             <count>1</count>
             <item_version>0</item_version>
-            <item>64</item>
+            <item>71</item>
           </oprand_edges>
           <opcode>ret</opcode>
           <m_Display>0</m_Display>
@@ -885,18 +1054,18 @@
           <m_isLCDNode>0</m_isLCDNode>
           <m_isStartOfPath>0</m_isStartOfPath>
           <m_delay>0.00</m_delay>
-          <m_topoIndex>14</m_topoIndex>
+          <m_topoIndex>17</m_topoIndex>
           <m_clusterGroupNumber>-1</m_clusterGroupNumber>
         </item>
       </nodes>
       <consts class_id="15" tracking_level="0" version="0">
         <count>7</count>
         <item_version>0</item_version>
-        <item class_id="16" tracking_level="1" version="0" object_id="_17">
+        <item class_id="16" tracking_level="1" version="0" object_id="_20">
           <Value>
             <Obj>
               <type>2</type>
-              <id>37</id>
+              <id>39</id>
               <name>empty</name>
               <fileName></fileName>
               <fileDirectory></fileDirectory>
@@ -923,38 +1092,7 @@
           <const_type>0</const_type>
           <content>7</content>
         </item>
-        <item class_id_reference="16" object_id="_18">
-          <Value>
-            <Obj>
-              <type>2</type>
-              <id>39</id>
-              <name>empty</name>
-              <fileName></fileName>
-              <fileDirectory></fileDirectory>
-              <lineNumber>0</lineNumber>
-              <contextFuncName></contextFuncName>
-              <contextNormFuncName></contextNormFuncName>
-              <inlineStackInfo>
-                <count>0</count>
-                <item_version>0</item_version>
-              </inlineStackInfo>
-              <originalName></originalName>
-              <rtlName></rtlName>
-              <control></control>
-              <opType></opType>
-              <implIndex></implIndex>
-              <coreName></coreName>
-              <isStorage>0</isStorage>
-              <storageDepth>0</storageDepth>
-              <coreId>4294967295</coreId>
-              <rtlModuleName></rtlModuleName>
-            </Obj>
-            <bitwidth>7</bitwidth>
-          </Value>
-          <const_type>0</const_type>
-          <content>0</content>
-        </item>
-        <item class_id_reference="16" object_id="_19">
+        <item class_id_reference="16" object_id="_21">
           <Value>
             <Obj>
               <type>2</type>
@@ -980,16 +1118,47 @@
               <coreId>4294967295</coreId>
               <rtlModuleName></rtlModuleName>
             </Obj>
-            <bitwidth>7</bitwidth>
+            <bitwidth>4</bitwidth>
+          </Value>
+          <const_type>0</const_type>
+          <content>0</content>
+        </item>
+        <item class_id_reference="16" object_id="_22">
+          <Value>
+            <Obj>
+              <type>2</type>
+              <id>50</id>
+              <name>empty</name>
+              <fileName></fileName>
+              <fileDirectory></fileDirectory>
+              <lineNumber>0</lineNumber>
+              <contextFuncName></contextFuncName>
+              <contextNormFuncName></contextNormFuncName>
+              <inlineStackInfo>
+                <count>0</count>
+                <item_version>0</item_version>
+              </inlineStackInfo>
+              <originalName></originalName>
+              <rtlName></rtlName>
+              <control></control>
+              <opType></opType>
+              <implIndex></implIndex>
+              <coreName></coreName>
+              <isStorage>0</isStorage>
+              <storageDepth>0</storageDepth>
+              <coreId>4294967295</coreId>
+              <rtlModuleName></rtlModuleName>
+            </Obj>
+            <bitwidth>16</bitwidth>
           </Value>
           <const_type>0</const_type>
           <content>33</content>
         </item>
-        <item class_id_reference="16" object_id="_20">
+        <item class_id_reference="16" object_id="_23">
           <Value>
             <Obj>
               <type>2</type>
-              <id>51</id>
+              <id>55</id>
               <name>empty</name>
               <fileName></fileName>
               <fileDirectory></fileDirectory>
@@ -1016,38 +1185,7 @@
           <const_type>0</const_type>
           <content>2</content>
         </item>
-        <item class_id_reference="16" object_id="_21">
-          <Value>
-            <Obj>
-              <type>2</type>
-              <id>53</id>
-              <name>empty</name>
-              <fileName></fileName>
-              <fileDirectory></fileDirectory>
-              <lineNumber>0</lineNumber>
-              <contextFuncName></contextFuncName>
-              <contextNormFuncName></contextNormFuncName>
-              <inlineStackInfo>
-                <count>0</count>
-                <item_version>0</item_version>
-              </inlineStackInfo>
-              <originalName></originalName>
-              <rtlName></rtlName>
-              <control></control>
-              <opType></opType>
-              <implIndex></implIndex>
-              <coreName></coreName>
-              <isStorage>0</isStorage>
-              <storageDepth>0</storageDepth>
-              <coreId>4294967295</coreId>
-              <rtlModuleName></rtlModuleName>
-            </Obj>
-            <bitwidth>32</bitwidth>
-          </Value>
-          <const_type>0</const_type>
-          <content>5</content>
-        </item>
-        <item class_id_reference="16" object_id="_22">
+        <item class_id_reference="16" object_id="_24">
           <Value>
             <Obj>
               <type>2</type>
@@ -1076,13 +1214,44 @@
             <bitwidth>32</bitwidth>
           </Value>
           <const_type>0</const_type>
-          <content>3</content>
+          <content>5</content>
         </item>
-        <item class_id_reference="16" object_id="_23">
+        <item class_id_reference="16" object_id="_25">
           <Value>
             <Obj>
               <type>2</type>
-              <id>59</id>
+              <id>61</id>
+              <name>empty</name>
+              <fileName></fileName>
+              <fileDirectory></fileDirectory>
+              <lineNumber>0</lineNumber>
+              <contextFuncName></contextFuncName>
+              <contextNormFuncName></contextNormFuncName>
+              <inlineStackInfo>
+                <count>0</count>
+                <item_version>0</item_version>
+              </inlineStackInfo>
+              <originalName></originalName>
+              <rtlName></rtlName>
+              <control></control>
+              <opType></opType>
+              <implIndex></implIndex>
+              <coreName></coreName>
+              <isStorage>0</isStorage>
+              <storageDepth>0</storageDepth>
+              <coreId>4294967295</coreId>
+              <rtlModuleName></rtlModuleName>
+            </Obj>
+            <bitwidth>32</bitwidth>
+          </Value>
+          <const_type>0</const_type>
+          <content>3</content>
+        </item>
+        <item class_id_reference="16" object_id="_26">
+          <Value>
+            <Obj>
+              <type>2</type>
+              <id>63</id>
               <name>empty</name>
               <fileName></fileName>
               <fileDirectory></fileDirectory>
@@ -1113,10 +1282,10 @@
       <blocks class_id="17" tracking_level="0" version="0">
         <count>1</count>
         <item_version>0</item_version>
-        <item class_id="18" tracking_level="1" version="0" object_id="_24">
+        <item class_id="18" tracking_level="1" version="0" object_id="_27">
           <Obj>
             <type>3</type>
-            <id>23</id>
+            <id>26</id>
             <name>mult_mxint_mant</name>
             <fileName></fileName>
             <fileDirectory></fileDirectory>
@@ -1139,7 +1308,7 @@
             <rtlModuleName></rtlModuleName>
           </Obj>
           <node_objs>
-            <count>14</count>
+            <count>17</count>
             <item_version>0</item_version>
             <item>9</item>
             <item>10</item>
@@ -1155,192 +1324,223 @@
             <item>20</item>
             <item>21</item>
             <item>22</item>
+            <item>23</item>
+            <item>24</item>
+            <item>25</item>
           </node_objs>
         </item>
       </blocks>
       <edges class_id="19" tracking_level="0" version="0">
-        <count>26</count>
+        <count>30</count>
         <item_version>0</item_version>
-        <item class_id="20" tracking_level="1" version="0" object_id="_25">
-          <id>26</id>
+        <item class_id="20" tracking_level="1" version="0" object_id="_28">
+          <id>29</id>
           <edge_type>1</edge_type>
           <source_obj>2</source_obj>
           <sink_obj>9</sink_obj>
           <is_back_edge>0</is_back_edge>
         </item>
-        <item class_id_reference="20" object_id="_26">
-          <id>28</id>
+        <item class_id_reference="20" object_id="_29">
+          <id>31</id>
           <edge_type>1</edge_type>
           <source_obj>1</source_obj>
           <sink_obj>10</sink_obj>
           <is_back_edge>0</is_back_edge>
         </item>
-        <item class_id_reference="20" object_id="_27">
-          <id>29</id>
+        <item class_id_reference="20" object_id="_30">
+          <id>32</id>
           <edge_type>1</edge_type>
           <source_obj>10</source_obj>
           <sink_obj>11</sink_obj>
           <is_back_edge>0</is_back_edge>
         </item>
-        <item class_id_reference="20" object_id="_28">
-          <id>30</id>
+        <item class_id_reference="20" object_id="_31">
+          <id>33</id>
           <edge_type>1</edge_type>
           <source_obj>9</source_obj>
           <sink_obj>12</sink_obj>
           <is_back_edge>0</is_back_edge>
         </item>
-        <item class_id_reference="20" object_id="_29">
-          <id>31</id>
+        <item class_id_reference="20" object_id="_32">
+          <id>34</id>
           <edge_type>1</edge_type>
           <source_obj>12</source_obj>
           <sink_obj>13</sink_obj>
           <is_back_edge>0</is_back_edge>
         </item>
-        <item class_id_reference="20" object_id="_30">
-          <id>32</id>
+        <item class_id_reference="20" object_id="_33">
+          <id>35</id>
           <edge_type>1</edge_type>
           <source_obj>11</source_obj>
           <sink_obj>13</sink_obj>
           <is_back_edge>0</is_back_edge>
         </item>
-        <item class_id_reference="20" object_id="_31">
-          <id>33</id>
+        <item class_id_reference="20" object_id="_34">
+          <id>38</id>
           <edge_type>1</edge_type>
           <source_obj>13</source_obj>
           <sink_obj>14</sink_obj>
           <is_back_edge>0</is_back_edge>
         </item>
-        <item class_id_reference="20" object_id="_32">
-          <id>36</id>
-          <edge_type>1</edge_type>
-          <source_obj>13</source_obj>
-          <sink_obj>15</sink_obj>
-          <is_back_edge>0</is_back_edge>
-        </item>
-        <item class_id_reference="20" object_id="_33">
-          <id>38</id>
-          <edge_type>1</edge_type>
-          <source_obj>37</source_obj>
-          <sink_obj>15</sink_obj>
-          <is_back_edge>0</is_back_edge>
-        </item>
-        <item class_id_reference="20" object_id="_34">
+        <item class_id_reference="20" object_id="_35">
           <id>40</id>
           <edge_type>1</edge_type>
           <source_obj>39</source_obj>
-          <sink_obj>16</sink_obj>
-          <is_back_edge>0</is_back_edge>
-        </item>
-        <item class_id_reference="20" object_id="_35">
-          <id>41</id>
-          <edge_type>1</edge_type>
-          <source_obj>14</source_obj>
-          <sink_obj>16</sink_obj>
+          <sink_obj>14</sink_obj>
           <is_back_edge>0</is_back_edge>
         </item>
         <item class_id_reference="20" object_id="_36">
-          <id>42</id>
+          <id>41</id>
           <edge_type>1</edge_type>
-          <source_obj>15</source_obj>
-          <sink_obj>17</sink_obj>
+          <source_obj>11</source_obj>
+          <sink_obj>15</sink_obj>
           <is_back_edge>0</is_back_edge>
         </item>
         <item class_id_reference="20" object_id="_37">
+          <id>42</id>
+          <edge_type>1</edge_type>
+          <source_obj>12</source_obj>
+          <sink_obj>16</sink_obj>
+          <is_back_edge>0</is_back_edge>
+        </item>
+        <item class_id_reference="20" object_id="_38">
           <id>43</id>
           <edge_type>1</edge_type>
           <source_obj>16</source_obj>
           <sink_obj>17</sink_obj>
           <is_back_edge>0</is_back_edge>
         </item>
-        <item class_id_reference="20" object_id="_38">
+        <item class_id_reference="20" object_id="_39">
           <id>44</id>
           <edge_type>1</edge_type>
-          <source_obj>14</source_obj>
+          <source_obj>15</source_obj>
           <sink_obj>17</sink_obj>
           <is_back_edge>0</is_back_edge>
         </item>
-        <item class_id_reference="20" object_id="_39">
+        <item class_id_reference="20" object_id="_40">
           <id>45</id>
           <edge_type>1</edge_type>
           <source_obj>17</source_obj>
           <sink_obj>18</sink_obj>
           <is_back_edge>0</is_back_edge>
         </item>
-        <item class_id_reference="20" object_id="_40">
+        <item class_id_reference="20" object_id="_41">
           <id>47</id>
           <edge_type>1</edge_type>
           <source_obj>46</source_obj>
-          <sink_obj>18</sink_obj>
-          <is_back_edge>0</is_back_edge>
-        </item>
-        <item class_id_reference="20" object_id="_41">
-          <id>50</id>
-          <edge_type>1</edge_type>
-          <source_obj>13</source_obj>
           <sink_obj>19</sink_obj>
           <is_back_edge>0</is_back_edge>
         </item>
         <item class_id_reference="20" object_id="_42">
-          <id>52</id>
+          <id>48</id>
           <edge_type>1</edge_type>
-          <source_obj>51</source_obj>
+          <source_obj>18</source_obj>
           <sink_obj>19</sink_obj>
           <is_back_edge>0</is_back_edge>
         </item>
         <item class_id_reference="20" object_id="_43">
-          <id>54</id>
+          <id>49</id>
           <edge_type>1</edge_type>
-          <source_obj>53</source_obj>
-          <sink_obj>19</sink_obj>
+          <source_obj>17</source_obj>
+          <sink_obj>20</sink_obj>
           <is_back_edge>0</is_back_edge>
         </item>
         <item class_id_reference="20" object_id="_44">
-          <id>56</id>
+          <id>51</id>
           <edge_type>1</edge_type>
-          <source_obj>13</source_obj>
+          <source_obj>50</source_obj>
           <sink_obj>20</sink_obj>
           <is_back_edge>0</is_back_edge>
         </item>
         <item class_id_reference="20" object_id="_45">
-          <id>58</id>
+          <id>54</id>
           <edge_type>1</edge_type>
-          <source_obj>57</source_obj>
-          <sink_obj>20</sink_obj>
+          <source_obj>13</source_obj>
+          <sink_obj>21</sink_obj>
           <is_back_edge>0</is_back_edge>
         </item>
         <item class_id_reference="20" object_id="_46">
-          <id>60</id>
+          <id>56</id>
           <edge_type>1</edge_type>
-          <source_obj>59</source_obj>
-          <sink_obj>20</sink_obj>
+          <source_obj>55</source_obj>
+          <sink_obj>21</sink_obj>
           <is_back_edge>0</is_back_edge>
         </item>
         <item class_id_reference="20" object_id="_47">
-          <id>61</id>
+          <id>58</id>
           <edge_type>1</edge_type>
-          <source_obj>18</source_obj>
+          <source_obj>57</source_obj>
           <sink_obj>21</sink_obj>
           <is_back_edge>0</is_back_edge>
         </item>
         <item class_id_reference="20" object_id="_48">
-          <id>62</id>
+          <id>60</id>
           <edge_type>1</edge_type>
-          <source_obj>19</source_obj>
-          <sink_obj>21</sink_obj>
+          <source_obj>13</source_obj>
+          <sink_obj>22</sink_obj>
           <is_back_edge>0</is_back_edge>
         </item>
         <item class_id_reference="20" object_id="_49">
-          <id>63</id>
+          <id>62</id>
           <edge_type>1</edge_type>
-          <source_obj>20</source_obj>
-          <sink_obj>21</sink_obj>
+          <source_obj>61</source_obj>
+          <sink_obj>22</sink_obj>
           <is_back_edge>0</is_back_edge>
         </item>
         <item class_id_reference="20" object_id="_50">
           <id>64</id>
           <edge_type>1</edge_type>
-          <source_obj>21</source_obj>
+          <source_obj>63</source_obj>
           <sink_obj>22</sink_obj>
+          <is_back_edge>0</is_back_edge>
+        </item>
+        <item class_id_reference="20" object_id="_51">
+          <id>65</id>
+          <edge_type>1</edge_type>
+          <source_obj>20</source_obj>
+          <sink_obj>23</sink_obj>
+          <is_back_edge>0</is_back_edge>
+        </item>
+        <item class_id_reference="20" object_id="_52">
+          <id>66</id>
+          <edge_type>1</edge_type>
+          <source_obj>21</source_obj>
+          <sink_obj>23</sink_obj>
+          <is_back_edge>0</is_back_edge>
+        </item>
+        <item class_id_reference="20" object_id="_53">
+          <id>67</id>
+          <edge_type>1</edge_type>
+          <source_obj>22</source_obj>
+          <sink_obj>23</sink_obj>
+          <is_back_edge>0</is_back_edge>
+        </item>
+        <item class_id_reference="20" object_id="_54">
+          <id>68</id>
+          <edge_type>1</edge_type>
+          <source_obj>14</source_obj>
+          <sink_obj>24</sink_obj>
+          <is_back_edge>0</is_back_edge>
+        </item>
+        <item class_id_reference="20" object_id="_55">
+          <id>69</id>
+          <edge_type>1</edge_type>
+          <source_obj>19</source_obj>
+          <sink_obj>24</sink_obj>
+          <is_back_edge>0</is_back_edge>
+        </item>
+        <item class_id_reference="20" object_id="_56">
+          <id>70</id>
+          <edge_type>1</edge_type>
+          <source_obj>23</source_obj>
+          <sink_obj>24</sink_obj>
+          <is_back_edge>0</is_back_edge>
+        </item>
+        <item class_id_reference="20" object_id="_57">
+          <id>71</id>
+          <edge_type>1</edge_type>
+          <source_obj>24</source_obj>
+          <sink_obj>25</sink_obj>
           <is_back_edge>0</is_back_edge>
         </item>
       </edges>
@@ -1348,7 +1548,7 @@
     <cdfg_regions class_id="21" tracking_level="0" version="0">
       <count>1</count>
       <item_version>0</item_version>
-      <item class_id="22" tracking_level="1" version="0" object_id="_51">
+      <item class_id="22" tracking_level="1" version="0" object_id="_58">
         <mId>1</mId>
         <mTag>mult_mxint_mant</mTag>
         <mNormTag>mult_mxint_mant</mNormTag>
@@ -1360,138 +1560,201 @@
         <basic_blocks>
           <count>1</count>
           <item_version>0</item_version>
-          <item>23</item>
+          <item>26</item>
         </basic_blocks>
         <mII>-1</mII>
         <mDepth>-1</mDepth>
         <mMinTripCount>-1</mMinTripCount>
         <mMaxTripCount>-1</mMaxTripCount>
-        <mMinLatency>2</mMinLatency>
-        <mMaxLatency>2</mMaxLatency>
+        <mMinLatency>6</mMinLatency>
+        <mMaxLatency>6</mMaxLatency>
         <mIsDfPipe>0</mIsDfPipe>
         <mDfPipe class_id="-1"></mDfPipe>
       </item>
     </cdfg_regions>
-    <fsm class_id="24" tracking_level="1" version="0" object_id="_52">
+    <fsm class_id="24" tracking_level="1" version="0" object_id="_59">
       <states class_id="25" tracking_level="0" version="0">
-        <count>3</count>
+        <count>7</count>
         <item_version>0</item_version>
-        <item class_id="26" tracking_level="1" version="0" object_id="_53">
+        <item class_id="26" tracking_level="1" version="0" object_id="_60">
           <id>1</id>
           <operations class_id="27" tracking_level="0" version="0">
             <count>8</count>
             <item_version>0</item_version>
-            <item class_id="28" tracking_level="1" version="0" object_id="_54">
+            <item class_id="28" tracking_level="1" version="0" object_id="_61">
               <id>9</id>
               <stage>1</stage>
               <latency>1</latency>
             </item>
-            <item class_id_reference="28" object_id="_55">
+            <item class_id_reference="28" object_id="_62">
               <id>10</id>
               <stage>1</stage>
               <latency>1</latency>
             </item>
-            <item class_id_reference="28" object_id="_56">
+            <item class_id_reference="28" object_id="_63">
               <id>11</id>
               <stage>1</stage>
               <latency>1</latency>
             </item>
-            <item class_id_reference="28" object_id="_57">
+            <item class_id_reference="28" object_id="_64">
               <id>12</id>
               <stage>1</stage>
               <latency>1</latency>
             </item>
-            <item class_id_reference="28" object_id="_58">
+            <item class_id_reference="28" object_id="_65">
               <id>13</id>
               <stage>1</stage>
               <latency>1</latency>
             </item>
-            <item class_id_reference="28" object_id="_59">
-              <id>14</id>
+            <item class_id_reference="28" object_id="_66">
+              <id>15</id>
               <stage>1</stage>
               <latency>1</latency>
             </item>
-            <item class_id_reference="28" object_id="_60">
-              <id>19</id>
+            <item class_id_reference="28" object_id="_67">
+              <id>16</id>
               <stage>1</stage>
               <latency>1</latency>
             </item>
-            <item class_id_reference="28" object_id="_61">
+            <item class_id_reference="28" object_id="_68">
+              <id>17</id>
+              <stage>5</stage>
+              <latency>5</latency>
+            </item>
+          </operations>
+        </item>
+        <item class_id_reference="26" object_id="_69">
+          <id>2</id>
+          <operations>
+            <count>1</count>
+            <item_version>0</item_version>
+            <item class_id_reference="28" object_id="_70">
+              <id>17</id>
+              <stage>4</stage>
+              <latency>5</latency>
+            </item>
+          </operations>
+        </item>
+        <item class_id_reference="26" object_id="_71">
+          <id>3</id>
+          <operations>
+            <count>1</count>
+            <item_version>0</item_version>
+            <item class_id_reference="28" object_id="_72">
+              <id>17</id>
+              <stage>3</stage>
+              <latency>5</latency>
+            </item>
+          </operations>
+        </item>
+        <item class_id_reference="26" object_id="_73">
+          <id>4</id>
+          <operations>
+            <count>1</count>
+            <item_version>0</item_version>
+            <item class_id_reference="28" object_id="_74">
+              <id>17</id>
+              <stage>2</stage>
+              <latency>5</latency>
+            </item>
+          </operations>
+        </item>
+        <item class_id_reference="26" object_id="_75">
+          <id>5</id>
+          <operations>
+            <count>2</count>
+            <item_version>0</item_version>
+            <item class_id_reference="28" object_id="_76">
+              <id>17</id>
+              <stage>1</stage>
+              <latency>5</latency>
+            </item>
+            <item class_id_reference="28" object_id="_77">
+              <id>18</id>
+              <stage>1</stage>
+              <latency>1</latency>
+            </item>
+          </operations>
+        </item>
+        <item class_id_reference="26" object_id="_78">
+          <id>6</id>
+          <operations>
+            <count>1</count>
+            <item_version>0</item_version>
+            <item class_id_reference="28" object_id="_79">
               <id>20</id>
               <stage>1</stage>
               <latency>1</latency>
             </item>
           </operations>
         </item>
-        <item class_id_reference="26" object_id="_62">
-          <id>2</id>
+        <item class_id_reference="26" object_id="_80">
+          <id>7</id>
           <operations>
-            <count>1</count>
+            <count>13</count>
             <item_version>0</item_version>
-            <item class_id_reference="28" object_id="_63">
-              <id>16</id>
-              <stage>1</stage>
-              <latency>1</latency>
-            </item>
-          </operations>
-        </item>
-        <item class_id_reference="26" object_id="_64">
-          <id>3</id>
-          <operations>
-            <count>11</count>
-            <item_version>0</item_version>
-            <item class_id_reference="28" object_id="_65">
+            <item class_id_reference="28" object_id="_81">
               <id>3</id>
               <stage>1</stage>
               <latency>1</latency>
             </item>
-            <item class_id_reference="28" object_id="_66">
+            <item class_id_reference="28" object_id="_82">
               <id>4</id>
               <stage>1</stage>
               <latency>1</latency>
             </item>
-            <item class_id_reference="28" object_id="_67">
+            <item class_id_reference="28" object_id="_83">
               <id>5</id>
               <stage>1</stage>
               <latency>1</latency>
             </item>
-            <item class_id_reference="28" object_id="_68">
+            <item class_id_reference="28" object_id="_84">
               <id>6</id>
               <stage>1</stage>
               <latency>1</latency>
             </item>
-            <item class_id_reference="28" object_id="_69">
+            <item class_id_reference="28" object_id="_85">
               <id>7</id>
               <stage>1</stage>
               <latency>1</latency>
             </item>
-            <item class_id_reference="28" object_id="_70">
+            <item class_id_reference="28" object_id="_86">
               <id>8</id>
               <stage>1</stage>
               <latency>1</latency>
             </item>
-            <item class_id_reference="28" object_id="_71">
-              <id>15</id>
+            <item class_id_reference="28" object_id="_87">
+              <id>14</id>
               <stage>1</stage>
               <latency>1</latency>
             </item>
-            <item class_id_reference="28" object_id="_72">
-              <id>17</id>
+            <item class_id_reference="28" object_id="_88">
+              <id>19</id>
               <stage>1</stage>
               <latency>1</latency>
             </item>
-            <item class_id_reference="28" object_id="_73">
-              <id>18</id>
-              <stage>1</stage>
-              <latency>1</latency>
-            </item>
-            <item class_id_reference="28" object_id="_74">
+            <item class_id_reference="28" object_id="_89">
               <id>21</id>
               <stage>1</stage>
               <latency>1</latency>
             </item>
-            <item class_id_reference="28" object_id="_75">
+            <item class_id_reference="28" object_id="_90">
               <id>22</id>
+              <stage>1</stage>
+              <latency>1</latency>
+            </item>
+            <item class_id_reference="28" object_id="_91">
+              <id>23</id>
+              <stage>1</stage>
+              <latency>1</latency>
+            </item>
+            <item class_id_reference="28" object_id="_92">
+              <id>24</id>
+              <stage>1</stage>
+              <latency>1</latency>
+            </item>
+            <item class_id_reference="28" object_id="_93">
+              <id>25</id>
               <stage>1</stage>
               <latency>1</latency>
             </item>
@@ -1499,9 +1762,9 @@
         </item>
       </states>
       <transitions class_id="29" tracking_level="0" version="0">
-        <count>2</count>
+        <count>6</count>
         <item_version>0</item_version>
-        <item class_id="30" tracking_level="1" version="0" object_id="_76">
+        <item class_id="30" tracking_level="1" version="0" object_id="_94">
           <inState>1</inState>
           <outState>2</outState>
           <condition class_id="31" tracking_level="0" version="0">
@@ -1516,7 +1779,7 @@
             </sop>
           </condition>
         </item>
-        <item class_id_reference="30" object_id="_77">
+        <item class_id_reference="30" object_id="_95">
           <inState>2</inState>
           <outState>3</outState>
           <condition>
@@ -1531,11 +1794,71 @@
             </sop>
           </condition>
         </item>
+        <item class_id_reference="30" object_id="_96">
+          <inState>3</inState>
+          <outState>4</outState>
+          <condition>
+            <id>-1</id>
+            <sop>
+              <count>1</count>
+              <item_version>0</item_version>
+              <item>
+                <count>0</count>
+                <item_version>0</item_version>
+              </item>
+            </sop>
+          </condition>
+        </item>
+        <item class_id_reference="30" object_id="_97">
+          <inState>4</inState>
+          <outState>5</outState>
+          <condition>
+            <id>-1</id>
+            <sop>
+              <count>1</count>
+              <item_version>0</item_version>
+              <item>
+                <count>0</count>
+                <item_version>0</item_version>
+              </item>
+            </sop>
+          </condition>
+        </item>
+        <item class_id_reference="30" object_id="_98">
+          <inState>5</inState>
+          <outState>6</outState>
+          <condition>
+            <id>-1</id>
+            <sop>
+              <count>1</count>
+              <item_version>0</item_version>
+              <item>
+                <count>0</count>
+                <item_version>0</item_version>
+              </item>
+            </sop>
+          </condition>
+        </item>
+        <item class_id_reference="30" object_id="_99">
+          <inState>6</inState>
+          <outState>7</outState>
+          <condition>
+            <id>-1</id>
+            <sop>
+              <count>1</count>
+              <item_version>0</item_version>
+              <item>
+                <count>0</count>
+                <item_version>0</item_version>
+              </item>
+            </sop>
+          </condition>
+        </item>
       </transitions>
     </fsm>
-    <res class_id="34" tracking_level="1" version="0" object_id="_78">
+    <res class_id="34" tracking_level="1" version="0" object_id="_100">
       <dp_component_resource class_id="35" tracking_level="0" version="0">
-        <count>1</count>
+        <count>2</count>
         <item_version>0</item_version>
         <item class_id="36" tracking_level="0" version="0">
           <first>mul_4s_4s_8_1_1_U1 (mul_4s_4s_8_1_1)</first>
@@ -1553,6 +1876,25 @@
             <item>
               <first>LUT</first>
               <second>13</second>
+            </item>
+          </second>
+        </item>
+        <item>
+          <first>mul_8ns_8ns_16_5_1_U2 (mul_8ns_8ns_16_5_1)</first>
+          <second>
+            <count>3</count>
+            <item_version>0</item_version>
+            <item>
+              <first>DSP</first>
+              <second>0</second>
+            </item>
+            <item>
+              <first>FF</first>
+              <second>102</second>
+            </item>
+            <item>
+              <first>LUT</first>
+              <second>77</second>
             </item>
           </second>
         </item>
@@ -1588,13 +1930,13 @@
           </second>
         </item>
         <item>
-          <first>icmp_ln5_fu_110_p2 ( icmp ) </first>
+          <first>icmp_ln4_fu_84_p2 ( icmp ) </first>
           <second>
             <count>4</count>
             <item_version>0</item_version>
             <item>
               <first>(0P0)</first>
-              <second>7</second>
+              <second>16</second>
             </item>
             <item>
               <first>(1P1)</first>
@@ -1606,12 +1948,12 @@
             </item>
             <item>
               <first>LUT</first>
-              <second>14</second>
+              <second>23</second>
             </item>
           </second>
         </item>
         <item>
-          <first>select_ln5_fu_104_p3 ( select ) </first>
+          <first>select_ln4_fu_119_p3 ( select ) </first>
           <second>
             <count>5</count>
             <item_version>0</item_version>
@@ -1621,11 +1963,11 @@
             </item>
             <item>
               <first>(1P1)</first>
-              <second>7</second>
+              <second>4</second>
             </item>
             <item>
               <first>(2P2)</first>
-              <second>7</second>
+              <second>4</second>
             </item>
             <item>
               <first>FF</first>
@@ -1633,12 +1975,12 @@
             </item>
             <item>
               <first>LUT</first>
-              <second>7</second>
+              <second>4</second>
             </item>
           </second>
         </item>
         <item>
-          <first>sub_ln5_fu_92_p2 ( - ) </first>
+          <first>sub_ln4_fu_96_p2 ( - ) </first>
           <second>
             <count>4</count>
             <item_version>0</item_version>
@@ -1648,7 +1990,7 @@
             </item>
             <item>
               <first>(1P1)</first>
-              <second>7</second>
+              <second>4</second>
             </item>
             <item>
               <first>FF</first>
@@ -1656,7 +1998,7 @@
             </item>
             <item>
               <first>LUT</first>
-              <second>14</second>
+              <second>13</second>
             </item>
           </second>
         </item>
@@ -1679,7 +2021,7 @@
             <item_version>0</item_version>
             <item>
               <first>(0Size)</first>
-              <second>4</second>
+              <second>8</second>
             </item>
             <item>
               <first>(1Bits)</first>
@@ -1687,7 +2029,7 @@
             </item>
             <item>
               <first>(2Count)</first>
-              <second>4</second>
+              <second>8</second>
             </item>
             <item>
               <first>FF</first>
@@ -1695,13 +2037,13 @@
             </item>
             <item>
               <first>LUT</first>
-              <second>20</second>
+              <second>42</second>
             </item>
           </second>
         </item>
       </dp_multiplexer_resource>
       <dp_register_resource>
-        <count>6</count>
+        <count>5</count>
         <item_version>0</item_version>
         <item>
           <first>ap_CS_fsm</first>
@@ -1710,7 +2052,7 @@
             <item_version>0</item_version>
             <item>
               <first>(Bits)</first>
-              <second>3</second>
+              <second>7</second>
             </item>
             <item>
               <first>(Consts)</first>
@@ -1718,12 +2060,50 @@
             </item>
             <item>
               <first>FF</first>
-              <second>3</second>
+              <second>7</second>
             </item>
           </second>
         </item>
         <item>
-          <first>mul_ln5_reg_122</first>
+          <first>icmp_ln4_reg_161</first>
+          <second>
+            <count>3</count>
+            <item_version>0</item_version>
+            <item>
+              <first>(Bits)</first>
+              <second>1</second>
+            </item>
+            <item>
+              <first>(Consts)</first>
+              <second>0</second>
+            </item>
+            <item>
+              <first>FF</first>
+              <second>1</second>
+            </item>
+          </second>
+        </item>
+        <item>
+          <first>mul_ln4_1_reg_151</first>
+          <second>
+            <count>3</count>
+            <item_version>0</item_version>
+            <item>
+              <first>(Bits)</first>
+              <second>16</second>
+            </item>
+            <item>
+              <first>(Consts)</first>
+              <second>0</second>
+            </item>
+            <item>
+              <first>FF</first>
+              <second>16</second>
+            </item>
+          </second>
+        </item>
+        <item>
+          <first>mul_ln4_reg_134</first>
           <second>
             <count>3</count>
             <item_version>0</item_version>
@@ -1742,26 +2122,7 @@
           </second>
         </item>
         <item>
-          <first>sub_ln5_reg_143</first>
-          <second>
-            <count>3</count>
-            <item_version>0</item_version>
-            <item>
-              <first>(Bits)</first>
-              <second>7</second>
-            </item>
-            <item>
-              <first>(Consts)</first>
-              <second>0</second>
-            </item>
-            <item>
-              <first>FF</first>
-              <second>7</second>
-            </item>
-          </second>
-        </item>
-        <item>
-          <first>tmp_1_reg_138</first>
+          <first>trunc_ln4_reg_156</first>
           <second>
             <count>3</count>
             <item_version>0</item_version>
@@ -1776,50 +2137,12 @@
             <item>
               <first>FF</first>
               <second>4</second>
-            </item>
-          </second>
-        </item>
-        <item>
-          <first>tmp_reg_133</first>
-          <second>
-            <count>3</count>
-            <item_version>0</item_version>
-            <item>
-              <first>(Bits)</first>
-              <second>4</second>
-            </item>
-            <item>
-              <first>(Consts)</first>
-              <second>0</second>
-            </item>
-            <item>
-              <first>FF</first>
-              <second>4</second>
-            </item>
-          </second>
-        </item>
-        <item>
-          <first>trunc_ln5_reg_127</first>
-          <second>
-            <count>3</count>
-            <item_version>0</item_version>
-            <item>
-              <first>(Bits)</first>
-              <second>7</second>
-            </item>
-            <item>
-              <first>(Consts)</first>
-              <second>0</second>
-            </item>
-            <item>
-              <first>FF</first>
-              <second>7</second>
             </item>
           </second>
         </item>
       </dp_register_resource>
       <dp_dsp_resource>
-        <count>1</count>
+        <count>2</count>
         <item_version>0</item_version>
         <item>
           <first>mul_4s_4s_8_1_1_U1</first>
@@ -1828,9 +2151,16 @@
             <item_version>0</item_version>
           </second>
         </item>
+        <item>
+          <first>mul_8ns_8ns_16_5_1_U2</first>
+          <second>
+            <count>0</count>
+            <item_version>0</item_version>
+          </second>
+        </item>
       </dp_dsp_resource>
       <dp_component_map class_id="39" tracking_level="0" version="0">
-        <count>1</count>
+        <count>2</count>
         <item_version>0</item_version>
         <item class_id="40" tracking_level="0" version="0">
           <first>mul_4s_4s_8_1_1_U1 (mul_4s_4s_8_1_1)</first>
@@ -1838,6 +2168,14 @@
             <count>1</count>
             <item_version>0</item_version>
             <item>13</item>
+          </second>
+        </item>
+        <item>
+          <first>mul_8ns_8ns_16_5_1_U2 (mul_8ns_8ns_16_5_1)</first>
+          <second>
+            <count>1</count>
+            <item_version>0</item_version>
+            <item>17</item>
           </second>
         </item>
       </dp_component_map>
@@ -1849,31 +2187,31 @@
           <second>
             <count>1</count>
             <item_version>0</item_version>
-            <item>21</item>
+            <item>24</item>
           </second>
         </item>
         <item>
-          <first>icmp_ln5_fu_110_p2 ( icmp ) </first>
+          <first>icmp_ln4_fu_84_p2 ( icmp ) </first>
           <second>
             <count>1</count>
             <item_version>0</item_version>
-            <item>18</item>
+            <item>20</item>
           </second>
         </item>
         <item>
-          <first>select_ln5_fu_104_p3 ( select ) </first>
+          <first>select_ln4_fu_119_p3 ( select ) </first>
           <second>
             <count>1</count>
             <item_version>0</item_version>
-            <item>17</item>
+            <item>23</item>
           </second>
         </item>
         <item>
-          <first>sub_ln5_fu_92_p2 ( - ) </first>
+          <first>sub_ln4_fu_96_p2 ( - ) </first>
           <second>
             <count>1</count>
             <item_version>0</item_version>
-            <item>16</item>
+            <item>19</item>
           </second>
         </item>
       </dp_expression_map>
@@ -1887,7 +2225,7 @@
       </dp_memory_map>
     </res>
     <node_label_latency class_id="41" tracking_level="0" version="0">
-      <count>14</count>
+      <count>17</count>
       <item_version>0</item_version>
       <item class_id="42" tracking_level="0" version="0">
         <first>9</first>
@@ -1927,63 +2265,84 @@
       <item>
         <first>14</first>
         <second>
-          <first>0</first>
+          <first>6</first>
           <second>0</second>
         </second>
       </item>
       <item>
         <first>15</first>
         <second>
-          <first>2</first>
+          <first>0</first>
           <second>0</second>
         </second>
       </item>
       <item>
         <first>16</first>
         <second>
-          <first>1</first>
+          <first>0</first>
           <second>0</second>
         </second>
       </item>
       <item>
         <first>17</first>
         <second>
-          <first>2</first>
-          <second>0</second>
+          <first>0</first>
+          <second>4</second>
         </second>
       </item>
       <item>
         <first>18</first>
         <second>
-          <first>2</first>
+          <first>4</first>
           <second>0</second>
         </second>
       </item>
       <item>
         <first>19</first>
         <second>
-          <first>0</first>
+          <first>6</first>
           <second>0</second>
         </second>
       </item>
       <item>
         <first>20</first>
         <second>
-          <first>0</first>
+          <first>5</first>
           <second>0</second>
         </second>
       </item>
       <item>
         <first>21</first>
         <second>
-          <first>2</first>
+          <first>6</first>
           <second>0</second>
         </second>
       </item>
       <item>
         <first>22</first>
         <second>
-          <first>2</first>
+          <first>6</first>
+          <second>0</second>
+        </second>
+      </item>
+      <item>
+        <first>23</first>
+        <second>
+          <first>6</first>
+          <second>0</second>
+        </second>
+      </item>
+      <item>
+        <first>24</first>
+        <second>
+          <first>6</first>
+          <second>0</second>
+        </second>
+      </item>
+      <item>
+        <first>25</first>
+        <second>
+          <first>6</first>
           <second>0</second>
         </second>
       </item>
@@ -1992,10 +2351,10 @@
       <count>1</count>
       <item_version>0</item_version>
       <item class_id="45" tracking_level="0" version="0">
-        <first>23</first>
+        <first>26</first>
         <second class_id="46" tracking_level="0" version="0">
           <first>0</first>
-          <second>2</second>
+          <second>6</second>
         </second>
       </item>
     </bblk_ent_exit>
@@ -2004,10 +2363,10 @@
       <item_version>0</item_version>
     </regions>
     <dp_fu_nodes class_id="48" tracking_level="0" version="0">
-      <count>13</count>
+      <count>16</count>
       <item_version>0</item_version>
       <item class_id="49" tracking_level="0" version="0">
-        <first>42</first>
+        <first>40</first>
         <second>
           <count>1</count>
           <item_version>0</item_version>
@@ -2015,7 +2374,7 @@
         </second>
       </item>
       <item>
-        <first>48</first>
+        <first>46</first>
         <second>
           <count>1</count>
           <item_version>0</item_version>
@@ -2023,7 +2382,7 @@
         </second>
       </item>
       <item>
-        <first>54</first>
+        <first>52</first>
         <second>
           <count>1</count>
           <item_version>0</item_version>
@@ -2031,7 +2390,7 @@
         </second>
       </item>
       <item>
-        <first>58</first>
+        <first>56</first>
         <second>
           <count>1</count>
           <item_version>0</item_version>
@@ -2039,7 +2398,7 @@
         </second>
       </item>
       <item>
-        <first>62</first>
+        <first>60</first>
         <second>
           <count>1</count>
           <item_version>0</item_version>
@@ -2047,39 +2406,7 @@
         </second>
       </item>
       <item>
-        <first>68</first>
-        <second>
-          <count>1</count>
-          <item_version>0</item_version>
-          <item>14</item>
-        </second>
-      </item>
-      <item>
-        <first>72</first>
-        <second>
-          <count>1</count>
-          <item_version>0</item_version>
-          <item>19</item>
-        </second>
-      </item>
-      <item>
-        <first>82</first>
-        <second>
-          <count>1</count>
-          <item_version>0</item_version>
-          <item>20</item>
-        </second>
-      </item>
-      <item>
-        <first>92</first>
-        <second>
-          <count>1</count>
-          <item_version>0</item_version>
-          <item>16</item>
-        </second>
-      </item>
-      <item>
-        <first>97</first>
+        <first>66</first>
         <second>
           <count>1</count>
           <item_version>0</item_version>
@@ -2087,11 +2414,63 @@
         </second>
       </item>
       <item>
-        <first>104</first>
+        <first>70</first>
         <second>
           <count>1</count>
           <item_version>0</item_version>
+          <item>16</item>
+        </second>
+      </item>
+      <item>
+        <first>74</first>
+        <second>
+          <count>5</count>
+          <item_version>0</item_version>
           <item>17</item>
+          <item>17</item>
+          <item>17</item>
+          <item>17</item>
+          <item>17</item>
+        </second>
+      </item>
+      <item>
+        <first>80</first>
+        <second>
+          <count>1</count>
+          <item_version>0</item_version>
+          <item>18</item>
+        </second>
+      </item>
+      <item>
+        <first>84</first>
+        <second>
+          <count>1</count>
+          <item_version>0</item_version>
+          <item>20</item>
+        </second>
+      </item>
+      <item>
+        <first>89</first>
+        <second>
+          <count>1</count>
+          <item_version>0</item_version>
+          <item>14</item>
+        </second>
+      </item>
+      <item>
+        <first>96</first>
+        <second>
+          <count>1</count>
+          <item_version>0</item_version>
+          <item>19</item>
+        </second>
+      </item>
+      <item>
+        <first>101</first>
+        <second>
+          <count>1</count>
+          <item_version>0</item_version>
+          <item>21</item>
         </second>
       </item>
       <item>
@@ -2099,79 +2478,31 @@
         <second>
           <count>1</count>
           <item_version>0</item_version>
-          <item>18</item>
+          <item>22</item>
         </second>
       </item>
       <item>
-        <first>116</first>
+        <first>119</first>
         <second>
           <count>1</count>
           <item_version>0</item_version>
-          <item>21</item>
+          <item>23</item>
+        </second>
+      </item>
+      <item>
+        <first>126</first>
+        <second>
+          <count>1</count>
+          <item_version>0</item_version>
+          <item>24</item>
         </second>
       </item>
     </dp_fu_nodes>
     <dp_fu_nodes_expression class_id="51" tracking_level="0" version="0">
-      <count>11</count>
+      <count>13</count>
       <item_version>0</item_version>
       <item class_id="52" tracking_level="0" version="0">
-        <first>icmp_ln5_fu_110</first>
-        <second>
-          <count>1</count>
-          <item_version>0</item_version>
-          <item>18</item>
-        </second>
-      </item>
-      <item>
-        <first>mul_ln5_fu_62</first>
-        <second>
-          <count>1</count>
-          <item_version>0</item_version>
-          <item>13</item>
-        </second>
-      </item>
-      <item>
-        <first>select_ln5_1_fu_116</first>
-        <second>
-          <count>1</count>
-          <item_version>0</item_version>
-          <item>21</item>
-        </second>
-      </item>
-      <item>
-        <first>select_ln5_fu_104</first>
-        <second>
-          <count>1</count>
-          <item_version>0</item_version>
-          <item>17</item>
-        </second>
-      </item>
-      <item>
-        <first>sext_ln5_1_fu_58</first>
-        <second>
-          <count>1</count>
-          <item_version>0</item_version>
-          <item>12</item>
-        </second>
-      </item>
-      <item>
-        <first>sext_ln5_fu_54</first>
-        <second>
-          <count>1</count>
-          <item_version>0</item_version>
-          <item>11</item>
-        </second>
-      </item>
-      <item>
-        <first>sub_ln5_fu_92</first>
-        <second>
-          <count>1</count>
-          <item_version>0</item_version>
-          <item>16</item>
-        </second>
-      </item>
-      <item>
-        <first>tmp_1_fu_82</first>
+        <first>icmp_ln4_fu_84</first>
         <second>
           <count>1</count>
           <item_version>0</item_version>
@@ -2179,15 +2510,47 @@
         </second>
       </item>
       <item>
-        <first>tmp_2_fu_97</first>
+        <first>mul_ln4_fu_60</first>
         <second>
           <count>1</count>
           <item_version>0</item_version>
-          <item>15</item>
+          <item>13</item>
         </second>
       </item>
       <item>
-        <first>tmp_fu_72</first>
+        <first>select_ln4_1_fu_126</first>
+        <second>
+          <count>1</count>
+          <item_version>0</item_version>
+          <item>24</item>
+        </second>
+      </item>
+      <item>
+        <first>select_ln4_fu_119</first>
+        <second>
+          <count>1</count>
+          <item_version>0</item_version>
+          <item>23</item>
+        </second>
+      </item>
+      <item>
+        <first>sext_ln4_1_fu_56</first>
+        <second>
+          <count>1</count>
+          <item_version>0</item_version>
+          <item>12</item>
+        </second>
+      </item>
+      <item>
+        <first>sext_ln4_fu_52</first>
+        <second>
+          <count>1</count>
+          <item_version>0</item_version>
+          <item>11</item>
+        </second>
+      </item>
+      <item>
+        <first>sub_ln4_fu_96</first>
         <second>
           <count>1</count>
           <item_version>0</item_version>
@@ -2195,23 +2558,75 @@
         </second>
       </item>
       <item>
-        <first>trunc_ln5_fu_68</first>
+        <first>tmp_1_fu_110</first>
+        <second>
+          <count>1</count>
+          <item_version>0</item_version>
+          <item>22</item>
+        </second>
+      </item>
+      <item>
+        <first>tmp_2_fu_89</first>
         <second>
           <count>1</count>
           <item_version>0</item_version>
           <item>14</item>
         </second>
       </item>
+      <item>
+        <first>tmp_fu_101</first>
+        <second>
+          <count>1</count>
+          <item_version>0</item_version>
+          <item>21</item>
+        </second>
+      </item>
+      <item>
+        <first>trunc_ln4_fu_80</first>
+        <second>
+          <count>1</count>
+          <item_version>0</item_version>
+          <item>18</item>
+        </second>
+      </item>
+      <item>
+        <first>zext_ln4_1_fu_70</first>
+        <second>
+          <count>1</count>
+          <item_version>0</item_version>
+          <item>16</item>
+        </second>
+      </item>
+      <item>
+        <first>zext_ln4_fu_66</first>
+        <second>
+          <count>1</count>
+          <item_version>0</item_version>
+          <item>15</item>
+        </second>
+      </item>
     </dp_fu_nodes_expression>
     <dp_fu_nodes_module>
-      <count>0</count>
+      <count>1</count>
       <item_version>0</item_version>
+      <item>
+        <first>grp_fu_74</first>
+        <second>
+          <count>5</count>
+          <item_version>0</item_version>
+          <item>17</item>
+          <item>17</item>
+          <item>17</item>
+          <item>17</item>
+          <item>17</item>
+        </second>
+      </item>
     </dp_fu_nodes_module>
     <dp_fu_nodes_io>
       <count>2</count>
       <item_version>0</item_version>
       <item>
-        <first>m1_read_read_fu_48</first>
+        <first>m1_read_read_fu_46</first>
         <second>
           <count>1</count>
           <item_version>0</item_version>
@@ -2219,7 +2634,7 @@
         </second>
       </item>
       <item>
-        <first>m2_read_read_fu_42</first>
+        <first>m2_read_read_fu_40</first>
         <second>
           <count>1</count>
           <item_version>0</item_version>
@@ -2235,7 +2650,7 @@
         <second>
           <count>1</count>
           <item_version>0</item_version>
-          <item>22</item>
+          <item>25</item>
         </second>
       </item>
     </return_ports>
@@ -2244,10 +2659,10 @@
       <item_version>0</item_version>
     </dp_mem_port_nodes>
     <dp_reg_nodes>
-      <count>5</count>
+      <count>6</count>
       <item_version>0</item_version>
       <item>
-        <first>122</first>
+        <first>134</first>
         <second>
           <count>1</count>
           <item_version>0</item_version>
@@ -2255,59 +2670,51 @@
         </second>
       </item>
       <item>
-        <first>127</first>
+        <first>141</first>
         <second>
           <count>1</count>
           <item_version>0</item_version>
-          <item>14</item>
+          <item>15</item>
         </second>
       </item>
       <item>
-        <first>133</first>
-        <second>
-          <count>1</count>
-          <item_version>0</item_version>
-          <item>19</item>
-        </second>
-      </item>
-      <item>
-        <first>138</first>
-        <second>
-          <count>1</count>
-          <item_version>0</item_version>
-          <item>20</item>
-        </second>
-      </item>
-      <item>
-        <first>143</first>
+        <first>146</first>
         <second>
           <count>1</count>
           <item_version>0</item_version>
           <item>16</item>
+        </second>
+      </item>
+      <item>
+        <first>151</first>
+        <second>
+          <count>1</count>
+          <item_version>0</item_version>
+          <item>17</item>
+        </second>
+      </item>
+      <item>
+        <first>156</first>
+        <second>
+          <count>1</count>
+          <item_version>0</item_version>
+          <item>18</item>
+        </second>
+      </item>
+      <item>
+        <first>161</first>
+        <second>
+          <count>1</count>
+          <item_version>0</item_version>
+          <item>20</item>
         </second>
       </item>
     </dp_reg_nodes>
     <dp_regname_nodes>
-      <count>5</count>
+      <count>6</count>
       <item_version>0</item_version>
       <item>
-        <first>mul_ln5_reg_122</first>
-        <second>
-          <count>1</count>
-          <item_version>0</item_version>
-          <item>13</item>
-        </second>
-      </item>
-      <item>
-        <first>sub_ln5_reg_143</first>
-        <second>
-          <count>1</count>
-          <item_version>0</item_version>
-          <item>16</item>
-        </second>
-      </item>
-      <item>
-        <first>tmp_1_reg_138</first>
+        <first>icmp_ln4_reg_161</first>
         <second>
           <count>1</count>
           <item_version>0</item_version>
@@ -2315,19 +2722,43 @@
         </second>
       </item>
       <item>
-        <first>tmp_reg_133</first>
+        <first>mul_ln4_1_reg_151</first>
         <second>
           <count>1</count>
           <item_version>0</item_version>
-          <item>19</item>
+          <item>17</item>
         </second>
       </item>
       <item>
-        <first>trunc_ln5_reg_127</first>
+        <first>mul_ln4_reg_134</first>
         <second>
           <count>1</count>
           <item_version>0</item_version>
-          <item>14</item>
+          <item>13</item>
+        </second>
+      </item>
+      <item>
+        <first>trunc_ln4_reg_156</first>
+        <second>
+          <count>1</count>
+          <item_version>0</item_version>
+          <item>18</item>
+        </second>
+      </item>
+      <item>
+        <first>zext_ln4_1_reg_146</first>
+        <second>
+          <count>1</count>
+          <item_version>0</item_version>
+          <item>16</item>
+        </second>
+      </item>
+      <item>
+        <first>zext_ln4_reg_141</first>
+        <second>
+          <count>1</count>
+          <item_version>0</item_version>
+          <item>15</item>
         </second>
       </item>
     </dp_regname_nodes>
@@ -2378,7 +2809,7 @@
       <item_version>0</item_version>
     </port2core>
     <node2core>
-      <count>5</count>
+      <count>6</count>
       <item_version>0</item_version>
       <item>
         <first>13</first>
@@ -2388,28 +2819,35 @@
         </second>
       </item>
       <item>
-        <first>16</first>
+        <first>17</first>
+        <second>
+          <first>12</first>
+          <second>0</second>
+        </second>
+      </item>
+      <item>
+        <first>19</first>
         <second>
           <first>10</first>
           <second>4</second>
         </second>
       </item>
       <item>
-        <first>17</first>
-        <second>
-          <first>49</first>
-          <second>107</second>
-        </second>
-      </item>
-      <item>
-        <first>18</first>
+        <first>20</first>
         <second>
           <first>530</first>
           <second>0</second>
         </second>
       </item>
       <item>
-        <first>21</first>
+        <first>23</first>
+        <second>
+          <first>49</first>
+          <second>107</second>
+        </second>
+      </item>
+      <item>
+        <first>24</first>
         <second>
           <first>49</first>
           <second>107</second>

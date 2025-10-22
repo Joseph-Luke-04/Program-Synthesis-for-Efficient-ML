@@ -1235,10 +1235,10 @@ namespace hls::sim
 
 
 extern "C"
-void mult_mxint_exp_hw_stub_wrapper(hls::sim::Byte<1>*, hls::sim::Byte<1>*, hls::sim::Byte<1>*, hls::sim::Byte<1>*);
+void mult_mxint_exp_hw_stub_wrapper(hls::sim::Byte<1>*, hls::sim::Byte<1>*, hls::sim::Byte<1>*, hls::sim::Byte<1>);
 
 extern "C"
-void apatb_mult_mxint_exp_hw(hls::sim::Byte<1>* ap_return, hls::sim::Byte<1>* __xlx_apatb_param_e1, hls::sim::Byte<1>* __xlx_apatb_param_e2, hls::sim::Byte<1>* __xlx_apatb_param_renorm_flag)
+void apatb_mult_mxint_exp_hw(hls::sim::Byte<1>* ap_return, hls::sim::Byte<1>* __xlx_apatb_param_e1, hls::sim::Byte<1>* __xlx_apatb_param_e2, hls::sim::Byte<1> __xlx_apatb_param_renorm_flag)
 {
   static hls::sim::Register port0 {
     .name = "return",
@@ -1283,7 +1283,7 @@ void apatb_mult_mxint_exp_hw(hls::sim::Byte<1>* ap_return, hls::sim::Byte<1>* __
     .iwriter = new hls::sim::Writer(AUTOTB_TVIN_renorm_flag),
 #endif
   };
-  port3.param = __xlx_apatb_param_renorm_flag;
+  port3.param = &__xlx_apatb_param_renorm_flag;
 
   try {
 #ifdef POST_CHECK

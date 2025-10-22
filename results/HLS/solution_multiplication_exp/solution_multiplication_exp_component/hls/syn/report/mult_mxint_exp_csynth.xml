@@ -168,7 +168,7 @@
 <Dir>in</Dir>
 <Bits>1</Bits>
 <Attribute>data</Attribute>
-<CType>int</CType>
+<CType>bool</CType>
 </RtlPorts>
 </InterfaceSummary>
 

@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'mult_mxint_mant'" level="0">
-<item name = "Date">Wed Oct 15 16:23:27 2025
+<item name = "Date">Wed Oct 22 13:17:14 2025
 </item>
 <item name = "Version">2025.1 (Build 6135595 on May 21 2025)</item>
 <item name = "Project">solution_multiplication_mant_component</item>
@@ -15,7 +15,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="4">Clock, Target, Estimated, Uncertainty</keys>
-<column name="ap_clk">4.00 ns, 2.894 ns, 1.08 ns</column>
+<column name="ap_clk">4.00 ns, 5.415 ns, 1.08 ns</column>
 </table>
 </item>
 </section>
@@ -24,7 +24,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="8">, min, max, min, max, min, max, Type</keys>
-<column name="">2, 2, 8.000 ns, 8.000 ns, 3, 3, no</column>
+<column name="">6, 6, 32.490 ns, 32.490 ns, 7, 7, no</column>
 </table>
 </item>
 <item name = "Detail">
@@ -47,12 +47,12 @@
 <item name = "Summary"><table name="" hasTotal="1">
 <keys size="6">Name, BRAM_18K, DSP, FF, LUT, URAM</keys>
 <column name="DSP">-, -, -, -, -</column>
-<column name="Expression">-, -, 0, 39, -</column>
+<column name="Expression">-, -, 0, 44, -</column>
 <column name="FIFO">-, -, -, -, -</column>
-<column name="Instance">-, 0, 0, 13, -</column>
+<column name="Instance">-, 0, 102, 90, -</column>
 <column name="Memory">-, -, -, -, -</column>
-<column name="Multiplexer">-, -, 0, 20, -</column>
-<column name="Register">-, -, 33, -, -</column>
+<column name="Multiplexer">-, -, 0, 42, -</column>
+<column name="Register">-, -, 36, -, -</column>
 <specialColumn name="Available">280, 220, 106400, 53200, 0</specialColumn>
 <specialColumn name="Utilization (%)">0, 0, ~0, ~0, 0</specialColumn>
 </table>
@@ -62,6 +62,7 @@
 <item name = "Instance"><table name="" hasTotal="1">
 <keys size="7">Instance, Module, BRAM_18K, DSP, FF, LUT, URAM</keys>
 <column name="mul_4s_4s_8_1_1_U1">mul_4s_4s_8_1_1, 0, 0, 0, 13, 0</column>
+<column name="mul_8ns_8ns_16_5_1_U2">mul_8ns_8ns_16_5_1, 0, 0, 102, 77, 0</column>
 </table>
 </item>
 <item name = "DSP"><table name="" hasTotal="0">
@@ -78,25 +79,24 @@
 </item>
 <item name = "Expression"><table name="" hasTotal="1">
 <keys size="7">Variable Name, Operation, DSP, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
-<column name="sub_ln5_fu_92_p2">-, 0, 0, 14, 1, 7</column>
-<column name="icmp_ln5_fu_110_p2">icmp, 0, 0, 14, 7, 6</column>
+<column name="sub_ln4_fu_96_p2">-, 0, 0, 13, 1, 4</column>
+<column name="icmp_ln4_fu_84_p2">icmp, 0, 0, 23, 16, 6</column>
 <column name="ap_return">select, 0, 0, 4, 1, 4</column>
-<column name="select_ln5_fu_104_p3">select, 0, 0, 7, 1, 7</column>
+<column name="select_ln4_fu_119_p3">select, 0, 0, 4, 1, 4</column>
 </table>
 </item>
 <item name = "Multiplexer"><table name="" hasTotal="1">
 <keys size="5">Name, LUT, Input Size, Bits, Total Bits</keys>
-<column name="ap_NS_fsm">20, 4, 1, 4</column>
+<column name="ap_NS_fsm">42, 8, 1, 8</column>
 </table>
 </item>
 <item name = "Register"><table name="" hasTotal="1">
 <keys size="5">Name, FF, LUT, Bits, Const Bits</keys>
-<column name="ap_CS_fsm">3, 0, 3, 0</column>
-<column name="mul_ln5_reg_122">8, 0, 8, 0</column>
-<column name="sub_ln5_reg_143">7, 0, 7, 0</column>
-<column name="tmp_1_reg_138">4, 0, 4, 0</column>
-<column name="tmp_reg_133">4, 0, 4, 0</column>
-<column name="trunc_ln5_reg_127">7, 0, 7, 0</column>
+<column name="ap_CS_fsm">7, 0, 7, 0</column>
+<column name="icmp_ln4_reg_161">1, 0, 1, 0</column>
+<column name="mul_ln4_1_reg_151">16, 0, 16, 0</column>
+<column name="mul_ln4_reg_134">8, 0, 8, 0</column>
+<column name="trunc_ln4_reg_156">4, 0, 4, 0</column>
 </table>
 </item>
 </section>

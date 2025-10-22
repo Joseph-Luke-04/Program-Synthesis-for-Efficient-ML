@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'mult_mxint_exp'
 ================================================================
-* Date:           Wed Oct 15 16:11:03 2025
+* Date:           Wed Oct 22 01:43:34 2025
 
 * Version:        2025.1 (Build 6135595 on May 21 2025)
 * Project:        solution_multiplication_exp_component
@@ -180,7 +180,7 @@ ST_2 : Operation 13 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface 
 ST_2 : Operation 14 [1/1] (0.00ns)   --->   "%renorm_flag_read = read i1 @_ssdm_op_Read.ap_auto.i1, i1 %renorm_flag" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_exp.cpp:3]   --->   Operation 14 'read' 'renorm_flag_read' <Predicate = true> <Delay = 0.00>
 ST_2 : Operation 15 [1/1] (1.73ns)   --->   "%add_ln4_1 = add i4 %add_ln4, i4 15" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_exp.cpp:4]   --->   Operation 15 'add' 'add_ln4_1' <Predicate = true> <Delay = 1.73> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.73> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
 ST_2 : Operation 16 [1/1] (1.02ns)   --->   "%select_ln4 = select i1 %renorm_flag_read, i4 %add_ln4_1, i4 %add_ln4" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_exp.cpp:4]   --->   Operation 16 'select' 'select_ln4' <Predicate = true> <Delay = 1.02> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 1.02> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
-ST_2 : Operation 17 [1/1] (0.00ns)   --->   "%ret_ln5 = ret i4 %select_ln4" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_exp.cpp:5]   --->   Operation 17 'ret' 'ret_ln5' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 17 [1/1] (0.00ns)   --->   "%ret_ln4 = ret i4 %select_ln4" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_exp.cpp:4]   --->   Operation 17 'ret' 'ret_ln4' <Predicate = true> <Delay = 0.00>
 
 
 ============================================================
@@ -217,7 +217,7 @@ specinterface_ln0 (specinterface) [ 000]
 renorm_flag_read  (read         ) [ 000]
 add_ln4_1         (add          ) [ 000]
 select_ln4        (select       ) [ 000]
-ret_ln5           (ret          ) [ 000]
+ret_ln4           (ret          ) [ 000]
 </LifeTime>
 
 <model>
@@ -487,7 +487,7 @@ ret_ln5           (ret          ) [ 000]
 	State 1
 	State 2
 		select_ln4 : 1
-		ret_ln5 : 2
+		ret_ln4 : 2
 
 
 ============================================================

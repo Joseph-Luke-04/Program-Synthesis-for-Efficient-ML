@@ -244,10 +244,10 @@ class AESL_RUNTIME_BC {
 };
 using hls::sim::Byte;
 struct __cosim_s1__ { char data[1]; };
-extern "C" __cosim_s1__ mult_mxint_exp(__cosim_s1__, __cosim_s1__, __cosim_s1__);
-extern "C" void  apatb_mult_mxint_exp_hw(__cosim_s1__* ap_return, __cosim_s1__* __xlx_apatb_param_e1, __cosim_s1__* __xlx_apatb_param_e2, __cosim_s1__* __xlx_apatb_param_renorm_flag) {
+extern "C" __cosim_s1__ mult_mxint_exp(__cosim_s1__, __cosim_s1__, char);
+extern "C" void  apatb_mult_mxint_exp_hw(__cosim_s1__* ap_return, __cosim_s1__* __xlx_apatb_param_e1, __cosim_s1__* __xlx_apatb_param_e2, char __xlx_apatb_param_renorm_flag) {
 using hls::sim::createStream;
   // DUT call
-  *ap_return = mult_mxint_exp(*__xlx_apatb_param_e1, *__xlx_apatb_param_e2, *__xlx_apatb_param_renorm_flag);
+  *ap_return = mult_mxint_exp(*__xlx_apatb_param_e1, *__xlx_apatb_param_e2, __xlx_apatb_param_renorm_flag);
 return ap_return;
 }

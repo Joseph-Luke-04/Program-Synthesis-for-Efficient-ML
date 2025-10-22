@@ -405,13 +405,9 @@
         <spirit:name>renorm_flag</spirit:name>
         <spirit:wire>
           <spirit:direction>in</spirit:direction>
-          <spirit:vector>
-            <spirit:left spirit:format="long">0</spirit:left>
-            <spirit:right spirit:format="long">0</spirit:right>
-          </spirit:vector>
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
-              <spirit:typeName>std_logic_vector</spirit:typeName>
+              <spirit:typeName>std_logic</spirit:typeName>
               <spirit:viewNameRef>xilinx_verilogsynthesis</spirit:viewNameRef>
               <spirit:viewNameRef>xilinx_verilogbehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
@@ -531,8 +527,8 @@
       </xilinx:taxonomies>
       <xilinx:displayName>Mult_mxint_exp</xilinx:displayName>
       <xilinx:definitionSource>HLS</xilinx:definitionSource>
-      <xilinx:coreRevision>2114304791</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2025-10-15T15:11:14Z</xilinx:coreCreationDateTime>
+      <xilinx:coreRevision>2114314003</xilinx:coreRevision>
+      <xilinx:coreCreationDateTime>2025-10-22T00:43:42Z</xilinx:coreCreationDateTime>
       <xilinx:sdxKernelAttributes>
         <xilinx:sdx_kernel>true</xilinx:sdx_kernel>
         <xilinx:sdx_kernel_type>hls</xilinx:sdx_kernel_type>
@@ -542,7 +538,7 @@
       <xilinx:xilinxVersion>2025.1</xilinx:xilinxVersion>
       <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="c3f15dac"/>
       <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="e08da3c4"/>
-      <xilinx:checksum xilinx:scope="ports" xilinx:value="7deec002"/>
+      <xilinx:checksum xilinx:scope="ports" xilinx:value="02858865"/>
       <xilinx:checksum xilinx:scope="parameters" xilinx:value="cd39ee00"/>
     </xilinx:packagingInfo>
   </spirit:vendorExtensions>

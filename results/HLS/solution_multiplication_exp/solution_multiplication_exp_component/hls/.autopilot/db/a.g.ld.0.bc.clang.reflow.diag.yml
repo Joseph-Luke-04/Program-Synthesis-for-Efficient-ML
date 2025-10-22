@@ -3,7 +3,7 @@ Pass:            inline
 Name:            NeverInline
 Function:        apatb_mult_mxint_exp_ir
 Args:            
-  - Callee:          'mult_mxint_exp(ap_uint<4>, ap_uint<4>, ap_uint<1>)'
+  - Callee:          'mult_mxint_exp(ap_uint<4>, ap_uint<4>, bool)'
     DebugLoc:        { File: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_exp.cpp, 
                        Line: 3, Column: 0 }
   - String:          ' not inlined into '

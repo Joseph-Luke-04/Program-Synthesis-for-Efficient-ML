@@ -152,7 +152,7 @@
 								</second>
 							</item>
 						</inlineStackInfo>
-						<originalName></originalName>
+						<originalName>renorm_flag</originalName>
 						<rtlName></rtlName>
 						<control></control>
 						<opType></opType>
@@ -471,10 +471,10 @@
 					<Obj>
 						<type>0</type>
 						<id>18</id>
-						<name>_ln5</name>
+						<name>_ln4</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_exp.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_multiplication_exp</fileDirectory>
-						<lineNumber>5</lineNumber>
+						<lineNumber>4</lineNumber>
 						<contextFuncName>mult_mxint_exp</contextFuncName>
 						<contextNormFuncName>mult_mxint_exp</contextNormFuncName>
 						<inlineStackInfo>
@@ -490,7 +490,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_exp.cpp</first>
 											<second>mult_mxint_exp</second>
 										</first>
-										<second>5</second>
+										<second>4</second>
 									</item>
 								</second>
 							</item>

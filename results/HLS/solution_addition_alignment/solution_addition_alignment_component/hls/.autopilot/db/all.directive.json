@@ -1,0 +1,23 @@
+[
+  {
+    "functionLabel": "",
+    "functionName": "select_exponent",
+    "id": 0,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "",
+    "pragma": {
+      "name": "TOP",
+      "option": [
+        {
+          "name": "name",
+          "value": "select_exponent"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_addition_alignment/hls.tcl",
+    "sourceLine": 6,
+    "success": true
+  }
+]

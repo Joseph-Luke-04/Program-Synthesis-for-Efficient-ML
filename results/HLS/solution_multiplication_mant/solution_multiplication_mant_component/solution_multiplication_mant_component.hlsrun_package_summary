@@ -9,13 +9,13 @@
 <ENTRY>
 {
  "type": "ET_CmdStep",
- "dateTimestamp": "Wed Oct 15 16:23:30 2025",
- "timestampMillis": "1760541810055",
+ "dateTimestamp": "Wed Oct 22 13:17:17 2025",
+ "timestampMillis": "1761135437074",
  "buildStep": {
-  "cmdId": "399148dc-0abb-46f7-9614-6299d09c8cfe",
+  "cmdId": "804b91ef-fac3-45aa-ac25-d80870f1ba8f",
   "name": "vitis-run",
   "logFile": "/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_multiplication_mant/logs/hls_compile.log",
-  "commandLine": "vitis-run --mode hls --tcl /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_multiplication_mant/vitis.tcl",
+  "commandLine": "vitis-run --mode hls --tcl /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_multiplication_mant/hls.tcl",
   "args": [],
   "iniFiles": [],
   "cwd": "/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_multiplication_mant"
@@ -25,10 +25,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Wed Oct 15 16:23:30 2025",
- "timestampMillis": "1760541810056",
+ "dateTimestamp": "Wed Oct 22 13:17:17 2025",
+ "timestampMillis": "1761135437074",
  "status": {
-  "cmdId": "399148dc-0abb-46f7-9614-6299d09c8cfe",
+  "cmdId": "804b91ef-fac3-45aa-ac25-d80870f1ba8f",
   "state": "CS_RUNNING"
  }
 }
@@ -36,8 +36,8 @@
 <ENTRY>
 {
  "type": "ET_FlowMetaData",
- "dateTimestamp": "Wed Oct 15 16:23:30 2025",
- "timestampMillis": "1760541810056",
+ "dateTimestamp": "Wed Oct 22 13:17:17 2025",
+ "timestampMillis": "1761135437074",
  "buildSummary": {
   "hardwarePlatform": "",
   "hardwareDsa": "",
@@ -72,10 +72,10 @@
 <ENTRY>
 {
  "type": "ET_SubCmdStep",
- "dateTimestamp": "Wed Oct 15 16:23:30 2025",
- "timestampMillis": "1760541810056",
+ "dateTimestamp": "Wed Oct 22 13:17:17 2025",
+ "timestampMillis": "1761135437074",
  "buildStep": {
-  "cmdId": "13e9cc90-099a-422e-9b95-3b89143f0541",
+  "cmdId": "d454d1e8-8998-4a0d-82ab-7a4c5af45b18",
   "name": "export_design",
   "logFile": "/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_multiplication_mant/solution_multiplication_mant_component/hls/hls.log",
   "commandLine": "export_design",
@@ -88,10 +88,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Wed Oct 15 16:23:30 2025",
- "timestampMillis": "1760541810056",
+ "dateTimestamp": "Wed Oct 22 13:17:17 2025",
+ "timestampMillis": "1761135437075",
  "status": {
-  "cmdId": "13e9cc90-099a-422e-9b95-3b89143f0541",
+  "cmdId": "d454d1e8-8998-4a0d-82ab-7a4c5af45b18",
   "state": "CS_RUNNING"
  }
 }
@@ -99,10 +99,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Wed Oct 15 16:23:56 2025",
- "timestampMillis": "1760541836264",
+ "dateTimestamp": "Wed Oct 22 13:17:42 2025",
+ "timestampMillis": "1761135462255",
  "status": {
-  "cmdId": "13e9cc90-099a-422e-9b95-3b89143f0541",
+  "cmdId": "d454d1e8-8998-4a0d-82ab-7a4c5af45b18",
   "state": "CS_PASSED"
  }
 }
@@ -110,10 +110,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Wed Oct 15 16:23:56 2025",
- "timestampMillis": "1760541836266",
+ "dateTimestamp": "Wed Oct 22 13:17:42 2025",
+ "timestampMillis": "1761135462258",
  "status": {
-  "cmdId": "399148dc-0abb-46f7-9614-6299d09c8cfe",
+  "cmdId": "804b91ef-fac3-45aa-ac25-d80870f1ba8f",
   "state": "CS_PASSED"
  }
 }

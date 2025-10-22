@@ -13,21 +13,21 @@
 <SummaryOfTimingAnalysis>
 <TargetClockPeriod>4.00</TargetClockPeriod>
 <ClockUncertainty>1.08</ClockUncertainty>
-<EstimatedClockPeriod>2.894</EstimatedClockPeriod>
+<EstimatedClockPeriod>5.415</EstimatedClockPeriod>
 </SummaryOfTimingAnalysis>
 <SummaryOfOverallLatency>
-<Best-caseLatency>2</Best-caseLatency>
-<Average-caseLatency>2</Average-caseLatency>
-<Worst-caseLatency>2</Worst-caseLatency>
-<Best-caseRealTimeLatency>8.000 ns</Best-caseRealTimeLatency>
-<Average-caseRealTimeLatency>8.000 ns</Average-caseRealTimeLatency>
-<Worst-caseRealTimeLatency>8.000 ns</Worst-caseRealTimeLatency>
-<PipelineInitiationInterval>3</PipelineInitiationInterval>
+<Best-caseLatency>6</Best-caseLatency>
+<Average-caseLatency>6</Average-caseLatency>
+<Worst-caseLatency>6</Worst-caseLatency>
+<Best-caseRealTimeLatency>32.490 ns</Best-caseRealTimeLatency>
+<Average-caseRealTimeLatency>32.490 ns</Average-caseRealTimeLatency>
+<Worst-caseRealTimeLatency>32.490 ns</Worst-caseRealTimeLatency>
+<PipelineInitiationInterval>7</PipelineInitiationInterval>
 <PipelineType>no</PipelineType>
 <PerformancePragma>-</PerformancePragma>
 </SummaryOfOverallLatency>
 <SummaryOfViolations>
-<IssueType>-</IssueType>
+<IssueType>Timing Violation</IssueType>
 <ViolationType>-</ViolationType>
 <SourceLocation>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_mant.cpp:3</SourceLocation>
 </SummaryOfViolations>
@@ -37,10 +37,10 @@
 <DSP>0</DSP>
 <AVAIL_DSP>220</AVAIL_DSP>
 <UTIL_DSP>0</UTIL_DSP>
-<FF>33</FF>
+<FF>138</FF>
 <AVAIL_FF>106400</AVAIL_FF>
 <UTIL_FF>~0</UTIL_FF>
-<LUT>72</LUT>
+<LUT>176</LUT>
 <AVAIL_LUT>53200</AVAIL_LUT>
 <UTIL_LUT>~0</UTIL_LUT>
 <BRAM_18K>0</BRAM_18K>

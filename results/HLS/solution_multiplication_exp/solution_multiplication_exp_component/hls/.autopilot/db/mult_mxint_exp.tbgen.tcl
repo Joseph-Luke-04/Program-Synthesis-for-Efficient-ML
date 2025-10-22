@@ -21,7 +21,7 @@ set ap_memory_interface_dict [dict create]
 set C_modelArgList {
 	{ e1 int 4 regular  }
 	{ e2 int 4 regular  }
-	{ renorm_flag int 1 regular  }
+	{ renorm_flag uint 1 regular  }
 }
 set hasAXIMCache 0
 set l_AXIML2Cache [list]

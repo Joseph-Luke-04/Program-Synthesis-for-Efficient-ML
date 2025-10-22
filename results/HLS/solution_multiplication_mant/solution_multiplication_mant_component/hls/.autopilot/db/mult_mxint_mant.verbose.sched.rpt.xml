@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'mult_mxint_mant'" level="0">
-<item name = "Date">Wed Oct 15 16:23:27 2025
+<item name = "Date">Wed Oct 22 13:17:14 2025
 </item>
 <item name = "Version">2025.1 (Build 6135595 on May 21 2025)</item>
 <item name = "Project">solution_multiplication_mant_component</item>
@@ -15,7 +15,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="4">Clock, Target, Estimated, Uncertainty</keys>
-<column name="ap_clk">4.00 ns, 2.894 ns, 1.08 ns</column>
+<column name="ap_clk">4.00 ns, 5.415 ns, 1.08 ns</column>
 </table>
 </item>
 </section>
@@ -24,7 +24,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="8">, min, max, min, max, min, max, Type</keys>
-<column name="">2, 2, 8.000 ns, 8.000 ns, 3, 3, no</column>
+<column name="">6, 6, 32.490 ns, 32.490 ns, 7, 7, no</column>
 </table>
 </item>
 <item name = "Detail">

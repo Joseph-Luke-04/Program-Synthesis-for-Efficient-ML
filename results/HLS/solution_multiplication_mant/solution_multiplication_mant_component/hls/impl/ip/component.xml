@@ -152,7 +152,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>e8cf4693</spirit:value>
+            <spirit:value>37f2e5ce</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -168,7 +168,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>17769396</spirit:value>
+            <spirit:value>730c3d4a</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -184,7 +184,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>5fdfb0d5</spirit:value>
+            <spirit:value>f2164bb7</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -200,7 +200,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>ab2920cd</spirit:value>
+            <spirit:value>f074ebd9</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -400,6 +400,10 @@
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
+        <spirit:name>hdl/verilog/mult_mxint_mant_mul_8ns_8ns_16_5_1.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
         <spirit:name>hdl/verilog/mult_mxint_mant.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
@@ -408,6 +412,11 @@
       <spirit:name>xilinx_verilogbehavioralsimulation_view_fileset</spirit:name>
       <spirit:file>
         <spirit:name>hdl/verilog/mult_mxint_mant_mul_4s_4s_8_1_1.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/verilog/mult_mxint_mant_mul_8ns_8ns_16_5_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
@@ -429,15 +438,24 @@
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
+        <spirit:name>hdl/vhdl/mult_mxint_mant_mul_8ns_8ns_16_5_1.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
         <spirit:name>hdl/vhdl/mult_mxint_mant.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_8cc4924e</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_5dc247d1</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
       <spirit:name>xilinx_vhdlbehavioralsimulation_view_fileset</spirit:name>
       <spirit:file>
         <spirit:name>hdl/vhdl/mult_mxint_mant_mul_4s_4s_8_1_1.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/vhdl/mult_mxint_mant_mul_8ns_8ns_16_5_1.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
@@ -499,11 +517,11 @@
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>latency</spirit:name>
-      <spirit:value spirit:id="PARAM_VALUE.latency" spirit:order="4">2</spirit:value>
+      <spirit:value spirit:id="PARAM_VALUE.latency" spirit:order="4">6</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>II</spirit:name>
-      <spirit:value spirit:id="PARAM_VALUE.II" spirit:order="5">3</spirit:value>
+      <spirit:value spirit:id="PARAM_VALUE.II" spirit:order="5">7</spirit:value>
     </spirit:parameter>
   </spirit:parameters>
   <spirit:vendorExtensions>
@@ -516,8 +534,8 @@
       </xilinx:taxonomies>
       <xilinx:displayName>Mult_mxint_mant</xilinx:displayName>
       <xilinx:definitionSource>HLS</xilinx:definitionSource>
-      <xilinx:coreRevision>2114304803</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2025-10-15T15:23:36Z</xilinx:coreCreationDateTime>
+      <xilinx:coreRevision>2114314697</xilinx:coreRevision>
+      <xilinx:coreCreationDateTime>2025-10-22T12:17:22Z</xilinx:coreCreationDateTime>
       <xilinx:sdxKernelAttributes>
         <xilinx:sdx_kernel>true</xilinx:sdx_kernel>
         <xilinx:sdx_kernel_type>hls</xilinx:sdx_kernel_type>
@@ -526,9 +544,9 @@
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2025.1</xilinx:xilinxVersion>
       <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="ba7d034b"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="3f7d349d"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="4ec3509b"/>
       <xilinx:checksum xilinx:scope="ports" xilinx:value="f5e17592"/>
-      <xilinx:checksum xilinx:scope="parameters" xilinx:value="c44b2c44"/>
+      <xilinx:checksum xilinx:scope="parameters" xilinx:value="97e76fed"/>
     </xilinx:packagingInfo>
   </spirit:vendorExtensions>
 </spirit:component>

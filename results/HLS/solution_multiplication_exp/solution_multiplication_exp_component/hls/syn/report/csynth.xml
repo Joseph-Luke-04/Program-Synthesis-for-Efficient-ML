@@ -163,7 +163,7 @@
             <Dir>in</Dir>
             <Bits>1</Bits>
             <Attribute>data</Attribute>
-            <CType>int</CType>
+            <CType>bool</CType>
         </RtlPorts>
     </InterfaceSummary>
     <RTLDesignHierarchy>
@@ -237,7 +237,7 @@
                 <hwRef type="port" interface="e2" name="e2" usage="data" direction="in"/>
             </hwRefs>
         </Arg>
-        <Arg ArgName="renorm_flag" index="2" direction="in" srcType="ap_uint&lt;1&gt;" srcSize="8">
+        <Arg ArgName="renorm_flag" index="2" direction="in" srcType="bool" srcSize="1">
             <hwRefs>
                 <hwRef type="port" interface="renorm_flag" name="renorm_flag" usage="data" direction="in"/>
             </hwRefs>
@@ -353,7 +353,7 @@
                     <keys size="3">Argument, Direction, Datatype</keys>
                     <column name="e1">in, ap_uint&lt;4&gt;</column>
                     <column name="e2">in, ap_uint&lt;4&gt;</column>
-                    <column name="renorm_flag">in, ap_uint&lt;1&gt;</column>
+                    <column name="renorm_flag">in, bool</column>
                     <column name="return">out, ap_uint&lt;4&gt;</column>
                 </table>
             </item>

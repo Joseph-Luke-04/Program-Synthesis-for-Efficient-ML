@@ -238,10 +238,10 @@ entry:13 %select_ln4 = select i1 %renorm_flag_read, i4 %add_ln4_1, i4 %add_ln4
 
 <Node id="18" bw="0" op_0_bw="4">
 <![CDATA[
-entry:14 %ret_ln5 = ret i4 %select_ln4
+entry:14 %ret_ln4 = ret i4 %select_ln4
 
 ]]></Node>
-<StgValue><ssdm name="ret_ln5"/></StgValue>
+<StgValue><ssdm name="ret_ln4"/></StgValue>
 </operation>
 </state>
 </state_list>
@@ -427,7 +427,7 @@ entry:14 %ret_ln5 = ret i4 %select_ln4
 </dataflow>
 <dataflow id="116" from="add_ln4" to="select_ln4" fromId="5" toId="16">
 </dataflow>
-<dataflow id="117" from="select_ln4" to="ret_ln5" fromId="16" toId="17">
+<dataflow id="117" from="select_ln4" to="ret_ln4" fromId="16" toId="17">
 </dataflow>
 </dataflows>
 
