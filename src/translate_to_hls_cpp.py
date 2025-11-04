@@ -1,120 +1,173 @@
-import re
-import os
+import os, re
 from pathlib import Path
 
-# ================= Type mapping ==================
-def _replace_bitvectors(c_code: str) -> str:
-    def _unsigned(m):
-        w = int(m.group(1))
-        return "bool" if w == 1 else f"ap_uint<{w}>"
-    def _signed(m):
-        w = int(m.group(1))
-        return "bool" if w == 1 else f"ap_int<{w}>"
-    c_code = re.sub(r"unsigned\s+__CPROVER_bitvector\s*\[(\d+)\]", _unsigned, c_code)
-    c_code = re.sub(r"signed\s+__CPROVER_bitvector\s*\[(\d+)\]", _signed, c_code)
-    return c_code
+_HEADER = "#include <ap_int.h>\n\n"
 
-# ============ Bool condition simplifier ===============
-def _collect_bool_names(c_code: str) -> set:
-    names = set()
-    for m in re.finditer(r"\bbool\s+([A-Za-z_]\w*)", c_code):
-        names.add(m.group(1))
-    return names
+# ---------- Header & cast normalisation (preserve parens!) ----------
+def _ensure_header(s: str) -> str:
+    return s if "#include <ap_int.h>" in s else _HEADER + s.strip()
 
-def _simplify_bool_comparisons(c_code: str) -> str:
-    bools = _collect_bool_names(c_code)
-    for name in bools:
-        c_code = re.sub(rf"\b{name}\s*==\s*1\b", name, c_code)
-        c_code = re.sub(rf"\b1\s*==\s*{name}\b", name, c_code)
-        c_code = re.sub(rf"\b{name}\s*!=\s*0\b", name, c_code)
-        c_code = re.sub(rf"\b0\s*!=\s*{name}\b", name, c_code)
-        c_code = re.sub(rf"\b{name}\s*==\s*0\b", f"!{name}", c_code)
-        c_code = re.sub(rf"\b0\s*==\s*{name}\b", f"!{name}", c_code)
-        c_code = re.sub(rf"\b{name}\s*!=\s*1\b", f"!{name}", c_code)
-        c_code = re.sub(rf"\b1\s*!=\s*{name}\b", f"!{name}", c_code)
-    return c_code
+def _normalize_char_types_and_casts(s: str) -> str:
+    # Decls
+    s = re.sub(r"\bunsigned\s+char\b", "ap_uint<8>", s)
+    s = re.sub(r"\bsigned\s+char\b",   "ap_int<8>",  s)
+    # Casts (keep parentheses intact)
+    s = re.sub(r"\(\s*unsigned\s+char\s*\)", "(ap_uint<8>)", s)
+    s = re.sub(r"\(\s*signed\s+char\s*\)",   "(ap_int<8>)",  s)
+    return s
 
-# ================== Bit extraction fixes ====================
-def _replace_bit_extractions(c_code: str) -> str:
-    c_code = re.sub(r"\b0\s*\+\s*(\d+)", r"\1", c_code)
-    def looks_like_top_ap(expr: str) -> bool:
-        s = expr.strip()
-        if s.startswith("(") and s.endswith(")"):
-            inner = s[1:-1].strip()
+def _safer_unsigned_negation(s: str) -> str:
+    # -(ap_uint<N>)(EXPR)  ->  ap_uint<N>(-(ap_int<N>)(EXPR))
+    def fix(m):
+        N, expr = m.group(1), m.group(2)
+        return f"ap_uint<{N}>(-(ap_int<{N}>)({expr}))"
+    return re.sub(r"-\s*\(\s*ap_uint<(\d+)>\s*\)\s*\(\s*(.+?)\s*\)", fix, s)
+
+# ---------- Bit-slices '(EXPR)[hi, lo]' ----------
+def _bit_slices_to_range(s: str) -> str:
+    s = re.sub(r"\b0\s*\+\s*(\d+)", r"\1", s)
+
+    def _looks_like_top_ap(expr: str) -> bool:
+        t = expr.strip()
+        if t.startswith("(") and t.endswith(")"):
+            inner = t[1:-1].strip()
             if inner.startswith(("ap_uint<","ap_int<")): return True
-            s = inner
-        if s.startswith(("(ap_uint<","(ap_int<")): return True
-        return bool(re.fullmatch(r"[A-Za-z_]\w*", s))
-    def slice_repl(m):
-        expr, high, low = m.group(1).strip(), int(m.group(2)), int(m.group(3))
-        return f"({expr}).range({high}, {low})" if looks_like_top_ap(expr) \
-               else f"(ap_uint<{high-low+1}>(({expr})))"
-    return re.sub(r"\(\s*(.+?)\s*\)\s*\[\s*(\d+)\s*,\s*(\d+)\s*\]", slice_repl, c_code)
+            t = inner
+        if t.startswith(("(ap_uint<","(ap_int<")): return True
+        return bool(re.fullmatch(r"[A-Za-z_]\w*", t))
 
-# ================ Force ternary branches to return type =================
-def _get_function_return_type(c_code: str) -> str | None:
-    # Grab the first function’s return type: ap_uint<N> | ap_int<N> | bool
-    m = re.search(r"\b(ap_u?int<\d+>|bool)\s+[A-Za-z_]\w*\s*\(", c_code)
-    return m.group(1) if m else None
+    def _repl(m: re.Match) -> str:
+        expr, hi, lo = m.group(1).strip(), int(m.group(2)), int(m.group(3))
+        w = hi - lo + 1
+        if _looks_like_top_ap(expr):
+            return f"({expr}).range({hi}, {lo})"
+        if lo == 0:
+            return f"(ap_uint<{w}>(({expr})))"
+        return f"(ap_uint<64>(({expr}))).range({hi}, {lo})"
 
-def _wrap_as_type(expr: str, ty: str) -> str:
-    expr = expr.strip()
-    # ap_* need constructor-style cast; bool can use C cast
-    if ty.startswith(("ap_uint<","ap_int<")):
-        return f"{ty}(({expr}))"
-    else:
-        return f"({ty})({expr})"
+    return re.sub(r"\(\s*(.+?)\s*\)\s*\[\s*(\d+)\s*,\s*(\d+)\s*\]", _repl, s)
 
-def _force_ternary_return_casts(c_code: str) -> str:
-    ret_ty = _get_function_return_type(c_code)
-    if not ret_ty:
-        return c_code
-
-    # Match "return cond ? a : b;" (non-greedy up to semicolon)
+# ---------- NEW: make leading casts apply to the WHOLE product ----------
+def _cast_entire_product(s: str) -> str:
+    """
+    Turn '(ap_*<N>) LHS * RHS' into 'ap_*<N>((LHS * RHS))' so the product
+    has the intended width. Apply repeatedly.
+    """
+    token = r"(?:\([^()]*\)|[^\s()])+"
+    pat = re.compile(r"\(\s*(ap_(?:u)?int<\d+>)\s*\)\s*(" + token + r")\s*\*\s*(" + token + r")")
     def repl(m):
-        cond = m.group(1).strip()
-        a    = m.group(2).strip()
-        b    = m.group(3).strip()
-        a_cast = _wrap_as_type(a, ret_ty)
-        b_cast = _wrap_as_type(b, ret_ty)
-        return f"return {cond} ? {a_cast} : {b_cast};"
+        ty, lhs, rhs = m.group(1), m.group(2), m.group(3)
+        return f"{ty}(({lhs} * {rhs}))"
+    prev = None
+    while prev != s:
+        prev, s = s, pat.sub(repl, s)
+    return s
 
-    pattern = r"return\s+(.+?)\?\s*(.+?)\s*:\s*(.+?)\s*;"
-    return re.sub(pattern, repl, c_code)
+# ---------- Ternary unifier (works for nested ?:) ----------
+_APTY_RE = r"\b(ap_(?:u)?int<\d+>)"
 
-def _clean_whitespace(c_code: str) -> str:
-    lines = [line.rstrip() for line in c_code.splitlines()]
-    c_code = "\n".join(lines)
-    c_code = re.sub(r"\n\s*\n\s*}", "\n}", c_code)
-    return c_code.strip() + "\n"
+def _extract_common_ap_type(a: str, b: str) -> str | None:
+    ta = re.findall(_APTY_RE, a)
+    tb = re.findall(_APTY_RE, b)
+    for t in ta:
+        if t in tb:
+            return t
+    return None
 
-# =========================== Main ================================
+def _has_top_level_comma(expr: str) -> bool:
+    d = 0
+    for ch in expr:
+        if ch == "(": d += 1
+        elif ch == ")": d = max(0, d-1)
+        elif ch == "," and d == 0: return True
+    return False
+
+def _split_top_ternary(s: str):
+    d = 0; q = None
+    for i, ch in enumerate(s):
+        if ch == "(": d += 1
+        elif ch == ")": d -= 1
+        elif ch == "?" and d == 0: q = i; break
+    if q is None: return None
+    d = 0; c = None
+    for j in range(q+1, len(s)):
+        ch = s[j]
+        if ch == "(": d += 1
+        elif ch == ")": d -= 1
+        elif ch == ":" and d == 0: c = j; break
+    if c is None: return None
+    return s[:q].strip(), s[q+1:c].strip(), s[c+1:].strip()
+
+def _unify_ternaries_rec(s: str) -> str:
+    split = _split_top_ternary(s)
+    if not split:
+        return s
+    cond, a, b = split
+    # Also recurse into condition
+    cond2 = _unify_ternaries_rec(cond)
+    a2 = _unify_ternaries_rec(a)
+    b2 = _unify_ternaries_rec(b)
+    if _has_top_level_comma(a2) or _has_top_level_comma(b2):
+        return f"{cond2} ? {a2} : {b2}"
+    ty = _extract_common_ap_type(a2, b2)
+    if ty:
+        a2 = f"{ty}(({a2}))"
+        b2 = f"{ty}(({b2}))"
+    return f"{cond2} ? {a2} : {b2}"
+
+def _unify_all_ternaries(s: str) -> str:
+    out = []
+    for line in s.splitlines():
+        if "?" in line and ":" in line:
+            # Case 1: 'return <expr>;' — unify inside the expression and keep the semicolon outside
+            m = re.match(r"(\s*return\s+)(.+?)(;\s*)$", line)
+            if m:
+                prefix, expr, suffix = m.group(1), m.group(2).strip(), m.group(3)
+                out.append(f"{prefix}{_unify_ternaries_rec(expr)}{suffix}")
+                continue
+            # Case 2: generic line ending with ';' — do the same (avoid dragging ';' into a branch)
+            m2 = re.match(r"(\s*)(.+?)(;\s*)$", line)
+            if m2:
+                lead, expr, suffix = m2.group(1), m2.group(2), m2.group(3)
+                out.append(f"{lead}{_unify_ternaries_rec(expr)}{suffix}")
+                continue
+            # Case 3: no trailing ';' — safe to process whole line
+            out.append(_unify_ternaries_rec(line))
+        else:
+            out.append(line)
+    return "\n".join(out)
+
+
+# ---------- Tidy ----------
+def _clean(s: str) -> str:
+    s = "\n".join(ln.rstrip() for ln in s.splitlines())
+    s = re.sub(r"\n\s*\n\s*}", "\n}", s)
+    return s.strip() + "\n"
+
+# -------------------------- Main --------------------------
 def convert_cp_to_hls(c_input_path: str, save_output: bool = True) -> str:
-    with open(c_input_path, "r") as f:
-        c_code = f.read()
+    code = Path(c_input_path).read_text()
 
-    if "#include <ap_int.h>" not in c_code:
-        c_code = "#include <ap_int.h>\n\n" + c_code.strip()
-
-    c_code = _replace_bitvectors(c_code)
-    c_code = _simplify_bool_comparisons(c_code)
-    c_code = _replace_bit_extractions(c_code)
-    c_code = _force_ternary_return_casts(c_code)
-    c_code = _clean_whitespace(c_code)
+    code = _ensure_header(code)
+    code = _normalize_char_types_and_casts(code)
+    code = _safer_unsigned_negation(code)
+    code = _bit_slices_to_range(code)
+    code = _cast_entire_product(code)   # ← ADD THIS
+    code = _unify_all_ternaries(code)
+    code = _clean(code)
 
     if save_output:
-        base_name = Path(c_input_path).stem
+        base = Path(c_input_path).stem
         results_root = Path(c_input_path).resolve().parents[1]
         cpp_dir = results_root / "cpp"
-        os.makedirs(cpp_dir, exist_ok=True)
-        cpp_path = cpp_dir / f"{base_name}.cpp"
-        with open(cpp_path, "w") as f:
-            f.write(c_code)
-        print(f"HLS C++ file saved to: {cpp_path}")
+        cpp_dir.mkdir(parents=True, exist_ok=True)
+        out = cpp_dir / f"{base}.cpp"
+        out.write_text(code)
+        print(f"HLS C++ file saved to: {out}")
         print("Generated HLS-ready C++ code:\n")
-        print(c_code)
-        return str(cpp_path)
-    return c_code
+        print(code)
+        return str(out)
+    return code
 
 def run_hls_conversion(c_output_path: str):
     if not os.path.exists(c_output_path):

@@ -1,0 +1,14 @@
+{
+    "0": {
+        "name": "fp32_aligner",
+        "file": "solution_fp32addition_fp32_alignment.cpp",
+        "fileloc": "3",
+        "instructions": "34",
+        "total_instructions": "34",
+        "calls": "",
+        "basicblocks": "1",
+        "memory_accesses": "0",
+        "control_depth": "0",
+        "def_use_depth": "6"
+    }
+}

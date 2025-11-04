@@ -71,15 +71,15 @@ class MultiplicationTarget:
     
         return {
             "renorm_flag": {
-                "template": "sygus_grammars/mult_renorm_flag_template.sl",
+                "template": "sygus_grammars/MXINT8/mult_renorm_flag_template.sl",
                 "generator": self.gen_renorm_flag_constraint,
             },
             "exp": {
-                "template": "sygus_grammars/mult_exp_template.sl",
+                "template": "sygus_grammars/MXINT8/mult_exp_template.sl",
                 "generator": self.gen_exp_constraint,
             },
             "mant": {
-                "template": "sygus_grammars/mult_mant_template.sl",
+                "template": "sygus_grammars/MXINT8/mult_mant_template.sl",
                 "generator": self.gen_mant_constraint,
             },
         }

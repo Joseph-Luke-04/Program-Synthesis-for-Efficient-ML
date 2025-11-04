@@ -1,3 +1,2 @@
-mult_mxint_mant_mul_4s_4s_8_1_1
-mult_mxint_mant_mul_8ns_8ns_16_5_1
+mult_mxint_mant_mul_4s_4s_4_1_1
 mult_mxint_mant

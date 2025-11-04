@@ -11,18 +11,18 @@
 <Name>mult_mxint_exp</Name>
 <PerformanceEstimates>
 <SummaryOfTimingAnalysis>
-<TargetClockPeriod>4.00</TargetClockPeriod>
-<ClockUncertainty>1.08</ClockUncertainty>
-<EstimatedClockPeriod>2.759</EstimatedClockPeriod>
+<TargetClockPeriod>1000000000.00</TargetClockPeriod>
+<ClockUncertainty>270000000.00</ClockUncertainty>
+<EstimatedClockPeriod>4.494</EstimatedClockPeriod>
 </SummaryOfTimingAnalysis>
 <SummaryOfOverallLatency>
-<Best-caseLatency>1</Best-caseLatency>
-<Average-caseLatency>1</Average-caseLatency>
-<Worst-caseLatency>1</Worst-caseLatency>
-<Best-caseRealTimeLatency>4.000 ns</Best-caseRealTimeLatency>
-<Average-caseRealTimeLatency>4.000 ns</Average-caseRealTimeLatency>
-<Worst-caseRealTimeLatency>4.000 ns</Worst-caseRealTimeLatency>
-<PipelineInitiationInterval>2</PipelineInitiationInterval>
+<Best-caseLatency>0</Best-caseLatency>
+<Average-caseLatency>0</Average-caseLatency>
+<Worst-caseLatency>0</Worst-caseLatency>
+<Best-caseRealTimeLatency>0 ns</Best-caseRealTimeLatency>
+<Average-caseRealTimeLatency>0 ns</Average-caseRealTimeLatency>
+<Worst-caseRealTimeLatency>0 ns</Worst-caseRealTimeLatency>
+<PipelineInitiationInterval>1</PipelineInitiationInterval>
 <PipelineType>no</PipelineType>
 <PerformancePragma>-</PerformancePragma>
 </SummaryOfOverallLatency>
@@ -34,10 +34,10 @@
 </PerformanceEstimates>
 <AreaEstimates>
 <Resources>
-<FF>6</FF>
+<FF>0</FF>
 <AVAIL_FF>106400</AVAIL_FF>
-<UTIL_FF>~0</UTIL_FF>
-<LUT>44</LUT>
+<UTIL_FF>0</UTIL_FF>
+<LUT>30</LUT>
 <AVAIL_LUT>53200</AVAIL_LUT>
 <UTIL_LUT>~0</UTIL_LUT>
 <BRAM_18K>0</BRAM_18K>
@@ -52,28 +52,6 @@
 </Resources>
 </AreaEstimates>
 <InterfaceSummary>
-<RtlPorts>
-<name>ap_clk</name>
-<Object>mult_mxint_exp</Object>
-<Type>return value</Type>
-<Scope></Scope>
-<IOProtocol>ap_ctrl_hs</IOProtocol>
-<IOConfig></IOConfig>
-<Dir>in</Dir>
-<Bits>1</Bits>
-<Attribute>control</Attribute>
-</RtlPorts>
-<RtlPorts>
-<name>ap_rst</name>
-<Object>mult_mxint_exp</Object>
-<Type>return value</Type>
-<Scope></Scope>
-<IOProtocol>ap_ctrl_hs</IOProtocol>
-<IOConfig></IOConfig>
-<Dir>in</Dir>
-<Bits>1</Bits>
-<Attribute>control</Attribute>
-</RtlPorts>
 <RtlPorts>
 <name>ap_start</name>
 <Object>mult_mxint_exp</Object>
@@ -130,6 +108,17 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
+<name>ap_rst</name>
+<Object>mult_mxint_exp</Object>
+<Type>return value</Type>
+<Scope></Scope>
+<IOProtocol>ap_ctrl_hs</IOProtocol>
+<IOConfig></IOConfig>
+<Dir>in</Dir>
+<Bits>1</Bits>
+<Attribute>control</Attribute>
+</RtlPorts>
+<RtlPorts>
 <name>e1</name>
 <Object>e1</Object>
 <Type>scalar</Type>
@@ -163,7 +152,7 @@
 <Dir>in</Dir>
 <Bits>1</Bits>
 <Attribute>data</Attribute>
-<CType>bool</CType>
+<CType>int</CType>
 </RtlPorts>
 </InterfaceSummary>
 </Module>

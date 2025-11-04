@@ -11,23 +11,23 @@
 <Name>mult_mxint_mant</Name>
 <PerformanceEstimates>
 <SummaryOfTimingAnalysis>
-<TargetClockPeriod>4.00</TargetClockPeriod>
-<ClockUncertainty>1.08</ClockUncertainty>
-<EstimatedClockPeriod>5.415</EstimatedClockPeriod>
+<TargetClockPeriod>1000000000.00</TargetClockPeriod>
+<ClockUncertainty>270000000.00</ClockUncertainty>
+<EstimatedClockPeriod>2.340</EstimatedClockPeriod>
 </SummaryOfTimingAnalysis>
 <SummaryOfOverallLatency>
-<Best-caseLatency>6</Best-caseLatency>
-<Average-caseLatency>6</Average-caseLatency>
-<Worst-caseLatency>6</Worst-caseLatency>
-<Best-caseRealTimeLatency>32.490 ns</Best-caseRealTimeLatency>
-<Average-caseRealTimeLatency>32.490 ns</Average-caseRealTimeLatency>
-<Worst-caseRealTimeLatency>32.490 ns</Worst-caseRealTimeLatency>
-<PipelineInitiationInterval>7</PipelineInitiationInterval>
+<Best-caseLatency>0</Best-caseLatency>
+<Average-caseLatency>0</Average-caseLatency>
+<Worst-caseLatency>0</Worst-caseLatency>
+<Best-caseRealTimeLatency>0 ns</Best-caseRealTimeLatency>
+<Average-caseRealTimeLatency>0 ns</Average-caseRealTimeLatency>
+<Worst-caseRealTimeLatency>0 ns</Worst-caseRealTimeLatency>
+<PipelineInitiationInterval>1</PipelineInitiationInterval>
 <PipelineType>no</PipelineType>
 <PerformancePragma>-</PerformancePragma>
 </SummaryOfOverallLatency>
 <SummaryOfViolations>
-<IssueType>Timing Violation</IssueType>
+<IssueType>-</IssueType>
 <ViolationType>-</ViolationType>
 <SourceLocation>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_mant.cpp:3</SourceLocation>
 </SummaryOfViolations>
@@ -37,10 +37,10 @@
 <DSP>0</DSP>
 <AVAIL_DSP>220</AVAIL_DSP>
 <UTIL_DSP>0</UTIL_DSP>
-<FF>138</FF>
+<FF>0</FF>
 <AVAIL_FF>106400</AVAIL_FF>
-<UTIL_FF>~0</UTIL_FF>
-<LUT>176</LUT>
+<UTIL_FF>0</UTIL_FF>
+<LUT>13</LUT>
 <AVAIL_LUT>53200</AVAIL_LUT>
 <UTIL_LUT>~0</UTIL_LUT>
 <BRAM_18K>0</BRAM_18K>
@@ -52,28 +52,6 @@
 </Resources>
 </AreaEstimates>
 <InterfaceSummary>
-<RtlPorts>
-<name>ap_clk</name>
-<Object>mult_mxint_mant</Object>
-<Type>return value</Type>
-<Scope></Scope>
-<IOProtocol>ap_ctrl_hs</IOProtocol>
-<IOConfig></IOConfig>
-<Dir>in</Dir>
-<Bits>1</Bits>
-<Attribute>control</Attribute>
-</RtlPorts>
-<RtlPorts>
-<name>ap_rst</name>
-<Object>mult_mxint_mant</Object>
-<Type>return value</Type>
-<Scope></Scope>
-<IOProtocol>ap_ctrl_hs</IOProtocol>
-<IOConfig></IOConfig>
-<Dir>in</Dir>
-<Bits>1</Bits>
-<Attribute>control</Attribute>
-</RtlPorts>
 <RtlPorts>
 <name>ap_start</name>
 <Object>mult_mxint_mant</Object>
@@ -128,6 +106,17 @@
 <Dir>out</Dir>
 <Bits>4</Bits>
 <Attribute>data</Attribute>
+</RtlPorts>
+<RtlPorts>
+<name>ap_rst</name>
+<Object>mult_mxint_mant</Object>
+<Type>return value</Type>
+<Scope></Scope>
+<IOProtocol>ap_ctrl_hs</IOProtocol>
+<IOConfig></IOConfig>
+<Dir>in</Dir>
+<Bits>1</Bits>
+<Attribute>control</Attribute>
 </RtlPorts>
 <RtlPorts>
 <name>m1</name>

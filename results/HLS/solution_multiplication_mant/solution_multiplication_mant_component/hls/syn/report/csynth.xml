@@ -7,30 +7,30 @@
         <ProductFamily>zynq</ProductFamily>
         <Part>xc7z020-clg400-1</Part>
         <TopModelName>mult_mxint_mant</TopModelName>
-        <TargetClockPeriod>4.00</TargetClockPeriod>
-        <ClockUncertainty>1.08</ClockUncertainty>
+        <TargetClockPeriod>1000000000.00</TargetClockPeriod>
+        <ClockUncertainty>270000000.00</ClockUncertainty>
         <FlowTarget>vivado</FlowTarget>
     </UserAssignments>
     <PerformanceEstimates>
         <PipelineType>no</PipelineType>
         <SummaryOfTimingAnalysis>
             <unit>ns</unit>
-            <EstimatedClockPeriod>5.415</EstimatedClockPeriod>
+            <EstimatedClockPeriod>2.340</EstimatedClockPeriod>
         </SummaryOfTimingAnalysis>
         <SummaryOfOverallLatency>
             <unit>clock cycles</unit>
-            <Best-caseLatency>6</Best-caseLatency>
-            <Average-caseLatency>6</Average-caseLatency>
-            <Worst-caseLatency>6</Worst-caseLatency>
-            <Best-caseRealTimeLatency>32.490 ns</Best-caseRealTimeLatency>
-            <Average-caseRealTimeLatency>32.490 ns</Average-caseRealTimeLatency>
-            <Worst-caseRealTimeLatency>32.490 ns</Worst-caseRealTimeLatency>
-            <Interval-min>7</Interval-min>
-            <Interval-max>7</Interval-max>
+            <Best-caseLatency>0</Best-caseLatency>
+            <Average-caseLatency>0</Average-caseLatency>
+            <Worst-caseLatency>0</Worst-caseLatency>
+            <Best-caseRealTimeLatency>0 ns</Best-caseRealTimeLatency>
+            <Average-caseRealTimeLatency>0 ns</Average-caseRealTimeLatency>
+            <Worst-caseRealTimeLatency>0 ns</Worst-caseRealTimeLatency>
+            <Interval-min>1</Interval-min>
+            <Interval-max>1</Interval-max>
             <PerformancePragma>-</PerformancePragma>
         </SummaryOfOverallLatency>
         <SummaryOfViolations>
-            <IssueType>Timing Violation</IssueType>
+            <IssueType>-</IssueType>
             <ViolationType>-</ViolationType>
             <SourceLocation>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_mant.cpp:3</SourceLocation>
         </SummaryOfViolations>
@@ -38,8 +38,8 @@
     <AreaEstimates>
         <Resources>
             <DSP>0</DSP>
-            <FF>138</FF>
-            <LUT>176</LUT>
+            <FF>0</FF>
+            <LUT>13</LUT>
             <BRAM_18K>0</BRAM_18K>
             <URAM>0</URAM>
         </Resources>
@@ -52,28 +52,6 @@
         </AvailableResources>
     </AreaEstimates>
     <InterfaceSummary>
-        <RtlPorts>
-            <name>ap_clk</name>
-            <Object>mult_mxint_mant</Object>
-            <Type>return value</Type>
-            <Scope/>
-            <IOProtocol>ap_ctrl_hs</IOProtocol>
-            <IOConfig/>
-            <Dir>in</Dir>
-            <Bits>1</Bits>
-            <Attribute>control</Attribute>
-        </RtlPorts>
-        <RtlPorts>
-            <name>ap_rst</name>
-            <Object>mult_mxint_mant</Object>
-            <Type>return value</Type>
-            <Scope/>
-            <IOProtocol>ap_ctrl_hs</IOProtocol>
-            <IOConfig/>
-            <Dir>in</Dir>
-            <Bits>1</Bits>
-            <Attribute>control</Attribute>
-        </RtlPorts>
         <RtlPorts>
             <name>ap_start</name>
             <Object>mult_mxint_mant</Object>
@@ -130,6 +108,17 @@
             <Attribute>data</Attribute>
         </RtlPorts>
         <RtlPorts>
+            <name>ap_rst</name>
+            <Object>mult_mxint_mant</Object>
+            <Type>return value</Type>
+            <Scope/>
+            <IOProtocol>ap_ctrl_hs</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+        </RtlPorts>
+        <RtlPorts>
             <name>m1</name>
             <Object>m1</Object>
             <Type>scalar</Type>
@@ -157,7 +146,7 @@
     <RTLDesignHierarchy>
         <TopModule MAX_DEPTH="2">
             <ModuleName>mult_mxint_mant</ModuleName>
-            <BindInstances>mul_4s_4s_8_1_1_U1 mul_8ns_8ns_16_5_1_U2 sub_ln4_fu_96_p2 icmp_ln4_fu_84_p2 select_ln4_fu_119_p3 ap_return</BindInstances>
+            <BindInstances>mul_4s_4s_4_1_1_U1</BindInstances>
         </TopModule>
     </RTLDesignHierarchy>
     <ModuleInformation>
@@ -165,23 +154,23 @@
             <Name>mult_mxint_mant</Name>
             <PerformanceEstimates>
                 <SummaryOfTimingAnalysis>
-                    <TargetClockPeriod>4.00</TargetClockPeriod>
-                    <ClockUncertainty>1.08</ClockUncertainty>
-                    <EstimatedClockPeriod>5.415</EstimatedClockPeriod>
+                    <TargetClockPeriod>1000000000.00</TargetClockPeriod>
+                    <ClockUncertainty>270000000.00</ClockUncertainty>
+                    <EstimatedClockPeriod>2.340</EstimatedClockPeriod>
                 </SummaryOfTimingAnalysis>
                 <SummaryOfOverallLatency>
-                    <Best-caseLatency>6</Best-caseLatency>
-                    <Average-caseLatency>6</Average-caseLatency>
-                    <Worst-caseLatency>6</Worst-caseLatency>
-                    <Best-caseRealTimeLatency>32.490 ns</Best-caseRealTimeLatency>
-                    <Average-caseRealTimeLatency>32.490 ns</Average-caseRealTimeLatency>
-                    <Worst-caseRealTimeLatency>32.490 ns</Worst-caseRealTimeLatency>
-                    <PipelineInitiationInterval>7</PipelineInitiationInterval>
+                    <Best-caseLatency>0</Best-caseLatency>
+                    <Average-caseLatency>0</Average-caseLatency>
+                    <Worst-caseLatency>0</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>0 ns</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>0 ns</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>0 ns</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>1</PipelineInitiationInterval>
                     <PipelineType>no</PipelineType>
                     <PerformancePragma>-</PerformancePragma>
                 </SummaryOfOverallLatency>
                 <SummaryOfViolations>
-                    <IssueType>Timing Violation</IssueType>
+                    <IssueType>-</IssueType>
                     <ViolationType>-</ViolationType>
                     <SourceLocation>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_mant.cpp:3</SourceLocation>
                 </SummaryOfViolations>
@@ -191,10 +180,10 @@
                     <DSP>0</DSP>
                     <AVAIL_DSP>220</AVAIL_DSP>
                     <UTIL_DSP>0</UTIL_DSP>
-                    <FF>138</FF>
+                    <FF>0</FF>
                     <AVAIL_FF>106400</AVAIL_FF>
-                    <UTIL_FF>~0</UTIL_FF>
-                    <LUT>176</LUT>
+                    <UTIL_FF>0</UTIL_FF>
+                    <LUT>13</LUT>
                     <AVAIL_LUT>53200</AVAIL_LUT>
                     <UTIL_LUT>~0</UTIL_LUT>
                     <BRAM_18K>0</BRAM_18K>
@@ -206,12 +195,7 @@
                 </Resources>
             </AreaEstimates>
             <BindNodes>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_4s_4s_8_1_1_U1" SOURCE="/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_mant.cpp:4" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln4" VISIBLE="true"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="0" ID="" IMPL="auto" LATENCY="4" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_8ns_8ns_16_5_1_U2" SOURCE="/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_mant.cpp:4" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln4_1" VISIBLE="true"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln4_fu_96_p2" SOURCE="/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_mant.cpp:4" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln4" VISIBLE="true"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op setlt" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="setlt" PRAGMA="" RTLNAME="icmp_ln4_fu_84_p2" SOURCE="/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_mant.cpp:4" STORAGESUBTYPE="" URAM="0" VARIABLE="icmp_ln4" VISIBLE="false"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op select" DSP="0" ID="" IMPL="auto_sel" LATENCY="0" LOOP="" OPTYPE="select" PRAGMA="" RTLNAME="select_ln4_fu_119_p3" SOURCE="/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_mant.cpp:4" STORAGESUBTYPE="" URAM="0" VARIABLE="select_ln4" VISIBLE="false"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op select" DSP="0" ID="" IMPL="auto_sel" LATENCY="0" LOOP="" OPTYPE="select" PRAGMA="" RTLNAME="ap_return" SOURCE="/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_mant.cpp:4" STORAGESUBTYPE="" URAM="0" VARIABLE="select_ln4_1" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_4s_4s_4_1_1_U1" SOURCE="/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_mant.cpp:4" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln4" VISIBLE="true"/>
             </BindNodes>
         </Module>
     </ModuleInformation>
@@ -233,28 +217,6 @@
     <ReturnValue ReturnValueName="srcSize">8</ReturnValue>
     <ReturnValue ReturnValueName="hwRefs" type="port" interface="ap_return" name="ap_return" usage="data" direction="out"/>
     <Interfaces>
-        <Interface InterfaceName="ap_clk" type="clock" busTypeName="clock" mode="slave">
-            <busParams>
-                <busParam busParamName="ASSOCIATED_RESET">ap_rst</busParam>
-            </busParams>
-            <portMaps>
-                <portMap portMapName="ap_clk">CLK</portMap>
-            </portMaps>
-            <ports>
-                <port>ap_clk</port>
-            </ports>
-        </Interface>
-        <Interface InterfaceName="ap_rst" type="reset" busTypeName="reset" mode="slave">
-            <busParams>
-                <busParam busParamName="POLARITY">ACTIVE_HIGH</busParam>
-            </busParams>
-            <portMaps>
-                <portMap portMapName="ap_rst">RST</portMap>
-            </portMaps>
-            <ports>
-                <port>ap_rst</port>
-            </ports>
-        </Interface>
         <Interface InterfaceName="ap_ctrl" type="ap_ctrl" busTypeName="acc_handshake" mode="slave">
             <portMaps>
                 <portMap portMapName="ap_start">start</portMap>
@@ -275,6 +237,17 @@
             </portMaps>
             <ports>
                 <port>ap_return</port>
+            </ports>
+        </Interface>
+        <Interface InterfaceName="ap_rst" type="reset" busTypeName="reset" mode="slave">
+            <busParams>
+                <busParam busParamName="POLARITY">ACTIVE_HIGH</busParam>
+            </busParams>
+            <portMaps>
+                <portMap portMapName="ap_rst">RST</portMap>
+            </portMaps>
+            <ports>
+                <port>ap_rst</port>
             </ports>
         </Interface>
         <Interface InterfaceName="m1" type="data" busTypeName="data" protocol="ap_none" mode="slave" dataWidth="4">
@@ -313,7 +286,6 @@
             <item name="TOP LEVEL CONTROL">
                 <table>
                     <keys size="3">Interface, Type, Ports</keys>
-                    <column name="ap_clk">clock, ap_clk</column>
                     <column name="ap_rst">reset, ap_rst</column>
                     <column name="ap_ctrl">ap_ctrl_hs, ap_done ap_idle ap_ready ap_start</column>
                 </table>

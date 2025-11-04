@@ -2,8 +2,8 @@ set clock_constraint { \
     name clk \
     module mult_mxint_mant \
     port ap_clk \
-    period 4 \
-    uncertainty 1.08 \
+    period 1e+09 \
+    uncertainty 2.7e+08 \
 }
 
 set all_path {}

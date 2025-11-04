@@ -8,6 +8,10 @@ from typing import List, Tuple, Dict, Optional, Callable
 
 from .synthesis_targets.addition import AdditionTarget
 from .synthesis_targets.multiplication import MultiplicationTarget
+
+from .synthesis_targets.fp32_addition import FP32AdditionTarget
+from .synthesis_targets.fp32_multiplication import FP32MultiplicationTarget
+
 from .synthesis_targets.dot_product import DotProductTarget
 
 
@@ -54,6 +58,7 @@ class SynthesisConfig:
     SOLVER_TIMEOUT_SECONDS: int = 15
     NUM_ITERATIONS: int = 30
     
+
 def run_cvc5_synthesis(sygus_query: str, timeout: int) -> Optional[str]:
   
     with tempfile.NamedTemporaryFile(mode='w', delete=False, suffix=".sl") as temp_f:
@@ -148,7 +153,8 @@ def synthesis_loop(
             current_best_program = solution
             print(f"SUCCESS: Constraint accepted. Total constraints: {len(accepted_constraints)}")
         else:
-            print(f"SKIPPED: Constraint from ({f1:.3f}, {f2:.3f}) caused timeout or error.")
+            a, b = args
+            print(f"SKIPPED: Constraint from ({a:.3f}, {b:.3f}) caused timeout or error.")
 
     print("\n\n--- Synthesis Complete! ---")
     print(f"\nConstraints accepted: {len(accepted_constraints)}/{len(test_cases)}")
@@ -184,29 +190,36 @@ if __name__ == "__main__":
     """
  
     #target_operation = DotProductTarget()
-    #target_operation = AdditionTarget()
-    target_operation = MultiplicationTarget()
+    target_operation = AdditionTarget()
+    #target_operation = MultiplicationTarget()
+    #target_operation = FP32AdditionTarget()
+    #target_operation = FP32MultiplicationTarget()
     
     # Components for AdditionTarget: "alignment", "raw_sum", "overflow"
     # Components for MultiplicationTarget: "renorm_flag", "mant", "exp"
-    
-    #target_component = "dot_product_2_element"  
-    target_component = "mant"
+    # Components for FP32AdditionTarget: "fp32_alignment", "raw_sum", "fp32_normalisation"
+    # Components for FP32MultiplicationTarget: "fp32_mantissa", "fp32_exponent"
 
+    target_component = "alignment"
+ 
     # False for a quick post-synthesis estimate (-p)
     # True for a full post-implementation run (-i)
     RUN_IMPLEMENTATION = True
     
     synthesis_test_cases = []
-    if isinstance(target_operation, (AdditionTarget, MultiplicationTarget)):
-        max_val = 66 if isinstance(target_operation, AdditionTarget) else math.sqrt(112)
+    if isinstance(target_operation, (AdditionTarget, MultiplicationTarget, FP32AdditionTarget, FP32MultiplicationTarget)):
+        if isinstance(target_operation, AdditionTarget):
+            max_val = 66
+        elif isinstance(target_operation, MultiplicationTarget):
+            max_val = math.sqrt(112)
+        elif isinstance(target_operation, FP32AdditionTarget):
+            max_val = 1e4
         for _ in range(config.NUM_ITERATIONS):
             f1 = random.uniform(-max_val, max_val)
             f2 = random.uniform(-max_val, max_val)
             synthesis_test_cases.append((f1, f2))
             
     elif isinstance(target_operation, DotProductTarget):
-        #
         vec_len = 2 
         max_val = 10 
         for _ in range(config.NUM_ITERATIONS):

@@ -9,8 +9,8 @@
 <ProductFamily>zynq</ProductFamily>
 <Part>xc7z020-clg400-1</Part>
 <TopModelName>mult_mxint_mant</TopModelName>
-<TargetClockPeriod>4.00</TargetClockPeriod>
-<ClockUncertainty>1.08</ClockUncertainty>
+<TargetClockPeriod>1000000000.00</TargetClockPeriod>
+<ClockUncertainty>270000000.00</ClockUncertainty>
 <FlowTarget>vivado</FlowTarget>
 </UserAssignments>
 
@@ -18,22 +18,22 @@
 <PipelineType>no</PipelineType>
 <SummaryOfTimingAnalysis>
 <unit>ns</unit>
-<EstimatedClockPeriod>5.415</EstimatedClockPeriod>
+<EstimatedClockPeriod>2.340</EstimatedClockPeriod>
 </SummaryOfTimingAnalysis>
 <SummaryOfOverallLatency>
 <unit>clock cycles</unit>
-<Best-caseLatency>6</Best-caseLatency>
-<Average-caseLatency>6</Average-caseLatency>
-<Worst-caseLatency>6</Worst-caseLatency>
-<Best-caseRealTimeLatency>32.490 ns</Best-caseRealTimeLatency>
-<Average-caseRealTimeLatency>32.490 ns</Average-caseRealTimeLatency>
-<Worst-caseRealTimeLatency>32.490 ns</Worst-caseRealTimeLatency>
-<Interval-min>7</Interval-min>
-<Interval-max>7</Interval-max>
+<Best-caseLatency>0</Best-caseLatency>
+<Average-caseLatency>0</Average-caseLatency>
+<Worst-caseLatency>0</Worst-caseLatency>
+<Best-caseRealTimeLatency>0 ns</Best-caseRealTimeLatency>
+<Average-caseRealTimeLatency>0 ns</Average-caseRealTimeLatency>
+<Worst-caseRealTimeLatency>0 ns</Worst-caseRealTimeLatency>
+<Interval-min>1</Interval-min>
+<Interval-max>1</Interval-max>
 <PerformancePragma>-</PerformancePragma>
 </SummaryOfOverallLatency>
 <SummaryOfViolations>
-<IssueType>Timing Violation</IssueType>
+<IssueType>-</IssueType>
 <ViolationType>-</ViolationType>
 <SourceLocation>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_multiplication_mant.cpp:3</SourceLocation>
 </SummaryOfViolations>
@@ -42,8 +42,8 @@
 <AreaEstimates>
 <Resources>
 <DSP>0</DSP>
-<FF>138</FF>
-<LUT>176</LUT>
+<FF>0</FF>
+<LUT>13</LUT>
 <BRAM_18K>0</BRAM_18K>
 <URAM>0</URAM>
 </Resources>
@@ -57,28 +57,6 @@
 </AreaEstimates>
 
 <InterfaceSummary>
-<RtlPorts>
-<name>ap_clk</name>
-<Object>mult_mxint_mant</Object>
-<Type>return value</Type>
-<Scope></Scope>
-<IOProtocol>ap_ctrl_hs</IOProtocol>
-<IOConfig></IOConfig>
-<Dir>in</Dir>
-<Bits>1</Bits>
-<Attribute>control</Attribute>
-</RtlPorts>
-<RtlPorts>
-<name>ap_rst</name>
-<Object>mult_mxint_mant</Object>
-<Type>return value</Type>
-<Scope></Scope>
-<IOProtocol>ap_ctrl_hs</IOProtocol>
-<IOConfig></IOConfig>
-<Dir>in</Dir>
-<Bits>1</Bits>
-<Attribute>control</Attribute>
-</RtlPorts>
 <RtlPorts>
 <name>ap_start</name>
 <Object>mult_mxint_mant</Object>
@@ -133,6 +111,17 @@
 <Dir>out</Dir>
 <Bits>4</Bits>
 <Attribute>data</Attribute>
+</RtlPorts>
+<RtlPorts>
+<name>ap_rst</name>
+<Object>mult_mxint_mant</Object>
+<Type>return value</Type>
+<Scope></Scope>
+<IOProtocol>ap_ctrl_hs</IOProtocol>
+<IOConfig></IOConfig>
+<Dir>in</Dir>
+<Bits>1</Bits>
+<Attribute>control</Attribute>
 </RtlPorts>
 <RtlPorts>
 <name>m1</name>

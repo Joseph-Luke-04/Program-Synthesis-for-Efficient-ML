@@ -111,19 +111,19 @@ class AdditionTarget:
         
         return {
             "alignment": {
-                "template": "sygus_grammars/add_alignment_template.sl",
+                "template": "sygus_grammars/MXINT8/add_alignment_template.sl",
                 "generator": self.gen_alignment_constraint,
             },
             "raw_sum": {
-                "template": "sygus_grammars/add_raw_sum_template.sl",
+                "template": "sygus_grammars/MXINT8/add_raw_sum_template.sl",
                 "generator": self.gen_raw_sum_constraint,
             },
             "overflow": {
-                "template": "sygus_grammars/add_detect_overflow_template.sl",
+                "template": "sygus_grammars/MXINT8/add_detect_overflow_template.sl",
                 "generator": self.gen_overflow_flag_constraint,
             },
             #"finalization": {
-            #    "template": "sygus_grammars/add_finalize_template.sl",
+            #    "template": "sygus_grammars/MXINT8/add_finalize_template.sl",
             #    "generator": self.gen_finalization_constraint,
             #},
         }

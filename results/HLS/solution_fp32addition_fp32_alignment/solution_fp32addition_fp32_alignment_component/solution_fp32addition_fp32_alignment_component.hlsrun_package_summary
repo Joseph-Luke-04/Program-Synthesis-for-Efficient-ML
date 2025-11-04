@@ -1,0 +1,120 @@
+<ENTRY>
+{
+ "thisFile": "/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_alignment/solution_fp32addition_fp32_alignment_component/solution_fp32addition_fp32_alignment_component.hlsrun_package_summary",
+ "connectId": "",
+ "serverToken": "",
+ "timestamp": "0"
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_CmdStep",
+ "dateTimestamp": "Wed Oct 29 01:02:59 2025",
+ "timestampMillis": "1761699779294",
+ "buildStep": {
+  "cmdId": "e48ad3df-88f2-47e4-960d-ab98e0fd6980",
+  "name": "vitis-run",
+  "logFile": "/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_alignment/logs/hls_compile.log",
+  "commandLine": "vitis-run --mode hls --tcl /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_alignment/hls.tcl",
+  "args": [],
+  "iniFiles": [],
+  "cwd": "/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_alignment"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Wed Oct 29 01:02:59 2025",
+ "timestampMillis": "1761699779296",
+ "status": {
+  "cmdId": "e48ad3df-88f2-47e4-960d-ab98e0fd6980",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_FlowMetaData",
+ "dateTimestamp": "Wed Oct 29 01:02:59 2025",
+ "timestampMillis": "1761699779297",
+ "buildSummary": {
+  "hardwarePlatform": "",
+  "hardwareDsa": "",
+  "platformDirectory": "",
+  "runtime": "",
+  "systemConfig": "",
+  "flow": "BF_RUN",
+  "target": "TT_HLS_IP",
+  "kernels": [
+   {
+    "base": {
+     "type": "KERNEL",
+     "name": "fp32_aligner",
+     "file": "",
+     "reports": [],
+     "uuid": ""
+    },
+    "sources": [
+     "/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_alignment.cpp"
+    ],
+    "psSources": [],
+    "cuNames": [],
+    "type": "HLS",
+    "frequency": 0,
+    "freqUnits": ""
+   }
+  ],
+  "toolVersion": "2025.1"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Wed Oct 29 01:02:59 2025",
+ "timestampMillis": "1761699779298",
+ "buildStep": {
+  "cmdId": "86b7c20a-bad5-4c65-a558-3de228760691",
+  "name": "export_design",
+  "logFile": "/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_alignment/solution_fp32addition_fp32_alignment_component/hls/hls.log",
+  "commandLine": "export_design",
+  "args": [],
+  "iniFiles": [],
+  "cwd": "/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_alignment"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Wed Oct 29 01:02:59 2025",
+ "timestampMillis": "1761699779299",
+ "status": {
+  "cmdId": "86b7c20a-bad5-4c65-a558-3de228760691",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Wed Oct 29 01:03:24 2025",
+ "timestampMillis": "1761699804554",
+ "status": {
+  "cmdId": "86b7c20a-bad5-4c65-a558-3de228760691",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Wed Oct 29 01:03:24 2025",
+ "timestampMillis": "1761699804557",
+ "status": {
+  "cmdId": "e48ad3df-88f2-47e4-960d-ab98e0fd6980",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>

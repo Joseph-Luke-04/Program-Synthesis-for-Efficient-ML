@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'mult_mxint_exp'" level="0">
-<item name = "Date">Wed Oct 22 01:43:34 2025
+<item name = "Date">Wed Oct 29 00:55:10 2025
 </item>
 <item name = "Version">2025.1 (Build 6135595 on May 21 2025)</item>
 <item name = "Project">solution_multiplication_exp_component</item>
@@ -15,7 +15,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="4">Clock, Target, Estimated, Uncertainty</keys>
-<column name="ap_clk">4.00 ns, 2.759 ns, 1.08 ns</column>
+<column name="ap_clk">1.00 sec, 4.494 ns, 0.27 sec</column>
 </table>
 </item>
 </section>
@@ -24,7 +24,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="8">, min, max, min, max, min, max, Type</keys>
-<column name="">1, 1, 4.000 ns, 4.000 ns, 2, 2, no</column>
+<column name="">0, 0, 0 ns, 0 ns, 1, 1, no</column>
 </table>
 </item>
 <item name = "Detail">
@@ -51,10 +51,10 @@
 <column name="FIFO">-, -, -, -, -</column>
 <column name="Instance">-, -, -, -, -</column>
 <column name="Memory">-, -, -, -, -</column>
-<column name="Multiplexer">-, -, 0, 14, -</column>
-<column name="Register">-, -, 6, -, -</column>
+<column name="Multiplexer">-, -, -, -, -</column>
+<column name="Register">-, -, -, -, -</column>
 <specialColumn name="Available">280, 220, 106400, 53200, 0</specialColumn>
-<specialColumn name="Utilization (%)">0, 0, ~0, ~0, 0</specialColumn>
+<specialColumn name="Utilization (%)">0, 0, 0, ~0, 0</specialColumn>
 </table>
 </item>
 <item name = "Detail">
@@ -84,13 +84,10 @@
 </item>
 <item name = "Multiplexer"><table name="" hasTotal="1">
 <keys size="5">Name, LUT, Input Size, Bits, Total Bits</keys>
-<column name="ap_NS_fsm">14, 3, 1, 3</column>
 </table>
 </item>
 <item name = "Register"><table name="" hasTotal="1">
 <keys size="5">Name, FF, LUT, Bits, Const Bits</keys>
-<column name="add_ln4_reg_66">4, 0, 4, 0</column>
-<column name="ap_CS_fsm">2, 0, 2, 0</column>
 </table>
 </item>
 </section>
@@ -100,13 +97,12 @@
 <section name = "Interface" level="0">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="6">RTL Ports, Dir, Bits, Protocol, Source Object, C Type</keys>
-<column name="ap_clk">in, 1, ap_ctrl_hs, mult_mxint_exp, return value</column>
-<column name="ap_rst">in, 1, ap_ctrl_hs, mult_mxint_exp, return value</column>
 <column name="ap_start">in, 1, ap_ctrl_hs, mult_mxint_exp, return value</column>
 <column name="ap_done">out, 1, ap_ctrl_hs, mult_mxint_exp, return value</column>
 <column name="ap_idle">out, 1, ap_ctrl_hs, mult_mxint_exp, return value</column>
 <column name="ap_ready">out, 1, ap_ctrl_hs, mult_mxint_exp, return value</column>
 <column name="ap_return">out, 4, ap_ctrl_hs, mult_mxint_exp, return value</column>
+<column name="ap_rst">in, 1, ap_ctrl_hs, mult_mxint_exp, return value</column>
 <column name="e1">in, 4, ap_none, e1, scalar</column>
 <column name="e2">in, 4, ap_none, e2, scalar</column>
 <column name="renorm_flag">in, 1, ap_none, renorm_flag, scalar</column>

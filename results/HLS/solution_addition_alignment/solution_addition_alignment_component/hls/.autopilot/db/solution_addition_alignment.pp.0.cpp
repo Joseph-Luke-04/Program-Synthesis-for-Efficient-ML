@@ -6206,5 +6206,5 @@ __attribute__((sdx_kernel("select_exponent", 0))) ap_uint<4> select_exponent(ap_
 #pragma HLSDIRECTIVE TOP name=select_exponent
 # 3 "/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_addition_alignment.cpp"
 
-  return (ap_int<4>)e1 >= (ap_int<4>)e2 ? ap_uint<4>((e1)) : ap_uint<4>((e2));
+  return (ap_int<4>)e1 >= (ap_int<4>)e2 ? ap_uint<4>(((ap_uint<4>) e1)) : ap_uint<4>(((ap_uint<4>) e2));
 }

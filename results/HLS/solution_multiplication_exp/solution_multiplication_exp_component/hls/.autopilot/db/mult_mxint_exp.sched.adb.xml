@@ -2,12 +2,6 @@
 
 
 <trans_list>
-
-<trans id="18" from="1" to="2">
-<condition id="-1">
-<or_exp><and_exp></and_exp></or_exp>
-</condition>
-</trans>
 </trans_list>
 
 
@@ -16,55 +10,7 @@
 
 <state id="1" st_id="1">
 
-<operation id="3" st_id="1" stage="1" lat="1">
-<core>NULL</core>
-<MemPortIdVec></MemPortIdVec>
-<condition id="-1">
-<or_exp><and_exp></and_exp></or_exp>
-</condition>
-
-<Node id="13" bw="4" op_0_bw="4" op_1_bw="4">
-<![CDATA[
-entry:9 %e2_read = read i4 @_ssdm_op_Read.ap_auto.i4, i4 %e2
-
-]]></Node>
-<StgValue><ssdm name="e2_read"/></StgValue>
-</operation>
-
-<operation id="4" st_id="1" stage="1" lat="1">
-<core>NULL</core>
-<MemPortIdVec></MemPortIdVec>
-<condition id="-1">
-<or_exp><and_exp></and_exp></or_exp>
-</condition>
-
-<Node id="14" bw="4" op_0_bw="4" op_1_bw="4">
-<![CDATA[
-entry:10 %e1_read = read i4 @_ssdm_op_Read.ap_auto.i4, i4 %e1
-
-]]></Node>
-<StgValue><ssdm name="e1_read"/></StgValue>
-</operation>
-
-<operation id="5" st_id="1" stage="1" lat="1">
-<core>Adder</core>
-<MemPortIdVec></MemPortIdVec>
-<condition id="-1">
-<or_exp><and_exp></and_exp></or_exp>
-</condition>
-
-<Node id="15" bw="4" op_0_bw="4" op_1_bw="4">
-<![CDATA[
-entry:11 %add_ln4 = add i4 %e2_read, i4 %e1_read
-
-]]></Node>
-<StgValue><ssdm name="add_ln4"/></StgValue>
-</operation>
-</state>
-
-<state id="2" st_id="2">
-
-<operation id="6" st_id="2" stage="1" lat="1">
+<operation id="2" st_id="1" stage="1" lat="1">
 <core>NULL</core>
 <MemPortIdVec></MemPortIdVec>
 <condition id="-1">
@@ -79,7 +25,7 @@ entry:0 %specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i4 0
 <StgValue><ssdm name="specbitsmap_ln0"/></StgValue>
 </operation>
 
-<operation id="7" st_id="2" stage="1" lat="1">
+<operation id="3" st_id="1" stage="1" lat="1">
 <core>NULL</core>
 <MemPortIdVec></MemPortIdVec>
 <condition id="-1">
@@ -94,7 +40,7 @@ entry:1 %spectopmodule_ln3 = spectopmodule void @_ssdm_op_SpecTopModule, void @e
 <StgValue><ssdm name="spectopmodule_ln3"/></StgValue>
 </operation>
 
-<operation id="8" st_id="2" stage="1" lat="1">
+<operation id="4" st_id="1" stage="1" lat="1">
 <core>NULL</core>
 <MemPortIdVec></MemPortIdVec>
 <condition id="-1">
@@ -109,7 +55,7 @@ entry:2 %specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i4 %e1
 <StgValue><ssdm name="specbitsmap_ln0"/></StgValue>
 </operation>
 
-<operation id="9" st_id="2" stage="1" lat="1">
+<operation id="5" st_id="1" stage="1" lat="1">
 <core>NULL</core>
 <MemPortIdVec></MemPortIdVec>
 <condition id="-1">
@@ -124,7 +70,7 @@ entry:3 %specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i4 %e1,
 <StgValue><ssdm name="specinterface_ln0"/></StgValue>
 </operation>
 
-<operation id="10" st_id="2" stage="1" lat="1">
+<operation id="6" st_id="1" stage="1" lat="1">
 <core>NULL</core>
 <MemPortIdVec></MemPortIdVec>
 <condition id="-1">
@@ -139,7 +85,7 @@ entry:4 %specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i4 %e2
 <StgValue><ssdm name="specbitsmap_ln0"/></StgValue>
 </operation>
 
-<operation id="11" st_id="2" stage="1" lat="1">
+<operation id="7" st_id="1" stage="1" lat="1">
 <core>NULL</core>
 <MemPortIdVec></MemPortIdVec>
 <condition id="-1">
@@ -154,7 +100,7 @@ entry:5 %specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i4 %e2,
 <StgValue><ssdm name="specinterface_ln0"/></StgValue>
 </operation>
 
-<operation id="12" st_id="2" stage="1" lat="1">
+<operation id="8" st_id="1" stage="1" lat="1">
 <core>NULL</core>
 <MemPortIdVec></MemPortIdVec>
 <condition id="-1">
@@ -169,7 +115,7 @@ entry:6 %specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i1 %renorm_fl
 <StgValue><ssdm name="specbitsmap_ln0"/></StgValue>
 </operation>
 
-<operation id="13" st_id="2" stage="1" lat="1">
+<operation id="9" st_id="1" stage="1" lat="1">
 <core>NULL</core>
 <MemPortIdVec></MemPortIdVec>
 <condition id="-1">
@@ -184,7 +130,7 @@ entry:7 %specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i1 %ren
 <StgValue><ssdm name="specinterface_ln0"/></StgValue>
 </operation>
 
-<operation id="14" st_id="2" stage="1" lat="1">
+<operation id="10" st_id="1" stage="1" lat="1">
 <core>NULL</core>
 <MemPortIdVec></MemPortIdVec>
 <condition id="-1">
@@ -199,11 +145,57 @@ entry:8 %renorm_flag_read = read i1 @_ssdm_op_Read.ap_auto.i1, i1 %renorm_flag
 <StgValue><ssdm name="renorm_flag_read"/></StgValue>
 </operation>
 
-<operation id="15" st_id="2" stage="1" lat="1">
+<operation id="11" st_id="1" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="-1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<Node id="13" bw="4" op_0_bw="4" op_1_bw="4">
+<![CDATA[
+entry:9 %e2_read = read i4 @_ssdm_op_Read.ap_auto.i4, i4 %e2
+
+]]></Node>
+<StgValue><ssdm name="e2_read"/></StgValue>
+</operation>
+
+<operation id="12" st_id="1" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="-1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<Node id="14" bw="4" op_0_bw="4" op_1_bw="4">
+<![CDATA[
+entry:10 %e1_read = read i4 @_ssdm_op_Read.ap_auto.i4, i4 %e1
+
+]]></Node>
+<StgValue><ssdm name="e1_read"/></StgValue>
+</operation>
+
+<operation id="13" st_id="1" stage="1" lat="1">
 <core>Adder</core>
 <MemPortIdVec></MemPortIdVec>
 <condition id="-1">
 <or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<Node id="15" bw="4" op_0_bw="4" op_1_bw="4">
+<![CDATA[
+entry:11 %add_ln4 = add i4 %e2_read, i4 %e1_read
+
+]]></Node>
+<StgValue><ssdm name="add_ln4"/></StgValue>
+</operation>
+
+<operation id="14" st_id="1" stage="1" lat="1">
+<core>Adder</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="-1">
+<or_exp><and_exp><literal name="renorm_flag_read" val="1"/>
+</and_exp></or_exp>
 </condition>
 
 <Node id="16" bw="4" op_0_bw="4" op_1_bw="4">
@@ -214,7 +206,7 @@ entry:12 %add_ln4_1 = add i4 %add_ln4, i4 15
 <StgValue><ssdm name="add_ln4_1"/></StgValue>
 </operation>
 
-<operation id="16" st_id="2" stage="1" lat="1">
+<operation id="15" st_id="1" stage="1" lat="1">
 <core>Sel</core>
 <MemPortIdVec></MemPortIdVec>
 <condition id="-1">
@@ -229,7 +221,7 @@ entry:13 %select_ln4 = select i1 %renorm_flag_read, i4 %add_ln4_1, i4 %add_ln4
 <StgValue><ssdm name="select_ln4"/></StgValue>
 </operation>
 
-<operation id="17" st_id="2" stage="1" lat="1">
+<operation id="16" st_id="1" stage="1" lat="1">
 <core>NULL</core>
 <MemPortIdVec></MemPortIdVec>
 <condition id="-1">

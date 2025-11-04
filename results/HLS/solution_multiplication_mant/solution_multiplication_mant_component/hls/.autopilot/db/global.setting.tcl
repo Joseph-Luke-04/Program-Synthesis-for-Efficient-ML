@@ -1,12 +1,12 @@
 
 set TopModule "mult_mxint_mant"
-set ClockPeriod 4
-set ClockList ap_clk
+set ClockPeriod 1000000000
+set ClockList {}
 set AxiliteClockList {}
 set HasVivadoClockPeriod 0
-set CombLogicFlag 0
+set CombLogicFlag 1
 set PipelineFlag 0
-set DataflowTaskPipelineFlag 1
+set DataflowTaskPipelineFlag 0
 set TrivialPipelineFlag 0
 set noPortSwitchingFlag 0
 set FloatingPointFlag 0

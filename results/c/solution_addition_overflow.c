@@ -1,3 +1,3 @@
-unsigned __CPROVER_bitvector[1] detect_overflow(unsigned __CPROVER_bitvector[5] raw_sum) {
-  return (signed __CPROVER_bitvector[5])raw_sum > (signed __CPROVER_bitvector[5])7 || (signed __CPROVER_bitvector[5])raw_sum < (signed __CPROVER_bitvector[5])24 ? 1 : 0;
+ap_uint<1> detect_overflow(ap_uint<5> raw_sum) {
+  return (ap_int<5>)raw_sum > (ap_int<5>)7 || (ap_int<5>)raw_sum < (ap_int<5>)24 ? (ap_uint<1>)  1 : (ap_uint<1>)  0;
 }

@@ -6,30 +6,20 @@
 
 `timescale 1 ns / 1 ps 
 
-(* CORE_GENERATION_INFO="mult_mxint_mant_mult_mxint_mant,hls_ip_2025_1,{HLS_INPUT_TYPE=cxx,HLS_INPUT_FLOAT=0,HLS_INPUT_FIXED=0,HLS_INPUT_PART=xc7z020-clg400-1,HLS_INPUT_CLOCK=4.000000,HLS_INPUT_ARCH=others,HLS_SYN_CLOCK=5.415000,HLS_SYN_LAT=6,HLS_SYN_TPT=none,HLS_SYN_MEM=0,HLS_SYN_DSP=0,HLS_SYN_FF=138,HLS_SYN_LUT=176,HLS_VERSION=2025_1}" *)
+(* CORE_GENERATION_INFO="mult_mxint_mant_mult_mxint_mant,hls_ip_2025_1,{HLS_INPUT_TYPE=cxx,HLS_INPUT_FLOAT=0,HLS_INPUT_FIXED=0,HLS_INPUT_PART=xc7z020-clg400-1,HLS_INPUT_CLOCK=1000000000.000000,HLS_INPUT_ARCH=others,HLS_SYN_CLOCK=2.340000,HLS_SYN_LAT=0,HLS_SYN_TPT=none,HLS_SYN_MEM=0,HLS_SYN_DSP=0,HLS_SYN_FF=0,HLS_SYN_LUT=13,HLS_VERSION=2025_1}" *)
 
 module mult_mxint_mant (
-        ap_clk,
-        ap_rst,
         ap_start,
         ap_done,
         ap_idle,
         ap_ready,
         m1,
         m2,
-        ap_return
+        ap_return,
+        ap_rst
 );
 
-parameter    ap_ST_fsm_state1 = 7'd1;
-parameter    ap_ST_fsm_state2 = 7'd2;
-parameter    ap_ST_fsm_state3 = 7'd4;
-parameter    ap_ST_fsm_state4 = 7'd8;
-parameter    ap_ST_fsm_state5 = 7'd16;
-parameter    ap_ST_fsm_state6 = 7'd32;
-parameter    ap_ST_fsm_state7 = 7'd64;
 
-input   ap_clk;
-input   ap_rst;
 input   ap_start;
 output   ap_done;
 output   ap_idle;
@@ -37,221 +27,32 @@ output   ap_ready;
 input  [3:0] m1;
 input  [3:0] m2;
 output  [3:0] ap_return;
+input   ap_rst;
 
-reg ap_done;
-reg ap_idle;
-reg ap_ready;
-
-(* fsm_encoding = "none" *) reg   [6:0] ap_CS_fsm;
-wire    ap_CS_fsm_state1;
-wire   [7:0] mul_ln4_fu_60_p2;
-reg   [7:0] mul_ln4_reg_134;
-wire   [15:0] grp_fu_74_p2;
-reg   [15:0] mul_ln4_1_reg_151;
-wire    ap_CS_fsm_state5;
-wire   [3:0] trunc_ln4_fu_80_p1;
-reg   [3:0] trunc_ln4_reg_156;
-wire   [0:0] icmp_ln4_fu_84_p2;
-reg   [0:0] icmp_ln4_reg_161;
-wire    ap_CS_fsm_state6;
-wire  signed [3:0] mul_ln4_fu_60_p0;
-wire  signed [7:0] sext_ln4_1_fu_56_p1;
-wire  signed [3:0] mul_ln4_fu_60_p1;
-wire  signed [7:0] sext_ln4_fu_52_p1;
-wire   [7:0] grp_fu_74_p0;
-wire   [7:0] grp_fu_74_p1;
-wire    ap_CS_fsm_state7;
-wire   [3:0] tmp_fu_101_p4;
-wire   [3:0] tmp_1_fu_110_p4;
-wire   [0:0] tmp_2_fu_89_p3;
-wire   [3:0] sub_ln4_fu_96_p2;
-wire   [3:0] select_ln4_fu_119_p3;
-reg   [6:0] ap_NS_fsm;
-reg    ap_ST_fsm_state1_blk;
-wire    ap_ST_fsm_state2_blk;
-wire    ap_ST_fsm_state3_blk;
-wire    ap_ST_fsm_state4_blk;
-wire    ap_ST_fsm_state5_blk;
-wire    ap_ST_fsm_state6_blk;
-wire    ap_ST_fsm_state7_blk;
-wire   [15:0] grp_fu_74_p00;
-wire   [15:0] grp_fu_74_p10;
+wire   [3:0] mul_ln4_fu_42_p2;
+wire   [1:0] trunc_ln4_fu_48_p4;
 wire    ap_ce_reg;
 
-// power-on initialization
-initial begin
-#0 ap_CS_fsm = 7'd1;
-end
-
-mult_mxint_mant_mul_4s_4s_8_1_1 #(
+mult_mxint_mant_mul_4s_4s_4_1_1 #(
     .ID( 1 ),
     .NUM_STAGE( 1 ),
     .din0_WIDTH( 4 ),
     .din1_WIDTH( 4 ),
-    .dout_WIDTH( 8 ))
-mul_4s_4s_8_1_1_U1(
-    .din0(mul_ln4_fu_60_p0),
-    .din1(mul_ln4_fu_60_p1),
-    .dout(mul_ln4_fu_60_p2)
+    .dout_WIDTH( 4 ))
+mul_4s_4s_4_1_1_U1(
+    .din0(m2),
+    .din1(m1),
+    .dout(mul_ln4_fu_42_p2)
 );
 
-mult_mxint_mant_mul_8ns_8ns_16_5_1 #(
-    .ID( 1 ),
-    .NUM_STAGE( 5 ),
-    .din0_WIDTH( 8 ),
-    .din1_WIDTH( 8 ),
-    .dout_WIDTH( 16 ))
-mul_8ns_8ns_16_5_1_U2(
-    .clk(ap_clk),
-    .reset(ap_rst),
-    .din0(grp_fu_74_p0),
-    .din1(grp_fu_74_p1),
-    .ce(1'b1),
-    .dout(grp_fu_74_p2)
-);
+assign ap_done = ap_start;
 
-always @ (posedge ap_clk) begin
-    if (ap_rst == 1'b1) begin
-        ap_CS_fsm <= ap_ST_fsm_state1;
-    end else begin
-        ap_CS_fsm <= ap_NS_fsm;
-    end
-end
+assign ap_idle = 1'b1;
 
-always @ (posedge ap_clk) begin
-    if ((1'b1 == ap_CS_fsm_state6)) begin
-        icmp_ln4_reg_161 <= icmp_ln4_fu_84_p2;
-    end
-end
+assign ap_ready = ap_start;
 
-always @ (posedge ap_clk) begin
-    if ((1'b1 == ap_CS_fsm_state5)) begin
-        mul_ln4_1_reg_151 <= grp_fu_74_p2;
-        trunc_ln4_reg_156 <= trunc_ln4_fu_80_p1;
-    end
-end
+assign ap_return = $signed(trunc_ln4_fu_48_p4);
 
-always @ (posedge ap_clk) begin
-    if ((1'b1 == ap_CS_fsm_state1)) begin
-        mul_ln4_reg_134 <= mul_ln4_fu_60_p2;
-    end
-end
-
-always @ (*) begin
-    if ((ap_start == 1'b0)) begin
-        ap_ST_fsm_state1_blk = 1'b1;
-    end else begin
-        ap_ST_fsm_state1_blk = 1'b0;
-    end
-end
-
-assign ap_ST_fsm_state2_blk = 1'b0;
-
-assign ap_ST_fsm_state3_blk = 1'b0;
-
-assign ap_ST_fsm_state4_blk = 1'b0;
-
-assign ap_ST_fsm_state5_blk = 1'b0;
-
-assign ap_ST_fsm_state6_blk = 1'b0;
-
-assign ap_ST_fsm_state7_blk = 1'b0;
-
-always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state7)) begin
-        ap_done = 1'b1;
-    end else begin
-        ap_done = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (((1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b0))) begin
-        ap_idle = 1'b1;
-    end else begin
-        ap_idle = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state7)) begin
-        ap_ready = 1'b1;
-    end else begin
-        ap_ready = 1'b0;
-    end
-end
-
-always @ (*) begin
-    case (ap_CS_fsm)
-        ap_ST_fsm_state1 : begin
-            if (((1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1))) begin
-                ap_NS_fsm = ap_ST_fsm_state2;
-            end else begin
-                ap_NS_fsm = ap_ST_fsm_state1;
-            end
-        end
-        ap_ST_fsm_state2 : begin
-            ap_NS_fsm = ap_ST_fsm_state3;
-        end
-        ap_ST_fsm_state3 : begin
-            ap_NS_fsm = ap_ST_fsm_state4;
-        end
-        ap_ST_fsm_state4 : begin
-            ap_NS_fsm = ap_ST_fsm_state5;
-        end
-        ap_ST_fsm_state5 : begin
-            ap_NS_fsm = ap_ST_fsm_state6;
-        end
-        ap_ST_fsm_state6 : begin
-            ap_NS_fsm = ap_ST_fsm_state7;
-        end
-        ap_ST_fsm_state7 : begin
-            ap_NS_fsm = ap_ST_fsm_state1;
-        end
-        default : begin
-            ap_NS_fsm = 'bx;
-        end
-    endcase
-end
-
-assign ap_CS_fsm_state1 = ap_CS_fsm[32'd0];
-
-assign ap_CS_fsm_state5 = ap_CS_fsm[32'd4];
-
-assign ap_CS_fsm_state6 = ap_CS_fsm[32'd5];
-
-assign ap_CS_fsm_state7 = ap_CS_fsm[32'd6];
-
-assign ap_return = ((tmp_2_fu_89_p3[0:0] == 1'b1) ? sub_ln4_fu_96_p2 : select_ln4_fu_119_p3);
-
-assign grp_fu_74_p0 = grp_fu_74_p00;
-
-assign grp_fu_74_p00 = $unsigned(sext_ln4_1_fu_56_p1);
-
-assign grp_fu_74_p1 = grp_fu_74_p10;
-
-assign grp_fu_74_p10 = $unsigned(sext_ln4_fu_52_p1);
-
-assign icmp_ln4_fu_84_p2 = ((mul_ln4_1_reg_151 < 16'd33) ? 1'b1 : 1'b0);
-
-assign mul_ln4_fu_60_p0 = sext_ln4_1_fu_56_p1;
-
-assign mul_ln4_fu_60_p1 = sext_ln4_fu_52_p1;
-
-assign select_ln4_fu_119_p3 = ((icmp_ln4_reg_161[0:0] == 1'b1) ? tmp_fu_101_p4 : tmp_1_fu_110_p4);
-
-assign sext_ln4_1_fu_56_p1 = $signed(m2);
-
-assign sext_ln4_fu_52_p1 = $signed(m1);
-
-assign sub_ln4_fu_96_p2 = (4'd0 - trunc_ln4_reg_156);
-
-assign tmp_1_fu_110_p4 = {{mul_ln4_reg_134[6:3]}};
-
-assign tmp_2_fu_89_p3 = mul_ln4_reg_134[32'd7];
-
-assign tmp_fu_101_p4 = {{mul_ln4_reg_134[5:2]}};
-
-assign trunc_ln4_fu_80_p1 = grp_fu_74_p2[3:0];
+assign trunc_ln4_fu_48_p4 = {{mul_ln4_fu_42_p2[3:2]}};
 
 endmodule //mult_mxint_mant
