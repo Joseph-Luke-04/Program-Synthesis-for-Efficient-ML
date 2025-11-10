@@ -11,6 +11,7 @@ from .synthesis_targets.multiplication import MultiplicationTarget
 
 from .synthesis_targets.fp32_addition import FP32AdditionTarget
 from .synthesis_targets.fp32_multiplication import FP32MultiplicationTarget
+from .synthesis_targets.naive_adder import NaiveAdderTarget
 
 from .synthesis_targets.dot_product import DotProductTarget
 
@@ -190,42 +191,72 @@ if __name__ == "__main__":
     """
  
     #target_operation = DotProductTarget()
-    target_operation = AdditionTarget()
+    #target_operation = AdditionTarget()
     #target_operation = MultiplicationTarget()
     #target_operation = FP32AdditionTarget()
     #target_operation = FP32MultiplicationTarget()
+
+    # Operations for for NaiveAdderTarget(): 
+    # NaiveAdderTarget(kind="int", width=32 or 8)
+    # NaiveAdderTarget(kind="fp32")
+
+    target_operation = NaiveAdderTarget(kind="int", width=8)
     
     # Components for AdditionTarget: "alignment", "raw_sum", "overflow"
     # Components for MultiplicationTarget: "renorm_flag", "mant", "exp"
     # Components for FP32AdditionTarget: "fp32_alignment", "raw_sum", "fp32_normalisation"
     # Components for FP32MultiplicationTarget: "fp32_mantissa", "fp32_exponent"
+    
+    # Components for for NaiveAdderTarget: "int_add", "full_adder"
 
-    target_component = "alignment"
+    target_component = "int_add"
  
     # False for a quick post-synthesis estimate (-p)
     # True for a full post-implementation run (-i)
     RUN_IMPLEMENTATION = True
     
     synthesis_test_cases = []
-    if isinstance(target_operation, (AdditionTarget, MultiplicationTarget, FP32AdditionTarget, FP32MultiplicationTarget)):
+
+    if isinstance(target_operation, NaiveAdderTarget):
+        if target_operation.kind == "int":
+            W = target_operation.width
+            # Seed some edge cases
+            seeds = [(0, 0), (1, 0), ((1 << W) - 1, 1), ((1 << W) - 1, (1 << W) - 1)]
+            synthesis_test_cases.extend(seeds[:min(len(seeds), config.NUM_ITERATIONS)])
+
+            # Fill the rest with random modular-int pairs
+            while len(synthesis_test_cases) < config.NUM_ITERATIONS:
+                x = random.randrange(0, 1 << W)
+                y = random.randrange(0, 1 << W)
+                synthesis_test_cases.append((x, y))
+
+        elif target_operation.kind == "fp32":
+            max_val = 1e4
+            synthesis_test_cases = [
+                (random.uniform(-max_val, max_val), random.uniform(-max_val, max_val))
+                for _ in range(config.NUM_ITERATIONS)
+            ]
+
+    elif isinstance(target_operation, DotProductTarget):
+            vec_len = 2 
+            max_val = 10 
+            for _ in range(config.NUM_ITERATIONS):
+                vec1 = [random.uniform(-max_val, max_val) for _ in range(vec_len)]
+                vec2 = [random.uniform(-max_val, max_val) for _ in range(vec_len)]
+                synthesis_test_cases.append((vec1, vec2))
+
+    elif isinstance(target_operation, (AdditionTarget, MultiplicationTarget, FP32AdditionTarget, FP32MultiplicationTarget)):
         if isinstance(target_operation, AdditionTarget):
             max_val = 66
         elif isinstance(target_operation, MultiplicationTarget):
             max_val = math.sqrt(112)
-        elif isinstance(target_operation, FP32AdditionTarget):
+        elif isinstance(target_operation, (FP32AdditionTarget, FP32MultiplicationTarget)):
             max_val = 1e4
+
         for _ in range(config.NUM_ITERATIONS):
             f1 = random.uniform(-max_val, max_val)
             f2 = random.uniform(-max_val, max_val)
             synthesis_test_cases.append((f1, f2))
-            
-    elif isinstance(target_operation, DotProductTarget):
-        vec_len = 2 
-        max_val = 10 
-        for _ in range(config.NUM_ITERATIONS):
-            vec1 = [random.uniform(-max_val, max_val) for _ in range(vec_len)]
-            vec2 = [random.uniform(-max_val, max_val) for _ in range(vec_len)]
-            synthesis_test_cases.append((vec1, vec2))
 
     # ===================================================================
 

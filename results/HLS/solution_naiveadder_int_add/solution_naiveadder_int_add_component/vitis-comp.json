@@ -1,0 +1,9 @@
+{
+  "name": "solution_naiveadder_int_add_component",
+  "type": "HLS",
+  "configuration": {
+    "componentType": "HLS",
+    "configFiles": ["hls_config.cfg"],
+    "work_dir": "."
+  }
+}

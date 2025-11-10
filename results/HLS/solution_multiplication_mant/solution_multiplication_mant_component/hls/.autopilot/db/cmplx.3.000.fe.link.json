@@ -6,7 +6,7 @@
     "def_use_depth": 2,
     "file": "solution_multiplication_mant.cpp",
     "fileloc": 3,
-    "instructions": 402,
+    "instructions": 415,
     "loads": {
       "L": 1
     },
@@ -15,6 +15,6 @@
     "stores": {
       "L": 2
     },
-    "total_instructions": 2815
+    "total_instructions": 2868
   }
 }

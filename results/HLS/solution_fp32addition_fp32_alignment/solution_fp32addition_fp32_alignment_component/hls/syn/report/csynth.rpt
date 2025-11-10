@@ -4,7 +4,7 @@
 == Synthesis Summary Report of 'fp32_aligner'
 ================================================================
 + General Information: 
-    * Date:           Wed Oct 29 01:02:56 2025
+    * Date:           Tue Nov  4 15:43:49 2025
     * Version:        2025.1 (Build 6135595 on May 21 2025)
     * Project:        solution_fp32addition_fp32_alignment_component
     * Solution:       hls (Vivado IP Flow Target)

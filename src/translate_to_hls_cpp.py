@@ -3,7 +3,7 @@ from pathlib import Path
 
 _HEADER = "#include <ap_int.h>\n\n"
 
-# ---------- Header & cast normalisation (preserve parens!) ----------
+# Header & cast normalisation (preserve parens)
 def _ensure_header(s: str) -> str:
     return s if "#include <ap_int.h>" in s else _HEADER + s.strip()
 
@@ -23,31 +23,54 @@ def _safer_unsigned_negation(s: str) -> str:
         return f"ap_uint<{N}>(-(ap_int<{N}>)({expr}))"
     return re.sub(r"-\s*\(\s*ap_uint<(\d+)>\s*\)\s*\(\s*(.+?)\s*\)", fix, s)
 
-# ---------- Bit-slices '(EXPR)[hi, lo]' ----------
-def _bit_slices_to_range(s: str) -> str:
-    s = re.sub(r"\b0\s*\+\s*(\d+)", r"\1", s)
+def _replace_bit_extractions(c_code: str) -> str:
+    # 1) fold constants like 4+3
+    c_code = _fold_simple_int_additions(c_code)
 
-    def _looks_like_top_ap(expr: str) -> bool:
-        t = expr.strip()
-        if t.startswith("(") and t.endswith(")"):
-            inner = t[1:-1].strip()
-            if inner.startswith(("ap_uint<","ap_int<")): return True
-            t = inner
-        if t.startswith(("(ap_uint<","(ap_int<")): return True
-        return bool(re.fullmatch(r"[A-Za-z_]\w*", t))
-
-    def _repl(m: re.Match) -> str:
+    # 2) ( <EXPR> )[HI, LO]  ->  ap_uint<HI-LO+1>((<EXPR>)).range(HI, LO)
+    def slice_repl(m):
         expr, hi, lo = m.group(1).strip(), int(m.group(2)), int(m.group(3))
         w = hi - lo + 1
-        if _looks_like_top_ap(expr):
-            return f"({expr}).range({hi}, {lo})"
-        if lo == 0:
-            return f"(ap_uint<{w}>(({expr})))"
-        return f"(ap_uint<64>(({expr}))).range({hi}, {lo})"
+        return f"(ap_uint<{w}>(({expr}))).range({hi}, {lo})"
 
-    return re.sub(r"\(\s*(.+?)\s*\)\s*\[\s*(\d+)\s*,\s*(\d+)\s*\]", _repl, s)
+    # IMPORTANT: use a greedy expr capture to grab the right '(' pairing
+    return re.sub(r"\(\s*(.+)\s*\)\s*\[\s*(\d+)\s*,\s*(\d+)\s*\]", slice_repl, c_code)
 
-# ---------- NEW: make leading casts apply to the WHOLE product ----------
+def _replace_any_bracket_slices(c_code: str) -> str:
+    c_code = _fold_simple_int_additions(c_code)
+
+    # EXPR[HI, LO] -> ap_uint<HI-LO+1>((EXPR)).range(HI, LO)
+    # DO NOT cross newlines: add '\n' to the negated class.
+    pat = re.compile(r"([^\[\];\n]+?)\s*\[\s*(\d+)\s*,\s*(\d+)\s*\]")
+
+    def repl(m):
+        raw_expr = m.group(1)
+        hi, lo = int(m.group(2)), int(m.group(3))
+        w = hi - lo + 1
+
+        # Preserve leading whitespace so indentation stays intact.
+        leading_ws_len = len(raw_expr) - len(raw_expr.lstrip(" \t"))
+        leading_ws = raw_expr[:leading_ws_len]
+
+        expr = raw_expr.lstrip()
+
+        # Special-case 'return <expr>[hi, lo]' so we don't drop the return keyword.
+        prefix = leading_ws
+        m_return = re.match(r"(return\b\s*)(.*)", expr)
+        if m_return:
+            prefix += m_return.group(1)
+            expr = m_return.group(2)
+
+        expr = expr.rstrip()
+        replacement = f"(ap_uint<{w}>(({expr}))).range({hi}, {lo})"
+        return prefix + replacement
+
+    prev = None
+    while prev != c_code:
+        prev, c_code = c_code, pat.sub(repl, c_code)
+    return c_code
+
+# Make leading casts apply to the WHOLE product
 def _cast_entire_product(s: str) -> str:
     """
     Turn '(ap_*<N>) LHS * RHS' into 'ap_*<N>((LHS * RHS))' so the product
@@ -63,7 +86,7 @@ def _cast_entire_product(s: str) -> str:
         prev, s = s, pat.sub(repl, s)
     return s
 
-# ---------- Ternary unifier (works for nested ?:) ----------
+# Ternary unifier (works for nested ?:)
 _APTY_RE = r"\b(ap_(?:u)?int<\d+>)"
 
 def _extract_common_ap_type(a: str, b: str) -> str | None:
@@ -137,23 +160,72 @@ def _unify_all_ternaries(s: str) -> str:
             out.append(line)
     return "\n".join(out)
 
+def _fold_simple_int_additions(s: str) -> str:
+    return re.sub(r"\b(\d+)\s*\+\s*(\d+)\b", lambda m: str(int(m.group(1))+int(m.group(2))), s)
 
-# ---------- Tidy ----------
+def _get_function_return_type(c_code: str) -> str | None:
+    # Matches: ap_uint<N> | ap_int<N> | bool   before the function name
+    m = re.search(r"\b(ap_(?:u)?int<\d+>|bool)\s+[A-Za-z_]\w*\s*\(", c_code)
+    return m.group(1) if m else None
+
+def _wrap_return_top_concat(c_code: str) -> str:
+    ret_ty = _get_function_return_type(c_code)
+    if not ret_ty:
+        return c_code
+
+    out = []
+    for line in c_code.splitlines():
+        m = re.match(r"(\s*return\s+)(.+?)(;\s*)$", line)
+        if not m:
+            out.append(line)
+            continue
+
+        body = m.group(2).strip()
+        need_wrap = False
+
+        # Case 1: comma at top level
+        if _has_top_level_comma(body):
+            need_wrap = True
+        # Case 2: body is a single parenthesized expr "( ... )" whose inside has a top-level comma
+        elif body.startswith("(") and body.endswith(")"):
+            inner = body[1:-1].strip()
+            if _has_top_level_comma(inner):
+                body = inner  # drop the outer parens, we'll add ret_ty((...)) anyway
+                need_wrap = True
+
+        if need_wrap:
+            out.append(f"{m.group(1)}{ret_ty}(({body})){m.group(3)}")
+        else:
+            out.append(line)
+
+    return "\n".join(out)
+
 def _clean(s: str) -> str:
     s = "\n".join(ln.rstrip() for ln in s.splitlines())
     s = re.sub(r"\n\s*\n\s*}", "\n}", s)
     return s.strip() + "\n"
 
-# -------------------------- Main --------------------------
 def convert_cp_to_hls(c_input_path: str, save_output: bool = True) -> str:
     code = Path(c_input_path).read_text()
 
     code = _ensure_header(code)
     code = _normalize_char_types_and_casts(code)
     code = _safer_unsigned_negation(code)
-    code = _bit_slices_to_range(code)
-    code = _cast_entire_product(code)   # ← ADD THIS
+
+    # Slices & constants (fixes '[4+3,4]' and concat slicing)
+    code = _fold_simple_int_additions(code)
+    code = _replace_bit_extractions(code)
+
+    # Width correctness + ?: unification
+    code = _cast_entire_product(code)
     code = _unify_all_ternaries(code)
+
+    # Convert any remaining bracket slices introduced by later passes
+    code = _replace_any_bracket_slices(code)
+
+    # Treat 'return (A,B);' as value, not comma operator
+    code = _wrap_return_top_concat(code)
+
     code = _clean(code)
 
     if save_output:
@@ -170,7 +242,7 @@ def convert_cp_to_hls(c_input_path: str, save_output: bool = True) -> str:
     return code
 
 def run_hls_conversion(c_output_path: str):
-    if not os.path.exists(c_output_path):
+    if not c_output_path or not os.path.exists(c_output_path):
         print("[WARN] No C file found to convert for HLS.")
         return None
     print("\nConverting C output to HLS-compatible C++...\n")

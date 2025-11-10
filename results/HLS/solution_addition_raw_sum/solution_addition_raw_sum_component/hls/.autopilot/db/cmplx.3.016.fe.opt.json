@@ -1,0 +1,14 @@
+{
+  "0": {
+    "basicblocks": 8,
+    "calls": "",
+    "control_depth": 0,
+    "def_use_depth": 6,
+    "file": "solution_addition_raw_sum.cpp",
+    "fileloc": 3,
+    "instructions": 66,
+    "memory_accesses": 0,
+    "name": "add_raw",
+    "total_instructions": 66
+  }
+}

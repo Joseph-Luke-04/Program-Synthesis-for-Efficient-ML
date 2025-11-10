@@ -6,9 +6,9 @@
     "def_use_depth": 3,
     "file": "solution_multiplication_mant.cpp",
     "fileloc": 3,
-    "instructions": 163,
+    "instructions": 164,
     "memory_accesses": 0,
     "name": "mult_mxint_mant",
-    "total_instructions": 163
+    "total_instructions": 164
   }
 }

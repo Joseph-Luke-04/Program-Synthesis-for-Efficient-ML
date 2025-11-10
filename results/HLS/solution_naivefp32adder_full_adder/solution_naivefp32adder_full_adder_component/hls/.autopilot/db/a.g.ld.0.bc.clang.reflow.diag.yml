@@ -1,0 +1,12 @@
+--- !Missed
+Pass:            inline
+Name:            NeverInline
+Function:        apatb_max2_ir
+Args:            
+  - Callee:          'max2(ap_uint<4>, ap_uint<4>)'
+    DebugLoc:        { File: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_naivefp32adder_full_adder.cpp, 
+                       Line: 3, Column: 0 }
+  - String:          ' not inlined into '
+  - Caller:          apatb_max2_ir
+  - String:          ' because it should never be inlined (cost=never)'
+...

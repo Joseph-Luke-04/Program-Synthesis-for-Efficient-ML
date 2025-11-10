@@ -3,8 +3,8 @@
 # SW Build 6140274 on Wed May 21 22:58:25 MDT 2025
 # IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
 # SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
-# Start of session at: Wed Oct 29 01:03:26 2025
-# Process ID         : 109796
+# Start of session at: Tue Nov  4 15:44:21 2025
+# Process ID         : 958720
 # Current directory  : /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_alignment
 # Command line       : vivado -mode batch -source /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_alignment/vivado.tcl
 # Log file           : /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_alignment/vivado.log
@@ -13,12 +13,12 @@
 # Platform           : Ubuntu
 # Operating System   : Ubuntu 24.04.3 LTS
 # Processor Detail   : Intel(R) Core(TM) i7-10870H CPU @ 2.20GHz
-# CPU Frequency      : 4323.184 MHz
+# CPU Frequency      : 4478.298 MHz
 # CPU Physical cores : 8
 # CPU Logical cores  : 16
 # Host memory        : 16592 MB
 # Swap memory        : 4294 MB
 # Total Virtual      : 20887 MB
-# Available Virtual  : 7844 MB
+# Available Virtual  : 4391 MB
 #-----------------------------------------------------------
 source /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_alignment/vivado.tcl

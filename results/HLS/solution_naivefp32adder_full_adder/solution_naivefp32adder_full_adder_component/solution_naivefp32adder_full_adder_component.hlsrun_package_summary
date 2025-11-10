@@ -1,0 +1,120 @@
+<ENTRY>
+{
+ "thisFile": "/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_naivefp32adder_full_adder/solution_naivefp32adder_full_adder_component/solution_naivefp32adder_full_adder_component.hlsrun_package_summary",
+ "connectId": "",
+ "serverToken": "",
+ "timestamp": "0"
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_CmdStep",
+ "dateTimestamp": "Wed Nov  5 13:18:45 2025",
+ "timestampMillis": "1762348725046",
+ "buildStep": {
+  "cmdId": "f7396301-b93e-49ab-a5e8-3691edb52388",
+  "name": "vitis-run",
+  "logFile": "/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_naivefp32adder_full_adder/logs/hls_compile.log",
+  "commandLine": "vitis-run --mode hls --tcl /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_naivefp32adder_full_adder/hls.tcl",
+  "args": [],
+  "iniFiles": [],
+  "cwd": "/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_naivefp32adder_full_adder"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Wed Nov  5 13:18:45 2025",
+ "timestampMillis": "1762348725046",
+ "status": {
+  "cmdId": "f7396301-b93e-49ab-a5e8-3691edb52388",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_FlowMetaData",
+ "dateTimestamp": "Wed Nov  5 13:18:45 2025",
+ "timestampMillis": "1762348725046",
+ "buildSummary": {
+  "hardwarePlatform": "",
+  "hardwareDsa": "",
+  "platformDirectory": "",
+  "runtime": "",
+  "systemConfig": "",
+  "flow": "BF_RUN",
+  "target": "TT_HLS_IP",
+  "kernels": [
+   {
+    "base": {
+     "type": "KERNEL",
+     "name": "max2",
+     "file": "",
+     "reports": [],
+     "uuid": ""
+    },
+    "sources": [
+     "/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_naivefp32adder_full_adder.cpp"
+    ],
+    "psSources": [],
+    "cuNames": [],
+    "type": "HLS",
+    "frequency": 0,
+    "freqUnits": ""
+   }
+  ],
+  "toolVersion": "2025.1"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Wed Nov  5 13:18:45 2025",
+ "timestampMillis": "1762348725046",
+ "buildStep": {
+  "cmdId": "6613a4b6-7fec-4b0e-af63-a3bdf30a1f77",
+  "name": "export_design",
+  "logFile": "/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_naivefp32adder_full_adder/solution_naivefp32adder_full_adder_component/hls/hls.log",
+  "commandLine": "export_design",
+  "args": [],
+  "iniFiles": [],
+  "cwd": "/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_naivefp32adder_full_adder"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Wed Nov  5 13:18:45 2025",
+ "timestampMillis": "1762348725047",
+ "status": {
+  "cmdId": "6613a4b6-7fec-4b0e-af63-a3bdf30a1f77",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Wed Nov  5 13:19:13 2025",
+ "timestampMillis": "1762348753263",
+ "status": {
+  "cmdId": "6613a4b6-7fec-4b0e-af63-a3bdf30a1f77",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Wed Nov  5 13:19:13 2025",
+ "timestampMillis": "1762348753266",
+ "status": {
+  "cmdId": "f7396301-b93e-49ab-a5e8-3691edb52388",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>

@@ -17,5 +17,8 @@
     <clockList>
         <clock name="default" period="1000000000ns" default="false"/>
     </clockList>
+    <config>
+        <config_export rtl="verilog"/>
+    </config>
 </AutoPilot:solution>
 

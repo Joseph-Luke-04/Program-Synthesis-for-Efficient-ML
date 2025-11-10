@@ -1,0 +1,23 @@
+[
+  {
+    "functionLabel": "",
+    "functionName": "max2",
+    "id": 0,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "",
+    "pragma": {
+      "name": "TOP",
+      "option": [
+        {
+          "name": "name",
+          "value": "max2"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_naivefp32adder_full_adder/hls.tcl",
+    "sourceLine": 6,
+    "success": true
+  }
+]
