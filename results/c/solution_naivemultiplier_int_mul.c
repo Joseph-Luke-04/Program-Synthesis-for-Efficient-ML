@@ -1,3 +1,3 @@
-unsigned char naive_int_mul(unsigned char x, unsigned char y) {
+unsigned int naive_int_mul(unsigned int x, unsigned int y) {
   return x * y;
 }

@@ -11,6 +11,9 @@ def _normalize_char_types_and_casts(s: str) -> str:
     # Decls
     s = re.sub(r"\bunsigned\s+char\b", "ap_uint<8>", s)
     s = re.sub(r"\bsigned\s+char\b",   "ap_int<8>",  s)
+    s = re.sub(r'\bunsigned\s+int\b', 'ap_uint<32>', s)
+    s = re.sub(r'(?<!unsigned\s)\bint\b', 'ap_int<32>', s)
+
     # Casts (keep parentheses intact)
     s = re.sub(r"\(\s*unsigned\s+char\s*\)", "(ap_uint<8>)", s)
     s = re.sub(r"\(\s*signed\s+char\s*\)",   "(ap_int<8>)",  s)

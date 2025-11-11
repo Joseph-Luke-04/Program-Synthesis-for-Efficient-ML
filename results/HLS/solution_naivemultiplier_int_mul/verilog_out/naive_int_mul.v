@@ -6,7 +6,7 @@
 
 `timescale 1 ns / 1 ps 
 
-(* CORE_GENERATION_INFO="naive_int_mul_naive_int_mul,hls_ip_2025_1,{HLS_INPUT_TYPE=cxx,HLS_INPUT_FLOAT=0,HLS_INPUT_FIXED=0,HLS_INPUT_PART=xc7z020-clg400-1,HLS_INPUT_CLOCK=1000000000.000000,HLS_INPUT_ARCH=others,HLS_SYN_CLOCK=4.170000,HLS_SYN_LAT=0,HLS_SYN_TPT=none,HLS_SYN_MEM=0,HLS_SYN_DSP=0,HLS_SYN_FF=0,HLS_SYN_LUT=41,HLS_VERSION=2025_1}" *)
+(* CORE_GENERATION_INFO="naive_int_mul_naive_int_mul,hls_ip_2025_1,{HLS_INPUT_TYPE=cxx,HLS_INPUT_FLOAT=0,HLS_INPUT_FIXED=0,HLS_INPUT_PART=xc7z020-clg400-1,HLS_INPUT_CLOCK=1000000000.000000,HLS_INPUT_ARCH=others,HLS_SYN_CLOCK=8.510000,HLS_SYN_LAT=0,HLS_SYN_TPT=none,HLS_SYN_MEM=0,HLS_SYN_DSP=0,HLS_SYN_FF=0,HLS_SYN_LUT=20,HLS_VERSION=2025_1}" *)
 
 module naive_int_mul (
         ap_start,
@@ -24,24 +24,24 @@ input   ap_start;
 output   ap_done;
 output   ap_idle;
 output   ap_ready;
-input  [7:0] x;
-input  [7:0] y;
-output  [7:0] ap_return;
+input  [31:0] x;
+input  [31:0] y;
+output  [31:0] ap_return;
 input   ap_rst;
 
-wire   [7:0] mul_ln4_fu_36_p2;
+wire   [31:0] mul_ln4_fu_34_p2;
 wire    ap_ce_reg;
 
-naive_int_mul_mul_8s_8s_8_1_1 #(
+naive_int_mul_mul_32s_32s_32_1_1 #(
     .ID( 1 ),
     .NUM_STAGE( 1 ),
-    .din0_WIDTH( 8 ),
-    .din1_WIDTH( 8 ),
-    .dout_WIDTH( 8 ))
-mul_8s_8s_8_1_1_U1(
+    .din0_WIDTH( 32 ),
+    .din1_WIDTH( 32 ),
+    .dout_WIDTH( 32 ))
+mul_32s_32s_32_1_1_U1(
     .din0(y),
     .din1(x),
-    .dout(mul_ln4_fu_36_p2)
+    .dout(mul_ln4_fu_34_p2)
 );
 
 assign ap_done = ap_start;
@@ -50,6 +50,6 @@ assign ap_idle = 1'b1;
 
 assign ap_ready = ap_start;
 
-assign ap_return = mul_ln4_fu_36_p2;
+assign ap_return = mul_ln4_fu_34_p2;
 
 endmodule //naive_int_mul

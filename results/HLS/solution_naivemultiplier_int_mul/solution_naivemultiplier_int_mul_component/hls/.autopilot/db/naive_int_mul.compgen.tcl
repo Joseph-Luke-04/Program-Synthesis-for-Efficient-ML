@@ -1,6 +1,6 @@
 # This script segment is generated automatically by AutoPilot
 
-set name naive_int_mul_mul_8s_8s_8_1_1
+set name naive_int_mul_mul_32s_32s_32_1_1
 if {${::AESL::PGuard_rtl_comp_handler}} {
 	::AP::rtl_comp_handler $name BINDTYPE {op} TYPE {mul} IMPL {auto} LATENCY 0 ALLOW_PRAGMA 1
 }
@@ -25,7 +25,7 @@ eval "cg_default_interface_gen_dc { \
     sync_rst true \
     corename dc_x \
     op interface \
-    ports { x { I 8 vector } } \
+    ports { x { I 32 vector } } \
 } "
 }
 
@@ -40,7 +40,7 @@ eval "cg_default_interface_gen_dc { \
     sync_rst true \
     corename dc_y \
     op interface \
-    ports { y { I 8 vector } } \
+    ports { y { I 32 vector } } \
 } "
 }
 
@@ -68,7 +68,7 @@ eval "cg_default_interface_gen_dc { \
     sync_rst true \
     corename ap_return \
     op interface \
-    ports { ap_return { O 8 vector } } \
+    ports { ap_return { O 32 vector } } \
 } "
 }
 

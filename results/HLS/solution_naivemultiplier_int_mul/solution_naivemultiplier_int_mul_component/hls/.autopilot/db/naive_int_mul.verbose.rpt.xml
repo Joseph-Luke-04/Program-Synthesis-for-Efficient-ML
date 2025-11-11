@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'naive_int_mul'" level="0">
-<item name = "Date">Tue Nov 11 12:34:28 2025
+<item name = "Date">Tue Nov 11 12:46:48 2025
 </item>
 <item name = "Version">2025.1 (Build 6135595 on May 21 2025)</item>
 <item name = "Project">solution_naivemultiplier_int_mul_component</item>
@@ -15,7 +15,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="4">Clock, Target, Estimated, Uncertainty</keys>
-<column name="ap_clk">1.00 sec, 4.170 ns, 0.27 sec</column>
+<column name="ap_clk">1.00 sec, 8.510 ns, 0.27 sec</column>
 </table>
 </item>
 </section>
@@ -49,19 +49,19 @@
 <column name="DSP">-, -, -, -, -</column>
 <column name="Expression">-, -, -, -, -</column>
 <column name="FIFO">-, -, -, -, -</column>
-<column name="Instance">-, 0, 0, 41, -</column>
+<column name="Instance">-, 3, 0, 20, -</column>
 <column name="Memory">-, -, -, -, -</column>
 <column name="Multiplexer">-, -, -, -, -</column>
 <column name="Register">-, -, -, -, -</column>
 <specialColumn name="Available">280, 220, 106400, 53200, 0</specialColumn>
-<specialColumn name="Utilization (%)">0, 0, 0, ~0, 0</specialColumn>
+<specialColumn name="Utilization (%)">0, 1, 0, ~0, 0</specialColumn>
 </table>
 </item>
 <item name = "Detail">
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="1">
 <keys size="7">Instance, Module, BRAM_18K, DSP, FF, LUT, URAM</keys>
-<column name="mul_8s_8s_8_1_1_U1">mul_8s_8s_8_1_1, 0, 0, 0, 41, 0</column>
+<column name="mul_32s_32s_32_1_1_U1">mul_32s_32s_32_1_1, 0, 3, 0, 20, 0</column>
 </table>
 </item>
 <item name = "DSP"><table name="" hasTotal="0">
@@ -99,10 +99,10 @@
 <column name="ap_done">out, 1, ap_ctrl_hs, naive_int_mul, return value</column>
 <column name="ap_idle">out, 1, ap_ctrl_hs, naive_int_mul, return value</column>
 <column name="ap_ready">out, 1, ap_ctrl_hs, naive_int_mul, return value</column>
-<column name="ap_return">out, 8, ap_ctrl_hs, naive_int_mul, return value</column>
+<column name="ap_return">out, 32, ap_ctrl_hs, naive_int_mul, return value</column>
 <column name="ap_rst">in, 1, ap_ctrl_hs, naive_int_mul, return value</column>
-<column name="x">in, 8, ap_none, x, scalar</column>
-<column name="y">in, 8, ap_none, y, scalar</column>
+<column name="x">in, 32, ap_none, x, scalar</column>
+<column name="y">in, 32, ap_none, y, scalar</column>
 </table>
 </item>
 </section>

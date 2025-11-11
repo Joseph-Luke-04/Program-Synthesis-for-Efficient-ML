@@ -6201,7 +6201,7 @@ operator/(const complex<ap_ufixed<_AP_W, _AP_I, _AP_Q, _AP_O, _AP_N>> &__x, cons
 # 365 "/tools/Xilinx/2025.1/Vitis/common/technology/autopilot/ap_int.h" 2
 # 2 "/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_naivemultiplier_int_mul.cpp" 2
 
-__attribute__((sdx_kernel("naive_int_mul", 0))) ap_uint<8> naive_int_mul(ap_uint<8> x, ap_uint<8> y) {
+__attribute__((sdx_kernel("naive_int_mul", 0))) ap_uint<32> naive_int_mul(ap_uint<32> x, ap_uint<32> y) {
 #line 6 "/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_naivemultiplier_int_mul/hls.tcl"
 #pragma HLSDIRECTIVE TOP name=naive_int_mul
 # 3 "/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_naivemultiplier_int_mul.cpp"

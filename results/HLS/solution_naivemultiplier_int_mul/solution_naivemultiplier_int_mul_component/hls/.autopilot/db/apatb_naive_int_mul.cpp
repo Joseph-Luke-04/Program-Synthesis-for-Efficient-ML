@@ -1233,14 +1233,14 @@ namespace hls::sim
 
 
 extern "C"
-void naive_int_mul_hw_stub_wrapper(hls::sim::Byte<1>*, hls::sim::Byte<1>*, hls::sim::Byte<1>*);
+void naive_int_mul_hw_stub_wrapper(hls::sim::Byte<4>*, hls::sim::Byte<4>*, hls::sim::Byte<4>*);
 
 extern "C"
-void apatb_naive_int_mul_hw(hls::sim::Byte<1>* ap_return, hls::sim::Byte<1>* __xlx_apatb_param_x, hls::sim::Byte<1>* __xlx_apatb_param_y)
+void apatb_naive_int_mul_hw(hls::sim::Byte<4>* ap_return, hls::sim::Byte<4>* __xlx_apatb_param_x, hls::sim::Byte<4>* __xlx_apatb_param_y)
 {
   static hls::sim::Register port0 {
     .name = "return",
-    .width = 8,
+    .width = 32,
 #ifdef POST_CHECK
     .reader = new hls::sim::Reader(AUTOTB_TVOUT_PC_return),
 #else
@@ -1252,7 +1252,7 @@ void apatb_naive_int_mul_hw(hls::sim::Byte<1>* ap_return, hls::sim::Byte<1>* __x
 
   static hls::sim::Register port1 {
     .name = "x",
-    .width = 8,
+    .width = 32,
 #ifdef POST_CHECK
 #else
     .owriter = nullptr,
@@ -1263,7 +1263,7 @@ void apatb_naive_int_mul_hw(hls::sim::Byte<1>* ap_return, hls::sim::Byte<1>* __x
 
   static hls::sim::Register port2 {
     .name = "y",
-    .width = 8,
+    .width = 32,
 #ifdef POST_CHECK
 #else
     .owriter = nullptr,

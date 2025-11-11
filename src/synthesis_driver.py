@@ -205,7 +205,7 @@ if __name__ == "__main__":
     # NaiveMultiplierTarget(kind="int", width=32 or 8)
     # NaiveMultiplierTarget(kind="fp32")
 
-    target_operation = NaiveMultiplierTarget(kind="int", width=8)
+    target_operation = NaiveMultiplierTarget(kind="int", width=32)
     
     # Components for AdditionTarget: "alignment", "raw_sum", "overflow"
     # Components for MultiplicationTarget: "renorm_flag", "mant", "exp"

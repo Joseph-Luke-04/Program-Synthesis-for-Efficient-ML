@@ -243,9 +243,9 @@ class AESL_RUNTIME_BC {
     string mName;
 };
 using hls::sim::Byte;
-struct __cosim_s1__ { char data[1]; };
-extern "C" __cosim_s1__ naive_int_mul(__cosim_s1__, __cosim_s1__);
-extern "C" void  apatb_naive_int_mul_hw(__cosim_s1__* ap_return, __cosim_s1__* __xlx_apatb_param_x, __cosim_s1__* __xlx_apatb_param_y) {
+struct __cosim_s4__ { char data[4]; };
+extern "C" __cosim_s4__ naive_int_mul(__cosim_s4__, __cosim_s4__);
+extern "C" void  apatb_naive_int_mul_hw(__cosim_s4__* ap_return, __cosim_s4__* __xlx_apatb_param_x, __cosim_s4__* __xlx_apatb_param_y) {
 using hls::sim::createStream;
   // DUT call
   *ap_return = naive_int_mul(*__xlx_apatb_param_x, *__xlx_apatb_param_y);

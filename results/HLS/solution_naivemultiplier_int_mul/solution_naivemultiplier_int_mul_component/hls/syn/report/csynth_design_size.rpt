@@ -6,7 +6,7 @@
 +---------------+-----------------------------+--------------+----------------------------------------------------------------------------------------+
 | Phase         | Step                        | Instructions | Description                                                                            |
 +---------------+-----------------------------+--------------+----------------------------------------------------------------------------------------+
-| Compile/Link  |                             | 129          | After all functions are compiled and linked into a single design                       |
+| Compile/Link  |                             | 126          | After all functions are compiled and linked into a single design                       |
 |               |                             |              |                                                                                        |
 | Unroll/Inline |                             |              | After user unroll and inline pragmas are applied                                       |
 |               | (1) unroll                  |   5          | user unroll pragmas are applied                                                        |
@@ -36,7 +36,7 @@
 +-----------------+----------------------------------------+--------------+---------------+--------------+-------------+---------------+
 | Function        | Location                               | Compile/Link | Unroll/Inline | Array/Struct | Performance | HW Transforms |
 +-----------------+----------------------------------------+--------------+---------------+--------------+-------------+---------------+
-|   naive_int_mul | solution_naivemultiplier_int_mul.cpp:3 | 129          | 5             | 5            | 5           | 7             |
+|   naive_int_mul | solution_naivemultiplier_int_mul.cpp:3 | 126          | 5             | 5            | 5           | 7             |
 +-----------------+----------------------------------------+--------------+---------------+--------------+-------------+---------------+
 
 * Design Size Message Settings

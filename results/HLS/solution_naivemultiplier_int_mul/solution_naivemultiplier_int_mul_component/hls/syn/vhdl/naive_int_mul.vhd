@@ -14,9 +14,9 @@ port (
     ap_done : OUT STD_LOGIC;
     ap_idle : OUT STD_LOGIC;
     ap_ready : OUT STD_LOGIC;
-    x : IN STD_LOGIC_VECTOR (7 downto 0);
-    y : IN STD_LOGIC_VECTOR (7 downto 0);
-    ap_return : OUT STD_LOGIC_VECTOR (7 downto 0);
+    x : IN STD_LOGIC_VECTOR (31 downto 0);
+    y : IN STD_LOGIC_VECTOR (31 downto 0);
+    ap_return : OUT STD_LOGIC_VECTOR (31 downto 0);
     ap_rst : IN STD_LOGIC );
 end;
 
@@ -24,15 +24,15 @@ end;
 architecture behav of naive_int_mul is 
     attribute CORE_GENERATION_INFO : STRING;
     attribute CORE_GENERATION_INFO of behav : architecture is
-    "naive_int_mul_naive_int_mul,hls_ip_2025_1,{HLS_INPUT_TYPE=cxx,HLS_INPUT_FLOAT=0,HLS_INPUT_FIXED=0,HLS_INPUT_PART=xc7z020-clg400-1,HLS_INPUT_CLOCK=1000000000.000000,HLS_INPUT_ARCH=others,HLS_SYN_CLOCK=4.170000,HLS_SYN_LAT=0,HLS_SYN_TPT=none,HLS_SYN_MEM=0,HLS_SYN_DSP=0,HLS_SYN_FF=0,HLS_SYN_LUT=41,HLS_VERSION=2025_1}";
+    "naive_int_mul_naive_int_mul,hls_ip_2025_1,{HLS_INPUT_TYPE=cxx,HLS_INPUT_FLOAT=0,HLS_INPUT_FIXED=0,HLS_INPUT_PART=xc7z020-clg400-1,HLS_INPUT_CLOCK=1000000000.000000,HLS_INPUT_ARCH=others,HLS_SYN_CLOCK=8.510000,HLS_SYN_LAT=0,HLS_SYN_TPT=none,HLS_SYN_MEM=0,HLS_SYN_DSP=0,HLS_SYN_FF=0,HLS_SYN_LUT=20,HLS_VERSION=2025_1}";
     constant ap_const_logic_1 : STD_LOGIC := '1';
     constant ap_const_boolean_1 : BOOLEAN := true;
     constant ap_const_logic_0 : STD_LOGIC := '0';
 
-    signal mul_ln4_fu_36_p2 : STD_LOGIC_VECTOR (7 downto 0);
+    signal mul_ln4_fu_34_p2 : STD_LOGIC_VECTOR (31 downto 0);
     signal ap_ce_reg : STD_LOGIC;
 
-    component naive_int_mul_mul_8s_8s_8_1_1 IS
+    component naive_int_mul_mul_32s_32s_32_1_1 IS
     generic (
         ID : INTEGER;
         NUM_STAGE : INTEGER;
@@ -40,25 +40,25 @@ architecture behav of naive_int_mul is
         din1_WIDTH : INTEGER;
         dout_WIDTH : INTEGER );
     port (
-        din0 : IN STD_LOGIC_VECTOR (7 downto 0);
-        din1 : IN STD_LOGIC_VECTOR (7 downto 0);
-        dout : OUT STD_LOGIC_VECTOR (7 downto 0) );
+        din0 : IN STD_LOGIC_VECTOR (31 downto 0);
+        din1 : IN STD_LOGIC_VECTOR (31 downto 0);
+        dout : OUT STD_LOGIC_VECTOR (31 downto 0) );
     end component;
 
 
 
 begin
-    mul_8s_8s_8_1_1_U1 : component naive_int_mul_mul_8s_8s_8_1_1
+    mul_32s_32s_32_1_1_U1 : component naive_int_mul_mul_32s_32s_32_1_1
     generic map (
         ID => 1,
         NUM_STAGE => 1,
-        din0_WIDTH => 8,
-        din1_WIDTH => 8,
-        dout_WIDTH => 8)
+        din0_WIDTH => 32,
+        din1_WIDTH => 32,
+        dout_WIDTH => 32)
     port map (
         din0 => y,
         din1 => x,
-        dout => mul_ln4_fu_36_p2);
+        dout => mul_ln4_fu_34_p2);
 
 
 
@@ -66,5 +66,5 @@ begin
     ap_done <= ap_start;
     ap_idle <= ap_const_logic_1;
     ap_ready <= ap_start;
-    ap_return <= mul_ln4_fu_36_p2;
+    ap_return <= mul_ln4_fu_34_p2;
 end behav;

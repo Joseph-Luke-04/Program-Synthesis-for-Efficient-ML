@@ -3,9 +3,9 @@ source_filename = "llvm-link"
 target datalayout = "e-m:e-i64:64-i128:128-i256:256-i512:512-i1024:1024-i2048:2048-i4096:4096-n8:16:32:64-S128-v16:16-v24:32-v32:32-v48:64-v96:128-v192:256-v256:256-v512:512-v1024:1024"
 target triple = "fpga64-xilinx-none"
 
-%"struct.ap_uint<8>" = type { %"struct.ap_int_base<8, false>" }
-%"struct.ap_int_base<8, false>" = type { %"struct.ssdm_int<8, false>" }
-%"struct.ssdm_int<8, false>" = type { i8 }
+%"struct.ap_uint<32>" = type { %"struct.ap_int_base<32, false>" }
+%"struct.ap_int_base<32, false>" = type { %"struct.ssdm_int<32, false>" }
+%"struct.ssdm_int<32, false>" = type { i32 }
 
 ; Function Attrs: argmemonly noinline norecurse readnone willreturn
 define internal fastcc void @copy_in() unnamed_addr #0 {
@@ -19,7 +19,7 @@ entry:
   ret void
 }
 
-declare void @apatb_naive_int_mul_hw(%"struct.ap_uint<8>"*, %"struct.ap_uint<8>"*, %"struct.ap_uint<8>"*)
+declare void @apatb_naive_int_mul_hw(%"struct.ap_uint<32>"*, %"struct.ap_uint<32>"*, %"struct.ap_uint<32>"*)
 
 ; Function Attrs: argmemonly noinline norecurse readnone willreturn
 define internal fastcc void @copy_back() unnamed_addr #1 {
@@ -27,25 +27,25 @@ entry:
   ret void
 }
 
-declare void @naive_int_mul_hw_stub(%"struct.ap_uint<8>"*, %"struct.ap_uint<8>"* nocapture readonly, %"struct.ap_uint<8>"* nocapture readonly)
+declare void @naive_int_mul_hw_stub(%"struct.ap_uint<32>"*, %"struct.ap_uint<32>"* nocapture readonly, %"struct.ap_uint<32>"* nocapture readonly)
 
-define void @naive_int_mul_hw_stub_wrapper(%"struct.ap_uint<8>"*, %"struct.ap_uint<8>"*, %"struct.ap_uint<8>"*) #2 {
+define void @naive_int_mul_hw_stub_wrapper(%"struct.ap_uint<32>"*, %"struct.ap_uint<32>"*, %"struct.ap_uint<32>"*) #2 {
 entry:
   call void @copy_out()
-  call void @naive_int_mul_hw_stub(%"struct.ap_uint<8>"* %0, %"struct.ap_uint<8>"* %1, %"struct.ap_uint<8>"* %2)
+  call void @naive_int_mul_hw_stub(%"struct.ap_uint<32>"* %0, %"struct.ap_uint<32>"* %1, %"struct.ap_uint<32>"* %2)
   call void @copy_in()
   ret void
 }
 
 ; Function Attrs: argmemonly noinline readonly willreturn
-define void @apatb_naive_int_mul_ir(%"struct.ap_uint<8>"* %ret, %"struct.ap_uint<8>"* nocapture readonly %x, %"struct.ap_uint<8>"* nocapture readonly %y) #3 {
+define void @apatb_naive_int_mul_ir(%"struct.ap_uint<32>"* %ret, %"struct.ap_uint<32>"* nocapture readonly %x, %"struct.ap_uint<32>"* nocapture readonly %y) #3 {
 entry:
   call fastcc void @copy_in()
-  %0 = alloca %"struct.ap_uint<8>"
-  call void @apatb_naive_int_mul_hw(%"struct.ap_uint<8>"* %0, %"struct.ap_uint<8>"* %x, %"struct.ap_uint<8>"* %y)
+  %0 = alloca %"struct.ap_uint<32>"
+  call void @apatb_naive_int_mul_hw(%"struct.ap_uint<32>"* %0, %"struct.ap_uint<32>"* %x, %"struct.ap_uint<32>"* %y)
   call void @copy_back()
-  %1 = load volatile %"struct.ap_uint<8>", %"struct.ap_uint<8>"* %0
-  store %"struct.ap_uint<8>" %1, %"struct.ap_uint<8>"* %ret
+  %1 = load volatile %"struct.ap_uint<32>", %"struct.ap_uint<32>"* %0
+  store %"struct.ap_uint<32>" %1, %"struct.ap_uint<32>"* %ret
   ret void
 }
 

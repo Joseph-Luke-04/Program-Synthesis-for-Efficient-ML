@@ -3,7 +3,7 @@ Pass:            inline
 Name:            NeverInline
 Function:        apatb_naive_int_mul_ir
 Args:            
-  - Callee:          'naive_int_mul(ap_uint<8>, ap_uint<8>)'
+  - Callee:          'naive_int_mul(ap_uint<32>, ap_uint<32>)'
     DebugLoc:        { File: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_naivemultiplier_int_mul.cpp, 
                        Line: 3, Column: 0 }
   - String:          ' not inlined into '

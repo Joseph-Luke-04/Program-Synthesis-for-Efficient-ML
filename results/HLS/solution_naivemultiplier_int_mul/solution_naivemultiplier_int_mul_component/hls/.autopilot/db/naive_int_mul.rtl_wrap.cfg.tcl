@@ -5,7 +5,7 @@ set rawDecl ""
 set globalVariable ""
 set PortList ""
 set PortName "x"
-set BitWidth "8"
+set BitWidth "32"
 set ArrayOpt ""
 set Const "0"
 set Volatile "0"
@@ -13,11 +13,11 @@ set Pointer "0"
 set Reference "0"
 set Dims [list 0]
 set Interface "wire"
-set DataType "char"
+set DataType "int"
 set Port [list $PortName $Interface $DataType $Pointer $Dims $Const    $Volatile $ArrayOpt]
 lappend PortList $Port
 set PortName "y"
-set BitWidth "8"
+set BitWidth "32"
 set ArrayOpt ""
 set Const "0"
 set Volatile "0"
@@ -25,11 +25,11 @@ set Pointer "0"
 set Reference "0"
 set Dims [list 0]
 set Interface "wire"
-set DataType "char"
+set DataType "int"
 set Port [list $PortName $Interface $DataType $Pointer $Dims $Const    $Volatile $ArrayOpt]
 lappend PortList $Port
 set PortName "return"
-set BitWidth "8"
+set BitWidth "32"
 set ArrayOpt ""
 set Const "0"
 set Volatile "0"
@@ -37,7 +37,7 @@ set Pointer "0"
 set Reference "0"
 set Dims [list 0]
 set Interface "wire"
-set DataType "__cosim_s1__"
+set DataType "__cosim_s4__"
 set Port [list $PortName $Interface $DataType $Pointer $Dims $Const    $Volatile $ArrayOpt]
 lappend PortList $Port
 set globalAPint "" 
