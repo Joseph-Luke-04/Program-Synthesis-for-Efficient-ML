@@ -1,0 +1,204 @@
+<ENTRY>
+{
+ "thisFile": "/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_naivemultiplier_int_mul/solution_naivemultiplier_int_mul_component/solution_naivemultiplier_int_mul_component.hlscompile_summary",
+ "connectId": "",
+ "serverToken": "",
+ "timestamp": "0"
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_CmdStep",
+ "dateTimestamp": "Tue Nov 11 12:34:16 2025",
+ "timestampMillis": "1762864456047",
+ "buildStep": {
+  "cmdId": "b299d3d9-1ea7-44b7-bae1-c0259b591022",
+  "name": "vitis-run",
+  "logFile": "/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_naivemultiplier_int_mul/logs/hls_compile.log",
+  "commandLine": "vitis-run --mode hls --tcl /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_naivemultiplier_int_mul/hls.tcl",
+  "args": [],
+  "iniFiles": [],
+  "cwd": "/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_naivemultiplier_int_mul"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Tue Nov 11 12:34:16 2025",
+ "timestampMillis": "1762864456048",
+ "status": {
+  "cmdId": "b299d3d9-1ea7-44b7-bae1-c0259b591022",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_FlowMetaData",
+ "dateTimestamp": "Tue Nov 11 12:34:16 2025",
+ "timestampMillis": "1762864456049",
+ "buildSummary": {
+  "hardwarePlatform": "",
+  "hardwareDsa": "",
+  "platformDirectory": "",
+  "runtime": "",
+  "systemConfig": "",
+  "flow": "BF_COMPILE",
+  "target": "TT_HW",
+  "kernels": [
+   {
+    "base": {
+     "type": "KERNEL",
+     "name": "naive_int_mul",
+     "file": "",
+     "reports": [],
+     "uuid": ""
+    },
+    "sources": [
+     "/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_naivemultiplier_int_mul.cpp"
+    ],
+    "psSources": [],
+    "cuNames": [],
+    "type": "HLS",
+    "frequency": 0,
+    "freqUnits": ""
+   }
+  ],
+  "toolVersion": "2025.1"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Tue Nov 11 12:34:16 2025",
+ "timestampMillis": "1762864456051",
+ "buildStep": {
+  "cmdId": "86ae6f0e-4c37-4e5e-ab7a-8964af7bd966",
+  "name": "csynth_design",
+  "logFile": "/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_naivemultiplier_int_mul/solution_naivemultiplier_int_mul_component/hls/hls.log",
+  "commandLine": "csynth_design",
+  "args": [],
+  "iniFiles": [],
+  "cwd": "/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_naivemultiplier_int_mul"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Tue Nov 11 12:34:16 2025",
+ "timestampMillis": "1762864456051",
+ "status": {
+  "cmdId": "86ae6f0e-4c37-4e5e-ab7a-8964af7bd966",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Tue Nov 11 12:34:16 2025",
+ "timestampMillis": "1762864456052",
+ "report": {
+  "path": "/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_naivemultiplier_int_mul/solution_naivemultiplier_int_mul_component/hls/hls_data.json",
+  "name": "",
+  "fileType": "JSON",
+  "reportType": "HLS_SYNTHESIS",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Tue Nov 11 12:34:16 2025",
+ "timestampMillis": "1762864456053",
+ "report": {
+  "path": "/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_naivemultiplier_int_mul/solution_naivemultiplier_int_mul_component/hls/syn/report/csynth.rpt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "HLS_SYNTHESIS",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Tue Nov 11 12:34:16 2025",
+ "timestampMillis": "1762864456054",
+ "report": {
+  "path": "/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_naivemultiplier_int_mul/solution_naivemultiplier_int_mul_component/hls/syn/report/csynth.xml",
+  "name": "",
+  "fileType": "XML",
+  "reportType": "HLS_SYNTHESIS",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Tue Nov 11 12:34:28 2025",
+ "timestampMillis": "1762864468929",
+ "report": {
+  "path": "/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_naivemultiplier_int_mul/solution_naivemultiplier_int_mul_component/hls",
+  "name": "",
+  "fileType": "DIR",
+  "reportType": "HLS_DATAFLOW",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Tue Nov 11 12:34:28 2025",
+ "timestampMillis": "1762864468929",
+ "report": {
+  "path": "/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_naivemultiplier_int_mul/solution_naivemultiplier_int_mul_component/hls",
+  "name": "",
+  "fileType": "DIR",
+  "reportType": "HLS_FUNCTION_CALL_GRAPH",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Tue Nov 11 12:34:28 2025",
+ "timestampMillis": "1762864468930",
+ "report": {
+  "path": "/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_naivemultiplier_int_mul/solution_naivemultiplier_int_mul_component/hls",
+  "name": "",
+  "fileType": "DIR",
+  "reportType": "HLS_SCHEDULE",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Tue Nov 11 12:34:28 2025",
+ "timestampMillis": "1762864468930",
+ "status": {
+  "cmdId": "86ae6f0e-4c37-4e5e-ab7a-8964af7bd966",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Tue Nov 11 12:34:28 2025",
+ "timestampMillis": "1762864468949",
+ "status": {
+  "cmdId": "b299d3d9-1ea7-44b7-bae1-c0259b591022",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>

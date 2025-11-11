@@ -12,6 +12,7 @@ from .synthesis_targets.multiplication import MultiplicationTarget
 from .synthesis_targets.fp32_addition import FP32AdditionTarget
 from .synthesis_targets.fp32_multiplication import FP32MultiplicationTarget
 from .synthesis_targets.naive_adder import NaiveAdderTarget
+from .synthesis_targets.naive_multiplier import NaiveMultiplierTarget
 
 from .synthesis_targets.dot_product import DotProductTarget
 
@@ -200,16 +201,21 @@ if __name__ == "__main__":
     # NaiveAdderTarget(kind="int", width=32 or 8)
     # NaiveAdderTarget(kind="fp32")
 
-    target_operation = NaiveAdderTarget(kind="int", width=8)
+    # Operations for for NaiveMultiplierTarget():
+    # NaiveMultiplierTarget(kind="int", width=32 or 8)
+    # NaiveMultiplierTarget(kind="fp32")
+
+    target_operation = NaiveMultiplierTarget(kind="int", width=8)
     
     # Components for AdditionTarget: "alignment", "raw_sum", "overflow"
     # Components for MultiplicationTarget: "renorm_flag", "mant", "exp"
     # Components for FP32AdditionTarget: "fp32_alignment", "raw_sum", "fp32_normalisation"
     # Components for FP32MultiplicationTarget: "fp32_mantissa", "fp32_exponent"
     
-    # Components for for NaiveAdderTarget: "int_add", "full_adder"
+    # Components for for NaiveAdderTarget: "int_add", "fp32_adder"
+    # Components for for NaiveMultiplierTarget: "fp32_mul", "int_mul"
 
-    target_component = "int_add"
+    target_component = "int_mul"
  
     # False for a quick post-synthesis estimate (-p)
     # True for a full post-implementation run (-i)
@@ -217,25 +223,34 @@ if __name__ == "__main__":
     
     synthesis_test_cases = []
 
-    if isinstance(target_operation, NaiveAdderTarget):
+    if isinstance(target_operation, (NaiveAdderTarget, NaiveMultiplierTarget)):
+        cases = []
         if target_operation.kind == "int":
             W = target_operation.width
-            # Seed some edge cases
-            seeds = [(0, 0), (1, 0), ((1 << W) - 1, 1), ((1 << W) - 1, (1 << W) - 1)]
-            synthesis_test_cases.extend(seeds[:min(len(seeds), config.NUM_ITERATIONS)])
+            # Slightly different seed sets for add vs mul (mul gets (1,1) too)
+            if isinstance(target_operation, NaiveMultiplierTarget):
+                seeds = [(0, 0), (1, 0), (1, 1),
+                        ((1 << W) - 1, 1), ((1 << W) - 1, (1 << W) - 1)]
+            else:  # NaiveAdderTarget int
+                seeds = [(0, 0), (1, 0),
+                        ((1 << W) - 1, 1), ((1 << W) - 1, (1 << W) - 1)]
+
+            cases.extend(seeds[:min(len(seeds), config.NUM_ITERATIONS)])
 
             # Fill the rest with random modular-int pairs
-            while len(synthesis_test_cases) < config.NUM_ITERATIONS:
-                x = random.randrange(0, 1 << W)
-                y = random.randrange(0, 1 << W)
-                synthesis_test_cases.append((x, y))
+            while len(cases) < config.NUM_ITERATIONS:
+                x = random.getrandbits(W)   # cleaner than randrange
+                y = random.getrandbits(W)
+                cases.append((x, y))
 
-        elif target_operation.kind == "fp32":
+        else:  # kind == "fp32"
             max_val = 1e4
-            synthesis_test_cases = [
+            cases = [
                 (random.uniform(-max_val, max_val), random.uniform(-max_val, max_val))
                 for _ in range(config.NUM_ITERATIONS)
             ]
+
+        synthesis_test_cases = cases
 
     elif isinstance(target_operation, DotProductTarget):
             vec_len = 2 

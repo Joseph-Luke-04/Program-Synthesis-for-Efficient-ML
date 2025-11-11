@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BindInfo>
+	<BindNode BINDTYPE="op" DISPLAY="bind_op mul" ID="" IMPL="auto" LATENCY="0" OPTYPE="mul" PRAGMA="" RTLNAME="mul_8s_8s_8_1_1_U1" SOURCE="/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_naivemultiplier_int_mul.cpp:4" VARIABLE="mul_ln4" MODULE="naive_int_mul" LOOP="" BUNDLEDNAME="" DSP="0" BRAM="0" URAM="0" USAGE="" STORAGESUBTYPE="" STORAGESIZE=""/>
+</BindInfo>

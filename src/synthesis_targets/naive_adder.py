@@ -86,12 +86,12 @@ class NaiveAdderTarget:
         """This target has only one component: the whole adder."""
         if self.kind == "fp32":
             return {
-                "full_adder": {
+                "fp32_adder": {
                     "template": "sygus_grammars/FP32/fp32_full_add_template.sl",
                     "generator": self.gen_constraint,
                 }
             }
-        else: # int
+        elif self.kind == "int": 
             return {
                 "int_add": {
                     "template": f"sygus_grammars/INT/int_full_add_{self.width}_template.sl",

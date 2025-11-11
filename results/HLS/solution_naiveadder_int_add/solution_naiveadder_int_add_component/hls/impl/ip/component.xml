@@ -463,8 +463,8 @@
       </xilinx:taxonomies>
       <xilinx:displayName>Naive_int_add</xilinx:displayName>
       <xilinx:definitionSource>HLS</xilinx:definitionSource>
-      <xilinx:coreRevision>2114342349</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2025-11-10T17:09:28Z</xilinx:coreCreationDateTime>
+      <xilinx:coreRevision>2114342378</xilinx:coreRevision>
+      <xilinx:coreCreationDateTime>2025-11-10T17:38:23Z</xilinx:coreCreationDateTime>
       <xilinx:sdxKernelAttributes>
         <xilinx:sdx_kernel>true</xilinx:sdx_kernel>
         <xilinx:sdx_kernel_type>hls</xilinx:sdx_kernel_type>

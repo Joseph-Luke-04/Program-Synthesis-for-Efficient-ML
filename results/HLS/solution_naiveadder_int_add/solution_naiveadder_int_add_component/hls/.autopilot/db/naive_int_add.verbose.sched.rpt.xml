@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'naive_int_add'" level="0">
-<item name = "Date">Mon Nov 10 17:09:17 2025
+<item name = "Date">Mon Nov 10 17:38:15 2025
 </item>
 <item name = "Version">2025.1 (Build 6135595 on May 21 2025)</item>
 <item name = "Project">solution_naiveadder_int_add_component</item>

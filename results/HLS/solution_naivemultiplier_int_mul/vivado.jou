@@ -1,0 +1,24 @@
+#-----------------------------------------------------------
+# Vivado v2025.1 (64-bit)
+# SW Build 6140274 on Wed May 21 22:58:25 MDT 2025
+# IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
+# SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
+# Start of session at: Tue Nov 11 12:35:00 2025
+# Process ID         : 205733
+# Current directory  : /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_naivemultiplier_int_mul
+# Command line       : vivado -mode batch -source /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_naivemultiplier_int_mul/vivado.tcl
+# Log file           : /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_naivemultiplier_int_mul/vivado.log
+# Journal file       : /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_naivemultiplier_int_mul/vivado.jou
+# Running On         : joe
+# Platform           : Ubuntu
+# Operating System   : Ubuntu 24.04.3 LTS
+# Processor Detail   : Intel(R) Core(TM) i7-10870H CPU @ 2.20GHz
+# CPU Frequency      : 3530.456 MHz
+# CPU Physical cores : 8
+# CPU Logical cores  : 16
+# Host memory        : 16592 MB
+# Swap memory        : 4294 MB
+# Total Virtual      : 20887 MB
+# Available Virtual  : 6898 MB
+#-----------------------------------------------------------
+source /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_naivemultiplier_int_mul/vivado.tcl
