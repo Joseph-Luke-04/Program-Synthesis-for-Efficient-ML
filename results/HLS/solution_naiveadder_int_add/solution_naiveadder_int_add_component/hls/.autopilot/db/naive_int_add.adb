@@ -7,7 +7,7 @@
     <cdfg class_id="1" tracking_level="1" version="0" object_id="_0">
       <name>naive_int_add</name>
       <module_structure>Sequential</module_structure>
-      <ret_bitwidth>8</ret_bitwidth>
+      <ret_bitwidth>32</ret_bitwidth>
       <ports class_id="2" tracking_level="0" version="0">
         <count>2</count>
         <item_version>0</item_version>
@@ -37,7 +37,7 @@
               <coreId>4294967295</coreId>
               <rtlModuleName></rtlModuleName>
             </Obj>
-            <bitwidth>8</bitwidth>
+            <bitwidth>32</bitwidth>
           </Value>
           <direction>0</direction>
           <if_type>0</if_type>
@@ -73,7 +73,7 @@
               <coreId>4294967295</coreId>
               <rtlModuleName></rtlModuleName>
             </Obj>
-            <bitwidth>8</bitwidth>
+            <bitwidth>32</bitwidth>
           </Value>
           <direction>0</direction>
           <if_type>0</if_type>
@@ -127,7 +127,7 @@
               <coreId>4294967295</coreId>
               <rtlModuleName></rtlModuleName>
             </Obj>
-            <bitwidth>8</bitwidth>
+            <bitwidth>32</bitwidth>
           </Value>
           <oprand_edges>
             <count>2</count>
@@ -184,7 +184,7 @@
               <coreId>4294967295</coreId>
               <rtlModuleName></rtlModuleName>
             </Obj>
-            <bitwidth>8</bitwidth>
+            <bitwidth>32</bitwidth>
           </Value>
           <oprand_edges>
             <count>2</count>
@@ -241,7 +241,7 @@
               <coreId>1</coreId>
               <rtlModuleName></rtlModuleName>
             </Obj>
-            <bitwidth>8</bitwidth>
+            <bitwidth>32</bitwidth>
           </Value>
           <oprand_edges>
             <count>2</count>
@@ -254,7 +254,7 @@
           <m_isOnCriticalPath>0</m_isOnCriticalPath>
           <m_isLCDNode>0</m_isLCDNode>
           <m_isStartOfPath>0</m_isStartOfPath>
-          <m_delay>1.91</m_delay>
+          <m_delay>2.55</m_delay>
           <m_topoIndex>3</m_topoIndex>
           <m_clusterGroupNumber>-1</m_clusterGroupNumber>
         </item>
@@ -506,11 +506,11 @@
             <item_version>0</item_version>
             <item class_id="33" tracking_level="0" version="0">
               <first>(0P0)</first>
-              <second>8</second>
+              <second>32</second>
             </item>
             <item>
               <first>(1P1)</first>
-              <second>8</second>
+              <second>32</second>
             </item>
             <item>
               <first>FF</first>
@@ -518,7 +518,7 @@
             </item>
             <item>
               <first>LUT</first>
-              <second>15</second>
+              <second>39</second>
             </item>
           </second>
         </item>
@@ -619,7 +619,7 @@
       <count>3</count>
       <item_version>0</item_version>
       <item class_id="44" tracking_level="0" version="0">
-        <first>24</first>
+        <first>22</first>
         <second>
           <count>1</count>
           <item_version>0</item_version>
@@ -627,7 +627,7 @@
         </second>
       </item>
       <item>
-        <first>30</first>
+        <first>28</first>
         <second>
           <count>1</count>
           <item_version>0</item_version>
@@ -635,7 +635,7 @@
         </second>
       </item>
       <item>
-        <first>36</first>
+        <first>34</first>
         <second>
           <count>1</count>
           <item_version>0</item_version>
@@ -647,7 +647,7 @@
       <count>1</count>
       <item_version>0</item_version>
       <item class_id="47" tracking_level="0" version="0">
-        <first>add_ln4_fu_36</first>
+        <first>add_ln4_fu_34</first>
         <second>
           <count>1</count>
           <item_version>0</item_version>
@@ -663,7 +663,7 @@
       <count>2</count>
       <item_version>0</item_version>
       <item>
-        <first>x_read_read_fu_30</first>
+        <first>x_read_read_fu_28</first>
         <second>
           <count>1</count>
           <item_version>0</item_version>
@@ -671,7 +671,7 @@
         </second>
       </item>
       <item>
-        <first>y_read_read_fu_24</first>
+        <first>y_read_read_fu_22</first>
         <second>
           <count>1</count>
           <item_version>0</item_version>

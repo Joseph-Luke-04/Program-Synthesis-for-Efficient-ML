@@ -4,7 +4,7 @@
 == Synthesis Summary Report of 'mult_mxint_mant'
 ================================================================
 + General Information: 
-    * Date:           Mon Nov 10 17:40:40 2025
+    * Date:           Wed Nov 12 13:37:20 2025
     * Version:        2025.1 (Build 6135595 on May 21 2025)
     * Project:        solution_multiplication_mant_component
     * Solution:       hls (Vivado IP Flow Target)

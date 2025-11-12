@@ -1,3 +1,3 @@
-unsigned char naive_int_add(unsigned char x, unsigned char y) {
+unsigned int naive_int_add(unsigned int x, unsigned int y) {
   return x + y;
 }

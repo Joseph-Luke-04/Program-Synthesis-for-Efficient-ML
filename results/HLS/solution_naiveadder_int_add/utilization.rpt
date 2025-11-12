@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2025.1 (lin64) Build 6140274 Wed May 21 22:58:25 MDT 2025
-| Date         : Mon Nov 10 17:39:26 2025
+| Date         : Wed Nov 12 13:40:59 2025
 | Host         : joe running 64-bit Ubuntu 24.04.3 LTS
 | Command      : report_utilization -file /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_naiveadder_int_add/utilization.rpt
 | Design       : naive_int_add
@@ -32,8 +32,8 @@ Table of Contents
 +-------------------------+------+-------+------------+-----------+-------+
 |        Site Type        | Used | Fixed | Prohibited | Available | Util% |
 +-------------------------+------+-------+------------+-----------+-------+
-| Slice LUTs              |    8 |     0 |          0 |     53200 |  0.02 |
-|   LUT as Logic          |    8 |     0 |          0 |     53200 |  0.02 |
+| Slice LUTs              |   32 |     0 |          0 |     53200 |  0.06 |
+|   LUT as Logic          |   32 |     0 |          0 |     53200 |  0.06 |
 |   LUT as Memory         |    0 |     0 |          0 |     17400 |  0.00 |
 | Slice Registers         |    0 |     0 |          0 |    106400 |  0.00 |
 |   Register as Flip Flop |    0 |     0 |          0 |    106400 |  0.00 |
@@ -69,12 +69,12 @@ Table of Contents
 +------------------------------------------+------+-------+------------+-----------+-------+
 |                 Site Type                | Used | Fixed | Prohibited | Available | Util% |
 +------------------------------------------+------+-------+------------+-----------+-------+
-| Slice                                    |    2 |     0 |          0 |     13300 |  0.02 |
-|   SLICEL                                 |    0 |     0 |            |           |       |
-|   SLICEM                                 |    2 |     0 |            |           |       |
-| LUT as Logic                             |    8 |     0 |          0 |     53200 |  0.02 |
+| Slice                                    |    8 |     0 |          0 |     13300 |  0.06 |
+|   SLICEL                                 |    8 |     0 |            |           |       |
+|   SLICEM                                 |    0 |     0 |            |           |       |
+| LUT as Logic                             |   32 |     0 |          0 |     53200 |  0.06 |
 |   using O5 output only                   |    0 |       |            |           |       |
-|   using O6 output only                   |    8 |       |            |           |       |
+|   using O6 output only                   |   32 |       |            |           |       |
 |   using O5 and O6                        |    0 |       |            |           |       |
 | LUT as Memory                            |    0 |     0 |          0 |     17400 |  0.00 |
 |   LUT as Distributed RAM                 |    0 |     0 |            |           |       |
@@ -122,9 +122,9 @@ Table of Contents
 +-----------------------------+------+-------+------------+-----------+-------+
 |          Site Type          | Used | Fixed | Prohibited | Available | Util% |
 +-----------------------------+------+-------+------------+-----------+-------+
-| Bonded IOB                  |   28 |     0 |          0 |       125 | 22.40 |
-|   IOB Master Pads           |   13 |       |            |           |       |
-|   IOB Slave Pads            |   14 |       |            |           |       |
+| Bonded IOB                  |  100 |     0 |          0 |       125 | 80.00 |
+|   IOB Master Pads           |   48 |       |            |           |       |
+|   IOB Slave Pads            |   50 |       |            |           |       |
 | Bonded IPADs                |    0 |     0 |          0 |         2 |  0.00 |
 | Bonded IOPADs               |    0 |     0 |          0 |       130 |  0.00 |
 | PHY_CONTROL                 |    0 |     0 |          0 |         4 |  0.00 |
@@ -180,10 +180,10 @@ Table of Contents
 +----------+------+---------------------+
 | Ref Name | Used | Functional Category |
 +----------+------+---------------------+
-| IBUF     |   17 |                  IO |
-| OBUF     |   11 |                  IO |
-| LUT2     |    8 |                 LUT |
-| CARRY4   |    2 |          CarryLogic |
+| IBUF     |   65 |                  IO |
+| OBUF     |   35 |                  IO |
+| LUT2     |   32 |                 LUT |
+| CARRY4   |    8 |          CarryLogic |
 +----------+------+---------------------+
 
 

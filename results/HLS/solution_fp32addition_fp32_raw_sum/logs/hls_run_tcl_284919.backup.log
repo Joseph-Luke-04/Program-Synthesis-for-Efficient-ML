@@ -1,0 +1,31 @@
+  **** HLS Build v2025.1 6135595
+Sourcing Tcl script '/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_raw_sum/hls.tcl'
+INFO: [HLS 200-1510] Running: open_component -reset solution_fp32addition_fp32_raw_sum_component -flow_target vivado 
+INFO: [HLS 200-10] Creating and opening component '/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_raw_sum/solution_fp32addition_fp32_raw_sum_component'.
+INFO: [HLS 200-10] Cleaning up the component database.
+INFO: [HLS 200-1505] Using flow_target 'vivado'
+Resolution: For help on HLS 200-1505 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2025.1%20English&url=ug1448-hls-guidance&resourceid=200-1505.html
+INFO: [HLS 200-2176] Writing Vitis IDE component file /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_raw_sum/solution_fp32addition_fp32_raw_sum_component/vitis-comp.json
+INFO: [HLS 200-1915] Writing HLS config ini file /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_raw_sum/solution_fp32addition_fp32_raw_sum_component/hls_config.cfg
+INFO: [HLS 200-1510] Running: set_top fp32_raw_summer 
+INFO: [HLS 200-1510] Running: add_files /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_raw_sum.cpp 
+INFO: [HLS 200-10] Adding design file '/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_raw_sum.cpp' to the project
+INFO: [HLS 200-1510] Running: set_part xc7z020clg400-1 
+INFO: [HLS 200-1611] Setting target device to 'xc7z020-clg400-1'
+INFO: [HLS 200-1510] Running: create_clock -period 1000000000ns 
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 1e+09ns.
+INFO: [HLS 200-1510] Running: csynth_design 
+INFO: [HLS 200-1915] Writing HLS config ini file /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_raw_sum/solution_fp32addition_fp32_raw_sum_component/hls_config.cfg
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.41 seconds. CPU system time: 0.04 seconds. Elapsed time: 2.96 seconds; current allocated memory: 264.742 MB.
+INFO: [HLS 200-10] Analyzing design file '/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_raw_sum.cpp' ... 
+ERROR: [HLS 207-2359] conditional expression is ambiguous; 'ap_uint<57 aka 57>' can be converted to 'ap_uint<25>' and vice versa (/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_raw_sum.cpp:4:212)
+INFO: [HLS 200-2161] Finished Command csynth_design Elapsed time: 00:00:03; Allocated memory: 17.098 MB.
+ 
+    while executing
+"source /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_raw_sum/hls.tcl"
+    ("uplevel" body line 1)
+    invoked from within
+"uplevel \#0 [list source $tclfile] "
+
+INFO: [HLS 200-112] Total CPU user time: 1.94 seconds. Total CPU system time: 0.36 seconds. Total elapsed time: 4.72 seconds; peak allocated memory: 265.840 MB.
+INFO: [vitis-run 60-1662] Stopping dispatch session having empty uuid.

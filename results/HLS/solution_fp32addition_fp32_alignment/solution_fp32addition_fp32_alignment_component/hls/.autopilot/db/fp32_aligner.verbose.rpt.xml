@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'fp32_aligner'" level="0">
-<item name = "Date">Tue Nov  4 15:43:49 2025
+<item name = "Date">Tue Nov 11 16:13:55 2025
 </item>
 <item name = "Version">2025.1 (Build 6135595 on May 21 2025)</item>
 <item name = "Project">solution_fp32addition_fp32_alignment_component</item>
@@ -47,7 +47,7 @@
 <item name = "Summary"><table name="" hasTotal="1">
 <keys size="6">Name, BRAM_18K, DSP, FF, LUT, URAM</keys>
 <column name="DSP">-, -, -, -, -</column>
-<column name="Expression">-, -, 0, 265, -</column>
+<column name="Expression">-, -, 0, 267, -</column>
 <column name="FIFO">-, -, -, -, -</column>
 <column name="Instance">-, -, -, -, -</column>
 <column name="Memory">-, -, -, -, -</column>
@@ -77,16 +77,16 @@
 </item>
 <item name = "Expression"><table name="" hasTotal="1">
 <keys size="7">Variable Name, Operation, DSP, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
-<column name="sub_ln4_1_fu_126_p2">-, 0, 0, 14, 9, 9</column>
-<column name="sub_ln4_fu_110_p2">-, 0, 0, 14, 9, 9</column>
+<column name="sub_ln4_1_fu_118_p2">-, 0, 0, 15, 8, 8</column>
+<column name="sub_ln4_fu_102_p2">-, 0, 0, 15, 8, 8</column>
 <column name="icmp_ln4_1_fu_74_p2">icmp, 0, 0, 15, 8, 1</column>
 <column name="icmp_ln4_2_fu_88_p2">icmp, 0, 0, 15, 8, 1</column>
 <column name="icmp_ln4_fu_62_p2">icmp, 0, 0, 15, 8, 8</column>
-<column name="lshr_ln4_1_fu_136_p2">lshr, 0, 0, 67, 24, 24</column>
-<column name="lshr_ln4_fu_120_p2">lshr, 0, 0, 67, 24, 24</column>
-<column name="select_ln4_fu_166_p3">select, 0, 0, 8, 1, 8</column>
-<column name="tmp32_0_fu_158_p3">select, 0, 0, 24, 1, 24</column>
-<column name="tmp_0571_fu_150_p3">select, 0, 0, 24, 1, 24</column>
+<column name="lshr_ln4_1_fu_128_p2">lshr, 0, 0, 67, 24, 24</column>
+<column name="lshr_ln4_fu_112_p2">lshr, 0, 0, 67, 24, 24</column>
+<column name="select_ln4_fu_158_p3">select, 0, 0, 8, 1, 8</column>
+<column name="tmp32_0_fu_150_p3">select, 0, 0, 24, 1, 24</column>
+<column name="tmp_0514_fu_142_p3">select, 0, 0, 24, 1, 24</column>
 <column name="xor_ln4_fu_68_p2">xor, 0, 0, 2, 1, 2</column>
 </table>
 </item>

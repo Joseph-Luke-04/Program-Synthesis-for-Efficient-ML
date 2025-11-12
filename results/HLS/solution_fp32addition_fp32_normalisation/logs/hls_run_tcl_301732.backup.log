@@ -1,0 +1,50 @@
+  **** HLS Build v2025.1 6135595
+Sourcing Tcl script '/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_normalisation/hls.tcl'
+INFO: [HLS 200-1510] Running: open_component -reset solution_fp32addition_fp32_normalisation_component -flow_target vivado 
+INFO: [HLS 200-10] Creating and opening component '/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_normalisation/solution_fp32addition_fp32_normalisation_component'.
+INFO: [HLS 200-10] Cleaning up the component database.
+INFO: [HLS 200-1505] Using flow_target 'vivado'
+Resolution: For help on HLS 200-1505 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2025.1%20English&url=ug1448-hls-guidance&resourceid=200-1505.html
+INFO: [HLS 200-2176] Writing Vitis IDE component file /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_normalisation/solution_fp32addition_fp32_normalisation_component/vitis-comp.json
+INFO: [HLS 200-1915] Writing HLS config ini file /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_normalisation/solution_fp32addition_fp32_normalisation_component/hls_config.cfg
+INFO: [HLS 200-1510] Running: set_top fp32_normaliser 
+INFO: [HLS 200-1510] Running: add_files /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_normalisation.cpp 
+INFO: [HLS 200-10] Adding design file '/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_normalisation.cpp' to the project
+INFO: [HLS 200-1510] Running: set_part xc7z020clg400-1 
+INFO: [HLS 200-1611] Setting target device to 'xc7z020-clg400-1'
+INFO: [HLS 200-1510] Running: create_clock -period 1000000000ns 
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 1e+09ns.
+INFO: [HLS 200-1510] Running: csynth_design 
+INFO: [HLS 200-1915] Writing HLS config ini file /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_normalisation/solution_fp32addition_fp32_normalisation_component/hls_config.cfg
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.65 seconds. CPU system time: 0.06 seconds. Elapsed time: 3.28 seconds; current allocated memory: 264.723 MB.
+INFO: [HLS 200-10] Analyzing design file '/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_normalisation.cpp' ... 
+ERROR: [HLS 207-2359] conditional expression is ambiguous; 'ap_uint<8>' can be converted to 'ap_uint<26 aka 26>' and vice versa (/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_normalisation.cpp:4:123)
+ERROR: [HLS 207-1186] expected expression (/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_normalisation.cpp:4:221)
+ERROR: [HLS 207-1186] expected expression (/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_normalisation.cpp:4:306)
+ERROR: [HLS 207-1186] expected expression (/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_normalisation.cpp:4:391)
+ERROR: [HLS 207-1186] expected expression (/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_normalisation.cpp:4:477)
+ERROR: [HLS 207-1186] expected expression (/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_normalisation.cpp:4:563)
+ERROR: [HLS 207-1186] expected expression (/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_normalisation.cpp:4:649)
+ERROR: [HLS 207-1186] expected expression (/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_normalisation.cpp:4:735)
+ERROR: [HLS 207-1186] expected expression (/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_normalisation.cpp:4:821)
+ERROR: [HLS 207-1186] expected expression (/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_normalisation.cpp:4:907)
+ERROR: [HLS 207-1186] expected expression (/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_normalisation.cpp:4:993)
+ERROR: [HLS 207-1186] expected expression (/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_normalisation.cpp:4:1079)
+ERROR: [HLS 207-1186] expected expression (/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_normalisation.cpp:4:1165)
+ERROR: [HLS 207-1186] expected expression (/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_normalisation.cpp:4:1252)
+ERROR: [HLS 207-1186] expected expression (/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_normalisation.cpp:4:1339)
+ERROR: [HLS 207-1186] expected expression (/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_normalisation.cpp:4:1426)
+ERROR: [HLS 207-1186] expected expression (/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_normalisation.cpp:4:1511)
+ERROR: [HLS 207-1186] expected expression (/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_normalisation.cpp:4:1596)
+ERROR: [HLS 207-1186] expected expression (/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_normalisation.cpp:4:1681)
+ERROR: [HLS 207-59] too many errors emitted, stopping now
+INFO: [HLS 200-2161] Finished Command csynth_design Elapsed time: 00:00:04; Allocated memory: 17.266 MB.
+ 
+    while executing
+"source /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_normalisation/hls.tcl"
+    ("uplevel" body line 1)
+    invoked from within
+"uplevel \#0 [list source $tclfile] "
+
+INFO: [HLS 200-112] Total CPU user time: 2.83 seconds. Total CPU system time: 0.65 seconds. Total elapsed time: 6.71 seconds; peak allocated memory: 265.988 MB.
+INFO: [vitis-run 60-1662] Stopping dispatch session having empty uuid.

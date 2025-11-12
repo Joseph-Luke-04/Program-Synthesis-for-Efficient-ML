@@ -130,7 +130,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>e11a509c</spirit:value>
+            <spirit:value>2f8f9744</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -146,7 +146,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>e8538257</spirit:value>
+            <spirit:value>0e7bb045</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -162,7 +162,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>0c198b0d</spirit:value>
+            <spirit:value>98083227</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -178,7 +178,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>721f19e6</spirit:value>
+            <spirit:value>97ab40b5</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -291,7 +291,7 @@
         <spirit:wire>
           <spirit:direction>out</spirit:direction>
           <spirit:vector>
-            <spirit:left spirit:format="long">7</spirit:left>
+            <spirit:left spirit:format="long">31</spirit:left>
             <spirit:right spirit:format="long">0</spirit:right>
           </spirit:vector>
           <spirit:wireTypeDefs>
@@ -321,7 +321,7 @@
         <spirit:wire>
           <spirit:direction>in</spirit:direction>
           <spirit:vector>
-            <spirit:left spirit:format="long">7</spirit:left>
+            <spirit:left spirit:format="long">31</spirit:left>
             <spirit:right spirit:format="long">0</spirit:right>
           </spirit:vector>
           <spirit:wireTypeDefs>
@@ -338,7 +338,7 @@
         <spirit:wire>
           <spirit:direction>in</spirit:direction>
           <spirit:vector>
-            <spirit:left spirit:format="long">7</spirit:left>
+            <spirit:left spirit:format="long">31</spirit:left>
             <spirit:right spirit:format="long">0</spirit:right>
           </spirit:vector>
           <spirit:wireTypeDefs>
@@ -383,7 +383,7 @@
       <spirit:file>
         <spirit:name>hdl/vhdl/naive_int_add.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_721f19e6</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_97ab40b5</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
@@ -463,8 +463,8 @@
       </xilinx:taxonomies>
       <xilinx:displayName>Naive_int_add</xilinx:displayName>
       <xilinx:definitionSource>HLS</xilinx:definitionSource>
-      <xilinx:coreRevision>2114342378</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2025-11-10T17:38:23Z</xilinx:coreCreationDateTime>
+      <xilinx:coreRevision>2114345019</xilinx:coreRevision>
+      <xilinx:coreCreationDateTime>2025-11-12T13:39:56Z</xilinx:coreCreationDateTime>
       <xilinx:sdxKernelAttributes>
         <xilinx:sdx_kernel>true</xilinx:sdx_kernel>
         <xilinx:sdx_kernel_type>hls</xilinx:sdx_kernel_type>
@@ -473,8 +473,8 @@
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2025.1</xilinx:xilinxVersion>
       <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="f0115f74"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="e1f0d3c8"/>
-      <xilinx:checksum xilinx:scope="ports" xilinx:value="274a138f"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="ee9a1e14"/>
+      <xilinx:checksum xilinx:scope="ports" xilinx:value="e6c03bff"/>
       <xilinx:checksum xilinx:scope="parameters" xilinx:value="9cb80970"/>
     </xilinx:packagingInfo>
   </spirit:vendorExtensions>

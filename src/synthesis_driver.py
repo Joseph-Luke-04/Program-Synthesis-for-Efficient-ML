@@ -205,17 +205,17 @@ if __name__ == "__main__":
     # NaiveMultiplierTarget(kind="int", width=32 or 8)
     # NaiveMultiplierTarget(kind="fp32")
 
-    target_operation = NaiveMultiplierTarget(kind="int", width=32)
+    target_operation = FP32AdditionTarget()
     
     # Components for AdditionTarget: "alignment", "raw_sum", "overflow"
     # Components for MultiplicationTarget: "renorm_flag", "mant", "exp"
-    # Components for FP32AdditionTarget: "fp32_alignment", "raw_sum", "fp32_normalisation"
+    # Components for FP32AdditionTarget: "fp32_alignment", "fp32_raw_sum", "fp32_normalisation", "fp32_full_sum"
     # Components for FP32MultiplicationTarget: "fp32_mantissa", "fp32_exponent"
     
     # Components for for NaiveAdderTarget: "int_add", "fp32_adder"
     # Components for for NaiveMultiplierTarget: "fp32_mul", "int_mul"
 
-    target_component = "int_mul"
+    target_component = "fp32_full_sum"
  
     # False for a quick post-synthesis estimate (-p)
     # True for a full post-implementation run (-i)

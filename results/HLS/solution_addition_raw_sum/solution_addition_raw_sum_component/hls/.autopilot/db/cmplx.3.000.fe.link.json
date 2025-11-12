@@ -1,20 +1,56 @@
 {
   "0": {
-    "basicblocks": 40,
-    "calls": "",
+    "basicblocks": 1,
+    "calls": "2 2 1",
     "control_depth": 0,
     "def_use_depth": 2,
     "file": "solution_addition_raw_sum.cpp",
-    "fileloc": 3,
-    "instructions": 335,
+    "fileloc": 11,
+    "instructions": 116,
     "loads": {
-      "L": 7
+      "L": 1
     },
     "memory_accesses": 0,
     "name": "add_raw",
     "stores": {
       "L": 10
     },
-    "total_instructions": 3036
+    "total_instructions": 3044
+  },
+  "1": {
+    "basicblocks": 4,
+    "calls": "",
+    "control_depth": 0,
+    "def_use_depth": 2,
+    "file": "solution_addition_raw_sum.cpp",
+    "fileloc": 3,
+    "instructions": 19,
+    "loads": {
+      "L": 2
+    },
+    "memory_accesses": 0,
+    "name": "select_exponent",
+    "stores": {
+      "L": 2
+    },
+    "total_instructions": 101
+  },
+  "2": {
+    "basicblocks": 19,
+    "calls": "",
+    "control_depth": 0,
+    "def_use_depth": 2,
+    "file": "solution_addition_raw_sum.cpp",
+    "fileloc": 7,
+    "instructions": 116,
+    "loads": {
+      "L": 2
+    },
+    "memory_accesses": 0,
+    "name": "align_mantissas",
+    "stores": {
+      "L": 2
+    },
+    "total_instructions": 1190
   }
 }

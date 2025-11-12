@@ -4,7 +4,7 @@
 == Synthesis Summary Report of 'naive_int_add'
 ================================================================
 + General Information: 
-    * Date:           Mon Nov 10 17:38:15 2025
+    * Date:           Wed Nov 12 13:39:48 2025
     * Version:        2025.1 (Build 6135595 on May 21 2025)
     * Project:        solution_naiveadder_int_add_component
     * Solution:       hls (Vivado IP Flow Target)
@@ -19,7 +19,7 @@
     |     Modules     |  Issue  |       |     Latency     | Iteration|         | Trip |          |      |    |   |          |     |
     |     & Loops     |   Type  | Slack | (cycles)|  (ns) |  Latency | Interval| Count| Pipelined| BRAM | DSP| FF|    LUT   | URAM|
     +-----------------+---------+-------+---------+-------+----------+---------+------+----------+------+----+---+----------+-----+
-    |+ naive_int_add  |   Timing|  -1.91|        0|  0.000|         -|        1|     -|        no|     -|   -|  -|  15 (~0%)|    -|
+    |+ naive_int_add  |   Timing|  -2.55|        0|  0.000|         -|        1|     -|        no|     -|   -|  -|  39 (~0%)|    -|
     +-----------------+---------+-------+---------+-------+----------+---------+------+----------+------+----+---+----------+-----+
 
 
@@ -30,9 +30,9 @@
 +-----------+---------+-----------+----------+
 | Port      | Mode    | Direction | Bitwidth |
 +-----------+---------+-----------+----------+
-| ap_return |         | out       | 8        |
-| x         | ap_none | in        | 8        |
-| y         | ap_none | in        | 8        |
+| ap_return |         | out       | 32       |
+| x         | ap_none | in        | 32       |
+| y         | ap_none | in        | 32       |
 +-----------+---------+-----------+----------+
 
 * TOP LEVEL CONTROL
@@ -48,13 +48,13 @@
 == SW I/O Information
 ================================================================
 * Top Function Arguments
-+----------+-----------+------------+
-| Argument | Direction | Datatype   |
-+----------+-----------+------------+
-| x        | in        | ap_uint<8> |
-| y        | in        | ap_uint<8> |
-| return   | out       | ap_uint<8> |
-+----------+-----------+------------+
++----------+-----------+-------------+
+| Argument | Direction | Datatype    |
++----------+-----------+-------------+
+| x        | in        | ap_uint<32> |
+| y        | in        | ap_uint<32> |
+| return   | out       | ap_uint<32> |
++----------+-----------+-------------+
 
 * SW-to-HW Mapping
 +----------+--------------+---------+

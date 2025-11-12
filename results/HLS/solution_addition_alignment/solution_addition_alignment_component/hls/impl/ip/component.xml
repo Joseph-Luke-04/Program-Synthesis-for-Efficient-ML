@@ -463,8 +463,8 @@
       </xilinx:taxonomies>
       <xilinx:displayName>Select_exponent</xilinx:displayName>
       <xilinx:definitionSource>HLS</xilinx:definitionSource>
-      <xilinx:coreRevision>2114333626</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2025-11-04T15:46:14Z</xilinx:coreCreationDateTime>
+      <xilinx:coreRevision>2114345010</xilinx:coreRevision>
+      <xilinx:coreCreationDateTime>2025-11-12T13:30:50Z</xilinx:coreCreationDateTime>
       <xilinx:sdxKernelAttributes>
         <xilinx:sdx_kernel>true</xilinx:sdx_kernel>
         <xilinx:sdx_kernel_type>hls</xilinx:sdx_kernel_type>

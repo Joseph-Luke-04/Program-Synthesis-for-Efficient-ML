@@ -1,1 +1,1 @@
-(define-fun naive_int_add ((x (_ BitVec 8)) (y (_ BitVec 8))) (_ BitVec 8) (bvadd x y))
+(define-fun naive_int_add ((x (_ BitVec 32)) (y (_ BitVec 32))) (_ BitVec 32) (bvadd x y))

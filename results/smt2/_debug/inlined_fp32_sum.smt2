@@ -1,0 +1,1 @@
+(define-fun fp32_sum ((s1 (_ BitVec 1)) (e1 (_ BitVec 8)) (m1 (_ BitVec 23)) (s2 (_ BitVec 1)) (e2 (_ BitVec 8)) (m2 (_ BitVec 23))) (_ BitVec 32) (let ((_let_1 (fp32_aligner e1 m1 e2 m2))) (let ((_let_2 (fp32_raw_summer s1 ((_ extract 55 32) _let_1) s2 ((_ extract 31 8) _let_1)))) (fp32_normaliser ((_ extract 24 0) _let_2) ((_ extract 25 25) _let_2) ((_ extract 7 0) _let_1)))))

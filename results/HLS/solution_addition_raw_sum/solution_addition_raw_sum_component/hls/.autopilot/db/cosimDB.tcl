@@ -20,4 +20,4 @@ set RtlHierarchyInfo {[
 			{"Name" : "e1", "Type" : "None", "Direction" : "I"},
 			{"Name" : "m2", "Type" : "None", "Direction" : "I"},
 			{"Name" : "e2", "Type" : "None", "Direction" : "I"}]},
-	{"ID" : "1", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.sparsemux_7_2_3_1_1_U1", "Parent" : "0"}]}
+	{"ID" : "1", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.sparsemux_7_2_4_1_1_U1", "Parent" : "0"}]}

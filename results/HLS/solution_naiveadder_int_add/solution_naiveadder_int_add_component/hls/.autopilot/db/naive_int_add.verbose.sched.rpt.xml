@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'naive_int_add'" level="0">
-<item name = "Date">Mon Nov 10 17:38:15 2025
+<item name = "Date">Wed Nov 12 13:39:48 2025
 </item>
 <item name = "Version">2025.1 (Build 6135595 on May 21 2025)</item>
 <item name = "Project">solution_naiveadder_int_add_component</item>
@@ -15,7 +15,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="4">Clock, Target, Estimated, Uncertainty</keys>
-<column name="ap_clk">1.00 sec, 1.915 ns, 0.27 sec</column>
+<column name="ap_clk">1.00 sec, 2.552 ns, 0.27 sec</column>
 </table>
 </item>
 </section>

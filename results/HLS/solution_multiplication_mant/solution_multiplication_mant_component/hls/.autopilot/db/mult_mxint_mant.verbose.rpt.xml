@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'mult_mxint_mant'" level="0">
-<item name = "Date">Mon Nov 10 17:40:40 2025
+<item name = "Date">Wed Nov 12 13:37:20 2025
 </item>
 <item name = "Version">2025.1 (Build 6135595 on May 21 2025)</item>
 <item name = "Project">solution_multiplication_mant_component</item>

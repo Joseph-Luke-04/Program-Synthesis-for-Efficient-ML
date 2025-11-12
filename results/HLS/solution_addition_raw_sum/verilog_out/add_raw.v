@@ -6,7 +6,7 @@
 
 `timescale 1 ns / 1 ps 
 
-(* CORE_GENERATION_INFO="add_raw_add_raw,hls_ip_2025_1,{HLS_INPUT_TYPE=cxx,HLS_INPUT_FLOAT=0,HLS_INPUT_FIXED=0,HLS_INPUT_PART=xc7z020-clg400-1,HLS_INPUT_CLOCK=1000000000.000000,HLS_INPUT_ARCH=others,HLS_SYN_CLOCK=7.455500,HLS_SYN_LAT=0,HLS_SYN_TPT=none,HLS_SYN_MEM=0,HLS_SYN_DSP=0,HLS_SYN_FF=0,HLS_SYN_LUT=136,HLS_VERSION=2025_1}" *)
+(* CORE_GENERATION_INFO="add_raw_add_raw,hls_ip_2025_1,{HLS_INPUT_TYPE=cxx,HLS_INPUT_FLOAT=0,HLS_INPUT_FIXED=0,HLS_INPUT_PART=xc7z020-clg400-1,HLS_INPUT_CLOCK=1000000000.000000,HLS_INPUT_ARCH=others,HLS_SYN_CLOCK=7.455500,HLS_SYN_LAT=0,HLS_SYN_TPT=none,HLS_SYN_MEM=0,HLS_SYN_DSP=0,HLS_SYN_FF=0,HLS_SYN_LUT=76,HLS_VERSION=2025_1}" *)
 
 module add_raw (
         ap_start,
@@ -33,57 +33,46 @@ input  [3:0] e2;
 output  [8:0] ap_return;
 input   ap_rst;
 
-wire  signed [3:0] empty_fu_70_p0;
-wire   [0:0] icmp_ln4_fu_74_p2;
-wire   [3:0] sub_ln4_fu_86_p2;
-wire  signed [3:0] sext_ln4_fu_100_p0;
-wire  signed [3:0] zext_ln4_fu_104_p0;
-wire   [3:0] sub_ln4_1_fu_108_p2;
-wire   [15:0] zext_ln4_fu_104_p1;
-wire   [15:0] zext_ln4_1_fu_114_p1;
-wire   [15:0] shl_ln4_fu_118_p2;
-wire  signed [17:0] sext_ln4_fu_100_p1;
-wire   [17:0] zext_ln4_3_fu_128_p1;
-wire   [17:0] ashr_ln4_fu_132_p2;
-wire   [0:0] xor_ln4_1_fu_80_p2;
-wire   [0:0] tmp_fu_92_p3;
-wire   [0:0] and_ln4_fu_142_p2;
-wire   [0:0] xor_ln4_fu_148_p2;
-wire   [2:0] ref_tmp21_s_fu_162_p2;
-wire   [2:0] ref_tmp21_s_fu_162_p4;
-wire   [2:0] ref_tmp21_s_fu_162_p6;
-wire   [2:0] ref_tmp21_s_fu_162_p7;
-wire   [1:0] ref_tmp21_s_fu_162_p8;
-wire   [2:0] ref_tmp21_s_fu_162_p9;
-wire   [3:0] select_ln4_fu_182_p3;
-wire   [7:0] tmp_5_fu_190_p4;
-wire  signed [1:0] ref_tmp21_s_fu_162_p1;
-wire   [1:0] ref_tmp21_s_fu_162_p3;
-wire   [1:0] ref_tmp21_s_fu_162_p5;
+wire   [0:0] icmp_ln8_fu_70_p2;
+wire   [3:0] sub_ln8_fu_82_p2;
+wire   [3:0] sub_ln8_1_fu_96_p2;
+wire   [0:0] xor_ln8_1_fu_76_p2;
+wire   [0:0] tmp_fu_88_p3;
+wire   [0:0] and_ln8_fu_114_p2;
+wire   [0:0] xor_ln8_fu_120_p2;
+wire   [3:0] ref_tmp9_0_i_fu_134_p2;
+wire   [3:0] ref_tmp9_0_i_fu_134_p6;
+wire   [3:0] ref_tmp9_0_i_fu_134_p7;
+wire   [1:0] ref_tmp9_0_i_fu_134_p8;
+wire   [3:0] ref_tmp9_0_i_fu_134_p9;
+wire   [3:0] select_ln4_fu_154_p3;
+wire  signed [1:0] ref_tmp9_0_i_fu_134_p1;
+wire   [1:0] ref_tmp9_0_i_fu_134_p3;
+wire   [1:0] ref_tmp9_0_i_fu_134_p5;
 wire    ap_ce_reg;
 
-(* dissolve_hierarchy = "yes" *) add_raw_sparsemux_7_2_3_1_1 #(
+(* dissolve_hierarchy = "yes" *) add_raw_sparsemux_7_2_4_1_1 #(
     .ID( 1 ),
     .NUM_STAGE( 1 ),
     .CASE0( 2'h2 ),
-    .din0_WIDTH( 3 ),
+    .din0_WIDTH( 4 ),
     .CASE1( 2'h1 ),
-    .din1_WIDTH( 3 ),
+    .din1_WIDTH( 4 ),
     .CASE2( 2'h0 ),
-    .din2_WIDTH( 3 ),
-    .def_WIDTH( 3 ),
+    .din2_WIDTH( 4 ),
+    .def_WIDTH( 4 ),
     .sel_WIDTH( 2 ),
-    .dout_WIDTH( 3 ))
-sparsemux_7_2_3_1_1_U1(
-    .din0(ref_tmp21_s_fu_162_p2),
-    .din1(ref_tmp21_s_fu_162_p4),
-    .din2(ref_tmp21_s_fu_162_p6),
-    .def(ref_tmp21_s_fu_162_p7),
-    .sel(ref_tmp21_s_fu_162_p8),
-    .dout(ref_tmp21_s_fu_162_p9)
+    .dout_WIDTH( 4 ))
+sparsemux_7_2_4_1_1_U1(
+    .din0(ref_tmp9_0_i_fu_134_p2),
+    .din1(m2),
+    .din2(ref_tmp9_0_i_fu_134_p6),
+    .def(ref_tmp9_0_i_fu_134_p7),
+    .sel(ref_tmp9_0_i_fu_134_p8),
+    .dout(ref_tmp9_0_i_fu_134_p9)
 );
 
-assign and_ln4_fu_142_p2 = (xor_ln4_1_fu_80_p2 & tmp_fu_92_p3);
+assign and_ln8_fu_114_p2 = (xor_ln8_1_fu_76_p2 & tmp_fu_88_p3);
 
 assign ap_done = ap_start;
 
@@ -91,50 +80,28 @@ assign ap_idle = 1'b1;
 
 assign ap_ready = ap_start;
 
-assign ap_return = tmp_5_fu_190_p4;
+assign ap_return = {{{ref_tmp9_0_i_fu_134_p9}, {1'd0}}, {select_ln4_fu_154_p3}};
 
-assign ashr_ln4_fu_132_p2 = $signed(sext_ln4_fu_100_p1) >>> zext_ln4_3_fu_128_p1;
+assign icmp_ln8_fu_70_p2 = (($signed(e1) < $signed(e2)) ? 1'b1 : 1'b0);
 
-assign icmp_ln4_fu_74_p2 = (($signed(e1) < $signed(e2)) ? 1'b1 : 1'b0);
+assign select_ln4_fu_154_p3 = ((xor_ln8_1_fu_76_p2[0:0] == 1'b1) ? e1 : e2);
 
-assign select_ln4_fu_182_p3 = ((xor_ln4_1_fu_80_p2[0:0] == 1'b1) ? e1 : e2);
+assign sub_ln8_1_fu_96_p2 = (4'd0 - sub_ln8_fu_82_p2);
 
-assign sext_ln4_fu_100_p1 = sext_ln4_fu_100_p0;
+assign sub_ln8_fu_82_p2 = (e1 - e2);
 
-assign shl_ln4_fu_118_p2 = zext_ln4_fu_104_p1 << zext_ln4_1_fu_114_p1;
+assign tmp_fu_88_p3 = sub_ln8_fu_82_p2[32'd3];
 
-assign sub_ln4_1_fu_108_p2 = (4'd0 - sub_ln4_fu_86_p2);
+assign xor_ln8_1_fu_76_p2 = (icmp_ln8_fu_70_p2 ^ 1'd1);
 
-assign sub_ln4_fu_86_p2 = (e1 - e2);
+assign xor_ln8_fu_120_p2 = (xor_ln8_1_fu_76_p2 ^ 1'd1);
 
-assign tmp_5_fu_190_p4 = {{{ref_tmp21_s_fu_162_p9}, {1'd0}}, {select_ln4_fu_182_p3}};
+assign ref_tmp9_0_i_fu_134_p2 = m2 << sub_ln8_1_fu_96_p2;
 
-assign tmp_fu_92_p3 = sub_ln4_fu_86_p2[32'd3];
+assign ref_tmp9_0_i_fu_134_p6 = $signed(m2) >>> sub_ln8_fu_82_p2;
 
-assign xor_ln4_1_fu_80_p2 = (icmp_ln4_fu_74_p2 ^ 1'd1);
+assign ref_tmp9_0_i_fu_134_p7 = 'bx;
 
-assign xor_ln4_fu_148_p2 = (xor_ln4_1_fu_80_p2 ^ 1'd1);
-
-assign zext_ln4_1_fu_114_p1 = sub_ln4_1_fu_108_p2;
-
-assign zext_ln4_3_fu_128_p1 = sub_ln4_fu_86_p2;
-
-assign zext_ln4_fu_104_p1 = $unsigned(zext_ln4_fu_104_p0);
-
-assign empty_fu_70_p0 = m2;
-
-assign ref_tmp21_s_fu_162_p2 = shl_ln4_fu_118_p2[2:0];
-
-assign ref_tmp21_s_fu_162_p4 = empty_fu_70_p0[2:0];
-
-assign ref_tmp21_s_fu_162_p6 = ashr_ln4_fu_132_p2[2:0];
-
-assign ref_tmp21_s_fu_162_p7 = 'bx;
-
-assign ref_tmp21_s_fu_162_p8 = {{and_ln4_fu_142_p2}, {xor_ln4_fu_148_p2}};
-
-assign sext_ln4_fu_100_p0 = m2;
-
-assign zext_ln4_fu_104_p0 = m2;
+assign ref_tmp9_0_i_fu_134_p8 = {{and_ln8_fu_114_p2}, {xor_ln8_fu_120_p2}};
 
 endmodule //add_raw

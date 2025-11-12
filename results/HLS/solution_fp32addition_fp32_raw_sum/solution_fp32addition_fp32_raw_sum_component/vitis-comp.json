@@ -1,0 +1,9 @@
+{
+  "name": "solution_fp32addition_fp32_raw_sum_component",
+  "type": "HLS",
+  "configuration": {
+    "componentType": "HLS",
+    "configFiles": ["hls_config.cfg"],
+    "work_dir": "."
+  }
+}

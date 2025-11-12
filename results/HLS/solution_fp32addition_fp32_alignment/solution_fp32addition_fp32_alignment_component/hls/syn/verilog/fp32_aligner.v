@@ -6,7 +6,7 @@
 
 `timescale 1 ns / 1 ps 
 
-(* CORE_GENERATION_INFO="fp32_aligner_fp32_aligner,hls_ip_2025_1,{HLS_INPUT_TYPE=cxx,HLS_INPUT_FLOAT=0,HLS_INPUT_FIXED=0,HLS_INPUT_PART=xc7z020-clg400-1,HLS_INPUT_CLOCK=1000000000.000000,HLS_INPUT_ARCH=others,HLS_SYN_CLOCK=6.813000,HLS_SYN_LAT=0,HLS_SYN_TPT=none,HLS_SYN_MEM=0,HLS_SYN_DSP=0,HLS_SYN_FF=0,HLS_SYN_LUT=265,HLS_VERSION=2025_1}" *)
+(* CORE_GENERATION_INFO="fp32_aligner_fp32_aligner,hls_ip_2025_1,{HLS_INPUT_TYPE=cxx,HLS_INPUT_FLOAT=0,HLS_INPUT_FIXED=0,HLS_INPUT_PART=xc7z020-clg400-1,HLS_INPUT_CLOCK=1000000000.000000,HLS_INPUT_ARCH=others,HLS_SYN_CLOCK=6.813000,HLS_SYN_LAT=0,HLS_SYN_TPT=none,HLS_SYN_MEM=0,HLS_SYN_DSP=0,HLS_SYN_FF=0,HLS_SYN_LUT=267,HLS_VERSION=2025_1}" *)
 
 module fp32_aligner (
         ap_start,
@@ -36,21 +36,19 @@ input   ap_rst;
 wire   [0:0] icmp_ln4_fu_62_p2;
 wire   [0:0] icmp_ln4_1_fu_74_p2;
 wire   [0:0] icmp_ln4_2_fu_88_p2;
-wire   [8:0] zext_ln4_fu_102_p1;
-wire   [8:0] zext_ln4_1_fu_106_p1;
-wire   [8:0] sub_ln4_fu_110_p2;
+wire   [7:0] sub_ln4_fu_102_p2;
 wire   [23:0] tmp_1_fu_94_p3;
-wire   [23:0] sub_ln4cast_fu_116_p1;
-wire   [8:0] sub_ln4_1_fu_126_p2;
+wire   [23:0] sub_ln4cast_fu_108_p1;
+wire   [7:0] sub_ln4_1_fu_118_p2;
 wire   [23:0] tmp_fu_80_p3;
-wire   [23:0] sub_ln4_1cast_fu_132_p1;
+wire   [23:0] sub_ln4_1cast_fu_124_p1;
 wire   [0:0] xor_ln4_fu_68_p2;
-wire   [23:0] lshr_ln4_1_fu_136_p2;
-wire   [23:0] lshr_ln4_fu_120_p2;
-wire   [23:0] tmp_2_fu_142_p3;
-wire   [23:0] tmp_0571_fu_150_p3;
-wire   [23:0] tmp32_0_fu_158_p3;
-wire   [7:0] select_ln4_fu_166_p3;
+wire   [23:0] lshr_ln4_1_fu_128_p2;
+wire   [23:0] lshr_ln4_fu_112_p2;
+wire   [23:0] tmp_2_fu_134_p3;
+wire   [23:0] tmp_0514_fu_142_p3;
+wire   [23:0] tmp32_0_fu_150_p3;
+wire   [7:0] select_ln4_fu_158_p3;
 wire    ap_ce_reg;
 
 assign ap_done = ap_start;
@@ -59,7 +57,7 @@ assign ap_idle = 1'b1;
 
 assign ap_ready = ap_start;
 
-assign ap_return = {{{tmp_0571_fu_150_p3}, {tmp32_0_fu_158_p3}}, {select_ln4_fu_166_p3}};
+assign ap_return = {{{tmp_0514_fu_142_p3}, {tmp32_0_fu_150_p3}}, {select_ln4_fu_158_p3}};
 
 assign icmp_ln4_1_fu_74_p2 = ((e1 != 8'd0) ? 1'b1 : 1'b0);
 
@@ -67,34 +65,30 @@ assign icmp_ln4_2_fu_88_p2 = ((e2 != 8'd0) ? 1'b1 : 1'b0);
 
 assign icmp_ln4_fu_62_p2 = ((e1 < e2) ? 1'b1 : 1'b0);
 
-assign lshr_ln4_1_fu_136_p2 = tmp_fu_80_p3 >> sub_ln4_1cast_fu_132_p1;
+assign lshr_ln4_1_fu_128_p2 = tmp_fu_80_p3 >> sub_ln4_1cast_fu_124_p1;
 
-assign lshr_ln4_fu_120_p2 = tmp_1_fu_94_p3 >> sub_ln4cast_fu_116_p1;
+assign lshr_ln4_fu_112_p2 = tmp_1_fu_94_p3 >> sub_ln4cast_fu_108_p1;
 
-assign select_ln4_fu_166_p3 = ((xor_ln4_fu_68_p2[0:0] == 1'b1) ? e1 : e2);
+assign select_ln4_fu_158_p3 = ((xor_ln4_fu_68_p2[0:0] == 1'b1) ? e1 : e2);
 
-assign sub_ln4_1_fu_126_p2 = (zext_ln4_1_fu_106_p1 - zext_ln4_fu_102_p1);
+assign sub_ln4_1_fu_118_p2 = (e2 - e1);
 
-assign sub_ln4_1cast_fu_132_p1 = sub_ln4_1_fu_126_p2;
+assign sub_ln4_1cast_fu_124_p1 = sub_ln4_1_fu_118_p2;
 
-assign sub_ln4_fu_110_p2 = (zext_ln4_fu_102_p1 - zext_ln4_1_fu_106_p1);
+assign sub_ln4_fu_102_p2 = (e1 - e2);
 
-assign sub_ln4cast_fu_116_p1 = sub_ln4_fu_110_p2;
+assign sub_ln4cast_fu_108_p1 = sub_ln4_fu_102_p2;
 
-assign tmp32_0_fu_158_p3 = ((xor_ln4_fu_68_p2[0:0] == 1'b1) ? lshr_ln4_fu_120_p2 : tmp_2_fu_142_p3);
+assign tmp32_0_fu_150_p3 = ((xor_ln4_fu_68_p2[0:0] == 1'b1) ? lshr_ln4_fu_112_p2 : tmp_2_fu_134_p3);
 
-assign tmp_0571_fu_150_p3 = ((xor_ln4_fu_68_p2[0:0] == 1'b1) ? tmp_fu_80_p3 : lshr_ln4_1_fu_136_p2);
+assign tmp_0514_fu_142_p3 = ((xor_ln4_fu_68_p2[0:0] == 1'b1) ? tmp_fu_80_p3 : lshr_ln4_1_fu_128_p2);
 
 assign tmp_1_fu_94_p3 = {{icmp_ln4_2_fu_88_p2}, {m2}};
 
-assign tmp_2_fu_142_p3 = {{1'd1}, {m2}};
+assign tmp_2_fu_134_p3 = {{1'd1}, {m2}};
 
 assign tmp_fu_80_p3 = {{icmp_ln4_1_fu_74_p2}, {m1}};
 
 assign xor_ln4_fu_68_p2 = (icmp_ln4_fu_62_p2 ^ 1'd1);
-
-assign zext_ln4_1_fu_106_p1 = e2;
-
-assign zext_ln4_fu_102_p1 = e1;
 
 endmodule //fp32_aligner

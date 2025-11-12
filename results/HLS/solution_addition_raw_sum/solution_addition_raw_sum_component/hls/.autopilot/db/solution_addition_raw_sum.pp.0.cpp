@@ -6201,10 +6201,18 @@ operator/(const complex<ap_ufixed<_AP_W, _AP_I, _AP_Q, _AP_O, _AP_N>> &__x, cons
 # 365 "/tools/Xilinx/2025.1/Vitis/common/technology/autopilot/ap_int.h" 2
 # 2 "/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_addition_raw_sum.cpp" 2
 
+ap_uint<4> select_exponent(ap_uint<4> e1, ap_uint<4> e2) {
+  return (ap_int<4>)e1 >= (ap_int<4>)e2 ? ap_uint<4>(((ap_uint<4>) e1)) : ap_uint<4>(((ap_uint<4>) e2));
+}
+
+ap_uint<8> align_mantissas(ap_uint<4> m1, ap_uint<4> e1, ap_uint<4> m2, ap_uint<4> e2) {
+  return ((ap_int<4>)e1 >= (ap_int<4>)e2 ? (ap_uint<4>) m1 : (ap_uint<4>) (ap_uint<4>)((ap_int<4>)m1 >> (ap_int<4>)(e2 - e1)),(ap_int<4>)e1 >= (ap_int<4>)e2 ? (ap_uint<4>) (ap_uint<4>)((ap_int<4>)m2 >> (ap_int<4>)(e1 - e2)) : (ap_uint<4>) m2);
+}
+
 __attribute__((sdx_kernel("add_raw", 0))) ap_uint<9> add_raw(ap_uint<4> m1, ap_uint<4> e1, ap_uint<4> m2, ap_uint<4> e2) {
 #line 6 "/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_addition_raw_sum/hls.tcl"
 #pragma HLSDIRECTIVE TOP name=add_raw
-# 3 "/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_addition_raw_sum.cpp"
+# 11 "/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_addition_raw_sum.cpp"
 
-  return ap_uint<9>((ap_uint<4>(((ap_uint<4>(((ap_uint<5>)(ap_int<5>)(ap_int<4>)((ap_int<4>)e1 >= (ap_int<4>)e2 ? (ap_uint<4>) m1 : (ap_uint<4>) (ap_uint<4>)((ap_int<4>)m1 >> (ap_int<4>)(e2 - e1)),(ap_int<4>)e1 >= (ap_int<4>)e2 ? (ap_uint<4>) (ap_uint<4>)((ap_int<4>)m2 >> (ap_int<4>)(e1 - e2)) : (ap_uint<4>) m2)))).range(7, 4) + (ap_uint<5>)(ap_int<5>)(ap_int<4>)((ap_int<4>)e1 >= (ap_int<4>)e2 ? (ap_uint<4>) m1 : (ap_uint<4>) (ap_uint<4>)((ap_int<4>)m1 >> (ap_int<4>)(e2 - e1)),(ap_int<4>)e1 >= (ap_int<4>)e2 ? (ap_uint<4>) (ap_uint<4>)((ap_int<4>)m2 >> (ap_int<4>)(e1 - e2)) : (ap_uint<4>) m2))).range(3, 0),(ap_int<4>)e1 >= (ap_int<4>)e2 ? (ap_uint<4>) e1 : (ap_uint<4>) e2));
+  return ((ap_uint<5>)(ap_int<5>)(ap_int<4>)(ap_uint<4>((align_mantissas(m1, e1, m2, e2)))).range(7, 4) + (ap_uint<5>)(ap_int<5>)(ap_int<4>)(ap_uint<4>((align_mantissas(m1, e1, m2, e2)))).range(3, 0),select_exponent(e1, e2));
 }

@@ -162,7 +162,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>136c3f92</spirit:value>
+            <spirit:value>75455739</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -178,7 +178,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>b2cbefd5</spirit:value>
+            <spirit:value>c4049465</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -194,7 +194,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>6a95cf84</spirit:value>
+            <spirit:value>8dc91807</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -210,7 +210,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>1629d789</spirit:value>
+            <spirit:value>6c673487</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -449,7 +449,7 @@
       <spirit:file>
         <spirit:name>hdl/vhdl/fp32_aligner.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_1629d789</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_6c673487</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
@@ -529,8 +529,8 @@
       </xilinx:taxonomies>
       <xilinx:displayName>Fp32_aligner</xilinx:displayName>
       <xilinx:definitionSource>HLS</xilinx:definitionSource>
-      <xilinx:coreRevision>2114333623</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2025-11-04T15:43:59Z</xilinx:coreCreationDateTime>
+      <xilinx:coreRevision>2114343733</xilinx:coreRevision>
+      <xilinx:coreCreationDateTime>2025-11-11T16:14:03Z</xilinx:coreCreationDateTime>
       <xilinx:sdxKernelAttributes>
         <xilinx:sdx_kernel>true</xilinx:sdx_kernel>
         <xilinx:sdx_kernel_type>hls</xilinx:sdx_kernel_type>
@@ -539,7 +539,7 @@
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2025.1</xilinx:xilinxVersion>
       <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="3853ff7d"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="f0070c27"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="e6f1e704"/>
       <xilinx:checksum xilinx:scope="ports" xilinx:value="1a34215d"/>
       <xilinx:checksum xilinx:scope="parameters" xilinx:value="15b4383a"/>
     </xilinx:packagingInfo>

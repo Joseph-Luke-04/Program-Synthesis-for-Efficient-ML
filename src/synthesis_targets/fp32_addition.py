@@ -156,6 +156,19 @@ class FP32AdditionTarget:
         synth_call = f"(fp32_normaliser {raw_sum_mantissa_bv} {raw_sign_bv} {target_exponent_bv})"
         expected_output = f"(concat {final_sign_bv} (concat {final_exponent_bv} {final_mantissa_bv}))"
         return f"(constraint (= {synth_call} {expected_output}))"
+    
+
+    def gen_sum_constraint(self, data, config) -> str:
+        s1 = to_smt_bitvec(data["s1"], 1); e1 = to_smt_bitvec(data["e1"], 8); m1 = to_smt_bitvec(data["m1"], 23)
+        s2 = to_smt_bitvec(data["s2"], 1); e2 = to_smt_bitvec(data["e2"], 8); m2 = to_smt_bitvec(data["m2"], 23)
+
+        final_sign     = to_smt_bitvec(data["final_sign"], 1)
+        final_exponent = to_smt_bitvec(data["final_exponent"], 8)
+        final_mantissa = to_smt_bitvec(data["final_mantissa"], 23)
+
+        call = f"(fp32_sum {s1} {e1} {m1} {s2} {e2} {m2})"
+        expected = f"(concat {final_sign} (concat {final_exponent} {final_mantissa}))"
+        return f"(constraint (= {call} {expected}))"
 
 
     def get_components(self) -> Dict:
@@ -172,5 +185,9 @@ class FP32AdditionTarget:
             "fp32_normalisation": {
                 "template": "sygus_grammars/FP32/fp32_normalisation_template.sl",
                 "generator": self.gen_normalisation_constraint,
+            },
+            "fp32_full_sum": {
+                "template": "sygus_grammars/FP32/fp32_full_sum_template.sl",
+                "generator": self.gen_sum_constraint,
             },
         }

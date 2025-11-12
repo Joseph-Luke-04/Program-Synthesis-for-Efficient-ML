@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'naive_int_add'" level="0">
-<item name = "Date">Mon Nov 10 17:38:15 2025
+<item name = "Date">Wed Nov 12 13:39:48 2025
 </item>
 <item name = "Version">2025.1 (Build 6135595 on May 21 2025)</item>
 <item name = "Project">solution_naiveadder_int_add_component</item>
@@ -15,7 +15,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="4">Clock, Target, Estimated, Uncertainty</keys>
-<column name="ap_clk">1.00 sec, 1.915 ns, 0.27 sec</column>
+<column name="ap_clk">1.00 sec, 2.552 ns, 0.27 sec</column>
 </table>
 </item>
 </section>
@@ -47,7 +47,7 @@
 <item name = "Summary"><table name="" hasTotal="1">
 <keys size="6">Name, BRAM_18K, DSP, FF, LUT, URAM</keys>
 <column name="DSP">-, -, -, -, -</column>
-<column name="Expression">-, -, 0, 15, -</column>
+<column name="Expression">-, -, 0, 39, -</column>
 <column name="FIFO">-, -, -, -, -</column>
 <column name="Instance">-, -, -, -, -</column>
 <column name="Memory">-, -, -, -, -</column>
@@ -77,7 +77,7 @@
 </item>
 <item name = "Expression"><table name="" hasTotal="1">
 <keys size="7">Variable Name, Operation, DSP, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
-<column name="ap_return">+, 0, 0, 15, 8, 8</column>
+<column name="ap_return">+, 0, 0, 39, 32, 32</column>
 </table>
 </item>
 <item name = "Multiplexer"><table name="" hasTotal="1">
@@ -99,10 +99,10 @@
 <column name="ap_done">out, 1, ap_ctrl_hs, naive_int_add, return value</column>
 <column name="ap_idle">out, 1, ap_ctrl_hs, naive_int_add, return value</column>
 <column name="ap_ready">out, 1, ap_ctrl_hs, naive_int_add, return value</column>
-<column name="ap_return">out, 8, ap_ctrl_hs, naive_int_add, return value</column>
+<column name="ap_return">out, 32, ap_ctrl_hs, naive_int_add, return value</column>
 <column name="ap_rst">in, 1, ap_ctrl_hs, naive_int_add, return value</column>
-<column name="x">in, 8, ap_none, x, scalar</column>
-<column name="y">in, 8, ap_none, y, scalar</column>
+<column name="x">in, 32, ap_none, x, scalar</column>
+<column name="y">in, 32, ap_none, y, scalar</column>
 </table>
 </item>
 </section>

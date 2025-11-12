@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'naive_int_add'
 ================================================================
-* Date:           Mon Nov 10 17:38:15 2025
+* Date:           Wed Nov 12 13:39:48 2025
 
 * Version:        2025.1 (Build 6135595 on May 21 2025)
 * Project:        solution_naiveadder_int_add_component
@@ -20,7 +20,7 @@
     +--------+----------+----------+------------+
     |  Clock |  Target  | Estimated| Uncertainty|
     +--------+----------+----------+------------+
-    |ap_clk  |  1.00 sec|  1.915 ns|    0.27 sec|
+    |ap_clk  |  1.00 sec|  2.552 ns|    0.27 sec|
     +--------+----------+----------+------------+
 
 + Latency: 
@@ -49,14 +49,14 @@
 |       Name      | BRAM_18K| DSP |   FF   |  LUT  | URAM|
 +-----------------+---------+-----+--------+-------+-----+
 |DSP              |        -|    -|       -|      -|    -|
-|Expression       |        -|    -|       0|     15|    -|
+|Expression       |        -|    -|       0|     39|    -|
 |FIFO             |        -|    -|       -|      -|    -|
 |Instance         |        -|    -|       -|      -|    -|
 |Memory           |        -|    -|       -|      -|    -|
 |Multiplexer      |        -|    -|       -|      -|    -|
 |Register         |        -|    -|       -|      -|    -|
 +-----------------+---------+-----+--------+-------+-----+
-|Total            |        0|    0|       0|     15|    0|
+|Total            |        0|    0|       0|     39|    0|
 +-----------------+---------+-----+--------+-------+-----+
 |Available        |      280|  220|  106400|  53200|    0|
 +-----------------+---------+-----+--------+-------+-----+
@@ -80,9 +80,9 @@
     +--------------+----------+----+---+----+------------+------------+
     | Variable Name| Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
     +--------------+----------+----+---+----+------------+------------+
-    |ap_return     |         +|   0|  0|  15|           8|           8|
+    |ap_return     |         +|   0|  0|  39|          32|          32|
     +--------------+----------+----+---+----+------------+------------+
-    |Total         |          |   0|  0|  15|           8|           8|
+    |Total         |          |   0|  0|  39|          32|          32|
     +--------------+----------+----+---+----+------------+------------+
 
     * Multiplexer: 
@@ -104,9 +104,9 @@
 |ap_done    |  out|    1|  ap_ctrl_hs|  naive_int_add|  return value|
 |ap_idle    |  out|    1|  ap_ctrl_hs|  naive_int_add|  return value|
 |ap_ready   |  out|    1|  ap_ctrl_hs|  naive_int_add|  return value|
-|ap_return  |  out|    8|  ap_ctrl_hs|  naive_int_add|  return value|
+|ap_return  |  out|   32|  ap_ctrl_hs|  naive_int_add|  return value|
 |ap_rst     |   in|    1|  ap_ctrl_hs|  naive_int_add|  return value|
-|x          |   in|    8|     ap_none|              x|        scalar|
-|y          |   in|    8|     ap_none|              y|        scalar|
+|x          |   in|   32|     ap_none|              x|        scalar|
+|y          |   in|   32|     ap_none|              y|        scalar|
 +-----------+-----+-----+------------+---------------+--------------+
 

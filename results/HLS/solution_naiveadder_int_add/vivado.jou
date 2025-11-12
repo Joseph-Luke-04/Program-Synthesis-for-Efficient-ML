@@ -3,8 +3,8 @@
 # SW Build 6140274 on Wed May 21 22:58:25 MDT 2025
 # IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
 # SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
-# Start of session at: Mon Nov 10 17:38:45 2025
-# Process ID         : 141830
+# Start of session at: Wed Nov 12 13:40:17 2025
+# Process ID         : 312162
 # Current directory  : /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_naiveadder_int_add
 # Command line       : vivado -mode batch -source /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_naiveadder_int_add/vivado.tcl
 # Log file           : /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_naiveadder_int_add/vivado.log
@@ -13,12 +13,12 @@
 # Platform           : Ubuntu
 # Operating System   : Ubuntu 24.04.3 LTS
 # Processor Detail   : Intel(R) Core(TM) i7-10870H CPU @ 2.20GHz
-# CPU Frequency      : 4209.048 MHz
+# CPU Frequency      : 4104.802 MHz
 # CPU Physical cores : 8
 # CPU Logical cores  : 16
 # Host memory        : 16592 MB
 # Swap memory        : 4294 MB
 # Total Virtual      : 20887 MB
-# Available Virtual  : 6979 MB
+# Available Virtual  : 5546 MB
 #-----------------------------------------------------------
 source /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_naiveadder_int_add/vivado.tcl

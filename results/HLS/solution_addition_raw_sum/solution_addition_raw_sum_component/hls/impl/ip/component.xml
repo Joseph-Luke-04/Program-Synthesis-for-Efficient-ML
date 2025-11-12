@@ -162,7 +162,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>e3ed0114</spirit:value>
+            <spirit:value>673301b7</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -178,7 +178,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>d0d9042e</spirit:value>
+            <spirit:value>15f4bb0b</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -194,7 +194,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>6b046901</spirit:value>
+            <spirit:value>17167da1</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -210,7 +210,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>2c266b63</spirit:value>
+            <spirit:value>1b82635b</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -427,7 +427,7 @@
         <spirit:userFileType>USED_IN_out_of_context</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/add_raw_sparsemux_7_2_3_1_1.v</spirit:name>
+        <spirit:name>hdl/verilog/add_raw_sparsemux_7_2_4_1_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
@@ -438,7 +438,7 @@
     <spirit:fileSet>
       <spirit:name>xilinx_verilogbehavioralsimulation_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>hdl/verilog/add_raw_sparsemux_7_2_3_1_1.v</spirit:name>
+        <spirit:name>hdl/verilog/add_raw_sparsemux_7_2_4_1_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
@@ -456,19 +456,19 @@
         <spirit:userFileType>USED_IN_out_of_context</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/vhdl/add_raw_sparsemux_7_2_3_1_1.vhd</spirit:name>
+        <spirit:name>hdl/vhdl/add_raw_sparsemux_7_2_4_1_1.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
         <spirit:name>hdl/vhdl/add_raw.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_bb12b1d4</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_2c282201</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
       <spirit:name>xilinx_vhdlbehavioralsimulation_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>hdl/vhdl/add_raw_sparsemux_7_2_3_1_1.vhd</spirit:name>
+        <spirit:name>hdl/vhdl/add_raw_sparsemux_7_2_4_1_1.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
@@ -547,8 +547,8 @@
       </xilinx:taxonomies>
       <xilinx:displayName>Add_raw</xilinx:displayName>
       <xilinx:definitionSource>HLS</xilinx:definitionSource>
-      <xilinx:coreRevision>2114333696</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2025-11-04T16:56:33Z</xilinx:coreCreationDateTime>
+      <xilinx:coreRevision>2114345012</xilinx:coreRevision>
+      <xilinx:coreCreationDateTime>2025-11-12T13:32:51Z</xilinx:coreCreationDateTime>
       <xilinx:sdxKernelAttributes>
         <xilinx:sdx_kernel>true</xilinx:sdx_kernel>
         <xilinx:sdx_kernel_type>hls</xilinx:sdx_kernel_type>
@@ -557,7 +557,7 @@
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2025.1</xilinx:xilinxVersion>
       <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="e0ae3928"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="010f670e"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="952b4c79"/>
       <xilinx:checksum xilinx:scope="ports" xilinx:value="21a733b2"/>
       <xilinx:checksum xilinx:scope="parameters" xilinx:value="2e302786"/>
     </xilinx:packagingInfo>

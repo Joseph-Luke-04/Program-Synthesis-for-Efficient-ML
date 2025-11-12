@@ -28,7 +28,7 @@ def create_hls_tcl(design_path: Path, top_func: str, output_dir: Path) -> Path:
     set_top {top_func}
     add_files {design_path}
     set_part {{xc7z020clg400-1}}
-    create_clock -period 1000000000ns
+    create_clock -period 50ns
     csynth_design
     export_design -rtl verilog
     """
@@ -216,14 +216,40 @@ def run_vitis_hls(design_path: str, top_func: str = None, impl: bool = False):
     design_name = design_path.stem
     src_text = design_path.read_text()
 
+    # Prefer: explicit CLI > filename hint > strong symbol > generic autodetect
+    TOP_HINTS = {
+        "solution_fp32addition_fp32_full_sum": "fp32_sum",
+        "solution_addition_raw_sum": "add_raw",
+        # add others if you want:
+        # "solution_fp32addition_fp32_alignment": "fp32_aligner",
+        # "solution_fp32addition_fp32_raw_sum": "fp32_raw_summer",
+        # "solution_fp32addition_fp32_normalisation": "fp32_normaliser",
+    }
+
     if top_func is None:
-        auto = _detect_top_func_from_cpp(src_text)
-        if auto:
-            top_func = auto
-            print(f"[INFO] Auto-detected top function: {top_func}")
+        # 1) filename hint
+        top_func = TOP_HINTS.get(design_name)
+        if top_func:
+            print(f"[INFO] Using top from filename hint: {top_func}")
         else:
-            print("[ERROR] Could not auto-detect a top function. Pass --top <name>.")
-            sys.exit(1)
+            # 2) strong symbol preference if present
+            if re.search(r'\bap_(?:u)?int\s*<\s*\d+\s*>\s+fp32_sum\s*\(', src_text):
+                top_func = "fp32_sum"
+                print(f"[INFO] Selected top by symbol presence: {top_func}")
+            else:
+                # 3) fallback to generic first-match autodetect
+                auto = _detect_top_func_from_cpp(src_text)
+                if auto:
+                    top_func = auto
+                    print(f"[INFO] Auto-detected top function: {top_func}")
+                else:
+                    print("[ERROR] Could not auto-detect a top function. Pass --top <name>.")
+                    sys.exit(1)
+
+    # Sanity check that the chosen top exists in the source
+    if not re.search(rf'\b{re.escape(top_func)}\s*\(', src_text):
+        print(f"[ERROR] Top '{top_func}' not found in {design_path.name}.")
+        sys.exit(1)
 
     project_root = Path("/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS")
     output_dir = project_root / design_path.stem
