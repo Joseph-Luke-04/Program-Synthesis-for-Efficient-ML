@@ -1,6 +1,6 @@
 # Approximate Program Synthesis for Efficient Machine Learning
 
-This repository contains the code and results for a summer research project on automatically generating hardware logic for operations in low-precision number formats used in machine learning.
+This repository contains the code and results for a dissertation project on automatically generating hardware logic for operations in low-precision number formats used in machine learning.
 
 We use Syntax-Guided Synthesis (SyGuS) to automatically discover hardware logic. The core of the project is an iterative loop that builds a solution by incrementally adding constraints. For more specific details of my results and experiments, check out [REPORT.MD](REPORT.MD).
 
