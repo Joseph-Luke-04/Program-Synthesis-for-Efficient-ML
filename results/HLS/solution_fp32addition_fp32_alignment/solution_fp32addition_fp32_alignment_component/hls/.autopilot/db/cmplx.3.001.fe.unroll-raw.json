@@ -6,9 +6,9 @@
     "def_use_depth": 3,
     "file": "solution_fp32addition_fp32_alignment.cpp",
     "fileloc": 3,
-    "instructions": 112,
+    "instructions": 116,
     "memory_accesses": 0,
     "name": "fp32_aligner",
-    "total_instructions": 112
+    "total_instructions": 116
   }
 }

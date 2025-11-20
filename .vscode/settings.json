@@ -1,0 +1,4 @@
+{
+  "python.defaultInterpreterPath": "/home/joe/anaconda3/envs/prog-synth/bin/python",
+  "python.terminal.activateEnvironment": true
+}

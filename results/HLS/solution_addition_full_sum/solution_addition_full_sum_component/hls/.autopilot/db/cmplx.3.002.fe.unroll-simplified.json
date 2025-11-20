@@ -1,0 +1,80 @@
+{
+  "0": {
+    "basicblocks": 1,
+    "calls": "3 4",
+    "control_depth": 0,
+    "def_use_depth": 3,
+    "file": "solution_addition_full_sum.cpp",
+    "fileloc": 65,
+    "instructions": 14,
+    "loads": {
+      "L": 2
+    },
+    "memory_accesses": 0,
+    "name": "add_full_sum",
+    "total_instructions": 167
+  },
+  "1": {
+    "basicblocks": 1,
+    "calls": "",
+    "control_depth": 0,
+    "def_use_depth": 3,
+    "file": "solution_addition_full_sum.cpp",
+    "fileloc": 3,
+    "instructions": 7,
+    "memory_accesses": 0,
+    "name": "select_exponent",
+    "stores": {
+      "L": 1
+    },
+    "total_instructions": 7
+  },
+  "2": {
+    "basicblocks": 12,
+    "calls": "",
+    "control_depth": 0,
+    "def_use_depth": 8,
+    "file": "solution_addition_full_sum.cpp",
+    "fileloc": 6,
+    "instructions": 90,
+    "memory_accesses": 0,
+    "name": "align_mantissas",
+    "stores": {
+      "L": 1
+    },
+    "total_instructions": 90
+  },
+  "3": {
+    "basicblocks": 1,
+    "calls": "2 1",
+    "control_depth": 0,
+    "def_use_depth": 6,
+    "file": "solution_addition_full_sum.cpp",
+    "fileloc": 40,
+    "instructions": 24,
+    "loads": {
+      "L": 2
+    },
+    "memory_accesses": 0,
+    "name": "add_raw",
+    "stores": {
+      "L": 1
+    },
+    "total_instructions": 121
+  },
+  "4": {
+    "basicblocks": 4,
+    "calls": "",
+    "control_depth": 0,
+    "def_use_depth": 7,
+    "file": "solution_addition_full_sum.cpp",
+    "fileloc": 48,
+    "instructions": 32,
+    "memory_accesses": 0,
+    "name": "normalise_addition",
+    "stores": {
+      "L": 1
+    },
+    "total_instructions": 32
+  }
+}

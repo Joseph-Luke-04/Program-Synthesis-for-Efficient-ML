@@ -1,6 +1,5 @@
 #include <ap_int.h>
 
-
 ap_uint<32> fp32_normaliser(ap_uint<25> raw_sum_mantissa, ap_uint<1> raw_sign, ap_uint<8> target_exponent) {
   if (raw_sum_mantissa == 0) {
     return (ap_uint<32>)((ap_uint<1>)0, (ap_uint<8>)0, (ap_uint<23>)0);

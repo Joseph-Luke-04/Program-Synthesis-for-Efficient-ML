@@ -4,7 +4,7 @@
 == Synthesis Summary Report of 'fp32_raw_summer'
 ================================================================
 + General Information: 
-    * Date:           Tue Nov 11 15:14:28 2025
+    * Date:           Wed Nov 19 19:47:29 2025
     * Version:        2025.1 (Build 6135595 on May 21 2025)
     * Project:        solution_fp32addition_fp32_raw_sum_component
     * Solution:       hls (Vivado IP Flow Target)
@@ -15,12 +15,12 @@
 + Performance & Resource Estimates: 
     
     PS: '+' for module; 'o' for loop; '*' for dataflow
-    +-------------------+---------+-------+---------+-------+----------+---------+------+----------+------+----+---+-----------+-----+
-    |      Modules      |  Issue  |       |     Latency     | Iteration|         | Trip |          |      |    |   |           |     |
-    |      & Loops      |   Type  | Slack | (cycles)|  (ns) |  Latency | Interval| Count| Pipelined| BRAM | DSP| FF|    LUT    | URAM|
-    +-------------------+---------+-------+---------+-------+----------+---------+------+----------+------+----+---+-----------+-----+
-    |+ fp32_raw_summer  |   Timing|  -4.88|        0|  0.000|         -|        1|     -|        no|     -|   -|  -|  216 (~0%)|    -|
-    +-------------------+---------+-------+---------+-------+----------+---------+------+----------+------+----+---+-----------+-----+
+    +-------------------+------+-------+---------+-------+----------+---------+------+----------+------+----+---+-----------+-----+
+    |      Modules      | Issue|       |     Latency     | Iteration|         | Trip |          |      |    |   |           |     |
+    |      & Loops      | Type | Slack | (cycles)|  (ns) |  Latency | Interval| Count| Pipelined| BRAM | DSP| FF|    LUT    | URAM|
+    +-------------------+------+-------+---------+-------+----------+---------+------+----------+------+----+---+-----------+-----+
+    |+ fp32_raw_summer  |     -|  32.18|        0|  0.000|         -|        1|     -|        no|     -|   -|  -|  123 (~0%)|    -|
+    +-------------------+------+-------+---------+-------+----------+---------+------+----------+------+----+---+-----------+-----+
 
 
 ================================================================
@@ -75,27 +75,25 @@
 ================================================================
 == Bind Op Report
 ================================================================
-+---------------------------+-----+--------+--------------+-----------+------------------------+---------+
-| Name                      | DSP | Pragma | Variable     | Op        | Impl                   | Latency |
-+---------------------------+-----+--------+--------------+-----------+------------------------+---------+
-| + fp32_raw_summer         | 0   |        |              |           |                        |         |
-|   xor_ln4_fu_70_p2        |     |        | xor_ln4      | xor       | auto                   | 0       |
-|   icmp_ln4_fu_76_p2       |     |        | icmp_ln4     | seteq     | auto                   | 0       |
-|   and_ln4_fu_82_p2        |     |        | and_ln4      | and       | auto                   | 0       |
-|   icmp_ln4_1_fu_88_p2     |     |        | icmp_ln4_1   | setlt     | auto                   | 0       |
-|   xor_ln4_2_fu_94_p2      |     |        | xor_ln4_2    | xor       | auto                   | 0       |
-|   select_ln4_fu_100_p3    |     |        | select_ln4   | select    | auto_sel               | 0       |
-|   select_ln4_1_fu_108_p3  |     |        | select_ln4_1 | select    | auto_sel               | 0       |
-|   not_and_ln4_fu_116_p2   |     |        | not_and_ln4  | xor       | auto                   | 0       |
-|   tmp_0_fu_122_p2         |     |        | tmp_0        | and       | auto                   | 0       |
-|   icmp_ln4_2_fu_136_p2    |     |        | icmp_ln4_2   | setlt     | auto                   | 0       |
-|   ref_tmp14_1_fu_180_p2   |     |        | add_ln4      | add       | fabric                 | 0       |
-|   ref_tmp14_1_fu_180_p4   |     |        | sub_ln4      | sub       | fabric                 | 0       |
-|   ref_tmp14_1_fu_180_p6   |     |        | sub_ln4_1    | sub       | fabric                 | 0       |
-|   xor_ln4_1_fu_160_p2     |     |        | xor_ln4_1    | xor       | auto                   | 0       |
-|   and_ln4_1_fu_166_p2     |     |        | and_ln4_1    | and       | auto                   | 0       |
-|   sparsemux_7_2_25_1_1_U1 |     |        | ref_tmp14_1  | sparsemux | onehotencoding_realdef | 0       |
-+---------------------------+-----+--------+--------------+-----------+------------------------+---------+
++--------------------------+-----+--------+--------------+--------+----------+---------+
+| Name                     | DSP | Pragma | Variable     | Op     | Impl     | Latency |
++--------------------------+-----+--------+--------------+--------+----------+---------+
+| + fp32_raw_summer        | 0   |        |              |        |          |         |
+|   xor_ln4_fu_60_p2       |     |        | xor_ln4      | xor    | auto     | 0       |
+|   icmp_ln4_fu_66_p2      |     |        | icmp_ln4     | seteq  | auto     | 0       |
+|   and_ln4_fu_72_p2       |     |        | and_ln4      | and    | auto     | 0       |
+|   icmp_ln4_1_fu_78_p2    |     |        | icmp_ln4_1   | setlt  | auto     | 0       |
+|   xor_ln4_1_fu_84_p2     |     |        | xor_ln4_1    | xor    | auto     | 0       |
+|   select_ln4_fu_90_p3    |     |        | select_ln4   | select | auto_sel | 0       |
+|   select_ln4_1_fu_98_p3  |     |        | select_ln4_1 | select | auto_sel | 0       |
+|   not_and_ln4_fu_106_p2  |     |        | not_and_ln4  | xor    | auto     | 0       |
+|   ref_tmp6_0_fu_112_p2   |     |        | ref_tmp6_0   | and    | auto     | 0       |
+|   sub_ln4_fu_126_p2      |     |        | sub_ln4      | sub    | fabric   | 0       |
+|   sub_ln4_1_fu_132_p2    |     |        | sub_ln4_1    | sub    | fabric   | 0       |
+|   select_ln4_2_fu_138_p3 |     |        | select_ln4_2 | select | auto_sel | 0       |
+|   add_ln4_fu_146_p2      |     |        | add_ln4      | add    | fabric   | 0       |
+|   ref_tmp17_1_fu_152_p3  |     |        | ref_tmp17_1  | select | auto_sel | 0       |
++--------------------------+-----+--------+--------------+--------+----------+---------+
 
 
 ================================================================

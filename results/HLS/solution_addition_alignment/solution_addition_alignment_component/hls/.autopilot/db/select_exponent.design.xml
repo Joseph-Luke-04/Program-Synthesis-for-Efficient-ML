@@ -11,8 +11,8 @@
 <Name>select_exponent</Name>
 <PerformanceEstimates>
 <SummaryOfTimingAnalysis>
-<TargetClockPeriod>1000000000.00</TargetClockPeriod>
-<ClockUncertainty>270000000.00</ClockUncertainty>
+<TargetClockPeriod>50.00</TargetClockPeriod>
+<ClockUncertainty>13.50</ClockUncertainty>
 <EstimatedClockPeriod>2.759</EstimatedClockPeriod>
 </SummaryOfTimingAnalysis>
 <SummaryOfOverallLatency>

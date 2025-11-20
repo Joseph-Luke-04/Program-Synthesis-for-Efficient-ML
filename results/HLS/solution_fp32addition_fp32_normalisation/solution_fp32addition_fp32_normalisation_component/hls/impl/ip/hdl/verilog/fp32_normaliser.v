@@ -6,7 +6,7 @@
 
 `timescale 1 ns / 1 ps 
 
-(* CORE_GENERATION_INFO="fp32_normaliser_fp32_normaliser,hls_ip_2025_1,{HLS_INPUT_TYPE=cxx,HLS_INPUT_FLOAT=0,HLS_INPUT_FIXED=0,HLS_INPUT_PART=xc7z020-clg400-1,HLS_INPUT_CLOCK=1000000000.000000,HLS_INPUT_ARCH=others,HLS_SYN_CLOCK=7.137188,HLS_SYN_LAT=0,HLS_SYN_TPT=none,HLS_SYN_MEM=0,HLS_SYN_DSP=0,HLS_SYN_FF=0,HLS_SYN_LUT=686,HLS_VERSION=2025_1}" *)
+(* CORE_GENERATION_INFO="fp32_normaliser_fp32_normaliser,hls_ip_2025_1,{HLS_INPUT_TYPE=cxx,HLS_INPUT_FLOAT=0,HLS_INPUT_FIXED=0,HLS_INPUT_PART=xc7z020-clg400-1,HLS_INPUT_CLOCK=50.000000,HLS_INPUT_ARCH=others,HLS_SYN_CLOCK=7.137188,HLS_SYN_LAT=0,HLS_SYN_TPT=none,HLS_SYN_MEM=0,HLS_SYN_DSP=0,HLS_SYN_FF=0,HLS_SYN_LUT=686,HLS_VERSION=2025_1}" *)
 
 module fp32_normaliser (
         ap_start,
@@ -33,7 +33,7 @@ input   ap_rst;
 
 wire   [7:0] exp_fu_1023_p2;
 reg   [7:0] ap_phi_mux_exp_23_phi_fu_243_p50;
-wire   [0:0] icmp_ln5_fu_362_p2;
+wire   [0:0] icmp_ln4_fu_362_p2;
 wire   [0:0] tmp_fu_368_p3;
 wire   [0:0] tmp_1_fu_376_p3;
 wire   [7:0] exp_1_fu_1000_p2;
@@ -82,7 +82,7 @@ wire   [7:0] exp_22_fu_580_p2;
 wire   [0:0] tmp_23_fu_552_p3;
 wire   [7:0] exp_24_fu_560_p2;
 reg   [22:0] ap_phi_mux_norm24_22_phi_fu_299_p50;
-wire   [22:0] trunc_ln9_fu_1007_p1;
+wire   [22:0] trunc_ln8_fu_1007_p1;
 wire   [22:0] norm24_fu_991_p3;
 wire   [22:0] norm24_1_fu_971_p3;
 wire   [22:0] norm24_2_fu_951_p3;
@@ -107,28 +107,28 @@ wire   [22:0] norm24_20_fu_591_p3;
 wire   [22:0] norm24_21_fu_571_p3;
 wire   [31:0] tmp_s_fu_1030_p4;
 reg   [31:0] ap_phi_mux_retval_0_phi_fu_355_p4;
-wire   [0:0] trunc_ln33_fu_567_p1;
-wire   [1:0] trunc_ln32_fu_587_p1;
-wire   [2:0] trunc_ln31_fu_607_p1;
-wire   [3:0] trunc_ln30_fu_627_p1;
-wire   [4:0] trunc_ln29_fu_647_p1;
-wire   [5:0] trunc_ln28_fu_667_p1;
-wire   [6:0] trunc_ln27_fu_687_p1;
-wire   [7:0] trunc_ln26_fu_707_p1;
-wire   [8:0] trunc_ln25_fu_727_p1;
-wire   [9:0] trunc_ln24_fu_747_p1;
-wire   [10:0] trunc_ln23_fu_767_p1;
-wire   [11:0] trunc_ln22_fu_787_p1;
-wire   [12:0] trunc_ln21_fu_807_p1;
-wire   [13:0] trunc_ln20_fu_827_p1;
-wire   [14:0] trunc_ln19_fu_847_p1;
-wire   [15:0] trunc_ln18_fu_867_p1;
-wire   [16:0] trunc_ln17_fu_887_p1;
-wire   [17:0] trunc_ln16_fu_907_p1;
-wire   [18:0] trunc_ln15_fu_927_p1;
-wire   [19:0] trunc_ln14_fu_947_p1;
-wire   [20:0] trunc_ln13_fu_967_p1;
-wire   [21:0] trunc_ln12_fu_987_p1;
+wire   [0:0] trunc_ln32_fu_567_p1;
+wire   [1:0] trunc_ln31_fu_587_p1;
+wire   [2:0] trunc_ln30_fu_607_p1;
+wire   [3:0] trunc_ln29_fu_627_p1;
+wire   [4:0] trunc_ln28_fu_647_p1;
+wire   [5:0] trunc_ln27_fu_667_p1;
+wire   [6:0] trunc_ln26_fu_687_p1;
+wire   [7:0] trunc_ln25_fu_707_p1;
+wire   [8:0] trunc_ln24_fu_727_p1;
+wire   [9:0] trunc_ln23_fu_747_p1;
+wire   [10:0] trunc_ln22_fu_767_p1;
+wire   [11:0] trunc_ln21_fu_787_p1;
+wire   [12:0] trunc_ln20_fu_807_p1;
+wire   [13:0] trunc_ln19_fu_827_p1;
+wire   [14:0] trunc_ln18_fu_847_p1;
+wire   [15:0] trunc_ln17_fu_867_p1;
+wire   [16:0] trunc_ln16_fu_887_p1;
+wire   [17:0] trunc_ln15_fu_907_p1;
+wire   [18:0] trunc_ln14_fu_927_p1;
+wire   [19:0] trunc_ln13_fu_947_p1;
+wire   [20:0] trunc_ln12_fu_967_p1;
+wire   [21:0] trunc_ln11_fu_987_p1;
 reg    ap_condition_563;
 reg    ap_condition_569;
 reg    ap_condition_575;
@@ -155,7 +155,7 @@ reg    ap_condition_774;
 wire    ap_ce_reg;
 
 always @ (*) begin
-    if ((icmp_ln5_fu_362_p2 == 1'd0)) begin
+    if ((icmp_ln4_fu_362_p2 == 1'd0)) begin
         if ((1'b1 == ap_condition_774)) begin
             ap_phi_mux_exp_23_phi_fu_243_p50 = exp_24_fu_560_p2;
         end else if ((1'b1 == ap_condition_762)) begin
@@ -215,7 +215,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if ((icmp_ln5_fu_362_p2 == 1'd0)) begin
+    if ((icmp_ln4_fu_362_p2 == 1'd0)) begin
         if ((1'b1 == ap_condition_774)) begin
             ap_phi_mux_norm24_22_phi_fu_299_p50 = 23'd0;
         end else if ((1'b1 == ap_condition_762)) begin
@@ -263,7 +263,7 @@ always @ (*) begin
         end else if ((1'b1 == ap_condition_563)) begin
             ap_phi_mux_norm24_22_phi_fu_299_p50 = norm24_fu_991_p3;
         end else if (((tmp_1_fu_376_p3 == 1'd1) & (tmp_fu_368_p3 == 1'd0))) begin
-            ap_phi_mux_norm24_22_phi_fu_299_p50 = trunc_ln9_fu_1007_p1;
+            ap_phi_mux_norm24_22_phi_fu_299_p50 = trunc_ln8_fu_1007_p1;
         end else if ((tmp_fu_368_p3 == 1'd1)) begin
             ap_phi_mux_norm24_22_phi_fu_299_p50 = {{raw_sum_mantissa[23:1]}};
         end else begin
@@ -275,9 +275,9 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if ((icmp_ln5_fu_362_p2 == 1'd1)) begin
+    if ((icmp_ln4_fu_362_p2 == 1'd1)) begin
         ap_phi_mux_retval_0_phi_fu_355_p4 = 32'd0;
-    end else if ((icmp_ln5_fu_362_p2 == 1'd0)) begin
+    end else if ((icmp_ln4_fu_362_p2 == 1'd0)) begin
         ap_phi_mux_retval_0_phi_fu_355_p4 = tmp_s_fu_1030_p4;
     end else begin
         ap_phi_mux_retval_0_phi_fu_355_p4 = 'bx;
@@ -432,51 +432,51 @@ assign exp_9_fu_840_p2 = ($signed(target_exponent) + $signed(8'd247));
 
 assign exp_fu_1023_p2 = (target_exponent + 8'd1);
 
-assign icmp_ln5_fu_362_p2 = ((raw_sum_mantissa == 25'd0) ? 1'b1 : 1'b0);
+assign icmp_ln4_fu_362_p2 = ((raw_sum_mantissa == 25'd0) ? 1'b1 : 1'b0);
 
-assign norm24_10_fu_791_p3 = {{trunc_ln22_fu_787_p1}, {11'd0}};
+assign norm24_10_fu_791_p3 = {{trunc_ln21_fu_787_p1}, {11'd0}};
 
-assign norm24_11_fu_771_p3 = {{trunc_ln23_fu_767_p1}, {12'd0}};
+assign norm24_11_fu_771_p3 = {{trunc_ln22_fu_767_p1}, {12'd0}};
 
-assign norm24_12_fu_751_p3 = {{trunc_ln24_fu_747_p1}, {13'd0}};
+assign norm24_12_fu_751_p3 = {{trunc_ln23_fu_747_p1}, {13'd0}};
 
-assign norm24_13_fu_731_p3 = {{trunc_ln25_fu_727_p1}, {14'd0}};
+assign norm24_13_fu_731_p3 = {{trunc_ln24_fu_727_p1}, {14'd0}};
 
-assign norm24_14_fu_711_p3 = {{trunc_ln26_fu_707_p1}, {15'd0}};
+assign norm24_14_fu_711_p3 = {{trunc_ln25_fu_707_p1}, {15'd0}};
 
-assign norm24_15_fu_691_p3 = {{trunc_ln27_fu_687_p1}, {16'd0}};
+assign norm24_15_fu_691_p3 = {{trunc_ln26_fu_687_p1}, {16'd0}};
 
-assign norm24_16_fu_671_p3 = {{trunc_ln28_fu_667_p1}, {17'd0}};
+assign norm24_16_fu_671_p3 = {{trunc_ln27_fu_667_p1}, {17'd0}};
 
-assign norm24_17_fu_651_p3 = {{trunc_ln29_fu_647_p1}, {18'd0}};
+assign norm24_17_fu_651_p3 = {{trunc_ln28_fu_647_p1}, {18'd0}};
 
-assign norm24_18_fu_631_p3 = {{trunc_ln30_fu_627_p1}, {19'd0}};
+assign norm24_18_fu_631_p3 = {{trunc_ln29_fu_627_p1}, {19'd0}};
 
-assign norm24_19_fu_611_p3 = {{trunc_ln31_fu_607_p1}, {20'd0}};
+assign norm24_19_fu_611_p3 = {{trunc_ln30_fu_607_p1}, {20'd0}};
 
-assign norm24_1_fu_971_p3 = {{trunc_ln13_fu_967_p1}, {2'd0}};
+assign norm24_1_fu_971_p3 = {{trunc_ln12_fu_967_p1}, {2'd0}};
 
-assign norm24_20_fu_591_p3 = {{trunc_ln32_fu_587_p1}, {21'd0}};
+assign norm24_20_fu_591_p3 = {{trunc_ln31_fu_587_p1}, {21'd0}};
 
-assign norm24_21_fu_571_p3 = {{trunc_ln33_fu_567_p1}, {22'd0}};
+assign norm24_21_fu_571_p3 = {{trunc_ln32_fu_567_p1}, {22'd0}};
 
-assign norm24_2_fu_951_p3 = {{trunc_ln14_fu_947_p1}, {3'd0}};
+assign norm24_2_fu_951_p3 = {{trunc_ln13_fu_947_p1}, {3'd0}};
 
-assign norm24_3_fu_931_p3 = {{trunc_ln15_fu_927_p1}, {4'd0}};
+assign norm24_3_fu_931_p3 = {{trunc_ln14_fu_927_p1}, {4'd0}};
 
-assign norm24_4_fu_911_p3 = {{trunc_ln16_fu_907_p1}, {5'd0}};
+assign norm24_4_fu_911_p3 = {{trunc_ln15_fu_907_p1}, {5'd0}};
 
-assign norm24_5_fu_891_p3 = {{trunc_ln17_fu_887_p1}, {6'd0}};
+assign norm24_5_fu_891_p3 = {{trunc_ln16_fu_887_p1}, {6'd0}};
 
-assign norm24_6_fu_871_p3 = {{trunc_ln18_fu_867_p1}, {7'd0}};
+assign norm24_6_fu_871_p3 = {{trunc_ln17_fu_867_p1}, {7'd0}};
 
-assign norm24_7_fu_851_p3 = {{trunc_ln19_fu_847_p1}, {8'd0}};
+assign norm24_7_fu_851_p3 = {{trunc_ln18_fu_847_p1}, {8'd0}};
 
-assign norm24_8_fu_831_p3 = {{trunc_ln20_fu_827_p1}, {9'd0}};
+assign norm24_8_fu_831_p3 = {{trunc_ln19_fu_827_p1}, {9'd0}};
 
-assign norm24_9_fu_811_p3 = {{trunc_ln21_fu_807_p1}, {10'd0}};
+assign norm24_9_fu_811_p3 = {{trunc_ln20_fu_807_p1}, {10'd0}};
 
-assign norm24_fu_991_p3 = {{trunc_ln12_fu_987_p1}, {1'd0}};
+assign norm24_fu_991_p3 = {{trunc_ln11_fu_987_p1}, {1'd0}};
 
 assign tmp_10_fu_448_p3 = raw_sum_mantissa[32'd14];
 
@@ -528,50 +528,50 @@ assign tmp_fu_368_p3 = raw_sum_mantissa[32'd24];
 
 assign tmp_s_fu_1030_p4 = {{{raw_sign}, {ap_phi_mux_exp_23_phi_fu_243_p50}}, {ap_phi_mux_norm24_22_phi_fu_299_p50}};
 
-assign trunc_ln12_fu_987_p1 = raw_sum_mantissa[21:0];
+assign trunc_ln11_fu_987_p1 = raw_sum_mantissa[21:0];
 
-assign trunc_ln13_fu_967_p1 = raw_sum_mantissa[20:0];
+assign trunc_ln12_fu_967_p1 = raw_sum_mantissa[20:0];
 
-assign trunc_ln14_fu_947_p1 = raw_sum_mantissa[19:0];
+assign trunc_ln13_fu_947_p1 = raw_sum_mantissa[19:0];
 
-assign trunc_ln15_fu_927_p1 = raw_sum_mantissa[18:0];
+assign trunc_ln14_fu_927_p1 = raw_sum_mantissa[18:0];
 
-assign trunc_ln16_fu_907_p1 = raw_sum_mantissa[17:0];
+assign trunc_ln15_fu_907_p1 = raw_sum_mantissa[17:0];
 
-assign trunc_ln17_fu_887_p1 = raw_sum_mantissa[16:0];
+assign trunc_ln16_fu_887_p1 = raw_sum_mantissa[16:0];
 
-assign trunc_ln18_fu_867_p1 = raw_sum_mantissa[15:0];
+assign trunc_ln17_fu_867_p1 = raw_sum_mantissa[15:0];
 
-assign trunc_ln19_fu_847_p1 = raw_sum_mantissa[14:0];
+assign trunc_ln18_fu_847_p1 = raw_sum_mantissa[14:0];
 
-assign trunc_ln20_fu_827_p1 = raw_sum_mantissa[13:0];
+assign trunc_ln19_fu_827_p1 = raw_sum_mantissa[13:0];
 
-assign trunc_ln21_fu_807_p1 = raw_sum_mantissa[12:0];
+assign trunc_ln20_fu_807_p1 = raw_sum_mantissa[12:0];
 
-assign trunc_ln22_fu_787_p1 = raw_sum_mantissa[11:0];
+assign trunc_ln21_fu_787_p1 = raw_sum_mantissa[11:0];
 
-assign trunc_ln23_fu_767_p1 = raw_sum_mantissa[10:0];
+assign trunc_ln22_fu_767_p1 = raw_sum_mantissa[10:0];
 
-assign trunc_ln24_fu_747_p1 = raw_sum_mantissa[9:0];
+assign trunc_ln23_fu_747_p1 = raw_sum_mantissa[9:0];
 
-assign trunc_ln25_fu_727_p1 = raw_sum_mantissa[8:0];
+assign trunc_ln24_fu_727_p1 = raw_sum_mantissa[8:0];
 
-assign trunc_ln26_fu_707_p1 = raw_sum_mantissa[7:0];
+assign trunc_ln25_fu_707_p1 = raw_sum_mantissa[7:0];
 
-assign trunc_ln27_fu_687_p1 = raw_sum_mantissa[6:0];
+assign trunc_ln26_fu_687_p1 = raw_sum_mantissa[6:0];
 
-assign trunc_ln28_fu_667_p1 = raw_sum_mantissa[5:0];
+assign trunc_ln27_fu_667_p1 = raw_sum_mantissa[5:0];
 
-assign trunc_ln29_fu_647_p1 = raw_sum_mantissa[4:0];
+assign trunc_ln28_fu_647_p1 = raw_sum_mantissa[4:0];
 
-assign trunc_ln30_fu_627_p1 = raw_sum_mantissa[3:0];
+assign trunc_ln29_fu_627_p1 = raw_sum_mantissa[3:0];
 
-assign trunc_ln31_fu_607_p1 = raw_sum_mantissa[2:0];
+assign trunc_ln30_fu_607_p1 = raw_sum_mantissa[2:0];
 
-assign trunc_ln32_fu_587_p1 = raw_sum_mantissa[1:0];
+assign trunc_ln31_fu_587_p1 = raw_sum_mantissa[1:0];
 
-assign trunc_ln33_fu_567_p1 = raw_sum_mantissa[0:0];
+assign trunc_ln32_fu_567_p1 = raw_sum_mantissa[0:0];
 
-assign trunc_ln9_fu_1007_p1 = raw_sum_mantissa[22:0];
+assign trunc_ln8_fu_1007_p1 = raw_sum_mantissa[22:0];
 
 endmodule //fp32_normaliser

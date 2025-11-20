@@ -6,7 +6,7 @@
 +---------------+-----------------------------+--------------+----------------------------------------------------------------------------------------+
 | Phase         | Step                        | Instructions | Description                                                                            |
 +---------------+-----------------------------+--------------+----------------------------------------------------------------------------------------+
-| Compile/Link  |                             | 7,705        | After all functions are compiled and linked into a single design                       |
+| Compile/Link  |                             | 7,743        | After all functions are compiled and linked into a single design                       |
 |               |                             |              |                                                                                        |
 | Unroll/Inline |                             |              | After user unroll and inline pragmas are applied                                       |
 |               | (1) unroll                  |   504        | user unroll pragmas are applied                                                        |
@@ -36,9 +36,9 @@
 +--------------------+--------------------------------------------+--------------+---------------+--------------+-------------+---------------+
 | Function           | Location                                   | Compile/Link | Unroll/Inline | Array/Struct | Performance | HW Transforms |
 +--------------------+--------------------------------------------+--------------+---------------+--------------+-------------+---------------+
-| + fp32_sum         | solution_fp32addition_fp32_full_sum.cpp:47 | 7,705        | 291           | 289          | 289         | 293           |
+| + fp32_sum         | solution_fp32addition_fp32_full_sum.cpp:47 | 7,743        | 291           | 289          | 289         | 293           |
 |    fp32_aligner    | solution_fp32addition_fp32_full_sum.cpp:3  | 1,759        |               |              |             |               |
-|    fp32_raw_summer | solution_fp32addition_fp32_full_sum.cpp:7  | 1,216        |               |              |             |               |
+|    fp32_raw_summer | solution_fp32addition_fp32_full_sum.cpp:7  | 1,254        |               |              |             |               |
 |    fp32_normaliser | solution_fp32addition_fp32_full_sum.cpp:11 | 4,417        | 225           | 225          | 225         | 225           |
 +--------------------+--------------------------------------------+--------------+---------------+--------------+-------------+---------------+
 

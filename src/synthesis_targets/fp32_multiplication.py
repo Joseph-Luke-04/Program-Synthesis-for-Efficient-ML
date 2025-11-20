@@ -10,6 +10,13 @@ def float_to_smt_bitvec(value: float) -> str:
 
 class FP32MultiplicationTarget:
 
+    def get_op_name(self) -> str:
+        return "fp32multiplication"
+    
+    def get_dependency_map(self) -> Dict[str, list[str]]:
+        from src.dependencies import DEPENDENCY_MAP
+        return DEPENDENCY_MAP
+
     def calculate_ground_truth(self, float1: float, float2: float, config) -> Optional[Dict]:
         product_float = float1 * float2
         return {

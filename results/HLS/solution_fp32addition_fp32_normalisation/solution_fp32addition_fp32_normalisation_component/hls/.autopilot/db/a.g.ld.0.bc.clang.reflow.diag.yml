@@ -5,7 +5,7 @@ Function:        apatb_fp32_normaliser_ir
 Args:            
   - Callee:          'fp32_normaliser(ap_uint<25>, ap_uint<1>, ap_uint<8>)'
     DebugLoc:        { File: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_normalisation.cpp, 
-                       Line: 4, Column: 0 }
+                       Line: 3, Column: 0 }
   - String:          ' not inlined into '
   - Caller:          apatb_fp32_normaliser_ir
   - String:          ' because it should never be inlined (cost=never)'

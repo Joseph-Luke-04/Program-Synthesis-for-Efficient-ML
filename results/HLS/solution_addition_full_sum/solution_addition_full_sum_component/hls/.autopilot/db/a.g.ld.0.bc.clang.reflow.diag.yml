@@ -1,0 +1,208 @@
+--- !Missed
+Pass:            inline
+Name:            NeverInline
+DebugLoc:        { File: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_addition_full_sum.cpp, 
+                   Line: 41, Column: 24 }
+Function:        _Z7add_raw7ap_uintILi4EES0_S0_S0_
+Args:            
+  - Callee:          'align_mantissas(ap_uint<4>, ap_uint<4>, ap_uint<4>, ap_uint<4>)'
+    DebugLoc:        { File: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_addition_full_sum.cpp, 
+                       Line: 6, Column: 0 }
+  - String:          ' not inlined into '
+  - Caller:          'add_raw(ap_uint<4>, ap_uint<4>, ap_uint<4>, ap_uint<4>)'
+    DebugLoc:        { File: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_addition_full_sum.cpp, 
+                       Line: 40, Column: 0 }
+  - String:          ' because it should never be inlined (cost=never)'
+...
+--- !Missed
+Pass:            inline
+Name:            NeverInline
+DebugLoc:        { File: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_addition_full_sum.cpp, 
+                   Line: 45, Column: 21 }
+Function:        _Z7add_raw7ap_uintILi4EES0_S0_S0_
+Args:            
+  - Callee:          'select_exponent(ap_uint<4>, ap_uint<4>)'
+    DebugLoc:        { File: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_addition_full_sum.cpp, 
+                       Line: 3, Column: 0 }
+  - String:          ' not inlined into '
+  - Caller:          'add_raw(ap_uint<4>, ap_uint<4>, ap_uint<4>, ap_uint<4>)'
+    DebugLoc:        { File: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_addition_full_sum.cpp, 
+                       Line: 40, Column: 0 }
+  - String:          ' because it should never be inlined (cost=never)'
+...
+--- !Missed
+Pass:            inline
+Name:            NeverInline
+DebugLoc:        { File: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_addition_full_sum.cpp, 
+                   Line: 66, Column: 20 }
+Function:        _Z12add_full_sum7ap_uintILi4EES0_S0_S0_
+Args:            
+  - Callee:          'add_raw(ap_uint<4>, ap_uint<4>, ap_uint<4>, ap_uint<4>)'
+    DebugLoc:        { File: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_addition_full_sum.cpp, 
+                       Line: 40, Column: 0 }
+  - String:          ' not inlined into '
+  - Caller:          'add_full_sum(ap_uint<4>, ap_uint<4>, ap_uint<4>, ap_uint<4>)'
+    DebugLoc:        { File: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_addition_full_sum.cpp, 
+                       Line: 65, Column: 0 }
+  - String:          ' because it should never be inlined (cost=never)'
+...
+--- !Missed
+Pass:            inline
+Name:            NeverInline
+DebugLoc:        { File: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_addition_full_sum.cpp, 
+                   Line: 69, Column: 10 }
+Function:        _Z12add_full_sum7ap_uintILi4EES0_S0_S0_
+Args:            
+  - Callee:          'normalise_addition(ap_uint<5>, ap_uint<4>)'
+    DebugLoc:        { File: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_addition_full_sum.cpp, 
+                       Line: 48, Column: 0 }
+  - String:          ' not inlined into '
+  - Caller:          'add_full_sum(ap_uint<4>, ap_uint<4>, ap_uint<4>, ap_uint<4>)'
+    DebugLoc:        { File: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_addition_full_sum.cpp, 
+                       Line: 65, Column: 0 }
+  - String:          ' because it should never be inlined (cost=never)'
+...
+--- !Missed
+Pass:            inline
+Name:            NeverInline
+DebugLoc:        { File: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_addition_full_sum.cpp, 
+                   Line: 41, Column: 24 }
+Function:        _Z7add_raw7ap_uintILi4EES0_S0_S0_
+Args:            
+  - Callee:          'align_mantissas(ap_uint<4>, ap_uint<4>, ap_uint<4>, ap_uint<4>)'
+    DebugLoc:        { File: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_addition_full_sum.cpp, 
+                       Line: 6, Column: 0 }
+  - String:          ' not inlined into '
+  - Caller:          'add_raw(ap_uint<4>, ap_uint<4>, ap_uint<4>, ap_uint<4>)'
+    DebugLoc:        { File: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_addition_full_sum.cpp, 
+                       Line: 40, Column: 0 }
+  - String:          ' because it should never be inlined (cost=never)'
+...
+--- !Missed
+Pass:            inline
+Name:            NeverInline
+DebugLoc:        { File: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_addition_full_sum.cpp, 
+                   Line: 45, Column: 21 }
+Function:        _Z7add_raw7ap_uintILi4EES0_S0_S0_
+Args:            
+  - Callee:          'select_exponent(ap_uint<4>, ap_uint<4>)'
+    DebugLoc:        { File: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_addition_full_sum.cpp, 
+                       Line: 3, Column: 0 }
+  - String:          ' not inlined into '
+  - Caller:          'add_raw(ap_uint<4>, ap_uint<4>, ap_uint<4>, ap_uint<4>)'
+    DebugLoc:        { File: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_addition_full_sum.cpp, 
+                       Line: 40, Column: 0 }
+  - String:          ' because it should never be inlined (cost=never)'
+...
+--- !Missed
+Pass:            inline
+Name:            NeverInline
+DebugLoc:        { File: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_addition_full_sum.cpp, 
+                   Line: 66, Column: 20 }
+Function:        _Z12add_full_sum7ap_uintILi4EES0_S0_S0_
+Args:            
+  - Callee:          'add_raw(ap_uint<4>, ap_uint<4>, ap_uint<4>, ap_uint<4>)'
+    DebugLoc:        { File: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_addition_full_sum.cpp, 
+                       Line: 40, Column: 0 }
+  - String:          ' not inlined into '
+  - Caller:          'add_full_sum(ap_uint<4>, ap_uint<4>, ap_uint<4>, ap_uint<4>)'
+    DebugLoc:        { File: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_addition_full_sum.cpp, 
+                       Line: 65, Column: 0 }
+  - String:          ' because it should never be inlined (cost=never)'
+...
+--- !Missed
+Pass:            inline
+Name:            NeverInline
+DebugLoc:        { File: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_addition_full_sum.cpp, 
+                   Line: 69, Column: 10 }
+Function:        _Z12add_full_sum7ap_uintILi4EES0_S0_S0_
+Args:            
+  - Callee:          'normalise_addition(ap_uint<5>, ap_uint<4>)'
+    DebugLoc:        { File: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_addition_full_sum.cpp, 
+                       Line: 48, Column: 0 }
+  - String:          ' not inlined into '
+  - Caller:          'add_full_sum(ap_uint<4>, ap_uint<4>, ap_uint<4>, ap_uint<4>)'
+    DebugLoc:        { File: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_addition_full_sum.cpp, 
+                       Line: 65, Column: 0 }
+  - String:          ' because it should never be inlined (cost=never)'
+...
+--- !Missed
+Pass:            inline
+Name:            NeverInline
+Function:        apatb_add_full_sum_ir
+Args:            
+  - Callee:          'add_full_sum(ap_uint<4>, ap_uint<4>, ap_uint<4>, ap_uint<4>)'
+    DebugLoc:        { File: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_addition_full_sum.cpp, 
+                       Line: 65, Column: 0 }
+  - String:          ' not inlined into '
+  - Caller:          apatb_add_full_sum_ir
+  - String:          ' because it should never be inlined (cost=never)'
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_addition_full_sum.cpp, 
+                   Line: 40, Column: 0 }
+Function:        _Z7add_raw7ap_uintILi4EES0_S0_S0_
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          'align_mantissas(ap_uint<4>, ap_uint<4>, ap_uint<4>, ap_uint<4>)'
+    DebugLoc:        { File: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_addition_full_sum.cpp, 
+                       Line: 6, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          'add_raw(ap_uint<4>, ap_uint<4>, ap_uint<4>, ap_uint<4>)'
+    DebugLoc:        { File: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_addition_full_sum.cpp, 
+                       Line: 40, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_addition_full_sum.cpp, 
+                   Line: 40, Column: 0 }
+Function:        _Z7add_raw7ap_uintILi4EES0_S0_S0_
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          'select_exponent(ap_uint<4>, ap_uint<4>)'
+    DebugLoc:        { File: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_addition_full_sum.cpp, 
+                       Line: 3, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          'add_raw(ap_uint<4>, ap_uint<4>, ap_uint<4>, ap_uint<4>)'
+    DebugLoc:        { File: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_addition_full_sum.cpp, 
+                       Line: 40, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_addition_full_sum.cpp, 
+                   Line: 65, Column: 0 }
+Function:        _Z12add_full_sum7ap_uintILi4EES0_S0_S0_
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          'add_raw(ap_uint<4>, ap_uint<4>, ap_uint<4>, ap_uint<4>)'
+    DebugLoc:        { File: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_addition_full_sum.cpp, 
+                       Line: 40, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          'add_full_sum(ap_uint<4>, ap_uint<4>, ap_uint<4>, ap_uint<4>)'
+    DebugLoc:        { File: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_addition_full_sum.cpp, 
+                       Line: 65, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_addition_full_sum.cpp, 
+                   Line: 65, Column: 0 }
+Function:        _Z12add_full_sum7ap_uintILi4EES0_S0_S0_
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          'normalise_addition(ap_uint<5>, ap_uint<4>)'
+    DebugLoc:        { File: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_addition_full_sum.cpp, 
+                       Line: 48, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          'add_full_sum(ap_uint<4>, ap_uint<4>, ap_uint<4>, ap_uint<4>)'
+    DebugLoc:        { File: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_addition_full_sum.cpp, 
+                       Line: 65, Column: 0 }
+  - String:          ''''
+...

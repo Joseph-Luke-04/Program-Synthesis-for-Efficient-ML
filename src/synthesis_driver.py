@@ -1,10 +1,7 @@
-import os
-import random
-import math
-import subprocess
-import tempfile
+import os, random, math, subprocess, tempfile, re
 from pathlib import Path
 from typing import List, Tuple, Dict, Optional, Callable
+from src.dependencies import DEPENDENCY_MAP
 
 from .synthesis_targets.addition import AdditionTarget
 from .synthesis_targets.multiplication import MultiplicationTarget
@@ -41,6 +38,59 @@ def unwrap_extra_parens(solution_text: str) -> str:
         return stripped[1:-1].strip()
 
     return stripped
+
+
+# Helper functions to read the latest synthesized helper definition so that
+# it can be included in the synthesis query of a dependent component/target.
+# (Essentially updates any newly synthesised helpers automatically)
+
+def _read_latest(path_glob: str) -> str | None:
+    paths = list(Path("results/smt2").glob(path_glob))
+    if not paths:
+        return None
+    paths.sort(key=lambda p: p.stat().st_mtime, reverse=True)
+    return paths[0].read_text().strip()
+
+def _extract_define_fun_blocks(s: str) -> list[str]:
+    blocks, i = [], 0
+    while True:
+        i = s.find("(define-fun", i)
+        if i == -1: break
+        depth, j = 0, i
+        while j < len(s):
+            ch = s[j]
+            if ch == "(": depth += 1
+            elif ch == ")":
+                depth -= 1
+                if depth == 0:
+                    blocks.append(s[i:j+1]); i = j + 1; break
+            j += 1
+        else:
+            break
+    return blocks
+
+def _block_name(blk: str) -> str:
+    m = re.search(r"\(define-fun\s+([A-Za-z0-9_]+)\s*\(", blk)
+    return m.group(1) if m else "<unknown>"
+
+def collect_helper_definitions(deps: list[str]) -> str:
+    acc, seen = [], set()
+    for comp in deps:
+        smt = _read_latest(f"solution_{comp}.smt2")
+        if not smt:
+            raise FileNotFoundError(
+                f"Missing helper for {comp} "
+                f"(expected results/smt2/solution_{comp}.smt2)."
+            )
+        # Remove standalone set-logic commands to avoid duplicates.
+        smt_clean = re.sub(r"\(set-logic[^\)]*\)\s*", "", smt, flags=re.IGNORECASE)
+
+        for blk in _extract_define_fun_blocks(smt_clean):
+            nm = _block_name(blk)
+            if nm not in seen:
+                seen.add(nm)
+                acc.append(blk)
+    return "\n\n".join(acc) + "\n"
 
 
 class SynthesisConfig:
@@ -119,6 +169,27 @@ def synthesis_loop(
     try:
         with open(template_file, "r") as f:
             base_sygus_query = f.read()
+            op_name = target.get_op_name()
+            dep_map = target.get_dependency_map()
+            dep_key = f"{op_name}_{component_name}"
+            deps = dep_map.get(dep_key, [])
+
+            # Ensure (set-logic ...) remains the very first command even after
+            # we prepend helper definitions.
+            logic_match = re.match(r"\s*(\(set-logic[^\)]*\)\s*)", base_sygus_query, re.IGNORECASE)
+            if logic_match:
+                logic_cmd = logic_match.group(1)
+                rest_query = base_sygus_query[logic_match.end():]
+            else:
+                logic_cmd = "(set-logic ALL)\n"
+                rest_query = base_sygus_query
+
+            if deps:
+                helper_defs = collect_helper_definitions(deps)
+                base_sygus_query = logic_cmd + helper_defs + "\n" + rest_query
+            else:
+                base_sygus_query = logic_cmd + rest_query
+            
     except FileNotFoundError:
         print(f"[ERROR] Template file not found: {template_file}")
         return None
@@ -205,9 +276,9 @@ if __name__ == "__main__":
     # NaiveMultiplierTarget(kind="int", width=32 or 8)
     # NaiveMultiplierTarget(kind="fp32")
 
-    target_operation = FP32AdditionTarget()
+    target_operation = AdditionTarget()
     
-    # Components for AdditionTarget: "alignment", "raw_sum", "overflow"
+    # Components for AdditionTarget: "alignment", "raw_sum", "overflow", "normalisation", "full_sum"
     # Components for MultiplicationTarget: "renorm_flag", "mant", "exp"
     # Components for FP32AdditionTarget: "fp32_alignment", "fp32_raw_sum", "fp32_normalisation", "fp32_full_sum"
     # Components for FP32MultiplicationTarget: "fp32_mantissa", "fp32_exponent"
@@ -215,7 +286,7 @@ if __name__ == "__main__":
     # Components for for NaiveAdderTarget: "int_add", "fp32_adder"
     # Components for for NaiveMultiplierTarget: "fp32_mul", "int_mul"
 
-    target_component = "fp32_full_sum"
+    target_component = "full_sum"
  
     # False for a quick post-synthesis estimate (-p)
     # True for a full post-implementation run (-i)

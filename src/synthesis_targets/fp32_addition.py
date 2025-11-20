@@ -24,6 +24,13 @@ def float_to_components(value: float) -> Dict[str, int]:
 
 class FP32AdditionTarget:
 
+    def get_op_name(self) -> str:
+        return "fp32addition"
+    
+    def get_dependency_map(self) -> Dict[str, list[str]]:
+        from src.dependencies import DEPENDENCY_MAP
+        return DEPENDENCY_MAP
+
     def calculate_ground_truth(self, float1: float, float2: float, config) -> Optional[Dict]:
         if not (np.isfinite(float1) and np.isfinite(float2)):
             return None

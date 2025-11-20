@@ -1,7 +1,7 @@
 {
   "0": {
     "basicblocks": 1,
-    "calls": "1 2 3",
+    "calls": "3 1 2",
     "control_depth": 0,
     "def_use_depth": 3,
     "file": "solution_fp32addition_fp32_full_sum.cpp",
@@ -15,21 +15,6 @@
     "total_instructions": 504
   },
   "1": {
-    "basicblocks": 52,
-    "calls": "",
-    "control_depth": 0,
-    "def_use_depth": 4,
-    "file": "solution_fp32addition_fp32_full_sum.cpp",
-    "fileloc": 3,
-    "instructions": 108,
-    "memory_accesses": 0,
-    "name": "fp32_aligner",
-    "stores": {
-      "L": 1
-    },
-    "total_instructions": 108
-  },
-  "2": {
     "basicblocks": 35,
     "calls": "",
     "control_depth": 0,
@@ -44,7 +29,7 @@
     },
     "total_instructions": 76
   },
-  "3": {
+  "2": {
     "basicblocks": 76,
     "calls": "",
     "control_depth": 0,
@@ -58,5 +43,20 @@
       "L": 1
     },
     "total_instructions": 295
+  },
+  "3": {
+    "basicblocks": 52,
+    "calls": "",
+    "control_depth": 0,
+    "def_use_depth": 4,
+    "file": "solution_fp32addition_fp32_full_sum.cpp",
+    "fileloc": 3,
+    "instructions": 108,
+    "memory_accesses": 0,
+    "name": "fp32_aligner",
+    "stores": {
+      "L": 1
+    },
+    "total_instructions": 108
   }
 }

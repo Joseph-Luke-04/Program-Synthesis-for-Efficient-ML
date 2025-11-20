@@ -6,7 +6,7 @@
     "def_use_depth": 2,
     "file": "solution_fp32addition_fp32_alignment.cpp",
     "fileloc": 3,
-    "instructions": 242,
+    "instructions": 260,
     "loads": {
       "L": 3
     },
@@ -15,6 +15,6 @@
     "stores": {
       "L": 6
     },
-    "total_instructions": 1769
+    "total_instructions": 1833
   }
 }

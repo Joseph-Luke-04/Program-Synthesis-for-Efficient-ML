@@ -8,6 +8,13 @@ def to_smt_bitvec(value: int, bits: int) -> str:
 
 class AdditionTarget:
 
+    def get_op_name(self) -> str:
+        return "addition"
+    
+    def get_dependency_map(self) -> Dict[str, list[str]]:
+        from src.dependencies import DEPENDENCY_MAP
+        return DEPENDENCY_MAP
+
     def calculate_ground_truth(self, float1: float, float2: float, config) -> Optional[Dict]:
        
         tensor1 = torch.tensor([[float1]])
@@ -96,7 +103,7 @@ class AdditionTarget:
         synth_call = f"(add_mxint_exp {m1_bv} {e1_bv} {m2_bv} {e2_bv})"
         return f"(constraint (= {synth_call} {final_exp_bv}))"
 
-    def gen_finalization_constraint(self, data: Dict, config) -> str:
+    def gen_normalisation_constraint(self, data: Dict, config) -> str:
         raw_sum_bv = to_smt_bitvec(data["raw_sum_mantissa"], config.RAW_SUM_MANTISSA_WIDTH)
         target_exp_bv = to_smt_bitvec(data["target_exponent"], config.EXPONENT_WIDTH)
         
@@ -104,7 +111,21 @@ class AdditionTarget:
         final_exp_bv = to_smt_bitvec(data["final_exp"], config.EXPONENT_WIDTH)
         final_result_bv = f"#b{final_mant_bv[2:]}{final_exp_bv[2:]}"
         
-        return f"(constraint (= (finalize_addition {raw_sum_bv} {target_exp_bv}) {final_result_bv}))"
+        return f"(constraint (= (normalise_addition {raw_sum_bv} {target_exp_bv}) {final_result_bv}))"
+
+    def gen_full_sum_constraint(self, data: Dict, config) -> str:
+        """Constraint for the complete MXINT8 adder (mantissa || exponent)."""
+        m1_bv = to_smt_bitvec(data["m1"], config.MANTISSA_WIDTH)
+        e1_bv = to_smt_bitvec(data["e1"], config.EXPONENT_WIDTH)
+        m2_bv = to_smt_bitvec(data["m2"], config.MANTISSA_WIDTH)
+        e2_bv = to_smt_bitvec(data["e2"], config.EXPONENT_WIDTH)
+
+        final_mant_bv = to_smt_bitvec(data["final_mant"], config.MANTISSA_WIDTH)
+        final_exp_bv = to_smt_bitvec(data["final_exp"], config.EXPONENT_WIDTH)
+        final_result_bv = f"#b{final_mant_bv[2:]}{final_exp_bv[2:]}"
+        
+        synth_call = f"(add_full_sum {m1_bv} {e1_bv} {m2_bv} {e2_bv})"
+        return f"(constraint (= {synth_call} {final_result_bv}))"
 
     def get_components(self) -> Dict:
         
@@ -121,8 +142,13 @@ class AdditionTarget:
                 "template": "sygus_grammars/MXINT8/add_detect_overflow_template.sl",
                 "generator": self.gen_overflow_flag_constraint,
             },
-            #"finalization": {
-            #    "template": "sygus_grammars/MXINT8/add_finalize_template.sl",
-            #    "generator": self.gen_finalization_constraint,
-            #},
+            "normalisation": {
+                "template": "sygus_grammars/MXINT8/add_normalisation_template.sl",
+                "generator": self.gen_normalisation_constraint,
+            },
+            # Compose the full adder by chaining the earlier steps.
+            "full_sum": {
+                "template": "sygus_grammars/MXINT8/add_full_sum_template.sl",
+                "generator": self.gen_full_sum_constraint,
+            },
         }

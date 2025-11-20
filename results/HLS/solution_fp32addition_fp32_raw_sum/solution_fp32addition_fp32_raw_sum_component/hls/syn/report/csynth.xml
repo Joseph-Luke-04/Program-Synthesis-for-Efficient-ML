@@ -7,15 +7,15 @@
         <ProductFamily>zynq</ProductFamily>
         <Part>xc7z020-clg400-1</Part>
         <TopModelName>fp32_raw_summer</TopModelName>
-        <TargetClockPeriod>1000000000.00</TargetClockPeriod>
-        <ClockUncertainty>270000000.00</ClockUncertainty>
+        <TargetClockPeriod>50.00</TargetClockPeriod>
+        <ClockUncertainty>13.50</ClockUncertainty>
         <FlowTarget>vivado</FlowTarget>
     </UserAssignments>
     <PerformanceEstimates>
         <PipelineType>no</PipelineType>
         <SummaryOfTimingAnalysis>
             <unit>ns</unit>
-            <EstimatedClockPeriod>4.880</EstimatedClockPeriod>
+            <EstimatedClockPeriod>4.316</EstimatedClockPeriod>
         </SummaryOfTimingAnalysis>
         <SummaryOfOverallLatency>
             <unit>clock cycles</unit>
@@ -38,7 +38,7 @@
     <AreaEstimates>
         <Resources>
             <FF>0</FF>
-            <LUT>216</LUT>
+            <LUT>123</LUT>
             <BRAM_18K>0</BRAM_18K>
             <DSP>0</DSP>
             <URAM>0</URAM>
@@ -170,7 +170,7 @@
     <RTLDesignHierarchy>
         <TopModule MAX_DEPTH="2">
             <ModuleName>fp32_raw_summer</ModuleName>
-            <BindInstances>xor_ln4_fu_70_p2 icmp_ln4_fu_76_p2 and_ln4_fu_82_p2 icmp_ln4_1_fu_88_p2 xor_ln4_2_fu_94_p2 select_ln4_fu_100_p3 select_ln4_1_fu_108_p3 not_and_ln4_fu_116_p2 tmp_0_fu_122_p2 icmp_ln4_2_fu_136_p2 ref_tmp14_1_fu_180_p2 ref_tmp14_1_fu_180_p4 ref_tmp14_1_fu_180_p6 xor_ln4_1_fu_160_p2 and_ln4_1_fu_166_p2 sparsemux_7_2_25_1_1_U1</BindInstances>
+            <BindInstances>xor_ln4_fu_60_p2 icmp_ln4_fu_66_p2 and_ln4_fu_72_p2 icmp_ln4_1_fu_78_p2 xor_ln4_1_fu_84_p2 select_ln4_fu_90_p3 select_ln4_1_fu_98_p3 not_and_ln4_fu_106_p2 ref_tmp6_0_fu_112_p2 sub_ln4_fu_126_p2 sub_ln4_1_fu_132_p2 select_ln4_2_fu_138_p3 add_ln4_fu_146_p2 ref_tmp17_1_fu_152_p3</BindInstances>
         </TopModule>
     </RTLDesignHierarchy>
     <ModuleInformation>
@@ -178,9 +178,9 @@
             <Name>fp32_raw_summer</Name>
             <PerformanceEstimates>
                 <SummaryOfTimingAnalysis>
-                    <TargetClockPeriod>1000000000.00</TargetClockPeriod>
-                    <ClockUncertainty>270000000.00</ClockUncertainty>
-                    <EstimatedClockPeriod>4.880</EstimatedClockPeriod>
+                    <TargetClockPeriod>50.00</TargetClockPeriod>
+                    <ClockUncertainty>13.50</ClockUncertainty>
+                    <EstimatedClockPeriod>4.316</EstimatedClockPeriod>
                 </SummaryOfTimingAnalysis>
                 <SummaryOfOverallLatency>
                     <Best-caseLatency>0</Best-caseLatency>
@@ -204,7 +204,7 @@
                     <FF>0</FF>
                     <AVAIL_FF>106400</AVAIL_FF>
                     <UTIL_FF>0</UTIL_FF>
-                    <LUT>216</LUT>
+                    <LUT>123</LUT>
                     <AVAIL_LUT>53200</AVAIL_LUT>
                     <UTIL_LUT>~0</UTIL_LUT>
                     <BRAM_18K>0</BRAM_18K>
@@ -219,22 +219,20 @@
                 </Resources>
             </AreaEstimates>
             <BindNodes>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op xor" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="xor" PRAGMA="" RTLNAME="xor_ln4_fu_70_p2" SOURCE="/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_raw_sum.cpp:4" STORAGESUBTYPE="" URAM="0" VARIABLE="xor_ln4" VISIBLE="false"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op seteq" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="seteq" PRAGMA="" RTLNAME="icmp_ln4_fu_76_p2" SOURCE="/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_raw_sum.cpp:4" STORAGESUBTYPE="" URAM="0" VARIABLE="icmp_ln4" VISIBLE="false"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op and" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="and" PRAGMA="" RTLNAME="and_ln4_fu_82_p2" SOURCE="/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_raw_sum.cpp:4" STORAGESUBTYPE="" URAM="0" VARIABLE="and_ln4" VISIBLE="false"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op setlt" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="setlt" PRAGMA="" RTLNAME="icmp_ln4_1_fu_88_p2" SOURCE="/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_raw_sum.cpp:4" STORAGESUBTYPE="" URAM="0" VARIABLE="icmp_ln4_1" VISIBLE="false"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op xor" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="xor" PRAGMA="" RTLNAME="xor_ln4_2_fu_94_p2" SOURCE="/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_raw_sum.cpp:4" STORAGESUBTYPE="" URAM="0" VARIABLE="xor_ln4_2" VISIBLE="false"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op select" DSP="0" ID="" IMPL="auto_sel" LATENCY="0" LOOP="" OPTYPE="select" PRAGMA="" RTLNAME="select_ln4_fu_100_p3" SOURCE="/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_raw_sum.cpp:4" STORAGESUBTYPE="" URAM="0" VARIABLE="select_ln4" VISIBLE="false"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op select" DSP="0" ID="" IMPL="auto_sel" LATENCY="0" LOOP="" OPTYPE="select" PRAGMA="" RTLNAME="select_ln4_1_fu_108_p3" SOURCE="/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_raw_sum.cpp:4" STORAGESUBTYPE="" URAM="0" VARIABLE="select_ln4_1" VISIBLE="false"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op xor" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="xor" PRAGMA="" RTLNAME="not_and_ln4_fu_116_p2" SOURCE="/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_raw_sum.cpp:4" STORAGESUBTYPE="" URAM="0" VARIABLE="not_and_ln4" VISIBLE="false"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op and" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="and" PRAGMA="" RTLNAME="tmp_0_fu_122_p2" SOURCE="/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_raw_sum.cpp:4" STORAGESUBTYPE="" URAM="0" VARIABLE="tmp_0" VISIBLE="false"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op setlt" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="setlt" PRAGMA="" RTLNAME="icmp_ln4_2_fu_136_p2" SOURCE="/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_raw_sum.cpp:4" STORAGESUBTYPE="" URAM="0" VARIABLE="icmp_ln4_2" VISIBLE="false"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="ref_tmp14_1_fu_180_p2" SOURCE="/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_raw_sum.cpp:4" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln4" VISIBLE="true"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="ref_tmp14_1_fu_180_p4" SOURCE="/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_raw_sum.cpp:4" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln4" VISIBLE="true"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="ref_tmp14_1_fu_180_p6" SOURCE="/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_raw_sum.cpp:4" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln4_1" VISIBLE="true"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op xor" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="xor" PRAGMA="" RTLNAME="xor_ln4_1_fu_160_p2" SOURCE="/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_raw_sum.cpp:4" STORAGESUBTYPE="" URAM="0" VARIABLE="xor_ln4_1" VISIBLE="false"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op and" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="and" PRAGMA="" RTLNAME="and_ln4_1_fu_166_p2" SOURCE="/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_raw_sum.cpp:4" STORAGESUBTYPE="" URAM="0" VARIABLE="and_ln4_1" VISIBLE="false"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sparsemux" DSP="0" ID="" IMPL="onehotencoding_realdef" LATENCY="0" LOOP="" OPTYPE="sparsemux" PRAGMA="" RTLNAME="sparsemux_7_2_25_1_1_U1" SOURCE="/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_raw_sum.cpp:4" STORAGESUBTYPE="" URAM="0" VARIABLE="ref_tmp14_1" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op xor" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="xor" PRAGMA="" RTLNAME="xor_ln4_fu_60_p2" SOURCE="/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_raw_sum.cpp:4" STORAGESUBTYPE="" URAM="0" VARIABLE="xor_ln4" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op seteq" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="seteq" PRAGMA="" RTLNAME="icmp_ln4_fu_66_p2" SOURCE="/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_raw_sum.cpp:4" STORAGESUBTYPE="" URAM="0" VARIABLE="icmp_ln4" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op and" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="and" PRAGMA="" RTLNAME="and_ln4_fu_72_p2" SOURCE="/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_raw_sum.cpp:4" STORAGESUBTYPE="" URAM="0" VARIABLE="and_ln4" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op setlt" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="setlt" PRAGMA="" RTLNAME="icmp_ln4_1_fu_78_p2" SOURCE="/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_raw_sum.cpp:4" STORAGESUBTYPE="" URAM="0" VARIABLE="icmp_ln4_1" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op xor" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="xor" PRAGMA="" RTLNAME="xor_ln4_1_fu_84_p2" SOURCE="/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_raw_sum.cpp:4" STORAGESUBTYPE="" URAM="0" VARIABLE="xor_ln4_1" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op select" DSP="0" ID="" IMPL="auto_sel" LATENCY="0" LOOP="" OPTYPE="select" PRAGMA="" RTLNAME="select_ln4_fu_90_p3" SOURCE="/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_raw_sum.cpp:4" STORAGESUBTYPE="" URAM="0" VARIABLE="select_ln4" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op select" DSP="0" ID="" IMPL="auto_sel" LATENCY="0" LOOP="" OPTYPE="select" PRAGMA="" RTLNAME="select_ln4_1_fu_98_p3" SOURCE="/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_raw_sum.cpp:4" STORAGESUBTYPE="" URAM="0" VARIABLE="select_ln4_1" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op xor" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="xor" PRAGMA="" RTLNAME="not_and_ln4_fu_106_p2" SOURCE="/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_raw_sum.cpp:4" STORAGESUBTYPE="" URAM="0" VARIABLE="not_and_ln4" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op and" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="and" PRAGMA="" RTLNAME="ref_tmp6_0_fu_112_p2" SOURCE="/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_raw_sum.cpp:4" STORAGESUBTYPE="" URAM="0" VARIABLE="ref_tmp6_0" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln4_fu_126_p2" SOURCE="/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_raw_sum.cpp:4" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln4" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln4_1_fu_132_p2" SOURCE="/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_raw_sum.cpp:4" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln4_1" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op select" DSP="0" ID="" IMPL="auto_sel" LATENCY="0" LOOP="" OPTYPE="select" PRAGMA="" RTLNAME="select_ln4_2_fu_138_p3" SOURCE="/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_raw_sum.cpp:4" STORAGESUBTYPE="" URAM="0" VARIABLE="select_ln4_2" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln4_fu_146_p2" SOURCE="/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_raw_sum.cpp:4" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln4" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op select" DSP="0" ID="" IMPL="auto_sel" LATENCY="0" LOOP="" OPTYPE="select" PRAGMA="" RTLNAME="ref_tmp17_1_fu_152_p3" SOURCE="/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_raw_sum.cpp:4" STORAGESUBTYPE="" URAM="0" VARIABLE="ref_tmp17_1" VISIBLE="false"/>
             </BindNodes>
         </Module>
     </ModuleInformation>

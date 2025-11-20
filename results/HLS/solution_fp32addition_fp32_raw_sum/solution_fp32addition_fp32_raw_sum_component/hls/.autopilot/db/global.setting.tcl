@@ -1,6 +1,6 @@
 
 set TopModule "fp32_raw_summer"
-set ClockPeriod 1000000000
+set ClockPeriod 50
 set ClockList {}
 set AxiliteClockList {}
 set HasVivadoClockPeriod 0

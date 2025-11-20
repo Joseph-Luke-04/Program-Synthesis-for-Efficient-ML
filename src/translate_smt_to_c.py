@@ -1,19 +1,6 @@
 import os, re, subprocess
 from pathlib import Path
-
-# ========================================================
-
-# Maps component keys to lists of dependency component keys.
-DEPENDENCY_MAP = {
-    "addition_raw_sum": ["addition_alignment"],
-    "fp32addition_fp32_full_sum": [
-        "fp32addition_fp32_alignment",
-        "fp32addition_fp32_raw_sum",
-        "fp32addition_fp32_normalisation",
-    ],
-}
-
-# ========================================================  
+from src.dependencies import DEPENDENCY_MAP
 
 def _extract_define_funs(s: str) -> list[str]:
     blocks, i = [], 0

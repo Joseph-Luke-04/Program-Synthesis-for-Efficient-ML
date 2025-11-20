@@ -4,7 +4,7 @@
 == Synthesis Summary Report of 'fp32_sum'
 ================================================================
 + General Information: 
-    * Date:           Wed Nov 12 13:49:56 2025
+    * Date:           Wed Nov 19 15:00:59 2025
     * Version:        2025.1 (Build 6135595 on May 21 2025)
     * Project:        solution_fp32addition_fp32_full_sum_component
     * Solution:       hls (Vivado IP Flow Target)
@@ -94,7 +94,7 @@
 |   lshr_ln4_fu_147_p2                             |     |        | lshr_ln4   | lshr      | auto_pipe              | 0       |
 |   sub_ln4_1_fu_153_p2                            |     |        | sub_ln4_1  | sub       | fabric                 | 0       |
 |   lshr_ln4_1_fu_163_p2                           |     |        | lshr_ln4_1 | lshr      | auto_pipe              | 0       |
-|   tmp_0_i86_fu_177_p3                            |     |        | tmp_0_i86  | select    | auto_sel               | 0       |
+|   tmp_0_i87_fu_177_p3                            |     |        | tmp_0_i87  | select    | auto_sel               | 0       |
 |   am2_fu_185_p3                                  |     |        | am2        | select    | auto_sel               | 0       |
 |   call_ret_fp32_normaliser_fu_90_target_exponent |     |        | exp        | select    | auto_sel               | 0       |
 |   xor_ln8_fu_202_p2                              |     |        | xor_ln8    | xor       | auto                   | 0       |

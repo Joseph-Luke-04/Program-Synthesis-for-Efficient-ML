@@ -55,7 +55,7 @@ wire   [0:0] xor_ln4_fu_103_p2;
 wire   [23:0] lshr_ln4_1_fu_163_p2;
 wire   [23:0] lshr_ln4_fu_147_p2;
 wire   [23:0] tmp_2_fu_169_p3;
-wire   [23:0] tmp_0_i86_fu_177_p3;
+wire   [23:0] tmp_0_i87_fu_177_p3;
 wire   [23:0] am2_fu_185_p3;
 wire   [0:0] xor_ln8_fu_202_p2;
 wire   [0:0] icmp_ln8_fu_208_p2;
@@ -133,11 +133,11 @@ assign icmp_ln4_2_fu_123_p2 = ((e2 != 8'd0) ? 1'b1 : 1'b0);
 
 assign icmp_ln4_fu_97_p2 = ((e1 < e2) ? 1'b1 : 1'b0);
 
-assign icmp_ln8_1_fu_244_p2 = ((tmp_0_i86_fu_177_p3 < am2_fu_185_p3) ? 1'b1 : 1'b0);
+assign icmp_ln8_1_fu_244_p2 = ((tmp_0_i87_fu_177_p3 < am2_fu_185_p3) ? 1'b1 : 1'b0);
 
-assign icmp_ln8_2_fu_281_p2 = ((tmp_0_i86_fu_177_p3 < am2_fu_185_p3) ? 1'b1 : 1'b0);
+assign icmp_ln8_2_fu_281_p2 = ((tmp_0_i87_fu_177_p3 < am2_fu_185_p3) ? 1'b1 : 1'b0);
 
-assign icmp_ln8_fu_208_p2 = ((tmp_0_i86_fu_177_p3 == am2_fu_185_p3) ? 1'b1 : 1'b0);
+assign icmp_ln8_fu_208_p2 = ((tmp_0_i87_fu_177_p3 == am2_fu_185_p3) ? 1'b1 : 1'b0);
 
 assign lshr_ln4_1_fu_163_p2 = tmp_fu_115_p3 >> sub_ln4_1cast_fu_159_p1;
 
@@ -155,7 +155,7 @@ assign sub_ln4_fu_137_p2 = (e1 - e2);
 
 assign sub_ln4cast_fu_143_p1 = sub_ln4_fu_137_p2;
 
-assign tmp_0_i86_fu_177_p3 = ((xor_ln4_fu_103_p2[0:0] == 1'b1) ? tmp_fu_115_p3 : lshr_ln4_1_fu_163_p2);
+assign tmp_0_i87_fu_177_p3 = ((xor_ln4_fu_103_p2[0:0] == 1'b1) ? tmp_fu_115_p3 : lshr_ln4_1_fu_163_p2);
 
 assign tmp_1_fu_129_p3 = {{icmp_ln4_2_fu_123_p2}, {m2}};
 
@@ -175,7 +175,7 @@ assign xor_ln8_fu_202_p2 = (s2 ^ s1);
 
 assign zext_ln8_1_fu_277_p1 = am2_fu_185_p3;
 
-assign zext_ln8_fu_273_p1 = tmp_0_i86_fu_177_p3;
+assign zext_ln8_fu_273_p1 = tmp_0_i87_fu_177_p3;
 
 assign call_ret_fp32_normaliser_fu_90_raw_sign = ((or_ln8_fu_226_p2[0:0] == 1'b1) ? and_ln8_1_fu_238_p2 : select_ln8_fu_256_p3);
 

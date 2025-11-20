@@ -22,7 +22,7 @@ set C_modelArgList {
 	{ e1 int 8 regular  }
 	{ m1 int 23 regular  }
 	{ e2 int 8 regular  }
-	{ m2 int 23 regular  }
+	{ m2 int 23 unused  }
 }
 set hasAXIMCache 0
 set l_AXIML2Cache [list]
@@ -64,7 +64,7 @@ set ArgLastReadFirstWriteLatency {
 		e1 {Type I LastRead 0 FirstWrite -1}
 		m1 {Type I LastRead 0 FirstWrite -1}
 		e2 {Type I LastRead 0 FirstWrite -1}
-		m2 {Type I LastRead 0 FirstWrite -1}}}
+		m2 {Type I LastRead -1 FirstWrite -1}}}
 
 set hasDtUnsupportedChannel 0
 

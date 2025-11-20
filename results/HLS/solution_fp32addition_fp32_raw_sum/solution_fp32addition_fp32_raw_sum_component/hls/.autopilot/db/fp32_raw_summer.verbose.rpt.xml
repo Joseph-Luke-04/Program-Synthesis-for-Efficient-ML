@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'fp32_raw_summer'" level="0">
-<item name = "Date">Tue Nov 11 15:14:28 2025
+<item name = "Date">Wed Nov 19 19:47:29 2025
 </item>
 <item name = "Version">2025.1 (Build 6135595 on May 21 2025)</item>
 <item name = "Project">solution_fp32addition_fp32_raw_sum_component</item>
@@ -15,7 +15,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="4">Clock, Target, Estimated, Uncertainty</keys>
-<column name="ap_clk">1.00 sec, 4.880 ns, 0.27 sec</column>
+<column name="ap_clk">50.00 ns, 4.316 ns, 13.50 ns</column>
 </table>
 </item>
 </section>
@@ -47,9 +47,9 @@
 <item name = "Summary"><table name="" hasTotal="1">
 <keys size="6">Name, BRAM_18K, DSP, FF, LUT, URAM</keys>
 <column name="DSP">-, -, -, -, -</column>
-<column name="Expression">-, -, 0, 207, -</column>
+<column name="Expression">-, -, 0, 123, -</column>
 <column name="FIFO">-, -, -, -, -</column>
-<column name="Instance">-, -, 0, 9, -</column>
+<column name="Instance">-, -, -, -, -</column>
 <column name="Memory">-, -, -, -, -</column>
 <column name="Multiplexer">-, -, -, -, -</column>
 <column name="Register">-, -, -, -, -</column>
@@ -61,7 +61,6 @@
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="1">
 <keys size="7">Instance, Module, BRAM_18K, DSP, FF, LUT, URAM</keys>
-<column name="sparsemux_7_2_25_1_1_U1">sparsemux_7_2_25_1_1, 0, 0, 0, 9, 0</column>
 </table>
 </item>
 <item name = "DSP"><table name="" hasTotal="0">
@@ -78,21 +77,20 @@
 </item>
 <item name = "Expression"><table name="" hasTotal="1">
 <keys size="7">Variable Name, Operation, DSP, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
-<column name="ref_tmp14_1_fu_180_p2">+, 0, 0, 32, 25, 25</column>
-<column name="ref_tmp14_1_fu_180_p4">-, 0, 0, 32, 25, 25</column>
-<column name="ref_tmp14_1_fu_180_p6">-, 0, 0, 32, 25, 25</column>
-<column name="and_ln4_1_fu_166_p2">and, 0, 0, 2, 1, 1</column>
-<column name="and_ln4_fu_82_p2">and, 0, 0, 2, 1, 1</column>
-<column name="tmp_0_fu_122_p2">and, 0, 0, 2, 1, 1</column>
-<column name="icmp_ln4_1_fu_88_p2">icmp, 0, 0, 31, 24, 24</column>
-<column name="icmp_ln4_2_fu_136_p2">icmp, 0, 0, 31, 24, 24</column>
-<column name="icmp_ln4_fu_76_p2">icmp, 0, 0, 31, 24, 24</column>
-<column name="select_ln4_1_fu_108_p3">select, 0, 0, 2, 1, 1</column>
-<column name="select_ln4_fu_100_p3">select, 0, 0, 2, 1, 1</column>
-<column name="not_and_ln4_fu_116_p2">xor, 0, 0, 2, 2, 1</column>
-<column name="xor_ln4_1_fu_160_p2">xor, 0, 0, 2, 1, 2</column>
-<column name="xor_ln4_2_fu_94_p2">xor, 0, 0, 2, 1, 2</column>
-<column name="xor_ln4_fu_70_p2">xor, 0, 0, 2, 1, 1</column>
+<column name="add_ln4_fu_146_p2">+, 0, 0, 13, 4, 4</column>
+<column name="sub_ln4_1_fu_132_p2">-, 0, 0, 13, 4, 4</column>
+<column name="sub_ln4_fu_126_p2">-, 0, 0, 13, 4, 4</column>
+<column name="and_ln4_fu_72_p2">and, 0, 0, 2, 1, 1</column>
+<column name="ref_tmp6_0_fu_112_p2">and, 0, 0, 2, 1, 1</column>
+<column name="icmp_ln4_1_fu_78_p2">icmp, 0, 0, 31, 24, 24</column>
+<column name="icmp_ln4_fu_66_p2">icmp, 0, 0, 31, 24, 24</column>
+<column name="ref_tmp17_1_fu_152_p3">select, 0, 0, 4, 1, 4</column>
+<column name="select_ln4_1_fu_98_p3">select, 0, 0, 2, 1, 1</column>
+<column name="select_ln4_2_fu_138_p3">select, 0, 0, 4, 1, 4</column>
+<column name="select_ln4_fu_90_p3">select, 0, 0, 2, 1, 1</column>
+<column name="not_and_ln4_fu_106_p2">xor, 0, 0, 2, 2, 1</column>
+<column name="xor_ln4_1_fu_84_p2">xor, 0, 0, 2, 1, 2</column>
+<column name="xor_ln4_fu_60_p2">xor, 0, 0, 2, 1, 1</column>
 </table>
 </item>
 <item name = "Multiplexer"><table name="" hasTotal="1">

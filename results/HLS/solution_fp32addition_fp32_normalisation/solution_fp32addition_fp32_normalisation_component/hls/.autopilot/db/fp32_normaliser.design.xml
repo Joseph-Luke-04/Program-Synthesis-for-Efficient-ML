@@ -11,8 +11,8 @@
 <Name>fp32_normaliser</Name>
 <PerformanceEstimates>
 <SummaryOfTimingAnalysis>
-<TargetClockPeriod>1000000000.00</TargetClockPeriod>
-<ClockUncertainty>270000000.00</ClockUncertainty>
+<TargetClockPeriod>50.00</TargetClockPeriod>
+<ClockUncertainty>13.50</ClockUncertainty>
 <EstimatedClockPeriod>7.137</EstimatedClockPeriod>
 </SummaryOfTimingAnalysis>
 <SummaryOfOverallLatency>
@@ -29,7 +29,7 @@
 <SummaryOfViolations>
 <IssueType>-</IssueType>
 <ViolationType>-</ViolationType>
-<SourceLocation>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_normalisation.cpp:4</SourceLocation>
+<SourceLocation>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_normalisation.cpp:3</SourceLocation>
 </SummaryOfViolations>
 </PerformanceEstimates>
 <AreaEstimates>

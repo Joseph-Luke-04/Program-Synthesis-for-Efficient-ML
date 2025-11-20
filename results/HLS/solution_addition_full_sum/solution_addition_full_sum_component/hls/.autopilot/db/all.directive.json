@@ -1,0 +1,23 @@
+[
+  {
+    "functionLabel": "",
+    "functionName": "add_full_sum",
+    "id": 0,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "",
+    "pragma": {
+      "name": "TOP",
+      "option": [
+        {
+          "name": "name",
+          "value": "add_full_sum"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_addition_full_sum/hls.tcl",
+    "sourceLine": 6,
+    "success": true
+  }
+]

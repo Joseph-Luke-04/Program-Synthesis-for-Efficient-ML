@@ -4,7 +4,7 @@
 == Synthesis Summary Report of 'fp32_normaliser'
 ================================================================
 + General Information: 
-    * Date:           Tue Nov 11 16:09:49 2025
+    * Date:           Wed Nov 19 19:49:47 2025
     * Version:        2025.1 (Build 6135595 on May 21 2025)
     * Project:        solution_fp32addition_fp32_normalisation_component
     * Solution:       hls (Vivado IP Flow Target)
@@ -15,12 +15,12 @@
 + Performance & Resource Estimates: 
     
     PS: '+' for module; 'o' for loop; '*' for dataflow
-    +-------------------+---------+-------+---------+-------+----------+---------+------+----------+------+----+---+----------+-----+
-    |      Modules      |  Issue  |       |     Latency     | Iteration|         | Trip |          |      |    |   |          |     |
-    |      & Loops      |   Type  | Slack | (cycles)|  (ns) |  Latency | Interval| Count| Pipelined| BRAM | DSP| FF|    LUT   | URAM|
-    +-------------------+---------+-------+---------+-------+----------+---------+------+----------+------+----+---+----------+-----+
-    |+ fp32_normaliser  |   Timing|  -7.14|        0|  0.000|         -|        1|     -|        no|     -|   -|  -|  686 (1%)|    -|
-    +-------------------+---------+-------+---------+-------+----------+---------+------+----------+------+----+---+----------+-----+
+    +-------------------+------+-------+---------+-------+----------+---------+------+----------+------+----+---+----------+-----+
+    |      Modules      | Issue|       |     Latency     | Iteration|         | Trip |          |      |    |   |          |     |
+    |      & Loops      | Type | Slack | (cycles)|  (ns) |  Latency | Interval| Count| Pipelined| BRAM | DSP| FF|    LUT   | URAM|
+    +-------------------+------+-------+---------+-------+----------+---------+------+----------+------+----+---+----------+-----+
+    |+ fp32_normaliser  |     -|  29.36|        0|  0.000|         -|        1|     -|        no|     -|   -|  -|  686 (1%)|    -|
+    +-------------------+------+-------+---------+-------+----------+---------+------+----------+------+----+---+----------+-----+
 
 
 ================================================================
@@ -76,7 +76,7 @@
 | Name                 | DSP | Pragma | Variable | Op    | Impl   | Latency |
 +----------------------+-----+--------+----------+-------+--------+---------+
 | + fp32_normaliser    | 0   |        |          |       |        |         |
-|   icmp_ln5_fu_362_p2 |     |        | icmp_ln5 | seteq | auto   | 0       |
+|   icmp_ln4_fu_362_p2 |     |        | icmp_ln4 | seteq | auto   | 0       |
 |   exp_24_fu_560_p2   |     |        | exp_24   | add   | fabric | 0       |
 |   exp_22_fu_580_p2   |     |        | exp_22   | add   | fabric | 0       |
 |   exp_21_fu_600_p2   |     |        | exp_21   | add   | fabric | 0       |

@@ -1,0 +1,116 @@
+
+
+================================================================
+== Vitis HLS Report for 'normalise_addition'
+================================================================
+* Date:           Wed Nov 19 15:20:21 2025
+
+* Version:        2025.1 (Build 6135595 on May 21 2025)
+* Project:        solution_addition_normalisation_component
+* Solution:       hls (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z020-clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+----------+------------+
+    |  Clock |  Target  | Estimated| Uncertainty|
+    +--------+----------+----------+------------+
+    |ap_clk  |  50.00 ns|  2.804 ns|    13.50 ns|
+    +--------+----------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |        0|        0|      0 ns|      0 ns|    1|    1|       no|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-----+--------+-------+-----+
+|       Name      | BRAM_18K| DSP |   FF   |  LUT  | URAM|
++-----------------+---------+-----+--------+-------+-----+
+|DSP              |        -|    -|       -|      -|    -|
+|Expression       |        -|    -|       0|     47|    -|
+|FIFO             |        -|    -|       -|      -|    -|
+|Instance         |        -|    -|       -|      -|    -|
+|Memory           |        -|    -|       -|      -|    -|
+|Multiplexer      |        -|    -|       -|      -|    -|
+|Register         |        -|    -|       -|      -|    -|
++-----------------+---------+-----+--------+-------+-----+
+|Total            |        0|    0|       0|     47|    0|
++-----------------+---------+-----+--------+-------+-----+
+|Available        |      280|  220|  106400|  53200|    0|
++-----------------+---------+-----+--------+-------+-----+
+|Utilization (%)  |        0|    0|       0|     ~0|    0|
++-----------------+---------+-----+--------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +----------------------+----------+----+---+----+------------+------------+
+    |     Variable Name    | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +----------------------+----------+----+---+----+------------+------------+
+    |add_ln4_1_fu_94_p2    |         +|   0|  0|  13|           5|           4|
+    |add_ln4_2_fu_108_p2   |         +|   0|  0|  13|           4|           1|
+    |add_ln4_fu_54_p2      |         +|   0|  0|  13|           5|           5|
+    |select_ln4_fu_114_p3  |    select|   0|  0|   4|           1|           4|
+    |tmp_0_fu_86_p3        |    select|   0|  0|   4|           1|           4|
+    +----------------------+----------+----+---+----+------------+------------+
+    |Total                 |          |   0|  0|  47|          16|          18|
+    +----------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    N/A
+
+    * Register: 
+    N/A
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++------------+-----+-----+------------+--------------------+--------------+
+|  RTL Ports | Dir | Bits|  Protocol  |    Source Object   |    C Type    |
++------------+-----+-----+------------+--------------------+--------------+
+|ap_start    |   in|    1|  ap_ctrl_hs|  normalise_addition|  return value|
+|ap_done     |  out|    1|  ap_ctrl_hs|  normalise_addition|  return value|
+|ap_idle     |  out|    1|  ap_ctrl_hs|  normalise_addition|  return value|
+|ap_ready    |  out|    1|  ap_ctrl_hs|  normalise_addition|  return value|
+|ap_return   |  out|    8|  ap_ctrl_hs|  normalise_addition|  return value|
+|ap_rst      |   in|    1|  ap_ctrl_hs|  normalise_addition|  return value|
+|raw_sum     |   in|    5|     ap_none|             raw_sum|        scalar|
+|target_exp  |   in|    4|     ap_none|          target_exp|        scalar|
++------------+-----+-----+------------+--------------------+--------------+
+

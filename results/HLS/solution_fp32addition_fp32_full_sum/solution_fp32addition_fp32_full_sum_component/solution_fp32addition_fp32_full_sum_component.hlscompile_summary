@@ -9,10 +9,10 @@
 <ENTRY>
 {
  "type": "ET_CmdStep",
- "dateTimestamp": "Wed Nov 12 13:49:44 2025",
- "timestampMillis": "1762955384901",
+ "dateTimestamp": "Wed Nov 19 15:00:48 2025",
+ "timestampMillis": "1763564448410",
  "buildStep": {
-  "cmdId": "0aac45f4-6495-4e23-af63-0e0272a550c2",
+  "cmdId": "1dd54d5e-aece-4916-94cd-bc001426983e",
   "name": "vitis-run",
   "logFile": "/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum/logs/hls_compile.log",
   "commandLine": "vitis-run --mode hls --tcl /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum/hls.tcl",
@@ -25,10 +25,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Wed Nov 12 13:49:44 2025",
- "timestampMillis": "1762955384902",
+ "dateTimestamp": "Wed Nov 19 15:00:48 2025",
+ "timestampMillis": "1763564448411",
  "status": {
-  "cmdId": "0aac45f4-6495-4e23-af63-0e0272a550c2",
+  "cmdId": "1dd54d5e-aece-4916-94cd-bc001426983e",
   "state": "CS_RUNNING"
  }
 }
@@ -36,8 +36,8 @@
 <ENTRY>
 {
  "type": "ET_FlowMetaData",
- "dateTimestamp": "Wed Nov 12 13:49:44 2025",
- "timestampMillis": "1762955384902",
+ "dateTimestamp": "Wed Nov 19 15:00:48 2025",
+ "timestampMillis": "1763564448411",
  "buildSummary": {
   "hardwarePlatform": "",
   "hardwareDsa": "",
@@ -72,10 +72,10 @@
 <ENTRY>
 {
  "type": "ET_SubCmdStep",
- "dateTimestamp": "Wed Nov 12 13:49:44 2025",
- "timestampMillis": "1762955384902",
+ "dateTimestamp": "Wed Nov 19 15:00:48 2025",
+ "timestampMillis": "1763564448411",
  "buildStep": {
-  "cmdId": "50896017-041f-47a2-9440-7e0afd69b657",
+  "cmdId": "2aced7e7-ce27-4341-8e65-ea04b857a64e",
   "name": "csynth_design",
   "logFile": "/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum/solution_fp32addition_fp32_full_sum_component/hls/hls.log",
   "commandLine": "csynth_design",
@@ -88,10 +88,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Wed Nov 12 13:49:44 2025",
- "timestampMillis": "1762955384902",
+ "dateTimestamp": "Wed Nov 19 15:00:48 2025",
+ "timestampMillis": "1763564448411",
  "status": {
-  "cmdId": "50896017-041f-47a2-9440-7e0afd69b657",
+  "cmdId": "2aced7e7-ce27-4341-8e65-ea04b857a64e",
   "state": "CS_RUNNING"
  }
 }
@@ -99,8 +99,8 @@
 <ENTRY>
 {
  "type": "ET_Report",
- "dateTimestamp": "Wed Nov 12 13:49:44 2025",
- "timestampMillis": "1762955384902",
+ "dateTimestamp": "Wed Nov 19 15:00:48 2025",
+ "timestampMillis": "1763564448411",
  "report": {
   "path": "/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum/solution_fp32addition_fp32_full_sum_component/hls/hls_data.json",
   "name": "",
@@ -113,8 +113,8 @@
 <ENTRY>
 {
  "type": "ET_Report",
- "dateTimestamp": "Wed Nov 12 13:49:44 2025",
- "timestampMillis": "1762955384902",
+ "dateTimestamp": "Wed Nov 19 15:00:48 2025",
+ "timestampMillis": "1763564448411",
  "report": {
   "path": "/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum/solution_fp32addition_fp32_full_sum_component/hls/syn/report/csynth.rpt",
   "name": "",
@@ -127,8 +127,8 @@
 <ENTRY>
 {
  "type": "ET_Report",
- "dateTimestamp": "Wed Nov 12 13:49:44 2025",
- "timestampMillis": "1762955384903",
+ "dateTimestamp": "Wed Nov 19 15:00:48 2025",
+ "timestampMillis": "1763564448412",
  "report": {
   "path": "/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum/solution_fp32addition_fp32_full_sum_component/hls/syn/report/csynth.xml",
   "name": "",
@@ -141,8 +141,8 @@
 <ENTRY>
 {
  "type": "ET_Report",
- "dateTimestamp": "Wed Nov 12 13:49:56 2025",
- "timestampMillis": "1762955396613",
+ "dateTimestamp": "Wed Nov 19 15:00:59 2025",
+ "timestampMillis": "1763564459434",
  "report": {
   "path": "/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum/solution_fp32addition_fp32_full_sum_component/hls",
   "name": "",
@@ -155,8 +155,8 @@
 <ENTRY>
 {
  "type": "ET_Report",
- "dateTimestamp": "Wed Nov 12 13:49:56 2025",
- "timestampMillis": "1762955396613",
+ "dateTimestamp": "Wed Nov 19 15:00:59 2025",
+ "timestampMillis": "1763564459434",
  "report": {
   "path": "/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum/solution_fp32addition_fp32_full_sum_component/hls",
   "name": "",
@@ -169,8 +169,8 @@
 <ENTRY>
 {
  "type": "ET_Report",
- "dateTimestamp": "Wed Nov 12 13:49:56 2025",
- "timestampMillis": "1762955396613",
+ "dateTimestamp": "Wed Nov 19 15:00:59 2025",
+ "timestampMillis": "1763564459434",
  "report": {
   "path": "/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum/solution_fp32addition_fp32_full_sum_component/hls",
   "name": "",
@@ -183,10 +183,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Wed Nov 12 13:49:56 2025",
- "timestampMillis": "1762955396614",
+ "dateTimestamp": "Wed Nov 19 15:00:59 2025",
+ "timestampMillis": "1763564459434",
  "status": {
-  "cmdId": "50896017-041f-47a2-9440-7e0afd69b657",
+  "cmdId": "2aced7e7-ce27-4341-8e65-ea04b857a64e",
   "state": "CS_PASSED"
  }
 }
@@ -194,10 +194,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Wed Nov 12 13:49:56 2025",
- "timestampMillis": "1762955396628",
+ "dateTimestamp": "Wed Nov 19 15:00:59 2025",
+ "timestampMillis": "1763564459452",
  "status": {
-  "cmdId": "0aac45f4-6495-4e23-af63-0e0272a550c2",
+  "cmdId": "1dd54d5e-aece-4916-94cd-bc001426983e",
   "state": "CS_PASSED"
  }
 }

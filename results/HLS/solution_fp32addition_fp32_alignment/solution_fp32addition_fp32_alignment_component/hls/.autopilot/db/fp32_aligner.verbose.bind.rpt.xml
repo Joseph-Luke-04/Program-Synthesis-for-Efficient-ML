@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'fp32_aligner'" level="0">
-<item name = "Date">Tue Nov 11 16:13:55 2025
+<item name = "Date">Wed Nov 19 19:45:16 2025
 </item>
 <item name = "Version">2025.1 (Build 6135595 on May 21 2025)</item>
 <item name = "Project">solution_fp32addition_fp32_alignment_component</item>
@@ -15,7 +15,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="4">Clock, Target, Estimated, Uncertainty</keys>
-<column name="ap_clk">1.00 sec, 6.813 ns, 0.27 sec</column>
+<column name="ap_clk">50.00 ns, 7.143 ns, 13.50 ns</column>
 </table>
 </item>
 </section>

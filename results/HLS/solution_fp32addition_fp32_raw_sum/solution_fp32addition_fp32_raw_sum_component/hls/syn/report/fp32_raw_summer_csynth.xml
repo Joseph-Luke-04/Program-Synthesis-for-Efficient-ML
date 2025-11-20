@@ -9,8 +9,8 @@
 <ProductFamily>zynq</ProductFamily>
 <Part>xc7z020-clg400-1</Part>
 <TopModelName>fp32_raw_summer</TopModelName>
-<TargetClockPeriod>1000000000.00</TargetClockPeriod>
-<ClockUncertainty>270000000.00</ClockUncertainty>
+<TargetClockPeriod>50.00</TargetClockPeriod>
+<ClockUncertainty>13.50</ClockUncertainty>
 <FlowTarget>vivado</FlowTarget>
 </UserAssignments>
 
@@ -18,7 +18,7 @@
 <PipelineType>no</PipelineType>
 <SummaryOfTimingAnalysis>
 <unit>ns</unit>
-<EstimatedClockPeriod>4.880</EstimatedClockPeriod>
+<EstimatedClockPeriod>4.316</EstimatedClockPeriod>
 </SummaryOfTimingAnalysis>
 <SummaryOfOverallLatency>
 <unit>clock cycles</unit>
@@ -42,7 +42,7 @@
 <AreaEstimates>
 <Resources>
 <FF>0</FF>
-<LUT>216</LUT>
+<LUT>123</LUT>
 <BRAM_18K>0</BRAM_18K>
 <DSP>0</DSP>
 <URAM>0</URAM>

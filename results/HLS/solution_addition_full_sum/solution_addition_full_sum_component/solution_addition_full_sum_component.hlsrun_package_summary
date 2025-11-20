@@ -1,0 +1,120 @@
+<ENTRY>
+{
+ "thisFile": "/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_addition_full_sum/solution_addition_full_sum_component/solution_addition_full_sum_component.hlsrun_package_summary",
+ "connectId": "",
+ "serverToken": "",
+ "timestamp": "0"
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_CmdStep",
+ "dateTimestamp": "Wed Nov 19 20:53:09 2025",
+ "timestampMillis": "1763585589235",
+ "buildStep": {
+  "cmdId": "b3609d78-595e-4f2c-8c7f-3e9e60020eff",
+  "name": "vitis-run",
+  "logFile": "/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_addition_full_sum/logs/hls_compile.log",
+  "commandLine": "vitis-run --mode hls --tcl /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_addition_full_sum/hls.tcl",
+  "args": [],
+  "iniFiles": [],
+  "cwd": "/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_addition_full_sum"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Wed Nov 19 20:53:09 2025",
+ "timestampMillis": "1763585589236",
+ "status": {
+  "cmdId": "b3609d78-595e-4f2c-8c7f-3e9e60020eff",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_FlowMetaData",
+ "dateTimestamp": "Wed Nov 19 20:53:09 2025",
+ "timestampMillis": "1763585589236",
+ "buildSummary": {
+  "hardwarePlatform": "",
+  "hardwareDsa": "",
+  "platformDirectory": "",
+  "runtime": "",
+  "systemConfig": "",
+  "flow": "BF_RUN",
+  "target": "TT_HLS_IP",
+  "kernels": [
+   {
+    "base": {
+     "type": "KERNEL",
+     "name": "add_full_sum",
+     "file": "",
+     "reports": [],
+     "uuid": ""
+    },
+    "sources": [
+     "/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_addition_full_sum.cpp"
+    ],
+    "psSources": [],
+    "cuNames": [],
+    "type": "HLS",
+    "frequency": 0,
+    "freqUnits": ""
+   }
+  ],
+  "toolVersion": "2025.1"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Wed Nov 19 20:53:09 2025",
+ "timestampMillis": "1763585589236",
+ "buildStep": {
+  "cmdId": "affad5e3-4543-453a-9ded-459fd4a9e3f6",
+  "name": "export_design",
+  "logFile": "/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_addition_full_sum/solution_addition_full_sum_component/hls/hls.log",
+  "commandLine": "export_design",
+  "args": [],
+  "iniFiles": [],
+  "cwd": "/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_addition_full_sum"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Wed Nov 19 20:53:09 2025",
+ "timestampMillis": "1763585589236",
+ "status": {
+  "cmdId": "affad5e3-4543-453a-9ded-459fd4a9e3f6",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Wed Nov 19 20:53:36 2025",
+ "timestampMillis": "1763585616132",
+ "status": {
+  "cmdId": "affad5e3-4543-453a-9ded-459fd4a9e3f6",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Wed Nov 19 20:53:36 2025",
+ "timestampMillis": "1763585616136",
+ "status": {
+  "cmdId": "b3609d78-595e-4f2c-8c7f-3e9e60020eff",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>

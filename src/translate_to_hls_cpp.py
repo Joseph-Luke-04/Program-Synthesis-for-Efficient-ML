@@ -1,5 +1,13 @@
 import os, re
 from pathlib import Path
+from .canonicalisers import (
+    _canonicalise_add_full_sum, 
+    _canonicalise_mxint8_normaliser_rounded, 
+    _canonicalise_mxint8_raw_adder, 
+    _canonicalise_mxint8_alignment, 
+    _canonicalise_fp32_normaliser, 
+    _canonicalise_fp32_sum
+)
 
 _HEADER = "#include <ap_int.h>\n\n"
 
@@ -48,11 +56,14 @@ def _safer_unsigned_negation(s: str) -> str:
 
 def _replace_bit_extractions(c_code: str) -> str:
     """
-    Convert  EXPR[HI(+K), LO]  into  ap_uint<HI-LO+1>((EXPR)).range(HI, LO)
+    Convert  (EXPR)[HI(+K), LO]  into  ap_uint<HI+1>((EXPR)).range(HI, LO)
     where EXPR may be a parenthesized expr or a function call like foo(...).
-    We (1) locate [...] ; (2) ensure char before '[' is ')';
-    (3) walk backwards to match its '('; (4) extend left to include the
-    callee token if the '(' belongs to a function call.
+
+    Steps:
+      (1) locate [...]
+      (2) ensure char before '[' is ')'
+      (3) walk backwards to match its '('
+      (4) extend left to include the callee token if it's a function call.
     """
     s = c_code
     out = []
@@ -67,14 +78,14 @@ def _replace_bit_extractions(c_code: str) -> str:
         if lb == -1:
             out.append(s[i:rb+1]); i = rb + 1; continue
 
-        # Parse "HI (+ K) , LO"
         inside = s[lb+1:rb]
         m = re.match(r"\s*(\d+)\s*(?:\+\s*(\d+))?\s*,\s*(\d+)\s*$", inside)
         if not m:
             out.append(s[i:lb+1]); i = lb + 1; continue
+
         hi = int(m.group(1)) + (int(m.group(2)) if m.group(2) else 0)
         lo = int(m.group(3))
-        w  = hi - lo + 1
+        container_w = hi + 1   # container width, not slice width
 
         # The thing being sliced must end with ')'
         p = lb - 1
@@ -105,14 +116,10 @@ def _replace_bit_extractions(c_code: str) -> str:
         while k >= 0 and (s[k].isalnum() or s[k] == '_'):
             k -= 1
         name_start = k + 1
-        # If there is an identifier right before '(', include it
-        if name_start < name_end and re.match(r"[A-Za-z_]\w*$", s[name_start:name_end]):
-            expr_start = name_start              # include callee + "(" + args + ")"
-        else:
-            expr_start = q                       # include just "( ... )"
+        expr_start = name_start if (name_start < name_end and re.match(r"[A-Za-z_]\w*$", s[name_start:name_end])) else q
 
-        expr = s[expr_start:p+1]                # inclusive of ')'
-        rep  = f"(ap_uint<{w}>(({expr}))).range({hi}, {lo})"
+        expr = s[expr_start:p+1]  # inclusive of ')'
+        rep  = f"(ap_uint<{container_w}>(({expr}))).range({hi}, {lo})"
 
         out.append(s[i:expr_start])
         out.append(rep)
@@ -215,181 +222,179 @@ def _get_declared_lhs_type(line: str) -> tuple[str | None, str | None, str | Non
     return m.group(1), m.group(2), m.group(3)
 
 def _unify_all_ternaries(code: str) -> str:
-    ret_ty = _get_function_return_type(code)
     out = []
-    for line in code.splitlines():
-        if "?" not in line or ":" not in line:
-            out.append(line); continue
-
-        # Case A: return ...;
-        m_ret = re.match(r"(\s*return\s+)(.+?)(;\s*)$", line)
-        if m_ret:
-            prefix, expr, suffix = m_ret.group(1), m_ret.group(2).strip(), m_ret.group(3)
-            out.append(f"{prefix}{_unify_ternaries_rec(expr, ret_ty)}{suffix}")
-            continue
-
-        # Case B: typed assignment 'ap_uint<N> x = ...;'
-        lhs_ty, lhs_name, rhs = _get_declared_lhs_type(line)
-        if lhs_ty:
-            lead = line[:line.find(lhs_ty)]
-            out.append(f"{lead}{lhs_ty} {lhs_name} = {_unify_ternaries_rec(rhs, lhs_ty)};")
-            continue
-
-        # Generic line: best-effort unify with no target type
-        m_any = re.match(r"(\s*)(.+?)(;\s*)$", line)
-        if m_any:
-            lead, expr, suffix = m_any.group(1), m_any.group(2), m_any.group(3)
-            out.append(f"{lead}{_unify_ternaries_rec(expr, None)}{suffix}")
+    cursor = 0  # running index in the original string
+    for line in code.splitlines(True):  # keep line endings
+        if "?" in line and ":" in line:
+            # Case A: return ...;
+            m_ret = re.match(r"(\s*return\s+)(.+?)(;\s*)$", line)
+            if m_ret:
+                ret_ty = _ret_type_before_pos(code, cursor)
+                expr = _unify_ternaries_rec(m_ret.group(2).strip(), ret_ty)
+                out.append(f"{m_ret.group(1)}{expr}{m_ret.group(3)}")
+            else:
+                # Case B: typed assignment
+                lhs_ty, lhs_name, rhs = _get_declared_lhs_type(line)
+                if lhs_ty:
+                    lead = line[:line.find(lhs_ty)]
+                    out.append(f"{lead}{lhs_ty} {lhs_name} = {_unify_ternaries_rec(rhs, lhs_ty)};")
+                else:
+                    # Generic
+                    m_any = re.match(r"(\s*)(.+?)(;\s*)$", line)
+                    if m_any:
+                        out.append(f"{m_any.group(1)}{_unify_ternaries_rec(m_any.group(2), None)}{m_any.group(3)}")
+                    else:
+                        out.append(_unify_ternaries_rec(line, None))
         else:
-            out.append(_unify_ternaries_rec(line, None))
-    return "\n".join(out)
+            out.append(line)
+        cursor += len(line)
+    return "".join(out)
 
 def _fold_simple_int_additions(s: str) -> str:
     return re.sub(r"\b(\d+)\s*\+\s*(\d+)\b", lambda m: str(int(m.group(1))+int(m.group(2))), s)
 
-def _get_function_return_type(c_code: str) -> str | None:
-    # Matches: ap_uint<N> | ap_int<N> | bool   before the function name
-    m = re.search(r"\b(ap_(?:u)?int<\d+>|bool)\s+[A-Za-z_]\w*\s*\(", c_code)
-    return m.group(1) if m else None
+# Find the function header *before* a given offset and return its type
+_FUNC_HDR_RE = re.compile(
+    r'^\s*(ap_(?:u)?int<\d+>|bool)\s+[A-Za-z_]\w*\s*\([^;{]*\)\s*\{',
+    re.M
+)
+
+def _ret_type_before_pos(code: str, pos: int) -> str | None:
+    last = None
+    for m in _FUNC_HDR_RE.finditer(code):
+        if m.start() < pos:
+            last = m
+        else:
+            break
+    return last.group(1) if last else None
+
+def _strip_outer_parens(s: str) -> str:
+    s2 = s.strip()
+    if not (s2.startswith("(") and s2.endswith(")")):
+        return s
+    depth = 0
+    for i,ch in enumerate(s2):
+        if ch == '(': depth += 1
+        elif ch == ')':
+            depth -= 1
+            if depth == 0 and i != len(s2)-1:
+                return s    # unmatched outer pair
+    return s2[1:-1]         # whole expr wrapped once
+
+def _split_top_comma(s: str):
+    d = 0
+    for i, ch in enumerate(s):
+        if ch == '(': d += 1
+        elif ch == ')': d = max(0, d-1)
+        elif ch == ',' and d == 0:
+            return s[:i].strip(), s[i+1:].strip()
+    return None
+
+def _ret_width(ret_ty: str) -> int | None:
+    m = re.match(r"ap_(?:u)?int<(\d+)>", ret_ty or "")
+    return int(m.group(1)) if m else None
+
+def _pack_hi_lo(ret_ty: str, hi: str, lo: str) -> str:
+    W = _ret_width(ret_ty)
+    if W is None:
+        return f"{ret_ty}((({hi})), ({lo}))"
+    if W == 8:  # {4,4}
+        return (
+            f"{ret_ty}((({ret_ty})(({ret_ty})(({hi})) << 4)) | "
+            f"(ap_uint<4>)(({lo})))"
+        )
+    if W == 9:  # {5,4}
+        return (
+            f"{ret_ty}((({ret_ty})((ap_uint<5>)(({hi})) << 4)) | "
+            f"(ap_uint<4>)(({lo})))"
+        )
+    # generic: shift by W-4 assuming low is 4-bit exponent
+    return (
+        f"{ret_ty}((({ret_ty})(({ret_ty})(({hi})) << {W-4})) | "
+        f"(ap_uint<4>)(({lo})))"
+    )
 
 def _wrap_return_top_concat(c_code: str) -> str:
-    ret_ty = _get_function_return_type(c_code)
-    if not ret_ty:
-        return c_code
+    """
+    Rewrites:  return (HI_expr, LO_expr);
+    into a proper packed value using the *enclosing function's* return type width.
+    Works across the whole file; keeps line endings.
+    """
     out = []
-    for line in c_code.splitlines():
+    cursor = 0  # running index over the original string
+    for line in c_code.splitlines(True):  # keep '\n'
         m = re.match(r"(\s*return\s+)(.+?)(;\s*)$", line)
-        if not m: out.append(line); continue
+        if not m:
+            out.append(line)
+            cursor += len(line)
+            continue
+
         prefix, body, suffix = m.group(1), m.group(2).strip(), m.group(3)
-        if _has_top_level_comma(body):
-            out.append(f"{prefix}{ret_ty}(({body})){suffix}")
+        ret_ty = _ret_type_before_pos(c_code, cursor)  # <-- per-return type!
+
+        core = _strip_outer_parens(body)
+        xy = _split_top_comma(core)
+        if not xy and core.startswith("(") and core.endswith(")"):
+            xy = _split_top_comma(core[1:-1])
+
+        if ret_ty and xy:
+            hi, lo = xy
+            packed = _pack_hi_lo(ret_ty, hi, lo)
+            out.append(f"{prefix}{packed}{suffix}")
         else:
             out.append(line)
-    return "\n".join(out)
 
-def _canonicalise_fp32_normaliser(code: str) -> str:
-    """
-    Replace the entire fp32_normaliser(...) function with a clean, canonical version.
-    Uses brace matching to avoid truncation.
-    """
-    if "fp32_normaliser(" not in code:
-        return code
+        cursor += len(line)
 
-    # Find the function header (return type may be ap_uint<...> or unsigned int from smt2c)
-    m = re.search(r'\b(?:ap_uint<\d+>|unsigned\s+int)\s+fp32_normaliser\s*\([^)]*\)\s*\{', code)
-    if not m:
-        return code
+    return "".join(out)
 
-    func_start = m.start()
-    brace_pos  = m.end() - 1  # position of the '{'
+def _strip_irep_noise(code: str) -> str:
+    """Replace any irep(...) (which may contain nested parens inside quoted strings)
+       with 0. This handles forms like: irep("(\"zero_extend\" ... (\"0\") ... )")."""
+    out = []
+    i, n = 0, len(code)
+    needle = 'irep('
 
-    # Match braces to find the end of this function
-    depth = 0
-    i = brace_pos
-    n = len(code)
-    while i < n:
-        if code[i] == '{':
-            depth += 1
-        elif code[i] == '}':
-            depth -= 1
-            if depth == 0:
-                func_end = i + 1
-                break
-        i += 1
-    else:
-        # unmatched braces; leave code unchanged
-        return code
+    while True:
+        j = code.find(needle, i)
+        if j == -1:
+            out.append(code[i:]); break
+        out.append(code[i:j])        # keep text before irep(
+        k = j + len(needle)          # start after 'irep('
+        depth = 1
+        in_str = False
+        esc = False
+        while k < n and depth > 0:
+            ch = code[k]
+            if in_str:
+                if esc:
+                    esc = False
+                elif ch == '\\':
+                    esc = True
+                elif ch == '"':
+                    in_str = False
+            else:
+                if ch == '"':
+                    in_str = True
+                elif ch == '(':
+                    depth += 1
+                elif ch == ')':
+                    depth -= 1
+            k += 1
+        # swallow entire irep(...) and emit 0
+        out.append('0')
+        i = k
 
-    canonical = r"""
-ap_uint<32> fp32_normaliser(ap_uint<25> raw_sum_mantissa, ap_uint<1> raw_sign, ap_uint<8> target_exponent) {
-  if (raw_sum_mantissa == 0) {
-    return (ap_uint<32>)((ap_uint<1>)0, (ap_uint<8>)0, (ap_uint<23>)0);
-  }
-  ap_uint<8> exp = target_exponent;
-  ap_uint<24> norm24;
-  if (raw_sum_mantissa[24]) { norm24 = raw_sum_mantissa.range(24,1); exp += 1; }
-  else if (raw_sum_mantissa[23]) { norm24 = raw_sum_mantissa.range(23,0); }
-  else if (raw_sum_mantissa[22]) { norm24 = (ap_uint<24>)raw_sum_mantissa.range(22,0) << 1; exp -= 1; }
-  else if (raw_sum_mantissa[21]) { norm24 = (ap_uint<24>)raw_sum_mantissa.range(21,0) << 2; exp -= 2; }
-  else if (raw_sum_mantissa[20]) { norm24 = (ap_uint<24>)raw_sum_mantissa.range(20,0) << 3; exp -= 3; }
-  else if (raw_sum_mantissa[19]) { norm24 = (ap_uint<24>)raw_sum_mantissa.range(19,0) << 4; exp -= 4; }
-  else if (raw_sum_mantissa[18]) { norm24 = (ap_uint<24>)raw_sum_mantissa.range(18,0) << 5; exp -= 5; }
-  else if (raw_sum_mantissa[17]) { norm24 = (ap_uint<24>)raw_sum_mantissa.range(17,0) << 6; exp -= 6; }
-  else if (raw_sum_mantissa[16]) { norm24 = (ap_uint<24>)raw_sum_mantissa.range(16,0) << 7; exp -= 7; }
-  else if (raw_sum_mantissa[15]) { norm24 = (ap_uint<24>)raw_sum_mantissa.range(15,0) << 8; exp -= 8; }
-  else if (raw_sum_mantissa[14]) { norm24 = (ap_uint<24>)raw_sum_mantissa.range(14,0) << 9; exp -= 9; }
-  else if (raw_sum_mantissa[13]) { norm24 = (ap_uint<24>)raw_sum_mantissa.range(13,0) << 10; exp -= 10; }
-  else if (raw_sum_mantissa[12]) { norm24 = (ap_uint<24>)raw_sum_mantissa.range(12,0) << 11; exp -= 11; }
-  else if (raw_sum_mantissa[11]) { norm24 = (ap_uint<24>)raw_sum_mantissa.range(11,0) << 12; exp -= 12; }
-  else if (raw_sum_mantissa[10]) { norm24 = (ap_uint<24>)raw_sum_mantissa.range(10,0) << 13; exp -= 13; }
-  else if (raw_sum_mantissa[9])  { norm24 = (ap_uint<24>)raw_sum_mantissa.range(9,0)  << 14; exp -= 14; }
-  else if (raw_sum_mantissa[8])  { norm24 = (ap_uint<24>)raw_sum_mantissa.range(8,0)  << 15; exp -= 15; }
-  else if (raw_sum_mantissa[7])  { norm24 = (ap_uint<24>)raw_sum_mantissa.range(7,0)  << 16; exp -= 16; }
-  else if (raw_sum_mantissa[6])  { norm24 = (ap_uint<24>)raw_sum_mantissa.range(6,0)  << 17; exp -= 17; }
-  else if (raw_sum_mantissa[5])  { norm24 = (ap_uint<24>)raw_sum_mantissa.range(5,0)  << 18; exp -= 18; }
-  else if (raw_sum_mantissa[4])  { norm24 = (ap_uint<24>)raw_sum_mantissa.range(4,0)  << 19; exp -= 19; }
-  else if (raw_sum_mantissa[3])  { norm24 = (ap_uint<24>)raw_sum_mantissa.range(3,0)  << 20; exp -= 20; }
-  else if (raw_sum_mantissa[2])  { norm24 = (ap_uint<24>)raw_sum_mantissa.range(2,0)  << 21; exp -= 21; }
-  else if (raw_sum_mantissa[1])  { norm24 = (ap_uint<24>)raw_sum_mantissa.range(1,0)  << 22; exp -= 22; }
-  else /* raw_sum_mantissa[0] */  { norm24 = (ap_uint<24>)raw_sum_mantissa.range(0,0)  << 23; exp -= 23; }
-  ap_uint<1> sign = raw_sign; // zero already handled
-  return (ap_uint<32>)((ap_uint<1>)sign, (ap_uint<8>)exp, (ap_uint<23>)norm24.range(22,0));
-}
-""".strip("\n")
+    return ''.join(out)
 
-    return code[:func_start] + canonical + "\n" + code[func_end:]
-
-def _canonicalise_fp32_sum(code: str) -> str:
-    """
-    Replace the whole fp32_sum(...) body with a simple, HLS-safe version that
-    uses temporaries for the aligned pack and slices. Works whether the return
-    type was 'unsigned int' (from smt2c) or 'ap_uint<32>'.
-    """
-    if "fp32_sum(" not in code:
-        return code
-
-    # find the start of the function body
-    m = re.search(r'\b(?:ap_uint<\d+>|unsigned\s+int)\s+fp32_sum\s*\([^)]*\)\s*\{', code)
-    if not m:
-        return code
-
-    func_start = m.start()
-    brace_pos  = m.end() - 1  # at '{'
-
-    # match balanced braces to find the end of this function
-    depth = 0
-    i = brace_pos
-    n = len(code)
-    while i < n:
-        if code[i] == '{':
-            depth += 1
-        elif code[i] == '}':
-            depth -= 1
-            if depth == 0:
-                func_end = i + 1
-                break
-        i += 1
-    else:
-        return code  # unmatched braces; bail
-
-    canonical = r"""
-ap_uint<32> fp32_sum(ap_uint<1> s1, ap_uint<8> e1, ap_uint<23> m1,
-                     ap_uint<1> s2, ap_uint<8> e2, ap_uint<23> m2) {
-  // 56-bit pack: [55:32]=aligned m1, [31:8]=aligned m2, [7:0]=target exponent
-  ap_uint<56> pack = fp32_aligner(e1, m1, e2, m2);
-  ap_uint<24> am1  = (ap_uint<24>) pack.range(55, 32);
-  ap_uint<24> am2  = (ap_uint<24>) pack.range(31,  8);
-  ap_uint<8>  exp  = (ap_uint<8>)  pack.range( 7,  0);
-
-  ap_uint<26> raw  = fp32_raw_summer(s1, am1, s2, am2);
-  ap_uint<25> raw_m = (ap_uint<25>) raw.range(24, 0);
-  ap_uint<1>  raw_s = (ap_uint<1>)  raw.range(25, 25);
-
-  return fp32_normaliser(raw_m, raw_s, exp);
-}
-""".strip("\n")
-
-    return code[:func_start] + canonical + "\n" + code[func_end:]
+def _peephole_simplify(code: str) -> str:
+    # shift/add/sub no-ops
+    code = re.sub(r'\s*<<\s*0\b', '', code)
+    code = re.sub(r'\b([A-Za-z_]\w*|\([^()]+\))\s*-\s*0\b', r'\1', code)
+    code = re.sub(r'\b\(\s*ap_uint<(\d+)>\s*\)\s*\(\s*ap_uint<\1>\s*\(([^()]+)\)\s*\)', r'ap_uint<\1>(\2)', code)
+    # strip double casts on the happy path
+    code = re.sub(r'ap_uint<4>\(\(\s*ap_uint<4>\(([^()]+)\)\s*\)\)', r'ap_uint<4>(\1)', code)
+    return code
 
 def _clean(s: str) -> str:
     s = "\n".join(ln.rstrip() for ln in s.splitlines())
@@ -402,6 +407,7 @@ def convert_cp_to_hls(c_input_path: str, save_output: bool = True) -> str:
     # 0) Header + type normalisation
     code = _ensure_header(code)
     code = _normalize_char_types_and_casts(code)
+    code = _strip_irep_noise(code)
     code = _safer_unsigned_negation(code)
 
     # 1) Fix bracket slices on bare identifiers (safe)
@@ -419,15 +425,24 @@ def convert_cp_to_hls(c_input_path: str, save_output: bool = True) -> str:
 
     # 5) Ternary unification (make both arms same ap_*int<N>)
     code = _unify_all_ternaries(code)
+    code = _replace_bracket_slices_constants(code)  # in case new slices appeared
+    code = _replace_bit_extractions(code)  # in case new bit extractions appeared
 
     # 6) Treat 'return (A,B,...)' as a packed value, not comma-operator
     code = _wrap_return_top_concat(code)
 
-    # 7) (Optional) emit a clean, canonical normaliser body
+    # 7) Canonicalisers (not all scripts actually output correct C++)
     code = _canonicalise_fp32_normaliser(code)
     code = _canonicalise_fp32_sum(code)
 
+    code = _canonicalise_mxint8_alignment(code)
+    code = _canonicalise_mxint8_raw_adder(code)
+    code = _canonicalise_mxint8_normaliser_rounded(code)
+
+    code = _canonicalise_add_full_sum(code)
+
     # 8) Final tidy
+    code = _peephole_simplify(code)
     code = _clean(code)
 
     if save_output:

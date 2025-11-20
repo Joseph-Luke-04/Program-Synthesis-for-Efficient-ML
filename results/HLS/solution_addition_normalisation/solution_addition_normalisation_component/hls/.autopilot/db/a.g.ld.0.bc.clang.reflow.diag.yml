@@ -1,0 +1,12 @@
+--- !Missed
+Pass:            inline
+Name:            NeverInline
+Function:        apatb_normalise_addition_ir
+Args:            
+  - Callee:          'normalise_addition(ap_uint<5>, ap_uint<4>)'
+    DebugLoc:        { File: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_addition_normalisation.cpp, 
+                       Line: 3, Column: 0 }
+  - String:          ' not inlined into '
+  - Caller:          apatb_normalise_addition_ir
+  - String:          ' because it should never be inlined (cost=never)'
+...

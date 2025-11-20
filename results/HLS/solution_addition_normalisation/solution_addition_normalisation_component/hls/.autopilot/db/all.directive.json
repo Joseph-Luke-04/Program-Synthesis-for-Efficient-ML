@@ -1,0 +1,23 @@
+[
+  {
+    "functionLabel": "",
+    "functionName": "normalise_addition",
+    "id": 0,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "",
+    "pragma": {
+      "name": "TOP",
+      "option": [
+        {
+          "name": "name",
+          "value": "normalise_addition"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_addition_normalisation/hls.tcl",
+    "sourceLine": 6,
+    "success": true
+  }
+]

@@ -6206,5 +6206,5 @@ __attribute__((sdx_kernel("fp32_raw_summer", 0))) ap_uint<26> fp32_raw_summer(ap
 #pragma HLSDIRECTIVE TOP name=fp32_raw_summer
 # 3 "/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_raw_sum.cpp"
 
-  return ap_uint<26>(((!(s1 == s2) && aligned_m1 == aligned_m2 ? (ap_uint<1>) 0 : (ap_uint<1>) (s1 == s2 ? (ap_uint<1>) s1 : (ap_uint<1>) (aligned_m1 >= aligned_m2 ? (ap_uint<1>) s1 : (ap_uint<1>) s2)),s1 == s2 ? ap_uint<25>(((0,aligned_m1) + (0,aligned_m2))) : (ap_uint<25>) (aligned_m1 >= aligned_m2 ? ap_uint<25>(((0,aligned_m1) - (0,aligned_m2))) : ap_uint<25>(((0,aligned_m2) - (0,aligned_m1)))))));
+  return ap_uint<26>(((ap_uint<26>)((ap_uint<26>)((!(s1 == s2) && aligned_m1 == aligned_m2 ? (ap_uint<1>) 0 : (ap_uint<1>) (s1 == s2 ? (ap_uint<1>) s1 : (ap_uint<1>) (aligned_m1 >= aligned_m2 ? (ap_uint<1>) s1 : (ap_uint<1>) s2)))) << 22)) | (ap_uint<4>)((s1 == s2 ? ap_uint<25>(((0,aligned_m1) + (0,aligned_m2))) : (ap_uint<25>) (aligned_m1 >= aligned_m2 ? ap_uint<25>(((0,aligned_m1) - (0,aligned_m2))) : ap_uint<25>(((0,aligned_m2) - (0,aligned_m1)))))));
 }

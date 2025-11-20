@@ -1,6 +1,6 @@
 
 set TopModule "select_exponent"
-set ClockPeriod 1000000000
+set ClockPeriod 50
 set ClockList {}
 set AxiliteClockList {}
 set HasVivadoClockPeriod 0

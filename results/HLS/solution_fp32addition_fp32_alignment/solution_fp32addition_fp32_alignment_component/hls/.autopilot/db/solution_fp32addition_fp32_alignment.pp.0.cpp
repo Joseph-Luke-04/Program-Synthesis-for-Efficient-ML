@@ -6206,5 +6206,5 @@ __attribute__((sdx_kernel("fp32_aligner", 0))) ap_uint<56> fp32_aligner(ap_uint<
 #pragma HLSDIRECTIVE TOP name=fp32_aligner
 # 3 "/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_alignment.cpp"
 
-  return (e1 >= e2 ? (ap_uint<24>) (e1 == 0 ? (ap_uint<1>) 0 : (ap_uint<1>) 1,m1) : (ap_uint<24>) (e1 == 0 ? (ap_uint<1>) 0 : (ap_uint<1>) 1,m1) >> (0,e1 >= e2 ? ap_uint<8>((e1 - e2)) : ap_uint<8>((e2 - e1))),(e1 >= e2 ? (ap_uint<24>) (e2 == 0 ? (ap_uint<1>) 0 : (ap_uint<1>) 1,m2) >> (0,e1 >= e2 ? ap_uint<8>((e1 - e2)) : ap_uint<8>((e2 - e1))) : (ap_uint<24>) (e2 == 0 ? (ap_uint<1>) 0 : (ap_uint<1>) 1,m2),e1 >= e2 ? (ap_uint<8>) e1 : (ap_uint<8>) e2));
+  return ap_uint<56>(((ap_uint<56>)((ap_uint<56>)((e1 >= e2 ? (ap_uint<24>) (e1 == 0 ? (ap_uint<1>) 0 : (ap_uint<1>) 1,m1) : (ap_uint<24>) (e1 == 0 ? (ap_uint<1>) 0 : (ap_uint<1>) 1,m1) >> (0,e1 >= e2 ? ap_uint<8>((e1 - e2)) : ap_uint<8>((e2 - e1))))) << 52)) | (ap_uint<4>)(((e1 >= e2 ? (ap_uint<24>) (e2 == 0 ? (ap_uint<1>) 0 : (ap_uint<1>) 1,m2) >> (0,e1 >= e2 ? ap_uint<8>((e1 - e2)) : ap_uint<8>((e2 - e1))) : (ap_uint<24>) (e2 == 0 ? (ap_uint<1>) 0 : (ap_uint<1>) 1,m2),e1 >= e2 ? (ap_uint<8>) e1 : (ap_uint<8>) e2))));
 }

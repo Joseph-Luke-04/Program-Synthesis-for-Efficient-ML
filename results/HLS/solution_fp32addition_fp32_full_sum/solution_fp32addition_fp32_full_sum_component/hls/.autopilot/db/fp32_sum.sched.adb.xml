@@ -523,10 +523,10 @@ entry_ifconv:32 %tmp_2 = bitconcatenate i24 @_ssdm_op_BitConcatenate.i24.i1.i23,
 
 <Node id="40" bw="24" op_0_bw="1" op_1_bw="24" op_2_bw="24">
 <![CDATA[
-entry_ifconv:33 %tmp_0_i86 = select i1 %xor_ln4, i24 %tmp, i24 %lshr_ln4_1
+entry_ifconv:33 %tmp_0_i87 = select i1 %xor_ln4, i24 %tmp, i24 %lshr_ln4_1
 
 ]]></Node>
-<StgValue><ssdm name="tmp_0_i86"/></StgValue>
+<StgValue><ssdm name="tmp_0_i87"/></StgValue>
 </operation>
 
 <operation id="36" st_id="1" stage="1" lat="1">
@@ -583,7 +583,7 @@ entry_ifconv:36 %xor_ln8 = xor i1 %s1_read, i1 %s2_read
 
 <Node id="44" bw="1" op_0_bw="24" op_1_bw="24">
 <![CDATA[
-entry_ifconv:37 %icmp_ln8 = icmp_eq  i24 %tmp_0_i86, i24 %am2
+entry_ifconv:37 %icmp_ln8 = icmp_eq  i24 %tmp_0_i87, i24 %am2
 
 ]]></Node>
 <StgValue><ssdm name="icmp_ln8"/></StgValue>
@@ -673,7 +673,7 @@ entry_ifconv:42 %and_ln8_1 = and i1 %s1_read, i1 %xor_ln8_2
 
 <Node id="50" bw="1" op_0_bw="24" op_1_bw="24">
 <![CDATA[
-entry_ifconv:43 %icmp_ln8_1 = icmp_ult  i24 %tmp_0_i86, i24 %am2
+entry_ifconv:43 %icmp_ln8_1 = icmp_ult  i24 %tmp_0_i87, i24 %am2
 
 ]]></Node>
 <StgValue><ssdm name="icmp_ln8_1"/></StgValue>
@@ -733,7 +733,7 @@ entry_ifconv:46 %raw_s = select i1 %or_ln8, i1 %and_ln8_1, i1 %select_ln8
 
 <Node id="54" bw="25" op_0_bw="24">
 <![CDATA[
-entry_ifconv:47 %zext_ln8 = zext i24 %tmp_0_i86
+entry_ifconv:47 %zext_ln8 = zext i24 %tmp_0_i87
 
 ]]></Node>
 <StgValue><ssdm name="zext_ln8"/></StgValue>
@@ -763,7 +763,7 @@ entry_ifconv:48 %zext_ln8_1 = zext i24 %am2
 
 <Node id="56" bw="1" op_0_bw="24" op_1_bw="24">
 <![CDATA[
-entry_ifconv:49 %icmp_ln8_2 = icmp_ult  i24 %tmp_0_i86, i24 %am2
+entry_ifconv:49 %icmp_ln8_2 = icmp_ult  i24 %tmp_0_i87, i24 %am2
 
 ]]></Node>
 <StgValue><ssdm name="icmp_ln8_2"/></StgValue>

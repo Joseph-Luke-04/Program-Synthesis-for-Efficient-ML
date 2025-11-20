@@ -130,7 +130,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>5b7a9f46</spirit:value>
+            <spirit:value>b5c9b62e</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -146,7 +146,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>b673b15c</spirit:value>
+            <spirit:value>e69513b6</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -162,7 +162,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>aa1bb6e1</spirit:value>
+            <spirit:value>0285081f</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -178,7 +178,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>1d384676</spirit:value>
+            <spirit:value>0b75c434</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -383,7 +383,7 @@
       <spirit:file>
         <spirit:name>hdl/vhdl/select_exponent.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_1d384676</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_0b75c434</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
@@ -434,7 +434,7 @@
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>clk_period</spirit:name>
-      <spirit:value spirit:id="PARAM_VALUE.clk_period" spirit:order="1">1000000000</spirit:value>
+      <spirit:value spirit:id="PARAM_VALUE.clk_period" spirit:order="1">50</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>machine</spirit:name>
@@ -463,8 +463,8 @@
       </xilinx:taxonomies>
       <xilinx:displayName>Select_exponent</xilinx:displayName>
       <xilinx:definitionSource>HLS</xilinx:definitionSource>
-      <xilinx:coreRevision>2114345010</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2025-11-12T13:30:50Z</xilinx:coreCreationDateTime>
+      <xilinx:coreRevision>2114355193</xilinx:coreRevision>
+      <xilinx:coreCreationDateTime>2025-11-19T15:13:45Z</xilinx:coreCreationDateTime>
       <xilinx:sdxKernelAttributes>
         <xilinx:sdx_kernel>true</xilinx:sdx_kernel>
         <xilinx:sdx_kernel_type>hls</xilinx:sdx_kernel_type>
@@ -473,9 +473,9 @@
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2025.1</xilinx:xilinxVersion>
       <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="16c8531d"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="69c619f5"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="d0574c32"/>
       <xilinx:checksum xilinx:scope="ports" xilinx:value="576c68dc"/>
-      <xilinx:checksum xilinx:scope="parameters" xilinx:value="43766346"/>
+      <xilinx:checksum xilinx:scope="parameters" xilinx:value="acaa6f6e"/>
     </xilinx:packagingInfo>
   </spirit:vendorExtensions>
 </spirit:component>

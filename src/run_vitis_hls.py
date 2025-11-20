@@ -220,10 +220,7 @@ def run_vitis_hls(design_path: str, top_func: str = None, impl: bool = False):
     TOP_HINTS = {
         "solution_fp32addition_fp32_full_sum": "fp32_sum",
         "solution_addition_raw_sum": "add_raw",
-        # add others if you want:
-        # "solution_fp32addition_fp32_alignment": "fp32_aligner",
-        # "solution_fp32addition_fp32_raw_sum": "fp32_raw_summer",
-        # "solution_fp32addition_fp32_normalisation": "fp32_normaliser",
+        "solution_addition_full_sum": "add_full_sum",
     }
 
     if top_func is None:

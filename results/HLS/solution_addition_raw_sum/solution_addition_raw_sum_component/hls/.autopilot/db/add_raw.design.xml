@@ -11,9 +11,9 @@
 <Name>add_raw</Name>
 <PerformanceEstimates>
 <SummaryOfTimingAnalysis>
-<TargetClockPeriod>1000000000.00</TargetClockPeriod>
-<ClockUncertainty>270000000.00</ClockUncertainty>
-<EstimatedClockPeriod>7.455</EstimatedClockPeriod>
+<TargetClockPeriod>50.00</TargetClockPeriod>
+<ClockUncertainty>13.50</ClockUncertainty>
+<EstimatedClockPeriod>2.759</EstimatedClockPeriod>
 </SummaryOfTimingAnalysis>
 <SummaryOfOverallLatency>
 <Best-caseLatency>0</Best-caseLatency>
@@ -37,7 +37,7 @@
 <FF>0</FF>
 <AVAIL_FF>106400</AVAIL_FF>
 <UTIL_FF>0</UTIL_FF>
-<LUT>76</LUT>
+<LUT>19</LUT>
 <AVAIL_LUT>53200</AVAIL_LUT>
 <UTIL_LUT>~0</UTIL_LUT>
 <BRAM_18K>0</BRAM_18K>

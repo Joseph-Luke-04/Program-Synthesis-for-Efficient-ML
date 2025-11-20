@@ -6202,11 +6202,11 @@ operator/(const complex<ap_ufixed<_AP_W, _AP_I, _AP_Q, _AP_O, _AP_N>> &__x, cons
 # 2 "/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp" 2
 
 ap_uint<56> fp32_aligner(ap_uint<8> e1, ap_uint<23> m1, ap_uint<8> e2, ap_uint<23> m2) {
-  return (e1 >= e2 ? (ap_uint<24>) (e1 == 0 ? (ap_uint<1>) 0 : (ap_uint<1>) 1,m1) : (ap_uint<24>) (e1 == 0 ? (ap_uint<1>) 0 : (ap_uint<1>) 1,m1) >> (0,e1 >= e2 ? ap_uint<8>((e1 - e2)) : ap_uint<8>((e2 - e1))),(e1 >= e2 ? (ap_uint<24>) (e2 == 0 ? (ap_uint<1>) 0 : (ap_uint<1>) 1,m2) >> (0,e1 >= e2 ? ap_uint<8>((e1 - e2)) : ap_uint<8>((e2 - e1))) : (ap_uint<24>) (e2 == 0 ? (ap_uint<1>) 0 : (ap_uint<1>) 1,m2),e1 >= e2 ? (ap_uint<8>) e1 : (ap_uint<8>) e2));
+  return ap_uint<56>((e1 >= e2 ? (ap_uint<24>) (e1 == 0 ? (ap_uint<1>) 0 : (ap_uint<1>) 1,m1) : (ap_uint<24>) (e1 == 0 ? (ap_uint<1>) 0 : (ap_uint<1>) 1,m1) >> (0,e1 >= e2 ? ap_uint<8>((e1 - e2)) : ap_uint<8>((e2 - e1))),(e1 >= e2 ? (ap_uint<24>) (e2 == 0 ? (ap_uint<1>) 0 : (ap_uint<1>) 1,m2) >> (0,e1 >= e2 ? ap_uint<8>((e1 - e2)) : ap_uint<8>((e2 - e1))) : (ap_uint<24>) (e2 == 0 ? (ap_uint<1>) 0 : (ap_uint<1>) 1,m2),e1 >= e2 ? (ap_uint<8>) e1 : (ap_uint<8>) e2)));
 }
 
 ap_uint<26> fp32_raw_summer(ap_uint<1> s1, ap_uint<24> aligned_m1, ap_uint<1> s2, ap_uint<24> aligned_m2) {
-  return (!(s1 == s2) && aligned_m1 == aligned_m2 ? (ap_uint<1>) 0 : (ap_uint<1>) (s1 == s2 ? (ap_uint<1>) s1 : (ap_uint<1>) (aligned_m1 >= aligned_m2 ? (ap_uint<1>) s1 : (ap_uint<1>) s2)),s1 == s2 ? ap_uint<25>(((0,aligned_m1) + (0,aligned_m2))) : (ap_uint<25>) (aligned_m1 >= aligned_m2 ? ap_uint<25>(((0,aligned_m1) - (0,aligned_m2))) : ap_uint<25>(((0,aligned_m2) - (0,aligned_m1)))));
+  return ap_uint<56>((!(s1 == s2) && aligned_m1 == aligned_m2 ? (ap_uint<1>) 0 : (ap_uint<1>) (s1 == s2 ? (ap_uint<1>) s1 : (ap_uint<1>) (aligned_m1 >= aligned_m2 ? (ap_uint<1>) s1 : (ap_uint<1>) s2)),s1 == s2 ? ap_uint<25>(((0,aligned_m1) + (0,aligned_m2))) : (ap_uint<25>) (aligned_m1 >= aligned_m2 ? ap_uint<25>(((0,aligned_m1) - (0,aligned_m2))) : ap_uint<25>(((0,aligned_m2) - (0,aligned_m1))))));
 }
 
 ap_uint<32> fp32_normaliser(ap_uint<25> raw_sum_mantissa, ap_uint<1> raw_sign, ap_uint<8> target_exponent) {

@@ -1,7 +1,7 @@
 
 
 set RtlHierarchyInfo {[
-	{"ID" : "0", "Level" : "0", "Path" : "`AUTOTB_DUT_INST", "Parent" : "", "Child" : ["1"],
+	{"ID" : "0", "Level" : "0", "Path" : "`AUTOTB_DUT_INST", "Parent" : "",
 		"CDFG" : "add_raw",
 		"Protocol" : "ap_ctrl_hs",
 		"ControlExist" : "1", "ap_start" : "1", "ap_ready" : "1", "ap_done" : "1", "ap_continue" : "0", "ap_idle" : "1", "real_start" : "0",
@@ -19,5 +19,4 @@ set RtlHierarchyInfo {[
 			{"Name" : "m1", "Type" : "None", "Direction" : "I"},
 			{"Name" : "e1", "Type" : "None", "Direction" : "I"},
 			{"Name" : "m2", "Type" : "None", "Direction" : "I"},
-			{"Name" : "e2", "Type" : "None", "Direction" : "I"}]},
-	{"ID" : "1", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.sparsemux_7_2_4_1_1_U1", "Parent" : "0"}]}
+			{"Name" : "e2", "Type" : "None", "Direction" : "I"}]}]}

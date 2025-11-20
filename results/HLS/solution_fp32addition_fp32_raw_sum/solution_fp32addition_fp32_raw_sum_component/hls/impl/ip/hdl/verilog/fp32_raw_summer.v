@@ -6,7 +6,7 @@
 
 `timescale 1 ns / 1 ps 
 
-(* CORE_GENERATION_INFO="fp32_raw_summer_fp32_raw_summer,hls_ip_2025_1,{HLS_INPUT_TYPE=cxx,HLS_INPUT_FLOAT=0,HLS_INPUT_FIXED=0,HLS_INPUT_PART=xc7z020-clg400-1,HLS_INPUT_CLOCK=1000000000.000000,HLS_INPUT_ARCH=others,HLS_SYN_CLOCK=4.880500,HLS_SYN_LAT=0,HLS_SYN_TPT=none,HLS_SYN_MEM=0,HLS_SYN_DSP=0,HLS_SYN_FF=0,HLS_SYN_LUT=216,HLS_VERSION=2025_1}" *)
+(* CORE_GENERATION_INFO="fp32_raw_summer_fp32_raw_summer,hls_ip_2025_1,{HLS_INPUT_TYPE=cxx,HLS_INPUT_FLOAT=0,HLS_INPUT_FIXED=0,HLS_INPUT_PART=xc7z020-clg400-1,HLS_INPUT_CLOCK=50.000000,HLS_INPUT_ARCH=others,HLS_SYN_CLOCK=4.316500,HLS_SYN_LAT=0,HLS_SYN_TPT=none,HLS_SYN_MEM=0,HLS_SYN_DSP=0,HLS_SYN_FF=0,HLS_SYN_LUT=123,HLS_VERSION=2025_1}" *)
 
 module fp32_raw_summer (
         ap_start,
@@ -33,55 +33,28 @@ input  [23:0] aligned_m2;
 output  [25:0] ap_return;
 input   ap_rst;
 
-wire   [0:0] xor_ln4_fu_70_p2;
-wire   [0:0] icmp_ln4_fu_76_p2;
-wire   [0:0] icmp_ln4_1_fu_88_p2;
-wire   [0:0] xor_ln4_2_fu_94_p2;
-wire   [0:0] select_ln4_fu_100_p3;
-wire   [0:0] and_ln4_fu_82_p2;
-wire   [0:0] select_ln4_1_fu_108_p3;
-wire   [0:0] not_and_ln4_fu_116_p2;
-wire   [24:0] zext_ln4_1_fu_132_p1;
-wire   [24:0] zext_ln4_fu_128_p1;
-wire   [0:0] icmp_ln4_2_fu_136_p2;
-wire   [0:0] xor_ln4_1_fu_160_p2;
-wire   [0:0] and_ln4_1_fu_166_p2;
-wire   [24:0] ref_tmp14_1_fu_180_p2;
-wire   [24:0] ref_tmp14_1_fu_180_p4;
-wire   [24:0] ref_tmp14_1_fu_180_p6;
-wire   [24:0] ref_tmp14_1_fu_180_p7;
-wire   [1:0] ref_tmp14_1_fu_180_p8;
-wire   [0:0] tmp_0_fu_122_p2;
-wire   [24:0] ref_tmp14_1_fu_180_p9;
-wire  signed [1:0] ref_tmp14_1_fu_180_p1;
-wire   [1:0] ref_tmp14_1_fu_180_p3;
-wire   [1:0] ref_tmp14_1_fu_180_p5;
+wire   [0:0] xor_ln4_fu_60_p2;
+wire   [0:0] icmp_ln4_fu_66_p2;
+wire   [0:0] icmp_ln4_1_fu_78_p2;
+wire   [0:0] xor_ln4_1_fu_84_p2;
+wire   [0:0] select_ln4_fu_90_p3;
+wire   [0:0] and_ln4_fu_72_p2;
+wire   [0:0] select_ln4_1_fu_98_p3;
+wire   [0:0] not_and_ln4_fu_106_p2;
+wire   [3:0] trunc_ln4_fu_118_p1;
+wire   [3:0] trunc_ln4_1_fu_122_p1;
+wire   [3:0] sub_ln4_fu_126_p2;
+wire   [3:0] sub_ln4_1_fu_132_p2;
+wire   [3:0] select_ln4_2_fu_138_p3;
+wire   [3:0] add_ln4_fu_146_p2;
+wire   [0:0] ref_tmp6_0_fu_112_p2;
+wire   [3:0] ref_tmp17_1_fu_152_p3;
+wire   [22:0] tmp_fu_160_p4;
 wire    ap_ce_reg;
 
-(* dissolve_hierarchy = "yes" *) fp32_raw_summer_sparsemux_7_2_25_1_1 #(
-    .ID( 1 ),
-    .NUM_STAGE( 1 ),
-    .CASE0( 2'h2 ),
-    .din0_WIDTH( 25 ),
-    .CASE1( 2'h1 ),
-    .din1_WIDTH( 25 ),
-    .CASE2( 2'h0 ),
-    .din2_WIDTH( 25 ),
-    .def_WIDTH( 25 ),
-    .sel_WIDTH( 2 ),
-    .dout_WIDTH( 25 ))
-sparsemux_7_2_25_1_1_U1(
-    .din0(ref_tmp14_1_fu_180_p2),
-    .din1(ref_tmp14_1_fu_180_p4),
-    .din2(ref_tmp14_1_fu_180_p6),
-    .def(ref_tmp14_1_fu_180_p7),
-    .sel(ref_tmp14_1_fu_180_p8),
-    .dout(ref_tmp14_1_fu_180_p9)
-);
+assign add_ln4_fu_146_p2 = (trunc_ln4_1_fu_122_p1 + trunc_ln4_fu_118_p1);
 
-assign and_ln4_1_fu_166_p2 = (xor_ln4_fu_70_p2 & icmp_ln4_2_fu_136_p2);
-
-assign and_ln4_fu_82_p2 = (xor_ln4_fu_70_p2 & icmp_ln4_fu_76_p2);
+assign and_ln4_fu_72_p2 = (xor_ln4_fu_60_p2 & icmp_ln4_fu_66_p2);
 
 assign ap_done = ap_start;
 
@@ -89,40 +62,36 @@ assign ap_idle = 1'b1;
 
 assign ap_ready = ap_start;
 
-assign ap_return = {{tmp_0_fu_122_p2}, {ref_tmp14_1_fu_180_p9}};
+assign ap_return = tmp_fu_160_p4;
 
-assign icmp_ln4_1_fu_88_p2 = ((aligned_m1 < aligned_m2) ? 1'b1 : 1'b0);
+assign icmp_ln4_1_fu_78_p2 = ((aligned_m1 < aligned_m2) ? 1'b1 : 1'b0);
 
-assign icmp_ln4_2_fu_136_p2 = ((aligned_m1 < aligned_m2) ? 1'b1 : 1'b0);
+assign icmp_ln4_fu_66_p2 = ((aligned_m1 == aligned_m2) ? 1'b1 : 1'b0);
 
-assign icmp_ln4_fu_76_p2 = ((aligned_m1 == aligned_m2) ? 1'b1 : 1'b0);
+assign not_and_ln4_fu_106_p2 = (1'd1 ^ and_ln4_fu_72_p2);
 
-assign not_and_ln4_fu_116_p2 = (1'd1 ^ and_ln4_fu_82_p2);
+assign ref_tmp17_1_fu_152_p3 = ((xor_ln4_fu_60_p2[0:0] == 1'b1) ? select_ln4_2_fu_138_p3 : add_ln4_fu_146_p2);
 
-assign select_ln4_1_fu_108_p3 = ((xor_ln4_fu_70_p2[0:0] == 1'b1) ? select_ln4_fu_100_p3 : s1);
+assign ref_tmp6_0_fu_112_p2 = (select_ln4_1_fu_98_p3 & not_and_ln4_fu_106_p2);
 
-assign select_ln4_fu_100_p3 = ((xor_ln4_2_fu_94_p2[0:0] == 1'b1) ? s1 : s2);
+assign select_ln4_1_fu_98_p3 = ((xor_ln4_fu_60_p2[0:0] == 1'b1) ? select_ln4_fu_90_p3 : s1);
 
-assign tmp_0_fu_122_p2 = (select_ln4_1_fu_108_p3 & not_and_ln4_fu_116_p2);
+assign select_ln4_2_fu_138_p3 = ((xor_ln4_1_fu_84_p2[0:0] == 1'b1) ? sub_ln4_fu_126_p2 : sub_ln4_1_fu_132_p2);
 
-assign xor_ln4_1_fu_160_p2 = (xor_ln4_fu_70_p2 ^ 1'd1);
+assign select_ln4_fu_90_p3 = ((xor_ln4_1_fu_84_p2[0:0] == 1'b1) ? s1 : s2);
 
-assign xor_ln4_2_fu_94_p2 = (icmp_ln4_1_fu_88_p2 ^ 1'd1);
+assign sub_ln4_1_fu_132_p2 = (trunc_ln4_1_fu_122_p1 - trunc_ln4_fu_118_p1);
 
-assign xor_ln4_fu_70_p2 = (s2 ^ s1);
+assign sub_ln4_fu_126_p2 = (trunc_ln4_fu_118_p1 - trunc_ln4_1_fu_122_p1);
 
-assign zext_ln4_1_fu_132_p1 = aligned_m2;
+assign tmp_fu_160_p4 = {{{ref_tmp6_0_fu_112_p2}, {18'd0}}, {ref_tmp17_1_fu_152_p3}};
 
-assign zext_ln4_fu_128_p1 = aligned_m1;
+assign trunc_ln4_1_fu_122_p1 = aligned_m2[3:0];
 
-assign ref_tmp14_1_fu_180_p2 = (zext_ln4_1_fu_132_p1 + zext_ln4_fu_128_p1);
+assign trunc_ln4_fu_118_p1 = aligned_m1[3:0];
 
-assign ref_tmp14_1_fu_180_p4 = (zext_ln4_1_fu_132_p1 - zext_ln4_fu_128_p1);
+assign xor_ln4_1_fu_84_p2 = (icmp_ln4_1_fu_78_p2 ^ 1'd1);
 
-assign ref_tmp14_1_fu_180_p6 = (zext_ln4_fu_128_p1 - zext_ln4_1_fu_132_p1);
-
-assign ref_tmp14_1_fu_180_p7 = 'bx;
-
-assign ref_tmp14_1_fu_180_p8 = {{xor_ln4_1_fu_160_p2}, {and_ln4_1_fu_166_p2}};
+assign xor_ln4_fu_60_p2 = (s2 ^ s1);
 
 endmodule //fp32_raw_summer

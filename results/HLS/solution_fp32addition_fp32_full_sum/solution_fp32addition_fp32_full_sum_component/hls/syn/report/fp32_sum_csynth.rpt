@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'fp32_sum'
 ================================================================
-* Date:           Wed Nov 12 13:49:56 2025
+* Date:           Wed Nov 19 15:00:58 2025
 
 * Version:        2025.1 (Build 6135595 on May 21 2025)
 * Project:        solution_fp32addition_fp32_full_sum_component
@@ -113,7 +113,7 @@
     |call_ret_fp32_normaliser_fu_90_raw_sign         |    select|   0|  0|   2|           1|           1|
     |call_ret_fp32_normaliser_fu_90_target_exponent  |    select|   0|  0|   8|           1|           8|
     |select_ln8_fu_256_p3                            |    select|   0|  0|   2|           1|           1|
-    |tmp_0_i86_fu_177_p3                             |    select|   0|  0|  24|           1|          24|
+    |tmp_0_i87_fu_177_p3                             |    select|   0|  0|  24|           1|          24|
     |xor_ln4_fu_103_p2                               |       xor|   0|  0|   2|           1|           2|
     |xor_ln8_1_fu_220_p2                             |       xor|   0|  0|   2|           1|           2|
     |xor_ln8_2_fu_232_p2                             |       xor|   0|  0|   2|           2|           1|

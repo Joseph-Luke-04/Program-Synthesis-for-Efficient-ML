@@ -1,16 +1,4 @@
 {
-    "1": {
-        "name": "fp32_normaliser",
-        "file": "\/home\/joe\/Desktop\/Uni\/Year_4\/Dissertation\/Program-Synthesis-for-Efficient-ML\/results\/cpp\/solution_fp32addition_fp32_full_sum.cpp",
-        "fileloc": "11",
-        "instructions": "154",
-        "total_instructions": "154",
-        "calls": "",
-        "basicblocks": "52",
-        "memory_accesses": "0",
-        "control_depth": "0",
-        "def_use_depth": "2"
-    },
     "0": {
         "name": "fp32_sum",
         "file": "solution_fp32addition_fp32_full_sum.cpp",
@@ -22,5 +10,17 @@
         "memory_accesses": "0",
         "control_depth": "0",
         "def_use_depth": "11"
+    },
+    "1": {
+        "name": "fp32_normaliser",
+        "file": "\/home\/joe\/Desktop\/Uni\/Year_4\/Dissertation\/Program-Synthesis-for-Efficient-ML\/results\/cpp\/solution_fp32addition_fp32_full_sum.cpp",
+        "fileloc": "11",
+        "instructions": "154",
+        "total_instructions": "154",
+        "calls": "",
+        "basicblocks": "52",
+        "memory_accesses": "0",
+        "control_depth": "0",
+        "def_use_depth": "2"
     }
 }

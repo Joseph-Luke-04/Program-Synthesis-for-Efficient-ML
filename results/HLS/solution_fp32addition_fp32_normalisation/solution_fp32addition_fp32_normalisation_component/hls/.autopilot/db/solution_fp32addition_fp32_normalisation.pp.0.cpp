@@ -6201,11 +6201,10 @@ operator/(const complex<ap_ufixed<_AP_W, _AP_I, _AP_Q, _AP_O, _AP_N>> &__x, cons
 # 365 "/tools/Xilinx/2025.1/Vitis/common/technology/autopilot/ap_int.h" 2
 # 2 "/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_normalisation.cpp" 2
 
-
 __attribute__((sdx_kernel("fp32_normaliser", 0))) ap_uint<32> fp32_normaliser(ap_uint<25> raw_sum_mantissa, ap_uint<1> raw_sign, ap_uint<8> target_exponent) {
 #line 6 "/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_normalisation/hls.tcl"
 #pragma HLSDIRECTIVE TOP name=fp32_normaliser
-# 4 "/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_normalisation.cpp"
+# 3 "/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_normalisation.cpp"
 
   if (raw_sum_mantissa == 0) {
     return (ap_uint<32>)((ap_uint<1>)0, (ap_uint<8>)0, (ap_uint<23>)0);

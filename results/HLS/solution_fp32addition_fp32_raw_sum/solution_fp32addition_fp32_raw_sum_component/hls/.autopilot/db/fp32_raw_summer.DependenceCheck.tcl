@@ -1,6 +1,5 @@
 
 
 set RtlHierarchyInfo {[
-	{"ID" : "0", "Level" : "0", "Path" : "`AUTOTB_DUT_INST"},
-	{"ID" : "1", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.sparsemux_7_2_25_1_1_U1"}]}
+	{"ID" : "0", "Level" : "0", "Path" : "`AUTOTB_DUT_INST"}]}
 set DependenceCheckSize 0

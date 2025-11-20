@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'select_exponent'
 ================================================================
-* Date:           Wed Nov 12 13:30:40 2025
+* Date:           Wed Nov 19 15:13:36 2025
 
 * Version:        2025.1 (Build 6135595 on May 21 2025)
 * Project:        solution_addition_alignment_component
@@ -20,7 +20,7 @@
     +--------+----------+----------+------------+
     |  Clock |  Target  | Estimated| Uncertainty|
     +--------+----------+----------+------------+
-    |ap_clk  |  1.00 sec|  2.759 ns|    0.27 sec|
+    |ap_clk  |  50.00 ns|  2.759 ns|    13.50 ns|
     +--------+----------+----------+------------+
 
 + Latency: 
@@ -92,7 +92,7 @@ ST_1 : Operation 13 [1/1] (0.00ns)   --->   "%ret_ln4 = ret i4 %select_ln4" [/ho
 ============================================================
 + Verbose Summary: Timing violations
 ============================================================
-Target clock period: 1000000000.000ns, clock uncertainty: 270000000.000ns.
+Target clock period: 50.000ns, clock uncertainty: 13.500ns.
 
  <State 1>: 2.759ns
 The critical path consists of the following:

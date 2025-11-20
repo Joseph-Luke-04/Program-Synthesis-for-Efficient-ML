@@ -21,7 +21,7 @@ set ap_memory_interface_dict [dict create]
 set C_modelArgList {
 	{ m1 int 4 unused  }
 	{ e1 int 4 regular  }
-	{ m2 int 4 regular  }
+	{ m2 int 4 unused  }
 	{ e2 int 4 regular  }
 }
 set hasAXIMCache 0
@@ -63,7 +63,7 @@ set ArgLastReadFirstWriteLatency {
 	add_raw {
 		m1 {Type I LastRead -1 FirstWrite -1}
 		e1 {Type I LastRead 0 FirstWrite -1}
-		m2 {Type I LastRead 0 FirstWrite -1}
+		m2 {Type I LastRead -1 FirstWrite -1}
 		e2 {Type I LastRead 0 FirstWrite -1}}}
 
 set hasDtUnsupportedChannel 0

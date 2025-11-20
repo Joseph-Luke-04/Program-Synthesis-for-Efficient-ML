@@ -15,7 +15,7 @@
         <library value="xilinx/zynq/zynq" name="DefaultPlatform"/>
     </libraryList>
     <clockList>
-        <clock name="default" period="1000000000ns" default="false"/>
+        <clock name="default" period="50ns" default="false"/>
     </clockList>
     <config>
         <config_export rtl="verilog"/>

@@ -17,11 +17,11 @@ INFO: [HLS 200-1510] Running: create_clock -period 50ns
 INFO: [SYN 201-201] Setting up clock 'default' with a period of 50ns.
 INFO: [HLS 200-1510] Running: csynth_design 
 INFO: [HLS 200-1915] Writing HLS config ini file /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum/solution_fp32addition_fp32_full_sum_component/hls_config.cfg
-INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.45 seconds. CPU system time: 0.06 seconds. Elapsed time: 3.07 seconds; current allocated memory: 264.723 MB.
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.48 seconds. CPU system time: 0.04 seconds. Elapsed time: 3.03 seconds; current allocated memory: 264.734 MB.
 INFO: [HLS 200-10] Analyzing design file '/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp' ... 
-INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 2.71 seconds. CPU system time: 0.33 seconds. Elapsed time: 3.28 seconds; current allocated memory: 266.281 MB.
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 2.63 seconds. CPU system time: 0.3 seconds. Elapsed time: 2.93 seconds; current allocated memory: 266.273 MB.
 INFO: [HLS 200-777] Using interface defaults for 'Vivado' flow target.
-INFO: [HLS 200-1995] There were 7,705 instructions in the design after the 'Compile/Link' phase of compilation. See the Design Size Report for more details (/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum/solution_fp32addition_fp32_full_sum_component/hls/syn/report/csynth_design_size.rpt:2)
+INFO: [HLS 200-1995] There were 7,743 instructions in the design after the 'Compile/Link' phase of compilation. See the Design Size Report for more details (/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum/solution_fp32addition_fp32_full_sum_component/hls/syn/report/csynth_design_size.rpt:2)
 INFO: [HLS 200-1995] There were 504 instructions in the design after the 'Unroll/Inline (step 1)' phase of compilation. See the Design Size Report for more details (/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum/solution_fp32addition_fp32_full_sum_component/hls/syn/report/csynth_design_size.rpt:2)
 INFO: [HLS 200-1995] There were 321 instructions in the design after the 'Unroll/Inline (step 2)' phase of compilation. See the Design Size Report for more details (/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum/solution_fp32addition_fp32_full_sum_component/hls/syn/report/csynth_design_size.rpt:2)
 INFO: [HLS 200-1995] There were 309 instructions in the design after the 'Unroll/Inline (step 3)' phase of compilation. See the Design Size Report for more details (/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum/solution_fp32addition_fp32_full_sum_component/hls/syn/report/csynth_design_size.rpt:2)
@@ -39,16 +39,16 @@ INFO: [HLS 200-1995] There were 294 instructions in the design after the 'HW Tra
 INFO: [HLS 200-1995] There were 293 instructions in the design after the 'HW Transforms (step 2)' phase of compilation. See the Design Size Report for more details (/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum/solution_fp32addition_fp32_full_sum_component/hls/syn/report/csynth_design_size.rpt:2)
 INFO: [HLS 214-178] Inlining function 'fp32_aligner(ap_uint<8>, ap_uint<23>, ap_uint<8>, ap_uint<23>)' into 'fp32_sum(ap_uint<1>, ap_uint<8>, ap_uint<23>, ap_uint<1>, ap_uint<8>, ap_uint<23>)' (/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:48:0)
 INFO: [HLS 214-178] Inlining function 'fp32_raw_summer(ap_uint<1>, ap_uint<24>, ap_uint<1>, ap_uint<24>)' into 'fp32_sum(ap_uint<1>, ap_uint<8>, ap_uint<23>, ap_uint<1>, ap_uint<8>, ap_uint<23>)' (/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:48:0)
-INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 1.96 seconds. CPU system time: 0.27 seconds. Elapsed time: 7 seconds; current allocated memory: 275.820 MB.
+INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 1.83 seconds. CPU system time: 0.23 seconds. Elapsed time: 6.72 seconds; current allocated memory: 275.820 MB.
 INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0 seconds; current allocated memory: 275.820 MB.
 INFO: [HLS 200-10] Starting code transformations ...
-INFO: [HLS 200-111] Finished Standard Transforms: CPU user time: 0.04 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.07 seconds; current allocated memory: 276.363 MB.
+INFO: [HLS 200-111] Finished Standard Transforms: CPU user time: 0.01 seconds. CPU system time: 0 seconds. Elapsed time: 0.02 seconds; current allocated memory: 276.402 MB.
 INFO: [HLS 200-10] Checking synthesizability ...
-INFO: [HLS 200-111] Finished Checking Synthesizability: CPU user time: 0.02 seconds. CPU system time: 0 seconds. Elapsed time: 0.02 seconds; current allocated memory: 276.695 MB.
+INFO: [HLS 200-111] Finished Checking Synthesizability: CPU user time: 0.01 seconds. CPU system time: 0 seconds. Elapsed time: 0.01 seconds; current allocated memory: 276.730 MB.
 INFO: [XFORM 203-401] Performing if-conversion on hyperblock to (/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:60:1) in function 'fp32_sum'... converting 11 basic blocks.
 INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:15:14) in function 'fp32_normaliser'... converting 50 basic blocks.
-INFO: [HLS 200-111] Finished Loop, function and other optimizations: CPU user time: 0.05 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.06 seconds; current allocated memory: 299.051 MB.
-INFO: [HLS 200-111] Finished Architecture Synthesis: CPU user time: 0.04 seconds. CPU system time: 0 seconds. Elapsed time: 0.05 seconds; current allocated memory: 299.941 MB.
+INFO: [HLS 200-111] Finished Loop, function and other optimizations: CPU user time: 0.05 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.06 seconds; current allocated memory: 299.082 MB.
+INFO: [HLS 200-111] Finished Architecture Synthesis: CPU user time: 0.06 seconds. CPU system time: 0 seconds. Elapsed time: 0.05 seconds; current allocated memory: 299.965 MB.
 INFO: [HLS 200-10] Starting hardware synthesis ...
 INFO: [HLS 200-10] Synthesizing 'fp32_sum' ...
 INFO: [HLS 200-10] ----------------------------------------------------------------
@@ -56,30 +56,30 @@ INFO: [HLS 200-42] -- Implementing module 'fp32_normaliser'
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [SCHED 204-11] Starting scheduling ...
 INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.06 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.08 seconds; current allocated memory: 300.062 MB.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.04 seconds. CPU system time: 0.02 seconds. Elapsed time: 0.07 seconds; current allocated memory: 300.090 MB.
 INFO: [BIND 205-100] Starting micro-architecture generation ...
 INFO: [BIND 205-101] Performing variable lifetime analysis.
 INFO: [BIND 205-101] Exploring resource sharing.
 INFO: [BIND 205-101] Binding ...
 INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111] Finished Binding: CPU user time: 0.03 seconds. CPU system time: 0 seconds. Elapsed time: 0.02 seconds; current allocated memory: 300.062 MB.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.02 seconds. CPU system time: 0 seconds. Elapsed time: 0.02 seconds; current allocated memory: 300.090 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-42] -- Implementing module 'fp32_sum' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [SCHED 204-11] Starting scheduling ...
 INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.03 seconds. CPU system time: 0 seconds. Elapsed time: 0.04 seconds; current allocated memory: 300.062 MB.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.04 seconds. CPU system time: 0 seconds. Elapsed time: 0.04 seconds; current allocated memory: 300.090 MB.
 INFO: [BIND 205-100] Starting micro-architecture generation ...
 INFO: [BIND 205-101] Performing variable lifetime analysis.
 INFO: [BIND 205-101] Exploring resource sharing.
 INFO: [BIND 205-101] Binding ...
 INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111] Finished Binding: CPU user time: 0.01 seconds. CPU system time: 0 seconds. Elapsed time: 0.01 seconds; current allocated memory: 300.062 MB.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.01 seconds. CPU system time: 0 seconds. Elapsed time: 0.01 seconds; current allocated memory: 300.090 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-10] -- Generating RTL for module 'fp32_normaliser' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [RTGEN 206-100] Finished creating RTL model for 'fp32_normaliser'.
-INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.04 seconds. CPU system time: 0 seconds. Elapsed time: 0.05 seconds; current allocated memory: 300.719 MB.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.03 seconds. CPU system time: 0 seconds. Elapsed time: 0.03 seconds; current allocated memory: 300.734 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-10] -- Generating RTL for module 'fp32_sum' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
@@ -92,15 +92,15 @@ INFO: [RTGEN 206-500] Setting interface mode on port 'fp32_sum/m2' to 'ap_none'.
 INFO: [RTGEN 206-500] Setting interface mode on function 'fp32_sum' to 'ap_ctrl_hs'.
 INFO: [RTGEN 206-100] Generating core module 'sparsemux_7_2_25_1_1': 1 instance(s).
 INFO: [RTGEN 206-100] Finished creating RTL model for 'fp32_sum'.
-INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.06 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.07 seconds; current allocated memory: 305.410 MB.
-INFO: [HLS 200-111] Finished Generating all RTL models: CPU user time: 0.11 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.13 seconds; current allocated memory: 307.809 MB.
-INFO: [HLS 200-111] Finished Updating report files: CPU user time: 0.22 seconds. CPU system time: 0.04 seconds. Elapsed time: 0.26 seconds; current allocated memory: 309.770 MB.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.05 seconds. CPU system time: 0.02 seconds. Elapsed time: 0.07 seconds; current allocated memory: 305.445 MB.
+INFO: [HLS 200-111] Finished Generating all RTL models: CPU user time: 0.18 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.18 seconds; current allocated memory: 307.840 MB.
+INFO: [HLS 200-111] Finished Updating report files: CPU user time: 0.24 seconds. CPU system time: 0.04 seconds. Elapsed time: 0.3 seconds; current allocated memory: 309.785 MB.
 INFO: [VHDL 208-304] Generating VHDL RTL for fp32_sum.
 INFO: [VLOG 209-307] Generating Verilog RTL for fp32_sum.
 INFO: [HLS 200-789] **** Estimated Fmax: 58.00 MHz
-INFO: [HLS 200-2161] Finished Command csynth_design Elapsed time: 00:00:14; Allocated memory: 61.047 MB.
+INFO: [HLS 200-2161] Finished Command csynth_design Elapsed time: 00:00:13; Allocated memory: 61.051 MB.
 INFO: [HLS 200-1510] Running: export_design -rtl verilog 
 INFO: [HLS 200-1915] Writing HLS config ini file /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum/solution_fp32addition_fp32_full_sum_component/hls_config.cfg
 INFO: [IMPL 213-8] Exporting RTL as a Vivado IP.
 INFO: [HLS 200-802] Generated output file solution_fp32addition_fp32_full_sum_component/hls/impl/export.zip
-INFO: [HLS 200-2161] Finished Command export_design Elapsed time: 00:00:27; Allocated memory: 19.824 MB.
+INFO: [HLS 200-2161] Finished Command export_design Elapsed time: 00:00:30; Allocated memory: 19.691 MB.
