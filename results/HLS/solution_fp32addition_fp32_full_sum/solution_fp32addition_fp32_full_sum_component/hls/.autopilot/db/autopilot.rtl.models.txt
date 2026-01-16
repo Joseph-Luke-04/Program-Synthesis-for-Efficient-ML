@@ -1,4 +1,0 @@
-fp32_sum_sparsemux_9_3_25_1_1
-fp32_sum_sparsemux_7_2_1_1_1
-fp32_normaliser
-fp32_sum

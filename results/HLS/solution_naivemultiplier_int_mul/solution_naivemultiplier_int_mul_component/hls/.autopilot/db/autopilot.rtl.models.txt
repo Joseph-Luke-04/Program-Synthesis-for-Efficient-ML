@@ -1,2 +1,0 @@
-naive_int_mul_mul_32s_32s_32_1_1
-naive_int_mul
