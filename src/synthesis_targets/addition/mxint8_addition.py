@@ -6,7 +6,7 @@ def to_smt_bitvec(value: int, bits: int) -> str:
     mask = (1 << bits) - 1
     return f"#b{value & mask:0{bits}b}"
 
-class AdditionTarget:
+class MXINT8AdditionTarget:
 
     def get_op_name(self) -> str:
         return "addition"

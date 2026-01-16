@@ -3,13 +3,13 @@ from pathlib import Path
 from typing import List, Tuple, Dict, Optional, Callable
 from src.dependencies import DEPENDENCY_MAP
 
-from .synthesis_targets.addition import AdditionTarget
-from .synthesis_targets.multiplication import MultiplicationTarget
+from .synthesis_targets.addition.mxint8_addition import MXINT8AdditionTarget
+from .synthesis_targets.multiplication.mxint8_multiplication import MXINT8MultiplicationTarget
 
-from .synthesis_targets.fp32_addition import FP32AdditionTarget
-from .synthesis_targets.fp32_multiplication import FP32MultiplicationTarget
-from .synthesis_targets.naive_adder import NaiveAdderTarget
-from .synthesis_targets.naive_multiplier import NaiveMultiplierTarget
+from .synthesis_targets.addition.fp32_addition import FP32AdditionTarget
+from .synthesis_targets.multiplication.fp32_multiplication import FP32MultiplicationTarget
+from .synthesis_targets.addition.naive_adder import NaiveAdderTarget
+from .synthesis_targets.multiplication.naive_multiplier import NaiveMultiplierTarget
 
 from .synthesis_targets.dot_product import DotProductTarget
 
@@ -263,8 +263,8 @@ if __name__ == "__main__":
     """
  
     #target_operation = DotProductTarget()
-    #target_operation = AdditionTarget()
-    #target_operation = MultiplicationTarget()
+    #target_operation = MXINT8AdditionTarget()
+    #target_operation = MXINT8MultiplicationTarget()
     #target_operation = FP32AdditionTarget()
     #target_operation = FP32MultiplicationTarget()
 
@@ -276,7 +276,7 @@ if __name__ == "__main__":
     # NaiveMultiplierTarget(kind="int", width=32 or 8)
     # NaiveMultiplierTarget(kind="fp32")
 
-    target_operation = AdditionTarget()
+    target_operation = MXINT8MultiplicationTarget()
     
     # Components for AdditionTarget: "alignment", "raw_sum", "overflow", "normalisation", "full_sum"
     # Components for MultiplicationTarget: "renorm_flag", "mant", "exp"
@@ -331,10 +331,10 @@ if __name__ == "__main__":
                 vec2 = [random.uniform(-max_val, max_val) for _ in range(vec_len)]
                 synthesis_test_cases.append((vec1, vec2))
 
-    elif isinstance(target_operation, (AdditionTarget, MultiplicationTarget, FP32AdditionTarget, FP32MultiplicationTarget)):
-        if isinstance(target_operation, AdditionTarget):
+    elif isinstance(target_operation, (MXINT8AdditionTarget, MXINT8MultiplicationTarget, FP32AdditionTarget, FP32MultiplicationTarget)):
+        if isinstance(target_operation, MXINT8AdditionTarget):
             max_val = 66
-        elif isinstance(target_operation, MultiplicationTarget):
+        elif isinstance(target_operation, MXINT8MultiplicationTarget):
             max_val = math.sqrt(112)
         elif isinstance(target_operation, (FP32AdditionTarget, FP32MultiplicationTarget)):
             max_val = 1e4

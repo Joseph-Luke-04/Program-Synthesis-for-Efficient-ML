@@ -6,7 +6,7 @@ def to_smt_bitvec(value: int, bits: int) -> str:
     mask = (1 << bits) - 1
     return f"#b{value & mask:0{bits}b}"
 
-class MultiplicationTarget:
+class MXINT8MultiplicationTarget:
     
     def calculate_ground_truth(self, float1: float, float2: float, config) -> Optional[Dict]:
         
