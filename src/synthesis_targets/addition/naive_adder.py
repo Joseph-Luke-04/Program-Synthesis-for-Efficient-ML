@@ -87,14 +87,14 @@ class NaiveAdderTarget:
         if self.kind == "fp32":
             return {
                 "fp32_adder": {
-                    "template": "sygus_grammars/FP32/fp32_full_add_template.sl",
+                    "template": "sygus_grammars/addition/FP32/fp32_full_add_template.sl",
                     "generator": self.gen_constraint,
                 }
             }
         elif self.kind == "int": 
             return {
                 "int_add": {
-                    "template": f"sygus_grammars/INT/int_full_add_{self.width}_template.sl",
+                    "template": f"sygus_grammars/addition/INT/int_full_add_{self.width}_template.sl",
                     "generator": self.gen_constraint,
                 }
             }

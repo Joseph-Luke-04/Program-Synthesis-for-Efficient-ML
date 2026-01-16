@@ -82,14 +82,14 @@ class NaiveMultiplierTarget:
             if self.kind == "fp32":
                 return {
                     "fp32_mul": {
-                        "template": "sygus_grammars/FP32/fp32_full_mul_template.sl",
+                        "template": "sygus_grammars/multiplication/FP32/fp32_full_mul_template.sl",
                         "generator": self.gen_constraint,
                     }
                 }
         elif self.kind == "int":
             return {
                 "int_mul": {
-                    "template": f"sygus_grammars/INT/int_full_mul_{self.width}_template.sl",
+                    "template": f"sygus_grammars/multiplication/INT/int_full_mul_{self.width}_template.sl",
                     "generator": self.gen_constraint,
                 }
             }

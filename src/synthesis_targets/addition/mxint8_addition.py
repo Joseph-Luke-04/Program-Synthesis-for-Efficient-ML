@@ -131,24 +131,24 @@ class MXINT8AdditionTarget:
         
         return {
             "alignment": {
-                "template": "sygus_grammars/MXINT8/add_alignment_template.sl",
+                "template": "sygus_grammars/addition/MXINT8/add_alignment_template.sl",
                 "generator": self.gen_alignment_constraint,
             },
             "raw_sum": {
-                "template": "sygus_grammars/MXINT8/add_raw_sum_template.sl",
+                "template": "sygus_grammars/addition/MXINT8/add_raw_sum_template.sl",
                 "generator": self.gen_raw_sum_constraint,
             },
             "overflow": {
-                "template": "sygus_grammars/MXINT8/add_detect_overflow_template.sl",
+                "template": "sygus_grammars/addition/MXINT8/add_detect_overflow_template.sl",
                 "generator": self.gen_overflow_flag_constraint,
             },
             "normalisation": {
-                "template": "sygus_grammars/MXINT8/add_normalisation_template.sl",
+                "template": "sygus_grammars/addition/MXINT8/add_normalisation_template.sl",
                 "generator": self.gen_normalisation_constraint,
             },
             # Compose the full adder by chaining the earlier steps.
             "full_sum": {
-                "template": "sygus_grammars/MXINT8/add_full_sum_template.sl",
+                "template": "sygus_grammars/addition/MXINT8/add_full_sum_template.sl",
                 "generator": self.gen_full_sum_constraint,
             },
         }

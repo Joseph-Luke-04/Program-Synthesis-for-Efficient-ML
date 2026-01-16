@@ -182,19 +182,19 @@ class FP32AdditionTarget:
         
         return {
             "fp32_alignment": {
-                "template": "sygus_grammars/FP32/fp32_alignment_template.sl",
+                "template": "sygus_grammars/addition/FP32/fp32_alignment_template.sl",
                 "generator": self.gen_alignment_constraint,
             },
             "fp32_raw_sum": {
-                "template": "sygus_grammars/FP32/fp32_raw_sum_template.sl",
+                "template": "sygus_grammars/addition/FP32/fp32_raw_sum_template.sl",
                 "generator": self.gen_raw_sum_constraint,
             },
             "fp32_normalisation": {
-                "template": "sygus_grammars/FP32/fp32_normalisation_template.sl",
+                "template": "sygus_grammars/addition/FP32/fp32_normalisation_template.sl",
                 "generator": self.gen_normalisation_constraint,
             },
             "fp32_full_sum": {
-                "template": "sygus_grammars/FP32/fp32_full_sum_template.sl",
+                "template": "sygus_grammars/addition/FP32/fp32_full_sum_template.sl",
                 "generator": self.gen_sum_constraint,
             },
         }
