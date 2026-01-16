@@ -194,7 +194,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>3e432125</spirit:value>
+            <spirit:value>856da64a</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -210,7 +210,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>40fb0d63</spirit:value>
+            <spirit:value>994f2c56</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -226,7 +226,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>394301ec</spirit:value>
+            <spirit:value>0cb25ae4</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -242,7 +242,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>8465d4f9</spirit:value>
+            <spirit:value>f05fbd54</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -497,7 +497,11 @@
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/fp32_sum_sparsemux_7_2_25_1_1.v</spirit:name>
+        <spirit:name>hdl/verilog/fp32_sum_sparsemux_7_2_1_1_1.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/verilog/fp32_sum_sparsemux_9_3_25_1_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
@@ -513,7 +517,12 @@
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/fp32_sum_sparsemux_7_2_25_1_1.v</spirit:name>
+        <spirit:name>hdl/verilog/fp32_sum_sparsemux_7_2_1_1_1.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/verilog/fp32_sum_sparsemux_9_3_25_1_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
@@ -535,13 +544,17 @@
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/vhdl/fp32_sum_sparsemux_7_2_25_1_1.vhd</spirit:name>
+        <spirit:name>hdl/vhdl/fp32_sum_sparsemux_7_2_1_1_1.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/vhdl/fp32_sum_sparsemux_9_3_25_1_1.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
         <spirit:name>hdl/vhdl/fp32_sum.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_fd1021f5</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_ce9f4dd9</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
@@ -552,7 +565,12 @@
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/vhdl/fp32_sum_sparsemux_7_2_25_1_1.vhd</spirit:name>
+        <spirit:name>hdl/vhdl/fp32_sum_sparsemux_7_2_1_1_1.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/vhdl/fp32_sum_sparsemux_9_3_25_1_1.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
@@ -602,7 +620,7 @@
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>clk_period</spirit:name>
-      <spirit:value spirit:id="PARAM_VALUE.clk_period" spirit:order="1">50</spirit:value>
+      <spirit:value spirit:id="PARAM_VALUE.clk_period" spirit:order="1">1000000</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>machine</spirit:name>
@@ -631,8 +649,8 @@
       </xilinx:taxonomies>
       <xilinx:displayName>Fp32_sum</xilinx:displayName>
       <xilinx:definitionSource>HLS</xilinx:definitionSource>
-      <xilinx:coreRevision>2114355181</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2025-11-19T15:01:09Z</xilinx:coreCreationDateTime>
+      <xilinx:coreRevision>2114365139</xilinx:coreRevision>
+      <xilinx:coreCreationDateTime>2025-11-26T12:59:33Z</xilinx:coreCreationDateTime>
       <xilinx:sdxKernelAttributes>
         <xilinx:sdx_kernel>true</xilinx:sdx_kernel>
         <xilinx:sdx_kernel_type>hls</xilinx:sdx_kernel_type>
@@ -641,9 +659,9 @@
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2025.1</xilinx:xilinxVersion>
       <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="c30fd617"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="f8afe583"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="07e02735"/>
       <xilinx:checksum xilinx:scope="ports" xilinx:value="028e12b4"/>
-      <xilinx:checksum xilinx:scope="parameters" xilinx:value="b3bf4526"/>
+      <xilinx:checksum xilinx:scope="parameters" xilinx:value="dec479c9"/>
     </xilinx:packagingInfo>
   </spirit:vendorExtensions>
 </spirit:component>

@@ -131,7 +131,7 @@
 						<name>target_exponent_read</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>11</lineNumber>
+						<lineNumber>48</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -147,7 +147,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>11</second>
+										<second>48</second>
 									</item>
 								</second>
 							</item>
@@ -188,7 +188,7 @@
 						<name>raw_sign_read</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>11</lineNumber>
+						<lineNumber>48</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -204,7 +204,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>11</second>
+										<second>48</second>
 									</item>
 								</second>
 							</item>
@@ -245,7 +245,7 @@
 						<name>raw_sum_mantissa_read</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>11</lineNumber>
+						<lineNumber>48</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -261,7 +261,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>11</second>
+										<second>48</second>
 									</item>
 								</second>
 							</item>
@@ -299,10 +299,10 @@
 					<Obj>
 						<type>0</type>
 						<id>7</id>
-						<name>icmp_ln12</name>
+						<name>icmp_ln49</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>12</lineNumber>
+						<lineNumber>49</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -318,7 +318,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>12</second>
+										<second>49</second>
 									</item>
 								</second>
 							</item>
@@ -356,10 +356,10 @@
 					<Obj>
 						<type>0</type>
 						<id>8</id>
-						<name>br_ln12</name>
+						<name>br_ln49</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>12</lineNumber>
+						<lineNumber>49</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -375,7 +375,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>12</second>
+										<second>49</second>
 									</item>
 								</second>
 							</item>
@@ -417,7 +417,7 @@
 						<name>tmp</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>17</lineNumber>
+						<lineNumber>54</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -433,7 +433,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>17</second>
+										<second>54</second>
 									</item>
 								</second>
 							</item>
@@ -472,10 +472,10 @@
 					<Obj>
 						<type>0</type>
 						<id>11</id>
-						<name>br_ln17</name>
+						<name>br_ln54</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>17</lineNumber>
+						<lineNumber>54</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -491,7 +491,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>17</second>
+										<second>54</second>
 									</item>
 								</second>
 							</item>
@@ -533,7 +533,7 @@
 						<name>tmp_1</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>18</lineNumber>
+						<lineNumber>55</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -549,7 +549,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>18</second>
+										<second>55</second>
 									</item>
 								</second>
 							</item>
@@ -588,10 +588,10 @@
 					<Obj>
 						<type>0</type>
 						<id>14</id>
-						<name>br_ln18</name>
+						<name>br_ln55</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>18</lineNumber>
+						<lineNumber>55</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -607,7 +607,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>18</second>
+										<second>55</second>
 									</item>
 								</second>
 							</item>
@@ -649,7 +649,7 @@
 						<name>tmp_2</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>19</lineNumber>
+						<lineNumber>56</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -665,7 +665,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>19</second>
+										<second>56</second>
 									</item>
 								</second>
 							</item>
@@ -704,10 +704,10 @@
 					<Obj>
 						<type>0</type>
 						<id>17</id>
-						<name>br_ln19</name>
+						<name>br_ln56</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>19</lineNumber>
+						<lineNumber>56</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -723,7 +723,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>19</second>
+										<second>56</second>
 									</item>
 								</second>
 							</item>
@@ -765,7 +765,7 @@
 						<name>tmp_3</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>20</lineNumber>
+						<lineNumber>57</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -781,7 +781,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>20</second>
+										<second>57</second>
 									</item>
 								</second>
 							</item>
@@ -820,10 +820,10 @@
 					<Obj>
 						<type>0</type>
 						<id>20</id>
-						<name>br_ln20</name>
+						<name>br_ln57</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>20</lineNumber>
+						<lineNumber>57</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -839,7 +839,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>20</second>
+										<second>57</second>
 									</item>
 								</second>
 							</item>
@@ -881,7 +881,7 @@
 						<name>tmp_4</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>21</lineNumber>
+						<lineNumber>58</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -897,7 +897,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>21</second>
+										<second>58</second>
 									</item>
 								</second>
 							</item>
@@ -936,10 +936,10 @@
 					<Obj>
 						<type>0</type>
 						<id>23</id>
-						<name>br_ln21</name>
+						<name>br_ln58</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>21</lineNumber>
+						<lineNumber>58</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -955,7 +955,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>21</second>
+										<second>58</second>
 									</item>
 								</second>
 							</item>
@@ -997,7 +997,7 @@
 						<name>tmp_5</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>22</lineNumber>
+						<lineNumber>59</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -1013,7 +1013,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>22</second>
+										<second>59</second>
 									</item>
 								</second>
 							</item>
@@ -1052,10 +1052,10 @@
 					<Obj>
 						<type>0</type>
 						<id>26</id>
-						<name>br_ln22</name>
+						<name>br_ln59</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>22</lineNumber>
+						<lineNumber>59</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -1071,7 +1071,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>22</second>
+										<second>59</second>
 									</item>
 								</second>
 							</item>
@@ -1113,7 +1113,7 @@
 						<name>tmp_6</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>23</lineNumber>
+						<lineNumber>60</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -1129,7 +1129,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>23</second>
+										<second>60</second>
 									</item>
 								</second>
 							</item>
@@ -1168,10 +1168,10 @@
 					<Obj>
 						<type>0</type>
 						<id>29</id>
-						<name>br_ln23</name>
+						<name>br_ln60</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>23</lineNumber>
+						<lineNumber>60</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -1187,7 +1187,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>23</second>
+										<second>60</second>
 									</item>
 								</second>
 							</item>
@@ -1229,7 +1229,7 @@
 						<name>tmp_7</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>24</lineNumber>
+						<lineNumber>61</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -1245,7 +1245,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>24</second>
+										<second>61</second>
 									</item>
 								</second>
 							</item>
@@ -1284,10 +1284,10 @@
 					<Obj>
 						<type>0</type>
 						<id>32</id>
-						<name>br_ln24</name>
+						<name>br_ln61</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>24</lineNumber>
+						<lineNumber>61</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -1303,7 +1303,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>24</second>
+										<second>61</second>
 									</item>
 								</second>
 							</item>
@@ -1345,7 +1345,7 @@
 						<name>tmp_8</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>25</lineNumber>
+						<lineNumber>62</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -1361,7 +1361,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>25</second>
+										<second>62</second>
 									</item>
 								</second>
 							</item>
@@ -1400,10 +1400,10 @@
 					<Obj>
 						<type>0</type>
 						<id>35</id>
-						<name>br_ln25</name>
+						<name>br_ln62</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>25</lineNumber>
+						<lineNumber>62</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -1419,7 +1419,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>25</second>
+										<second>62</second>
 									</item>
 								</second>
 							</item>
@@ -1461,7 +1461,7 @@
 						<name>tmp_9</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>26</lineNumber>
+						<lineNumber>63</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -1477,7 +1477,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>26</second>
+										<second>63</second>
 									</item>
 								</second>
 							</item>
@@ -1516,10 +1516,10 @@
 					<Obj>
 						<type>0</type>
 						<id>38</id>
-						<name>br_ln26</name>
+						<name>br_ln63</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>26</lineNumber>
+						<lineNumber>63</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -1535,7 +1535,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>26</second>
+										<second>63</second>
 									</item>
 								</second>
 							</item>
@@ -1577,7 +1577,7 @@
 						<name>tmp_10</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>27</lineNumber>
+						<lineNumber>64</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -1593,7 +1593,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>27</second>
+										<second>64</second>
 									</item>
 								</second>
 							</item>
@@ -1632,10 +1632,10 @@
 					<Obj>
 						<type>0</type>
 						<id>41</id>
-						<name>br_ln27</name>
+						<name>br_ln64</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>27</lineNumber>
+						<lineNumber>64</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -1651,7 +1651,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>27</second>
+										<second>64</second>
 									</item>
 								</second>
 							</item>
@@ -1693,7 +1693,7 @@
 						<name>tmp_11</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>28</lineNumber>
+						<lineNumber>65</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -1709,7 +1709,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>28</second>
+										<second>65</second>
 									</item>
 								</second>
 							</item>
@@ -1748,10 +1748,10 @@
 					<Obj>
 						<type>0</type>
 						<id>44</id>
-						<name>br_ln28</name>
+						<name>br_ln65</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>28</lineNumber>
+						<lineNumber>65</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -1767,7 +1767,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>28</second>
+										<second>65</second>
 									</item>
 								</second>
 							</item>
@@ -1809,7 +1809,7 @@
 						<name>tmp_12</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>29</lineNumber>
+						<lineNumber>66</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -1825,7 +1825,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>29</second>
+										<second>66</second>
 									</item>
 								</second>
 							</item>
@@ -1864,10 +1864,10 @@
 					<Obj>
 						<type>0</type>
 						<id>47</id>
-						<name>br_ln29</name>
+						<name>br_ln66</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>29</lineNumber>
+						<lineNumber>66</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -1883,7 +1883,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>29</second>
+										<second>66</second>
 									</item>
 								</second>
 							</item>
@@ -1925,7 +1925,7 @@
 						<name>tmp_13</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>30</lineNumber>
+						<lineNumber>67</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -1941,7 +1941,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>30</second>
+										<second>67</second>
 									</item>
 								</second>
 							</item>
@@ -1980,10 +1980,10 @@
 					<Obj>
 						<type>0</type>
 						<id>50</id>
-						<name>br_ln30</name>
+						<name>br_ln67</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>30</lineNumber>
+						<lineNumber>67</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -1999,7 +1999,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>30</second>
+										<second>67</second>
 									</item>
 								</second>
 							</item>
@@ -2041,7 +2041,7 @@
 						<name>tmp_14</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>31</lineNumber>
+						<lineNumber>68</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -2057,7 +2057,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>31</second>
+										<second>68</second>
 									</item>
 								</second>
 							</item>
@@ -2096,10 +2096,10 @@
 					<Obj>
 						<type>0</type>
 						<id>53</id>
-						<name>br_ln31</name>
+						<name>br_ln68</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>31</lineNumber>
+						<lineNumber>68</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -2115,7 +2115,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>31</second>
+										<second>68</second>
 									</item>
 								</second>
 							</item>
@@ -2157,7 +2157,7 @@
 						<name>tmp_15</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>32</lineNumber>
+						<lineNumber>69</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -2173,7 +2173,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>32</second>
+										<second>69</second>
 									</item>
 								</second>
 							</item>
@@ -2212,10 +2212,10 @@
 					<Obj>
 						<type>0</type>
 						<id>56</id>
-						<name>br_ln32</name>
+						<name>br_ln69</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>32</lineNumber>
+						<lineNumber>69</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -2231,7 +2231,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>32</second>
+										<second>69</second>
 									</item>
 								</second>
 							</item>
@@ -2273,7 +2273,7 @@
 						<name>tmp_16</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>33</lineNumber>
+						<lineNumber>70</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -2289,7 +2289,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>33</second>
+										<second>70</second>
 									</item>
 								</second>
 							</item>
@@ -2328,10 +2328,10 @@
 					<Obj>
 						<type>0</type>
 						<id>59</id>
-						<name>br_ln33</name>
+						<name>br_ln70</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>33</lineNumber>
+						<lineNumber>70</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -2347,7 +2347,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>33</second>
+										<second>70</second>
 									</item>
 								</second>
 							</item>
@@ -2389,7 +2389,7 @@
 						<name>tmp_17</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>34</lineNumber>
+						<lineNumber>71</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -2405,7 +2405,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>34</second>
+										<second>71</second>
 									</item>
 								</second>
 							</item>
@@ -2444,10 +2444,10 @@
 					<Obj>
 						<type>0</type>
 						<id>62</id>
-						<name>br_ln34</name>
+						<name>br_ln71</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>34</lineNumber>
+						<lineNumber>71</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -2463,7 +2463,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>34</second>
+										<second>71</second>
 									</item>
 								</second>
 							</item>
@@ -2505,7 +2505,7 @@
 						<name>tmp_18</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>35</lineNumber>
+						<lineNumber>72</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -2521,7 +2521,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>35</second>
+										<second>72</second>
 									</item>
 								</second>
 							</item>
@@ -2560,10 +2560,10 @@
 					<Obj>
 						<type>0</type>
 						<id>65</id>
-						<name>br_ln35</name>
+						<name>br_ln72</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>35</lineNumber>
+						<lineNumber>72</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -2579,7 +2579,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>35</second>
+										<second>72</second>
 									</item>
 								</second>
 							</item>
@@ -2621,7 +2621,7 @@
 						<name>tmp_19</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>36</lineNumber>
+						<lineNumber>73</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -2637,7 +2637,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>36</second>
+										<second>73</second>
 									</item>
 								</second>
 							</item>
@@ -2676,10 +2676,10 @@
 					<Obj>
 						<type>0</type>
 						<id>68</id>
-						<name>br_ln36</name>
+						<name>br_ln73</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>36</lineNumber>
+						<lineNumber>73</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -2695,7 +2695,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>36</second>
+										<second>73</second>
 									</item>
 								</second>
 							</item>
@@ -2737,7 +2737,7 @@
 						<name>tmp_20</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>37</lineNumber>
+						<lineNumber>74</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -2753,7 +2753,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>37</second>
+										<second>74</second>
 									</item>
 								</second>
 							</item>
@@ -2792,10 +2792,10 @@
 					<Obj>
 						<type>0</type>
 						<id>71</id>
-						<name>br_ln37</name>
+						<name>br_ln74</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>37</lineNumber>
+						<lineNumber>74</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -2811,7 +2811,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>37</second>
+										<second>74</second>
 									</item>
 								</second>
 							</item>
@@ -2853,7 +2853,7 @@
 						<name>tmp_21</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>38</lineNumber>
+						<lineNumber>75</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -2869,7 +2869,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>38</second>
+										<second>75</second>
 									</item>
 								</second>
 							</item>
@@ -2908,10 +2908,10 @@
 					<Obj>
 						<type>0</type>
 						<id>74</id>
-						<name>br_ln38</name>
+						<name>br_ln75</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>38</lineNumber>
+						<lineNumber>75</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -2927,7 +2927,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>38</second>
+										<second>75</second>
 									</item>
 								</second>
 							</item>
@@ -2969,7 +2969,7 @@
 						<name>tmp_22</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>39</lineNumber>
+						<lineNumber>76</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -2985,7 +2985,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>39</second>
+										<second>76</second>
 									</item>
 								</second>
 							</item>
@@ -3024,10 +3024,10 @@
 					<Obj>
 						<type>0</type>
 						<id>77</id>
-						<name>br_ln39</name>
+						<name>br_ln76</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>39</lineNumber>
+						<lineNumber>76</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -3043,7 +3043,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>39</second>
+										<second>76</second>
 									</item>
 								</second>
 							</item>
@@ -3085,7 +3085,7 @@
 						<name>tmp_23</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>40</lineNumber>
+						<lineNumber>77</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -3101,7 +3101,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>40</second>
+										<second>77</second>
 									</item>
 								</second>
 							</item>
@@ -3140,10 +3140,10 @@
 					<Obj>
 						<type>0</type>
 						<id>80</id>
-						<name>br_ln40</name>
+						<name>br_ln77</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>40</lineNumber>
+						<lineNumber>77</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -3159,7 +3159,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>40</second>
+										<second>77</second>
 									</item>
 								</second>
 							</item>
@@ -3201,7 +3201,7 @@
 						<name>exp_24</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>41</lineNumber>
+						<lineNumber>78</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -3217,7 +3217,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>41</second>
+										<second>78</second>
 									</item>
 								</second>
 							</item>
@@ -3297,10 +3297,10 @@
 					<Obj>
 						<type>0</type>
 						<id>85</id>
-						<name>trunc_ln40</name>
+						<name>trunc_ln77</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>40</lineNumber>
+						<lineNumber>77</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -3316,7 +3316,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>40</second>
+										<second>77</second>
 									</item>
 								</second>
 							</item>
@@ -3356,7 +3356,7 @@
 						<name>norm24_21</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>40</lineNumber>
+						<lineNumber>77</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -3372,7 +3372,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>40</second>
+										<second>77</second>
 									</item>
 								</second>
 							</item>
@@ -3414,7 +3414,7 @@
 						<name>exp_22</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>40</lineNumber>
+						<lineNumber>77</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -3430,7 +3430,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>40</second>
+										<second>77</second>
 									</item>
 								</second>
 							</item>
@@ -3468,10 +3468,10 @@
 					<Obj>
 						<type>0</type>
 						<id>88</id>
-						<name>br_ln40</name>
+						<name>br_ln77</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>40</lineNumber>
+						<lineNumber>77</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -3487,7 +3487,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>40</second>
+										<second>77</second>
 									</item>
 								</second>
 							</item>
@@ -3524,10 +3524,10 @@
 					<Obj>
 						<type>0</type>
 						<id>90</id>
-						<name>trunc_ln39</name>
+						<name>trunc_ln76</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>39</lineNumber>
+						<lineNumber>76</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -3543,7 +3543,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>39</second>
+										<second>76</second>
 									</item>
 								</second>
 							</item>
@@ -3583,7 +3583,7 @@
 						<name>norm24_20</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>39</lineNumber>
+						<lineNumber>76</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -3599,7 +3599,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>39</second>
+										<second>76</second>
 									</item>
 								</second>
 							</item>
@@ -3641,7 +3641,7 @@
 						<name>exp_21</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>39</lineNumber>
+						<lineNumber>76</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -3657,7 +3657,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>39</second>
+										<second>76</second>
 									</item>
 								</second>
 							</item>
@@ -3695,10 +3695,10 @@
 					<Obj>
 						<type>0</type>
 						<id>93</id>
-						<name>br_ln39</name>
+						<name>br_ln76</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>39</lineNumber>
+						<lineNumber>76</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -3714,7 +3714,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>39</second>
+										<second>76</second>
 									</item>
 								</second>
 							</item>
@@ -3751,10 +3751,10 @@
 					<Obj>
 						<type>0</type>
 						<id>95</id>
-						<name>trunc_ln38</name>
+						<name>trunc_ln75</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>38</lineNumber>
+						<lineNumber>75</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -3770,7 +3770,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>38</second>
+										<second>75</second>
 									</item>
 								</second>
 							</item>
@@ -3810,7 +3810,7 @@
 						<name>norm24_19</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>38</lineNumber>
+						<lineNumber>75</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -3826,7 +3826,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>38</second>
+										<second>75</second>
 									</item>
 								</second>
 							</item>
@@ -3868,7 +3868,7 @@
 						<name>exp_20</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>38</lineNumber>
+						<lineNumber>75</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -3884,7 +3884,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>38</second>
+										<second>75</second>
 									</item>
 								</second>
 							</item>
@@ -3922,10 +3922,10 @@
 					<Obj>
 						<type>0</type>
 						<id>98</id>
-						<name>br_ln38</name>
+						<name>br_ln75</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>38</lineNumber>
+						<lineNumber>75</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -3941,7 +3941,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>38</second>
+										<second>75</second>
 									</item>
 								</second>
 							</item>
@@ -3978,10 +3978,10 @@
 					<Obj>
 						<type>0</type>
 						<id>100</id>
-						<name>trunc_ln37</name>
+						<name>trunc_ln74</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>37</lineNumber>
+						<lineNumber>74</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -3997,7 +3997,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>37</second>
+										<second>74</second>
 									</item>
 								</second>
 							</item>
@@ -4037,7 +4037,7 @@
 						<name>norm24_18</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>37</lineNumber>
+						<lineNumber>74</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -4053,7 +4053,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>37</second>
+										<second>74</second>
 									</item>
 								</second>
 							</item>
@@ -4095,7 +4095,7 @@
 						<name>exp_19</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>37</lineNumber>
+						<lineNumber>74</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -4111,7 +4111,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>37</second>
+										<second>74</second>
 									</item>
 								</second>
 							</item>
@@ -4149,10 +4149,10 @@
 					<Obj>
 						<type>0</type>
 						<id>103</id>
-						<name>br_ln37</name>
+						<name>br_ln74</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>37</lineNumber>
+						<lineNumber>74</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -4168,7 +4168,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>37</second>
+										<second>74</second>
 									</item>
 								</second>
 							</item>
@@ -4205,10 +4205,10 @@
 					<Obj>
 						<type>0</type>
 						<id>105</id>
-						<name>trunc_ln36</name>
+						<name>trunc_ln73</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>36</lineNumber>
+						<lineNumber>73</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -4224,7 +4224,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>36</second>
+										<second>73</second>
 									</item>
 								</second>
 							</item>
@@ -4264,7 +4264,7 @@
 						<name>norm24_17</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>36</lineNumber>
+						<lineNumber>73</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -4280,7 +4280,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>36</second>
+										<second>73</second>
 									</item>
 								</second>
 							</item>
@@ -4322,7 +4322,7 @@
 						<name>exp_18</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>36</lineNumber>
+						<lineNumber>73</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -4338,7 +4338,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>36</second>
+										<second>73</second>
 									</item>
 								</second>
 							</item>
@@ -4376,10 +4376,10 @@
 					<Obj>
 						<type>0</type>
 						<id>108</id>
-						<name>br_ln36</name>
+						<name>br_ln73</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>36</lineNumber>
+						<lineNumber>73</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -4395,7 +4395,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>36</second>
+										<second>73</second>
 									</item>
 								</second>
 							</item>
@@ -4432,10 +4432,10 @@
 					<Obj>
 						<type>0</type>
 						<id>110</id>
-						<name>trunc_ln35</name>
+						<name>trunc_ln72</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>35</lineNumber>
+						<lineNumber>72</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -4451,7 +4451,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>35</second>
+										<second>72</second>
 									</item>
 								</second>
 							</item>
@@ -4491,7 +4491,7 @@
 						<name>norm24_16</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>35</lineNumber>
+						<lineNumber>72</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -4507,7 +4507,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>35</second>
+										<second>72</second>
 									</item>
 								</second>
 							</item>
@@ -4549,7 +4549,7 @@
 						<name>exp_17</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>35</lineNumber>
+						<lineNumber>72</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -4565,7 +4565,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>35</second>
+										<second>72</second>
 									</item>
 								</second>
 							</item>
@@ -4603,10 +4603,10 @@
 					<Obj>
 						<type>0</type>
 						<id>113</id>
-						<name>br_ln35</name>
+						<name>br_ln72</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>35</lineNumber>
+						<lineNumber>72</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -4622,7 +4622,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>35</second>
+										<second>72</second>
 									</item>
 								</second>
 							</item>
@@ -4659,10 +4659,10 @@
 					<Obj>
 						<type>0</type>
 						<id>115</id>
-						<name>trunc_ln34</name>
+						<name>trunc_ln71</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>34</lineNumber>
+						<lineNumber>71</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -4678,7 +4678,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>34</second>
+										<second>71</second>
 									</item>
 								</second>
 							</item>
@@ -4718,7 +4718,7 @@
 						<name>norm24_15</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>34</lineNumber>
+						<lineNumber>71</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -4734,7 +4734,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>34</second>
+										<second>71</second>
 									</item>
 								</second>
 							</item>
@@ -4776,7 +4776,7 @@
 						<name>exp_16</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>34</lineNumber>
+						<lineNumber>71</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -4792,7 +4792,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>34</second>
+										<second>71</second>
 									</item>
 								</second>
 							</item>
@@ -4830,10 +4830,10 @@
 					<Obj>
 						<type>0</type>
 						<id>118</id>
-						<name>br_ln34</name>
+						<name>br_ln71</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>34</lineNumber>
+						<lineNumber>71</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -4849,7 +4849,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>34</second>
+										<second>71</second>
 									</item>
 								</second>
 							</item>
@@ -4886,10 +4886,10 @@
 					<Obj>
 						<type>0</type>
 						<id>120</id>
-						<name>trunc_ln33</name>
+						<name>trunc_ln70</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>33</lineNumber>
+						<lineNumber>70</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -4905,7 +4905,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>33</second>
+										<second>70</second>
 									</item>
 								</second>
 							</item>
@@ -4945,7 +4945,7 @@
 						<name>norm24_14</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>33</lineNumber>
+						<lineNumber>70</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -4961,7 +4961,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>33</second>
+										<second>70</second>
 									</item>
 								</second>
 							</item>
@@ -5003,7 +5003,7 @@
 						<name>exp_15</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>33</lineNumber>
+						<lineNumber>70</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -5019,7 +5019,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>33</second>
+										<second>70</second>
 									</item>
 								</second>
 							</item>
@@ -5057,10 +5057,10 @@
 					<Obj>
 						<type>0</type>
 						<id>123</id>
-						<name>br_ln33</name>
+						<name>br_ln70</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>33</lineNumber>
+						<lineNumber>70</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -5076,7 +5076,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>33</second>
+										<second>70</second>
 									</item>
 								</second>
 							</item>
@@ -5113,10 +5113,10 @@
 					<Obj>
 						<type>0</type>
 						<id>125</id>
-						<name>trunc_ln32</name>
+						<name>trunc_ln69</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>32</lineNumber>
+						<lineNumber>69</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -5132,7 +5132,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>32</second>
+										<second>69</second>
 									</item>
 								</second>
 							</item>
@@ -5172,7 +5172,7 @@
 						<name>norm24_13</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>32</lineNumber>
+						<lineNumber>69</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -5188,7 +5188,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>32</second>
+										<second>69</second>
 									</item>
 								</second>
 							</item>
@@ -5230,7 +5230,7 @@
 						<name>exp_14</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>32</lineNumber>
+						<lineNumber>69</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -5246,7 +5246,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>32</second>
+										<second>69</second>
 									</item>
 								</second>
 							</item>
@@ -5284,10 +5284,10 @@
 					<Obj>
 						<type>0</type>
 						<id>128</id>
-						<name>br_ln32</name>
+						<name>br_ln69</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>32</lineNumber>
+						<lineNumber>69</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -5303,7 +5303,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>32</second>
+										<second>69</second>
 									</item>
 								</second>
 							</item>
@@ -5340,10 +5340,10 @@
 					<Obj>
 						<type>0</type>
 						<id>130</id>
-						<name>trunc_ln31</name>
+						<name>trunc_ln68</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>31</lineNumber>
+						<lineNumber>68</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -5359,7 +5359,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>31</second>
+										<second>68</second>
 									</item>
 								</second>
 							</item>
@@ -5399,7 +5399,7 @@
 						<name>norm24_12</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>31</lineNumber>
+						<lineNumber>68</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -5415,7 +5415,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>31</second>
+										<second>68</second>
 									</item>
 								</second>
 							</item>
@@ -5457,7 +5457,7 @@
 						<name>exp_13</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>31</lineNumber>
+						<lineNumber>68</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -5473,7 +5473,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>31</second>
+										<second>68</second>
 									</item>
 								</second>
 							</item>
@@ -5511,10 +5511,10 @@
 					<Obj>
 						<type>0</type>
 						<id>133</id>
-						<name>br_ln31</name>
+						<name>br_ln68</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>31</lineNumber>
+						<lineNumber>68</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -5530,7 +5530,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>31</second>
+										<second>68</second>
 									</item>
 								</second>
 							</item>
@@ -5567,10 +5567,10 @@
 					<Obj>
 						<type>0</type>
 						<id>135</id>
-						<name>trunc_ln30</name>
+						<name>trunc_ln67</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>30</lineNumber>
+						<lineNumber>67</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -5586,7 +5586,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>30</second>
+										<second>67</second>
 									</item>
 								</second>
 							</item>
@@ -5626,7 +5626,7 @@
 						<name>norm24_11</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>30</lineNumber>
+						<lineNumber>67</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -5642,7 +5642,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>30</second>
+										<second>67</second>
 									</item>
 								</second>
 							</item>
@@ -5684,7 +5684,7 @@
 						<name>exp_12</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>30</lineNumber>
+						<lineNumber>67</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -5700,7 +5700,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>30</second>
+										<second>67</second>
 									</item>
 								</second>
 							</item>
@@ -5738,10 +5738,10 @@
 					<Obj>
 						<type>0</type>
 						<id>138</id>
-						<name>br_ln30</name>
+						<name>br_ln67</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>30</lineNumber>
+						<lineNumber>67</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -5757,7 +5757,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>30</second>
+										<second>67</second>
 									</item>
 								</second>
 							</item>
@@ -5794,10 +5794,10 @@
 					<Obj>
 						<type>0</type>
 						<id>140</id>
-						<name>trunc_ln29</name>
+						<name>trunc_ln66</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>29</lineNumber>
+						<lineNumber>66</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -5813,7 +5813,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>29</second>
+										<second>66</second>
 									</item>
 								</second>
 							</item>
@@ -5853,7 +5853,7 @@
 						<name>norm24_10</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>29</lineNumber>
+						<lineNumber>66</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -5869,7 +5869,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>29</second>
+										<second>66</second>
 									</item>
 								</second>
 							</item>
@@ -5911,7 +5911,7 @@
 						<name>exp_11</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>29</lineNumber>
+						<lineNumber>66</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -5927,7 +5927,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>29</second>
+										<second>66</second>
 									</item>
 								</second>
 							</item>
@@ -5965,10 +5965,10 @@
 					<Obj>
 						<type>0</type>
 						<id>143</id>
-						<name>br_ln29</name>
+						<name>br_ln66</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>29</lineNumber>
+						<lineNumber>66</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -5984,7 +5984,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>29</second>
+										<second>66</second>
 									</item>
 								</second>
 							</item>
@@ -6021,10 +6021,10 @@
 					<Obj>
 						<type>0</type>
 						<id>145</id>
-						<name>trunc_ln28</name>
+						<name>trunc_ln65</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>28</lineNumber>
+						<lineNumber>65</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -6040,7 +6040,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>28</second>
+										<second>65</second>
 									</item>
 								</second>
 							</item>
@@ -6080,7 +6080,7 @@
 						<name>norm24_9</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>28</lineNumber>
+						<lineNumber>65</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -6096,7 +6096,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>28</second>
+										<second>65</second>
 									</item>
 								</second>
 							</item>
@@ -6138,7 +6138,7 @@
 						<name>exp_10</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>28</lineNumber>
+						<lineNumber>65</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -6154,7 +6154,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>28</second>
+										<second>65</second>
 									</item>
 								</second>
 							</item>
@@ -6192,10 +6192,10 @@
 					<Obj>
 						<type>0</type>
 						<id>148</id>
-						<name>br_ln28</name>
+						<name>br_ln65</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>28</lineNumber>
+						<lineNumber>65</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -6211,7 +6211,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>28</second>
+										<second>65</second>
 									</item>
 								</second>
 							</item>
@@ -6248,10 +6248,10 @@
 					<Obj>
 						<type>0</type>
 						<id>150</id>
-						<name>trunc_ln27</name>
+						<name>trunc_ln64</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>27</lineNumber>
+						<lineNumber>64</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -6267,7 +6267,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>27</second>
+										<second>64</second>
 									</item>
 								</second>
 							</item>
@@ -6307,7 +6307,7 @@
 						<name>norm24_8</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>27</lineNumber>
+						<lineNumber>64</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -6323,7 +6323,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>27</second>
+										<second>64</second>
 									</item>
 								</second>
 							</item>
@@ -6365,7 +6365,7 @@
 						<name>exp_9</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>27</lineNumber>
+						<lineNumber>64</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -6381,7 +6381,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>27</second>
+										<second>64</second>
 									</item>
 								</second>
 							</item>
@@ -6419,10 +6419,10 @@
 					<Obj>
 						<type>0</type>
 						<id>153</id>
-						<name>br_ln27</name>
+						<name>br_ln64</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>27</lineNumber>
+						<lineNumber>64</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -6438,7 +6438,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>27</second>
+										<second>64</second>
 									</item>
 								</second>
 							</item>
@@ -6475,10 +6475,10 @@
 					<Obj>
 						<type>0</type>
 						<id>155</id>
-						<name>trunc_ln26</name>
+						<name>trunc_ln63</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>26</lineNumber>
+						<lineNumber>63</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -6494,7 +6494,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>26</second>
+										<second>63</second>
 									</item>
 								</second>
 							</item>
@@ -6534,7 +6534,7 @@
 						<name>norm24_7</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>26</lineNumber>
+						<lineNumber>63</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -6550,7 +6550,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>26</second>
+										<second>63</second>
 									</item>
 								</second>
 							</item>
@@ -6592,7 +6592,7 @@
 						<name>exp_8</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>26</lineNumber>
+						<lineNumber>63</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -6608,7 +6608,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>26</second>
+										<second>63</second>
 									</item>
 								</second>
 							</item>
@@ -6646,10 +6646,10 @@
 					<Obj>
 						<type>0</type>
 						<id>158</id>
-						<name>br_ln26</name>
+						<name>br_ln63</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>26</lineNumber>
+						<lineNumber>63</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -6665,7 +6665,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>26</second>
+										<second>63</second>
 									</item>
 								</second>
 							</item>
@@ -6702,10 +6702,10 @@
 					<Obj>
 						<type>0</type>
 						<id>160</id>
-						<name>trunc_ln25</name>
+						<name>trunc_ln62</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>25</lineNumber>
+						<lineNumber>62</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -6721,7 +6721,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>25</second>
+										<second>62</second>
 									</item>
 								</second>
 							</item>
@@ -6761,7 +6761,7 @@
 						<name>norm24_6</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>25</lineNumber>
+						<lineNumber>62</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -6777,7 +6777,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>25</second>
+										<second>62</second>
 									</item>
 								</second>
 							</item>
@@ -6819,7 +6819,7 @@
 						<name>exp_7</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>25</lineNumber>
+						<lineNumber>62</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -6835,7 +6835,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>25</second>
+										<second>62</second>
 									</item>
 								</second>
 							</item>
@@ -6873,10 +6873,10 @@
 					<Obj>
 						<type>0</type>
 						<id>163</id>
-						<name>br_ln25</name>
+						<name>br_ln62</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>25</lineNumber>
+						<lineNumber>62</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -6892,7 +6892,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>25</second>
+										<second>62</second>
 									</item>
 								</second>
 							</item>
@@ -6929,10 +6929,10 @@
 					<Obj>
 						<type>0</type>
 						<id>165</id>
-						<name>trunc_ln24</name>
+						<name>trunc_ln61</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>24</lineNumber>
+						<lineNumber>61</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -6948,7 +6948,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>24</second>
+										<second>61</second>
 									</item>
 								</second>
 							</item>
@@ -6988,7 +6988,7 @@
 						<name>norm24_5</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>24</lineNumber>
+						<lineNumber>61</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -7004,7 +7004,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>24</second>
+										<second>61</second>
 									</item>
 								</second>
 							</item>
@@ -7046,7 +7046,7 @@
 						<name>exp_6</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>24</lineNumber>
+						<lineNumber>61</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -7062,7 +7062,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>24</second>
+										<second>61</second>
 									</item>
 								</second>
 							</item>
@@ -7100,10 +7100,10 @@
 					<Obj>
 						<type>0</type>
 						<id>168</id>
-						<name>br_ln24</name>
+						<name>br_ln61</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>24</lineNumber>
+						<lineNumber>61</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -7119,7 +7119,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>24</second>
+										<second>61</second>
 									</item>
 								</second>
 							</item>
@@ -7156,10 +7156,10 @@
 					<Obj>
 						<type>0</type>
 						<id>170</id>
-						<name>trunc_ln23</name>
+						<name>trunc_ln60</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>23</lineNumber>
+						<lineNumber>60</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -7175,7 +7175,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>23</second>
+										<second>60</second>
 									</item>
 								</second>
 							</item>
@@ -7215,7 +7215,7 @@
 						<name>norm24_4</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>23</lineNumber>
+						<lineNumber>60</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -7231,7 +7231,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>23</second>
+										<second>60</second>
 									</item>
 								</second>
 							</item>
@@ -7273,7 +7273,7 @@
 						<name>exp_5</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>23</lineNumber>
+						<lineNumber>60</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -7289,7 +7289,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>23</second>
+										<second>60</second>
 									</item>
 								</second>
 							</item>
@@ -7327,10 +7327,10 @@
 					<Obj>
 						<type>0</type>
 						<id>173</id>
-						<name>br_ln23</name>
+						<name>br_ln60</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>23</lineNumber>
+						<lineNumber>60</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -7346,7 +7346,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>23</second>
+										<second>60</second>
 									</item>
 								</second>
 							</item>
@@ -7383,10 +7383,10 @@
 					<Obj>
 						<type>0</type>
 						<id>175</id>
-						<name>trunc_ln22</name>
+						<name>trunc_ln59</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>22</lineNumber>
+						<lineNumber>59</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -7402,7 +7402,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>22</second>
+										<second>59</second>
 									</item>
 								</second>
 							</item>
@@ -7442,7 +7442,7 @@
 						<name>norm24_3</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>22</lineNumber>
+						<lineNumber>59</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -7458,7 +7458,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>22</second>
+										<second>59</second>
 									</item>
 								</second>
 							</item>
@@ -7500,7 +7500,7 @@
 						<name>exp_4</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>22</lineNumber>
+						<lineNumber>59</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -7516,7 +7516,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>22</second>
+										<second>59</second>
 									</item>
 								</second>
 							</item>
@@ -7554,10 +7554,10 @@
 					<Obj>
 						<type>0</type>
 						<id>178</id>
-						<name>br_ln22</name>
+						<name>br_ln59</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>22</lineNumber>
+						<lineNumber>59</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -7573,7 +7573,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>22</second>
+										<second>59</second>
 									</item>
 								</second>
 							</item>
@@ -7610,10 +7610,10 @@
 					<Obj>
 						<type>0</type>
 						<id>180</id>
-						<name>trunc_ln21</name>
+						<name>trunc_ln58</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>21</lineNumber>
+						<lineNumber>58</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -7629,7 +7629,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>21</second>
+										<second>58</second>
 									</item>
 								</second>
 							</item>
@@ -7669,7 +7669,7 @@
 						<name>norm24_2</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>21</lineNumber>
+						<lineNumber>58</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -7685,7 +7685,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>21</second>
+										<second>58</second>
 									</item>
 								</second>
 							</item>
@@ -7727,7 +7727,7 @@
 						<name>exp_3</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>21</lineNumber>
+						<lineNumber>58</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -7743,7 +7743,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>21</second>
+										<second>58</second>
 									</item>
 								</second>
 							</item>
@@ -7781,10 +7781,10 @@
 					<Obj>
 						<type>0</type>
 						<id>183</id>
-						<name>br_ln21</name>
+						<name>br_ln58</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>21</lineNumber>
+						<lineNumber>58</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -7800,7 +7800,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>21</second>
+										<second>58</second>
 									</item>
 								</second>
 							</item>
@@ -7837,10 +7837,10 @@
 					<Obj>
 						<type>0</type>
 						<id>185</id>
-						<name>trunc_ln20</name>
+						<name>trunc_ln57</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>20</lineNumber>
+						<lineNumber>57</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -7856,7 +7856,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>20</second>
+										<second>57</second>
 									</item>
 								</second>
 							</item>
@@ -7896,7 +7896,7 @@
 						<name>norm24_1</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>20</lineNumber>
+						<lineNumber>57</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -7912,7 +7912,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>20</second>
+										<second>57</second>
 									</item>
 								</second>
 							</item>
@@ -7954,7 +7954,7 @@
 						<name>exp_2</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>20</lineNumber>
+						<lineNumber>57</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -7970,7 +7970,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>20</second>
+										<second>57</second>
 									</item>
 								</second>
 							</item>
@@ -8008,10 +8008,10 @@
 					<Obj>
 						<type>0</type>
 						<id>188</id>
-						<name>br_ln20</name>
+						<name>br_ln57</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>20</lineNumber>
+						<lineNumber>57</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -8027,7 +8027,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>20</second>
+										<second>57</second>
 									</item>
 								</second>
 							</item>
@@ -8064,10 +8064,10 @@
 					<Obj>
 						<type>0</type>
 						<id>190</id>
-						<name>trunc_ln19</name>
+						<name>trunc_ln56</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>19</lineNumber>
+						<lineNumber>56</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -8083,7 +8083,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>19</second>
+										<second>56</second>
 									</item>
 								</second>
 							</item>
@@ -8123,7 +8123,7 @@
 						<name>norm24</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>19</lineNumber>
+						<lineNumber>56</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -8139,7 +8139,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>19</second>
+										<second>56</second>
 									</item>
 								</second>
 							</item>
@@ -8181,7 +8181,7 @@
 						<name>exp_1</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>19</lineNumber>
+						<lineNumber>56</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -8197,7 +8197,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>19</second>
+										<second>56</second>
 									</item>
 								</second>
 							</item>
@@ -8235,10 +8235,10 @@
 					<Obj>
 						<type>0</type>
 						<id>193</id>
-						<name>br_ln19</name>
+						<name>br_ln56</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>19</lineNumber>
+						<lineNumber>56</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -8254,7 +8254,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>19</second>
+										<second>56</second>
 									</item>
 								</second>
 							</item>
@@ -8291,10 +8291,10 @@
 					<Obj>
 						<type>0</type>
 						<id>195</id>
-						<name>trunc_ln16</name>
+						<name>trunc_ln53</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>16</lineNumber>
+						<lineNumber>53</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -8310,7 +8310,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>16</second>
+										<second>53</second>
 									</item>
 								</second>
 							</item>
@@ -8347,10 +8347,10 @@
 					<Obj>
 						<type>0</type>
 						<id>196</id>
-						<name>br_ln18</name>
+						<name>br_ln55</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>18</lineNumber>
+						<lineNumber>55</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -8366,7 +8366,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>18</second>
+										<second>55</second>
 									</item>
 								</second>
 							</item>
@@ -8406,7 +8406,7 @@
 						<name>norm24_cast</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>16</lineNumber>
+						<lineNumber>53</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -8422,7 +8422,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>16</second>
+										<second>53</second>
 									</item>
 								</second>
 							</item>
@@ -8465,7 +8465,7 @@
 						<name>exp</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>17</lineNumber>
+						<lineNumber>54</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -8481,7 +8481,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>17</second>
+										<second>54</second>
 									</item>
 								</second>
 							</item>
@@ -8519,10 +8519,10 @@
 					<Obj>
 						<type>0</type>
 						<id>200</id>
-						<name>br_ln17</name>
+						<name>br_ln54</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>17</lineNumber>
+						<lineNumber>54</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -8538,7 +8538,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>17</second>
+										<second>54</second>
 									</item>
 								</second>
 							</item>
@@ -8760,7 +8760,7 @@
 						<name>tmp_s</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>43</lineNumber>
+						<lineNumber>80</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -8776,7 +8776,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>43</second>
+										<second>80</second>
 									</item>
 								</second>
 							</item>
@@ -8861,7 +8861,7 @@
 						<name>agg_result_0</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>43</lineNumber>
+						<lineNumber>80</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -8877,7 +8877,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>43</second>
+										<second>80</second>
 									</item>
 								</second>
 							</item>
@@ -8917,10 +8917,10 @@
 					<Obj>
 						<type>0</type>
 						<id>208</id>
-						<name>_ln44</name>
+						<name>_ln81</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>44</lineNumber>
+						<lineNumber>81</lineNumber>
 						<contextFuncName>fp32_normaliser</contextFuncName>
 						<contextNormFuncName>fp32_normaliser</contextNormFuncName>
 						<inlineStackInfo>
@@ -8936,7 +8936,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_normaliser</second>
 										</first>
-										<second>44</second>
+										<second>81</second>
 									</item>
 								</second>
 							</item>
@@ -19503,7 +19503,7 @@
 			</second>
 		</item>
 		<item>
-			<first>icmp_ln12_fu_348</first>
+			<first>icmp_ln49_fu_348</first>
 			<second>
 				<count>1</count>
 				<item_version>0</item_version>
@@ -19903,7 +19903,7 @@
 			</second>
 		</item>
 		<item>
-			<first>trunc_ln16_fu_993</first>
+			<first>trunc_ln53_fu_993</first>
 			<second>
 				<count>1</count>
 				<item_version>0</item_version>
@@ -19911,7 +19911,7 @@
 			</second>
 		</item>
 		<item>
-			<first>trunc_ln19_fu_973</first>
+			<first>trunc_ln56_fu_973</first>
 			<second>
 				<count>1</count>
 				<item_version>0</item_version>
@@ -19919,7 +19919,7 @@
 			</second>
 		</item>
 		<item>
-			<first>trunc_ln20_fu_953</first>
+			<first>trunc_ln57_fu_953</first>
 			<second>
 				<count>1</count>
 				<item_version>0</item_version>
@@ -19927,7 +19927,7 @@
 			</second>
 		</item>
 		<item>
-			<first>trunc_ln21_fu_933</first>
+			<first>trunc_ln58_fu_933</first>
 			<second>
 				<count>1</count>
 				<item_version>0</item_version>
@@ -19935,7 +19935,7 @@
 			</second>
 		</item>
 		<item>
-			<first>trunc_ln22_fu_913</first>
+			<first>trunc_ln59_fu_913</first>
 			<second>
 				<count>1</count>
 				<item_version>0</item_version>
@@ -19943,7 +19943,7 @@
 			</second>
 		</item>
 		<item>
-			<first>trunc_ln23_fu_893</first>
+			<first>trunc_ln60_fu_893</first>
 			<second>
 				<count>1</count>
 				<item_version>0</item_version>
@@ -19951,7 +19951,7 @@
 			</second>
 		</item>
 		<item>
-			<first>trunc_ln24_fu_873</first>
+			<first>trunc_ln61_fu_873</first>
 			<second>
 				<count>1</count>
 				<item_version>0</item_version>
@@ -19959,7 +19959,7 @@
 			</second>
 		</item>
 		<item>
-			<first>trunc_ln25_fu_853</first>
+			<first>trunc_ln62_fu_853</first>
 			<second>
 				<count>1</count>
 				<item_version>0</item_version>
@@ -19967,7 +19967,7 @@
 			</second>
 		</item>
 		<item>
-			<first>trunc_ln26_fu_833</first>
+			<first>trunc_ln63_fu_833</first>
 			<second>
 				<count>1</count>
 				<item_version>0</item_version>
@@ -19975,7 +19975,7 @@
 			</second>
 		</item>
 		<item>
-			<first>trunc_ln27_fu_813</first>
+			<first>trunc_ln64_fu_813</first>
 			<second>
 				<count>1</count>
 				<item_version>0</item_version>
@@ -19983,7 +19983,7 @@
 			</second>
 		</item>
 		<item>
-			<first>trunc_ln28_fu_793</first>
+			<first>trunc_ln65_fu_793</first>
 			<second>
 				<count>1</count>
 				<item_version>0</item_version>
@@ -19991,7 +19991,7 @@
 			</second>
 		</item>
 		<item>
-			<first>trunc_ln29_fu_773</first>
+			<first>trunc_ln66_fu_773</first>
 			<second>
 				<count>1</count>
 				<item_version>0</item_version>
@@ -19999,7 +19999,7 @@
 			</second>
 		</item>
 		<item>
-			<first>trunc_ln30_fu_753</first>
+			<first>trunc_ln67_fu_753</first>
 			<second>
 				<count>1</count>
 				<item_version>0</item_version>
@@ -20007,7 +20007,7 @@
 			</second>
 		</item>
 		<item>
-			<first>trunc_ln31_fu_733</first>
+			<first>trunc_ln68_fu_733</first>
 			<second>
 				<count>1</count>
 				<item_version>0</item_version>
@@ -20015,7 +20015,7 @@
 			</second>
 		</item>
 		<item>
-			<first>trunc_ln32_fu_713</first>
+			<first>trunc_ln69_fu_713</first>
 			<second>
 				<count>1</count>
 				<item_version>0</item_version>
@@ -20023,7 +20023,7 @@
 			</second>
 		</item>
 		<item>
-			<first>trunc_ln33_fu_693</first>
+			<first>trunc_ln70_fu_693</first>
 			<second>
 				<count>1</count>
 				<item_version>0</item_version>
@@ -20031,7 +20031,7 @@
 			</second>
 		</item>
 		<item>
-			<first>trunc_ln34_fu_673</first>
+			<first>trunc_ln71_fu_673</first>
 			<second>
 				<count>1</count>
 				<item_version>0</item_version>
@@ -20039,7 +20039,7 @@
 			</second>
 		</item>
 		<item>
-			<first>trunc_ln35_fu_653</first>
+			<first>trunc_ln72_fu_653</first>
 			<second>
 				<count>1</count>
 				<item_version>0</item_version>
@@ -20047,7 +20047,7 @@
 			</second>
 		</item>
 		<item>
-			<first>trunc_ln36_fu_633</first>
+			<first>trunc_ln73_fu_633</first>
 			<second>
 				<count>1</count>
 				<item_version>0</item_version>
@@ -20055,7 +20055,7 @@
 			</second>
 		</item>
 		<item>
-			<first>trunc_ln37_fu_613</first>
+			<first>trunc_ln74_fu_613</first>
 			<second>
 				<count>1</count>
 				<item_version>0</item_version>
@@ -20063,7 +20063,7 @@
 			</second>
 		</item>
 		<item>
-			<first>trunc_ln38_fu_593</first>
+			<first>trunc_ln75_fu_593</first>
 			<second>
 				<count>1</count>
 				<item_version>0</item_version>
@@ -20071,7 +20071,7 @@
 			</second>
 		</item>
 		<item>
-			<first>trunc_ln39_fu_573</first>
+			<first>trunc_ln76_fu_573</first>
 			<second>
 				<count>1</count>
 				<item_version>0</item_version>
@@ -20079,7 +20079,7 @@
 			</second>
 		</item>
 		<item>
-			<first>trunc_ln40_fu_553</first>
+			<first>trunc_ln77_fu_553</first>
 			<second>
 				<count>1</count>
 				<item_version>0</item_version>

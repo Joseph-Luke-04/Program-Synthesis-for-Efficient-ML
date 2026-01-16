@@ -1,41 +1,26 @@
 {
   "0": {
     "basicblocks": 1,
-    "calls": "3 1 2",
+    "calls": "3 2 1",
     "control_depth": 0,
     "def_use_depth": 3,
     "file": "solution_fp32addition_fp32_full_sum.cpp",
-    "fileloc": 47,
+    "fileloc": 84,
     "instructions": 22,
     "loads": {
       "L": 3
     },
     "memory_accesses": 0,
     "name": "fp32_sum",
-    "total_instructions": 321
+    "total_instructions": 334
   },
   "1": {
-    "basicblocks": 11,
-    "calls": "",
-    "control_depth": 0,
-    "def_use_depth": 2,
-    "file": "solution_fp32addition_fp32_full_sum.cpp",
-    "fileloc": 7,
-    "instructions": 37,
-    "memory_accesses": 0,
-    "name": "fp32_raw_summer",
-    "stores": {
-      "L": 1
-    },
-    "total_instructions": 37
-  },
-  "2": {
     "basicblocks": 52,
     "calls": "",
     "control_depth": 0,
     "def_use_depth": 2,
     "file": "solution_fp32addition_fp32_full_sum.cpp",
-    "fileloc": 11,
+    "fileloc": 48,
     "instructions": 225,
     "memory_accesses": 0,
     "name": "fp32_normaliser",
@@ -44,19 +29,37 @@
     },
     "total_instructions": 225
   },
-  "3": {
+  "2": {
     "basicblocks": 7,
     "calls": "",
     "control_depth": 0,
-    "def_use_depth": 5,
+    "def_use_depth": 4,
     "file": "solution_fp32addition_fp32_full_sum.cpp",
-    "fileloc": 3,
-    "instructions": 37,
+    "fileloc": 20,
+    "instructions": 43,
     "memory_accesses": 0,
-    "name": "fp32_aligner",
+    "name": "fp32_raw_summer",
     "stores": {
       "L": 1
     },
-    "total_instructions": 37
+    "total_instructions": 43
+  },
+  "3": {
+    "basicblocks": 5,
+    "calls": "",
+    "control_depth": 0,
+    "def_use_depth": 4,
+    "file": "solution_fp32addition_fp32_full_sum.cpp",
+    "fileloc": 3,
+    "instructions": 44,
+    "loads": {
+      "L": 1
+    },
+    "memory_accesses": 0,
+    "name": "fp32_aligner",
+    "stores": {
+      "L": 3
+    },
+    "total_instructions": 44
   }
 }

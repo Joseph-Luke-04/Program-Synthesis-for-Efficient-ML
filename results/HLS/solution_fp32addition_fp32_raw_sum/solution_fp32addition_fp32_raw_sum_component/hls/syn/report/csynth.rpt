@@ -4,7 +4,7 @@
 == Synthesis Summary Report of 'fp32_raw_summer'
 ================================================================
 + General Information: 
-    * Date:           Wed Nov 19 19:47:29 2025
+    * Date:           Wed Nov 26 12:34:55 2025
     * Version:        2025.1 (Build 6135595 on May 21 2025)
     * Project:        solution_fp32addition_fp32_raw_sum_component
     * Solution:       hls (Vivado IP Flow Target)

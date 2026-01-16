@@ -3,9 +3,9 @@ source_filename = "llvm-link"
 target datalayout = "e-m:e-i64:64-i128:128-i256:256-i512:512-i1024:1024-i2048:2048-i4096:4096-n8:16:32:64-S128-v16:16-v24:32-v32:32-v48:64-v96:128-v192:256-v256:256-v512:512-v1024:1024"
 target triple = "fpga64-xilinx-none"
 
-%"struct.ap_uint<32>" = type { %"struct.ap_int_base<32, false>" }
-%"struct.ap_int_base<32, false>" = type { %"struct.ssdm_int<32, false>" }
-%"struct.ssdm_int<32, false>" = type { i32 }
+%"struct.ap_uint<32>" = type { %"struct.ap_int_base<32, true>" }
+%"struct.ap_int_base<32, true>" = type { %"struct.ssdm_int<32, true>" }
+%"struct.ssdm_int<32, true>" = type { i32 }
 %"struct.ap_uint<1>" = type { %"struct.ap_int_base<1, false>" }
 %"struct.ap_int_base<1, false>" = type { %"struct.ssdm_int<1, false>" }
 %"struct.ssdm_int<1, false>" = type { i1 }

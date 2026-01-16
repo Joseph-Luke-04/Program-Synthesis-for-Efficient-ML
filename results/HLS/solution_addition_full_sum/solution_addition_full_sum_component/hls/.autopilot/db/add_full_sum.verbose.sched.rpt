@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'add_full_sum'
 ================================================================
-* Date:           Wed Nov 19 20:53:06 2025
+* Date:           Fri Jan 16 12:59:30 2026
 
 * Version:        2025.1 (Build 6135595 on May 21 2025)
 * Project:        solution_addition_full_sum_component
@@ -17,11 +17,11 @@
 ================================================================
 + Timing: 
     * Summary: 
-    +--------+----------+-----------+------------+
-    |  Clock |  Target  | Estimated | Uncertainty|
-    +--------+----------+-----------+------------+
-    |ap_clk  |  50.00 ns|  31.366 ns|    13.50 ns|
-    +--------+----------+-----------+------------+
+    +--------+---------+-----------+------------+
+    |  Clock |  Target | Estimated | Uncertainty|
+    +--------+---------+-----------+------------+
+    |ap_clk  |  1.00 ms|  31.366 ns|     0.27 ms|
+    +--------+---------+-----------+------------+
 
 + Latency: 
     * Summary: 
@@ -178,7 +178,7 @@ ST_1 : Operation 99 [1/1] (0.00ns)   --->   "%ret_ln70 = ret i8 %or4_i_i" [/home
 ============================================================
 + Verbose Summary: Timing violations
 ============================================================
-Target clock period: 50.000ns, clock uncertainty: 13.500ns.
+Target clock period: 1000000.000ns, clock uncertainty: 270000.000ns.
 
  <State 1>: 31.366ns
 The critical path consists of the following:

@@ -1,7 +1,7 @@
 
 
 set RtlHierarchyInfo {[
-	{"ID" : "0", "Level" : "0", "Path" : "`AUTOTB_DUT_INST", "Parent" : "", "Child" : ["1", "2"],
+	{"ID" : "0", "Level" : "0", "Path" : "`AUTOTB_DUT_INST", "Parent" : "", "Child" : ["1", "2", "3"],
 		"CDFG" : "fp32_sum",
 		"Protocol" : "ap_ctrl_hs",
 		"ControlExist" : "1", "ap_start" : "1", "ap_ready" : "1", "ap_done" : "1", "ap_continue" : "0", "ap_idle" : "1", "real_start" : "0",
@@ -22,7 +22,7 @@ set RtlHierarchyInfo {[
 			{"Name" : "s2", "Type" : "None", "Direction" : "I"},
 			{"Name" : "e2", "Type" : "None", "Direction" : "I"},
 			{"Name" : "m2", "Type" : "None", "Direction" : "I"}]},
-	{"ID" : "1", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.call_ret_fp32_normaliser_fu_90", "Parent" : "0",
+	{"ID" : "1", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.call_ret_fp32_normaliser_fu_108", "Parent" : "0",
 		"CDFG" : "fp32_normaliser",
 		"Protocol" : "ap_ctrl_hs",
 		"ControlExist" : "0", "ap_start" : "0", "ap_ready" : "1", "ap_done" : "0", "ap_continue" : "0", "ap_idle" : "0", "real_start" : "0",
@@ -40,4 +40,5 @@ set RtlHierarchyInfo {[
 			{"Name" : "raw_sum_mantissa", "Type" : "None", "Direction" : "I"},
 			{"Name" : "raw_sign", "Type" : "None", "Direction" : "I"},
 			{"Name" : "target_exponent", "Type" : "None", "Direction" : "I"}]},
-	{"ID" : "2", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.sparsemux_7_2_25_1_1_U4", "Parent" : "0"}]}
+	{"ID" : "2", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.sparsemux_9_3_25_1_1_U4", "Parent" : "0"},
+	{"ID" : "3", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.sparsemux_7_2_1_1_1_U5", "Parent" : "0"}]}

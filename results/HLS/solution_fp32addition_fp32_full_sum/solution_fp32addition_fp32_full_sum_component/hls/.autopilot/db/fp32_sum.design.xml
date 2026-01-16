@@ -5,10 +5,10 @@
 <ModuleName>fp32_sum</ModuleName>
 <InstancesList>
 <Instance>
-<InstName>call_ret_fp32_normaliser_fu_90</InstName>
+<InstName>call_ret_fp32_normaliser_fu_108</InstName>
 <ModuleName>fp32_normaliser</ModuleName>
 <IsCompInst>true</IsCompInst>
-<ID>90</ID>
+<ID>108</ID>
 </Instance>
 </InstancesList>
 </TopModule>
@@ -19,8 +19,8 @@
 <Name>fp32_normaliser</Name>
 <PerformanceEstimates>
 <SummaryOfTimingAnalysis>
-<TargetClockPeriod>50.00</TargetClockPeriod>
-<ClockUncertainty>13.50</ClockUncertainty>
+<TargetClockPeriod>1000000.00</TargetClockPeriod>
+<ClockUncertainty>270000.00</ClockUncertainty>
 <EstimatedClockPeriod>7.137</EstimatedClockPeriod>
 </SummaryOfTimingAnalysis>
 <SummaryOfOverallLatency>
@@ -37,7 +37,7 @@
 <SummaryOfViolations>
 <IssueType>-</IssueType>
 <ViolationType>-</ViolationType>
-<SourceLocation>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:11</SourceLocation>
+<SourceLocation>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:48</SourceLocation>
 </SummaryOfViolations>
 </PerformanceEstimates>
 <AreaEstimates>
@@ -132,9 +132,9 @@
 <Name>fp32_sum</Name>
 <PerformanceEstimates>
 <SummaryOfTimingAnalysis>
-<TargetClockPeriod>50.00</TargetClockPeriod>
-<ClockUncertainty>13.50</ClockUncertainty>
-<EstimatedClockPeriod>17.243</EstimatedClockPeriod>
+<TargetClockPeriod>1000000.00</TargetClockPeriod>
+<ClockUncertainty>270000.00</ClockUncertainty>
+<EstimatedClockPeriod>20.566</EstimatedClockPeriod>
 </SummaryOfTimingAnalysis>
 <SummaryOfOverallLatency>
 <Best-caseLatency>0</Best-caseLatency>
@@ -150,7 +150,7 @@
 <SummaryOfViolations>
 <IssueType>-</IssueType>
 <ViolationType>-</ViolationType>
-<SourceLocation>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:47</SourceLocation>
+<SourceLocation>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:84</SourceLocation>
 </SummaryOfViolations>
 </PerformanceEstimates>
 <AreaEstimates>
@@ -158,7 +158,7 @@
 <FF>0</FF>
 <AVAIL_FF>106400</AVAIL_FF>
 <UTIL_FF>0</UTIL_FF>
-<LUT>1171</LUT>
+<LUT>1204</LUT>
 <AVAIL_LUT>53200</AVAIL_LUT>
 <UTIL_LUT>2</UTIL_LUT>
 <BRAM_18K>0</BRAM_18K>

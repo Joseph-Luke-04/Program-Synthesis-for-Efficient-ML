@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'fp32_normaliser'
 ================================================================
-* Date:           Wed Nov 19 15:00:58 2025
+* Date:           Wed Nov 26 12:59:24 2025
 
 * Version:        2025.1 (Build 6135595 on May 21 2025)
 * Project:        solution_fp32addition_fp32_full_sum_component
@@ -17,11 +17,11 @@
 ================================================================
 + Timing: 
     * Summary: 
-    +--------+----------+----------+------------+
-    |  Clock |  Target  | Estimated| Uncertainty|
-    +--------+----------+----------+------------+
-    |ap_clk  |  50.00 ns|  7.137 ns|    13.50 ns|
-    +--------+----------+----------+------------+
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  1.00 ms|  7.137 ns|     0.27 ms|
+    +--------+---------+----------+------------+
 
 + Latency: 
     * Summary: 
@@ -127,7 +127,7 @@
     |ap_condition_743     |       and|   0|  0|   2|           1|           1|
     |ap_condition_755     |       and|   0|  0|   2|           1|           1|
     |ap_condition_767     |       and|   0|  0|   2|           1|           1|
-    |icmp_ln12_fu_348_p2  |      icmp|   0|  0|  32|          25|           1|
+    |icmp_ln49_fu_348_p2  |      icmp|   0|  0|  32|          25|           1|
     +---------------------+----------+----+---+----+------------+------------+
     |Total                |          |   0|  0| 438|         240|         137|
     +---------------------+----------+----+---+----+------------+------------+
@@ -199,160 +199,160 @@ IsGatedGlobalClock: 0
 * FSM state operations: 
 
 State 1 <SV = 0> <Delay = 7.13>
-ST_1 : Operation 2 [1/1] (0.00ns)   --->   "%target_exponent_read = read i8 @_ssdm_op_Read.ap_auto.i8, i8 %target_exponent" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:11]   --->   Operation 2 'read' 'target_exponent_read' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 3 [1/1] (0.00ns)   --->   "%raw_sign_read = read i1 @_ssdm_op_Read.ap_auto.i1, i1 %raw_sign" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:11]   --->   Operation 3 'read' 'raw_sign_read' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 4 [1/1] (0.00ns)   --->   "%raw_sum_mantissa_read = read i25 @_ssdm_op_Read.ap_auto.i25, i25 %raw_sum_mantissa" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:11]   --->   Operation 4 'read' 'raw_sum_mantissa_read' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 5 [1/1] (2.34ns)   --->   "%icmp_ln12 = icmp_eq  i25 %raw_sum_mantissa_read, i25 0" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:12]   --->   Operation 5 'icmp' 'icmp_ln12' <Predicate = true> <Delay = 2.34> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 2.34> <FuncUnit> <Opcode : 'seteq' 'setne' 'setle' 'setge' 'setlt' 'setgt'> <InPorts = 2> <OutPorts = 1>
-ST_1 : Operation 6 [1/1] (1.58ns)   --->   "%br_ln12 = br i1 %icmp_ln12, void %if.end, void %return" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:12]   --->   Operation 6 'br' 'br_ln12' <Predicate = true> <Delay = 1.58>
-ST_1 : Operation 7 [1/1] (0.00ns)   --->   "%tmp = bitselect i1 @_ssdm_op_BitSelect.i1.i25.i32, i25 %raw_sum_mantissa_read, i32 24" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:17]   --->   Operation 7 'bitselect' 'tmp' <Predicate = (!icmp_ln12)> <Delay = 0.00>
-ST_1 : Operation 8 [1/1] (0.00ns)   --->   "%br_ln17 = br i1 %tmp, void %if.else, void %if.then6" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:17]   --->   Operation 8 'br' 'br_ln17' <Predicate = (!icmp_ln12)> <Delay = 0.00>
-ST_1 : Operation 9 [1/1] (0.00ns)   --->   "%tmp_1 = bitselect i1 @_ssdm_op_BitSelect.i1.i25.i32, i25 %raw_sum_mantissa_read, i32 23" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:18]   --->   Operation 9 'bitselect' 'tmp_1' <Predicate = (!icmp_ln12 & !tmp)> <Delay = 0.00>
-ST_1 : Operation 10 [1/1] (0.00ns)   --->   "%br_ln18 = br i1 %tmp_1, void %if.else15, void %if.then12" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:18]   --->   Operation 10 'br' 'br_ln18' <Predicate = (!icmp_ln12 & !tmp)> <Delay = 0.00>
-ST_1 : Operation 11 [1/1] (0.00ns)   --->   "%tmp_2 = bitselect i1 @_ssdm_op_BitSelect.i1.i25.i32, i25 %raw_sum_mantissa_read, i32 22" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:19]   --->   Operation 11 'bitselect' 'tmp_2' <Predicate = (!icmp_ln12 & !tmp & !tmp_1)> <Delay = 0.00>
-ST_1 : Operation 12 [1/1] (0.00ns)   --->   "%br_ln19 = br i1 %tmp_2, void %if.else23, void %if.then18" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:19]   --->   Operation 12 'br' 'br_ln19' <Predicate = (!icmp_ln12 & !tmp & !tmp_1)> <Delay = 0.00>
-ST_1 : Operation 13 [1/1] (0.00ns)   --->   "%tmp_3 = bitselect i1 @_ssdm_op_BitSelect.i1.i25.i32, i25 %raw_sum_mantissa_read, i32 21" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:20]   --->   Operation 13 'bitselect' 'tmp_3' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2)> <Delay = 0.00>
-ST_1 : Operation 14 [1/1] (0.00ns)   --->   "%br_ln20 = br i1 %tmp_3, void %if.else31, void %if.then26" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:20]   --->   Operation 14 'br' 'br_ln20' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2)> <Delay = 0.00>
-ST_1 : Operation 15 [1/1] (0.00ns)   --->   "%tmp_4 = bitselect i1 @_ssdm_op_BitSelect.i1.i25.i32, i25 %raw_sum_mantissa_read, i32 20" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:21]   --->   Operation 15 'bitselect' 'tmp_4' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3)> <Delay = 0.00>
-ST_1 : Operation 16 [1/1] (0.00ns)   --->   "%br_ln21 = br i1 %tmp_4, void %if.else39, void %if.then34" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:21]   --->   Operation 16 'br' 'br_ln21' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3)> <Delay = 0.00>
-ST_1 : Operation 17 [1/1] (0.00ns)   --->   "%tmp_5 = bitselect i1 @_ssdm_op_BitSelect.i1.i25.i32, i25 %raw_sum_mantissa_read, i32 19" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:22]   --->   Operation 17 'bitselect' 'tmp_5' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4)> <Delay = 0.00>
-ST_1 : Operation 18 [1/1] (0.00ns)   --->   "%br_ln22 = br i1 %tmp_5, void %if.else47, void %if.then42" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:22]   --->   Operation 18 'br' 'br_ln22' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4)> <Delay = 0.00>
-ST_1 : Operation 19 [1/1] (0.00ns)   --->   "%tmp_6 = bitselect i1 @_ssdm_op_BitSelect.i1.i25.i32, i25 %raw_sum_mantissa_read, i32 18" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:23]   --->   Operation 19 'bitselect' 'tmp_6' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5)> <Delay = 0.00>
-ST_1 : Operation 20 [1/1] (0.00ns)   --->   "%br_ln23 = br i1 %tmp_6, void %if.else55, void %if.then50" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:23]   --->   Operation 20 'br' 'br_ln23' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5)> <Delay = 0.00>
-ST_1 : Operation 21 [1/1] (0.00ns)   --->   "%tmp_7 = bitselect i1 @_ssdm_op_BitSelect.i1.i25.i32, i25 %raw_sum_mantissa_read, i32 17" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:24]   --->   Operation 21 'bitselect' 'tmp_7' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6)> <Delay = 0.00>
-ST_1 : Operation 22 [1/1] (0.00ns)   --->   "%br_ln24 = br i1 %tmp_7, void %if.else63, void %if.then58" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:24]   --->   Operation 22 'br' 'br_ln24' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6)> <Delay = 0.00>
-ST_1 : Operation 23 [1/1] (0.00ns)   --->   "%tmp_8 = bitselect i1 @_ssdm_op_BitSelect.i1.i25.i32, i25 %raw_sum_mantissa_read, i32 16" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:25]   --->   Operation 23 'bitselect' 'tmp_8' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7)> <Delay = 0.00>
-ST_1 : Operation 24 [1/1] (0.00ns)   --->   "%br_ln25 = br i1 %tmp_8, void %if.else71, void %if.then66" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:25]   --->   Operation 24 'br' 'br_ln25' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7)> <Delay = 0.00>
-ST_1 : Operation 25 [1/1] (0.00ns)   --->   "%tmp_9 = bitselect i1 @_ssdm_op_BitSelect.i1.i25.i32, i25 %raw_sum_mantissa_read, i32 15" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:26]   --->   Operation 25 'bitselect' 'tmp_9' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8)> <Delay = 0.00>
-ST_1 : Operation 26 [1/1] (0.00ns)   --->   "%br_ln26 = br i1 %tmp_9, void %if.else79, void %if.then74" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:26]   --->   Operation 26 'br' 'br_ln26' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8)> <Delay = 0.00>
-ST_1 : Operation 27 [1/1] (0.00ns)   --->   "%tmp_10 = bitselect i1 @_ssdm_op_BitSelect.i1.i25.i32, i25 %raw_sum_mantissa_read, i32 14" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:27]   --->   Operation 27 'bitselect' 'tmp_10' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9)> <Delay = 0.00>
-ST_1 : Operation 28 [1/1] (0.00ns)   --->   "%br_ln27 = br i1 %tmp_10, void %if.else87, void %if.then82" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:27]   --->   Operation 28 'br' 'br_ln27' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9)> <Delay = 0.00>
-ST_1 : Operation 29 [1/1] (0.00ns)   --->   "%tmp_11 = bitselect i1 @_ssdm_op_BitSelect.i1.i25.i32, i25 %raw_sum_mantissa_read, i32 13" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:28]   --->   Operation 29 'bitselect' 'tmp_11' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10)> <Delay = 0.00>
-ST_1 : Operation 30 [1/1] (0.00ns)   --->   "%br_ln28 = br i1 %tmp_11, void %if.else95, void %if.then90" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:28]   --->   Operation 30 'br' 'br_ln28' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10)> <Delay = 0.00>
-ST_1 : Operation 31 [1/1] (0.00ns)   --->   "%tmp_12 = bitselect i1 @_ssdm_op_BitSelect.i1.i25.i32, i25 %raw_sum_mantissa_read, i32 12" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:29]   --->   Operation 31 'bitselect' 'tmp_12' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11)> <Delay = 0.00>
-ST_1 : Operation 32 [1/1] (0.00ns)   --->   "%br_ln29 = br i1 %tmp_12, void %if.else103, void %if.then98" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:29]   --->   Operation 32 'br' 'br_ln29' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11)> <Delay = 0.00>
-ST_1 : Operation 33 [1/1] (0.00ns)   --->   "%tmp_13 = bitselect i1 @_ssdm_op_BitSelect.i1.i25.i32, i25 %raw_sum_mantissa_read, i32 11" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:30]   --->   Operation 33 'bitselect' 'tmp_13' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12)> <Delay = 0.00>
-ST_1 : Operation 34 [1/1] (0.00ns)   --->   "%br_ln30 = br i1 %tmp_13, void %if.else111, void %if.then106" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:30]   --->   Operation 34 'br' 'br_ln30' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12)> <Delay = 0.00>
-ST_1 : Operation 35 [1/1] (0.00ns)   --->   "%tmp_14 = bitselect i1 @_ssdm_op_BitSelect.i1.i25.i32, i25 %raw_sum_mantissa_read, i32 10" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:31]   --->   Operation 35 'bitselect' 'tmp_14' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13)> <Delay = 0.00>
-ST_1 : Operation 36 [1/1] (0.00ns)   --->   "%br_ln31 = br i1 %tmp_14, void %if.else119, void %if.then114" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:31]   --->   Operation 36 'br' 'br_ln31' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13)> <Delay = 0.00>
-ST_1 : Operation 37 [1/1] (0.00ns)   --->   "%tmp_15 = bitselect i1 @_ssdm_op_BitSelect.i1.i25.i32, i25 %raw_sum_mantissa_read, i32 9" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:32]   --->   Operation 37 'bitselect' 'tmp_15' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14)> <Delay = 0.00>
-ST_1 : Operation 38 [1/1] (0.00ns)   --->   "%br_ln32 = br i1 %tmp_15, void %if.else127, void %if.then122" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:32]   --->   Operation 38 'br' 'br_ln32' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14)> <Delay = 0.00>
-ST_1 : Operation 39 [1/1] (0.00ns)   --->   "%tmp_16 = bitselect i1 @_ssdm_op_BitSelect.i1.i25.i32, i25 %raw_sum_mantissa_read, i32 8" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:33]   --->   Operation 39 'bitselect' 'tmp_16' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15)> <Delay = 0.00>
-ST_1 : Operation 40 [1/1] (0.00ns)   --->   "%br_ln33 = br i1 %tmp_16, void %if.else135, void %if.then130" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:33]   --->   Operation 40 'br' 'br_ln33' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15)> <Delay = 0.00>
-ST_1 : Operation 41 [1/1] (0.00ns)   --->   "%tmp_17 = bitselect i1 @_ssdm_op_BitSelect.i1.i25.i32, i25 %raw_sum_mantissa_read, i32 7" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:34]   --->   Operation 41 'bitselect' 'tmp_17' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16)> <Delay = 0.00>
-ST_1 : Operation 42 [1/1] (0.00ns)   --->   "%br_ln34 = br i1 %tmp_17, void %if.else143, void %if.then138" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:34]   --->   Operation 42 'br' 'br_ln34' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16)> <Delay = 0.00>
-ST_1 : Operation 43 [1/1] (0.00ns)   --->   "%tmp_18 = bitselect i1 @_ssdm_op_BitSelect.i1.i25.i32, i25 %raw_sum_mantissa_read, i32 6" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:35]   --->   Operation 43 'bitselect' 'tmp_18' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17)> <Delay = 0.00>
-ST_1 : Operation 44 [1/1] (0.00ns)   --->   "%br_ln35 = br i1 %tmp_18, void %if.else151, void %if.then146" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:35]   --->   Operation 44 'br' 'br_ln35' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17)> <Delay = 0.00>
-ST_1 : Operation 45 [1/1] (0.00ns)   --->   "%tmp_19 = bitselect i1 @_ssdm_op_BitSelect.i1.i25.i32, i25 %raw_sum_mantissa_read, i32 5" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:36]   --->   Operation 45 'bitselect' 'tmp_19' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17 & !tmp_18)> <Delay = 0.00>
-ST_1 : Operation 46 [1/1] (0.00ns)   --->   "%br_ln36 = br i1 %tmp_19, void %if.else159, void %if.then154" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:36]   --->   Operation 46 'br' 'br_ln36' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17 & !tmp_18)> <Delay = 0.00>
-ST_1 : Operation 47 [1/1] (0.00ns)   --->   "%tmp_20 = bitselect i1 @_ssdm_op_BitSelect.i1.i25.i32, i25 %raw_sum_mantissa_read, i32 4" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:37]   --->   Operation 47 'bitselect' 'tmp_20' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17 & !tmp_18 & !tmp_19)> <Delay = 0.00>
-ST_1 : Operation 48 [1/1] (0.00ns)   --->   "%br_ln37 = br i1 %tmp_20, void %if.else167, void %if.then162" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:37]   --->   Operation 48 'br' 'br_ln37' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17 & !tmp_18 & !tmp_19)> <Delay = 0.00>
-ST_1 : Operation 49 [1/1] (0.00ns)   --->   "%tmp_21 = bitselect i1 @_ssdm_op_BitSelect.i1.i25.i32, i25 %raw_sum_mantissa_read, i32 3" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:38]   --->   Operation 49 'bitselect' 'tmp_21' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17 & !tmp_18 & !tmp_19 & !tmp_20)> <Delay = 0.00>
-ST_1 : Operation 50 [1/1] (0.00ns)   --->   "%br_ln38 = br i1 %tmp_21, void %if.else175, void %if.then170" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:38]   --->   Operation 50 'br' 'br_ln38' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17 & !tmp_18 & !tmp_19 & !tmp_20)> <Delay = 0.00>
-ST_1 : Operation 51 [1/1] (0.00ns)   --->   "%tmp_22 = bitselect i1 @_ssdm_op_BitSelect.i1.i25.i32, i25 %raw_sum_mantissa_read, i32 2" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:39]   --->   Operation 51 'bitselect' 'tmp_22' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17 & !tmp_18 & !tmp_19 & !tmp_20 & !tmp_21)> <Delay = 0.00>
-ST_1 : Operation 52 [1/1] (0.00ns)   --->   "%br_ln39 = br i1 %tmp_22, void %if.else183, void %if.then178" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:39]   --->   Operation 52 'br' 'br_ln39' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17 & !tmp_18 & !tmp_19 & !tmp_20 & !tmp_21)> <Delay = 0.00>
-ST_1 : Operation 53 [1/1] (0.00ns)   --->   "%tmp_23 = bitselect i1 @_ssdm_op_BitSelect.i1.i25.i32, i25 %raw_sum_mantissa_read, i32 1" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:40]   --->   Operation 53 'bitselect' 'tmp_23' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17 & !tmp_18 & !tmp_19 & !tmp_20 & !tmp_21 & !tmp_22)> <Delay = 0.00>
-ST_1 : Operation 54 [1/1] (0.00ns)   --->   "%br_ln40 = br i1 %tmp_23, void %if.else191, void %if.then186" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:40]   --->   Operation 54 'br' 'br_ln40' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17 & !tmp_18 & !tmp_19 & !tmp_20 & !tmp_21 & !tmp_22)> <Delay = 0.00>
-ST_1 : Operation 55 [1/1] (1.91ns)   --->   "%exp_24 = add i8 %target_exponent_read, i8 233" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:41]   --->   Operation 55 'add' 'exp_24' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17 & !tmp_18 & !tmp_19 & !tmp_20 & !tmp_21 & !tmp_22 & !tmp_23)> <Delay = 1.91> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
-ST_1 : Operation 56 [1/1] (3.20ns)   --->   "%br_ln0 = br void %if.end219"   --->   Operation 56 'br' 'br_ln0' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17 & !tmp_18 & !tmp_19 & !tmp_20 & !tmp_21 & !tmp_22 & !tmp_23)> <Delay = 3.20>
-ST_1 : Operation 57 [1/1] (0.00ns)   --->   "%trunc_ln40 = trunc i25 %raw_sum_mantissa_read" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:40]   --->   Operation 57 'trunc' 'trunc_ln40' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17 & !tmp_18 & !tmp_19 & !tmp_20 & !tmp_21 & !tmp_22 & tmp_23)> <Delay = 0.00>
-ST_1 : Operation 58 [1/1] (0.00ns)   --->   "%norm24_21 = bitconcatenate i23 @_ssdm_op_BitConcatenate.i23.i1.i22, i1 %trunc_ln40, i22 0" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:40]   --->   Operation 58 'bitconcatenate' 'norm24_21' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17 & !tmp_18 & !tmp_19 & !tmp_20 & !tmp_21 & !tmp_22 & tmp_23)> <Delay = 0.00>
-ST_1 : Operation 59 [1/1] (1.91ns)   --->   "%exp_22 = add i8 %target_exponent_read, i8 234" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:40]   --->   Operation 59 'add' 'exp_22' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17 & !tmp_18 & !tmp_19 & !tmp_20 & !tmp_21 & !tmp_22 & tmp_23)> <Delay = 1.91> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
-ST_1 : Operation 60 [1/1] (3.20ns)   --->   "%br_ln40 = br void %if.end219" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:40]   --->   Operation 60 'br' 'br_ln40' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17 & !tmp_18 & !tmp_19 & !tmp_20 & !tmp_21 & !tmp_22 & tmp_23)> <Delay = 3.20>
-ST_1 : Operation 61 [1/1] (0.00ns)   --->   "%trunc_ln39 = trunc i25 %raw_sum_mantissa_read" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:39]   --->   Operation 61 'trunc' 'trunc_ln39' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17 & !tmp_18 & !tmp_19 & !tmp_20 & !tmp_21 & tmp_22)> <Delay = 0.00>
-ST_1 : Operation 62 [1/1] (0.00ns)   --->   "%norm24_20 = bitconcatenate i23 @_ssdm_op_BitConcatenate.i23.i2.i21, i2 %trunc_ln39, i21 0" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:39]   --->   Operation 62 'bitconcatenate' 'norm24_20' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17 & !tmp_18 & !tmp_19 & !tmp_20 & !tmp_21 & tmp_22)> <Delay = 0.00>
-ST_1 : Operation 63 [1/1] (1.91ns)   --->   "%exp_21 = add i8 %target_exponent_read, i8 235" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:39]   --->   Operation 63 'add' 'exp_21' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17 & !tmp_18 & !tmp_19 & !tmp_20 & !tmp_21 & tmp_22)> <Delay = 1.91> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
-ST_1 : Operation 64 [1/1] (3.20ns)   --->   "%br_ln39 = br void %if.end219" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:39]   --->   Operation 64 'br' 'br_ln39' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17 & !tmp_18 & !tmp_19 & !tmp_20 & !tmp_21 & tmp_22)> <Delay = 3.20>
-ST_1 : Operation 65 [1/1] (0.00ns)   --->   "%trunc_ln38 = trunc i25 %raw_sum_mantissa_read" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:38]   --->   Operation 65 'trunc' 'trunc_ln38' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17 & !tmp_18 & !tmp_19 & !tmp_20 & tmp_21)> <Delay = 0.00>
-ST_1 : Operation 66 [1/1] (0.00ns)   --->   "%norm24_19 = bitconcatenate i23 @_ssdm_op_BitConcatenate.i23.i3.i20, i3 %trunc_ln38, i20 0" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:38]   --->   Operation 66 'bitconcatenate' 'norm24_19' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17 & !tmp_18 & !tmp_19 & !tmp_20 & tmp_21)> <Delay = 0.00>
-ST_1 : Operation 67 [1/1] (1.91ns)   --->   "%exp_20 = add i8 %target_exponent_read, i8 236" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:38]   --->   Operation 67 'add' 'exp_20' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17 & !tmp_18 & !tmp_19 & !tmp_20 & tmp_21)> <Delay = 1.91> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
-ST_1 : Operation 68 [1/1] (3.20ns)   --->   "%br_ln38 = br void %if.end219" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:38]   --->   Operation 68 'br' 'br_ln38' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17 & !tmp_18 & !tmp_19 & !tmp_20 & tmp_21)> <Delay = 3.20>
-ST_1 : Operation 69 [1/1] (0.00ns)   --->   "%trunc_ln37 = trunc i25 %raw_sum_mantissa_read" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:37]   --->   Operation 69 'trunc' 'trunc_ln37' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17 & !tmp_18 & !tmp_19 & tmp_20)> <Delay = 0.00>
-ST_1 : Operation 70 [1/1] (0.00ns)   --->   "%norm24_18 = bitconcatenate i23 @_ssdm_op_BitConcatenate.i23.i4.i19, i4 %trunc_ln37, i19 0" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:37]   --->   Operation 70 'bitconcatenate' 'norm24_18' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17 & !tmp_18 & !tmp_19 & tmp_20)> <Delay = 0.00>
-ST_1 : Operation 71 [1/1] (1.91ns)   --->   "%exp_19 = add i8 %target_exponent_read, i8 237" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:37]   --->   Operation 71 'add' 'exp_19' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17 & !tmp_18 & !tmp_19 & tmp_20)> <Delay = 1.91> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
-ST_1 : Operation 72 [1/1] (3.20ns)   --->   "%br_ln37 = br void %if.end219" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:37]   --->   Operation 72 'br' 'br_ln37' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17 & !tmp_18 & !tmp_19 & tmp_20)> <Delay = 3.20>
-ST_1 : Operation 73 [1/1] (0.00ns)   --->   "%trunc_ln36 = trunc i25 %raw_sum_mantissa_read" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:36]   --->   Operation 73 'trunc' 'trunc_ln36' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17 & !tmp_18 & tmp_19)> <Delay = 0.00>
-ST_1 : Operation 74 [1/1] (0.00ns)   --->   "%norm24_17 = bitconcatenate i23 @_ssdm_op_BitConcatenate.i23.i5.i18, i5 %trunc_ln36, i18 0" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:36]   --->   Operation 74 'bitconcatenate' 'norm24_17' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17 & !tmp_18 & tmp_19)> <Delay = 0.00>
-ST_1 : Operation 75 [1/1] (1.91ns)   --->   "%exp_18 = add i8 %target_exponent_read, i8 238" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:36]   --->   Operation 75 'add' 'exp_18' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17 & !tmp_18 & tmp_19)> <Delay = 1.91> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
-ST_1 : Operation 76 [1/1] (3.20ns)   --->   "%br_ln36 = br void %if.end219" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:36]   --->   Operation 76 'br' 'br_ln36' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17 & !tmp_18 & tmp_19)> <Delay = 3.20>
-ST_1 : Operation 77 [1/1] (0.00ns)   --->   "%trunc_ln35 = trunc i25 %raw_sum_mantissa_read" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:35]   --->   Operation 77 'trunc' 'trunc_ln35' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17 & tmp_18)> <Delay = 0.00>
-ST_1 : Operation 78 [1/1] (0.00ns)   --->   "%norm24_16 = bitconcatenate i23 @_ssdm_op_BitConcatenate.i23.i6.i17, i6 %trunc_ln35, i17 0" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:35]   --->   Operation 78 'bitconcatenate' 'norm24_16' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17 & tmp_18)> <Delay = 0.00>
-ST_1 : Operation 79 [1/1] (1.91ns)   --->   "%exp_17 = add i8 %target_exponent_read, i8 239" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:35]   --->   Operation 79 'add' 'exp_17' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17 & tmp_18)> <Delay = 1.91> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
-ST_1 : Operation 80 [1/1] (3.20ns)   --->   "%br_ln35 = br void %if.end219" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:35]   --->   Operation 80 'br' 'br_ln35' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17 & tmp_18)> <Delay = 3.20>
-ST_1 : Operation 81 [1/1] (0.00ns)   --->   "%trunc_ln34 = trunc i25 %raw_sum_mantissa_read" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:34]   --->   Operation 81 'trunc' 'trunc_ln34' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & tmp_17)> <Delay = 0.00>
-ST_1 : Operation 82 [1/1] (0.00ns)   --->   "%norm24_15 = bitconcatenate i23 @_ssdm_op_BitConcatenate.i23.i7.i16, i7 %trunc_ln34, i16 0" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:34]   --->   Operation 82 'bitconcatenate' 'norm24_15' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & tmp_17)> <Delay = 0.00>
-ST_1 : Operation 83 [1/1] (1.91ns)   --->   "%exp_16 = add i8 %target_exponent_read, i8 240" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:34]   --->   Operation 83 'add' 'exp_16' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & tmp_17)> <Delay = 1.91> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
-ST_1 : Operation 84 [1/1] (3.20ns)   --->   "%br_ln34 = br void %if.end219" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:34]   --->   Operation 84 'br' 'br_ln34' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & tmp_17)> <Delay = 3.20>
-ST_1 : Operation 85 [1/1] (0.00ns)   --->   "%trunc_ln33 = trunc i25 %raw_sum_mantissa_read" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:33]   --->   Operation 85 'trunc' 'trunc_ln33' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & tmp_16)> <Delay = 0.00>
-ST_1 : Operation 86 [1/1] (0.00ns)   --->   "%norm24_14 = bitconcatenate i23 @_ssdm_op_BitConcatenate.i23.i8.i15, i8 %trunc_ln33, i15 0" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:33]   --->   Operation 86 'bitconcatenate' 'norm24_14' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & tmp_16)> <Delay = 0.00>
-ST_1 : Operation 87 [1/1] (1.91ns)   --->   "%exp_15 = add i8 %target_exponent_read, i8 241" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:33]   --->   Operation 87 'add' 'exp_15' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & tmp_16)> <Delay = 1.91> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
-ST_1 : Operation 88 [1/1] (3.20ns)   --->   "%br_ln33 = br void %if.end219" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:33]   --->   Operation 88 'br' 'br_ln33' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & tmp_16)> <Delay = 3.20>
-ST_1 : Operation 89 [1/1] (0.00ns)   --->   "%trunc_ln32 = trunc i25 %raw_sum_mantissa_read" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:32]   --->   Operation 89 'trunc' 'trunc_ln32' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & tmp_15)> <Delay = 0.00>
-ST_1 : Operation 90 [1/1] (0.00ns)   --->   "%norm24_13 = bitconcatenate i23 @_ssdm_op_BitConcatenate.i23.i9.i14, i9 %trunc_ln32, i14 0" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:32]   --->   Operation 90 'bitconcatenate' 'norm24_13' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & tmp_15)> <Delay = 0.00>
-ST_1 : Operation 91 [1/1] (1.91ns)   --->   "%exp_14 = add i8 %target_exponent_read, i8 242" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:32]   --->   Operation 91 'add' 'exp_14' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & tmp_15)> <Delay = 1.91> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
-ST_1 : Operation 92 [1/1] (3.20ns)   --->   "%br_ln32 = br void %if.end219" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:32]   --->   Operation 92 'br' 'br_ln32' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & tmp_15)> <Delay = 3.20>
-ST_1 : Operation 93 [1/1] (0.00ns)   --->   "%trunc_ln31 = trunc i25 %raw_sum_mantissa_read" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:31]   --->   Operation 93 'trunc' 'trunc_ln31' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & tmp_14)> <Delay = 0.00>
-ST_1 : Operation 94 [1/1] (0.00ns)   --->   "%norm24_12 = bitconcatenate i23 @_ssdm_op_BitConcatenate.i23.i10.i13, i10 %trunc_ln31, i13 0" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:31]   --->   Operation 94 'bitconcatenate' 'norm24_12' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & tmp_14)> <Delay = 0.00>
-ST_1 : Operation 95 [1/1] (1.91ns)   --->   "%exp_13 = add i8 %target_exponent_read, i8 243" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:31]   --->   Operation 95 'add' 'exp_13' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & tmp_14)> <Delay = 1.91> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
-ST_1 : Operation 96 [1/1] (3.20ns)   --->   "%br_ln31 = br void %if.end219" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:31]   --->   Operation 96 'br' 'br_ln31' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & tmp_14)> <Delay = 3.20>
-ST_1 : Operation 97 [1/1] (0.00ns)   --->   "%trunc_ln30 = trunc i25 %raw_sum_mantissa_read" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:30]   --->   Operation 97 'trunc' 'trunc_ln30' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & tmp_13)> <Delay = 0.00>
-ST_1 : Operation 98 [1/1] (0.00ns)   --->   "%norm24_11 = bitconcatenate i23 @_ssdm_op_BitConcatenate.i23.i11.i12, i11 %trunc_ln30, i12 0" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:30]   --->   Operation 98 'bitconcatenate' 'norm24_11' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & tmp_13)> <Delay = 0.00>
-ST_1 : Operation 99 [1/1] (1.91ns)   --->   "%exp_12 = add i8 %target_exponent_read, i8 244" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:30]   --->   Operation 99 'add' 'exp_12' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & tmp_13)> <Delay = 1.91> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
-ST_1 : Operation 100 [1/1] (3.20ns)   --->   "%br_ln30 = br void %if.end219" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:30]   --->   Operation 100 'br' 'br_ln30' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & tmp_13)> <Delay = 3.20>
-ST_1 : Operation 101 [1/1] (0.00ns)   --->   "%trunc_ln29 = trunc i25 %raw_sum_mantissa_read" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:29]   --->   Operation 101 'trunc' 'trunc_ln29' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & tmp_12)> <Delay = 0.00>
-ST_1 : Operation 102 [1/1] (0.00ns)   --->   "%norm24_10 = bitconcatenate i23 @_ssdm_op_BitConcatenate.i23.i12.i11, i12 %trunc_ln29, i11 0" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:29]   --->   Operation 102 'bitconcatenate' 'norm24_10' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & tmp_12)> <Delay = 0.00>
-ST_1 : Operation 103 [1/1] (1.91ns)   --->   "%exp_11 = add i8 %target_exponent_read, i8 245" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:29]   --->   Operation 103 'add' 'exp_11' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & tmp_12)> <Delay = 1.91> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
-ST_1 : Operation 104 [1/1] (3.20ns)   --->   "%br_ln29 = br void %if.end219" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:29]   --->   Operation 104 'br' 'br_ln29' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & tmp_12)> <Delay = 3.20>
-ST_1 : Operation 105 [1/1] (0.00ns)   --->   "%trunc_ln28 = trunc i25 %raw_sum_mantissa_read" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:28]   --->   Operation 105 'trunc' 'trunc_ln28' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & tmp_11)> <Delay = 0.00>
-ST_1 : Operation 106 [1/1] (0.00ns)   --->   "%norm24_9 = bitconcatenate i23 @_ssdm_op_BitConcatenate.i23.i13.i10, i13 %trunc_ln28, i10 0" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:28]   --->   Operation 106 'bitconcatenate' 'norm24_9' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & tmp_11)> <Delay = 0.00>
-ST_1 : Operation 107 [1/1] (1.91ns)   --->   "%exp_10 = add i8 %target_exponent_read, i8 246" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:28]   --->   Operation 107 'add' 'exp_10' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & tmp_11)> <Delay = 1.91> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
-ST_1 : Operation 108 [1/1] (3.20ns)   --->   "%br_ln28 = br void %if.end219" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:28]   --->   Operation 108 'br' 'br_ln28' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & tmp_11)> <Delay = 3.20>
-ST_1 : Operation 109 [1/1] (0.00ns)   --->   "%trunc_ln27 = trunc i25 %raw_sum_mantissa_read" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:27]   --->   Operation 109 'trunc' 'trunc_ln27' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & tmp_10)> <Delay = 0.00>
-ST_1 : Operation 110 [1/1] (0.00ns)   --->   "%norm24_8 = bitconcatenate i23 @_ssdm_op_BitConcatenate.i23.i14.i9, i14 %trunc_ln27, i9 0" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:27]   --->   Operation 110 'bitconcatenate' 'norm24_8' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & tmp_10)> <Delay = 0.00>
-ST_1 : Operation 111 [1/1] (1.91ns)   --->   "%exp_9 = add i8 %target_exponent_read, i8 247" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:27]   --->   Operation 111 'add' 'exp_9' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & tmp_10)> <Delay = 1.91> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
-ST_1 : Operation 112 [1/1] (3.20ns)   --->   "%br_ln27 = br void %if.end219" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:27]   --->   Operation 112 'br' 'br_ln27' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & tmp_10)> <Delay = 3.20>
-ST_1 : Operation 113 [1/1] (0.00ns)   --->   "%trunc_ln26 = trunc i25 %raw_sum_mantissa_read" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:26]   --->   Operation 113 'trunc' 'trunc_ln26' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & tmp_9)> <Delay = 0.00>
-ST_1 : Operation 114 [1/1] (0.00ns)   --->   "%norm24_7 = bitconcatenate i23 @_ssdm_op_BitConcatenate.i23.i15.i8, i15 %trunc_ln26, i8 0" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:26]   --->   Operation 114 'bitconcatenate' 'norm24_7' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & tmp_9)> <Delay = 0.00>
-ST_1 : Operation 115 [1/1] (1.91ns)   --->   "%exp_8 = add i8 %target_exponent_read, i8 248" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:26]   --->   Operation 115 'add' 'exp_8' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & tmp_9)> <Delay = 1.91> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
-ST_1 : Operation 116 [1/1] (3.20ns)   --->   "%br_ln26 = br void %if.end219" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:26]   --->   Operation 116 'br' 'br_ln26' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & tmp_9)> <Delay = 3.20>
-ST_1 : Operation 117 [1/1] (0.00ns)   --->   "%trunc_ln25 = trunc i25 %raw_sum_mantissa_read" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:25]   --->   Operation 117 'trunc' 'trunc_ln25' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & tmp_8)> <Delay = 0.00>
-ST_1 : Operation 118 [1/1] (0.00ns)   --->   "%norm24_6 = bitconcatenate i23 @_ssdm_op_BitConcatenate.i23.i16.i7, i16 %trunc_ln25, i7 0" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:25]   --->   Operation 118 'bitconcatenate' 'norm24_6' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & tmp_8)> <Delay = 0.00>
-ST_1 : Operation 119 [1/1] (1.91ns)   --->   "%exp_7 = add i8 %target_exponent_read, i8 249" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:25]   --->   Operation 119 'add' 'exp_7' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & tmp_8)> <Delay = 1.91> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
-ST_1 : Operation 120 [1/1] (3.20ns)   --->   "%br_ln25 = br void %if.end219" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:25]   --->   Operation 120 'br' 'br_ln25' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & tmp_8)> <Delay = 3.20>
-ST_1 : Operation 121 [1/1] (0.00ns)   --->   "%trunc_ln24 = trunc i25 %raw_sum_mantissa_read" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:24]   --->   Operation 121 'trunc' 'trunc_ln24' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & tmp_7)> <Delay = 0.00>
-ST_1 : Operation 122 [1/1] (0.00ns)   --->   "%norm24_5 = bitconcatenate i23 @_ssdm_op_BitConcatenate.i23.i17.i6, i17 %trunc_ln24, i6 0" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:24]   --->   Operation 122 'bitconcatenate' 'norm24_5' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & tmp_7)> <Delay = 0.00>
-ST_1 : Operation 123 [1/1] (1.91ns)   --->   "%exp_6 = add i8 %target_exponent_read, i8 250" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:24]   --->   Operation 123 'add' 'exp_6' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & tmp_7)> <Delay = 1.91> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
-ST_1 : Operation 124 [1/1] (3.20ns)   --->   "%br_ln24 = br void %if.end219" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:24]   --->   Operation 124 'br' 'br_ln24' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & tmp_7)> <Delay = 3.20>
-ST_1 : Operation 125 [1/1] (0.00ns)   --->   "%trunc_ln23 = trunc i25 %raw_sum_mantissa_read" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:23]   --->   Operation 125 'trunc' 'trunc_ln23' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & tmp_6)> <Delay = 0.00>
-ST_1 : Operation 126 [1/1] (0.00ns)   --->   "%norm24_4 = bitconcatenate i23 @_ssdm_op_BitConcatenate.i23.i18.i5, i18 %trunc_ln23, i5 0" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:23]   --->   Operation 126 'bitconcatenate' 'norm24_4' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & tmp_6)> <Delay = 0.00>
-ST_1 : Operation 127 [1/1] (1.91ns)   --->   "%exp_5 = add i8 %target_exponent_read, i8 251" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:23]   --->   Operation 127 'add' 'exp_5' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & tmp_6)> <Delay = 1.91> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
-ST_1 : Operation 128 [1/1] (3.20ns)   --->   "%br_ln23 = br void %if.end219" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:23]   --->   Operation 128 'br' 'br_ln23' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & tmp_6)> <Delay = 3.20>
-ST_1 : Operation 129 [1/1] (0.00ns)   --->   "%trunc_ln22 = trunc i25 %raw_sum_mantissa_read" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:22]   --->   Operation 129 'trunc' 'trunc_ln22' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & tmp_5)> <Delay = 0.00>
-ST_1 : Operation 130 [1/1] (0.00ns)   --->   "%norm24_3 = bitconcatenate i23 @_ssdm_op_BitConcatenate.i23.i19.i4, i19 %trunc_ln22, i4 0" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:22]   --->   Operation 130 'bitconcatenate' 'norm24_3' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & tmp_5)> <Delay = 0.00>
-ST_1 : Operation 131 [1/1] (1.91ns)   --->   "%exp_4 = add i8 %target_exponent_read, i8 252" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:22]   --->   Operation 131 'add' 'exp_4' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & tmp_5)> <Delay = 1.91> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
-ST_1 : Operation 132 [1/1] (3.20ns)   --->   "%br_ln22 = br void %if.end219" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:22]   --->   Operation 132 'br' 'br_ln22' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & tmp_5)> <Delay = 3.20>
-ST_1 : Operation 133 [1/1] (0.00ns)   --->   "%trunc_ln21 = trunc i25 %raw_sum_mantissa_read" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:21]   --->   Operation 133 'trunc' 'trunc_ln21' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & tmp_4)> <Delay = 0.00>
-ST_1 : Operation 134 [1/1] (0.00ns)   --->   "%norm24_2 = bitconcatenate i23 @_ssdm_op_BitConcatenate.i23.i20.i3, i20 %trunc_ln21, i3 0" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:21]   --->   Operation 134 'bitconcatenate' 'norm24_2' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & tmp_4)> <Delay = 0.00>
-ST_1 : Operation 135 [1/1] (1.91ns)   --->   "%exp_3 = add i8 %target_exponent_read, i8 253" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:21]   --->   Operation 135 'add' 'exp_3' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & tmp_4)> <Delay = 1.91> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
-ST_1 : Operation 136 [1/1] (3.20ns)   --->   "%br_ln21 = br void %if.end219" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:21]   --->   Operation 136 'br' 'br_ln21' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & tmp_4)> <Delay = 3.20>
-ST_1 : Operation 137 [1/1] (0.00ns)   --->   "%trunc_ln20 = trunc i25 %raw_sum_mantissa_read" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:20]   --->   Operation 137 'trunc' 'trunc_ln20' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & tmp_3)> <Delay = 0.00>
-ST_1 : Operation 138 [1/1] (0.00ns)   --->   "%norm24_1 = bitconcatenate i23 @_ssdm_op_BitConcatenate.i23.i21.i2, i21 %trunc_ln20, i2 0" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:20]   --->   Operation 138 'bitconcatenate' 'norm24_1' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & tmp_3)> <Delay = 0.00>
-ST_1 : Operation 139 [1/1] (1.91ns)   --->   "%exp_2 = add i8 %target_exponent_read, i8 254" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:20]   --->   Operation 139 'add' 'exp_2' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & tmp_3)> <Delay = 1.91> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
-ST_1 : Operation 140 [1/1] (3.20ns)   --->   "%br_ln20 = br void %if.end219" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:20]   --->   Operation 140 'br' 'br_ln20' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & !tmp_2 & tmp_3)> <Delay = 3.20>
-ST_1 : Operation 141 [1/1] (0.00ns)   --->   "%trunc_ln19 = trunc i25 %raw_sum_mantissa_read" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:19]   --->   Operation 141 'trunc' 'trunc_ln19' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & tmp_2)> <Delay = 0.00>
-ST_1 : Operation 142 [1/1] (0.00ns)   --->   "%norm24 = bitconcatenate i23 @_ssdm_op_BitConcatenate.i23.i22.i1, i22 %trunc_ln19, i1 0" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:19]   --->   Operation 142 'bitconcatenate' 'norm24' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & tmp_2)> <Delay = 0.00>
-ST_1 : Operation 143 [1/1] (1.91ns)   --->   "%exp_1 = add i8 %target_exponent_read, i8 255" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:19]   --->   Operation 143 'add' 'exp_1' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & tmp_2)> <Delay = 1.91> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
-ST_1 : Operation 144 [1/1] (3.20ns)   --->   "%br_ln19 = br void %if.end219" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:19]   --->   Operation 144 'br' 'br_ln19' <Predicate = (!icmp_ln12 & !tmp & !tmp_1 & tmp_2)> <Delay = 3.20>
-ST_1 : Operation 145 [1/1] (0.00ns)   --->   "%trunc_ln16 = trunc i25 %raw_sum_mantissa_read" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:16]   --->   Operation 145 'trunc' 'trunc_ln16' <Predicate = (!icmp_ln12 & !tmp & tmp_1)> <Delay = 0.00>
-ST_1 : Operation 146 [1/1] (3.20ns)   --->   "%br_ln18 = br void %if.end219" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:18]   --->   Operation 146 'br' 'br_ln18' <Predicate = (!icmp_ln12 & !tmp & tmp_1)> <Delay = 3.20>
-ST_1 : Operation 147 [1/1] (0.00ns)   --->   "%norm24_cast = partselect i23 @_ssdm_op_PartSelect.i23.i25.i32.i32, i25 %raw_sum_mantissa_read, i32 1, i32 23" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:16]   --->   Operation 147 'partselect' 'norm24_cast' <Predicate = (!icmp_ln12 & tmp)> <Delay = 0.00>
-ST_1 : Operation 148 [1/1] (1.91ns)   --->   "%exp = add i8 %target_exponent_read, i8 1" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:17]   --->   Operation 148 'add' 'exp' <Predicate = (!icmp_ln12 & tmp)> <Delay = 1.91> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
-ST_1 : Operation 149 [1/1] (3.20ns)   --->   "%br_ln17 = br void %if.end219" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:17]   --->   Operation 149 'br' 'br_ln17' <Predicate = (!icmp_ln12 & tmp)> <Delay = 3.20>
-ST_1 : Operation 150 [1/1] (0.00ns)   --->   "%exp_23 = phi i8 %exp, void %if.then6, i8 %target_exponent_read, void %if.then12, i8 %exp_1, void %if.then18, i8 %exp_2, void %if.then26, i8 %exp_3, void %if.then34, i8 %exp_4, void %if.then42, i8 %exp_5, void %if.then50, i8 %exp_6, void %if.then58, i8 %exp_7, void %if.then66, i8 %exp_8, void %if.then74, i8 %exp_9, void %if.then82, i8 %exp_10, void %if.then90, i8 %exp_11, void %if.then98, i8 %exp_12, void %if.then106, i8 %exp_13, void %if.then114, i8 %exp_14, void %if.then122, i8 %exp_15, void %if.then130, i8 %exp_16, void %if.then138, i8 %exp_17, void %if.then146, i8 %exp_18, void %if.then154, i8 %exp_19, void %if.then162, i8 %exp_20, void %if.then170, i8 %exp_21, void %if.then178, i8 %exp_22, void %if.then186, i8 %exp_24, void %if.else191"   --->   Operation 150 'phi' 'exp_23' <Predicate = (!icmp_ln12)> <Delay = 0.00>
-ST_1 : Operation 151 [1/1] (0.00ns)   --->   "%norm24_22 = phi i23 %norm24_cast, void %if.then6, i23 %trunc_ln16, void %if.then12, i23 %norm24, void %if.then18, i23 %norm24_1, void %if.then26, i23 %norm24_2, void %if.then34, i23 %norm24_3, void %if.then42, i23 %norm24_4, void %if.then50, i23 %norm24_5, void %if.then58, i23 %norm24_6, void %if.then66, i23 %norm24_7, void %if.then74, i23 %norm24_8, void %if.then82, i23 %norm24_9, void %if.then90, i23 %norm24_10, void %if.then98, i23 %norm24_11, void %if.then106, i23 %norm24_12, void %if.then114, i23 %norm24_13, void %if.then122, i23 %norm24_14, void %if.then130, i23 %norm24_15, void %if.then138, i23 %norm24_16, void %if.then146, i23 %norm24_17, void %if.then154, i23 %norm24_18, void %if.then162, i23 %norm24_19, void %if.then170, i23 %norm24_20, void %if.then178, i23 %norm24_21, void %if.then186, i23 0, void %if.else191"   --->   Operation 151 'phi' 'norm24_22' <Predicate = (!icmp_ln12)> <Delay = 0.00>
-ST_1 : Operation 152 [1/1] (0.00ns)   --->   "%tmp_s = bitconcatenate i32 @_ssdm_op_BitConcatenate.i32.i1.i8.i23, i1 %raw_sign_read, i8 %exp_23, i23 %norm24_22" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:43]   --->   Operation 152 'bitconcatenate' 'tmp_s' <Predicate = (!icmp_ln12)> <Delay = 0.00>
-ST_1 : Operation 153 [1/1] (1.58ns)   --->   "%br_ln0 = br void %return"   --->   Operation 153 'br' 'br_ln0' <Predicate = (!icmp_ln12)> <Delay = 1.58>
-ST_1 : Operation 154 [1/1] (0.00ns)   --->   "%agg_result_0 = phi i32 %tmp_s, void %if.end219, i32 0, void %entry" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:43]   --->   Operation 154 'phi' 'agg_result_0' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 155 [1/1] (0.00ns)   --->   "%ret_ln44 = ret i32 %agg_result_0" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:44]   --->   Operation 155 'ret' 'ret_ln44' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 2 [1/1] (0.00ns)   --->   "%target_exponent_read = read i8 @_ssdm_op_Read.ap_auto.i8, i8 %target_exponent" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:48]   --->   Operation 2 'read' 'target_exponent_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 3 [1/1] (0.00ns)   --->   "%raw_sign_read = read i1 @_ssdm_op_Read.ap_auto.i1, i1 %raw_sign" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:48]   --->   Operation 3 'read' 'raw_sign_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 4 [1/1] (0.00ns)   --->   "%raw_sum_mantissa_read = read i25 @_ssdm_op_Read.ap_auto.i25, i25 %raw_sum_mantissa" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:48]   --->   Operation 4 'read' 'raw_sum_mantissa_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 5 [1/1] (2.34ns)   --->   "%icmp_ln49 = icmp_eq  i25 %raw_sum_mantissa_read, i25 0" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:49]   --->   Operation 5 'icmp' 'icmp_ln49' <Predicate = true> <Delay = 2.34> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 2.34> <FuncUnit> <Opcode : 'seteq' 'setne' 'setle' 'setge' 'setlt' 'setgt'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 6 [1/1] (1.58ns)   --->   "%br_ln49 = br i1 %icmp_ln49, void %if.end, void %return" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:49]   --->   Operation 6 'br' 'br_ln49' <Predicate = true> <Delay = 1.58>
+ST_1 : Operation 7 [1/1] (0.00ns)   --->   "%tmp = bitselect i1 @_ssdm_op_BitSelect.i1.i25.i32, i25 %raw_sum_mantissa_read, i32 24" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:54]   --->   Operation 7 'bitselect' 'tmp' <Predicate = (!icmp_ln49)> <Delay = 0.00>
+ST_1 : Operation 8 [1/1] (0.00ns)   --->   "%br_ln54 = br i1 %tmp, void %if.else, void %if.then6" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:54]   --->   Operation 8 'br' 'br_ln54' <Predicate = (!icmp_ln49)> <Delay = 0.00>
+ST_1 : Operation 9 [1/1] (0.00ns)   --->   "%tmp_1 = bitselect i1 @_ssdm_op_BitSelect.i1.i25.i32, i25 %raw_sum_mantissa_read, i32 23" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:55]   --->   Operation 9 'bitselect' 'tmp_1' <Predicate = (!icmp_ln49 & !tmp)> <Delay = 0.00>
+ST_1 : Operation 10 [1/1] (0.00ns)   --->   "%br_ln55 = br i1 %tmp_1, void %if.else15, void %if.then12" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:55]   --->   Operation 10 'br' 'br_ln55' <Predicate = (!icmp_ln49 & !tmp)> <Delay = 0.00>
+ST_1 : Operation 11 [1/1] (0.00ns)   --->   "%tmp_2 = bitselect i1 @_ssdm_op_BitSelect.i1.i25.i32, i25 %raw_sum_mantissa_read, i32 22" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:56]   --->   Operation 11 'bitselect' 'tmp_2' <Predicate = (!icmp_ln49 & !tmp & !tmp_1)> <Delay = 0.00>
+ST_1 : Operation 12 [1/1] (0.00ns)   --->   "%br_ln56 = br i1 %tmp_2, void %if.else23, void %if.then18" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:56]   --->   Operation 12 'br' 'br_ln56' <Predicate = (!icmp_ln49 & !tmp & !tmp_1)> <Delay = 0.00>
+ST_1 : Operation 13 [1/1] (0.00ns)   --->   "%tmp_3 = bitselect i1 @_ssdm_op_BitSelect.i1.i25.i32, i25 %raw_sum_mantissa_read, i32 21" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:57]   --->   Operation 13 'bitselect' 'tmp_3' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2)> <Delay = 0.00>
+ST_1 : Operation 14 [1/1] (0.00ns)   --->   "%br_ln57 = br i1 %tmp_3, void %if.else31, void %if.then26" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:57]   --->   Operation 14 'br' 'br_ln57' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2)> <Delay = 0.00>
+ST_1 : Operation 15 [1/1] (0.00ns)   --->   "%tmp_4 = bitselect i1 @_ssdm_op_BitSelect.i1.i25.i32, i25 %raw_sum_mantissa_read, i32 20" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:58]   --->   Operation 15 'bitselect' 'tmp_4' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3)> <Delay = 0.00>
+ST_1 : Operation 16 [1/1] (0.00ns)   --->   "%br_ln58 = br i1 %tmp_4, void %if.else39, void %if.then34" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:58]   --->   Operation 16 'br' 'br_ln58' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3)> <Delay = 0.00>
+ST_1 : Operation 17 [1/1] (0.00ns)   --->   "%tmp_5 = bitselect i1 @_ssdm_op_BitSelect.i1.i25.i32, i25 %raw_sum_mantissa_read, i32 19" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:59]   --->   Operation 17 'bitselect' 'tmp_5' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4)> <Delay = 0.00>
+ST_1 : Operation 18 [1/1] (0.00ns)   --->   "%br_ln59 = br i1 %tmp_5, void %if.else47, void %if.then42" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:59]   --->   Operation 18 'br' 'br_ln59' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4)> <Delay = 0.00>
+ST_1 : Operation 19 [1/1] (0.00ns)   --->   "%tmp_6 = bitselect i1 @_ssdm_op_BitSelect.i1.i25.i32, i25 %raw_sum_mantissa_read, i32 18" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:60]   --->   Operation 19 'bitselect' 'tmp_6' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5)> <Delay = 0.00>
+ST_1 : Operation 20 [1/1] (0.00ns)   --->   "%br_ln60 = br i1 %tmp_6, void %if.else55, void %if.then50" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:60]   --->   Operation 20 'br' 'br_ln60' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5)> <Delay = 0.00>
+ST_1 : Operation 21 [1/1] (0.00ns)   --->   "%tmp_7 = bitselect i1 @_ssdm_op_BitSelect.i1.i25.i32, i25 %raw_sum_mantissa_read, i32 17" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:61]   --->   Operation 21 'bitselect' 'tmp_7' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6)> <Delay = 0.00>
+ST_1 : Operation 22 [1/1] (0.00ns)   --->   "%br_ln61 = br i1 %tmp_7, void %if.else63, void %if.then58" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:61]   --->   Operation 22 'br' 'br_ln61' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6)> <Delay = 0.00>
+ST_1 : Operation 23 [1/1] (0.00ns)   --->   "%tmp_8 = bitselect i1 @_ssdm_op_BitSelect.i1.i25.i32, i25 %raw_sum_mantissa_read, i32 16" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:62]   --->   Operation 23 'bitselect' 'tmp_8' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7)> <Delay = 0.00>
+ST_1 : Operation 24 [1/1] (0.00ns)   --->   "%br_ln62 = br i1 %tmp_8, void %if.else71, void %if.then66" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:62]   --->   Operation 24 'br' 'br_ln62' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7)> <Delay = 0.00>
+ST_1 : Operation 25 [1/1] (0.00ns)   --->   "%tmp_9 = bitselect i1 @_ssdm_op_BitSelect.i1.i25.i32, i25 %raw_sum_mantissa_read, i32 15" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:63]   --->   Operation 25 'bitselect' 'tmp_9' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8)> <Delay = 0.00>
+ST_1 : Operation 26 [1/1] (0.00ns)   --->   "%br_ln63 = br i1 %tmp_9, void %if.else79, void %if.then74" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:63]   --->   Operation 26 'br' 'br_ln63' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8)> <Delay = 0.00>
+ST_1 : Operation 27 [1/1] (0.00ns)   --->   "%tmp_10 = bitselect i1 @_ssdm_op_BitSelect.i1.i25.i32, i25 %raw_sum_mantissa_read, i32 14" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:64]   --->   Operation 27 'bitselect' 'tmp_10' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9)> <Delay = 0.00>
+ST_1 : Operation 28 [1/1] (0.00ns)   --->   "%br_ln64 = br i1 %tmp_10, void %if.else87, void %if.then82" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:64]   --->   Operation 28 'br' 'br_ln64' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9)> <Delay = 0.00>
+ST_1 : Operation 29 [1/1] (0.00ns)   --->   "%tmp_11 = bitselect i1 @_ssdm_op_BitSelect.i1.i25.i32, i25 %raw_sum_mantissa_read, i32 13" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:65]   --->   Operation 29 'bitselect' 'tmp_11' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10)> <Delay = 0.00>
+ST_1 : Operation 30 [1/1] (0.00ns)   --->   "%br_ln65 = br i1 %tmp_11, void %if.else95, void %if.then90" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:65]   --->   Operation 30 'br' 'br_ln65' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10)> <Delay = 0.00>
+ST_1 : Operation 31 [1/1] (0.00ns)   --->   "%tmp_12 = bitselect i1 @_ssdm_op_BitSelect.i1.i25.i32, i25 %raw_sum_mantissa_read, i32 12" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:66]   --->   Operation 31 'bitselect' 'tmp_12' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11)> <Delay = 0.00>
+ST_1 : Operation 32 [1/1] (0.00ns)   --->   "%br_ln66 = br i1 %tmp_12, void %if.else103, void %if.then98" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:66]   --->   Operation 32 'br' 'br_ln66' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11)> <Delay = 0.00>
+ST_1 : Operation 33 [1/1] (0.00ns)   --->   "%tmp_13 = bitselect i1 @_ssdm_op_BitSelect.i1.i25.i32, i25 %raw_sum_mantissa_read, i32 11" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:67]   --->   Operation 33 'bitselect' 'tmp_13' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12)> <Delay = 0.00>
+ST_1 : Operation 34 [1/1] (0.00ns)   --->   "%br_ln67 = br i1 %tmp_13, void %if.else111, void %if.then106" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:67]   --->   Operation 34 'br' 'br_ln67' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12)> <Delay = 0.00>
+ST_1 : Operation 35 [1/1] (0.00ns)   --->   "%tmp_14 = bitselect i1 @_ssdm_op_BitSelect.i1.i25.i32, i25 %raw_sum_mantissa_read, i32 10" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:68]   --->   Operation 35 'bitselect' 'tmp_14' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13)> <Delay = 0.00>
+ST_1 : Operation 36 [1/1] (0.00ns)   --->   "%br_ln68 = br i1 %tmp_14, void %if.else119, void %if.then114" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:68]   --->   Operation 36 'br' 'br_ln68' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13)> <Delay = 0.00>
+ST_1 : Operation 37 [1/1] (0.00ns)   --->   "%tmp_15 = bitselect i1 @_ssdm_op_BitSelect.i1.i25.i32, i25 %raw_sum_mantissa_read, i32 9" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:69]   --->   Operation 37 'bitselect' 'tmp_15' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14)> <Delay = 0.00>
+ST_1 : Operation 38 [1/1] (0.00ns)   --->   "%br_ln69 = br i1 %tmp_15, void %if.else127, void %if.then122" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:69]   --->   Operation 38 'br' 'br_ln69' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14)> <Delay = 0.00>
+ST_1 : Operation 39 [1/1] (0.00ns)   --->   "%tmp_16 = bitselect i1 @_ssdm_op_BitSelect.i1.i25.i32, i25 %raw_sum_mantissa_read, i32 8" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:70]   --->   Operation 39 'bitselect' 'tmp_16' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15)> <Delay = 0.00>
+ST_1 : Operation 40 [1/1] (0.00ns)   --->   "%br_ln70 = br i1 %tmp_16, void %if.else135, void %if.then130" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:70]   --->   Operation 40 'br' 'br_ln70' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15)> <Delay = 0.00>
+ST_1 : Operation 41 [1/1] (0.00ns)   --->   "%tmp_17 = bitselect i1 @_ssdm_op_BitSelect.i1.i25.i32, i25 %raw_sum_mantissa_read, i32 7" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:71]   --->   Operation 41 'bitselect' 'tmp_17' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16)> <Delay = 0.00>
+ST_1 : Operation 42 [1/1] (0.00ns)   --->   "%br_ln71 = br i1 %tmp_17, void %if.else143, void %if.then138" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:71]   --->   Operation 42 'br' 'br_ln71' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16)> <Delay = 0.00>
+ST_1 : Operation 43 [1/1] (0.00ns)   --->   "%tmp_18 = bitselect i1 @_ssdm_op_BitSelect.i1.i25.i32, i25 %raw_sum_mantissa_read, i32 6" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:72]   --->   Operation 43 'bitselect' 'tmp_18' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17)> <Delay = 0.00>
+ST_1 : Operation 44 [1/1] (0.00ns)   --->   "%br_ln72 = br i1 %tmp_18, void %if.else151, void %if.then146" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:72]   --->   Operation 44 'br' 'br_ln72' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17)> <Delay = 0.00>
+ST_1 : Operation 45 [1/1] (0.00ns)   --->   "%tmp_19 = bitselect i1 @_ssdm_op_BitSelect.i1.i25.i32, i25 %raw_sum_mantissa_read, i32 5" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:73]   --->   Operation 45 'bitselect' 'tmp_19' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17 & !tmp_18)> <Delay = 0.00>
+ST_1 : Operation 46 [1/1] (0.00ns)   --->   "%br_ln73 = br i1 %tmp_19, void %if.else159, void %if.then154" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:73]   --->   Operation 46 'br' 'br_ln73' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17 & !tmp_18)> <Delay = 0.00>
+ST_1 : Operation 47 [1/1] (0.00ns)   --->   "%tmp_20 = bitselect i1 @_ssdm_op_BitSelect.i1.i25.i32, i25 %raw_sum_mantissa_read, i32 4" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:74]   --->   Operation 47 'bitselect' 'tmp_20' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17 & !tmp_18 & !tmp_19)> <Delay = 0.00>
+ST_1 : Operation 48 [1/1] (0.00ns)   --->   "%br_ln74 = br i1 %tmp_20, void %if.else167, void %if.then162" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:74]   --->   Operation 48 'br' 'br_ln74' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17 & !tmp_18 & !tmp_19)> <Delay = 0.00>
+ST_1 : Operation 49 [1/1] (0.00ns)   --->   "%tmp_21 = bitselect i1 @_ssdm_op_BitSelect.i1.i25.i32, i25 %raw_sum_mantissa_read, i32 3" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:75]   --->   Operation 49 'bitselect' 'tmp_21' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17 & !tmp_18 & !tmp_19 & !tmp_20)> <Delay = 0.00>
+ST_1 : Operation 50 [1/1] (0.00ns)   --->   "%br_ln75 = br i1 %tmp_21, void %if.else175, void %if.then170" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:75]   --->   Operation 50 'br' 'br_ln75' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17 & !tmp_18 & !tmp_19 & !tmp_20)> <Delay = 0.00>
+ST_1 : Operation 51 [1/1] (0.00ns)   --->   "%tmp_22 = bitselect i1 @_ssdm_op_BitSelect.i1.i25.i32, i25 %raw_sum_mantissa_read, i32 2" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:76]   --->   Operation 51 'bitselect' 'tmp_22' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17 & !tmp_18 & !tmp_19 & !tmp_20 & !tmp_21)> <Delay = 0.00>
+ST_1 : Operation 52 [1/1] (0.00ns)   --->   "%br_ln76 = br i1 %tmp_22, void %if.else183, void %if.then178" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:76]   --->   Operation 52 'br' 'br_ln76' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17 & !tmp_18 & !tmp_19 & !tmp_20 & !tmp_21)> <Delay = 0.00>
+ST_1 : Operation 53 [1/1] (0.00ns)   --->   "%tmp_23 = bitselect i1 @_ssdm_op_BitSelect.i1.i25.i32, i25 %raw_sum_mantissa_read, i32 1" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:77]   --->   Operation 53 'bitselect' 'tmp_23' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17 & !tmp_18 & !tmp_19 & !tmp_20 & !tmp_21 & !tmp_22)> <Delay = 0.00>
+ST_1 : Operation 54 [1/1] (0.00ns)   --->   "%br_ln77 = br i1 %tmp_23, void %if.else191, void %if.then186" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:77]   --->   Operation 54 'br' 'br_ln77' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17 & !tmp_18 & !tmp_19 & !tmp_20 & !tmp_21 & !tmp_22)> <Delay = 0.00>
+ST_1 : Operation 55 [1/1] (1.91ns)   --->   "%exp_24 = add i8 %target_exponent_read, i8 233" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:78]   --->   Operation 55 'add' 'exp_24' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17 & !tmp_18 & !tmp_19 & !tmp_20 & !tmp_21 & !tmp_22 & !tmp_23)> <Delay = 1.91> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 56 [1/1] (3.20ns)   --->   "%br_ln0 = br void %if.end219"   --->   Operation 56 'br' 'br_ln0' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17 & !tmp_18 & !tmp_19 & !tmp_20 & !tmp_21 & !tmp_22 & !tmp_23)> <Delay = 3.20>
+ST_1 : Operation 57 [1/1] (0.00ns)   --->   "%trunc_ln77 = trunc i25 %raw_sum_mantissa_read" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:77]   --->   Operation 57 'trunc' 'trunc_ln77' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17 & !tmp_18 & !tmp_19 & !tmp_20 & !tmp_21 & !tmp_22 & tmp_23)> <Delay = 0.00>
+ST_1 : Operation 58 [1/1] (0.00ns)   --->   "%norm24_21 = bitconcatenate i23 @_ssdm_op_BitConcatenate.i23.i1.i22, i1 %trunc_ln77, i22 0" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:77]   --->   Operation 58 'bitconcatenate' 'norm24_21' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17 & !tmp_18 & !tmp_19 & !tmp_20 & !tmp_21 & !tmp_22 & tmp_23)> <Delay = 0.00>
+ST_1 : Operation 59 [1/1] (1.91ns)   --->   "%exp_22 = add i8 %target_exponent_read, i8 234" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:77]   --->   Operation 59 'add' 'exp_22' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17 & !tmp_18 & !tmp_19 & !tmp_20 & !tmp_21 & !tmp_22 & tmp_23)> <Delay = 1.91> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 60 [1/1] (3.20ns)   --->   "%br_ln77 = br void %if.end219" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:77]   --->   Operation 60 'br' 'br_ln77' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17 & !tmp_18 & !tmp_19 & !tmp_20 & !tmp_21 & !tmp_22 & tmp_23)> <Delay = 3.20>
+ST_1 : Operation 61 [1/1] (0.00ns)   --->   "%trunc_ln76 = trunc i25 %raw_sum_mantissa_read" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:76]   --->   Operation 61 'trunc' 'trunc_ln76' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17 & !tmp_18 & !tmp_19 & !tmp_20 & !tmp_21 & tmp_22)> <Delay = 0.00>
+ST_1 : Operation 62 [1/1] (0.00ns)   --->   "%norm24_20 = bitconcatenate i23 @_ssdm_op_BitConcatenate.i23.i2.i21, i2 %trunc_ln76, i21 0" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:76]   --->   Operation 62 'bitconcatenate' 'norm24_20' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17 & !tmp_18 & !tmp_19 & !tmp_20 & !tmp_21 & tmp_22)> <Delay = 0.00>
+ST_1 : Operation 63 [1/1] (1.91ns)   --->   "%exp_21 = add i8 %target_exponent_read, i8 235" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:76]   --->   Operation 63 'add' 'exp_21' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17 & !tmp_18 & !tmp_19 & !tmp_20 & !tmp_21 & tmp_22)> <Delay = 1.91> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 64 [1/1] (3.20ns)   --->   "%br_ln76 = br void %if.end219" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:76]   --->   Operation 64 'br' 'br_ln76' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17 & !tmp_18 & !tmp_19 & !tmp_20 & !tmp_21 & tmp_22)> <Delay = 3.20>
+ST_1 : Operation 65 [1/1] (0.00ns)   --->   "%trunc_ln75 = trunc i25 %raw_sum_mantissa_read" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:75]   --->   Operation 65 'trunc' 'trunc_ln75' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17 & !tmp_18 & !tmp_19 & !tmp_20 & tmp_21)> <Delay = 0.00>
+ST_1 : Operation 66 [1/1] (0.00ns)   --->   "%norm24_19 = bitconcatenate i23 @_ssdm_op_BitConcatenate.i23.i3.i20, i3 %trunc_ln75, i20 0" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:75]   --->   Operation 66 'bitconcatenate' 'norm24_19' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17 & !tmp_18 & !tmp_19 & !tmp_20 & tmp_21)> <Delay = 0.00>
+ST_1 : Operation 67 [1/1] (1.91ns)   --->   "%exp_20 = add i8 %target_exponent_read, i8 236" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:75]   --->   Operation 67 'add' 'exp_20' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17 & !tmp_18 & !tmp_19 & !tmp_20 & tmp_21)> <Delay = 1.91> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 68 [1/1] (3.20ns)   --->   "%br_ln75 = br void %if.end219" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:75]   --->   Operation 68 'br' 'br_ln75' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17 & !tmp_18 & !tmp_19 & !tmp_20 & tmp_21)> <Delay = 3.20>
+ST_1 : Operation 69 [1/1] (0.00ns)   --->   "%trunc_ln74 = trunc i25 %raw_sum_mantissa_read" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:74]   --->   Operation 69 'trunc' 'trunc_ln74' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17 & !tmp_18 & !tmp_19 & tmp_20)> <Delay = 0.00>
+ST_1 : Operation 70 [1/1] (0.00ns)   --->   "%norm24_18 = bitconcatenate i23 @_ssdm_op_BitConcatenate.i23.i4.i19, i4 %trunc_ln74, i19 0" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:74]   --->   Operation 70 'bitconcatenate' 'norm24_18' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17 & !tmp_18 & !tmp_19 & tmp_20)> <Delay = 0.00>
+ST_1 : Operation 71 [1/1] (1.91ns)   --->   "%exp_19 = add i8 %target_exponent_read, i8 237" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:74]   --->   Operation 71 'add' 'exp_19' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17 & !tmp_18 & !tmp_19 & tmp_20)> <Delay = 1.91> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 72 [1/1] (3.20ns)   --->   "%br_ln74 = br void %if.end219" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:74]   --->   Operation 72 'br' 'br_ln74' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17 & !tmp_18 & !tmp_19 & tmp_20)> <Delay = 3.20>
+ST_1 : Operation 73 [1/1] (0.00ns)   --->   "%trunc_ln73 = trunc i25 %raw_sum_mantissa_read" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:73]   --->   Operation 73 'trunc' 'trunc_ln73' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17 & !tmp_18 & tmp_19)> <Delay = 0.00>
+ST_1 : Operation 74 [1/1] (0.00ns)   --->   "%norm24_17 = bitconcatenate i23 @_ssdm_op_BitConcatenate.i23.i5.i18, i5 %trunc_ln73, i18 0" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:73]   --->   Operation 74 'bitconcatenate' 'norm24_17' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17 & !tmp_18 & tmp_19)> <Delay = 0.00>
+ST_1 : Operation 75 [1/1] (1.91ns)   --->   "%exp_18 = add i8 %target_exponent_read, i8 238" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:73]   --->   Operation 75 'add' 'exp_18' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17 & !tmp_18 & tmp_19)> <Delay = 1.91> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 76 [1/1] (3.20ns)   --->   "%br_ln73 = br void %if.end219" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:73]   --->   Operation 76 'br' 'br_ln73' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17 & !tmp_18 & tmp_19)> <Delay = 3.20>
+ST_1 : Operation 77 [1/1] (0.00ns)   --->   "%trunc_ln72 = trunc i25 %raw_sum_mantissa_read" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:72]   --->   Operation 77 'trunc' 'trunc_ln72' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17 & tmp_18)> <Delay = 0.00>
+ST_1 : Operation 78 [1/1] (0.00ns)   --->   "%norm24_16 = bitconcatenate i23 @_ssdm_op_BitConcatenate.i23.i6.i17, i6 %trunc_ln72, i17 0" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:72]   --->   Operation 78 'bitconcatenate' 'norm24_16' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17 & tmp_18)> <Delay = 0.00>
+ST_1 : Operation 79 [1/1] (1.91ns)   --->   "%exp_17 = add i8 %target_exponent_read, i8 239" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:72]   --->   Operation 79 'add' 'exp_17' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17 & tmp_18)> <Delay = 1.91> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 80 [1/1] (3.20ns)   --->   "%br_ln72 = br void %if.end219" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:72]   --->   Operation 80 'br' 'br_ln72' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & !tmp_17 & tmp_18)> <Delay = 3.20>
+ST_1 : Operation 81 [1/1] (0.00ns)   --->   "%trunc_ln71 = trunc i25 %raw_sum_mantissa_read" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:71]   --->   Operation 81 'trunc' 'trunc_ln71' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & tmp_17)> <Delay = 0.00>
+ST_1 : Operation 82 [1/1] (0.00ns)   --->   "%norm24_15 = bitconcatenate i23 @_ssdm_op_BitConcatenate.i23.i7.i16, i7 %trunc_ln71, i16 0" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:71]   --->   Operation 82 'bitconcatenate' 'norm24_15' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & tmp_17)> <Delay = 0.00>
+ST_1 : Operation 83 [1/1] (1.91ns)   --->   "%exp_16 = add i8 %target_exponent_read, i8 240" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:71]   --->   Operation 83 'add' 'exp_16' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & tmp_17)> <Delay = 1.91> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 84 [1/1] (3.20ns)   --->   "%br_ln71 = br void %if.end219" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:71]   --->   Operation 84 'br' 'br_ln71' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & !tmp_16 & tmp_17)> <Delay = 3.20>
+ST_1 : Operation 85 [1/1] (0.00ns)   --->   "%trunc_ln70 = trunc i25 %raw_sum_mantissa_read" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:70]   --->   Operation 85 'trunc' 'trunc_ln70' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & tmp_16)> <Delay = 0.00>
+ST_1 : Operation 86 [1/1] (0.00ns)   --->   "%norm24_14 = bitconcatenate i23 @_ssdm_op_BitConcatenate.i23.i8.i15, i8 %trunc_ln70, i15 0" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:70]   --->   Operation 86 'bitconcatenate' 'norm24_14' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & tmp_16)> <Delay = 0.00>
+ST_1 : Operation 87 [1/1] (1.91ns)   --->   "%exp_15 = add i8 %target_exponent_read, i8 241" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:70]   --->   Operation 87 'add' 'exp_15' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & tmp_16)> <Delay = 1.91> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 88 [1/1] (3.20ns)   --->   "%br_ln70 = br void %if.end219" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:70]   --->   Operation 88 'br' 'br_ln70' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & !tmp_15 & tmp_16)> <Delay = 3.20>
+ST_1 : Operation 89 [1/1] (0.00ns)   --->   "%trunc_ln69 = trunc i25 %raw_sum_mantissa_read" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:69]   --->   Operation 89 'trunc' 'trunc_ln69' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & tmp_15)> <Delay = 0.00>
+ST_1 : Operation 90 [1/1] (0.00ns)   --->   "%norm24_13 = bitconcatenate i23 @_ssdm_op_BitConcatenate.i23.i9.i14, i9 %trunc_ln69, i14 0" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:69]   --->   Operation 90 'bitconcatenate' 'norm24_13' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & tmp_15)> <Delay = 0.00>
+ST_1 : Operation 91 [1/1] (1.91ns)   --->   "%exp_14 = add i8 %target_exponent_read, i8 242" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:69]   --->   Operation 91 'add' 'exp_14' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & tmp_15)> <Delay = 1.91> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 92 [1/1] (3.20ns)   --->   "%br_ln69 = br void %if.end219" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:69]   --->   Operation 92 'br' 'br_ln69' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & !tmp_14 & tmp_15)> <Delay = 3.20>
+ST_1 : Operation 93 [1/1] (0.00ns)   --->   "%trunc_ln68 = trunc i25 %raw_sum_mantissa_read" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:68]   --->   Operation 93 'trunc' 'trunc_ln68' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & tmp_14)> <Delay = 0.00>
+ST_1 : Operation 94 [1/1] (0.00ns)   --->   "%norm24_12 = bitconcatenate i23 @_ssdm_op_BitConcatenate.i23.i10.i13, i10 %trunc_ln68, i13 0" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:68]   --->   Operation 94 'bitconcatenate' 'norm24_12' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & tmp_14)> <Delay = 0.00>
+ST_1 : Operation 95 [1/1] (1.91ns)   --->   "%exp_13 = add i8 %target_exponent_read, i8 243" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:68]   --->   Operation 95 'add' 'exp_13' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & tmp_14)> <Delay = 1.91> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 96 [1/1] (3.20ns)   --->   "%br_ln68 = br void %if.end219" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:68]   --->   Operation 96 'br' 'br_ln68' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & !tmp_13 & tmp_14)> <Delay = 3.20>
+ST_1 : Operation 97 [1/1] (0.00ns)   --->   "%trunc_ln67 = trunc i25 %raw_sum_mantissa_read" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:67]   --->   Operation 97 'trunc' 'trunc_ln67' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & tmp_13)> <Delay = 0.00>
+ST_1 : Operation 98 [1/1] (0.00ns)   --->   "%norm24_11 = bitconcatenate i23 @_ssdm_op_BitConcatenate.i23.i11.i12, i11 %trunc_ln67, i12 0" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:67]   --->   Operation 98 'bitconcatenate' 'norm24_11' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & tmp_13)> <Delay = 0.00>
+ST_1 : Operation 99 [1/1] (1.91ns)   --->   "%exp_12 = add i8 %target_exponent_read, i8 244" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:67]   --->   Operation 99 'add' 'exp_12' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & tmp_13)> <Delay = 1.91> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 100 [1/1] (3.20ns)   --->   "%br_ln67 = br void %if.end219" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:67]   --->   Operation 100 'br' 'br_ln67' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & !tmp_12 & tmp_13)> <Delay = 3.20>
+ST_1 : Operation 101 [1/1] (0.00ns)   --->   "%trunc_ln66 = trunc i25 %raw_sum_mantissa_read" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:66]   --->   Operation 101 'trunc' 'trunc_ln66' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & tmp_12)> <Delay = 0.00>
+ST_1 : Operation 102 [1/1] (0.00ns)   --->   "%norm24_10 = bitconcatenate i23 @_ssdm_op_BitConcatenate.i23.i12.i11, i12 %trunc_ln66, i11 0" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:66]   --->   Operation 102 'bitconcatenate' 'norm24_10' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & tmp_12)> <Delay = 0.00>
+ST_1 : Operation 103 [1/1] (1.91ns)   --->   "%exp_11 = add i8 %target_exponent_read, i8 245" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:66]   --->   Operation 103 'add' 'exp_11' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & tmp_12)> <Delay = 1.91> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 104 [1/1] (3.20ns)   --->   "%br_ln66 = br void %if.end219" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:66]   --->   Operation 104 'br' 'br_ln66' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & !tmp_11 & tmp_12)> <Delay = 3.20>
+ST_1 : Operation 105 [1/1] (0.00ns)   --->   "%trunc_ln65 = trunc i25 %raw_sum_mantissa_read" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:65]   --->   Operation 105 'trunc' 'trunc_ln65' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & tmp_11)> <Delay = 0.00>
+ST_1 : Operation 106 [1/1] (0.00ns)   --->   "%norm24_9 = bitconcatenate i23 @_ssdm_op_BitConcatenate.i23.i13.i10, i13 %trunc_ln65, i10 0" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:65]   --->   Operation 106 'bitconcatenate' 'norm24_9' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & tmp_11)> <Delay = 0.00>
+ST_1 : Operation 107 [1/1] (1.91ns)   --->   "%exp_10 = add i8 %target_exponent_read, i8 246" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:65]   --->   Operation 107 'add' 'exp_10' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & tmp_11)> <Delay = 1.91> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 108 [1/1] (3.20ns)   --->   "%br_ln65 = br void %if.end219" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:65]   --->   Operation 108 'br' 'br_ln65' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & !tmp_10 & tmp_11)> <Delay = 3.20>
+ST_1 : Operation 109 [1/1] (0.00ns)   --->   "%trunc_ln64 = trunc i25 %raw_sum_mantissa_read" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:64]   --->   Operation 109 'trunc' 'trunc_ln64' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & tmp_10)> <Delay = 0.00>
+ST_1 : Operation 110 [1/1] (0.00ns)   --->   "%norm24_8 = bitconcatenate i23 @_ssdm_op_BitConcatenate.i23.i14.i9, i14 %trunc_ln64, i9 0" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:64]   --->   Operation 110 'bitconcatenate' 'norm24_8' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & tmp_10)> <Delay = 0.00>
+ST_1 : Operation 111 [1/1] (1.91ns)   --->   "%exp_9 = add i8 %target_exponent_read, i8 247" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:64]   --->   Operation 111 'add' 'exp_9' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & tmp_10)> <Delay = 1.91> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 112 [1/1] (3.20ns)   --->   "%br_ln64 = br void %if.end219" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:64]   --->   Operation 112 'br' 'br_ln64' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & !tmp_9 & tmp_10)> <Delay = 3.20>
+ST_1 : Operation 113 [1/1] (0.00ns)   --->   "%trunc_ln63 = trunc i25 %raw_sum_mantissa_read" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:63]   --->   Operation 113 'trunc' 'trunc_ln63' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & tmp_9)> <Delay = 0.00>
+ST_1 : Operation 114 [1/1] (0.00ns)   --->   "%norm24_7 = bitconcatenate i23 @_ssdm_op_BitConcatenate.i23.i15.i8, i15 %trunc_ln63, i8 0" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:63]   --->   Operation 114 'bitconcatenate' 'norm24_7' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & tmp_9)> <Delay = 0.00>
+ST_1 : Operation 115 [1/1] (1.91ns)   --->   "%exp_8 = add i8 %target_exponent_read, i8 248" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:63]   --->   Operation 115 'add' 'exp_8' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & tmp_9)> <Delay = 1.91> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 116 [1/1] (3.20ns)   --->   "%br_ln63 = br void %if.end219" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:63]   --->   Operation 116 'br' 'br_ln63' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & !tmp_8 & tmp_9)> <Delay = 3.20>
+ST_1 : Operation 117 [1/1] (0.00ns)   --->   "%trunc_ln62 = trunc i25 %raw_sum_mantissa_read" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:62]   --->   Operation 117 'trunc' 'trunc_ln62' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & tmp_8)> <Delay = 0.00>
+ST_1 : Operation 118 [1/1] (0.00ns)   --->   "%norm24_6 = bitconcatenate i23 @_ssdm_op_BitConcatenate.i23.i16.i7, i16 %trunc_ln62, i7 0" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:62]   --->   Operation 118 'bitconcatenate' 'norm24_6' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & tmp_8)> <Delay = 0.00>
+ST_1 : Operation 119 [1/1] (1.91ns)   --->   "%exp_7 = add i8 %target_exponent_read, i8 249" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:62]   --->   Operation 119 'add' 'exp_7' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & tmp_8)> <Delay = 1.91> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 120 [1/1] (3.20ns)   --->   "%br_ln62 = br void %if.end219" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:62]   --->   Operation 120 'br' 'br_ln62' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & !tmp_7 & tmp_8)> <Delay = 3.20>
+ST_1 : Operation 121 [1/1] (0.00ns)   --->   "%trunc_ln61 = trunc i25 %raw_sum_mantissa_read" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:61]   --->   Operation 121 'trunc' 'trunc_ln61' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & tmp_7)> <Delay = 0.00>
+ST_1 : Operation 122 [1/1] (0.00ns)   --->   "%norm24_5 = bitconcatenate i23 @_ssdm_op_BitConcatenate.i23.i17.i6, i17 %trunc_ln61, i6 0" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:61]   --->   Operation 122 'bitconcatenate' 'norm24_5' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & tmp_7)> <Delay = 0.00>
+ST_1 : Operation 123 [1/1] (1.91ns)   --->   "%exp_6 = add i8 %target_exponent_read, i8 250" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:61]   --->   Operation 123 'add' 'exp_6' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & tmp_7)> <Delay = 1.91> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 124 [1/1] (3.20ns)   --->   "%br_ln61 = br void %if.end219" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:61]   --->   Operation 124 'br' 'br_ln61' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & !tmp_6 & tmp_7)> <Delay = 3.20>
+ST_1 : Operation 125 [1/1] (0.00ns)   --->   "%trunc_ln60 = trunc i25 %raw_sum_mantissa_read" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:60]   --->   Operation 125 'trunc' 'trunc_ln60' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & tmp_6)> <Delay = 0.00>
+ST_1 : Operation 126 [1/1] (0.00ns)   --->   "%norm24_4 = bitconcatenate i23 @_ssdm_op_BitConcatenate.i23.i18.i5, i18 %trunc_ln60, i5 0" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:60]   --->   Operation 126 'bitconcatenate' 'norm24_4' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & tmp_6)> <Delay = 0.00>
+ST_1 : Operation 127 [1/1] (1.91ns)   --->   "%exp_5 = add i8 %target_exponent_read, i8 251" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:60]   --->   Operation 127 'add' 'exp_5' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & tmp_6)> <Delay = 1.91> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 128 [1/1] (3.20ns)   --->   "%br_ln60 = br void %if.end219" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:60]   --->   Operation 128 'br' 'br_ln60' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & !tmp_5 & tmp_6)> <Delay = 3.20>
+ST_1 : Operation 129 [1/1] (0.00ns)   --->   "%trunc_ln59 = trunc i25 %raw_sum_mantissa_read" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:59]   --->   Operation 129 'trunc' 'trunc_ln59' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & tmp_5)> <Delay = 0.00>
+ST_1 : Operation 130 [1/1] (0.00ns)   --->   "%norm24_3 = bitconcatenate i23 @_ssdm_op_BitConcatenate.i23.i19.i4, i19 %trunc_ln59, i4 0" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:59]   --->   Operation 130 'bitconcatenate' 'norm24_3' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & tmp_5)> <Delay = 0.00>
+ST_1 : Operation 131 [1/1] (1.91ns)   --->   "%exp_4 = add i8 %target_exponent_read, i8 252" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:59]   --->   Operation 131 'add' 'exp_4' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & tmp_5)> <Delay = 1.91> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 132 [1/1] (3.20ns)   --->   "%br_ln59 = br void %if.end219" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:59]   --->   Operation 132 'br' 'br_ln59' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & !tmp_4 & tmp_5)> <Delay = 3.20>
+ST_1 : Operation 133 [1/1] (0.00ns)   --->   "%trunc_ln58 = trunc i25 %raw_sum_mantissa_read" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:58]   --->   Operation 133 'trunc' 'trunc_ln58' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & tmp_4)> <Delay = 0.00>
+ST_1 : Operation 134 [1/1] (0.00ns)   --->   "%norm24_2 = bitconcatenate i23 @_ssdm_op_BitConcatenate.i23.i20.i3, i20 %trunc_ln58, i3 0" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:58]   --->   Operation 134 'bitconcatenate' 'norm24_2' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & tmp_4)> <Delay = 0.00>
+ST_1 : Operation 135 [1/1] (1.91ns)   --->   "%exp_3 = add i8 %target_exponent_read, i8 253" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:58]   --->   Operation 135 'add' 'exp_3' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & tmp_4)> <Delay = 1.91> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 136 [1/1] (3.20ns)   --->   "%br_ln58 = br void %if.end219" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:58]   --->   Operation 136 'br' 'br_ln58' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & !tmp_3 & tmp_4)> <Delay = 3.20>
+ST_1 : Operation 137 [1/1] (0.00ns)   --->   "%trunc_ln57 = trunc i25 %raw_sum_mantissa_read" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:57]   --->   Operation 137 'trunc' 'trunc_ln57' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & tmp_3)> <Delay = 0.00>
+ST_1 : Operation 138 [1/1] (0.00ns)   --->   "%norm24_1 = bitconcatenate i23 @_ssdm_op_BitConcatenate.i23.i21.i2, i21 %trunc_ln57, i2 0" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:57]   --->   Operation 138 'bitconcatenate' 'norm24_1' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & tmp_3)> <Delay = 0.00>
+ST_1 : Operation 139 [1/1] (1.91ns)   --->   "%exp_2 = add i8 %target_exponent_read, i8 254" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:57]   --->   Operation 139 'add' 'exp_2' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & tmp_3)> <Delay = 1.91> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 140 [1/1] (3.20ns)   --->   "%br_ln57 = br void %if.end219" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:57]   --->   Operation 140 'br' 'br_ln57' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & !tmp_2 & tmp_3)> <Delay = 3.20>
+ST_1 : Operation 141 [1/1] (0.00ns)   --->   "%trunc_ln56 = trunc i25 %raw_sum_mantissa_read" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:56]   --->   Operation 141 'trunc' 'trunc_ln56' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & tmp_2)> <Delay = 0.00>
+ST_1 : Operation 142 [1/1] (0.00ns)   --->   "%norm24 = bitconcatenate i23 @_ssdm_op_BitConcatenate.i23.i22.i1, i22 %trunc_ln56, i1 0" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:56]   --->   Operation 142 'bitconcatenate' 'norm24' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & tmp_2)> <Delay = 0.00>
+ST_1 : Operation 143 [1/1] (1.91ns)   --->   "%exp_1 = add i8 %target_exponent_read, i8 255" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:56]   --->   Operation 143 'add' 'exp_1' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & tmp_2)> <Delay = 1.91> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 144 [1/1] (3.20ns)   --->   "%br_ln56 = br void %if.end219" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:56]   --->   Operation 144 'br' 'br_ln56' <Predicate = (!icmp_ln49 & !tmp & !tmp_1 & tmp_2)> <Delay = 3.20>
+ST_1 : Operation 145 [1/1] (0.00ns)   --->   "%trunc_ln53 = trunc i25 %raw_sum_mantissa_read" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:53]   --->   Operation 145 'trunc' 'trunc_ln53' <Predicate = (!icmp_ln49 & !tmp & tmp_1)> <Delay = 0.00>
+ST_1 : Operation 146 [1/1] (3.20ns)   --->   "%br_ln55 = br void %if.end219" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:55]   --->   Operation 146 'br' 'br_ln55' <Predicate = (!icmp_ln49 & !tmp & tmp_1)> <Delay = 3.20>
+ST_1 : Operation 147 [1/1] (0.00ns)   --->   "%norm24_cast = partselect i23 @_ssdm_op_PartSelect.i23.i25.i32.i32, i25 %raw_sum_mantissa_read, i32 1, i32 23" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:53]   --->   Operation 147 'partselect' 'norm24_cast' <Predicate = (!icmp_ln49 & tmp)> <Delay = 0.00>
+ST_1 : Operation 148 [1/1] (1.91ns)   --->   "%exp = add i8 %target_exponent_read, i8 1" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:54]   --->   Operation 148 'add' 'exp' <Predicate = (!icmp_ln49 & tmp)> <Delay = 1.91> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 149 [1/1] (3.20ns)   --->   "%br_ln54 = br void %if.end219" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:54]   --->   Operation 149 'br' 'br_ln54' <Predicate = (!icmp_ln49 & tmp)> <Delay = 3.20>
+ST_1 : Operation 150 [1/1] (0.00ns)   --->   "%exp_23 = phi i8 %exp, void %if.then6, i8 %target_exponent_read, void %if.then12, i8 %exp_1, void %if.then18, i8 %exp_2, void %if.then26, i8 %exp_3, void %if.then34, i8 %exp_4, void %if.then42, i8 %exp_5, void %if.then50, i8 %exp_6, void %if.then58, i8 %exp_7, void %if.then66, i8 %exp_8, void %if.then74, i8 %exp_9, void %if.then82, i8 %exp_10, void %if.then90, i8 %exp_11, void %if.then98, i8 %exp_12, void %if.then106, i8 %exp_13, void %if.then114, i8 %exp_14, void %if.then122, i8 %exp_15, void %if.then130, i8 %exp_16, void %if.then138, i8 %exp_17, void %if.then146, i8 %exp_18, void %if.then154, i8 %exp_19, void %if.then162, i8 %exp_20, void %if.then170, i8 %exp_21, void %if.then178, i8 %exp_22, void %if.then186, i8 %exp_24, void %if.else191"   --->   Operation 150 'phi' 'exp_23' <Predicate = (!icmp_ln49)> <Delay = 0.00>
+ST_1 : Operation 151 [1/1] (0.00ns)   --->   "%norm24_22 = phi i23 %norm24_cast, void %if.then6, i23 %trunc_ln53, void %if.then12, i23 %norm24, void %if.then18, i23 %norm24_1, void %if.then26, i23 %norm24_2, void %if.then34, i23 %norm24_3, void %if.then42, i23 %norm24_4, void %if.then50, i23 %norm24_5, void %if.then58, i23 %norm24_6, void %if.then66, i23 %norm24_7, void %if.then74, i23 %norm24_8, void %if.then82, i23 %norm24_9, void %if.then90, i23 %norm24_10, void %if.then98, i23 %norm24_11, void %if.then106, i23 %norm24_12, void %if.then114, i23 %norm24_13, void %if.then122, i23 %norm24_14, void %if.then130, i23 %norm24_15, void %if.then138, i23 %norm24_16, void %if.then146, i23 %norm24_17, void %if.then154, i23 %norm24_18, void %if.then162, i23 %norm24_19, void %if.then170, i23 %norm24_20, void %if.then178, i23 %norm24_21, void %if.then186, i23 0, void %if.else191"   --->   Operation 151 'phi' 'norm24_22' <Predicate = (!icmp_ln49)> <Delay = 0.00>
+ST_1 : Operation 152 [1/1] (0.00ns)   --->   "%tmp_s = bitconcatenate i32 @_ssdm_op_BitConcatenate.i32.i1.i8.i23, i1 %raw_sign_read, i8 %exp_23, i23 %norm24_22" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:80]   --->   Operation 152 'bitconcatenate' 'tmp_s' <Predicate = (!icmp_ln49)> <Delay = 0.00>
+ST_1 : Operation 153 [1/1] (1.58ns)   --->   "%br_ln0 = br void %return"   --->   Operation 153 'br' 'br_ln0' <Predicate = (!icmp_ln49)> <Delay = 1.58>
+ST_1 : Operation 154 [1/1] (0.00ns)   --->   "%agg_result_0 = phi i32 %tmp_s, void %if.end219, i32 0, void %entry" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:80]   --->   Operation 154 'phi' 'agg_result_0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 155 [1/1] (0.00ns)   --->   "%ret_ln81 = ret i32 %agg_result_0" [/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp:81]   --->   Operation 155 'ret' 'ret_ln81' <Predicate = true> <Delay = 0.00>
 
 
 ============================================================
@@ -378,157 +378,157 @@ Port [ target_exponent]:  wired=1; compound=0; hidden=0; nouse=0; global=0; stat
 target_exponent_read  (read          ) [ 00]
 raw_sign_read         (read          ) [ 00]
 raw_sum_mantissa_read (read          ) [ 00]
-icmp_ln12             (icmp          ) [ 01]
-br_ln12               (br            ) [ 00]
+icmp_ln49             (icmp          ) [ 01]
+br_ln49               (br            ) [ 00]
 tmp                   (bitselect     ) [ 01]
-br_ln17               (br            ) [ 00]
+br_ln54               (br            ) [ 00]
 tmp_1                 (bitselect     ) [ 01]
-br_ln18               (br            ) [ 00]
+br_ln55               (br            ) [ 00]
 tmp_2                 (bitselect     ) [ 01]
-br_ln19               (br            ) [ 00]
+br_ln56               (br            ) [ 00]
 tmp_3                 (bitselect     ) [ 01]
-br_ln20               (br            ) [ 00]
+br_ln57               (br            ) [ 00]
 tmp_4                 (bitselect     ) [ 01]
-br_ln21               (br            ) [ 00]
+br_ln58               (br            ) [ 00]
 tmp_5                 (bitselect     ) [ 01]
-br_ln22               (br            ) [ 00]
+br_ln59               (br            ) [ 00]
 tmp_6                 (bitselect     ) [ 01]
-br_ln23               (br            ) [ 00]
+br_ln60               (br            ) [ 00]
 tmp_7                 (bitselect     ) [ 01]
-br_ln24               (br            ) [ 00]
+br_ln61               (br            ) [ 00]
 tmp_8                 (bitselect     ) [ 01]
-br_ln25               (br            ) [ 00]
+br_ln62               (br            ) [ 00]
 tmp_9                 (bitselect     ) [ 01]
-br_ln26               (br            ) [ 00]
+br_ln63               (br            ) [ 00]
 tmp_10                (bitselect     ) [ 01]
-br_ln27               (br            ) [ 00]
+br_ln64               (br            ) [ 00]
 tmp_11                (bitselect     ) [ 01]
-br_ln28               (br            ) [ 00]
+br_ln65               (br            ) [ 00]
 tmp_12                (bitselect     ) [ 01]
-br_ln29               (br            ) [ 00]
+br_ln66               (br            ) [ 00]
 tmp_13                (bitselect     ) [ 01]
-br_ln30               (br            ) [ 00]
+br_ln67               (br            ) [ 00]
 tmp_14                (bitselect     ) [ 01]
-br_ln31               (br            ) [ 00]
+br_ln68               (br            ) [ 00]
 tmp_15                (bitselect     ) [ 01]
-br_ln32               (br            ) [ 00]
+br_ln69               (br            ) [ 00]
 tmp_16                (bitselect     ) [ 01]
-br_ln33               (br            ) [ 00]
+br_ln70               (br            ) [ 00]
 tmp_17                (bitselect     ) [ 01]
-br_ln34               (br            ) [ 00]
+br_ln71               (br            ) [ 00]
 tmp_18                (bitselect     ) [ 01]
-br_ln35               (br            ) [ 00]
+br_ln72               (br            ) [ 00]
 tmp_19                (bitselect     ) [ 01]
-br_ln36               (br            ) [ 00]
+br_ln73               (br            ) [ 00]
 tmp_20                (bitselect     ) [ 01]
-br_ln37               (br            ) [ 00]
+br_ln74               (br            ) [ 00]
 tmp_21                (bitselect     ) [ 01]
-br_ln38               (br            ) [ 00]
+br_ln75               (br            ) [ 00]
 tmp_22                (bitselect     ) [ 01]
-br_ln39               (br            ) [ 00]
+br_ln76               (br            ) [ 00]
 tmp_23                (bitselect     ) [ 01]
-br_ln40               (br            ) [ 00]
+br_ln77               (br            ) [ 00]
 exp_24                (add           ) [ 00]
 br_ln0                (br            ) [ 00]
-trunc_ln40            (trunc         ) [ 00]
+trunc_ln77            (trunc         ) [ 00]
 norm24_21             (bitconcatenate) [ 00]
 exp_22                (add           ) [ 00]
-br_ln40               (br            ) [ 00]
-trunc_ln39            (trunc         ) [ 00]
+br_ln77               (br            ) [ 00]
+trunc_ln76            (trunc         ) [ 00]
 norm24_20             (bitconcatenate) [ 00]
 exp_21                (add           ) [ 00]
-br_ln39               (br            ) [ 00]
-trunc_ln38            (trunc         ) [ 00]
+br_ln76               (br            ) [ 00]
+trunc_ln75            (trunc         ) [ 00]
 norm24_19             (bitconcatenate) [ 00]
 exp_20                (add           ) [ 00]
-br_ln38               (br            ) [ 00]
-trunc_ln37            (trunc         ) [ 00]
+br_ln75               (br            ) [ 00]
+trunc_ln74            (trunc         ) [ 00]
 norm24_18             (bitconcatenate) [ 00]
 exp_19                (add           ) [ 00]
-br_ln37               (br            ) [ 00]
-trunc_ln36            (trunc         ) [ 00]
+br_ln74               (br            ) [ 00]
+trunc_ln73            (trunc         ) [ 00]
 norm24_17             (bitconcatenate) [ 00]
 exp_18                (add           ) [ 00]
-br_ln36               (br            ) [ 00]
-trunc_ln35            (trunc         ) [ 00]
+br_ln73               (br            ) [ 00]
+trunc_ln72            (trunc         ) [ 00]
 norm24_16             (bitconcatenate) [ 00]
 exp_17                (add           ) [ 00]
-br_ln35               (br            ) [ 00]
-trunc_ln34            (trunc         ) [ 00]
+br_ln72               (br            ) [ 00]
+trunc_ln71            (trunc         ) [ 00]
 norm24_15             (bitconcatenate) [ 00]
 exp_16                (add           ) [ 00]
-br_ln34               (br            ) [ 00]
-trunc_ln33            (trunc         ) [ 00]
+br_ln71               (br            ) [ 00]
+trunc_ln70            (trunc         ) [ 00]
 norm24_14             (bitconcatenate) [ 00]
 exp_15                (add           ) [ 00]
-br_ln33               (br            ) [ 00]
-trunc_ln32            (trunc         ) [ 00]
+br_ln70               (br            ) [ 00]
+trunc_ln69            (trunc         ) [ 00]
 norm24_13             (bitconcatenate) [ 00]
 exp_14                (add           ) [ 00]
-br_ln32               (br            ) [ 00]
-trunc_ln31            (trunc         ) [ 00]
+br_ln69               (br            ) [ 00]
+trunc_ln68            (trunc         ) [ 00]
 norm24_12             (bitconcatenate) [ 00]
 exp_13                (add           ) [ 00]
-br_ln31               (br            ) [ 00]
-trunc_ln30            (trunc         ) [ 00]
+br_ln68               (br            ) [ 00]
+trunc_ln67            (trunc         ) [ 00]
 norm24_11             (bitconcatenate) [ 00]
 exp_12                (add           ) [ 00]
-br_ln30               (br            ) [ 00]
-trunc_ln29            (trunc         ) [ 00]
+br_ln67               (br            ) [ 00]
+trunc_ln66            (trunc         ) [ 00]
 norm24_10             (bitconcatenate) [ 00]
 exp_11                (add           ) [ 00]
-br_ln29               (br            ) [ 00]
-trunc_ln28            (trunc         ) [ 00]
+br_ln66               (br            ) [ 00]
+trunc_ln65            (trunc         ) [ 00]
 norm24_9              (bitconcatenate) [ 00]
 exp_10                (add           ) [ 00]
-br_ln28               (br            ) [ 00]
-trunc_ln27            (trunc         ) [ 00]
+br_ln65               (br            ) [ 00]
+trunc_ln64            (trunc         ) [ 00]
 norm24_8              (bitconcatenate) [ 00]
 exp_9                 (add           ) [ 00]
-br_ln27               (br            ) [ 00]
-trunc_ln26            (trunc         ) [ 00]
+br_ln64               (br            ) [ 00]
+trunc_ln63            (trunc         ) [ 00]
 norm24_7              (bitconcatenate) [ 00]
 exp_8                 (add           ) [ 00]
-br_ln26               (br            ) [ 00]
-trunc_ln25            (trunc         ) [ 00]
+br_ln63               (br            ) [ 00]
+trunc_ln62            (trunc         ) [ 00]
 norm24_6              (bitconcatenate) [ 00]
 exp_7                 (add           ) [ 00]
-br_ln25               (br            ) [ 00]
-trunc_ln24            (trunc         ) [ 00]
+br_ln62               (br            ) [ 00]
+trunc_ln61            (trunc         ) [ 00]
 norm24_5              (bitconcatenate) [ 00]
 exp_6                 (add           ) [ 00]
-br_ln24               (br            ) [ 00]
-trunc_ln23            (trunc         ) [ 00]
+br_ln61               (br            ) [ 00]
+trunc_ln60            (trunc         ) [ 00]
 norm24_4              (bitconcatenate) [ 00]
 exp_5                 (add           ) [ 00]
-br_ln23               (br            ) [ 00]
-trunc_ln22            (trunc         ) [ 00]
+br_ln60               (br            ) [ 00]
+trunc_ln59            (trunc         ) [ 00]
 norm24_3              (bitconcatenate) [ 00]
 exp_4                 (add           ) [ 00]
-br_ln22               (br            ) [ 00]
-trunc_ln21            (trunc         ) [ 00]
+br_ln59               (br            ) [ 00]
+trunc_ln58            (trunc         ) [ 00]
 norm24_2              (bitconcatenate) [ 00]
 exp_3                 (add           ) [ 00]
-br_ln21               (br            ) [ 00]
-trunc_ln20            (trunc         ) [ 00]
+br_ln58               (br            ) [ 00]
+trunc_ln57            (trunc         ) [ 00]
 norm24_1              (bitconcatenate) [ 00]
 exp_2                 (add           ) [ 00]
-br_ln20               (br            ) [ 00]
-trunc_ln19            (trunc         ) [ 00]
+br_ln57               (br            ) [ 00]
+trunc_ln56            (trunc         ) [ 00]
 norm24                (bitconcatenate) [ 00]
 exp_1                 (add           ) [ 00]
-br_ln19               (br            ) [ 00]
-trunc_ln16            (trunc         ) [ 00]
-br_ln18               (br            ) [ 00]
+br_ln56               (br            ) [ 00]
+trunc_ln53            (trunc         ) [ 00]
+br_ln55               (br            ) [ 00]
 norm24_cast           (partselect    ) [ 00]
 exp                   (add           ) [ 00]
-br_ln17               (br            ) [ 00]
+br_ln54               (br            ) [ 00]
 exp_23                (phi           ) [ 00]
 norm24_22             (phi           ) [ 00]
 tmp_s                 (bitconcatenate) [ 00]
 br_ln0                (br            ) [ 00]
 agg_result_0          (phi           ) [ 00]
-ret_ln44              (ret           ) [ 00]
+ret_ln81              (ret           ) [ 00]
 </LifeTime>
 
 <model>
@@ -1670,7 +1670,7 @@ ret_ln44              (ret           ) [ 00]
 </bind>
 </comp>
 
-<comp id="348" class="1004" name="icmp_ln12_fu_348">
+<comp id="348" class="1004" name="icmp_ln49_fu_348">
 <pin_list>
 <pin id="349" dir="0" index="0" bw="25" slack="0"/>
 <pin id="350" dir="0" index="1" bw="25" slack="0"/>
@@ -1678,7 +1678,7 @@ ret_ln44              (ret           ) [ 00]
 </pin_list>
 <bind>
 <opcode="icmp(45) " fcode="icmp"/>
-<opset="icmp_ln12/1 "/>
+<opset="icmp_ln49/1 "/>
 </bind>
 </comp>
 
@@ -2006,14 +2006,14 @@ ret_ln44              (ret           ) [ 00]
 </bind>
 </comp>
 
-<comp id="553" class="1004" name="trunc_ln40_fu_553">
+<comp id="553" class="1004" name="trunc_ln77_fu_553">
 <pin_list>
 <pin id="554" dir="0" index="0" bw="25" slack="0"/>
 <pin id="555" dir="1" index="1" bw="1" slack="0"/>
 </pin_list>
 <bind>
 <opcode="trunc(33) " fcode="trunc"/>
-<opset="trunc_ln40/1 "/>
+<opset="trunc_ln77/1 "/>
 </bind>
 </comp>
 
@@ -2042,14 +2042,14 @@ ret_ln44              (ret           ) [ 00]
 </bind>
 </comp>
 
-<comp id="573" class="1004" name="trunc_ln39_fu_573">
+<comp id="573" class="1004" name="trunc_ln76_fu_573">
 <pin_list>
 <pin id="574" dir="0" index="0" bw="25" slack="0"/>
 <pin id="575" dir="1" index="1" bw="2" slack="0"/>
 </pin_list>
 <bind>
 <opcode="trunc(33) " fcode="trunc"/>
-<opset="trunc_ln39/1 "/>
+<opset="trunc_ln76/1 "/>
 </bind>
 </comp>
 
@@ -2078,14 +2078,14 @@ ret_ln44              (ret           ) [ 00]
 </bind>
 </comp>
 
-<comp id="593" class="1004" name="trunc_ln38_fu_593">
+<comp id="593" class="1004" name="trunc_ln75_fu_593">
 <pin_list>
 <pin id="594" dir="0" index="0" bw="25" slack="0"/>
 <pin id="595" dir="1" index="1" bw="3" slack="0"/>
 </pin_list>
 <bind>
 <opcode="trunc(33) " fcode="trunc"/>
-<opset="trunc_ln38/1 "/>
+<opset="trunc_ln75/1 "/>
 </bind>
 </comp>
 
@@ -2114,14 +2114,14 @@ ret_ln44              (ret           ) [ 00]
 </bind>
 </comp>
 
-<comp id="613" class="1004" name="trunc_ln37_fu_613">
+<comp id="613" class="1004" name="trunc_ln74_fu_613">
 <pin_list>
 <pin id="614" dir="0" index="0" bw="25" slack="0"/>
 <pin id="615" dir="1" index="1" bw="4" slack="0"/>
 </pin_list>
 <bind>
 <opcode="trunc(33) " fcode="trunc"/>
-<opset="trunc_ln37/1 "/>
+<opset="trunc_ln74/1 "/>
 </bind>
 </comp>
 
@@ -2150,14 +2150,14 @@ ret_ln44              (ret           ) [ 00]
 </bind>
 </comp>
 
-<comp id="633" class="1004" name="trunc_ln36_fu_633">
+<comp id="633" class="1004" name="trunc_ln73_fu_633">
 <pin_list>
 <pin id="634" dir="0" index="0" bw="25" slack="0"/>
 <pin id="635" dir="1" index="1" bw="5" slack="0"/>
 </pin_list>
 <bind>
 <opcode="trunc(33) " fcode="trunc"/>
-<opset="trunc_ln36/1 "/>
+<opset="trunc_ln73/1 "/>
 </bind>
 </comp>
 
@@ -2186,14 +2186,14 @@ ret_ln44              (ret           ) [ 00]
 </bind>
 </comp>
 
-<comp id="653" class="1004" name="trunc_ln35_fu_653">
+<comp id="653" class="1004" name="trunc_ln72_fu_653">
 <pin_list>
 <pin id="654" dir="0" index="0" bw="25" slack="0"/>
 <pin id="655" dir="1" index="1" bw="6" slack="0"/>
 </pin_list>
 <bind>
 <opcode="trunc(33) " fcode="trunc"/>
-<opset="trunc_ln35/1 "/>
+<opset="trunc_ln72/1 "/>
 </bind>
 </comp>
 
@@ -2222,14 +2222,14 @@ ret_ln44              (ret           ) [ 00]
 </bind>
 </comp>
 
-<comp id="673" class="1004" name="trunc_ln34_fu_673">
+<comp id="673" class="1004" name="trunc_ln71_fu_673">
 <pin_list>
 <pin id="674" dir="0" index="0" bw="25" slack="0"/>
 <pin id="675" dir="1" index="1" bw="7" slack="0"/>
 </pin_list>
 <bind>
 <opcode="trunc(33) " fcode="trunc"/>
-<opset="trunc_ln34/1 "/>
+<opset="trunc_ln71/1 "/>
 </bind>
 </comp>
 
@@ -2258,14 +2258,14 @@ ret_ln44              (ret           ) [ 00]
 </bind>
 </comp>
 
-<comp id="693" class="1004" name="trunc_ln33_fu_693">
+<comp id="693" class="1004" name="trunc_ln70_fu_693">
 <pin_list>
 <pin id="694" dir="0" index="0" bw="25" slack="0"/>
 <pin id="695" dir="1" index="1" bw="8" slack="0"/>
 </pin_list>
 <bind>
 <opcode="trunc(33) " fcode="trunc"/>
-<opset="trunc_ln33/1 "/>
+<opset="trunc_ln70/1 "/>
 </bind>
 </comp>
 
@@ -2294,14 +2294,14 @@ ret_ln44              (ret           ) [ 00]
 </bind>
 </comp>
 
-<comp id="713" class="1004" name="trunc_ln32_fu_713">
+<comp id="713" class="1004" name="trunc_ln69_fu_713">
 <pin_list>
 <pin id="714" dir="0" index="0" bw="25" slack="0"/>
 <pin id="715" dir="1" index="1" bw="9" slack="0"/>
 </pin_list>
 <bind>
 <opcode="trunc(33) " fcode="trunc"/>
-<opset="trunc_ln32/1 "/>
+<opset="trunc_ln69/1 "/>
 </bind>
 </comp>
 
@@ -2330,14 +2330,14 @@ ret_ln44              (ret           ) [ 00]
 </bind>
 </comp>
 
-<comp id="733" class="1004" name="trunc_ln31_fu_733">
+<comp id="733" class="1004" name="trunc_ln68_fu_733">
 <pin_list>
 <pin id="734" dir="0" index="0" bw="25" slack="0"/>
 <pin id="735" dir="1" index="1" bw="10" slack="0"/>
 </pin_list>
 <bind>
 <opcode="trunc(33) " fcode="trunc"/>
-<opset="trunc_ln31/1 "/>
+<opset="trunc_ln68/1 "/>
 </bind>
 </comp>
 
@@ -2366,14 +2366,14 @@ ret_ln44              (ret           ) [ 00]
 </bind>
 </comp>
 
-<comp id="753" class="1004" name="trunc_ln30_fu_753">
+<comp id="753" class="1004" name="trunc_ln67_fu_753">
 <pin_list>
 <pin id="754" dir="0" index="0" bw="25" slack="0"/>
 <pin id="755" dir="1" index="1" bw="11" slack="0"/>
 </pin_list>
 <bind>
 <opcode="trunc(33) " fcode="trunc"/>
-<opset="trunc_ln30/1 "/>
+<opset="trunc_ln67/1 "/>
 </bind>
 </comp>
 
@@ -2402,14 +2402,14 @@ ret_ln44              (ret           ) [ 00]
 </bind>
 </comp>
 
-<comp id="773" class="1004" name="trunc_ln29_fu_773">
+<comp id="773" class="1004" name="trunc_ln66_fu_773">
 <pin_list>
 <pin id="774" dir="0" index="0" bw="25" slack="0"/>
 <pin id="775" dir="1" index="1" bw="12" slack="0"/>
 </pin_list>
 <bind>
 <opcode="trunc(33) " fcode="trunc"/>
-<opset="trunc_ln29/1 "/>
+<opset="trunc_ln66/1 "/>
 </bind>
 </comp>
 
@@ -2438,14 +2438,14 @@ ret_ln44              (ret           ) [ 00]
 </bind>
 </comp>
 
-<comp id="793" class="1004" name="trunc_ln28_fu_793">
+<comp id="793" class="1004" name="trunc_ln65_fu_793">
 <pin_list>
 <pin id="794" dir="0" index="0" bw="25" slack="0"/>
 <pin id="795" dir="1" index="1" bw="13" slack="0"/>
 </pin_list>
 <bind>
 <opcode="trunc(33) " fcode="trunc"/>
-<opset="trunc_ln28/1 "/>
+<opset="trunc_ln65/1 "/>
 </bind>
 </comp>
 
@@ -2474,14 +2474,14 @@ ret_ln44              (ret           ) [ 00]
 </bind>
 </comp>
 
-<comp id="813" class="1004" name="trunc_ln27_fu_813">
+<comp id="813" class="1004" name="trunc_ln64_fu_813">
 <pin_list>
 <pin id="814" dir="0" index="0" bw="25" slack="0"/>
 <pin id="815" dir="1" index="1" bw="14" slack="0"/>
 </pin_list>
 <bind>
 <opcode="trunc(33) " fcode="trunc"/>
-<opset="trunc_ln27/1 "/>
+<opset="trunc_ln64/1 "/>
 </bind>
 </comp>
 
@@ -2510,14 +2510,14 @@ ret_ln44              (ret           ) [ 00]
 </bind>
 </comp>
 
-<comp id="833" class="1004" name="trunc_ln26_fu_833">
+<comp id="833" class="1004" name="trunc_ln63_fu_833">
 <pin_list>
 <pin id="834" dir="0" index="0" bw="25" slack="0"/>
 <pin id="835" dir="1" index="1" bw="15" slack="0"/>
 </pin_list>
 <bind>
 <opcode="trunc(33) " fcode="trunc"/>
-<opset="trunc_ln26/1 "/>
+<opset="trunc_ln63/1 "/>
 </bind>
 </comp>
 
@@ -2546,14 +2546,14 @@ ret_ln44              (ret           ) [ 00]
 </bind>
 </comp>
 
-<comp id="853" class="1004" name="trunc_ln25_fu_853">
+<comp id="853" class="1004" name="trunc_ln62_fu_853">
 <pin_list>
 <pin id="854" dir="0" index="0" bw="25" slack="0"/>
 <pin id="855" dir="1" index="1" bw="16" slack="0"/>
 </pin_list>
 <bind>
 <opcode="trunc(33) " fcode="trunc"/>
-<opset="trunc_ln25/1 "/>
+<opset="trunc_ln62/1 "/>
 </bind>
 </comp>
 
@@ -2582,14 +2582,14 @@ ret_ln44              (ret           ) [ 00]
 </bind>
 </comp>
 
-<comp id="873" class="1004" name="trunc_ln24_fu_873">
+<comp id="873" class="1004" name="trunc_ln61_fu_873">
 <pin_list>
 <pin id="874" dir="0" index="0" bw="25" slack="0"/>
 <pin id="875" dir="1" index="1" bw="17" slack="0"/>
 </pin_list>
 <bind>
 <opcode="trunc(33) " fcode="trunc"/>
-<opset="trunc_ln24/1 "/>
+<opset="trunc_ln61/1 "/>
 </bind>
 </comp>
 
@@ -2618,14 +2618,14 @@ ret_ln44              (ret           ) [ 00]
 </bind>
 </comp>
 
-<comp id="893" class="1004" name="trunc_ln23_fu_893">
+<comp id="893" class="1004" name="trunc_ln60_fu_893">
 <pin_list>
 <pin id="894" dir="0" index="0" bw="25" slack="0"/>
 <pin id="895" dir="1" index="1" bw="18" slack="0"/>
 </pin_list>
 <bind>
 <opcode="trunc(33) " fcode="trunc"/>
-<opset="trunc_ln23/1 "/>
+<opset="trunc_ln60/1 "/>
 </bind>
 </comp>
 
@@ -2654,14 +2654,14 @@ ret_ln44              (ret           ) [ 00]
 </bind>
 </comp>
 
-<comp id="913" class="1004" name="trunc_ln22_fu_913">
+<comp id="913" class="1004" name="trunc_ln59_fu_913">
 <pin_list>
 <pin id="914" dir="0" index="0" bw="25" slack="0"/>
 <pin id="915" dir="1" index="1" bw="19" slack="0"/>
 </pin_list>
 <bind>
 <opcode="trunc(33) " fcode="trunc"/>
-<opset="trunc_ln22/1 "/>
+<opset="trunc_ln59/1 "/>
 </bind>
 </comp>
 
@@ -2690,14 +2690,14 @@ ret_ln44              (ret           ) [ 00]
 </bind>
 </comp>
 
-<comp id="933" class="1004" name="trunc_ln21_fu_933">
+<comp id="933" class="1004" name="trunc_ln58_fu_933">
 <pin_list>
 <pin id="934" dir="0" index="0" bw="25" slack="0"/>
 <pin id="935" dir="1" index="1" bw="20" slack="0"/>
 </pin_list>
 <bind>
 <opcode="trunc(33) " fcode="trunc"/>
-<opset="trunc_ln21/1 "/>
+<opset="trunc_ln58/1 "/>
 </bind>
 </comp>
 
@@ -2726,14 +2726,14 @@ ret_ln44              (ret           ) [ 00]
 </bind>
 </comp>
 
-<comp id="953" class="1004" name="trunc_ln20_fu_953">
+<comp id="953" class="1004" name="trunc_ln57_fu_953">
 <pin_list>
 <pin id="954" dir="0" index="0" bw="25" slack="0"/>
 <pin id="955" dir="1" index="1" bw="21" slack="0"/>
 </pin_list>
 <bind>
 <opcode="trunc(33) " fcode="trunc"/>
-<opset="trunc_ln20/1 "/>
+<opset="trunc_ln57/1 "/>
 </bind>
 </comp>
 
@@ -2762,14 +2762,14 @@ ret_ln44              (ret           ) [ 00]
 </bind>
 </comp>
 
-<comp id="973" class="1004" name="trunc_ln19_fu_973">
+<comp id="973" class="1004" name="trunc_ln56_fu_973">
 <pin_list>
 <pin id="974" dir="0" index="0" bw="25" slack="0"/>
 <pin id="975" dir="1" index="1" bw="22" slack="0"/>
 </pin_list>
 <bind>
 <opcode="trunc(33) " fcode="trunc"/>
-<opset="trunc_ln19/1 "/>
+<opset="trunc_ln56/1 "/>
 </bind>
 </comp>
 
@@ -2798,14 +2798,14 @@ ret_ln44              (ret           ) [ 00]
 </bind>
 </comp>
 
-<comp id="993" class="1004" name="trunc_ln16_fu_993">
+<comp id="993" class="1004" name="trunc_ln53_fu_993">
 <pin_list>
 <pin id="994" dir="0" index="0" bw="25" slack="0"/>
 <pin id="995" dir="1" index="1" bw="23" slack="0"/>
 </pin_list>
 <bind>
 <opcode="trunc(33) " fcode="trunc"/>
-<opset="trunc_ln16/1 "/>
+<opset="trunc_ln53/1 "/>
 </bind>
 </comp>
 
@@ -3419,31 +3419,31 @@ ret_ln44              (ret           ) [ 00]
 	Port: fp32_normaliser : target_exponent | {1 }
   - Chain level:
 	State 1
-		br_ln12 : 1
-		br_ln17 : 1
-		br_ln18 : 1
-		br_ln19 : 1
-		br_ln20 : 1
-		br_ln21 : 1
-		br_ln22 : 1
-		br_ln23 : 1
-		br_ln24 : 1
-		br_ln25 : 1
-		br_ln26 : 1
-		br_ln27 : 1
-		br_ln28 : 1
-		br_ln29 : 1
-		br_ln30 : 1
-		br_ln31 : 1
-		br_ln32 : 1
-		br_ln33 : 1
-		br_ln34 : 1
-		br_ln35 : 1
-		br_ln36 : 1
-		br_ln37 : 1
-		br_ln38 : 1
-		br_ln39 : 1
-		br_ln40 : 1
+		br_ln49 : 1
+		br_ln54 : 1
+		br_ln55 : 1
+		br_ln56 : 1
+		br_ln57 : 1
+		br_ln58 : 1
+		br_ln59 : 1
+		br_ln60 : 1
+		br_ln61 : 1
+		br_ln62 : 1
+		br_ln63 : 1
+		br_ln64 : 1
+		br_ln65 : 1
+		br_ln66 : 1
+		br_ln67 : 1
+		br_ln68 : 1
+		br_ln69 : 1
+		br_ln70 : 1
+		br_ln71 : 1
+		br_ln72 : 1
+		br_ln73 : 1
+		br_ln74 : 1
+		br_ln75 : 1
+		br_ln76 : 1
+		br_ln77 : 1
 		norm24_21 : 1
 		norm24_20 : 1
 		norm24_19 : 1
@@ -3470,7 +3470,7 @@ ret_ln44              (ret           ) [ 00]
 		norm24_22 : 2
 		tmp_s : 3
 		agg_result_0 : 4
-		ret_ln44 : 5
+		ret_ln81 : 5
 
 
 ============================================================
@@ -3506,7 +3506,7 @@ ret_ln44              (ret           ) [ 00]
 |          |            exp_1_fu_986           |    0    |    15   |
 |          |            exp_fu_1009            |    0    |    15   |
 |----------|-----------------------------------|---------|---------|
-|   icmp   |          icmp_ln12_fu_348         |    0    |    32   |
+|   icmp   |          icmp_ln49_fu_348         |    0    |    32   |
 |----------|-----------------------------------|---------|---------|
 |          |  target_exponent_read_read_fu_208 |    0    |    0    |
 |   read   |     raw_sign_read_read_fu_214     |    0    |    0    |
@@ -3537,29 +3537,29 @@ ret_ln44              (ret           ) [ 00]
 |          |           tmp_22_fu_530           |    0    |    0    |
 |          |           tmp_23_fu_538           |    0    |    0    |
 |----------|-----------------------------------|---------|---------|
-|          |         trunc_ln40_fu_553         |    0    |    0    |
-|          |         trunc_ln39_fu_573         |    0    |    0    |
-|          |         trunc_ln38_fu_593         |    0    |    0    |
-|          |         trunc_ln37_fu_613         |    0    |    0    |
-|          |         trunc_ln36_fu_633         |    0    |    0    |
-|          |         trunc_ln35_fu_653         |    0    |    0    |
-|          |         trunc_ln34_fu_673         |    0    |    0    |
-|          |         trunc_ln33_fu_693         |    0    |    0    |
-|          |         trunc_ln32_fu_713         |    0    |    0    |
-|          |         trunc_ln31_fu_733         |    0    |    0    |
-|          |         trunc_ln30_fu_753         |    0    |    0    |
-|   trunc  |         trunc_ln29_fu_773         |    0    |    0    |
-|          |         trunc_ln28_fu_793         |    0    |    0    |
-|          |         trunc_ln27_fu_813         |    0    |    0    |
-|          |         trunc_ln26_fu_833         |    0    |    0    |
-|          |         trunc_ln25_fu_853         |    0    |    0    |
-|          |         trunc_ln24_fu_873         |    0    |    0    |
-|          |         trunc_ln23_fu_893         |    0    |    0    |
-|          |         trunc_ln22_fu_913         |    0    |    0    |
-|          |         trunc_ln21_fu_933         |    0    |    0    |
-|          |         trunc_ln20_fu_953         |    0    |    0    |
-|          |         trunc_ln19_fu_973         |    0    |    0    |
-|          |         trunc_ln16_fu_993         |    0    |    0    |
+|          |         trunc_ln77_fu_553         |    0    |    0    |
+|          |         trunc_ln76_fu_573         |    0    |    0    |
+|          |         trunc_ln75_fu_593         |    0    |    0    |
+|          |         trunc_ln74_fu_613         |    0    |    0    |
+|          |         trunc_ln73_fu_633         |    0    |    0    |
+|          |         trunc_ln72_fu_653         |    0    |    0    |
+|          |         trunc_ln71_fu_673         |    0    |    0    |
+|          |         trunc_ln70_fu_693         |    0    |    0    |
+|          |         trunc_ln69_fu_713         |    0    |    0    |
+|          |         trunc_ln68_fu_733         |    0    |    0    |
+|          |         trunc_ln67_fu_753         |    0    |    0    |
+|   trunc  |         trunc_ln66_fu_773         |    0    |    0    |
+|          |         trunc_ln65_fu_793         |    0    |    0    |
+|          |         trunc_ln64_fu_813         |    0    |    0    |
+|          |         trunc_ln63_fu_833         |    0    |    0    |
+|          |         trunc_ln62_fu_853         |    0    |    0    |
+|          |         trunc_ln61_fu_873         |    0    |    0    |
+|          |         trunc_ln60_fu_893         |    0    |    0    |
+|          |         trunc_ln59_fu_913         |    0    |    0    |
+|          |         trunc_ln58_fu_933         |    0    |    0    |
+|          |         trunc_ln57_fu_953         |    0    |    0    |
+|          |         trunc_ln56_fu_973         |    0    |    0    |
+|          |         trunc_ln53_fu_993         |    0    |    0    |
 |----------|-----------------------------------|---------|---------|
 |          |          norm24_21_fu_557         |    0    |    0    |
 |          |          norm24_20_fu_577         |    0    |    0    |

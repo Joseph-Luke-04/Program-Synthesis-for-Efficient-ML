@@ -5,6 +5,8 @@ from .canonicalisers import (
     _canonicalise_mxint8_normaliser_rounded, 
     _canonicalise_mxint8_raw_adder, 
     _canonicalise_mxint8_alignment, 
+    _canonicalise_fp32_aligner,
+    _canonicalise_fp32_raw_summer,
     _canonicalise_fp32_normaliser, 
     _canonicalise_fp32_sum
 )
@@ -432,6 +434,8 @@ def convert_cp_to_hls(c_input_path: str, save_output: bool = True) -> str:
     code = _wrap_return_top_concat(code)
 
     # 7) Canonicalisers (not all scripts actually output correct C++)
+    code = _canonicalise_fp32_aligner(code)
+    code = _canonicalise_fp32_raw_summer(code)
     code = _canonicalise_fp32_normaliser(code)
     code = _canonicalise_fp32_sum(code)
 

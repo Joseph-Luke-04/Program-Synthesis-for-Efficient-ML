@@ -7,6 +7,9 @@ HLS_BASE 	  	 ?= ../results/HLS
 HLS_SOLN   	 	 ?= 
 HLS_OUT_DIR		 := $(abspath $(HLS_BASE)/$(HLS_SOLN)/verilog_out)
 
+# Unique build dir per solution + top (prevents stale .vvp reuse)
+SIM_BUILD      ?= $(abspath sim_build/$(TOPLEVEL)_$(notdir $(HLS_SOLN)))
+
 # Require the user to pass the subfolder
 ifeq ($(strip $(HLS_SOLN)),)
   $(error Set HLS_SOLN=solution_... (subdir under $(HLS_BASE)))

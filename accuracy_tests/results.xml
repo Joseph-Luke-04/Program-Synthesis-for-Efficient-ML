@@ -1,8 +1,6 @@
 <testsuites name="results">
   <testsuite name="all" package="all">
-    <property name="random_seed" value="1763653231" />
-    <testcase name="mxint8_adder_accuracy_test" classname="tests.test_mxint8_adder" file="/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/accuracy_tests/tests/test_mxint8_adder.py" lineno="65" time="106.89910936355591" sim_time_ns="1000000.0" ratio_time="9354.614888315622">
-      <failure error_type="AssertionError" error_msg="" />
-    </testcase>
+    <property name="random_seed" value="1764165820" />
+    <testcase name="fp32_adder_accuracy_test" classname="tests.test_fp32_adder" file="/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/accuracy_tests/tests/test_fp32_adder.py" lineno="29" time="27.253836393356323" sim_time_ns="99200.0" ratio_time="3639.8545352749684" />
   </testsuite>
 </testsuites>

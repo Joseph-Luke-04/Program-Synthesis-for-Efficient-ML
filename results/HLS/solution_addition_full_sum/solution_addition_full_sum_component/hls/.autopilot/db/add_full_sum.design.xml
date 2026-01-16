@@ -11,8 +11,8 @@
 <Name>add_full_sum</Name>
 <PerformanceEstimates>
 <SummaryOfTimingAnalysis>
-<TargetClockPeriod>50.00</TargetClockPeriod>
-<ClockUncertainty>13.50</ClockUncertainty>
+<TargetClockPeriod>1000000.00</TargetClockPeriod>
+<ClockUncertainty>270000.00</ClockUncertainty>
 <EstimatedClockPeriod>31.366</EstimatedClockPeriod>
 </SummaryOfTimingAnalysis>
 <SummaryOfOverallLatency>

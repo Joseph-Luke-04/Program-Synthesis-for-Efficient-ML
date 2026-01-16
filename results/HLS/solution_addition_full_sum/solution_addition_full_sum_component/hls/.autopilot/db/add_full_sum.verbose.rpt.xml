@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'add_full_sum'" level="0">
-<item name = "Date">Wed Nov 19 20:53:06 2025
+<item name = "Date">Fri Jan 16 12:59:30 2026
 </item>
 <item name = "Version">2025.1 (Build 6135595 on May 21 2025)</item>
 <item name = "Project">solution_addition_full_sum_component</item>
@@ -15,7 +15,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="4">Clock, Target, Estimated, Uncertainty</keys>
-<column name="ap_clk">50.00 ns, 31.366 ns, 13.50 ns</column>
+<column name="ap_clk">1.00 ms, 31.366 ns, 0.27 ms</column>
 </table>
 </item>
 </section>

@@ -529,8 +529,8 @@
       </xilinx:taxonomies>
       <xilinx:displayName>Fp32_raw_summer</xilinx:displayName>
       <xilinx:definitionSource>HLS</xilinx:definitionSource>
-      <xilinx:coreRevision>2114355467</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2025-11-19T19:47:37Z</xilinx:coreCreationDateTime>
+      <xilinx:coreRevision>2114365114</xilinx:coreRevision>
+      <xilinx:coreCreationDateTime>2025-11-26T12:35:05Z</xilinx:coreCreationDateTime>
       <xilinx:sdxKernelAttributes>
         <xilinx:sdx_kernel>true</xilinx:sdx_kernel>
         <xilinx:sdx_kernel_type>hls</xilinx:sdx_kernel_type>

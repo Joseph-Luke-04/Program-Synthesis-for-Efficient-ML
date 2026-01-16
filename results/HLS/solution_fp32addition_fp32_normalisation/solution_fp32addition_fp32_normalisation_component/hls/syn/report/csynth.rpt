@@ -4,7 +4,7 @@
 == Synthesis Summary Report of 'fp32_normaliser'
 ================================================================
 + General Information: 
-    * Date:           Wed Nov 19 19:49:47 2025
+    * Date:           Wed Nov 26 12:36:56 2025
     * Version:        2025.1 (Build 6135595 on May 21 2025)
     * Project:        solution_fp32addition_fp32_normalisation_component
     * Solution:       hls (Vivado IP Flow Target)

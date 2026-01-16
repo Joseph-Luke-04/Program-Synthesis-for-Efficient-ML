@@ -1,4 +1,7 @@
 {
   "python.defaultInterpreterPath": "/home/joe/anaconda3/envs/prog-synth-verif/bin/python",
-  "python.terminal.activateEnvironment": true
+  "python.terminal.activateEnvironment": true,
+  "python.analysis.extraPaths": [
+    ".."
+  ]
 }

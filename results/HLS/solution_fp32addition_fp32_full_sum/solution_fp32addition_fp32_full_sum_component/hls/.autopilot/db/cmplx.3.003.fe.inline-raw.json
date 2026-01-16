@@ -1,21 +1,21 @@
 {
   "0": {
-    "basicblocks": 15,
+    "basicblocks": 11,
     "calls": "1",
     "control_depth": 0,
     "def_use_depth": 4,
     "file": "solution_fp32addition_fp32_full_sum.cpp",
-    "fileloc": 47,
-    "instructions": 84,
+    "fileloc": 84,
+    "instructions": 105,
     "loads": {
-      "L": 3
+      "L": 4
     },
     "memory_accesses": 0,
     "name": "fp32_sum",
     "stores": {
-      "L": 2
+      "L": 4
     },
-    "total_instructions": 309
+    "total_instructions": 330
   },
   "1": {
     "basicblocks": 52,
@@ -23,7 +23,7 @@
     "control_depth": 0,
     "def_use_depth": 2,
     "file": "solution_fp32addition_fp32_full_sum.cpp",
-    "fileloc": 11,
+    "fileloc": 48,
     "instructions": 225,
     "memory_accesses": 0,
     "name": "fp32_normaliser",

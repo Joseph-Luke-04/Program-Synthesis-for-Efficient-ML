@@ -162,7 +162,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>dc4aec31</spirit:value>
+            <spirit:value>f9a03530</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -178,7 +178,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>7150f960</spirit:value>
+            <spirit:value>910c90e4</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -194,7 +194,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>866234ac</spirit:value>
+            <spirit:value>4ea17666</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -210,7 +210,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>57402da1</spirit:value>
+            <spirit:value>38cacc12</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -449,7 +449,7 @@
       <spirit:file>
         <spirit:name>hdl/vhdl/add_full_sum.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_57402da1</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_38cacc12</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
@@ -500,7 +500,7 @@
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>clk_period</spirit:name>
-      <spirit:value spirit:id="PARAM_VALUE.clk_period" spirit:order="1">50</spirit:value>
+      <spirit:value spirit:id="PARAM_VALUE.clk_period" spirit:order="1">1000000</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>machine</spirit:name>
@@ -529,8 +529,8 @@
       </xilinx:taxonomies>
       <xilinx:displayName>Add_full_sum</xilinx:displayName>
       <xilinx:definitionSource>HLS</xilinx:definitionSource>
-      <xilinx:coreRevision>2114355533</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2025-11-19T20:53:16Z</xilinx:coreCreationDateTime>
+      <xilinx:coreRevision>2114438579</xilinx:coreRevision>
+      <xilinx:coreCreationDateTime>2026-01-16T12:59:41Z</xilinx:coreCreationDateTime>
       <xilinx:sdxKernelAttributes>
         <xilinx:sdx_kernel>true</xilinx:sdx_kernel>
         <xilinx:sdx_kernel_type>hls</xilinx:sdx_kernel_type>
@@ -539,9 +539,9 @@
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2025.1</xilinx:xilinxVersion>
       <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="e0ae3928"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="0647b989"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="aa912503"/>
       <xilinx:checksum xilinx:scope="ports" xilinx:value="039e3c45"/>
-      <xilinx:checksum xilinx:scope="parameters" xilinx:value="32a8d772"/>
+      <xilinx:checksum xilinx:scope="parameters" xilinx:value="3fef2512"/>
     </xilinx:packagingInfo>
   </spirit:vendorExtensions>
 </spirit:component>

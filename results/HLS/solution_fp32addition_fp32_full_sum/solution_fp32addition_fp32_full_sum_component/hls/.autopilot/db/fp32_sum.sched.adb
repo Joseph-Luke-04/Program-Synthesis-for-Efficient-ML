@@ -229,7 +229,7 @@
 			</item>
 		</ports>
 		<nodes class_id="8" tracking_level="0" version="0">
-			<count>44</count>
+			<count>46</count>
 			<item_version>0</item_version>
 			<item class_id="9" tracking_level="1" version="0" object_id="_7">
 				<Value>
@@ -239,7 +239,7 @@
 						<name>m2_read</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>47</lineNumber>
+						<lineNumber>84</lineNumber>
 						<contextFuncName>fp32_sum</contextFuncName>
 						<contextNormFuncName>fp32_sum</contextNormFuncName>
 						<inlineStackInfo>
@@ -255,7 +255,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_sum</second>
 										</first>
-										<second>47</second>
+										<second>84</second>
 									</item>
 								</second>
 							</item>
@@ -276,8 +276,8 @@
 				<oprand_edges>
 					<count>2</count>
 					<item_version>0</item_version>
-					<item>67</item>
-					<item>68</item>
+					<item>69</item>
+					<item>70</item>
 				</oprand_edges>
 				<opcode>read</opcode>
 				<m_Display>0</m_Display>
@@ -296,7 +296,7 @@
 						<name>e2_read</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>47</lineNumber>
+						<lineNumber>84</lineNumber>
 						<contextFuncName>fp32_sum</contextFuncName>
 						<contextNormFuncName>fp32_sum</contextNormFuncName>
 						<inlineStackInfo>
@@ -312,7 +312,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_sum</second>
 										</first>
-										<second>47</second>
+										<second>84</second>
 									</item>
 								</second>
 							</item>
@@ -333,8 +333,8 @@
 				<oprand_edges>
 					<count>2</count>
 					<item_version>0</item_version>
-					<item>70</item>
-					<item>71</item>
+					<item>72</item>
+					<item>73</item>
 				</oprand_edges>
 				<opcode>read</opcode>
 				<m_Display>0</m_Display>
@@ -353,7 +353,7 @@
 						<name>s2_read</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>47</lineNumber>
+						<lineNumber>84</lineNumber>
 						<contextFuncName>fp32_sum</contextFuncName>
 						<contextNormFuncName>fp32_sum</contextNormFuncName>
 						<inlineStackInfo>
@@ -369,7 +369,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_sum</second>
 										</first>
-										<second>47</second>
+										<second>84</second>
 									</item>
 								</second>
 							</item>
@@ -390,8 +390,8 @@
 				<oprand_edges>
 					<count>2</count>
 					<item_version>0</item_version>
-					<item>73</item>
-					<item>74</item>
+					<item>75</item>
+					<item>76</item>
 				</oprand_edges>
 				<opcode>read</opcode>
 				<m_Display>0</m_Display>
@@ -410,7 +410,7 @@
 						<name>m1_read</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>47</lineNumber>
+						<lineNumber>84</lineNumber>
 						<contextFuncName>fp32_sum</contextFuncName>
 						<contextNormFuncName>fp32_sum</contextNormFuncName>
 						<inlineStackInfo>
@@ -426,7 +426,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_sum</second>
 										</first>
-										<second>47</second>
+										<second>84</second>
 									</item>
 								</second>
 							</item>
@@ -447,8 +447,8 @@
 				<oprand_edges>
 					<count>2</count>
 					<item_version>0</item_version>
-					<item>75</item>
-					<item>76</item>
+					<item>77</item>
+					<item>78</item>
 				</oprand_edges>
 				<opcode>read</opcode>
 				<m_Display>0</m_Display>
@@ -467,7 +467,7 @@
 						<name>e1_read</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>47</lineNumber>
+						<lineNumber>84</lineNumber>
 						<contextFuncName>fp32_sum</contextFuncName>
 						<contextNormFuncName>fp32_sum</contextNormFuncName>
 						<inlineStackInfo>
@@ -483,7 +483,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_sum</second>
 										</first>
-										<second>47</second>
+										<second>84</second>
 									</item>
 								</second>
 							</item>
@@ -504,8 +504,8 @@
 				<oprand_edges>
 					<count>2</count>
 					<item_version>0</item_version>
-					<item>77</item>
-					<item>78</item>
+					<item>79</item>
+					<item>80</item>
 				</oprand_edges>
 				<opcode>read</opcode>
 				<m_Display>0</m_Display>
@@ -524,7 +524,7 @@
 						<name>s1_read</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>47</lineNumber>
+						<lineNumber>84</lineNumber>
 						<contextFuncName>fp32_sum</contextFuncName>
 						<contextNormFuncName>fp32_sum</contextNormFuncName>
 						<inlineStackInfo>
@@ -540,7 +540,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_sum</second>
 										</first>
-										<second>47</second>
+										<second>84</second>
 									</item>
 								</second>
 							</item>
@@ -561,8 +561,8 @@
 				<oprand_edges>
 					<count>2</count>
 					<item_version>0</item_version>
-					<item>79</item>
-					<item>80</item>
+					<item>81</item>
+					<item>82</item>
 				</oprand_edges>
 				<opcode>read</opcode>
 				<m_Display>0</m_Display>
@@ -578,10 +578,10 @@
 					<Obj>
 						<type>0</type>
 						<id>27</id>
-						<name>icmp_ln4</name>
+						<name>icmp_ln5</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>4</lineNumber>
+						<lineNumber>5</lineNumber>
 						<contextFuncName>fp32_aligner</contextFuncName>
 						<contextNormFuncName>fp32_aligner</contextNormFuncName>
 						<inlineStackInfo>
@@ -597,78 +597,14 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_aligner</second>
 										</first>
-										<second>4</second>
+										<second>5</second>
 									</item>
 									<item>
 										<first>
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_sum</second>
 										</first>
-										<second>50</second>
-									</item>
-								</second>
-							</item>
-						</inlineStackInfo>
-						<originalName></originalName>
-						<rtlName></rtlName>
-						<control></control>
-						<opType></opType>
-						<implIndex></implIndex>
-						<coreName></coreName>
-						<isStorage>0</isStorage>
-						<storageDepth>0</storageDepth>
-						<coreId>4294967295</coreId>
-						<rtlModuleName></rtlModuleName>
-					</Obj>
-					<bitwidth>1</bitwidth>
-				</Value>
-				<oprand_edges>
-					<count>2</count>
-					<item_version>0</item_version>
-					<item>81</item>
-					<item>82</item>
-				</oprand_edges>
-				<opcode>icmp</opcode>
-				<m_Display>0</m_Display>
-				<m_isOnCriticalPath>0</m_isOnCriticalPath>
-				<m_isLCDNode>0</m_isLCDNode>
-				<m_isStartOfPath>0</m_isStartOfPath>
-				<m_delay>1.91</m_delay>
-				<m_topoIndex>7</m_topoIndex>
-				<m_clusterGroupNumber>-1</m_clusterGroupNumber>
-			</item>
-			<item class_id_reference="9" object_id="_14">
-				<Value>
-					<Obj>
-						<type>0</type>
-						<id>28</id>
-						<name>xor_ln4</name>
-						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
-						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>4</lineNumber>
-						<contextFuncName>fp32_aligner</contextFuncName>
-						<contextNormFuncName>fp32_aligner</contextNormFuncName>
-						<inlineStackInfo>
-							<count>1</count>
-							<item_version>0</item_version>
-							<item>
-								<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</first>
-								<second>
-									<count>2</count>
-									<item_version>0</item_version>
-									<item>
-										<first>
-											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
-											<second>fp32_aligner</second>
-										</first>
-										<second>4</second>
-									</item>
-									<item>
-										<first>
-											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
-											<second>fp32_sum</second>
-										</first>
-										<second>50</second>
+										<second>87</second>
 									</item>
 								</second>
 							</item>
@@ -692,88 +628,24 @@
 					<item>83</item>
 					<item>85</item>
 				</oprand_edges>
-				<opcode>xor</opcode>
-				<m_Display>0</m_Display>
-				<m_isOnCriticalPath>0</m_isOnCriticalPath>
-				<m_isLCDNode>0</m_isLCDNode>
-				<m_isStartOfPath>0</m_isStartOfPath>
-				<m_delay>0.97</m_delay>
-				<m_topoIndex>8</m_topoIndex>
-				<m_clusterGroupNumber>-1</m_clusterGroupNumber>
-			</item>
-			<item class_id_reference="9" object_id="_15">
-				<Value>
-					<Obj>
-						<type>0</type>
-						<id>29</id>
-						<name>icmp_ln4_1</name>
-						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
-						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>4</lineNumber>
-						<contextFuncName>fp32_aligner</contextFuncName>
-						<contextNormFuncName>fp32_aligner</contextNormFuncName>
-						<inlineStackInfo>
-							<count>1</count>
-							<item_version>0</item_version>
-							<item>
-								<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</first>
-								<second>
-									<count>2</count>
-									<item_version>0</item_version>
-									<item>
-										<first>
-											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
-											<second>fp32_aligner</second>
-										</first>
-										<second>4</second>
-									</item>
-									<item>
-										<first>
-											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
-											<second>fp32_sum</second>
-										</first>
-										<second>50</second>
-									</item>
-								</second>
-							</item>
-						</inlineStackInfo>
-						<originalName></originalName>
-						<rtlName></rtlName>
-						<control></control>
-						<opType></opType>
-						<implIndex></implIndex>
-						<coreName></coreName>
-						<isStorage>0</isStorage>
-						<storageDepth>0</storageDepth>
-						<coreId>4294967295</coreId>
-						<rtlModuleName></rtlModuleName>
-					</Obj>
-					<bitwidth>1</bitwidth>
-				</Value>
-				<oprand_edges>
-					<count>2</count>
-					<item_version>0</item_version>
-					<item>86</item>
-					<item>88</item>
-				</oprand_edges>
 				<opcode>icmp</opcode>
 				<m_Display>0</m_Display>
 				<m_isOnCriticalPath>0</m_isOnCriticalPath>
 				<m_isLCDNode>0</m_isLCDNode>
 				<m_isStartOfPath>0</m_isStartOfPath>
 				<m_delay>1.91</m_delay>
-				<m_topoIndex>9</m_topoIndex>
+				<m_topoIndex>7</m_topoIndex>
 				<m_clusterGroupNumber>-1</m_clusterGroupNumber>
 			</item>
-			<item class_id_reference="9" object_id="_16">
+			<item class_id_reference="9" object_id="_14">
 				<Value>
 					<Obj>
 						<type>0</type>
-						<id>30</id>
-						<name>tmp</name>
+						<id>28</id>
+						<name>zext_ln5</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>4</lineNumber>
+						<lineNumber>5</lineNumber>
 						<contextFuncName>fp32_aligner</contextFuncName>
 						<contextNormFuncName>fp32_aligner</contextNormFuncName>
 						<inlineStackInfo>
@@ -789,14 +661,14 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_aligner</second>
 										</first>
-										<second>4</second>
+										<second>5</second>
 									</item>
 									<item>
 										<first>
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_sum</second>
 										</first>
-										<second>50</second>
+										<second>87</second>
 									</item>
 								</second>
 							</item>
@@ -815,30 +687,28 @@
 					<bitwidth>24</bitwidth>
 				</Value>
 				<oprand_edges>
-					<count>3</count>
+					<count>1</count>
 					<item_version>0</item_version>
-					<item>90</item>
-					<item>91</item>
-					<item>92</item>
+					<item>86</item>
 				</oprand_edges>
-				<opcode>bitconcatenate</opcode>
+				<opcode>zext</opcode>
 				<m_Display>0</m_Display>
 				<m_isOnCriticalPath>0</m_isOnCriticalPath>
 				<m_isLCDNode>0</m_isLCDNode>
 				<m_isStartOfPath>0</m_isStartOfPath>
 				<m_delay>0.00</m_delay>
-				<m_topoIndex>10</m_topoIndex>
+				<m_topoIndex>8</m_topoIndex>
 				<m_clusterGroupNumber>-1</m_clusterGroupNumber>
 			</item>
-			<item class_id_reference="9" object_id="_17">
+			<item class_id_reference="9" object_id="_15">
 				<Value>
 					<Obj>
 						<type>0</type>
-						<id>31</id>
-						<name>icmp_ln4_2</name>
+						<id>29</id>
+						<name>sm1</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>4</lineNumber>
+						<lineNumber>5</lineNumber>
 						<contextFuncName>fp32_aligner</contextFuncName>
 						<contextNormFuncName>fp32_aligner</contextNormFuncName>
 						<inlineStackInfo>
@@ -854,14 +724,144 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_aligner</second>
 										</first>
-										<second>4</second>
+										<second>5</second>
 									</item>
 									<item>
 										<first>
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_sum</second>
 										</first>
-										<second>50</second>
+										<second>87</second>
+									</item>
+								</second>
+							</item>
+						</inlineStackInfo>
+						<originalName>sm1</originalName>
+						<rtlName></rtlName>
+						<control></control>
+						<opType></opType>
+						<implIndex></implIndex>
+						<coreName></coreName>
+						<isStorage>0</isStorage>
+						<storageDepth>0</storageDepth>
+						<coreId>4294967295</coreId>
+						<rtlModuleName></rtlModuleName>
+					</Obj>
+					<bitwidth>24</bitwidth>
+				</Value>
+				<oprand_edges>
+					<count>3</count>
+					<item_version>0</item_version>
+					<item>88</item>
+					<item>90</item>
+					<item>91</item>
+				</oprand_edges>
+				<opcode>bitconcatenate</opcode>
+				<m_Display>0</m_Display>
+				<m_isOnCriticalPath>0</m_isOnCriticalPath>
+				<m_isLCDNode>0</m_isLCDNode>
+				<m_isStartOfPath>0</m_isStartOfPath>
+				<m_delay>0.00</m_delay>
+				<m_topoIndex>9</m_topoIndex>
+				<m_clusterGroupNumber>-1</m_clusterGroupNumber>
+			</item>
+			<item class_id_reference="9" object_id="_16">
+				<Value>
+					<Obj>
+						<type>0</type>
+						<id>30</id>
+						<name>sm1_1</name>
+						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
+						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
+						<lineNumber>5</lineNumber>
+						<contextFuncName>fp32_aligner</contextFuncName>
+						<contextNormFuncName>fp32_aligner</contextNormFuncName>
+						<inlineStackInfo>
+							<count>1</count>
+							<item_version>0</item_version>
+							<item>
+								<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</first>
+								<second>
+									<count>2</count>
+									<item_version>0</item_version>
+									<item>
+										<first>
+											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
+											<second>fp32_aligner</second>
+										</first>
+										<second>5</second>
+									</item>
+									<item>
+										<first>
+											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
+											<second>fp32_sum</second>
+										</first>
+										<second>87</second>
+									</item>
+								</second>
+							</item>
+						</inlineStackInfo>
+						<originalName>sm1</originalName>
+						<rtlName></rtlName>
+						<control></control>
+						<opType></opType>
+						<implIndex></implIndex>
+						<coreName></coreName>
+						<isStorage>0</isStorage>
+						<storageDepth>0</storageDepth>
+						<coreId>4294967295</coreId>
+						<rtlModuleName></rtlModuleName>
+					</Obj>
+					<bitwidth>24</bitwidth>
+				</Value>
+				<oprand_edges>
+					<count>3</count>
+					<item_version>0</item_version>
+					<item>92</item>
+					<item>93</item>
+					<item>94</item>
+				</oprand_edges>
+				<opcode>select</opcode>
+				<m_Display>0</m_Display>
+				<m_isOnCriticalPath>0</m_isOnCriticalPath>
+				<m_isLCDNode>0</m_isLCDNode>
+				<m_isStartOfPath>0</m_isStartOfPath>
+				<m_delay>0.69</m_delay>
+				<m_topoIndex>10</m_topoIndex>
+				<m_clusterGroupNumber>-1</m_clusterGroupNumber>
+			</item>
+			<item class_id_reference="9" object_id="_17">
+				<Value>
+					<Obj>
+						<type>0</type>
+						<id>31</id>
+						<name>icmp_ln6</name>
+						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
+						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
+						<lineNumber>6</lineNumber>
+						<contextFuncName>fp32_aligner</contextFuncName>
+						<contextNormFuncName>fp32_aligner</contextNormFuncName>
+						<inlineStackInfo>
+							<count>1</count>
+							<item_version>0</item_version>
+							<item>
+								<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</first>
+								<second>
+									<count>2</count>
+									<item_version>0</item_version>
+									<item>
+										<first>
+											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
+											<second>fp32_aligner</second>
+										</first>
+										<second>6</second>
+									</item>
+									<item>
+										<first>
+											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
+											<second>fp32_sum</second>
+										</first>
+										<second>87</second>
 									</item>
 								</second>
 							</item>
@@ -882,8 +882,8 @@
 				<oprand_edges>
 					<count>2</count>
 					<item_version>0</item_version>
-					<item>93</item>
-					<item>94</item>
+					<item>95</item>
+					<item>96</item>
 				</oprand_edges>
 				<opcode>icmp</opcode>
 				<m_Display>0</m_Display>
@@ -899,10 +899,10 @@
 					<Obj>
 						<type>0</type>
 						<id>32</id>
-						<name>tmp_1</name>
+						<name>zext_ln6</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>4</lineNumber>
+						<lineNumber>6</lineNumber>
 						<contextFuncName>fp32_aligner</contextFuncName>
 						<contextNormFuncName>fp32_aligner</contextNormFuncName>
 						<inlineStackInfo>
@@ -918,19 +918,82 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_aligner</second>
 										</first>
-										<second>4</second>
+										<second>6</second>
 									</item>
 									<item>
 										<first>
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_sum</second>
 										</first>
-										<second>50</second>
+										<second>87</second>
 									</item>
 								</second>
 							</item>
 						</inlineStackInfo>
 						<originalName></originalName>
+						<rtlName></rtlName>
+						<control></control>
+						<opType></opType>
+						<implIndex></implIndex>
+						<coreName></coreName>
+						<isStorage>0</isStorage>
+						<storageDepth>0</storageDepth>
+						<coreId>4294967295</coreId>
+						<rtlModuleName></rtlModuleName>
+					</Obj>
+					<bitwidth>24</bitwidth>
+				</Value>
+				<oprand_edges>
+					<count>1</count>
+					<item_version>0</item_version>
+					<item>97</item>
+				</oprand_edges>
+				<opcode>zext</opcode>
+				<m_Display>0</m_Display>
+				<m_isOnCriticalPath>0</m_isOnCriticalPath>
+				<m_isLCDNode>0</m_isLCDNode>
+				<m_isStartOfPath>0</m_isStartOfPath>
+				<m_delay>0.00</m_delay>
+				<m_topoIndex>12</m_topoIndex>
+				<m_clusterGroupNumber>-1</m_clusterGroupNumber>
+			</item>
+			<item class_id_reference="9" object_id="_19">
+				<Value>
+					<Obj>
+						<type>0</type>
+						<id>33</id>
+						<name>sm2</name>
+						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
+						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
+						<lineNumber>6</lineNumber>
+						<contextFuncName>fp32_aligner</contextFuncName>
+						<contextNormFuncName>fp32_aligner</contextNormFuncName>
+						<inlineStackInfo>
+							<count>1</count>
+							<item_version>0</item_version>
+							<item>
+								<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</first>
+								<second>
+									<count>2</count>
+									<item_version>0</item_version>
+									<item>
+										<first>
+											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
+											<second>fp32_aligner</second>
+										</first>
+										<second>6</second>
+									</item>
+									<item>
+										<first>
+											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
+											<second>fp32_sum</second>
+										</first>
+										<second>87</second>
+									</item>
+								</second>
+							</item>
+						</inlineStackInfo>
+						<originalName>sm2</originalName>
 						<rtlName></rtlName>
 						<control></control>
 						<opType></opType>
@@ -946,9 +1009,9 @@
 				<oprand_edges>
 					<count>3</count>
 					<item_version>0</item_version>
-					<item>95</item>
-					<item>96</item>
-					<item>97</item>
+					<item>98</item>
+					<item>99</item>
+					<item>100</item>
 				</oprand_edges>
 				<opcode>bitconcatenate</opcode>
 				<m_Display>0</m_Display>
@@ -956,70 +1019,6 @@
 				<m_isLCDNode>0</m_isLCDNode>
 				<m_isStartOfPath>0</m_isStartOfPath>
 				<m_delay>0.00</m_delay>
-				<m_topoIndex>12</m_topoIndex>
-				<m_clusterGroupNumber>-1</m_clusterGroupNumber>
-			</item>
-			<item class_id_reference="9" object_id="_19">
-				<Value>
-					<Obj>
-						<type>0</type>
-						<id>33</id>
-						<name>sub_ln4</name>
-						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
-						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>4</lineNumber>
-						<contextFuncName>fp32_aligner</contextFuncName>
-						<contextNormFuncName>fp32_aligner</contextNormFuncName>
-						<inlineStackInfo>
-							<count>1</count>
-							<item_version>0</item_version>
-							<item>
-								<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</first>
-								<second>
-									<count>2</count>
-									<item_version>0</item_version>
-									<item>
-										<first>
-											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
-											<second>fp32_aligner</second>
-										</first>
-										<second>4</second>
-									</item>
-									<item>
-										<first>
-											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
-											<second>fp32_sum</second>
-										</first>
-										<second>50</second>
-									</item>
-								</second>
-							</item>
-						</inlineStackInfo>
-						<originalName></originalName>
-						<rtlName></rtlName>
-						<control></control>
-						<opType></opType>
-						<implIndex></implIndex>
-						<coreName></coreName>
-						<isStorage>0</isStorage>
-						<storageDepth>0</storageDepth>
-						<coreId>4294967295</coreId>
-						<rtlModuleName></rtlModuleName>
-					</Obj>
-					<bitwidth>8</bitwidth>
-				</Value>
-				<oprand_edges>
-					<count>2</count>
-					<item_version>0</item_version>
-					<item>98</item>
-					<item>99</item>
-				</oprand_edges>
-				<opcode>sub</opcode>
-				<m_Display>0</m_Display>
-				<m_isOnCriticalPath>0</m_isOnCriticalPath>
-				<m_isLCDNode>0</m_isLCDNode>
-				<m_isStartOfPath>0</m_isStartOfPath>
-				<m_delay>1.91</m_delay>
 				<m_topoIndex>13</m_topoIndex>
 				<m_clusterGroupNumber>-1</m_clusterGroupNumber>
 			</item>
@@ -1028,10 +1027,10 @@
 					<Obj>
 						<type>0</type>
 						<id>34</id>
-						<name>sub_ln4cast</name>
+						<name>sm2_1</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>4</lineNumber>
+						<lineNumber>6</lineNumber>
 						<contextFuncName>fp32_aligner</contextFuncName>
 						<contextNormFuncName>fp32_aligner</contextNormFuncName>
 						<inlineStackInfo>
@@ -1047,19 +1046,19 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_aligner</second>
 										</first>
-										<second>4</second>
+										<second>6</second>
 									</item>
 									<item>
 										<first>
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_sum</second>
 										</first>
-										<second>50</second>
+										<second>87</second>
 									</item>
 								</second>
 							</item>
 						</inlineStackInfo>
-						<originalName></originalName>
+						<originalName>sm2</originalName>
 						<rtlName></rtlName>
 						<control></control>
 						<opType></opType>
@@ -1073,16 +1072,18 @@
 					<bitwidth>24</bitwidth>
 				</Value>
 				<oprand_edges>
-					<count>1</count>
+					<count>3</count>
 					<item_version>0</item_version>
-					<item>100</item>
+					<item>101</item>
+					<item>102</item>
+					<item>103</item>
 				</oprand_edges>
-				<opcode>zext</opcode>
+				<opcode>select</opcode>
 				<m_Display>0</m_Display>
 				<m_isOnCriticalPath>0</m_isOnCriticalPath>
 				<m_isLCDNode>0</m_isLCDNode>
 				<m_isStartOfPath>0</m_isStartOfPath>
-				<m_delay>0.00</m_delay>
+				<m_delay>0.69</m_delay>
 				<m_topoIndex>14</m_topoIndex>
 				<m_clusterGroupNumber>-1</m_clusterGroupNumber>
 			</item>
@@ -1091,10 +1092,10 @@
 					<Obj>
 						<type>0</type>
 						<id>35</id>
-						<name>lshr_ln4</name>
+						<name>icmp_ln9</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>4</lineNumber>
+						<lineNumber>9</lineNumber>
 						<contextFuncName>fp32_aligner</contextFuncName>
 						<contextNormFuncName>fp32_aligner</contextNormFuncName>
 						<inlineStackInfo>
@@ -1110,14 +1111,14 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_aligner</second>
 										</first>
-										<second>4</second>
+										<second>9</second>
 									</item>
 									<item>
 										<first>
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_sum</second>
 										</first>
-										<second>50</second>
+										<second>87</second>
 									</item>
 								</second>
 							</item>
@@ -1133,20 +1134,20 @@
 						<coreId>4294967295</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
-					<bitwidth>24</bitwidth>
+					<bitwidth>1</bitwidth>
 				</Value>
 				<oprand_edges>
 					<count>2</count>
 					<item_version>0</item_version>
-					<item>101</item>
-					<item>102</item>
+					<item>104</item>
+					<item>105</item>
 				</oprand_edges>
-				<opcode>lshr</opcode>
+				<opcode>icmp</opcode>
 				<m_Display>0</m_Display>
 				<m_isOnCriticalPath>0</m_isOnCriticalPath>
 				<m_isLCDNode>0</m_isLCDNode>
 				<m_isStartOfPath>0</m_isStartOfPath>
-				<m_delay>4.20</m_delay>
+				<m_delay>1.91</m_delay>
 				<m_topoIndex>15</m_topoIndex>
 				<m_clusterGroupNumber>-1</m_clusterGroupNumber>
 			</item>
@@ -1155,10 +1156,10 @@
 					<Obj>
 						<type>0</type>
 						<id>36</id>
-						<name>sub_ln4_1</name>
+						<name>xor_ln9</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>4</lineNumber>
+						<lineNumber>9</lineNumber>
 						<contextFuncName>fp32_aligner</contextFuncName>
 						<contextNormFuncName>fp32_aligner</contextNormFuncName>
 						<inlineStackInfo>
@@ -1174,19 +1175,148 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_aligner</second>
 										</first>
-										<second>4</second>
+										<second>9</second>
 									</item>
 									<item>
 										<first>
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_sum</second>
 										</first>
-										<second>50</second>
+										<second>87</second>
 									</item>
 								</second>
 							</item>
 						</inlineStackInfo>
 						<originalName></originalName>
+						<rtlName></rtlName>
+						<control></control>
+						<opType></opType>
+						<implIndex></implIndex>
+						<coreName></coreName>
+						<isStorage>0</isStorage>
+						<storageDepth>0</storageDepth>
+						<coreId>4294967295</coreId>
+						<rtlModuleName></rtlModuleName>
+					</Obj>
+					<bitwidth>1</bitwidth>
+				</Value>
+				<oprand_edges>
+					<count>2</count>
+					<item_version>0</item_version>
+					<item>106</item>
+					<item>107</item>
+				</oprand_edges>
+				<opcode>xor</opcode>
+				<m_Display>0</m_Display>
+				<m_isOnCriticalPath>0</m_isOnCriticalPath>
+				<m_isLCDNode>0</m_isLCDNode>
+				<m_isStartOfPath>0</m_isStartOfPath>
+				<m_delay>0.97</m_delay>
+				<m_topoIndex>16</m_topoIndex>
+				<m_clusterGroupNumber>-1</m_clusterGroupNumber>
+			</item>
+			<item class_id_reference="9" object_id="_23">
+				<Value>
+					<Obj>
+						<type>0</type>
+						<id>37</id>
+						<name>texp</name>
+						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
+						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
+						<lineNumber>9</lineNumber>
+						<contextFuncName>fp32_aligner</contextFuncName>
+						<contextNormFuncName>fp32_aligner</contextNormFuncName>
+						<inlineStackInfo>
+							<count>1</count>
+							<item_version>0</item_version>
+							<item>
+								<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</first>
+								<second>
+									<count>2</count>
+									<item_version>0</item_version>
+									<item>
+										<first>
+											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
+											<second>fp32_aligner</second>
+										</first>
+										<second>9</second>
+									</item>
+									<item>
+										<first>
+											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
+											<second>fp32_sum</second>
+										</first>
+										<second>87</second>
+									</item>
+								</second>
+							</item>
+						</inlineStackInfo>
+						<originalName>texp</originalName>
+						<rtlName></rtlName>
+						<control></control>
+						<opType></opType>
+						<implIndex></implIndex>
+						<coreName></coreName>
+						<isStorage>0</isStorage>
+						<storageDepth>0</storageDepth>
+						<coreId>4294967295</coreId>
+						<rtlModuleName></rtlModuleName>
+					</Obj>
+					<bitwidth>8</bitwidth>
+				</Value>
+				<oprand_edges>
+					<count>3</count>
+					<item_version>0</item_version>
+					<item>108</item>
+					<item>109</item>
+					<item>110</item>
+				</oprand_edges>
+				<opcode>select</opcode>
+				<m_Display>0</m_Display>
+				<m_isOnCriticalPath>0</m_isOnCriticalPath>
+				<m_isLCDNode>0</m_isLCDNode>
+				<m_isStartOfPath>0</m_isStartOfPath>
+				<m_delay>1.24</m_delay>
+				<m_topoIndex>17</m_topoIndex>
+				<m_clusterGroupNumber>-1</m_clusterGroupNumber>
+			</item>
+			<item class_id_reference="9" object_id="_24">
+				<Value>
+					<Obj>
+						<type>0</type>
+						<id>38</id>
+						<name>de</name>
+						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
+						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
+						<lineNumber>10</lineNumber>
+						<contextFuncName>fp32_aligner</contextFuncName>
+						<contextNormFuncName>fp32_aligner</contextNormFuncName>
+						<inlineStackInfo>
+							<count>1</count>
+							<item_version>0</item_version>
+							<item>
+								<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</first>
+								<second>
+									<count>2</count>
+									<item_version>0</item_version>
+									<item>
+										<first>
+											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
+											<second>fp32_aligner</second>
+										</first>
+										<second>10</second>
+									</item>
+									<item>
+										<first>
+											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
+											<second>fp32_sum</second>
+										</first>
+										<second>87</second>
+									</item>
+								</second>
+							</item>
+						</inlineStackInfo>
+						<originalName>de</originalName>
 						<rtlName></rtlName>
 						<control></control>
 						<opType></opType>
@@ -1202,8 +1332,8 @@
 				<oprand_edges>
 					<count>2</count>
 					<item_version>0</item_version>
-					<item>103</item>
-					<item>104</item>
+					<item>111</item>
+					<item>112</item>
 				</oprand_edges>
 				<opcode>sub</opcode>
 				<m_Display>0</m_Display>
@@ -1211,18 +1341,18 @@
 				<m_isLCDNode>0</m_isLCDNode>
 				<m_isStartOfPath>0</m_isStartOfPath>
 				<m_delay>1.91</m_delay>
-				<m_topoIndex>16</m_topoIndex>
+				<m_topoIndex>18</m_topoIndex>
 				<m_clusterGroupNumber>-1</m_clusterGroupNumber>
 			</item>
-			<item class_id_reference="9" object_id="_23">
+			<item class_id_reference="9" object_id="_25">
 				<Value>
 					<Obj>
 						<type>0</type>
-						<id>37</id>
-						<name>sub_ln4_1cast</name>
+						<id>39</id>
+						<name>de_1</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>4</lineNumber>
+						<lineNumber>10</lineNumber>
 						<contextFuncName>fp32_aligner</contextFuncName>
 						<contextNormFuncName>fp32_aligner</contextNormFuncName>
 						<inlineStackInfo>
@@ -1238,14 +1368,143 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_aligner</second>
 										</first>
-										<second>4</second>
+										<second>10</second>
 									</item>
 									<item>
 										<first>
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_sum</second>
 										</first>
-										<second>50</second>
+										<second>87</second>
+									</item>
+								</second>
+							</item>
+						</inlineStackInfo>
+						<originalName>de</originalName>
+						<rtlName></rtlName>
+						<control></control>
+						<opType></opType>
+						<implIndex></implIndex>
+						<coreName></coreName>
+						<isStorage>0</isStorage>
+						<storageDepth>0</storageDepth>
+						<coreId>4294967295</coreId>
+						<rtlModuleName></rtlModuleName>
+					</Obj>
+					<bitwidth>8</bitwidth>
+				</Value>
+				<oprand_edges>
+					<count>2</count>
+					<item_version>0</item_version>
+					<item>113</item>
+					<item>114</item>
+				</oprand_edges>
+				<opcode>sub</opcode>
+				<m_Display>0</m_Display>
+				<m_isOnCriticalPath>0</m_isOnCriticalPath>
+				<m_isLCDNode>0</m_isLCDNode>
+				<m_isStartOfPath>0</m_isStartOfPath>
+				<m_delay>1.91</m_delay>
+				<m_topoIndex>19</m_topoIndex>
+				<m_clusterGroupNumber>-1</m_clusterGroupNumber>
+			</item>
+			<item class_id_reference="9" object_id="_26">
+				<Value>
+					<Obj>
+						<type>0</type>
+						<id>40</id>
+						<name>de_2</name>
+						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
+						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
+						<lineNumber>10</lineNumber>
+						<contextFuncName>fp32_aligner</contextFuncName>
+						<contextNormFuncName>fp32_aligner</contextNormFuncName>
+						<inlineStackInfo>
+							<count>1</count>
+							<item_version>0</item_version>
+							<item>
+								<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</first>
+								<second>
+									<count>2</count>
+									<item_version>0</item_version>
+									<item>
+										<first>
+											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
+											<second>fp32_aligner</second>
+										</first>
+										<second>10</second>
+									</item>
+									<item>
+										<first>
+											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
+											<second>fp32_sum</second>
+										</first>
+										<second>87</second>
+									</item>
+								</second>
+							</item>
+						</inlineStackInfo>
+						<originalName>de</originalName>
+						<rtlName></rtlName>
+						<control></control>
+						<opType></opType>
+						<implIndex></implIndex>
+						<coreName></coreName>
+						<isStorage>0</isStorage>
+						<storageDepth>0</storageDepth>
+						<coreId>4294967295</coreId>
+						<rtlModuleName></rtlModuleName>
+					</Obj>
+					<bitwidth>8</bitwidth>
+				</Value>
+				<oprand_edges>
+					<count>3</count>
+					<item_version>0</item_version>
+					<item>115</item>
+					<item>116</item>
+					<item>117</item>
+				</oprand_edges>
+				<opcode>select</opcode>
+				<m_Display>0</m_Display>
+				<m_isOnCriticalPath>0</m_isOnCriticalPath>
+				<m_isLCDNode>0</m_isLCDNode>
+				<m_isStartOfPath>0</m_isStartOfPath>
+				<m_delay>1.24</m_delay>
+				<m_topoIndex>20</m_topoIndex>
+				<m_clusterGroupNumber>-1</m_clusterGroupNumber>
+			</item>
+			<item class_id_reference="9" object_id="_27">
+				<Value>
+					<Obj>
+						<type>0</type>
+						<id>41</id>
+						<name>de_2cast</name>
+						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
+						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
+						<lineNumber>12</lineNumber>
+						<contextFuncName>fp32_aligner</contextFuncName>
+						<contextNormFuncName>fp32_aligner</contextNormFuncName>
+						<inlineStackInfo>
+							<count>1</count>
+							<item_version>0</item_version>
+							<item>
+								<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</first>
+								<second>
+									<count>2</count>
+									<item_version>0</item_version>
+									<item>
+										<first>
+											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
+											<second>fp32_aligner</second>
+										</first>
+										<second>12</second>
+									</item>
+									<item>
+										<first>
+											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
+											<second>fp32_sum</second>
+										</first>
+										<second>87</second>
 									</item>
 								</second>
 							</item>
@@ -1266,7 +1525,7 @@
 				<oprand_edges>
 					<count>1</count>
 					<item_version>0</item_version>
-					<item>105</item>
+					<item>118</item>
 				</oprand_edges>
 				<opcode>zext</opcode>
 				<m_Display>0</m_Display>
@@ -1274,18 +1533,18 @@
 				<m_isLCDNode>0</m_isLCDNode>
 				<m_isStartOfPath>0</m_isStartOfPath>
 				<m_delay>0.00</m_delay>
-				<m_topoIndex>17</m_topoIndex>
+				<m_topoIndex>21</m_topoIndex>
 				<m_clusterGroupNumber>-1</m_clusterGroupNumber>
 			</item>
-			<item class_id_reference="9" object_id="_24">
+			<item class_id_reference="9" object_id="_28">
 				<Value>
 					<Obj>
 						<type>0</type>
-						<id>38</id>
-						<name>lshr_ln4_1</name>
+						<id>42</id>
+						<name>lshr_ln12</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>4</lineNumber>
+						<lineNumber>12</lineNumber>
 						<contextFuncName>fp32_aligner</contextFuncName>
 						<contextNormFuncName>fp32_aligner</contextNormFuncName>
 						<inlineStackInfo>
@@ -1301,14 +1560,205 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_aligner</second>
 										</first>
-										<second>4</second>
+										<second>12</second>
 									</item>
 									<item>
 										<first>
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_sum</second>
 										</first>
-										<second>50</second>
+										<second>87</second>
+									</item>
+								</second>
+							</item>
+						</inlineStackInfo>
+						<originalName>am2</originalName>
+						<rtlName></rtlName>
+						<control></control>
+						<opType></opType>
+						<implIndex></implIndex>
+						<coreName></coreName>
+						<isStorage>0</isStorage>
+						<storageDepth>0</storageDepth>
+						<coreId>4294967295</coreId>
+						<rtlModuleName></rtlModuleName>
+					</Obj>
+					<bitwidth>24</bitwidth>
+				</Value>
+				<oprand_edges>
+					<count>2</count>
+					<item_version>0</item_version>
+					<item>119</item>
+					<item>120</item>
+				</oprand_edges>
+				<opcode>lshr</opcode>
+				<m_Display>0</m_Display>
+				<m_isOnCriticalPath>0</m_isOnCriticalPath>
+				<m_isLCDNode>0</m_isLCDNode>
+				<m_isStartOfPath>0</m_isStartOfPath>
+				<m_delay>4.20</m_delay>
+				<m_topoIndex>22</m_topoIndex>
+				<m_clusterGroupNumber>-1</m_clusterGroupNumber>
+			</item>
+			<item class_id_reference="9" object_id="_29">
+				<Value>
+					<Obj>
+						<type>0</type>
+						<id>43</id>
+						<name>de_2cast10</name>
+						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
+						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
+						<lineNumber>11</lineNumber>
+						<contextFuncName>fp32_aligner</contextFuncName>
+						<contextNormFuncName>fp32_aligner</contextNormFuncName>
+						<inlineStackInfo>
+							<count>1</count>
+							<item_version>0</item_version>
+							<item>
+								<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</first>
+								<second>
+									<count>2</count>
+									<item_version>0</item_version>
+									<item>
+										<first>
+											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
+											<second>fp32_aligner</second>
+										</first>
+										<second>11</second>
+									</item>
+									<item>
+										<first>
+											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
+											<second>fp32_sum</second>
+										</first>
+										<second>87</second>
+									</item>
+								</second>
+							</item>
+						</inlineStackInfo>
+						<originalName></originalName>
+						<rtlName></rtlName>
+						<control></control>
+						<opType></opType>
+						<implIndex></implIndex>
+						<coreName></coreName>
+						<isStorage>0</isStorage>
+						<storageDepth>0</storageDepth>
+						<coreId>4294967295</coreId>
+						<rtlModuleName></rtlModuleName>
+					</Obj>
+					<bitwidth>24</bitwidth>
+				</Value>
+				<oprand_edges>
+					<count>1</count>
+					<item_version>0</item_version>
+					<item>121</item>
+				</oprand_edges>
+				<opcode>zext</opcode>
+				<m_Display>0</m_Display>
+				<m_isOnCriticalPath>0</m_isOnCriticalPath>
+				<m_isLCDNode>0</m_isLCDNode>
+				<m_isStartOfPath>0</m_isStartOfPath>
+				<m_delay>0.00</m_delay>
+				<m_topoIndex>23</m_topoIndex>
+				<m_clusterGroupNumber>-1</m_clusterGroupNumber>
+			</item>
+			<item class_id_reference="9" object_id="_30">
+				<Value>
+					<Obj>
+						<type>0</type>
+						<id>44</id>
+						<name>lshr_ln11</name>
+						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
+						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
+						<lineNumber>11</lineNumber>
+						<contextFuncName>fp32_aligner</contextFuncName>
+						<contextNormFuncName>fp32_aligner</contextNormFuncName>
+						<inlineStackInfo>
+							<count>1</count>
+							<item_version>0</item_version>
+							<item>
+								<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</first>
+								<second>
+									<count>2</count>
+									<item_version>0</item_version>
+									<item>
+										<first>
+											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
+											<second>fp32_aligner</second>
+										</first>
+										<second>11</second>
+									</item>
+									<item>
+										<first>
+											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
+											<second>fp32_sum</second>
+										</first>
+										<second>87</second>
+									</item>
+								</second>
+							</item>
+						</inlineStackInfo>
+						<originalName></originalName>
+						<rtlName></rtlName>
+						<control></control>
+						<opType></opType>
+						<implIndex></implIndex>
+						<coreName></coreName>
+						<isStorage>0</isStorage>
+						<storageDepth>0</storageDepth>
+						<coreId>4294967295</coreId>
+						<rtlModuleName></rtlModuleName>
+					</Obj>
+					<bitwidth>24</bitwidth>
+				</Value>
+				<oprand_edges>
+					<count>2</count>
+					<item_version>0</item_version>
+					<item>122</item>
+					<item>123</item>
+				</oprand_edges>
+				<opcode>lshr</opcode>
+				<m_Display>0</m_Display>
+				<m_isOnCriticalPath>0</m_isOnCriticalPath>
+				<m_isLCDNode>0</m_isLCDNode>
+				<m_isStartOfPath>0</m_isStartOfPath>
+				<m_delay>4.20</m_delay>
+				<m_topoIndex>24</m_topoIndex>
+				<m_clusterGroupNumber>-1</m_clusterGroupNumber>
+			</item>
+			<item class_id_reference="9" object_id="_31">
+				<Value>
+					<Obj>
+						<type>0</type>
+						<id>45</id>
+						<name>am1_1</name>
+						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
+						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
+						<lineNumber>11</lineNumber>
+						<contextFuncName>fp32_aligner</contextFuncName>
+						<contextNormFuncName>fp32_aligner</contextNormFuncName>
+						<inlineStackInfo>
+							<count>1</count>
+							<item_version>0</item_version>
+							<item>
+								<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</first>
+								<second>
+									<count>2</count>
+									<item_version>0</item_version>
+									<item>
+										<first>
+											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
+											<second>fp32_aligner</second>
+										</first>
+										<second>11</second>
+									</item>
+									<item>
+										<first>
+											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
+											<second>fp32_sum</second>
+										</first>
+										<second>87</second>
 									</item>
 								</second>
 							</item>
@@ -1327,140 +1777,11 @@
 					<bitwidth>24</bitwidth>
 				</Value>
 				<oprand_edges>
-					<count>2</count>
-					<item_version>0</item_version>
-					<item>106</item>
-					<item>107</item>
-				</oprand_edges>
-				<opcode>lshr</opcode>
-				<m_Display>0</m_Display>
-				<m_isOnCriticalPath>0</m_isOnCriticalPath>
-				<m_isLCDNode>0</m_isLCDNode>
-				<m_isStartOfPath>0</m_isStartOfPath>
-				<m_delay>4.20</m_delay>
-				<m_topoIndex>18</m_topoIndex>
-				<m_clusterGroupNumber>-1</m_clusterGroupNumber>
-			</item>
-			<item class_id_reference="9" object_id="_25">
-				<Value>
-					<Obj>
-						<type>0</type>
-						<id>39</id>
-						<name>tmp_2</name>
-						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
-						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>4</lineNumber>
-						<contextFuncName>fp32_aligner</contextFuncName>
-						<contextNormFuncName>fp32_aligner</contextNormFuncName>
-						<inlineStackInfo>
-							<count>1</count>
-							<item_version>0</item_version>
-							<item>
-								<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</first>
-								<second>
-									<count>2</count>
-									<item_version>0</item_version>
-									<item>
-										<first>
-											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
-											<second>fp32_aligner</second>
-										</first>
-										<second>4</second>
-									</item>
-									<item>
-										<first>
-											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
-											<second>fp32_sum</second>
-										</first>
-										<second>50</second>
-									</item>
-								</second>
-							</item>
-						</inlineStackInfo>
-						<originalName></originalName>
-						<rtlName></rtlName>
-						<control></control>
-						<opType></opType>
-						<implIndex></implIndex>
-						<coreName></coreName>
-						<isStorage>0</isStorage>
-						<storageDepth>0</storageDepth>
-						<coreId>4294967295</coreId>
-						<rtlModuleName></rtlModuleName>
-					</Obj>
-					<bitwidth>24</bitwidth>
-				</Value>
-				<oprand_edges>
 					<count>3</count>
 					<item_version>0</item_version>
-					<item>108</item>
-					<item>109</item>
-					<item>110</item>
-				</oprand_edges>
-				<opcode>bitconcatenate</opcode>
-				<m_Display>0</m_Display>
-				<m_isOnCriticalPath>0</m_isOnCriticalPath>
-				<m_isLCDNode>0</m_isLCDNode>
-				<m_isStartOfPath>0</m_isStartOfPath>
-				<m_delay>0.00</m_delay>
-				<m_topoIndex>19</m_topoIndex>
-				<m_clusterGroupNumber>-1</m_clusterGroupNumber>
-			</item>
-			<item class_id_reference="9" object_id="_26">
-				<Value>
-					<Obj>
-						<type>0</type>
-						<id>40</id>
-						<name>tmp_0_i87</name>
-						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
-						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>4</lineNumber>
-						<contextFuncName>fp32_aligner</contextFuncName>
-						<contextNormFuncName>fp32_aligner</contextNormFuncName>
-						<inlineStackInfo>
-							<count>1</count>
-							<item_version>0</item_version>
-							<item>
-								<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</first>
-								<second>
-									<count>2</count>
-									<item_version>0</item_version>
-									<item>
-										<first>
-											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
-											<second>fp32_aligner</second>
-										</first>
-										<second>4</second>
-									</item>
-									<item>
-										<first>
-											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
-											<second>fp32_sum</second>
-										</first>
-										<second>50</second>
-									</item>
-								</second>
-							</item>
-						</inlineStackInfo>
-						<originalName></originalName>
-						<rtlName></rtlName>
-						<control></control>
-						<opType></opType>
-						<implIndex></implIndex>
-						<coreName></coreName>
-						<isStorage>0</isStorage>
-						<storageDepth>0</storageDepth>
-						<coreId>4294967295</coreId>
-						<rtlModuleName></rtlModuleName>
-					</Obj>
-					<bitwidth>24</bitwidth>
-				</Value>
-				<oprand_edges>
-					<count>3</count>
-					<item_version>0</item_version>
-					<item>111</item>
-					<item>112</item>
-					<item>113</item>
+					<item>124</item>
+					<item>125</item>
+					<item>126</item>
 				</oprand_edges>
 				<opcode>select</opcode>
 				<m_Display>0</m_Display>
@@ -1468,18 +1789,18 @@
 				<m_isLCDNode>0</m_isLCDNode>
 				<m_isStartOfPath>0</m_isStartOfPath>
 				<m_delay>0.69</m_delay>
-				<m_topoIndex>20</m_topoIndex>
+				<m_topoIndex>25</m_topoIndex>
 				<m_clusterGroupNumber>-1</m_clusterGroupNumber>
 			</item>
-			<item class_id_reference="9" object_id="_27">
+			<item class_id_reference="9" object_id="_32">
 				<Value>
 					<Obj>
 						<type>0</type>
-						<id>41</id>
-						<name>am2</name>
+						<id>46</id>
+						<name>am2_2</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>4</lineNumber>
+						<lineNumber>11</lineNumber>
 						<contextFuncName>fp32_aligner</contextFuncName>
 						<contextNormFuncName>fp32_aligner</contextNormFuncName>
 						<inlineStackInfo>
@@ -1495,14 +1816,14 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_aligner</second>
 										</first>
-										<second>4</second>
+										<second>11</second>
 									</item>
 									<item>
 										<first>
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_sum</second>
 										</first>
-										<second>50</second>
+										<second>87</second>
 									</item>
 								</second>
 							</item>
@@ -1523,9 +1844,9 @@
 				<oprand_edges>
 					<count>3</count>
 					<item_version>0</item_version>
-					<item>114</item>
-					<item>115</item>
-					<item>116</item>
+					<item>127</item>
+					<item>128</item>
+					<item>129</item>
 				</oprand_edges>
 				<opcode>select</opcode>
 				<m_Display>0</m_Display>
@@ -1533,327 +1854,6 @@
 				<m_isLCDNode>0</m_isLCDNode>
 				<m_isStartOfPath>0</m_isStartOfPath>
 				<m_delay>0.69</m_delay>
-				<m_topoIndex>21</m_topoIndex>
-				<m_clusterGroupNumber>-1</m_clusterGroupNumber>
-			</item>
-			<item class_id_reference="9" object_id="_28">
-				<Value>
-					<Obj>
-						<type>0</type>
-						<id>42</id>
-						<name>exp</name>
-						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
-						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>4</lineNumber>
-						<contextFuncName>fp32_aligner</contextFuncName>
-						<contextNormFuncName>fp32_aligner</contextNormFuncName>
-						<inlineStackInfo>
-							<count>1</count>
-							<item_version>0</item_version>
-							<item>
-								<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</first>
-								<second>
-									<count>2</count>
-									<item_version>0</item_version>
-									<item>
-										<first>
-											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
-											<second>fp32_aligner</second>
-										</first>
-										<second>4</second>
-									</item>
-									<item>
-										<first>
-											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
-											<second>fp32_sum</second>
-										</first>
-										<second>50</second>
-									</item>
-								</second>
-							</item>
-						</inlineStackInfo>
-						<originalName>exp</originalName>
-						<rtlName></rtlName>
-						<control></control>
-						<opType></opType>
-						<implIndex></implIndex>
-						<coreName></coreName>
-						<isStorage>0</isStorage>
-						<storageDepth>0</storageDepth>
-						<coreId>4294967295</coreId>
-						<rtlModuleName></rtlModuleName>
-					</Obj>
-					<bitwidth>8</bitwidth>
-				</Value>
-				<oprand_edges>
-					<count>3</count>
-					<item_version>0</item_version>
-					<item>117</item>
-					<item>118</item>
-					<item>119</item>
-				</oprand_edges>
-				<opcode>select</opcode>
-				<m_Display>0</m_Display>
-				<m_isOnCriticalPath>0</m_isOnCriticalPath>
-				<m_isLCDNode>0</m_isLCDNode>
-				<m_isStartOfPath>0</m_isStartOfPath>
-				<m_delay>1.24</m_delay>
-				<m_topoIndex>22</m_topoIndex>
-				<m_clusterGroupNumber>-1</m_clusterGroupNumber>
-			</item>
-			<item class_id_reference="9" object_id="_29">
-				<Value>
-					<Obj>
-						<type>0</type>
-						<id>43</id>
-						<name>xor_ln8</name>
-						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
-						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>8</lineNumber>
-						<contextFuncName>fp32_raw_summer</contextFuncName>
-						<contextNormFuncName>fp32_raw_summer</contextNormFuncName>
-						<inlineStackInfo>
-							<count>1</count>
-							<item_version>0</item_version>
-							<item>
-								<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</first>
-								<second>
-									<count>2</count>
-									<item_version>0</item_version>
-									<item>
-										<first>
-											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
-											<second>fp32_raw_summer</second>
-										</first>
-										<second>8</second>
-									</item>
-									<item>
-										<first>
-											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
-											<second>fp32_sum</second>
-										</first>
-										<second>55</second>
-									</item>
-								</second>
-							</item>
-						</inlineStackInfo>
-						<originalName></originalName>
-						<rtlName></rtlName>
-						<control></control>
-						<opType></opType>
-						<implIndex></implIndex>
-						<coreName></coreName>
-						<isStorage>0</isStorage>
-						<storageDepth>0</storageDepth>
-						<coreId>4294967295</coreId>
-						<rtlModuleName></rtlModuleName>
-					</Obj>
-					<bitwidth>1</bitwidth>
-				</Value>
-				<oprand_edges>
-					<count>2</count>
-					<item_version>0</item_version>
-					<item>120</item>
-					<item>121</item>
-				</oprand_edges>
-				<opcode>xor</opcode>
-				<m_Display>0</m_Display>
-				<m_isOnCriticalPath>0</m_isOnCriticalPath>
-				<m_isLCDNode>0</m_isLCDNode>
-				<m_isStartOfPath>0</m_isStartOfPath>
-				<m_delay>0.97</m_delay>
-				<m_topoIndex>23</m_topoIndex>
-				<m_clusterGroupNumber>-1</m_clusterGroupNumber>
-			</item>
-			<item class_id_reference="9" object_id="_30">
-				<Value>
-					<Obj>
-						<type>0</type>
-						<id>44</id>
-						<name>icmp_ln8</name>
-						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
-						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>8</lineNumber>
-						<contextFuncName>fp32_raw_summer</contextFuncName>
-						<contextNormFuncName>fp32_raw_summer</contextNormFuncName>
-						<inlineStackInfo>
-							<count>1</count>
-							<item_version>0</item_version>
-							<item>
-								<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</first>
-								<second>
-									<count>2</count>
-									<item_version>0</item_version>
-									<item>
-										<first>
-											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
-											<second>fp32_raw_summer</second>
-										</first>
-										<second>8</second>
-									</item>
-									<item>
-										<first>
-											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
-											<second>fp32_sum</second>
-										</first>
-										<second>55</second>
-									</item>
-								</second>
-							</item>
-						</inlineStackInfo>
-						<originalName></originalName>
-						<rtlName></rtlName>
-						<control></control>
-						<opType></opType>
-						<implIndex></implIndex>
-						<coreName></coreName>
-						<isStorage>0</isStorage>
-						<storageDepth>0</storageDepth>
-						<coreId>4294967295</coreId>
-						<rtlModuleName></rtlModuleName>
-					</Obj>
-					<bitwidth>1</bitwidth>
-				</Value>
-				<oprand_edges>
-					<count>2</count>
-					<item_version>0</item_version>
-					<item>122</item>
-					<item>123</item>
-				</oprand_edges>
-				<opcode>icmp</opcode>
-				<m_Display>0</m_Display>
-				<m_isOnCriticalPath>0</m_isOnCriticalPath>
-				<m_isLCDNode>0</m_isLCDNode>
-				<m_isStartOfPath>0</m_isStartOfPath>
-				<m_delay>2.31</m_delay>
-				<m_topoIndex>24</m_topoIndex>
-				<m_clusterGroupNumber>-1</m_clusterGroupNumber>
-			</item>
-			<item class_id_reference="9" object_id="_31">
-				<Value>
-					<Obj>
-						<type>0</type>
-						<id>45</id>
-						<name>and_ln8</name>
-						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
-						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>8</lineNumber>
-						<contextFuncName>fp32_raw_summer</contextFuncName>
-						<contextNormFuncName>fp32_raw_summer</contextNormFuncName>
-						<inlineStackInfo>
-							<count>1</count>
-							<item_version>0</item_version>
-							<item>
-								<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</first>
-								<second>
-									<count>2</count>
-									<item_version>0</item_version>
-									<item>
-										<first>
-											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
-											<second>fp32_raw_summer</second>
-										</first>
-										<second>8</second>
-									</item>
-									<item>
-										<first>
-											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
-											<second>fp32_sum</second>
-										</first>
-										<second>55</second>
-									</item>
-								</second>
-							</item>
-						</inlineStackInfo>
-						<originalName></originalName>
-						<rtlName></rtlName>
-						<control></control>
-						<opType></opType>
-						<implIndex></implIndex>
-						<coreName></coreName>
-						<isStorage>0</isStorage>
-						<storageDepth>0</storageDepth>
-						<coreId>4294967295</coreId>
-						<rtlModuleName></rtlModuleName>
-					</Obj>
-					<bitwidth>1</bitwidth>
-				</Value>
-				<oprand_edges>
-					<count>2</count>
-					<item_version>0</item_version>
-					<item>124</item>
-					<item>125</item>
-				</oprand_edges>
-				<opcode>and</opcode>
-				<m_Display>0</m_Display>
-				<m_isOnCriticalPath>0</m_isOnCriticalPath>
-				<m_isLCDNode>0</m_isLCDNode>
-				<m_isStartOfPath>0</m_isStartOfPath>
-				<m_delay>0.00</m_delay>
-				<m_topoIndex>25</m_topoIndex>
-				<m_clusterGroupNumber>1</m_clusterGroupNumber>
-			</item>
-			<item class_id_reference="9" object_id="_32">
-				<Value>
-					<Obj>
-						<type>0</type>
-						<id>46</id>
-						<name>xor_ln8_1</name>
-						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
-						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>8</lineNumber>
-						<contextFuncName>fp32_raw_summer</contextFuncName>
-						<contextNormFuncName>fp32_raw_summer</contextNormFuncName>
-						<inlineStackInfo>
-							<count>1</count>
-							<item_version>0</item_version>
-							<item>
-								<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</first>
-								<second>
-									<count>2</count>
-									<item_version>0</item_version>
-									<item>
-										<first>
-											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
-											<second>fp32_raw_summer</second>
-										</first>
-										<second>8</second>
-									</item>
-									<item>
-										<first>
-											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
-											<second>fp32_sum</second>
-										</first>
-										<second>55</second>
-									</item>
-								</second>
-							</item>
-						</inlineStackInfo>
-						<originalName></originalName>
-						<rtlName></rtlName>
-						<control></control>
-						<opType></opType>
-						<implIndex></implIndex>
-						<coreName></coreName>
-						<isStorage>0</isStorage>
-						<storageDepth>0</storageDepth>
-						<coreId>4294967295</coreId>
-						<rtlModuleName></rtlModuleName>
-					</Obj>
-					<bitwidth>1</bitwidth>
-				</Value>
-				<oprand_edges>
-					<count>2</count>
-					<item_version>0</item_version>
-					<item>126</item>
-					<item>127</item>
-				</oprand_edges>
-				<opcode>xor</opcode>
-				<m_Display>0</m_Display>
-				<m_isOnCriticalPath>0</m_isOnCriticalPath>
-				<m_isLCDNode>0</m_isLCDNode>
-				<m_isStartOfPath>0</m_isStartOfPath>
-				<m_delay>0.97</m_delay>
 				<m_topoIndex>26</m_topoIndex>
 				<m_clusterGroupNumber>-1</m_clusterGroupNumber>
 			</item>
@@ -1862,10 +1862,10 @@
 					<Obj>
 						<type>0</type>
 						<id>47</id>
-						<name>or_ln8</name>
+						<name>xor_ln28</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>8</lineNumber>
+						<lineNumber>28</lineNumber>
 						<contextFuncName>fp32_raw_summer</contextFuncName>
 						<contextNormFuncName>fp32_raw_summer</contextNormFuncName>
 						<inlineStackInfo>
@@ -1881,78 +1881,14 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_raw_summer</second>
 										</first>
-										<second>8</second>
+										<second>28</second>
 									</item>
 									<item>
 										<first>
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_sum</second>
 										</first>
-										<second>55</second>
-									</item>
-								</second>
-							</item>
-						</inlineStackInfo>
-						<originalName></originalName>
-						<rtlName></rtlName>
-						<control></control>
-						<opType></opType>
-						<implIndex></implIndex>
-						<coreName></coreName>
-						<isStorage>0</isStorage>
-						<storageDepth>0</storageDepth>
-						<coreId>4294967295</coreId>
-						<rtlModuleName></rtlModuleName>
-					</Obj>
-					<bitwidth>1</bitwidth>
-				</Value>
-				<oprand_edges>
-					<count>2</count>
-					<item_version>0</item_version>
-					<item>128</item>
-					<item>129</item>
-				</oprand_edges>
-				<opcode>or</opcode>
-				<m_Display>0</m_Display>
-				<m_isOnCriticalPath>0</m_isOnCriticalPath>
-				<m_isLCDNode>0</m_isLCDNode>
-				<m_isStartOfPath>0</m_isStartOfPath>
-				<m_delay>0.00</m_delay>
-				<m_topoIndex>27</m_topoIndex>
-				<m_clusterGroupNumber>2</m_clusterGroupNumber>
-			</item>
-			<item class_id_reference="9" object_id="_34">
-				<Value>
-					<Obj>
-						<type>0</type>
-						<id>48</id>
-						<name>xor_ln8_2</name>
-						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
-						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>8</lineNumber>
-						<contextFuncName>fp32_raw_summer</contextFuncName>
-						<contextNormFuncName>fp32_raw_summer</contextNormFuncName>
-						<inlineStackInfo>
-							<count>1</count>
-							<item_version>0</item_version>
-							<item>
-								<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</first>
-								<second>
-									<count>2</count>
-									<item_version>0</item_version>
-									<item>
-										<first>
-											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
-											<second>fp32_raw_summer</second>
-										</first>
-										<second>8</second>
-									</item>
-									<item>
-										<first>
-											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
-											<second>fp32_sum</second>
-										</first>
-										<second>55</second>
+										<second>92</second>
 									</item>
 								</second>
 							</item>
@@ -1981,19 +1917,19 @@
 				<m_isOnCriticalPath>0</m_isOnCriticalPath>
 				<m_isLCDNode>0</m_isLCDNode>
 				<m_isStartOfPath>0</m_isStartOfPath>
-				<m_delay>0.00</m_delay>
-				<m_topoIndex>28</m_topoIndex>
-				<m_clusterGroupNumber>1</m_clusterGroupNumber>
+				<m_delay>0.97</m_delay>
+				<m_topoIndex>27</m_topoIndex>
+				<m_clusterGroupNumber>-1</m_clusterGroupNumber>
 			</item>
-			<item class_id_reference="9" object_id="_35">
+			<item class_id_reference="9" object_id="_34">
 				<Value>
 					<Obj>
 						<type>0</type>
-						<id>49</id>
-						<name>and_ln8_1</name>
+						<id>48</id>
+						<name>icmp_ln32</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>8</lineNumber>
+						<lineNumber>32</lineNumber>
 						<contextFuncName>fp32_raw_summer</contextFuncName>
 						<contextNormFuncName>fp32_raw_summer</contextNormFuncName>
 						<inlineStackInfo>
@@ -2009,14 +1945,14 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_raw_summer</second>
 										</first>
-										<second>8</second>
+										<second>32</second>
 									</item>
 									<item>
 										<first>
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_sum</second>
 										</first>
-										<second>55</second>
+										<second>92</second>
 									</item>
 								</second>
 							</item>
@@ -2040,24 +1976,24 @@
 					<item>132</item>
 					<item>133</item>
 				</oprand_edges>
-				<opcode>and</opcode>
+				<opcode>icmp</opcode>
 				<m_Display>0</m_Display>
 				<m_isOnCriticalPath>0</m_isOnCriticalPath>
 				<m_isLCDNode>0</m_isLCDNode>
 				<m_isStartOfPath>0</m_isStartOfPath>
-				<m_delay>0.97</m_delay>
-				<m_topoIndex>29</m_topoIndex>
-				<m_clusterGroupNumber>1</m_clusterGroupNumber>
+				<m_delay>2.31</m_delay>
+				<m_topoIndex>28</m_topoIndex>
+				<m_clusterGroupNumber>-1</m_clusterGroupNumber>
 			</item>
-			<item class_id_reference="9" object_id="_36">
+			<item class_id_reference="9" object_id="_35">
 				<Value>
 					<Obj>
 						<type>0</type>
-						<id>50</id>
-						<name>icmp_ln8_1</name>
+						<id>49</id>
+						<name>zext_ln29</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>8</lineNumber>
+						<lineNumber>29</lineNumber>
 						<contextFuncName>fp32_raw_summer</contextFuncName>
 						<contextNormFuncName>fp32_raw_summer</contextNormFuncName>
 						<inlineStackInfo>
@@ -2073,14 +2009,14 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_raw_summer</second>
 										</first>
-										<second>8</second>
+										<second>29</second>
 									</item>
 									<item>
 										<first>
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_sum</second>
 										</first>
-										<second>55</second>
+										<second>92</second>
 									</item>
 								</second>
 							</item>
@@ -2096,20 +2032,82 @@
 						<coreId>4294967295</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
-					<bitwidth>1</bitwidth>
+					<bitwidth>25</bitwidth>
 				</Value>
 				<oprand_edges>
-					<count>2</count>
+					<count>1</count>
 					<item_version>0</item_version>
 					<item>134</item>
-					<item>135</item>
 				</oprand_edges>
-				<opcode>icmp</opcode>
+				<opcode>zext</opcode>
 				<m_Display>0</m_Display>
 				<m_isOnCriticalPath>0</m_isOnCriticalPath>
 				<m_isLCDNode>0</m_isLCDNode>
 				<m_isStartOfPath>0</m_isStartOfPath>
-				<m_delay>2.31</m_delay>
+				<m_delay>0.00</m_delay>
+				<m_topoIndex>29</m_topoIndex>
+				<m_clusterGroupNumber>-1</m_clusterGroupNumber>
+			</item>
+			<item class_id_reference="9" object_id="_36">
+				<Value>
+					<Obj>
+						<type>0</type>
+						<id>50</id>
+						<name>zext_ln29_1</name>
+						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
+						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
+						<lineNumber>29</lineNumber>
+						<contextFuncName>fp32_raw_summer</contextFuncName>
+						<contextNormFuncName>fp32_raw_summer</contextNormFuncName>
+						<inlineStackInfo>
+							<count>1</count>
+							<item_version>0</item_version>
+							<item>
+								<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</first>
+								<second>
+									<count>2</count>
+									<item_version>0</item_version>
+									<item>
+										<first>
+											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
+											<second>fp32_raw_summer</second>
+										</first>
+										<second>29</second>
+									</item>
+									<item>
+										<first>
+											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
+											<second>fp32_sum</second>
+										</first>
+										<second>92</second>
+									</item>
+								</second>
+							</item>
+						</inlineStackInfo>
+						<originalName></originalName>
+						<rtlName></rtlName>
+						<control></control>
+						<opType></opType>
+						<implIndex></implIndex>
+						<coreName></coreName>
+						<isStorage>0</isStorage>
+						<storageDepth>0</storageDepth>
+						<coreId>4294967295</coreId>
+						<rtlModuleName></rtlModuleName>
+					</Obj>
+					<bitwidth>25</bitwidth>
+				</Value>
+				<oprand_edges>
+					<count>1</count>
+					<item_version>0</item_version>
+					<item>135</item>
+				</oprand_edges>
+				<opcode>zext</opcode>
+				<m_Display>0</m_Display>
+				<m_isOnCriticalPath>0</m_isOnCriticalPath>
+				<m_isLCDNode>0</m_isLCDNode>
+				<m_isStartOfPath>0</m_isStartOfPath>
+				<m_delay>0.00</m_delay>
 				<m_topoIndex>30</m_topoIndex>
 				<m_clusterGroupNumber>-1</m_clusterGroupNumber>
 			</item>
@@ -2118,10 +2116,10 @@
 					<Obj>
 						<type>0</type>
 						<id>51</id>
-						<name>xor_ln8_3</name>
+						<name>sum25</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>8</lineNumber>
+						<lineNumber>29</lineNumber>
 						<contextFuncName>fp32_raw_summer</contextFuncName>
 						<contextNormFuncName>fp32_raw_summer</contextNormFuncName>
 						<inlineStackInfo>
@@ -2137,14 +2135,78 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_raw_summer</second>
 										</first>
-										<second>8</second>
+										<second>29</second>
 									</item>
 									<item>
 										<first>
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_sum</second>
 										</first>
-										<second>55</second>
+										<second>92</second>
+									</item>
+								</second>
+							</item>
+						</inlineStackInfo>
+						<originalName>sum25</originalName>
+						<rtlName></rtlName>
+						<control></control>
+						<opType></opType>
+						<implIndex></implIndex>
+						<coreName></coreName>
+						<isStorage>0</isStorage>
+						<storageDepth>0</storageDepth>
+						<coreId>4294967295</coreId>
+						<rtlModuleName></rtlModuleName>
+					</Obj>
+					<bitwidth>25</bitwidth>
+				</Value>
+				<oprand_edges>
+					<count>2</count>
+					<item_version>0</item_version>
+					<item>136</item>
+					<item>137</item>
+				</oprand_edges>
+				<opcode>add</opcode>
+				<m_Display>0</m_Display>
+				<m_isOnCriticalPath>0</m_isOnCriticalPath>
+				<m_isLCDNode>0</m_isLCDNode>
+				<m_isStartOfPath>0</m_isStartOfPath>
+				<m_delay>2.31</m_delay>
+				<m_topoIndex>31</m_topoIndex>
+				<m_clusterGroupNumber>-1</m_clusterGroupNumber>
+			</item>
+			<item class_id_reference="9" object_id="_38">
+				<Value>
+					<Obj>
+						<type>0</type>
+						<id>52</id>
+						<name>icmp_ln35</name>
+						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
+						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
+						<lineNumber>35</lineNumber>
+						<contextFuncName>fp32_raw_summer</contextFuncName>
+						<contextNormFuncName>fp32_raw_summer</contextNormFuncName>
+						<inlineStackInfo>
+							<count>1</count>
+							<item_version>0</item_version>
+							<item>
+								<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</first>
+								<second>
+									<count>2</count>
+									<item_version>0</item_version>
+									<item>
+										<first>
+											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
+											<second>fp32_raw_summer</second>
+										</first>
+										<second>35</second>
+									</item>
+									<item>
+										<first>
+											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
+											<second>fp32_sum</second>
+										</first>
+										<second>92</second>
 									</item>
 								</second>
 							</item>
@@ -2165,92 +2227,27 @@
 				<oprand_edges>
 					<count>2</count>
 					<item_version>0</item_version>
-					<item>136</item>
-					<item>137</item>
-				</oprand_edges>
-				<opcode>xor</opcode>
-				<m_Display>0</m_Display>
-				<m_isOnCriticalPath>0</m_isOnCriticalPath>
-				<m_isLCDNode>0</m_isLCDNode>
-				<m_isStartOfPath>0</m_isStartOfPath>
-				<m_delay>0.00</m_delay>
-				<m_topoIndex>31</m_topoIndex>
-				<m_clusterGroupNumber>2</m_clusterGroupNumber>
-			</item>
-			<item class_id_reference="9" object_id="_38">
-				<Value>
-					<Obj>
-						<type>0</type>
-						<id>52</id>
-						<name>select_ln8</name>
-						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
-						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>8</lineNumber>
-						<contextFuncName>fp32_raw_summer</contextFuncName>
-						<contextNormFuncName>fp32_raw_summer</contextNormFuncName>
-						<inlineStackInfo>
-							<count>1</count>
-							<item_version>0</item_version>
-							<item>
-								<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</first>
-								<second>
-									<count>2</count>
-									<item_version>0</item_version>
-									<item>
-										<first>
-											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
-											<second>fp32_raw_summer</second>
-										</first>
-										<second>8</second>
-									</item>
-									<item>
-										<first>
-											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
-											<second>fp32_sum</second>
-										</first>
-										<second>55</second>
-									</item>
-								</second>
-							</item>
-						</inlineStackInfo>
-						<originalName></originalName>
-						<rtlName></rtlName>
-						<control></control>
-						<opType></opType>
-						<implIndex></implIndex>
-						<coreName></coreName>
-						<isStorage>0</isStorage>
-						<storageDepth>0</storageDepth>
-						<coreId>4294967295</coreId>
-						<rtlModuleName></rtlModuleName>
-					</Obj>
-					<bitwidth>1</bitwidth>
-				</Value>
-				<oprand_edges>
-					<count>3</count>
-					<item_version>0</item_version>
 					<item>138</item>
 					<item>139</item>
-					<item>140</item>
 				</oprand_edges>
-				<opcode>select</opcode>
+				<opcode>icmp</opcode>
 				<m_Display>0</m_Display>
 				<m_isOnCriticalPath>0</m_isOnCriticalPath>
 				<m_isLCDNode>0</m_isLCDNode>
 				<m_isStartOfPath>0</m_isStartOfPath>
-				<m_delay>0.00</m_delay>
+				<m_delay>2.31</m_delay>
 				<m_topoIndex>32</m_topoIndex>
-				<m_clusterGroupNumber>2</m_clusterGroupNumber>
+				<m_clusterGroupNumber>-1</m_clusterGroupNumber>
 			</item>
 			<item class_id_reference="9" object_id="_39">
 				<Value>
 					<Obj>
 						<type>0</type>
 						<id>53</id>
-						<name>raw_s</name>
+						<name>sum25_1</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>8</lineNumber>
+						<lineNumber>36</lineNumber>
 						<contextFuncName>fp32_raw_summer</contextFuncName>
 						<contextNormFuncName>fp32_raw_summer</contextNormFuncName>
 						<inlineStackInfo>
@@ -2266,84 +2263,19 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_raw_summer</second>
 										</first>
-										<second>8</second>
+										<second>36</second>
 									</item>
 									<item>
 										<first>
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_sum</second>
 										</first>
-										<second>55</second>
+										<second>92</second>
 									</item>
 								</second>
 							</item>
 						</inlineStackInfo>
-						<originalName>raw_s</originalName>
-						<rtlName></rtlName>
-						<control></control>
-						<opType></opType>
-						<implIndex></implIndex>
-						<coreName></coreName>
-						<isStorage>0</isStorage>
-						<storageDepth>0</storageDepth>
-						<coreId>4294967295</coreId>
-						<rtlModuleName></rtlModuleName>
-					</Obj>
-					<bitwidth>1</bitwidth>
-				</Value>
-				<oprand_edges>
-					<count>3</count>
-					<item_version>0</item_version>
-					<item>141</item>
-					<item>142</item>
-					<item>143</item>
-				</oprand_edges>
-				<opcode>select</opcode>
-				<m_Display>0</m_Display>
-				<m_isOnCriticalPath>0</m_isOnCriticalPath>
-				<m_isLCDNode>0</m_isLCDNode>
-				<m_isStartOfPath>0</m_isStartOfPath>
-				<m_delay>0.99</m_delay>
-				<m_topoIndex>33</m_topoIndex>
-				<m_clusterGroupNumber>2</m_clusterGroupNumber>
-			</item>
-			<item class_id_reference="9" object_id="_40">
-				<Value>
-					<Obj>
-						<type>0</type>
-						<id>54</id>
-						<name>zext_ln8</name>
-						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
-						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>8</lineNumber>
-						<contextFuncName>fp32_raw_summer</contextFuncName>
-						<contextNormFuncName>fp32_raw_summer</contextNormFuncName>
-						<inlineStackInfo>
-							<count>1</count>
-							<item_version>0</item_version>
-							<item>
-								<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</first>
-								<second>
-									<count>2</count>
-									<item_version>0</item_version>
-									<item>
-										<first>
-											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
-											<second>fp32_raw_summer</second>
-										</first>
-										<second>8</second>
-									</item>
-									<item>
-										<first>
-											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
-											<second>fp32_sum</second>
-										</first>
-										<second>55</second>
-									</item>
-								</second>
-							</item>
-						</inlineStackInfo>
-						<originalName></originalName>
+						<originalName>sum25</originalName>
 						<rtlName></rtlName>
 						<control></control>
 						<opType></opType>
@@ -2357,16 +2289,81 @@
 					<bitwidth>25</bitwidth>
 				</Value>
 				<oprand_edges>
-					<count>1</count>
+					<count>2</count>
 					<item_version>0</item_version>
-					<item>144</item>
+					<item>140</item>
+					<item>141</item>
 				</oprand_edges>
-				<opcode>zext</opcode>
+				<opcode>sub</opcode>
 				<m_Display>0</m_Display>
 				<m_isOnCriticalPath>0</m_isOnCriticalPath>
 				<m_isLCDNode>0</m_isLCDNode>
 				<m_isStartOfPath>0</m_isStartOfPath>
-				<m_delay>0.00</m_delay>
+				<m_delay>2.31</m_delay>
+				<m_topoIndex>33</m_topoIndex>
+				<m_clusterGroupNumber>-1</m_clusterGroupNumber>
+			</item>
+			<item class_id_reference="9" object_id="_40">
+				<Value>
+					<Obj>
+						<type>0</type>
+						<id>54</id>
+						<name>sum25_2</name>
+						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
+						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
+						<lineNumber>39</lineNumber>
+						<contextFuncName>fp32_raw_summer</contextFuncName>
+						<contextNormFuncName>fp32_raw_summer</contextNormFuncName>
+						<inlineStackInfo>
+							<count>1</count>
+							<item_version>0</item_version>
+							<item>
+								<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</first>
+								<second>
+									<count>2</count>
+									<item_version>0</item_version>
+									<item>
+										<first>
+											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
+											<second>fp32_raw_summer</second>
+										</first>
+										<second>39</second>
+									</item>
+									<item>
+										<first>
+											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
+											<second>fp32_sum</second>
+										</first>
+										<second>92</second>
+									</item>
+								</second>
+							</item>
+						</inlineStackInfo>
+						<originalName>sum25</originalName>
+						<rtlName></rtlName>
+						<control></control>
+						<opType></opType>
+						<implIndex></implIndex>
+						<coreName></coreName>
+						<isStorage>0</isStorage>
+						<storageDepth>0</storageDepth>
+						<coreId>4294967295</coreId>
+						<rtlModuleName></rtlModuleName>
+					</Obj>
+					<bitwidth>25</bitwidth>
+				</Value>
+				<oprand_edges>
+					<count>2</count>
+					<item_version>0</item_version>
+					<item>142</item>
+					<item>143</item>
+				</oprand_edges>
+				<opcode>sub</opcode>
+				<m_Display>0</m_Display>
+				<m_isOnCriticalPath>0</m_isOnCriticalPath>
+				<m_isLCDNode>0</m_isLCDNode>
+				<m_isStartOfPath>0</m_isStartOfPath>
+				<m_delay>2.31</m_delay>
 				<m_topoIndex>34</m_topoIndex>
 				<m_clusterGroupNumber>-1</m_clusterGroupNumber>
 			</item>
@@ -2375,10 +2372,10 @@
 					<Obj>
 						<type>0</type>
 						<id>55</id>
-						<name>zext_ln8_1</name>
+						<name>xor_ln28_1</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>8</lineNumber>
+						<lineNumber>28</lineNumber>
 						<contextFuncName>fp32_raw_summer</contextFuncName>
 						<contextNormFuncName>fp32_raw_summer</contextNormFuncName>
 						<inlineStackInfo>
@@ -2394,14 +2391,14 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_raw_summer</second>
 										</first>
-										<second>8</second>
+										<second>28</second>
 									</item>
 									<item>
 										<first>
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_sum</second>
 										</first>
-										<second>55</second>
+										<second>92</second>
 									</item>
 								</second>
 							</item>
@@ -2417,19 +2414,20 @@
 						<coreId>4294967295</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
-					<bitwidth>25</bitwidth>
+					<bitwidth>1</bitwidth>
 				</Value>
 				<oprand_edges>
-					<count>1</count>
+					<count>2</count>
 					<item_version>0</item_version>
+					<item>144</item>
 					<item>145</item>
 				</oprand_edges>
-				<opcode>zext</opcode>
+				<opcode>xor</opcode>
 				<m_Display>0</m_Display>
 				<m_isOnCriticalPath>0</m_isOnCriticalPath>
 				<m_isLCDNode>0</m_isLCDNode>
 				<m_isStartOfPath>0</m_isStartOfPath>
-				<m_delay>0.00</m_delay>
+				<m_delay>0.97</m_delay>
 				<m_topoIndex>35</m_topoIndex>
 				<m_clusterGroupNumber>-1</m_clusterGroupNumber>
 			</item>
@@ -2438,10 +2436,10 @@
 					<Obj>
 						<type>0</type>
 						<id>56</id>
-						<name>icmp_ln8_2</name>
+						<name>and_ln32</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>8</lineNumber>
+						<lineNumber>32</lineNumber>
 						<contextFuncName>fp32_raw_summer</contextFuncName>
 						<contextNormFuncName>fp32_raw_summer</contextNormFuncName>
 						<inlineStackInfo>
@@ -2457,14 +2455,14 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_raw_summer</second>
 										</first>
-										<second>8</second>
+										<second>32</second>
 									</item>
 									<item>
 										<first>
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_sum</second>
 										</first>
-										<second>55</second>
+										<second>92</second>
 									</item>
 								</second>
 							</item>
@@ -2488,12 +2486,12 @@
 					<item>146</item>
 					<item>147</item>
 				</oprand_edges>
-				<opcode>icmp</opcode>
+				<opcode>and</opcode>
 				<m_Display>0</m_Display>
 				<m_isOnCriticalPath>0</m_isOnCriticalPath>
 				<m_isLCDNode>0</m_isLCDNode>
 				<m_isStartOfPath>0</m_isStartOfPath>
-				<m_delay>2.31</m_delay>
+				<m_delay>0.97</m_delay>
 				<m_topoIndex>36</m_topoIndex>
 				<m_clusterGroupNumber>-1</m_clusterGroupNumber>
 			</item>
@@ -2502,10 +2500,10 @@
 					<Obj>
 						<type>0</type>
 						<id>57</id>
-						<name>add_ln8</name>
+						<name>xor_ln32</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>8</lineNumber>
+						<lineNumber>32</lineNumber>
 						<contextFuncName>fp32_raw_summer</contextFuncName>
 						<contextNormFuncName>fp32_raw_summer</contextNormFuncName>
 						<inlineStackInfo>
@@ -2521,206 +2519,14 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_raw_summer</second>
 										</first>
-										<second>8</second>
+										<second>32</second>
 									</item>
 									<item>
 										<first>
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_sum</second>
 										</first>
-										<second>55</second>
-									</item>
-								</second>
-							</item>
-						</inlineStackInfo>
-						<originalName></originalName>
-						<rtlName></rtlName>
-						<control></control>
-						<opType></opType>
-						<implIndex></implIndex>
-						<coreName></coreName>
-						<isStorage>0</isStorage>
-						<storageDepth>0</storageDepth>
-						<coreId>4294967295</coreId>
-						<rtlModuleName></rtlModuleName>
-					</Obj>
-					<bitwidth>25</bitwidth>
-				</Value>
-				<oprand_edges>
-					<count>2</count>
-					<item_version>0</item_version>
-					<item>148</item>
-					<item>149</item>
-				</oprand_edges>
-				<opcode>add</opcode>
-				<m_Display>0</m_Display>
-				<m_isOnCriticalPath>0</m_isOnCriticalPath>
-				<m_isLCDNode>0</m_isLCDNode>
-				<m_isStartOfPath>0</m_isStartOfPath>
-				<m_delay>2.31</m_delay>
-				<m_topoIndex>37</m_topoIndex>
-				<m_clusterGroupNumber>-1</m_clusterGroupNumber>
-			</item>
-			<item class_id_reference="9" object_id="_44">
-				<Value>
-					<Obj>
-						<type>0</type>
-						<id>58</id>
-						<name>sub_ln8</name>
-						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
-						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>8</lineNumber>
-						<contextFuncName>fp32_raw_summer</contextFuncName>
-						<contextNormFuncName>fp32_raw_summer</contextNormFuncName>
-						<inlineStackInfo>
-							<count>1</count>
-							<item_version>0</item_version>
-							<item>
-								<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</first>
-								<second>
-									<count>2</count>
-									<item_version>0</item_version>
-									<item>
-										<first>
-											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
-											<second>fp32_raw_summer</second>
-										</first>
-										<second>8</second>
-									</item>
-									<item>
-										<first>
-											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
-											<second>fp32_sum</second>
-										</first>
-										<second>55</second>
-									</item>
-								</second>
-							</item>
-						</inlineStackInfo>
-						<originalName></originalName>
-						<rtlName></rtlName>
-						<control></control>
-						<opType></opType>
-						<implIndex></implIndex>
-						<coreName></coreName>
-						<isStorage>0</isStorage>
-						<storageDepth>0</storageDepth>
-						<coreId>4294967295</coreId>
-						<rtlModuleName></rtlModuleName>
-					</Obj>
-					<bitwidth>25</bitwidth>
-				</Value>
-				<oprand_edges>
-					<count>2</count>
-					<item_version>0</item_version>
-					<item>150</item>
-					<item>151</item>
-				</oprand_edges>
-				<opcode>sub</opcode>
-				<m_Display>0</m_Display>
-				<m_isOnCriticalPath>0</m_isOnCriticalPath>
-				<m_isLCDNode>0</m_isLCDNode>
-				<m_isStartOfPath>0</m_isStartOfPath>
-				<m_delay>2.31</m_delay>
-				<m_topoIndex>38</m_topoIndex>
-				<m_clusterGroupNumber>-1</m_clusterGroupNumber>
-			</item>
-			<item class_id_reference="9" object_id="_45">
-				<Value>
-					<Obj>
-						<type>0</type>
-						<id>59</id>
-						<name>sub_ln8_1</name>
-						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
-						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>8</lineNumber>
-						<contextFuncName>fp32_raw_summer</contextFuncName>
-						<contextNormFuncName>fp32_raw_summer</contextNormFuncName>
-						<inlineStackInfo>
-							<count>1</count>
-							<item_version>0</item_version>
-							<item>
-								<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</first>
-								<second>
-									<count>2</count>
-									<item_version>0</item_version>
-									<item>
-										<first>
-											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
-											<second>fp32_raw_summer</second>
-										</first>
-										<second>8</second>
-									</item>
-									<item>
-										<first>
-											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
-											<second>fp32_sum</second>
-										</first>
-										<second>55</second>
-									</item>
-								</second>
-							</item>
-						</inlineStackInfo>
-						<originalName></originalName>
-						<rtlName></rtlName>
-						<control></control>
-						<opType></opType>
-						<implIndex></implIndex>
-						<coreName></coreName>
-						<isStorage>0</isStorage>
-						<storageDepth>0</storageDepth>
-						<coreId>4294967295</coreId>
-						<rtlModuleName></rtlModuleName>
-					</Obj>
-					<bitwidth>25</bitwidth>
-				</Value>
-				<oprand_edges>
-					<count>2</count>
-					<item_version>0</item_version>
-					<item>152</item>
-					<item>153</item>
-				</oprand_edges>
-				<opcode>sub</opcode>
-				<m_Display>0</m_Display>
-				<m_isOnCriticalPath>0</m_isOnCriticalPath>
-				<m_isLCDNode>0</m_isLCDNode>
-				<m_isStartOfPath>0</m_isStartOfPath>
-				<m_delay>2.31</m_delay>
-				<m_topoIndex>39</m_topoIndex>
-				<m_clusterGroupNumber>-1</m_clusterGroupNumber>
-			</item>
-			<item class_id_reference="9" object_id="_46">
-				<Value>
-					<Obj>
-						<type>0</type>
-						<id>60</id>
-						<name>and_ln8_2</name>
-						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
-						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>8</lineNumber>
-						<contextFuncName>fp32_raw_summer</contextFuncName>
-						<contextNormFuncName>fp32_raw_summer</contextNormFuncName>
-						<inlineStackInfo>
-							<count>1</count>
-							<item_version>0</item_version>
-							<item>
-								<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</first>
-								<second>
-									<count>2</count>
-									<item_version>0</item_version>
-									<item>
-										<first>
-											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
-											<second>fp32_raw_summer</second>
-										</first>
-										<second>8</second>
-									</item>
-									<item>
-										<first>
-											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
-											<second>fp32_sum</second>
-										</first>
-										<second>55</second>
+										<second>92</second>
 									</item>
 								</second>
 							</item>
@@ -2741,27 +2547,27 @@
 				<oprand_edges>
 					<count>2</count>
 					<item_version>0</item_version>
-					<item>154</item>
-					<item>155</item>
+					<item>148</item>
+					<item>149</item>
 				</oprand_edges>
-				<opcode>and</opcode>
+				<opcode>xor</opcode>
 				<m_Display>0</m_Display>
 				<m_isOnCriticalPath>0</m_isOnCriticalPath>
 				<m_isLCDNode>0</m_isLCDNode>
 				<m_isStartOfPath>0</m_isStartOfPath>
-				<m_delay>0.97</m_delay>
-				<m_topoIndex>40</m_topoIndex>
-				<m_clusterGroupNumber>-1</m_clusterGroupNumber>
+				<m_delay>0.00</m_delay>
+				<m_topoIndex>37</m_topoIndex>
+				<m_clusterGroupNumber>1</m_clusterGroupNumber>
 			</item>
-			<item class_id_reference="9" object_id="_47">
+			<item class_id_reference="9" object_id="_44">
 				<Value>
 					<Obj>
 						<type>0</type>
-						<id>61</id>
-						<name>sel_tmp2</name>
+						<id>58</id>
+						<name>and_ln35</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>8</lineNumber>
+						<lineNumber>35</lineNumber>
 						<contextFuncName>fp32_raw_summer</contextFuncName>
 						<contextNormFuncName>fp32_raw_summer</contextNormFuncName>
 						<inlineStackInfo>
@@ -2777,14 +2583,345 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_raw_summer</second>
 										</first>
-										<second>8</second>
+										<second>35</second>
 									</item>
 									<item>
 										<first>
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_sum</second>
 										</first>
-										<second>55</second>
+										<second>92</second>
+									</item>
+								</second>
+							</item>
+						</inlineStackInfo>
+						<originalName></originalName>
+						<rtlName></rtlName>
+						<control></control>
+						<opType></opType>
+						<implIndex></implIndex>
+						<coreName></coreName>
+						<isStorage>0</isStorage>
+						<storageDepth>0</storageDepth>
+						<coreId>4294967295</coreId>
+						<rtlModuleName></rtlModuleName>
+					</Obj>
+					<bitwidth>1</bitwidth>
+				</Value>
+				<oprand_edges>
+					<count>2</count>
+					<item_version>0</item_version>
+					<item>150</item>
+					<item>151</item>
+				</oprand_edges>
+				<opcode>and</opcode>
+				<m_Display>0</m_Display>
+				<m_isOnCriticalPath>0</m_isOnCriticalPath>
+				<m_isLCDNode>0</m_isLCDNode>
+				<m_isStartOfPath>0</m_isStartOfPath>
+				<m_delay>0.97</m_delay>
+				<m_topoIndex>38</m_topoIndex>
+				<m_clusterGroupNumber>1</m_clusterGroupNumber>
+			</item>
+			<item class_id_reference="9" object_id="_45">
+				<Value>
+					<Obj>
+						<type>0</type>
+						<id>59</id>
+						<name>and_ln35_1</name>
+						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
+						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
+						<lineNumber>35</lineNumber>
+						<contextFuncName>fp32_raw_summer</contextFuncName>
+						<contextNormFuncName>fp32_raw_summer</contextNormFuncName>
+						<inlineStackInfo>
+							<count>1</count>
+							<item_version>0</item_version>
+							<item>
+								<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</first>
+								<second>
+									<count>2</count>
+									<item_version>0</item_version>
+									<item>
+										<first>
+											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
+											<second>fp32_raw_summer</second>
+										</first>
+										<second>35</second>
+									</item>
+									<item>
+										<first>
+											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
+											<second>fp32_sum</second>
+										</first>
+										<second>92</second>
+									</item>
+								</second>
+							</item>
+						</inlineStackInfo>
+						<originalName></originalName>
+						<rtlName></rtlName>
+						<control></control>
+						<opType></opType>
+						<implIndex></implIndex>
+						<coreName></coreName>
+						<isStorage>0</isStorage>
+						<storageDepth>0</storageDepth>
+						<coreId>4294967295</coreId>
+						<rtlModuleName></rtlModuleName>
+					</Obj>
+					<bitwidth>1</bitwidth>
+				</Value>
+				<oprand_edges>
+					<count>2</count>
+					<item_version>0</item_version>
+					<item>152</item>
+					<item>153</item>
+				</oprand_edges>
+				<opcode>and</opcode>
+				<m_Display>0</m_Display>
+				<m_isOnCriticalPath>0</m_isOnCriticalPath>
+				<m_isLCDNode>0</m_isLCDNode>
+				<m_isStartOfPath>0</m_isStartOfPath>
+				<m_delay>0.97</m_delay>
+				<m_topoIndex>39</m_topoIndex>
+				<m_clusterGroupNumber>-1</m_clusterGroupNumber>
+			</item>
+			<item class_id_reference="9" object_id="_46">
+				<Value>
+					<Obj>
+						<type>0</type>
+						<id>60</id>
+						<name>sel_tmp5</name>
+						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
+						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
+						<lineNumber>28</lineNumber>
+						<contextFuncName>fp32_raw_summer</contextFuncName>
+						<contextNormFuncName>fp32_raw_summer</contextNormFuncName>
+						<inlineStackInfo>
+							<count>1</count>
+							<item_version>0</item_version>
+							<item>
+								<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</first>
+								<second>
+									<count>2</count>
+									<item_version>0</item_version>
+									<item>
+										<first>
+											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
+											<second>fp32_raw_summer</second>
+										</first>
+										<second>28</second>
+									</item>
+									<item>
+										<first>
+											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
+											<second>fp32_sum</second>
+										</first>
+										<second>92</second>
+									</item>
+								</second>
+							</item>
+						</inlineStackInfo>
+						<originalName></originalName>
+						<rtlName></rtlName>
+						<control></control>
+						<opType></opType>
+						<implIndex></implIndex>
+						<coreName></coreName>
+						<isStorage>0</isStorage>
+						<storageDepth>0</storageDepth>
+						<coreId>4294967295</coreId>
+						<rtlModuleName></rtlModuleName>
+					</Obj>
+					<bitwidth>3</bitwidth>
+				</Value>
+				<oprand_edges>
+					<count>4</count>
+					<item_version>0</item_version>
+					<item>155</item>
+					<item>156</item>
+					<item>157</item>
+					<item>158</item>
+				</oprand_edges>
+				<opcode>bitconcatenate</opcode>
+				<m_Display>0</m_Display>
+				<m_isOnCriticalPath>0</m_isOnCriticalPath>
+				<m_isLCDNode>0</m_isLCDNode>
+				<m_isStartOfPath>0</m_isStartOfPath>
+				<m_delay>0.00</m_delay>
+				<m_topoIndex>40</m_topoIndex>
+				<m_clusterGroupNumber>-1</m_clusterGroupNumber>
+			</item>
+			<item class_id_reference="9" object_id="_47">
+				<Value>
+					<Obj>
+						<type>0</type>
+						<id>61</id>
+						<name>sum25_4</name>
+						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
+						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
+						<lineNumber>29</lineNumber>
+						<contextFuncName>fp32_raw_summer</contextFuncName>
+						<contextNormFuncName>fp32_raw_summer</contextNormFuncName>
+						<inlineStackInfo>
+							<count>1</count>
+							<item_version>0</item_version>
+							<item>
+								<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</first>
+								<second>
+									<count>2</count>
+									<item_version>0</item_version>
+									<item>
+										<first>
+											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
+											<second>fp32_raw_summer</second>
+										</first>
+										<second>29</second>
+									</item>
+									<item>
+										<first>
+											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
+											<second>fp32_sum</second>
+										</first>
+										<second>92</second>
+									</item>
+								</second>
+							</item>
+						</inlineStackInfo>
+						<originalName>sum25</originalName>
+						<rtlName></rtlName>
+						<control></control>
+						<opType></opType>
+						<implIndex></implIndex>
+						<coreName></coreName>
+						<isStorage>0</isStorage>
+						<storageDepth>0</storageDepth>
+						<coreId>4294967295</coreId>
+						<rtlModuleName></rtlModuleName>
+					</Obj>
+					<bitwidth>25</bitwidth>
+				</Value>
+				<oprand_edges>
+					<count>11</count>
+					<item_version>0</item_version>
+					<item>160</item>
+					<item>162</item>
+					<item>163</item>
+					<item>165</item>
+					<item>167</item>
+					<item>169</item>
+					<item>170</item>
+					<item>172</item>
+					<item>173</item>
+					<item>175</item>
+					<item>176</item>
+				</oprand_edges>
+				<opcode>sparsemux</opcode>
+				<m_Display>0</m_Display>
+				<m_isOnCriticalPath>0</m_isOnCriticalPath>
+				<m_isLCDNode>0</m_isLCDNode>
+				<m_isStartOfPath>0</m_isStartOfPath>
+				<m_delay>1.70</m_delay>
+				<m_topoIndex>41</m_topoIndex>
+				<m_clusterGroupNumber>-1</m_clusterGroupNumber>
+			</item>
+			<item class_id_reference="9" object_id="_48">
+				<Value>
+					<Obj>
+						<type>0</type>
+						<id>62</id>
+						<name>or_ln35</name>
+						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
+						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
+						<lineNumber>35</lineNumber>
+						<contextFuncName>fp32_raw_summer</contextFuncName>
+						<contextNormFuncName>fp32_raw_summer</contextNormFuncName>
+						<inlineStackInfo>
+							<count>1</count>
+							<item_version>0</item_version>
+							<item>
+								<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</first>
+								<second>
+									<count>2</count>
+									<item_version>0</item_version>
+									<item>
+										<first>
+											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
+											<second>fp32_raw_summer</second>
+										</first>
+										<second>35</second>
+									</item>
+									<item>
+										<first>
+											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
+											<second>fp32_sum</second>
+										</first>
+										<second>92</second>
+									</item>
+								</second>
+							</item>
+						</inlineStackInfo>
+						<originalName></originalName>
+						<rtlName></rtlName>
+						<control></control>
+						<opType></opType>
+						<implIndex></implIndex>
+						<coreName></coreName>
+						<isStorage>0</isStorage>
+						<storageDepth>0</storageDepth>
+						<coreId>4294967295</coreId>
+						<rtlModuleName></rtlModuleName>
+					</Obj>
+					<bitwidth>1</bitwidth>
+				</Value>
+				<oprand_edges>
+					<count>2</count>
+					<item_version>0</item_version>
+					<item>177</item>
+					<item>178</item>
+				</oprand_edges>
+				<opcode>or</opcode>
+				<m_Display>0</m_Display>
+				<m_isOnCriticalPath>0</m_isOnCriticalPath>
+				<m_isLCDNode>0</m_isLCDNode>
+				<m_isStartOfPath>0</m_isStartOfPath>
+				<m_delay>0.00</m_delay>
+				<m_topoIndex>42</m_topoIndex>
+				<m_clusterGroupNumber>2</m_clusterGroupNumber>
+			</item>
+			<item class_id_reference="9" object_id="_49">
+				<Value>
+					<Obj>
+						<type>0</type>
+						<id>63</id>
+						<name>sel_tmp</name>
+						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
+						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
+						<lineNumber>32</lineNumber>
+						<contextFuncName>fp32_raw_summer</contextFuncName>
+						<contextNormFuncName>fp32_raw_summer</contextNormFuncName>
+						<inlineStackInfo>
+							<count>1</count>
+							<item_version>0</item_version>
+							<item>
+								<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</first>
+								<second>
+									<count>2</count>
+									<item_version>0</item_version>
+									<item>
+										<first>
+											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
+											<second>fp32_raw_summer</second>
+										</first>
+										<second>32</second>
+									</item>
+									<item>
+										<first>
+											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
+											<second>fp32_sum</second>
+										</first>
+										<second>92</second>
 									</item>
 								</second>
 							</item>
@@ -2805,9 +2942,9 @@
 				<oprand_edges>
 					<count>3</count>
 					<item_version>0</item_version>
-					<item>157</item>
-					<item>158</item>
-					<item>159</item>
+					<item>180</item>
+					<item>181</item>
+					<item>182</item>
 				</oprand_edges>
 				<opcode>bitconcatenate</opcode>
 				<m_Display>0</m_Display>
@@ -2815,89 +2952,18 @@
 				<m_isLCDNode>0</m_isLCDNode>
 				<m_isStartOfPath>0</m_isStartOfPath>
 				<m_delay>0.00</m_delay>
-				<m_topoIndex>41</m_topoIndex>
-				<m_clusterGroupNumber>-1</m_clusterGroupNumber>
+				<m_topoIndex>43</m_topoIndex>
+				<m_clusterGroupNumber>2</m_clusterGroupNumber>
 			</item>
-			<item class_id_reference="9" object_id="_48">
+			<item class_id_reference="9" object_id="_50">
 				<Value>
 					<Obj>
 						<type>0</type>
-						<id>62</id>
-						<name>raw_m</name>
+						<id>64</id>
+						<name>out_sign</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>8</lineNumber>
-						<contextFuncName>fp32_raw_summer</contextFuncName>
-						<contextNormFuncName>fp32_raw_summer</contextNormFuncName>
-						<inlineStackInfo>
-							<count>1</count>
-							<item_version>0</item_version>
-							<item>
-								<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</first>
-								<second>
-									<count>2</count>
-									<item_version>0</item_version>
-									<item>
-										<first>
-											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
-											<second>fp32_raw_summer</second>
-										</first>
-										<second>8</second>
-									</item>
-									<item>
-										<first>
-											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
-											<second>fp32_sum</second>
-										</first>
-										<second>55</second>
-									</item>
-								</second>
-							</item>
-						</inlineStackInfo>
-						<originalName>raw_m</originalName>
-						<rtlName></rtlName>
-						<control></control>
-						<opType></opType>
-						<implIndex></implIndex>
-						<coreName></coreName>
-						<isStorage>0</isStorage>
-						<storageDepth>0</storageDepth>
-						<coreId>4294967295</coreId>
-						<rtlModuleName></rtlModuleName>
-					</Obj>
-					<bitwidth>25</bitwidth>
-				</Value>
-				<oprand_edges>
-					<count>9</count>
-					<item_version>0</item_version>
-					<item>161</item>
-					<item>163</item>
-					<item>164</item>
-					<item>166</item>
-					<item>167</item>
-					<item>169</item>
-					<item>170</item>
-					<item>172</item>
-					<item>173</item>
-				</oprand_edges>
-				<opcode>sparsemux</opcode>
-				<m_Display>0</m_Display>
-				<m_isOnCriticalPath>0</m_isOnCriticalPath>
-				<m_isLCDNode>0</m_isLCDNode>
-				<m_isStartOfPath>0</m_isStartOfPath>
-				<m_delay>1.58</m_delay>
-				<m_topoIndex>42</m_topoIndex>
-				<m_clusterGroupNumber>-1</m_clusterGroupNumber>
-			</item>
-			<item class_id_reference="9" object_id="_49">
-				<Value>
-					<Obj>
-						<type>0</type>
-						<id>63</id>
-						<name>call_ret</name>
-						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
-						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>59</lineNumber>
+						<lineNumber>84</lineNumber>
 						<contextFuncName>fp32_sum</contextFuncName>
 						<contextNormFuncName>fp32_sum</contextNormFuncName>
 						<inlineStackInfo>
@@ -2913,7 +2979,71 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_sum</second>
 										</first>
-										<second>59</second>
+										<second>84</second>
+									</item>
+								</second>
+							</item>
+						</inlineStackInfo>
+						<originalName>out_sign</originalName>
+						<rtlName></rtlName>
+						<control></control>
+						<opType></opType>
+						<implIndex></implIndex>
+						<coreName></coreName>
+						<isStorage>0</isStorage>
+						<storageDepth>0</storageDepth>
+						<coreId>4294967295</coreId>
+						<rtlModuleName></rtlModuleName>
+					</Obj>
+					<bitwidth>1</bitwidth>
+				</Value>
+				<oprand_edges>
+					<count>9</count>
+					<item_version>0</item_version>
+					<item>184</item>
+					<item>186</item>
+					<item>188</item>
+					<item>190</item>
+					<item>191</item>
+					<item>193</item>
+					<item>194</item>
+					<item>196</item>
+					<item>197</item>
+				</oprand_edges>
+				<opcode>sparsemux</opcode>
+				<m_Display>0</m_Display>
+				<m_isOnCriticalPath>0</m_isOnCriticalPath>
+				<m_isLCDNode>0</m_isLCDNode>
+				<m_isStartOfPath>0</m_isStartOfPath>
+				<m_delay>1.58</m_delay>
+				<m_topoIndex>44</m_topoIndex>
+				<m_clusterGroupNumber>2</m_clusterGroupNumber>
+			</item>
+			<item class_id_reference="9" object_id="_51">
+				<Value>
+					<Obj>
+						<type>0</type>
+						<id>65</id>
+						<name>call_ret</name>
+						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
+						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
+						<lineNumber>96</lineNumber>
+						<contextFuncName>fp32_sum</contextFuncName>
+						<contextNormFuncName>fp32_sum</contextNormFuncName>
+						<inlineStackInfo>
+							<count>1</count>
+							<item_version>0</item_version>
+							<item>
+								<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</first>
+								<second>
+									<count>1</count>
+									<item_version>0</item_version>
+									<item>
+										<first>
+											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
+											<second>fp32_sum</second>
+										</first>
+										<second>96</second>
 									</item>
 								</second>
 							</item>
@@ -2934,10 +3064,10 @@
 				<oprand_edges>
 					<count>4</count>
 					<item_version>0</item_version>
-					<item>175</item>
-					<item>176</item>
-					<item>177</item>
-					<item>178</item>
+					<item>199</item>
+					<item>200</item>
+					<item>201</item>
+					<item>202</item>
 				</oprand_edges>
 				<opcode>call</opcode>
 				<m_Display>0</m_Display>
@@ -2945,18 +3075,18 @@
 				<m_isLCDNode>0</m_isLCDNode>
 				<m_isStartOfPath>0</m_isStartOfPath>
 				<m_delay>5.54</m_delay>
-				<m_topoIndex>43</m_topoIndex>
+				<m_topoIndex>45</m_topoIndex>
 				<m_clusterGroupNumber>-1</m_clusterGroupNumber>
 			</item>
-			<item class_id_reference="9" object_id="_50">
+			<item class_id_reference="9" object_id="_52">
 				<Value>
 					<Obj>
 						<type>0</type>
-						<id>64</id>
-						<name>_ln60</name>
+						<id>66</id>
+						<name>_ln97</name>
 						<fileName>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</fileName>
 						<fileDirectory>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/solution_fp32addition_fp32_full_sum</fileDirectory>
-						<lineNumber>60</lineNumber>
+						<lineNumber>97</lineNumber>
 						<contextFuncName>fp32_sum</contextFuncName>
 						<contextNormFuncName>fp32_sum</contextNormFuncName>
 						<inlineStackInfo>
@@ -2972,7 +3102,7 @@
 											<first>/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp</first>
 											<second>fp32_sum</second>
 										</first>
-										<second>60</second>
+										<second>97</second>
 									</item>
 								</second>
 							</item>
@@ -2993,7 +3123,7 @@
 				<oprand_edges>
 					<count>1</count>
 					<item_version>0</item_version>
-					<item>179</item>
+					<item>203</item>
 				</oprand_edges>
 				<opcode>ret</opcode>
 				<m_Display>0</m_Display>
@@ -3001,49 +3131,18 @@
 				<m_isLCDNode>0</m_isLCDNode>
 				<m_isStartOfPath>0</m_isStartOfPath>
 				<m_delay>0.00</m_delay>
-				<m_topoIndex>44</m_topoIndex>
+				<m_topoIndex>46</m_topoIndex>
 				<m_clusterGroupNumber>-1</m_clusterGroupNumber>
 			</item>
 		</nodes>
 		<consts class_id="15" tracking_level="0" version="0">
-			<count>7</count>
+			<count>14</count>
 			<item_version>0</item_version>
-			<item class_id="16" tracking_level="1" version="0" object_id="_51">
+			<item class_id="16" tracking_level="1" version="0" object_id="_53">
 				<Value>
 					<Obj>
 						<type>2</type>
 						<id>84</id>
-						<name>empty</name>
-						<fileName></fileName>
-						<fileDirectory></fileDirectory>
-						<lineNumber>0</lineNumber>
-						<contextFuncName></contextFuncName>
-						<contextNormFuncName></contextNormFuncName>
-						<inlineStackInfo>
-							<count>0</count>
-							<item_version>0</item_version>
-						</inlineStackInfo>
-						<originalName></originalName>
-						<rtlName></rtlName>
-						<control></control>
-						<opType></opType>
-						<implIndex></implIndex>
-						<coreName></coreName>
-						<isStorage>0</isStorage>
-						<storageDepth>0</storageDepth>
-						<coreId>4294967295</coreId>
-						<rtlModuleName></rtlModuleName>
-					</Obj>
-					<bitwidth>1</bitwidth>
-				</Value>
-				<const_type>0</const_type>
-				<content>1</content>
-			</item>
-			<item class_id_reference="16" object_id="_52">
-				<Value>
-					<Obj>
-						<type>2</type>
-						<id>87</id>
 						<name>empty</name>
 						<fileName></fileName>
 						<fileDirectory></fileDirectory>
@@ -3070,42 +3169,11 @@
 				<const_type>0</const_type>
 				<content>0</content>
 			</item>
-			<item class_id_reference="16" object_id="_53">
-				<Value>
-					<Obj>
-						<type>2</type>
-						<id>162</id>
-						<name>empty</name>
-						<fileName></fileName>
-						<fileDirectory></fileDirectory>
-						<lineNumber>0</lineNumber>
-						<contextFuncName></contextFuncName>
-						<contextNormFuncName></contextNormFuncName>
-						<inlineStackInfo>
-							<count>0</count>
-							<item_version>0</item_version>
-						</inlineStackInfo>
-						<originalName></originalName>
-						<rtlName></rtlName>
-						<control></control>
-						<opType></opType>
-						<implIndex></implIndex>
-						<coreName></coreName>
-						<isStorage>0</isStorage>
-						<storageDepth>0</storageDepth>
-						<coreId>4294967295</coreId>
-						<rtlModuleName></rtlModuleName>
-					</Obj>
-					<bitwidth>2</bitwidth>
-				</Value>
-				<const_type>0</const_type>
-				<content>2</content>
-			</item>
 			<item class_id_reference="16" object_id="_54">
 				<Value>
 					<Obj>
 						<type>2</type>
-						<id>165</id>
+						<id>89</id>
 						<name>empty</name>
 						<fileName></fileName>
 						<fileDirectory></fileDirectory>
@@ -3127,12 +3195,105 @@
 						<coreId>4294967295</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
-					<bitwidth>2</bitwidth>
+					<bitwidth>1</bitwidth>
 				</Value>
 				<const_type>0</const_type>
 				<content>1</content>
 			</item>
 			<item class_id_reference="16" object_id="_55">
+				<Value>
+					<Obj>
+						<type>2</type>
+						<id>161</id>
+						<name>empty</name>
+						<fileName></fileName>
+						<fileDirectory></fileDirectory>
+						<lineNumber>0</lineNumber>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
+						<inlineStackInfo>
+							<count>0</count>
+							<item_version>0</item_version>
+						</inlineStackInfo>
+						<originalName></originalName>
+						<rtlName></rtlName>
+						<control></control>
+						<opType></opType>
+						<implIndex></implIndex>
+						<coreName></coreName>
+						<isStorage>0</isStorage>
+						<storageDepth>0</storageDepth>
+						<coreId>4294967295</coreId>
+						<rtlModuleName></rtlModuleName>
+					</Obj>
+					<bitwidth>3</bitwidth>
+				</Value>
+				<const_type>0</const_type>
+				<content>4</content>
+			</item>
+			<item class_id_reference="16" object_id="_56">
+				<Value>
+					<Obj>
+						<type>2</type>
+						<id>164</id>
+						<name>empty</name>
+						<fileName></fileName>
+						<fileDirectory></fileDirectory>
+						<lineNumber>0</lineNumber>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
+						<inlineStackInfo>
+							<count>0</count>
+							<item_version>0</item_version>
+						</inlineStackInfo>
+						<originalName></originalName>
+						<rtlName></rtlName>
+						<control></control>
+						<opType></opType>
+						<implIndex></implIndex>
+						<coreName></coreName>
+						<isStorage>0</isStorage>
+						<storageDepth>0</storageDepth>
+						<coreId>4294967295</coreId>
+						<rtlModuleName></rtlModuleName>
+					</Obj>
+					<bitwidth>3</bitwidth>
+				</Value>
+				<const_type>0</const_type>
+				<content>2</content>
+			</item>
+			<item class_id_reference="16" object_id="_57">
+				<Value>
+					<Obj>
+						<type>2</type>
+						<id>166</id>
+						<name>empty</name>
+						<fileName></fileName>
+						<fileDirectory></fileDirectory>
+						<lineNumber>0</lineNumber>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
+						<inlineStackInfo>
+							<count>0</count>
+							<item_version>0</item_version>
+						</inlineStackInfo>
+						<originalName></originalName>
+						<rtlName></rtlName>
+						<control></control>
+						<opType></opType>
+						<implIndex></implIndex>
+						<coreName></coreName>
+						<isStorage>0</isStorage>
+						<storageDepth>0</storageDepth>
+						<coreId>4294967295</coreId>
+						<rtlModuleName></rtlModuleName>
+					</Obj>
+					<bitwidth>25</bitwidth>
+				</Value>
+				<const_type>0</const_type>
+				<content>0</content>
+			</item>
+			<item class_id_reference="16" object_id="_58">
 				<Value>
 					<Obj>
 						<type>2</type>
@@ -3158,16 +3319,47 @@
 						<coreId>4294967295</coreId>
 						<rtlModuleName></rtlModuleName>
 					</Obj>
-					<bitwidth>2</bitwidth>
+					<bitwidth>3</bitwidth>
 				</Value>
 				<const_type>0</const_type>
-				<content>0</content>
+				<content>1</content>
 			</item>
-			<item class_id_reference="16" object_id="_56">
+			<item class_id_reference="16" object_id="_59">
 				<Value>
 					<Obj>
 						<type>2</type>
 						<id>171</id>
+						<name>empty</name>
+						<fileName></fileName>
+						<fileDirectory></fileDirectory>
+						<lineNumber>0</lineNumber>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
+						<inlineStackInfo>
+							<count>0</count>
+							<item_version>0</item_version>
+						</inlineStackInfo>
+						<originalName></originalName>
+						<rtlName></rtlName>
+						<control></control>
+						<opType></opType>
+						<implIndex></implIndex>
+						<coreName></coreName>
+						<isStorage>0</isStorage>
+						<storageDepth>0</storageDepth>
+						<coreId>4294967295</coreId>
+						<rtlModuleName></rtlModuleName>
+					</Obj>
+					<bitwidth>3</bitwidth>
+				</Value>
+				<const_type>0</const_type>
+				<content>0</content>
+			</item>
+			<item class_id_reference="16" object_id="_60">
+				<Value>
+					<Obj>
+						<type>2</type>
+						<id>174</id>
 						<name>empty</name>
 						<fileName></fileName>
 						<fileDirectory></fileDirectory>
@@ -3194,11 +3386,166 @@
 				<const_type>5</const_type>
 				<content>0</content>
 			</item>
-			<item class_id_reference="16" object_id="_57">
+			<item class_id_reference="16" object_id="_61">
 				<Value>
 					<Obj>
 						<type>2</type>
-						<id>174</id>
+						<id>185</id>
+						<name>empty</name>
+						<fileName></fileName>
+						<fileDirectory></fileDirectory>
+						<lineNumber>0</lineNumber>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
+						<inlineStackInfo>
+							<count>0</count>
+							<item_version>0</item_version>
+						</inlineStackInfo>
+						<originalName></originalName>
+						<rtlName></rtlName>
+						<control></control>
+						<opType></opType>
+						<implIndex></implIndex>
+						<coreName></coreName>
+						<isStorage>0</isStorage>
+						<storageDepth>0</storageDepth>
+						<coreId>4294967295</coreId>
+						<rtlModuleName></rtlModuleName>
+					</Obj>
+					<bitwidth>2</bitwidth>
+				</Value>
+				<const_type>0</const_type>
+				<content>2</content>
+			</item>
+			<item class_id_reference="16" object_id="_62">
+				<Value>
+					<Obj>
+						<type>2</type>
+						<id>187</id>
+						<name>empty</name>
+						<fileName></fileName>
+						<fileDirectory></fileDirectory>
+						<lineNumber>0</lineNumber>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
+						<inlineStackInfo>
+							<count>0</count>
+							<item_version>0</item_version>
+						</inlineStackInfo>
+						<originalName></originalName>
+						<rtlName></rtlName>
+						<control></control>
+						<opType></opType>
+						<implIndex></implIndex>
+						<coreName></coreName>
+						<isStorage>0</isStorage>
+						<storageDepth>0</storageDepth>
+						<coreId>4294967295</coreId>
+						<rtlModuleName></rtlModuleName>
+					</Obj>
+					<bitwidth>1</bitwidth>
+				</Value>
+				<const_type>0</const_type>
+				<content>0</content>
+			</item>
+			<item class_id_reference="16" object_id="_63">
+				<Value>
+					<Obj>
+						<type>2</type>
+						<id>189</id>
+						<name>empty</name>
+						<fileName></fileName>
+						<fileDirectory></fileDirectory>
+						<lineNumber>0</lineNumber>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
+						<inlineStackInfo>
+							<count>0</count>
+							<item_version>0</item_version>
+						</inlineStackInfo>
+						<originalName></originalName>
+						<rtlName></rtlName>
+						<control></control>
+						<opType></opType>
+						<implIndex></implIndex>
+						<coreName></coreName>
+						<isStorage>0</isStorage>
+						<storageDepth>0</storageDepth>
+						<coreId>4294967295</coreId>
+						<rtlModuleName></rtlModuleName>
+					</Obj>
+					<bitwidth>2</bitwidth>
+				</Value>
+				<const_type>0</const_type>
+				<content>1</content>
+			</item>
+			<item class_id_reference="16" object_id="_64">
+				<Value>
+					<Obj>
+						<type>2</type>
+						<id>192</id>
+						<name>empty</name>
+						<fileName></fileName>
+						<fileDirectory></fileDirectory>
+						<lineNumber>0</lineNumber>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
+						<inlineStackInfo>
+							<count>0</count>
+							<item_version>0</item_version>
+						</inlineStackInfo>
+						<originalName></originalName>
+						<rtlName></rtlName>
+						<control></control>
+						<opType></opType>
+						<implIndex></implIndex>
+						<coreName></coreName>
+						<isStorage>0</isStorage>
+						<storageDepth>0</storageDepth>
+						<coreId>4294967295</coreId>
+						<rtlModuleName></rtlModuleName>
+					</Obj>
+					<bitwidth>2</bitwidth>
+				</Value>
+				<const_type>0</const_type>
+				<content>0</content>
+			</item>
+			<item class_id_reference="16" object_id="_65">
+				<Value>
+					<Obj>
+						<type>2</type>
+						<id>195</id>
+						<name>empty</name>
+						<fileName></fileName>
+						<fileDirectory></fileDirectory>
+						<lineNumber>0</lineNumber>
+						<contextFuncName></contextFuncName>
+						<contextNormFuncName></contextNormFuncName>
+						<inlineStackInfo>
+							<count>0</count>
+							<item_version>0</item_version>
+						</inlineStackInfo>
+						<originalName></originalName>
+						<rtlName></rtlName>
+						<control></control>
+						<opType></opType>
+						<implIndex></implIndex>
+						<coreName></coreName>
+						<isStorage>0</isStorage>
+						<storageDepth>0</storageDepth>
+						<coreId>4294967295</coreId>
+						<rtlModuleName></rtlModuleName>
+					</Obj>
+					<bitwidth>1</bitwidth>
+				</Value>
+				<const_type>5</const_type>
+				<content>0</content>
+			</item>
+			<item class_id_reference="16" object_id="_66">
+				<Value>
+					<Obj>
+						<type>2</type>
+						<id>198</id>
 						<name>fp32_normaliser</name>
 						<fileName></fileName>
 						<fileDirectory></fileDirectory>
@@ -3229,10 +3576,10 @@
 		<blocks class_id="17" tracking_level="0" version="0">
 			<count>1</count>
 			<item_version>0</item_version>
-			<item class_id="18" tracking_level="1" version="0" object_id="_58">
+			<item class_id="18" tracking_level="1" version="0" object_id="_67">
 				<Obj>
 					<type>3</type>
-					<id>65</id>
+					<id>67</id>
 					<name>fp32_sum</name>
 					<fileName></fileName>
 					<fileDirectory></fileDirectory>
@@ -3255,7 +3602,7 @@
 					<rtlModuleName></rtlModuleName>
 				</Obj>
 				<node_objs>
-					<count>44</count>
+					<count>46</count>
 					<item_version>0</item_version>
 					<item>21</item>
 					<item>22</item>
@@ -3301,640 +3648,726 @@
 					<item>62</item>
 					<item>63</item>
 					<item>64</item>
+					<item>65</item>
+					<item>66</item>
 				</node_objs>
 			</item>
 		</blocks>
 		<edges class_id="19" tracking_level="0" version="0">
-			<count>90</count>
+			<count>102</count>
 			<item_version>0</item_version>
-			<item class_id="20" tracking_level="1" version="0" object_id="_59">
-				<id>68</id>
+			<item class_id="20" tracking_level="1" version="0" object_id="_68">
+				<id>70</id>
 				<edge_type>1</edge_type>
 				<source_obj>6</source_obj>
 				<sink_obj>21</sink_obj>
 				<is_back_edge>0</is_back_edge>
 			</item>
-			<item class_id_reference="20" object_id="_60">
-				<id>71</id>
+			<item class_id_reference="20" object_id="_69">
+				<id>73</id>
 				<edge_type>1</edge_type>
 				<source_obj>5</source_obj>
 				<sink_obj>22</sink_obj>
 				<is_back_edge>0</is_back_edge>
 			</item>
-			<item class_id_reference="20" object_id="_61">
-				<id>74</id>
+			<item class_id_reference="20" object_id="_70">
+				<id>76</id>
 				<edge_type>1</edge_type>
 				<source_obj>4</source_obj>
 				<sink_obj>23</sink_obj>
 				<is_back_edge>0</is_back_edge>
 			</item>
-			<item class_id_reference="20" object_id="_62">
-				<id>76</id>
+			<item class_id_reference="20" object_id="_71">
+				<id>78</id>
 				<edge_type>1</edge_type>
 				<source_obj>3</source_obj>
 				<sink_obj>24</sink_obj>
 				<is_back_edge>0</is_back_edge>
 			</item>
-			<item class_id_reference="20" object_id="_63">
-				<id>78</id>
+			<item class_id_reference="20" object_id="_72">
+				<id>80</id>
 				<edge_type>1</edge_type>
 				<source_obj>2</source_obj>
 				<sink_obj>25</sink_obj>
 				<is_back_edge>0</is_back_edge>
 			</item>
-			<item class_id_reference="20" object_id="_64">
-				<id>80</id>
+			<item class_id_reference="20" object_id="_73">
+				<id>82</id>
 				<edge_type>1</edge_type>
 				<source_obj>1</source_obj>
 				<sink_obj>26</sink_obj>
 				<is_back_edge>0</is_back_edge>
 			</item>
-			<item class_id_reference="20" object_id="_65">
-				<id>81</id>
+			<item class_id_reference="20" object_id="_74">
+				<id>83</id>
 				<edge_type>1</edge_type>
 				<source_obj>25</source_obj>
 				<sink_obj>27</sink_obj>
 				<is_back_edge>0</is_back_edge>
 			</item>
-			<item class_id_reference="20" object_id="_66">
-				<id>82</id>
-				<edge_type>1</edge_type>
-				<source_obj>22</source_obj>
-				<sink_obj>27</sink_obj>
-				<is_back_edge>0</is_back_edge>
-			</item>
-			<item class_id_reference="20" object_id="_67">
-				<id>83</id>
-				<edge_type>1</edge_type>
-				<source_obj>27</source_obj>
-				<sink_obj>28</sink_obj>
-				<is_back_edge>0</is_back_edge>
-			</item>
-			<item class_id_reference="20" object_id="_68">
+			<item class_id_reference="20" object_id="_75">
 				<id>85</id>
 				<edge_type>1</edge_type>
 				<source_obj>84</source_obj>
+				<sink_obj>27</sink_obj>
+				<is_back_edge>0</is_back_edge>
+			</item>
+			<item class_id_reference="20" object_id="_76">
+				<id>86</id>
+				<edge_type>1</edge_type>
+				<source_obj>24</source_obj>
 				<sink_obj>28</sink_obj>
 				<is_back_edge>0</is_back_edge>
 			</item>
-			<item class_id_reference="20" object_id="_69">
-				<id>86</id>
+			<item class_id_reference="20" object_id="_77">
+				<id>90</id>
 				<edge_type>1</edge_type>
-				<source_obj>25</source_obj>
+				<source_obj>89</source_obj>
 				<sink_obj>29</sink_obj>
 				<is_back_edge>0</is_back_edge>
 			</item>
-			<item class_id_reference="20" object_id="_70">
-				<id>88</id>
-				<edge_type>1</edge_type>
-				<source_obj>87</source_obj>
-				<sink_obj>29</sink_obj>
-				<is_back_edge>0</is_back_edge>
-			</item>
-			<item class_id_reference="20" object_id="_71">
+			<item class_id_reference="20" object_id="_78">
 				<id>91</id>
+				<edge_type>1</edge_type>
+				<source_obj>24</source_obj>
+				<sink_obj>29</sink_obj>
+				<is_back_edge>0</is_back_edge>
+			</item>
+			<item class_id_reference="20" object_id="_79">
+				<id>92</id>
+				<edge_type>1</edge_type>
+				<source_obj>27</source_obj>
+				<sink_obj>30</sink_obj>
+				<is_back_edge>0</is_back_edge>
+			</item>
+			<item class_id_reference="20" object_id="_80">
+				<id>93</id>
+				<edge_type>1</edge_type>
+				<source_obj>28</source_obj>
+				<sink_obj>30</sink_obj>
+				<is_back_edge>0</is_back_edge>
+			</item>
+			<item class_id_reference="20" object_id="_81">
+				<id>94</id>
 				<edge_type>1</edge_type>
 				<source_obj>29</source_obj>
 				<sink_obj>30</sink_obj>
 				<is_back_edge>0</is_back_edge>
 			</item>
-			<item class_id_reference="20" object_id="_72">
-				<id>92</id>
-				<edge_type>1</edge_type>
-				<source_obj>24</source_obj>
-				<sink_obj>30</sink_obj>
-				<is_back_edge>0</is_back_edge>
-			</item>
-			<item class_id_reference="20" object_id="_73">
-				<id>93</id>
+			<item class_id_reference="20" object_id="_82">
+				<id>95</id>
 				<edge_type>1</edge_type>
 				<source_obj>22</source_obj>
 				<sink_obj>31</sink_obj>
 				<is_back_edge>0</is_back_edge>
 			</item>
-			<item class_id_reference="20" object_id="_74">
-				<id>94</id>
+			<item class_id_reference="20" object_id="_83">
+				<id>96</id>
 				<edge_type>1</edge_type>
-				<source_obj>87</source_obj>
+				<source_obj>84</source_obj>
 				<sink_obj>31</sink_obj>
 				<is_back_edge>0</is_back_edge>
 			</item>
-			<item class_id_reference="20" object_id="_75">
-				<id>96</id>
-				<edge_type>1</edge_type>
-				<source_obj>31</source_obj>
-				<sink_obj>32</sink_obj>
-				<is_back_edge>0</is_back_edge>
-			</item>
-			<item class_id_reference="20" object_id="_76">
+			<item class_id_reference="20" object_id="_84">
 				<id>97</id>
 				<edge_type>1</edge_type>
 				<source_obj>21</source_obj>
 				<sink_obj>32</sink_obj>
 				<is_back_edge>0</is_back_edge>
 			</item>
-			<item class_id_reference="20" object_id="_77">
-				<id>98</id>
-				<edge_type>1</edge_type>
-				<source_obj>25</source_obj>
-				<sink_obj>33</sink_obj>
-				<is_back_edge>0</is_back_edge>
-			</item>
-			<item class_id_reference="20" object_id="_78">
+			<item class_id_reference="20" object_id="_85">
 				<id>99</id>
 				<edge_type>1</edge_type>
-				<source_obj>22</source_obj>
+				<source_obj>89</source_obj>
 				<sink_obj>33</sink_obj>
 				<is_back_edge>0</is_back_edge>
 			</item>
-			<item class_id_reference="20" object_id="_79">
+			<item class_id_reference="20" object_id="_86">
 				<id>100</id>
+				<edge_type>1</edge_type>
+				<source_obj>21</source_obj>
+				<sink_obj>33</sink_obj>
+				<is_back_edge>0</is_back_edge>
+			</item>
+			<item class_id_reference="20" object_id="_87">
+				<id>101</id>
+				<edge_type>1</edge_type>
+				<source_obj>31</source_obj>
+				<sink_obj>34</sink_obj>
+				<is_back_edge>0</is_back_edge>
+			</item>
+			<item class_id_reference="20" object_id="_88">
+				<id>102</id>
+				<edge_type>1</edge_type>
+				<source_obj>32</source_obj>
+				<sink_obj>34</sink_obj>
+				<is_back_edge>0</is_back_edge>
+			</item>
+			<item class_id_reference="20" object_id="_89">
+				<id>103</id>
 				<edge_type>1</edge_type>
 				<source_obj>33</source_obj>
 				<sink_obj>34</sink_obj>
 				<is_back_edge>0</is_back_edge>
 			</item>
-			<item class_id_reference="20" object_id="_80">
-				<id>101</id>
-				<edge_type>1</edge_type>
-				<source_obj>32</source_obj>
-				<sink_obj>35</sink_obj>
-				<is_back_edge>0</is_back_edge>
-			</item>
-			<item class_id_reference="20" object_id="_81">
-				<id>102</id>
-				<edge_type>1</edge_type>
-				<source_obj>34</source_obj>
-				<sink_obj>35</sink_obj>
-				<is_back_edge>0</is_back_edge>
-			</item>
-			<item class_id_reference="20" object_id="_82">
-				<id>103</id>
-				<edge_type>1</edge_type>
-				<source_obj>22</source_obj>
-				<sink_obj>36</sink_obj>
-				<is_back_edge>0</is_back_edge>
-			</item>
-			<item class_id_reference="20" object_id="_83">
+			<item class_id_reference="20" object_id="_90">
 				<id>104</id>
 				<edge_type>1</edge_type>
 				<source_obj>25</source_obj>
+				<sink_obj>35</sink_obj>
+				<is_back_edge>0</is_back_edge>
+			</item>
+			<item class_id_reference="20" object_id="_91">
+				<id>105</id>
+				<edge_type>1</edge_type>
+				<source_obj>22</source_obj>
+				<sink_obj>35</sink_obj>
+				<is_back_edge>0</is_back_edge>
+			</item>
+			<item class_id_reference="20" object_id="_92">
+				<id>106</id>
+				<edge_type>1</edge_type>
+				<source_obj>35</source_obj>
 				<sink_obj>36</sink_obj>
 				<is_back_edge>0</is_back_edge>
 			</item>
-			<item class_id_reference="20" object_id="_84">
-				<id>105</id>
+			<item class_id_reference="20" object_id="_93">
+				<id>107</id>
+				<edge_type>1</edge_type>
+				<source_obj>89</source_obj>
+				<sink_obj>36</sink_obj>
+				<is_back_edge>0</is_back_edge>
+			</item>
+			<item class_id_reference="20" object_id="_94">
+				<id>108</id>
 				<edge_type>1</edge_type>
 				<source_obj>36</source_obj>
 				<sink_obj>37</sink_obj>
 				<is_back_edge>0</is_back_edge>
 			</item>
-			<item class_id_reference="20" object_id="_85">
-				<id>106</id>
-				<edge_type>1</edge_type>
-				<source_obj>30</source_obj>
-				<sink_obj>38</sink_obj>
-				<is_back_edge>0</is_back_edge>
-			</item>
-			<item class_id_reference="20" object_id="_86">
-				<id>107</id>
-				<edge_type>1</edge_type>
-				<source_obj>37</source_obj>
-				<sink_obj>38</sink_obj>
-				<is_back_edge>0</is_back_edge>
-			</item>
-			<item class_id_reference="20" object_id="_87">
+			<item class_id_reference="20" object_id="_95">
 				<id>109</id>
 				<edge_type>1</edge_type>
-				<source_obj>84</source_obj>
-				<sink_obj>39</sink_obj>
+				<source_obj>25</source_obj>
+				<sink_obj>37</sink_obj>
 				<is_back_edge>0</is_back_edge>
 			</item>
-			<item class_id_reference="20" object_id="_88">
+			<item class_id_reference="20" object_id="_96">
 				<id>110</id>
 				<edge_type>1</edge_type>
-				<source_obj>21</source_obj>
+				<source_obj>22</source_obj>
+				<sink_obj>37</sink_obj>
+				<is_back_edge>0</is_back_edge>
+			</item>
+			<item class_id_reference="20" object_id="_97">
+				<id>111</id>
+				<edge_type>1</edge_type>
+				<source_obj>25</source_obj>
+				<sink_obj>38</sink_obj>
+				<is_back_edge>0</is_back_edge>
+			</item>
+			<item class_id_reference="20" object_id="_98">
+				<id>112</id>
+				<edge_type>1</edge_type>
+				<source_obj>22</source_obj>
+				<sink_obj>38</sink_obj>
+				<is_back_edge>0</is_back_edge>
+			</item>
+			<item class_id_reference="20" object_id="_99">
+				<id>113</id>
+				<edge_type>1</edge_type>
+				<source_obj>22</source_obj>
 				<sink_obj>39</sink_obj>
 				<is_back_edge>0</is_back_edge>
 			</item>
-			<item class_id_reference="20" object_id="_89">
-				<id>111</id>
+			<item class_id_reference="20" object_id="_100">
+				<id>114</id>
 				<edge_type>1</edge_type>
-				<source_obj>28</source_obj>
+				<source_obj>25</source_obj>
+				<sink_obj>39</sink_obj>
+				<is_back_edge>0</is_back_edge>
+			</item>
+			<item class_id_reference="20" object_id="_101">
+				<id>115</id>
+				<edge_type>1</edge_type>
+				<source_obj>36</source_obj>
 				<sink_obj>40</sink_obj>
 				<is_back_edge>0</is_back_edge>
 			</item>
-			<item class_id_reference="20" object_id="_90">
-				<id>112</id>
-				<edge_type>1</edge_type>
-				<source_obj>30</source_obj>
-				<sink_obj>40</sink_obj>
-				<is_back_edge>0</is_back_edge>
-			</item>
-			<item class_id_reference="20" object_id="_91">
-				<id>113</id>
+			<item class_id_reference="20" object_id="_102">
+				<id>116</id>
 				<edge_type>1</edge_type>
 				<source_obj>38</source_obj>
 				<sink_obj>40</sink_obj>
 				<is_back_edge>0</is_back_edge>
 			</item>
-			<item class_id_reference="20" object_id="_92">
-				<id>114</id>
-				<edge_type>1</edge_type>
-				<source_obj>28</source_obj>
-				<sink_obj>41</sink_obj>
-				<is_back_edge>0</is_back_edge>
-			</item>
-			<item class_id_reference="20" object_id="_93">
-				<id>115</id>
-				<edge_type>1</edge_type>
-				<source_obj>35</source_obj>
-				<sink_obj>41</sink_obj>
-				<is_back_edge>0</is_back_edge>
-			</item>
-			<item class_id_reference="20" object_id="_94">
-				<id>116</id>
-				<edge_type>1</edge_type>
-				<source_obj>39</source_obj>
-				<sink_obj>41</sink_obj>
-				<is_back_edge>0</is_back_edge>
-			</item>
-			<item class_id_reference="20" object_id="_95">
+			<item class_id_reference="20" object_id="_103">
 				<id>117</id>
 				<edge_type>1</edge_type>
-				<source_obj>28</source_obj>
-				<sink_obj>42</sink_obj>
-				<is_back_edge>0</is_back_edge>
-			</item>
-			<item class_id_reference="20" object_id="_96">
-				<id>118</id>
-				<edge_type>1</edge_type>
-				<source_obj>25</source_obj>
-				<sink_obj>42</sink_obj>
-				<is_back_edge>0</is_back_edge>
-			</item>
-			<item class_id_reference="20" object_id="_97">
-				<id>119</id>
-				<edge_type>1</edge_type>
-				<source_obj>22</source_obj>
-				<sink_obj>42</sink_obj>
-				<is_back_edge>0</is_back_edge>
-			</item>
-			<item class_id_reference="20" object_id="_98">
-				<id>120</id>
-				<edge_type>1</edge_type>
-				<source_obj>26</source_obj>
-				<sink_obj>43</sink_obj>
-				<is_back_edge>0</is_back_edge>
-			</item>
-			<item class_id_reference="20" object_id="_99">
-				<id>121</id>
-				<edge_type>1</edge_type>
-				<source_obj>23</source_obj>
-				<sink_obj>43</sink_obj>
-				<is_back_edge>0</is_back_edge>
-			</item>
-			<item class_id_reference="20" object_id="_100">
-				<id>122</id>
-				<edge_type>1</edge_type>
-				<source_obj>40</source_obj>
-				<sink_obj>44</sink_obj>
-				<is_back_edge>0</is_back_edge>
-			</item>
-			<item class_id_reference="20" object_id="_101">
-				<id>123</id>
-				<edge_type>1</edge_type>
-				<source_obj>41</source_obj>
-				<sink_obj>44</sink_obj>
-				<is_back_edge>0</is_back_edge>
-			</item>
-			<item class_id_reference="20" object_id="_102">
-				<id>124</id>
-				<edge_type>1</edge_type>
-				<source_obj>43</source_obj>
-				<sink_obj>45</sink_obj>
-				<is_back_edge>0</is_back_edge>
-			</item>
-			<item class_id_reference="20" object_id="_103">
-				<id>125</id>
-				<edge_type>1</edge_type>
-				<source_obj>44</source_obj>
-				<sink_obj>45</sink_obj>
+				<source_obj>39</source_obj>
+				<sink_obj>40</sink_obj>
 				<is_back_edge>0</is_back_edge>
 			</item>
 			<item class_id_reference="20" object_id="_104">
-				<id>126</id>
+				<id>118</id>
 				<edge_type>1</edge_type>
-				<source_obj>43</source_obj>
-				<sink_obj>46</sink_obj>
+				<source_obj>40</source_obj>
+				<sink_obj>41</sink_obj>
 				<is_back_edge>0</is_back_edge>
 			</item>
 			<item class_id_reference="20" object_id="_105">
-				<id>127</id>
+				<id>119</id>
 				<edge_type>1</edge_type>
-				<source_obj>84</source_obj>
-				<sink_obj>46</sink_obj>
+				<source_obj>34</source_obj>
+				<sink_obj>42</sink_obj>
 				<is_back_edge>0</is_back_edge>
 			</item>
 			<item class_id_reference="20" object_id="_106">
-				<id>128</id>
+				<id>120</id>
 				<edge_type>1</edge_type>
-				<source_obj>44</source_obj>
-				<sink_obj>47</sink_obj>
+				<source_obj>41</source_obj>
+				<sink_obj>42</sink_obj>
 				<is_back_edge>0</is_back_edge>
 			</item>
 			<item class_id_reference="20" object_id="_107">
-				<id>129</id>
+				<id>121</id>
 				<edge_type>1</edge_type>
-				<source_obj>46</source_obj>
-				<sink_obj>47</sink_obj>
+				<source_obj>40</source_obj>
+				<sink_obj>43</sink_obj>
 				<is_back_edge>0</is_back_edge>
 			</item>
 			<item class_id_reference="20" object_id="_108">
+				<id>122</id>
+				<edge_type>1</edge_type>
+				<source_obj>30</source_obj>
+				<sink_obj>44</sink_obj>
+				<is_back_edge>0</is_back_edge>
+			</item>
+			<item class_id_reference="20" object_id="_109">
+				<id>123</id>
+				<edge_type>1</edge_type>
+				<source_obj>43</source_obj>
+				<sink_obj>44</sink_obj>
+				<is_back_edge>0</is_back_edge>
+			</item>
+			<item class_id_reference="20" object_id="_110">
+				<id>124</id>
+				<edge_type>1</edge_type>
+				<source_obj>36</source_obj>
+				<sink_obj>45</sink_obj>
+				<is_back_edge>0</is_back_edge>
+			</item>
+			<item class_id_reference="20" object_id="_111">
+				<id>125</id>
+				<edge_type>1</edge_type>
+				<source_obj>30</source_obj>
+				<sink_obj>45</sink_obj>
+				<is_back_edge>0</is_back_edge>
+			</item>
+			<item class_id_reference="20" object_id="_112">
+				<id>126</id>
+				<edge_type>1</edge_type>
+				<source_obj>44</source_obj>
+				<sink_obj>45</sink_obj>
+				<is_back_edge>0</is_back_edge>
+			</item>
+			<item class_id_reference="20" object_id="_113">
+				<id>127</id>
+				<edge_type>1</edge_type>
+				<source_obj>36</source_obj>
+				<sink_obj>46</sink_obj>
+				<is_back_edge>0</is_back_edge>
+			</item>
+			<item class_id_reference="20" object_id="_114">
+				<id>128</id>
+				<edge_type>1</edge_type>
+				<source_obj>42</source_obj>
+				<sink_obj>46</sink_obj>
+				<is_back_edge>0</is_back_edge>
+			</item>
+			<item class_id_reference="20" object_id="_115">
+				<id>129</id>
+				<edge_type>1</edge_type>
+				<source_obj>34</source_obj>
+				<sink_obj>46</sink_obj>
+				<is_back_edge>0</is_back_edge>
+			</item>
+			<item class_id_reference="20" object_id="_116">
 				<id>130</id>
+				<edge_type>1</edge_type>
+				<source_obj>26</source_obj>
+				<sink_obj>47</sink_obj>
+				<is_back_edge>0</is_back_edge>
+			</item>
+			<item class_id_reference="20" object_id="_117">
+				<id>131</id>
+				<edge_type>1</edge_type>
+				<source_obj>23</source_obj>
+				<sink_obj>47</sink_obj>
+				<is_back_edge>0</is_back_edge>
+			</item>
+			<item class_id_reference="20" object_id="_118">
+				<id>132</id>
 				<edge_type>1</edge_type>
 				<source_obj>45</source_obj>
 				<sink_obj>48</sink_obj>
 				<is_back_edge>0</is_back_edge>
 			</item>
-			<item class_id_reference="20" object_id="_109">
-				<id>131</id>
+			<item class_id_reference="20" object_id="_119">
+				<id>133</id>
 				<edge_type>1</edge_type>
-				<source_obj>84</source_obj>
+				<source_obj>46</source_obj>
 				<sink_obj>48</sink_obj>
 				<is_back_edge>0</is_back_edge>
 			</item>
-			<item class_id_reference="20" object_id="_110">
-				<id>132</id>
-				<edge_type>1</edge_type>
-				<source_obj>26</source_obj>
-				<sink_obj>49</sink_obj>
-				<is_back_edge>0</is_back_edge>
-			</item>
-			<item class_id_reference="20" object_id="_111">
-				<id>133</id>
-				<edge_type>1</edge_type>
-				<source_obj>48</source_obj>
-				<sink_obj>49</sink_obj>
-				<is_back_edge>0</is_back_edge>
-			</item>
-			<item class_id_reference="20" object_id="_112">
+			<item class_id_reference="20" object_id="_120">
 				<id>134</id>
 				<edge_type>1</edge_type>
-				<source_obj>40</source_obj>
-				<sink_obj>50</sink_obj>
+				<source_obj>45</source_obj>
+				<sink_obj>49</sink_obj>
 				<is_back_edge>0</is_back_edge>
 			</item>
-			<item class_id_reference="20" object_id="_113">
+			<item class_id_reference="20" object_id="_121">
 				<id>135</id>
 				<edge_type>1</edge_type>
-				<source_obj>41</source_obj>
+				<source_obj>46</source_obj>
 				<sink_obj>50</sink_obj>
 				<is_back_edge>0</is_back_edge>
 			</item>
-			<item class_id_reference="20" object_id="_114">
+			<item class_id_reference="20" object_id="_122">
 				<id>136</id>
 				<edge_type>1</edge_type>
 				<source_obj>50</source_obj>
 				<sink_obj>51</sink_obj>
 				<is_back_edge>0</is_back_edge>
 			</item>
-			<item class_id_reference="20" object_id="_115">
+			<item class_id_reference="20" object_id="_123">
 				<id>137</id>
 				<edge_type>1</edge_type>
-				<source_obj>84</source_obj>
+				<source_obj>49</source_obj>
 				<sink_obj>51</sink_obj>
 				<is_back_edge>0</is_back_edge>
 			</item>
-			<item class_id_reference="20" object_id="_116">
+			<item class_id_reference="20" object_id="_124">
 				<id>138</id>
 				<edge_type>1</edge_type>
-				<source_obj>51</source_obj>
+				<source_obj>45</source_obj>
 				<sink_obj>52</sink_obj>
 				<is_back_edge>0</is_back_edge>
 			</item>
-			<item class_id_reference="20" object_id="_117">
+			<item class_id_reference="20" object_id="_125">
 				<id>139</id>
 				<edge_type>1</edge_type>
-				<source_obj>26</source_obj>
+				<source_obj>46</source_obj>
 				<sink_obj>52</sink_obj>
 				<is_back_edge>0</is_back_edge>
 			</item>
-			<item class_id_reference="20" object_id="_118">
+			<item class_id_reference="20" object_id="_126">
 				<id>140</id>
-				<edge_type>1</edge_type>
-				<source_obj>23</source_obj>
-				<sink_obj>52</sink_obj>
-				<is_back_edge>0</is_back_edge>
-			</item>
-			<item class_id_reference="20" object_id="_119">
-				<id>141</id>
-				<edge_type>1</edge_type>
-				<source_obj>47</source_obj>
-				<sink_obj>53</sink_obj>
-				<is_back_edge>0</is_back_edge>
-			</item>
-			<item class_id_reference="20" object_id="_120">
-				<id>142</id>
 				<edge_type>1</edge_type>
 				<source_obj>49</source_obj>
 				<sink_obj>53</sink_obj>
 				<is_back_edge>0</is_back_edge>
 			</item>
-			<item class_id_reference="20" object_id="_121">
-				<id>143</id>
+			<item class_id_reference="20" object_id="_127">
+				<id>141</id>
 				<edge_type>1</edge_type>
-				<source_obj>52</source_obj>
+				<source_obj>50</source_obj>
 				<sink_obj>53</sink_obj>
 				<is_back_edge>0</is_back_edge>
 			</item>
-			<item class_id_reference="20" object_id="_122">
-				<id>144</id>
+			<item class_id_reference="20" object_id="_128">
+				<id>142</id>
 				<edge_type>1</edge_type>
-				<source_obj>40</source_obj>
+				<source_obj>50</source_obj>
 				<sink_obj>54</sink_obj>
 				<is_back_edge>0</is_back_edge>
 			</item>
-			<item class_id_reference="20" object_id="_123">
-				<id>145</id>
-				<edge_type>1</edge_type>
-				<source_obj>41</source_obj>
-				<sink_obj>55</sink_obj>
-				<is_back_edge>0</is_back_edge>
-			</item>
-			<item class_id_reference="20" object_id="_124">
-				<id>146</id>
-				<edge_type>1</edge_type>
-				<source_obj>40</source_obj>
-				<sink_obj>56</sink_obj>
-				<is_back_edge>0</is_back_edge>
-			</item>
-			<item class_id_reference="20" object_id="_125">
-				<id>147</id>
-				<edge_type>1</edge_type>
-				<source_obj>41</source_obj>
-				<sink_obj>56</sink_obj>
-				<is_back_edge>0</is_back_edge>
-			</item>
-			<item class_id_reference="20" object_id="_126">
-				<id>148</id>
-				<edge_type>1</edge_type>
-				<source_obj>55</source_obj>
-				<sink_obj>57</sink_obj>
-				<is_back_edge>0</is_back_edge>
-			</item>
-			<item class_id_reference="20" object_id="_127">
-				<id>149</id>
-				<edge_type>1</edge_type>
-				<source_obj>54</source_obj>
-				<sink_obj>57</sink_obj>
-				<is_back_edge>0</is_back_edge>
-			</item>
-			<item class_id_reference="20" object_id="_128">
-				<id>150</id>
-				<edge_type>1</edge_type>
-				<source_obj>55</source_obj>
-				<sink_obj>58</sink_obj>
-				<is_back_edge>0</is_back_edge>
-			</item>
 			<item class_id_reference="20" object_id="_129">
-				<id>151</id>
+				<id>143</id>
 				<edge_type>1</edge_type>
-				<source_obj>54</source_obj>
-				<sink_obj>58</sink_obj>
+				<source_obj>49</source_obj>
+				<sink_obj>54</sink_obj>
 				<is_back_edge>0</is_back_edge>
 			</item>
 			<item class_id_reference="20" object_id="_130">
-				<id>152</id>
+				<id>144</id>
 				<edge_type>1</edge_type>
-				<source_obj>54</source_obj>
-				<sink_obj>59</sink_obj>
+				<source_obj>47</source_obj>
+				<sink_obj>55</sink_obj>
 				<is_back_edge>0</is_back_edge>
 			</item>
 			<item class_id_reference="20" object_id="_131">
-				<id>153</id>
+				<id>145</id>
 				<edge_type>1</edge_type>
-				<source_obj>55</source_obj>
-				<sink_obj>59</sink_obj>
+				<source_obj>89</source_obj>
+				<sink_obj>55</sink_obj>
 				<is_back_edge>0</is_back_edge>
 			</item>
 			<item class_id_reference="20" object_id="_132">
-				<id>154</id>
+				<id>146</id>
 				<edge_type>1</edge_type>
-				<source_obj>43</source_obj>
-				<sink_obj>60</sink_obj>
+				<source_obj>47</source_obj>
+				<sink_obj>56</sink_obj>
 				<is_back_edge>0</is_back_edge>
 			</item>
 			<item class_id_reference="20" object_id="_133">
-				<id>155</id>
+				<id>147</id>
+				<edge_type>1</edge_type>
+				<source_obj>48</source_obj>
+				<sink_obj>56</sink_obj>
+				<is_back_edge>0</is_back_edge>
+			</item>
+			<item class_id_reference="20" object_id="_134">
+				<id>148</id>
+				<edge_type>1</edge_type>
+				<source_obj>48</source_obj>
+				<sink_obj>57</sink_obj>
+				<is_back_edge>0</is_back_edge>
+			</item>
+			<item class_id_reference="20" object_id="_135">
+				<id>149</id>
+				<edge_type>1</edge_type>
+				<source_obj>89</source_obj>
+				<sink_obj>57</sink_obj>
+				<is_back_edge>0</is_back_edge>
+			</item>
+			<item class_id_reference="20" object_id="_136">
+				<id>150</id>
+				<edge_type>1</edge_type>
+				<source_obj>52</source_obj>
+				<sink_obj>58</sink_obj>
+				<is_back_edge>0</is_back_edge>
+			</item>
+			<item class_id_reference="20" object_id="_137">
+				<id>151</id>
+				<edge_type>1</edge_type>
+				<source_obj>57</source_obj>
+				<sink_obj>58</sink_obj>
+				<is_back_edge>0</is_back_edge>
+			</item>
+			<item class_id_reference="20" object_id="_138">
+				<id>152</id>
+				<edge_type>1</edge_type>
+				<source_obj>58</source_obj>
+				<sink_obj>59</sink_obj>
+				<is_back_edge>0</is_back_edge>
+			</item>
+			<item class_id_reference="20" object_id="_139">
+				<id>153</id>
+				<edge_type>1</edge_type>
+				<source_obj>47</source_obj>
+				<sink_obj>59</sink_obj>
+				<is_back_edge>0</is_back_edge>
+			</item>
+			<item class_id_reference="20" object_id="_140">
+				<id>156</id>
+				<edge_type>1</edge_type>
+				<source_obj>55</source_obj>
+				<sink_obj>60</sink_obj>
+				<is_back_edge>0</is_back_edge>
+			</item>
+			<item class_id_reference="20" object_id="_141">
+				<id>157</id>
 				<edge_type>1</edge_type>
 				<source_obj>56</source_obj>
 				<sink_obj>60</sink_obj>
 				<is_back_edge>0</is_back_edge>
 			</item>
-			<item class_id_reference="20" object_id="_134">
+			<item class_id_reference="20" object_id="_142">
 				<id>158</id>
 				<edge_type>1</edge_type>
-				<source_obj>46</source_obj>
+				<source_obj>59</source_obj>
+				<sink_obj>60</sink_obj>
+				<is_back_edge>0</is_back_edge>
+			</item>
+			<item class_id_reference="20" object_id="_143">
+				<id>162</id>
+				<edge_type>1</edge_type>
+				<source_obj>161</source_obj>
 				<sink_obj>61</sink_obj>
 				<is_back_edge>0</is_back_edge>
 			</item>
-			<item class_id_reference="20" object_id="_135">
-				<id>159</id>
+			<item class_id_reference="20" object_id="_144">
+				<id>163</id>
+				<edge_type>1</edge_type>
+				<source_obj>51</source_obj>
+				<sink_obj>61</sink_obj>
+				<is_back_edge>0</is_back_edge>
+			</item>
+			<item class_id_reference="20" object_id="_145">
+				<id>165</id>
+				<edge_type>1</edge_type>
+				<source_obj>164</source_obj>
+				<sink_obj>61</sink_obj>
+				<is_back_edge>0</is_back_edge>
+			</item>
+			<item class_id_reference="20" object_id="_146">
+				<id>167</id>
+				<edge_type>1</edge_type>
+				<source_obj>166</source_obj>
+				<sink_obj>61</sink_obj>
+				<is_back_edge>0</is_back_edge>
+			</item>
+			<item class_id_reference="20" object_id="_147">
+				<id>169</id>
+				<edge_type>1</edge_type>
+				<source_obj>168</source_obj>
+				<sink_obj>61</sink_obj>
+				<is_back_edge>0</is_back_edge>
+			</item>
+			<item class_id_reference="20" object_id="_148">
+				<id>170</id>
+				<edge_type>1</edge_type>
+				<source_obj>53</source_obj>
+				<sink_obj>61</sink_obj>
+				<is_back_edge>0</is_back_edge>
+			</item>
+			<item class_id_reference="20" object_id="_149">
+				<id>172</id>
+				<edge_type>1</edge_type>
+				<source_obj>171</source_obj>
+				<sink_obj>61</sink_obj>
+				<is_back_edge>0</is_back_edge>
+			</item>
+			<item class_id_reference="20" object_id="_150">
+				<id>173</id>
+				<edge_type>1</edge_type>
+				<source_obj>54</source_obj>
+				<sink_obj>61</sink_obj>
+				<is_back_edge>0</is_back_edge>
+			</item>
+			<item class_id_reference="20" object_id="_151">
+				<id>175</id>
+				<edge_type>1</edge_type>
+				<source_obj>174</source_obj>
+				<sink_obj>61</sink_obj>
+				<is_back_edge>0</is_back_edge>
+			</item>
+			<item class_id_reference="20" object_id="_152">
+				<id>176</id>
 				<edge_type>1</edge_type>
 				<source_obj>60</source_obj>
 				<sink_obj>61</sink_obj>
 				<is_back_edge>0</is_back_edge>
 			</item>
-			<item class_id_reference="20" object_id="_136">
-				<id>163</id>
-				<edge_type>1</edge_type>
-				<source_obj>162</source_obj>
-				<sink_obj>62</sink_obj>
-				<is_back_edge>0</is_back_edge>
-			</item>
-			<item class_id_reference="20" object_id="_137">
-				<id>164</id>
-				<edge_type>1</edge_type>
-				<source_obj>57</source_obj>
-				<sink_obj>62</sink_obj>
-				<is_back_edge>0</is_back_edge>
-			</item>
-			<item class_id_reference="20" object_id="_138">
-				<id>166</id>
-				<edge_type>1</edge_type>
-				<source_obj>165</source_obj>
-				<sink_obj>62</sink_obj>
-				<is_back_edge>0</is_back_edge>
-			</item>
-			<item class_id_reference="20" object_id="_139">
-				<id>167</id>
+			<item class_id_reference="20" object_id="_153">
+				<id>177</id>
 				<edge_type>1</edge_type>
 				<source_obj>58</source_obj>
 				<sink_obj>62</sink_obj>
 				<is_back_edge>0</is_back_edge>
 			</item>
-			<item class_id_reference="20" object_id="_140">
-				<id>169</id>
+			<item class_id_reference="20" object_id="_154">
+				<id>178</id>
 				<edge_type>1</edge_type>
-				<source_obj>168</source_obj>
+				<source_obj>55</source_obj>
 				<sink_obj>62</sink_obj>
 				<is_back_edge>0</is_back_edge>
 			</item>
-			<item class_id_reference="20" object_id="_141">
-				<id>170</id>
+			<item class_id_reference="20" object_id="_155">
+				<id>181</id>
 				<edge_type>1</edge_type>
-				<source_obj>59</source_obj>
-				<sink_obj>62</sink_obj>
-				<is_back_edge>0</is_back_edge>
-			</item>
-			<item class_id_reference="20" object_id="_142">
-				<id>172</id>
-				<edge_type>1</edge_type>
-				<source_obj>171</source_obj>
-				<sink_obj>62</sink_obj>
-				<is_back_edge>0</is_back_edge>
-			</item>
-			<item class_id_reference="20" object_id="_143">
-				<id>173</id>
-				<edge_type>1</edge_type>
-				<source_obj>61</source_obj>
-				<sink_obj>62</sink_obj>
-				<is_back_edge>0</is_back_edge>
-			</item>
-			<item class_id_reference="20" object_id="_144">
-				<id>175</id>
-				<edge_type>1</edge_type>
-				<source_obj>174</source_obj>
+				<source_obj>56</source_obj>
 				<sink_obj>63</sink_obj>
 				<is_back_edge>0</is_back_edge>
 			</item>
-			<item class_id_reference="20" object_id="_145">
-				<id>176</id>
+			<item class_id_reference="20" object_id="_156">
+				<id>182</id>
 				<edge_type>1</edge_type>
 				<source_obj>62</source_obj>
 				<sink_obj>63</sink_obj>
 				<is_back_edge>0</is_back_edge>
 			</item>
-			<item class_id_reference="20" object_id="_146">
-				<id>177</id>
+			<item class_id_reference="20" object_id="_157">
+				<id>186</id>
 				<edge_type>1</edge_type>
-				<source_obj>53</source_obj>
-				<sink_obj>63</sink_obj>
+				<source_obj>185</source_obj>
+				<sink_obj>64</sink_obj>
 				<is_back_edge>0</is_back_edge>
 			</item>
-			<item class_id_reference="20" object_id="_147">
-				<id>178</id>
+			<item class_id_reference="20" object_id="_158">
+				<id>188</id>
 				<edge_type>1</edge_type>
-				<source_obj>42</source_obj>
-				<sink_obj>63</sink_obj>
+				<source_obj>187</source_obj>
+				<sink_obj>64</sink_obj>
 				<is_back_edge>0</is_back_edge>
 			</item>
-			<item class_id_reference="20" object_id="_148">
-				<id>179</id>
+			<item class_id_reference="20" object_id="_159">
+				<id>190</id>
+				<edge_type>1</edge_type>
+				<source_obj>189</source_obj>
+				<sink_obj>64</sink_obj>
+				<is_back_edge>0</is_back_edge>
+			</item>
+			<item class_id_reference="20" object_id="_160">
+				<id>191</id>
+				<edge_type>1</edge_type>
+				<source_obj>26</source_obj>
+				<sink_obj>64</sink_obj>
+				<is_back_edge>0</is_back_edge>
+			</item>
+			<item class_id_reference="20" object_id="_161">
+				<id>193</id>
+				<edge_type>1</edge_type>
+				<source_obj>192</source_obj>
+				<sink_obj>64</sink_obj>
+				<is_back_edge>0</is_back_edge>
+			</item>
+			<item class_id_reference="20" object_id="_162">
+				<id>194</id>
+				<edge_type>1</edge_type>
+				<source_obj>23</source_obj>
+				<sink_obj>64</sink_obj>
+				<is_back_edge>0</is_back_edge>
+			</item>
+			<item class_id_reference="20" object_id="_163">
+				<id>196</id>
+				<edge_type>1</edge_type>
+				<source_obj>195</source_obj>
+				<sink_obj>64</sink_obj>
+				<is_back_edge>0</is_back_edge>
+			</item>
+			<item class_id_reference="20" object_id="_164">
+				<id>197</id>
 				<edge_type>1</edge_type>
 				<source_obj>63</source_obj>
 				<sink_obj>64</sink_obj>
+				<is_back_edge>0</is_back_edge>
+			</item>
+			<item class_id_reference="20" object_id="_165">
+				<id>199</id>
+				<edge_type>1</edge_type>
+				<source_obj>198</source_obj>
+				<sink_obj>65</sink_obj>
+				<is_back_edge>0</is_back_edge>
+			</item>
+			<item class_id_reference="20" object_id="_166">
+				<id>200</id>
+				<edge_type>1</edge_type>
+				<source_obj>61</source_obj>
+				<sink_obj>65</sink_obj>
+				<is_back_edge>0</is_back_edge>
+			</item>
+			<item class_id_reference="20" object_id="_167">
+				<id>201</id>
+				<edge_type>1</edge_type>
+				<source_obj>64</source_obj>
+				<sink_obj>65</sink_obj>
+				<is_back_edge>0</is_back_edge>
+			</item>
+			<item class_id_reference="20" object_id="_168">
+				<id>202</id>
+				<edge_type>1</edge_type>
+				<source_obj>37</source_obj>
+				<sink_obj>65</sink_obj>
+				<is_back_edge>0</is_back_edge>
+			</item>
+			<item class_id_reference="20" object_id="_169">
+				<id>203</id>
+				<edge_type>1</edge_type>
+				<source_obj>65</source_obj>
+				<sink_obj>66</sink_obj>
 				<is_back_edge>0</is_back_edge>
 			</item>
 		</edges>
@@ -3942,7 +4375,7 @@
 	<cdfg_regions class_id="21" tracking_level="0" version="0">
 		<count>1</count>
 		<item_version>0</item_version>
-		<item class_id="22" tracking_level="1" version="0" object_id="_149">
+		<item class_id="22" tracking_level="1" version="0" object_id="_170">
 			<mId>1</mId>
 			<mTag>fp32_sum</mTag>
 			<mNormTag>fp32_sum</mNormTag>
@@ -3954,7 +4387,7 @@
 			<basic_blocks>
 				<count>1</count>
 				<item_version>0</item_version>
-				<item>65</item>
+				<item>67</item>
 			</basic_blocks>
 			<mII>-1</mII>
 			<mDepth>-1</mDepth>
@@ -3969,7 +4402,7 @@
 	<fsm class_id="-1"></fsm>
 	<res class_id="-1"></res>
 	<node_label_latency class_id="26" tracking_level="0" version="0">
-		<count>44</count>
+		<count>46</count>
 		<item_version>0</item_version>
 		<item class_id="27" tracking_level="0" version="0">
 			<first>21</first>
@@ -4279,12 +4712,26 @@
 				<second>0</second>
 			</second>
 		</item>
+		<item>
+			<first>65</first>
+			<second>
+				<first>0</first>
+				<second>0</second>
+			</second>
+		</item>
+		<item>
+			<first>66</first>
+			<second>
+				<first>0</first>
+				<second>0</second>
+			</second>
+		</item>
 	</node_label_latency>
 	<bblk_ent_exit class_id="29" tracking_level="0" version="0">
 		<count>1</count>
 		<item_version>0</item_version>
 		<item class_id="30" tracking_level="0" version="0">
-			<first>65</first>
+			<first>67</first>
 			<second class_id="31" tracking_level="0" version="0">
 				<first>0</first>
 				<second>0</second>

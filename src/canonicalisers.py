@@ -1,7 +1,7 @@
 import re
 
 # =====================================================================
-# Canonicalisation functions for HLS C code
+# Canonicalisation functions for MXINT8 addition
 # =====================================================================
 
 import re
@@ -150,6 +150,133 @@ ap_uint<8> add_full_sum(ap_uint<4> m1, ap_uint<4> e1, ap_uint<4> m2, ap_uint<4> 
 """.strip("\n")
 
     return code[:start] + new_body + "\n" + code[end:]
+
+# =====================================================================
+# Canonicalisation functions for FP32 addition
+# =====================================================================
+
+def _canonicalise_fp32_aligner(code: str) -> str:
+    """
+    Replace the entire fp32_aligner(...) with a width-safe version that:
+      - builds 24-bit significands as {hidden1, mantissa} (hidden1=1 if exp!=0),
+      - right-shifts only the smaller-exponent operand by |e1-e2|,
+      - packs [55:32]=aligned m1, [31:8]=aligned m2, [7:0]=target exponent,
+      - uses <<32 and <<8 (not 52!) and ORs to avoid comma-operator bugs.
+    """
+    if "fp32_aligner(" not in code:
+        return code
+
+    m = re.search(
+        r'\b(?:ap_uint<\s*56\s*>|unsigned\s+long\s+long)\s+fp32_aligner\s*\([^)]*\)\s*\{',
+        code
+    )
+    if not m:
+        return code
+
+    func_start = m.start()
+    brace_pos  = m.end() - 1
+
+    depth = 0
+    i = brace_pos
+    n = len(code)
+    while i < n:
+        if code[i] == '{':
+            depth += 1
+        elif code[i] == '}':
+            depth -= 1
+            if depth == 0:
+                func_end = i + 1
+                break
+        i += 1
+    else:
+        return code
+
+    canonical = r"""
+ap_uint<56> fp32_aligner(ap_uint<8> e1, ap_uint<23> m1, ap_uint<8> e2, ap_uint<23> m2) {
+  // Build 24-bit significands with hidden 1 for normal numbers
+  ap_uint<24> sm1 = (e1 == 0) ? (ap_uint<24>)m1 : (ap_uint<24>)(((ap_uint<24>)1 << 23) | m1);
+  ap_uint<24> sm2 = (e2 == 0) ? (ap_uint<24>)m2 : (ap_uint<24>)(((ap_uint<24>)1 << 23) | m2);
+
+  // Align the smaller exponent
+  ap_uint<8>  texp = (e1 >= e2) ? e1 : e2;
+  ap_uint<8>  de   = (e1 >= e2) ? (ap_uint<8>)(e1 - e2) : (ap_uint<8>)(e2 - e1);
+  ap_uint<24> am1  = (e1 >= e2) ? sm1 : (ap_uint<24>)(sm1 >> de);
+  ap_uint<24> am2  = (e1 >= e2) ? (ap_uint<24>)(sm2 >> de) : sm2;
+
+  // Pack: [55:32]=am1, [31:8]=am2, [7:0]=texp
+  ap_uint<56> pack = ((ap_uint<56>)am1 << 32) | ((ap_uint<56>)am2 << 8) | (ap_uint<56>)texp;
+  return pack;
+}
+""".strip("\n")
+
+    return code[:func_start] + canonical + "\n" + code[func_end:]
+
+
+def _canonicalise_fp32_raw_summer(code: str) -> str:
+    """
+    Replace fp32_raw_summer(...) with a clean version that:
+      - performs add/sub on zero-extended 25-bit magnitudes,
+      - chooses sign per IEEE magnitude compare,
+      - returns {sign, sum25} as ap_uint<26>.
+    """
+    if "fp32_raw_summer(" not in code:
+        return code
+
+    m = re.search(
+        r'\b(?:ap_uint<\s*26\s*>|unsigned\s+int)\s+fp32_raw_summer\s*\([^)]*\)\s*\{',
+        code
+    )
+    if not m:
+        return code
+
+    func_start = m.start()
+    brace_pos  = m.end() - 1
+
+    depth = 0
+    i = brace_pos
+    n = len(code)
+    while i < n:
+        if code[i] == '{':
+            depth += 1
+        elif code[i] == '}':
+            depth -= 1
+            if depth == 0:
+                func_end = i + 1
+                break
+        i += 1
+    else:
+        return code
+
+    canonical = r"""
+ap_uint<26> fp32_raw_summer(ap_uint<1> s1, ap_uint<24> aligned_m1,
+                            ap_uint<1> s2, ap_uint<24> aligned_m2) {
+  ap_uint<25> A = (ap_uint<25>)aligned_m1; // zero-extended
+  ap_uint<25> B = (ap_uint<25>)aligned_m2; // zero-extended
+
+  ap_uint<25> sum25;
+  ap_uint<1>  out_sign;
+
+  if (s1 == s2) {
+    sum25   = A + B;
+    out_sign = s1;
+  } else {
+    if (A == B) {
+      sum25   = 0;
+      out_sign = 0;       // +0 by convention
+    } else if (A > B) {
+      sum25   = A - B;
+      out_sign = s1;
+    } else {
+      sum25   = B - A;
+      out_sign = s2;
+    }
+  }
+
+  return ((ap_uint<26>)out_sign << 25) | (ap_uint<26>)sum25;
+}
+""".strip("\n")
+
+    return code[:func_start] + canonical + "\n" + code[func_end:]
 
 def _canonicalise_fp32_normaliser(code: str) -> str:
     """

@@ -1,6 +1,6 @@
 
 set TopModule "add_full_sum"
-set ClockPeriod 50
+set ClockPeriod 1000000
 set ClockList {}
 set AxiliteClockList {}
 set HasVivadoClockPeriod 0

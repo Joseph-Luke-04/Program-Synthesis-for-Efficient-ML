@@ -2,7 +2,7 @@
 Pass:            inline
 Name:            NeverInline
 DebugLoc:        { File: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp, 
-                   Line: 50, Column: 22 }
+                   Line: 87, Column: 22 }
 Function:        _Z8fp32_sum7ap_uintILi1EES_ILi8EES_ILi23EES0_S1_S2_
 Args:            
   - Callee:          'fp32_aligner(ap_uint<8>, ap_uint<23>, ap_uint<8>, ap_uint<23>)'
@@ -11,46 +11,46 @@ Args:
   - String:          ' not inlined into '
   - Caller:          'fp32_sum(ap_uint<1>, ap_uint<8>, ap_uint<23>, ap_uint<1>, ap_uint<8>, ap_uint<23>)'
     DebugLoc:        { File: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp, 
-                       Line: 48, Column: 0 }
+                       Line: 85, Column: 0 }
   - String:          ' because it should never be inlined (cost=never)'
 ...
 --- !Missed
 Pass:            inline
 Name:            NeverInline
 DebugLoc:        { File: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp, 
-                   Line: 59, Column: 10 }
+                   Line: 96, Column: 10 }
 Function:        _Z8fp32_sum7ap_uintILi1EES_ILi8EES_ILi23EES0_S1_S2_
 Args:            
   - Callee:          'fp32_normaliser(ap_uint<25>, ap_uint<1>, ap_uint<8>)'
     DebugLoc:        { File: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp, 
-                       Line: 11, Column: 0 }
+                       Line: 48, Column: 0 }
   - String:          ' not inlined into '
   - Caller:          'fp32_sum(ap_uint<1>, ap_uint<8>, ap_uint<23>, ap_uint<1>, ap_uint<8>, ap_uint<23>)'
     DebugLoc:        { File: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp, 
-                       Line: 48, Column: 0 }
+                       Line: 85, Column: 0 }
   - String:          ' because it should never be inlined (cost=never)'
 ...
 --- !Missed
 Pass:            inline
 Name:            NeverInline
 DebugLoc:        { File: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp, 
-                   Line: 55, Column: 21 }
+                   Line: 92, Column: 21 }
 Function:        _Z8fp32_sum7ap_uintILi1EES_ILi8EES_ILi23EES0_S1_S2_
 Args:            
   - Callee:          'fp32_raw_summer(ap_uint<1>, ap_uint<24>, ap_uint<1>, ap_uint<24>)'
     DebugLoc:        { File: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp, 
-                       Line: 7, Column: 0 }
+                       Line: 21, Column: 0 }
   - String:          ' not inlined into '
   - Caller:          'fp32_sum(ap_uint<1>, ap_uint<8>, ap_uint<23>, ap_uint<1>, ap_uint<8>, ap_uint<23>)'
     DebugLoc:        { File: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp, 
-                       Line: 48, Column: 0 }
+                       Line: 85, Column: 0 }
   - String:          ' because it should never be inlined (cost=never)'
 ...
 --- !Missed
 Pass:            inline
 Name:            NeverInline
 DebugLoc:        { File: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp, 
-                   Line: 50, Column: 22 }
+                   Line: 87, Column: 22 }
 Function:        _Z8fp32_sum7ap_uintILi1EES_ILi8EES_ILi23EES0_S1_S2_
 Args:            
   - Callee:          'fp32_aligner(ap_uint<8>, ap_uint<23>, ap_uint<8>, ap_uint<23>)'
@@ -59,39 +59,39 @@ Args:
   - String:          ' not inlined into '
   - Caller:          'fp32_sum(ap_uint<1>, ap_uint<8>, ap_uint<23>, ap_uint<1>, ap_uint<8>, ap_uint<23>)'
     DebugLoc:        { File: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp, 
-                       Line: 48, Column: 0 }
+                       Line: 85, Column: 0 }
   - String:          ' because it should never be inlined (cost=never)'
 ...
 --- !Missed
 Pass:            inline
 Name:            NeverInline
 DebugLoc:        { File: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp, 
-                   Line: 55, Column: 21 }
+                   Line: 92, Column: 21 }
 Function:        _Z8fp32_sum7ap_uintILi1EES_ILi8EES_ILi23EES0_S1_S2_
 Args:            
   - Callee:          'fp32_raw_summer(ap_uint<1>, ap_uint<24>, ap_uint<1>, ap_uint<24>)'
     DebugLoc:        { File: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp, 
-                       Line: 7, Column: 0 }
+                       Line: 21, Column: 0 }
   - String:          ' not inlined into '
   - Caller:          'fp32_sum(ap_uint<1>, ap_uint<8>, ap_uint<23>, ap_uint<1>, ap_uint<8>, ap_uint<23>)'
     DebugLoc:        { File: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp, 
-                       Line: 48, Column: 0 }
+                       Line: 85, Column: 0 }
   - String:          ' because it should never be inlined (cost=never)'
 ...
 --- !Missed
 Pass:            inline
 Name:            NeverInline
 DebugLoc:        { File: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp, 
-                   Line: 59, Column: 10 }
+                   Line: 96, Column: 10 }
 Function:        _Z8fp32_sum7ap_uintILi1EES_ILi8EES_ILi23EES0_S1_S2_
 Args:            
   - Callee:          'fp32_normaliser(ap_uint<25>, ap_uint<1>, ap_uint<8>)'
     DebugLoc:        { File: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp, 
-                       Line: 11, Column: 0 }
+                       Line: 48, Column: 0 }
   - String:          ' not inlined into '
   - Caller:          'fp32_sum(ap_uint<1>, ap_uint<8>, ap_uint<23>, ap_uint<1>, ap_uint<8>, ap_uint<23>)'
     DebugLoc:        { File: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp, 
-                       Line: 48, Column: 0 }
+                       Line: 85, Column: 0 }
   - String:          ' because it should never be inlined (cost=never)'
 ...
 --- !Missed
@@ -101,7 +101,7 @@ Function:        apatb_fp32_sum_ir
 Args:            
   - Callee:          'fp32_sum(ap_uint<1>, ap_uint<8>, ap_uint<23>, ap_uint<1>, ap_uint<8>, ap_uint<23>)'
     DebugLoc:        { File: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp, 
-                       Line: 48, Column: 0 }
+                       Line: 85, Column: 0 }
   - String:          ' not inlined into '
   - Caller:          apatb_fp32_sum_ir
   - String:          ' because it should never be inlined (cost=never)'
@@ -110,7 +110,7 @@ Args:
 Pass:            reflow-inliner
 Name:            Inline
 DebugLoc:        { File: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp, 
-                   Line: 48, Column: 0 }
+                   Line: 85, Column: 0 }
 Function:        _Z8fp32_sum7ap_uintILi1EES_ILi8EES_ILi23EES0_S1_S2_
 Args:            
   - String:          'Inlining function '''
@@ -120,39 +120,39 @@ Args:
   - String:          ''' into '''
   - Caller:          'fp32_sum(ap_uint<1>, ap_uint<8>, ap_uint<23>, ap_uint<1>, ap_uint<8>, ap_uint<23>)'
     DebugLoc:        { File: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp, 
-                       Line: 48, Column: 0 }
+                       Line: 85, Column: 0 }
   - String:          ''''
 ...
 --- !Passed
 Pass:            reflow-inliner
 Name:            Inline
 DebugLoc:        { File: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp, 
-                   Line: 48, Column: 0 }
+                   Line: 85, Column: 0 }
 Function:        _Z8fp32_sum7ap_uintILi1EES_ILi8EES_ILi23EES0_S1_S2_
 Args:            
   - String:          'Inlining function '''
   - Callee:          'fp32_raw_summer(ap_uint<1>, ap_uint<24>, ap_uint<1>, ap_uint<24>)'
     DebugLoc:        { File: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp, 
-                       Line: 7, Column: 0 }
+                       Line: 21, Column: 0 }
   - String:          ''' into '''
   - Caller:          'fp32_sum(ap_uint<1>, ap_uint<8>, ap_uint<23>, ap_uint<1>, ap_uint<8>, ap_uint<23>)'
     DebugLoc:        { File: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp, 
-                       Line: 48, Column: 0 }
+                       Line: 85, Column: 0 }
   - String:          ''''
 ...
 --- !Missed
 Pass:            inline
 Name:            NeverInline
 DebugLoc:        { File: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp, 
-                   Line: 59, Column: 10 }
+                   Line: 96, Column: 10 }
 Function:        _Z8fp32_sum7ap_uintILi1EES_ILi8EES_ILi23EES0_S1_S2_
 Args:            
   - Callee:          'fp32_normaliser(ap_uint<25>, ap_uint<1>, ap_uint<8>)'
     DebugLoc:        { File: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp, 
-                       Line: 11, Column: 0 }
+                       Line: 48, Column: 0 }
   - String:          ' not inlined into '
   - Caller:          'fp32_sum(ap_uint<1>, ap_uint<8>, ap_uint<23>, ap_uint<1>, ap_uint<8>, ap_uint<23>)'
     DebugLoc:        { File: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/solution_fp32addition_fp32_full_sum.cpp, 
-                       Line: 48, Column: 0 }
+                       Line: 85, Column: 0 }
   - String:          ' because it should never be inlined (cost=never)'
 ...

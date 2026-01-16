@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'fp32_normaliser'" level="0">
-<item name = "Date">Wed Nov 19 15:00:58 2025
+<item name = "Date">Wed Nov 26 12:59:24 2025
 </item>
 <item name = "Version">2025.1 (Build 6135595 on May 21 2025)</item>
 <item name = "Project">solution_fp32addition_fp32_full_sum_component</item>
@@ -15,7 +15,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="4">Clock, Target, Estimated, Uncertainty</keys>
-<column name="ap_clk">50.00 ns, 7.137 ns, 13.50 ns</column>
+<column name="ap_clk">1.00 ms, 7.137 ns, 0.27 ms</column>
 </table>
 </item>
 </section>
@@ -124,7 +124,7 @@
 <column name="ap_condition_743">and, 0, 0, 2, 1, 1</column>
 <column name="ap_condition_755">and, 0, 0, 2, 1, 1</column>
 <column name="ap_condition_767">and, 0, 0, 2, 1, 1</column>
-<column name="icmp_ln12_fu_348_p2">icmp, 0, 0, 32, 25, 1</column>
+<column name="icmp_ln49_fu_348_p2">icmp, 0, 0, 32, 25, 1</column>
 </table>
 </item>
 <item name = "Multiplexer"><table name="" hasTotal="1">

@@ -28,7 +28,7 @@ def create_hls_tcl(design_path: Path, top_func: str, output_dir: Path) -> Path:
     set_top {top_func}
     add_files {design_path}
     set_part {{xc7z020clg400-1}}
-    create_clock -period 50ns
+    create_clock -period 1000000ns
     csynth_design
     export_design -rtl verilog
     """

@@ -4,7 +4,7 @@
 == Synthesis Summary Report of 'fp32_sum'
 ================================================================
 + General Information: 
-    * Date:           Wed Nov 19 15:00:59 2025
+    * Date:           Wed Nov 26 12:59:24 2025
     * Version:        2025.1 (Build 6135595 on May 21 2025)
     * Project:        solution_fp32addition_fp32_full_sum_component
     * Solution:       hls (Vivado IP Flow Target)
@@ -15,13 +15,13 @@
 + Performance & Resource Estimates: 
     
     PS: '+' for module; 'o' for loop; '*' for dataflow
-    +--------------------+------+-------+---------+-------+----------+---------+------+----------+------+----+---+-----------+-----+
-    |       Modules      | Issue|       |     Latency     | Iteration|         | Trip |          |      |    |   |           |     |
-    |       & Loops      | Type | Slack | (cycles)|  (ns) |  Latency | Interval| Count| Pipelined| BRAM | DSP| FF|    LUT    | URAM|
-    +--------------------+------+-------+---------+-------+----------+---------+------+----------+------+----+---+-----------+-----+
-    |+ fp32_sum          |     -|  19.26|        0|  0.000|         -|        1|     -|        no|     -|   -|  -|  1171 (2%)|    -|
-    | + fp32_normaliser  |     -|  29.36|        0|  0.000|         -|        0|     -|        no|     -|   -|  -|   686 (1%)|    -|
-    +--------------------+------+-------+---------+-------+----------+---------+------+----------+------+----+---+-----------+-----+
+    +--------------------+------+-----------+---------+-------+----------+---------+------+----------+------+----+---+-----------+-----+
+    |       Modules      | Issue|           |     Latency     | Iteration|         | Trip |          |      |    |   |           |     |
+    |       & Loops      | Type |   Slack   | (cycles)|  (ns) |  Latency | Interval| Count| Pipelined| BRAM | DSP| FF|    LUT    | URAM|
+    +--------------------+------+-----------+---------+-------+----------+---------+------+----------+------+----+---+-----------+-----+
+    |+ fp32_sum          |     -|  729979.43|        0|  0.000|         -|        1|     -|        no|     -|   -|  -|  1204 (2%)|    -|
+    | + fp32_normaliser  |     -|  729992.86|        0|  0.000|         -|        0|     -|        no|     -|   -|  -|   686 (1%)|    -|
+    +--------------------+------+-----------+---------+-------+----------+---------+------+----------+------+----+---+-----------+-----+
 
 
 ================================================================
@@ -82,65 +82,65 @@
 ================================================================
 == Bind Op Report
 ================================================================
-+--------------------------------------------------+-----+--------+------------+-----------+------------------------+---------+
-| Name                                             | DSP | Pragma | Variable   | Op        | Impl                   | Latency |
-+--------------------------------------------------+-----+--------+------------+-----------+------------------------+---------+
-| + fp32_sum                                       | 0   |        |            |           |                        |         |
-|   icmp_ln4_fu_97_p2                              |     |        | icmp_ln4   | setlt     | auto                   | 0       |
-|   xor_ln4_fu_103_p2                              |     |        | xor_ln4    | xor       | auto                   | 0       |
-|   icmp_ln4_1_fu_109_p2                           |     |        | icmp_ln4_1 | setne     | auto                   | 0       |
-|   icmp_ln4_2_fu_123_p2                           |     |        | icmp_ln4_2 | setne     | auto                   | 0       |
-|   sub_ln4_fu_137_p2                              |     |        | sub_ln4    | sub       | fabric                 | 0       |
-|   lshr_ln4_fu_147_p2                             |     |        | lshr_ln4   | lshr      | auto_pipe              | 0       |
-|   sub_ln4_1_fu_153_p2                            |     |        | sub_ln4_1  | sub       | fabric                 | 0       |
-|   lshr_ln4_1_fu_163_p2                           |     |        | lshr_ln4_1 | lshr      | auto_pipe              | 0       |
-|   tmp_0_i87_fu_177_p3                            |     |        | tmp_0_i87  | select    | auto_sel               | 0       |
-|   am2_fu_185_p3                                  |     |        | am2        | select    | auto_sel               | 0       |
-|   call_ret_fp32_normaliser_fu_90_target_exponent |     |        | exp        | select    | auto_sel               | 0       |
-|   xor_ln8_fu_202_p2                              |     |        | xor_ln8    | xor       | auto                   | 0       |
-|   icmp_ln8_fu_208_p2                             |     |        | icmp_ln8   | seteq     | auto                   | 0       |
-|   and_ln8_fu_214_p2                              |     |        | and_ln8    | and       | auto                   | 0       |
-|   xor_ln8_1_fu_220_p2                            |     |        | xor_ln8_1  | xor       | auto                   | 0       |
-|   or_ln8_fu_226_p2                               |     |        | or_ln8     | or        | auto                   | 0       |
-|   xor_ln8_2_fu_232_p2                            |     |        | xor_ln8_2  | xor       | auto                   | 0       |
-|   and_ln8_1_fu_238_p2                            |     |        | and_ln8_1  | and       | auto                   | 0       |
-|   icmp_ln8_1_fu_244_p2                           |     |        | icmp_ln8_1 | setlt     | auto                   | 0       |
-|   xor_ln8_3_fu_250_p2                            |     |        | xor_ln8_3  | xor       | auto                   | 0       |
-|   select_ln8_fu_256_p3                           |     |        | select_ln8 | select    | auto_sel               | 0       |
-|   call_ret_fp32_normaliser_fu_90_raw_sign        |     |        | raw_s      | select    | auto_sel               | 0       |
-|   icmp_ln8_2_fu_281_p2                           |     |        | icmp_ln8_2 | setlt     | auto                   | 0       |
-|   raw_m_fu_319_p2                                |     |        | add_ln8    | add       | fabric                 | 0       |
-|   raw_m_fu_319_p4                                |     |        | sub_ln8    | sub       | fabric                 | 0       |
-|   raw_m_fu_319_p6                                |     |        | sub_ln8_1  | sub       | fabric                 | 0       |
-|   and_ln8_2_fu_305_p2                            |     |        | and_ln8_2  | and       | auto                   | 0       |
-|   sparsemux_7_2_25_1_1_U4                        |     |        | raw_m      | sparsemux | onehotencoding_realdef | 0       |
-|  + fp32_normaliser                               | 0   |        |            |           |                        |         |
-|    icmp_ln12_fu_348_p2                           |     |        | icmp_ln12  | seteq     | auto                   | 0       |
-|    exp_24_fu_546_p2                              |     |        | exp_24     | add       | fabric                 | 0       |
-|    exp_22_fu_566_p2                              |     |        | exp_22     | add       | fabric                 | 0       |
-|    exp_21_fu_586_p2                              |     |        | exp_21     | add       | fabric                 | 0       |
-|    exp_20_fu_606_p2                              |     |        | exp_20     | add       | fabric                 | 0       |
-|    exp_19_fu_626_p2                              |     |        | exp_19     | add       | fabric                 | 0       |
-|    exp_18_fu_646_p2                              |     |        | exp_18     | add       | fabric                 | 0       |
-|    exp_17_fu_666_p2                              |     |        | exp_17     | add       | fabric                 | 0       |
-|    exp_16_fu_686_p2                              |     |        | exp_16     | add       | fabric                 | 0       |
-|    exp_15_fu_706_p2                              |     |        | exp_15     | add       | fabric                 | 0       |
-|    exp_14_fu_726_p2                              |     |        | exp_14     | add       | fabric                 | 0       |
-|    exp_13_fu_746_p2                              |     |        | exp_13     | add       | fabric                 | 0       |
-|    exp_12_fu_766_p2                              |     |        | exp_12     | add       | fabric                 | 0       |
-|    exp_11_fu_786_p2                              |     |        | exp_11     | add       | fabric                 | 0       |
-|    exp_10_fu_806_p2                              |     |        | exp_10     | add       | fabric                 | 0       |
-|    exp_9_fu_826_p2                               |     |        | exp_9      | add       | fabric                 | 0       |
-|    exp_8_fu_846_p2                               |     |        | exp_8      | add       | fabric                 | 0       |
-|    exp_7_fu_866_p2                               |     |        | exp_7      | add       | fabric                 | 0       |
-|    exp_6_fu_886_p2                               |     |        | exp_6      | add       | fabric                 | 0       |
-|    exp_5_fu_906_p2                               |     |        | exp_5      | add       | fabric                 | 0       |
-|    exp_4_fu_926_p2                               |     |        | exp_4      | add       | fabric                 | 0       |
-|    exp_3_fu_946_p2                               |     |        | exp_3      | add       | fabric                 | 0       |
-|    exp_2_fu_966_p2                               |     |        | exp_2      | add       | fabric                 | 0       |
-|    exp_1_fu_986_p2                               |     |        | exp_1      | add       | fabric                 | 0       |
-|    exp_fu_1009_p2                                |     |        | exp        | add       | fabric                 | 0       |
-+--------------------------------------------------+-----+--------+------------+-----------+------------------------+---------+
++---------------------------------------------------+-----+--------+------------+-----------+------------------------+---------+
+| Name                                              | DSP | Pragma | Variable   | Op        | Impl                   | Latency |
++---------------------------------------------------+-----+--------+------------+-----------+------------------------+---------+
+| + fp32_sum                                        | 0   |        |            |           |                        |         |
+|   icmp_ln5_fu_115_p2                              |     |        | icmp_ln5   | seteq     | auto                   | 0       |
+|   sm1_1_fu_133_p3                                 |     |        | sm1_1      | select    | auto_sel               | 0       |
+|   icmp_ln6_fu_141_p2                              |     |        | icmp_ln6   | seteq     | auto                   | 0       |
+|   sm2_1_fu_159_p3                                 |     |        | sm2_1      | select    | auto_sel               | 0       |
+|   icmp_ln9_fu_167_p2                              |     |        | icmp_ln9   | setlt     | auto                   | 0       |
+|   xor_ln9_fu_173_p2                               |     |        | xor_ln9    | xor       | auto                   | 0       |
+|   call_ret_fp32_normaliser_fu_108_target_exponent |     |        | texp       | select    | auto_sel               | 0       |
+|   de_fu_188_p2                                    |     |        | de         | sub       | fabric                 | 0       |
+|   de_1_fu_194_p2                                  |     |        | de_1       | sub       | fabric                 | 0       |
+|   de_2_fu_200_p3                                  |     |        | de_2       | select    | auto_sel               | 0       |
+|   lshr_ln12_fu_212_p2                             |     |        | lshr_ln12  | lshr      | auto_pipe              | 0       |
+|   lshr_ln11_fu_222_p2                             |     |        | lshr_ln11  | lshr      | auto_pipe              | 0       |
+|   am1_1_fu_228_p3                                 |     |        | am1_1      | select    | auto_sel               | 0       |
+|   am2_2_fu_236_p3                                 |     |        | am2_2      | select    | auto_sel               | 0       |
+|   xor_ln28_fu_244_p2                              |     |        | xor_ln28   | xor       | auto                   | 0       |
+|   icmp_ln32_fu_250_p2                             |     |        | icmp_ln32  | seteq     | auto                   | 0       |
+|   sum25_4_fu_328_p2                               |     |        | sum25      | add       | fabric                 | 0       |
+|   icmp_ln35_fu_270_p2                             |     |        | icmp_ln35  | setgt     | auto                   | 0       |
+|   sum25_4_fu_328_p6                               |     |        | sum25_1    | sub       | fabric                 | 0       |
+|   sum25_4_fu_328_p8                               |     |        | sum25_2    | sub       | fabric                 | 0       |
+|   xor_ln28_1_fu_288_p2                            |     |        | xor_ln28_1 | xor       | auto                   | 0       |
+|   and_ln32_fu_294_p2                              |     |        | and_ln32   | and       | auto                   | 0       |
+|   xor_ln32_fu_300_p2                              |     |        | xor_ln32   | xor       | auto                   | 0       |
+|   and_ln35_fu_306_p2                              |     |        | and_ln35   | and       | auto                   | 0       |
+|   and_ln35_1_fu_312_p2                            |     |        | and_ln35_1 | and       | auto                   | 0       |
+|   sparsemux_9_3_25_1_1_U4                         |     |        | sum25_4    | sparsemux | onehotencoding_realdef | 0       |
+|   or_ln35_fu_353_p2                               |     |        | or_ln35    | or        | auto                   | 0       |
+|   sparsemux_7_2_1_1_1_U5                          |     |        | out_sign   | sparsemux | onehotencoding_realdef | 0       |
+|  + fp32_normaliser                                | 0   |        |            |           |                        |         |
+|    icmp_ln49_fu_348_p2                            |     |        | icmp_ln49  | seteq     | auto                   | 0       |
+|    exp_24_fu_546_p2                               |     |        | exp_24     | add       | fabric                 | 0       |
+|    exp_22_fu_566_p2                               |     |        | exp_22     | add       | fabric                 | 0       |
+|    exp_21_fu_586_p2                               |     |        | exp_21     | add       | fabric                 | 0       |
+|    exp_20_fu_606_p2                               |     |        | exp_20     | add       | fabric                 | 0       |
+|    exp_19_fu_626_p2                               |     |        | exp_19     | add       | fabric                 | 0       |
+|    exp_18_fu_646_p2                               |     |        | exp_18     | add       | fabric                 | 0       |
+|    exp_17_fu_666_p2                               |     |        | exp_17     | add       | fabric                 | 0       |
+|    exp_16_fu_686_p2                               |     |        | exp_16     | add       | fabric                 | 0       |
+|    exp_15_fu_706_p2                               |     |        | exp_15     | add       | fabric                 | 0       |
+|    exp_14_fu_726_p2                               |     |        | exp_14     | add       | fabric                 | 0       |
+|    exp_13_fu_746_p2                               |     |        | exp_13     | add       | fabric                 | 0       |
+|    exp_12_fu_766_p2                               |     |        | exp_12     | add       | fabric                 | 0       |
+|    exp_11_fu_786_p2                               |     |        | exp_11     | add       | fabric                 | 0       |
+|    exp_10_fu_806_p2                               |     |        | exp_10     | add       | fabric                 | 0       |
+|    exp_9_fu_826_p2                                |     |        | exp_9      | add       | fabric                 | 0       |
+|    exp_8_fu_846_p2                                |     |        | exp_8      | add       | fabric                 | 0       |
+|    exp_7_fu_866_p2                                |     |        | exp_7      | add       | fabric                 | 0       |
+|    exp_6_fu_886_p2                                |     |        | exp_6      | add       | fabric                 | 0       |
+|    exp_5_fu_906_p2                                |     |        | exp_5      | add       | fabric                 | 0       |
+|    exp_4_fu_926_p2                                |     |        | exp_4      | add       | fabric                 | 0       |
+|    exp_3_fu_946_p2                                |     |        | exp_3      | add       | fabric                 | 0       |
+|    exp_2_fu_966_p2                                |     |        | exp_2      | add       | fabric                 | 0       |
+|    exp_1_fu_986_p2                                |     |        | exp_1      | add       | fabric                 | 0       |
+|    exp_fu_1009_p2                                 |     |        | exp        | add       | fabric                 | 0       |
++---------------------------------------------------+-----+--------+------------+-----------+------------------------+---------+
 
 
 ================================================================

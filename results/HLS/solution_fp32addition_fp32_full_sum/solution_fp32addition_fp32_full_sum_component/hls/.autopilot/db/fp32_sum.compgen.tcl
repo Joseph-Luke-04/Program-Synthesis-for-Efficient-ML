@@ -1,7 +1,12 @@
 # This script segment is generated automatically by AutoPilot
 
 if {${::AESL::PGuard_rtl_comp_handler}} {
-	::AP::rtl_comp_handler fp32_sum_sparsemux_7_2_25_1_1 BINDTYPE {op} TYPE {sparsemux} IMPL {onehotencoding_realdef}
+	::AP::rtl_comp_handler fp32_sum_sparsemux_9_3_25_1_1 BINDTYPE {op} TYPE {sparsemux} IMPL {onehotencoding_realdef}
+}
+
+
+if {${::AESL::PGuard_rtl_comp_handler}} {
+	::AP::rtl_comp_handler fp32_sum_sparsemux_7_2_1_1_1 BINDTYPE {op} TYPE {sparsemux} IMPL {onehotencoding_realdef}
 }
 
 
@@ -16,7 +21,7 @@ set axilite_register_dict [dict create]
 # Direct connection:
 if {${::AESL::PGuard_autoexp_gen}} {
 eval "cg_default_interface_gen_dc { \
-    id 6 \
+    id 8 \
     name s1 \
     type other \
     dir I \
@@ -31,7 +36,7 @@ eval "cg_default_interface_gen_dc { \
 # Direct connection:
 if {${::AESL::PGuard_autoexp_gen}} {
 eval "cg_default_interface_gen_dc { \
-    id 7 \
+    id 9 \
     name e1 \
     type other \
     dir I \
@@ -46,7 +51,7 @@ eval "cg_default_interface_gen_dc { \
 # Direct connection:
 if {${::AESL::PGuard_autoexp_gen}} {
 eval "cg_default_interface_gen_dc { \
-    id 8 \
+    id 10 \
     name m1 \
     type other \
     dir I \
@@ -61,7 +66,7 @@ eval "cg_default_interface_gen_dc { \
 # Direct connection:
 if {${::AESL::PGuard_autoexp_gen}} {
 eval "cg_default_interface_gen_dc { \
-    id 9 \
+    id 11 \
     name s2 \
     type other \
     dir I \
@@ -76,7 +81,7 @@ eval "cg_default_interface_gen_dc { \
 # Direct connection:
 if {${::AESL::PGuard_autoexp_gen}} {
 eval "cg_default_interface_gen_dc { \
-    id 10 \
+    id 12 \
     name e2 \
     type other \
     dir I \
@@ -91,7 +96,7 @@ eval "cg_default_interface_gen_dc { \
 # Direct connection:
 if {${::AESL::PGuard_autoexp_gen}} {
 eval "cg_default_interface_gen_dc { \
-    id 11 \
+    id 13 \
     name m2 \
     type other \
     dir I \
