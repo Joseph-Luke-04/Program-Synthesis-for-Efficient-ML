@@ -10,6 +10,15 @@ DEPENDENCY_MAP = {
         "addition_raw_sum",
         "addition_normalisation",
     ],
+    # MXINT8 Addition (class-name-prefixed outputs)
+    "mxint8addition_alignment": [],
+    "mxint8addition_normalisation": [],
+    "mxint8addition_raw_sum": ["addition_alignment"],
+    "mxint8addition_full_sum": [
+        "addition_alignment",
+        "addition_raw_sum",
+        "addition_normalisation",
+    ],
 
     # MXINT8 Multiplication
     "multiplication_renorm_flag": [],

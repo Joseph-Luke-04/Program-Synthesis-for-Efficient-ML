@@ -276,7 +276,7 @@ if __name__ == "__main__":
     # NaiveMultiplierTarget(kind="int", width=32 or 8)
     # NaiveMultiplierTarget(kind="fp32")
     
-    target_operation = MXINT8MultiplicationTarget()
+    target_operation = MXINT8AdditionTarget()
     
     # Components for MXINT8AdditionTarget: "alignment", "raw_sum", "overflow", "normalisation", "full_sum"
     # Components for MXINT8MultiplicationTarget: "renorm_flag", "mant", "exp", "full_product"
@@ -286,7 +286,7 @@ if __name__ == "__main__":
     # Components for for NaiveAdderTarget: "int_add", "fp32_adder"
     # Components for for NaiveMultiplierTarget: "fp32_mul", "int_mul"
 
-    target_component = "full_product"
+    target_component = "full_sum"
  
     # False for a quick post-synthesis estimate (-p)
     # True for a full post-implementation run (-i)

@@ -254,6 +254,7 @@ def run_vitis_hls(design_path: str, top_func: str = None, impl: bool = False):
         "solution_fp32addition_fp32_full_sum": "fp32_sum",
         "solution_addition_raw_sum": "add_raw",
         "solution_addition_full_sum": "add_full_sum",
+        "solution_mxint8addition_full_sum": "add_full_sum",
         "solution_mxint8multiplication_full_product": "mult_mxint_full_product",
     }
 
