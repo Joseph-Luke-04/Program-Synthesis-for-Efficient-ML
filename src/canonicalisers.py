@@ -155,6 +155,56 @@ ap_uint<8> add_full_sum(ap_uint<4> m1, ap_uint<4> e1, ap_uint<4> m2, ap_uint<4> 
 # Canonicalisation functions for FP32 addition
 # =====================================================================
 
+# =====================================================================
+# Canonicalisation functions for MXINT8 multiplication
+# =====================================================================
+
+def _canonicalise_mxint8_mult_renorm_flag(code: str) -> str:
+    """
+    Replace mult_renorm_flag with a clear, width-stable implementation.
+    """
+    func_re = re.compile(
+        r'^\s*ap_uint<\s*1\s*>\s+mult_renorm_flag\s*'
+        r'\(\s*ap_uint<\s*4\s*>\s*\w+\s*,\s*ap_uint<\s*4\s*>\s*\w+\s*\)\s*\{.*?\}\s*',
+        re.DOTALL | re.MULTILINE
+    )
+
+    replacement = (
+        "ap_uint<1> mult_renorm_flag(ap_uint<4> m1, ap_uint<4> m2) {\n"
+        "  ap_int<4> s1 = (ap_int<4>)m1;\n"
+        "  ap_int<4> s2 = (ap_int<4>)m2;\n"
+        "  ap_int<8> prod = (ap_int<8>)(s1 * s2);\n"
+        "  ap_int<8> abs_p = (prod < 0) ? (ap_int<8>)-prod : prod;\n"
+        "  return (abs_p <= (ap_int<8>)32) ? (ap_uint<1>)1 : (ap_uint<1>)0;\n"
+        "}\n"
+    )
+    return func_re.sub(replacement, code)
+
+
+def _canonicalise_mxint8_mult_mant(code: str) -> str:
+    """
+    Replace mult_mxint_mant with a direct, width-stable implementation.
+    """
+    func_re = re.compile(
+        r'^\s*ap_uint<\s*4\s*>\s+mult_mxint_mant\s*'
+        r'\(\s*ap_uint<\s*4\s*>\s*\w+\s*,\s*ap_uint<\s*4\s*>\s*\w+\s*\)\s*\{.*?\}\s*',
+        re.DOTALL | re.MULTILINE
+    )
+
+    replacement = (
+        "ap_uint<4> mult_mxint_mant(ap_uint<4> m1, ap_uint<4> m2) {\n"
+        "  ap_int<4> s1 = (ap_int<4>)m1;\n"
+        "  ap_int<4> s2 = (ap_int<4>)m2;\n"
+        "  ap_int<8> prod = (ap_int<8>)(s1 * s2);\n"
+        "  ap_int<8> abs_p = (prod < 0) ? (ap_int<8>)-prod : prod;\n"
+        "  ap_int<8> inter = (abs_p <= (ap_int<8>)32)\n"
+        "                  ? (ap_int<8>)((prod << 1) >> 3)\n"
+        "                  : (ap_int<8>)(prod >> 3);\n"
+        "  return (ap_uint<4>)inter;\n"
+        "}\n"
+    )
+    return func_re.sub(replacement, code)
+
 def _canonicalise_fp32_aligner(code: str) -> str:
     """
     Replace the entire fp32_aligner(...) with a width-safe version that:

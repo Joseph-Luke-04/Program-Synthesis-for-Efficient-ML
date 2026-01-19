@@ -86,6 +86,29 @@ def parse_reports(output_dir: Path, top_func: str, design_name: str, run_impl: b
     results = {"LUTs": -1, "FFs": -1, "DSPs": -1, "BRAMs": -1, "Cycles": -1, "Fmax_MHz": -1}
     comp = output_dir / f"{design_name}_component"
 
+    def parse_hls_estimated_clock_ns() -> float | None:
+        # Prefer csynth.xml (always produced by csynth)
+        for p in comp.rglob("*csynth.xml"):
+            try:
+                root = ET.parse(p).getroot()
+                timing = root.find(".//PerformanceEstimates/SummaryOfTimingAnalysis")
+                if timing is None:
+                    continue
+                unit = (timing.findtext("unit") or "ns").strip().lower()
+                val = timing.findtext("EstimatedClockPeriod")
+                if not val:
+                    continue
+                period = float(val)
+                if unit == "ns":
+                    return period
+                if unit == "us":
+                    return period * 1e3
+                if unit == "ms":
+                    return period * 1e6
+            except Exception:
+                pass
+        return None
+
     def parse_hls_cycles() -> int:
         # 1) Prefer csynth.xml (always produced by csynth)
         for p in comp.rglob("*csynth.xml"):
@@ -198,12 +221,22 @@ def parse_reports(output_dir: Path, top_func: str, design_name: str, run_impl: b
         except Exception as e:
             print(f"[WARN] Could not parse timing.rpt: {e}")
 
+        # Fallback to HLS estimated clock if no ap_clk entry
+        if results["Fmax_MHz"] == -1:
+            period_ns = parse_hls_estimated_clock_ns()
+            if period_ns and period_ns > 0:
+                results["Fmax_MHz"] = round(1000.0 / period_ns, 3)
+
         # ================ ALSO parse HLS latency (cycles) ===================
         results["Cycles"] = parse_hls_cycles()
         return results
 
     # HLS-only path
     results["Cycles"] = parse_hls_cycles()
+    if results["Fmax_MHz"] == -1:
+        period_ns = parse_hls_estimated_clock_ns()
+        if period_ns and period_ns > 0:
+            results["Fmax_MHz"] = round(1000.0 / period_ns, 3)
     return results
 
 
@@ -221,6 +254,7 @@ def run_vitis_hls(design_path: str, top_func: str = None, impl: bool = False):
         "solution_fp32addition_fp32_full_sum": "fp32_sum",
         "solution_addition_raw_sum": "add_raw",
         "solution_addition_full_sum": "add_full_sum",
+        "solution_mxint8multiplication_full_product": "mult_mxint_full_product",
     }
 
     if top_func is None:

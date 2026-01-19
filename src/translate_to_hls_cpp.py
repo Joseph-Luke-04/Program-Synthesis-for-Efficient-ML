@@ -5,6 +5,8 @@ from .canonicalisers import (
     _canonicalise_mxint8_normaliser_rounded, 
     _canonicalise_mxint8_raw_adder, 
     _canonicalise_mxint8_alignment, 
+    _canonicalise_mxint8_mult_mant,
+    _canonicalise_mxint8_mult_renorm_flag,
     _canonicalise_fp32_aligner,
     _canonicalise_fp32_raw_summer,
     _canonicalise_fp32_normaliser, 
@@ -135,7 +137,7 @@ def _cast_entire_product(s: str) -> str:
     Turn '(ap_*<N>) LHS * RHS' into 'ap_*<N>((LHS * RHS))' so the product
     has the intended width. Apply repeatedly.
     """
-    token = r"(?:\([^()]*\)|[^\s()])+"
+    token = r"(?:\([^()]*\)|[^\s();,])+"
     pat = re.compile(r"\(\s*(ap_(?:u)?int<\d+>)\s*\)\s*(" + token + r")\s*\*\s*(" + token + r")")
     def repl(m):
         ty, lhs, rhs = m.group(1), m.group(2), m.group(3)
@@ -146,7 +148,7 @@ def _cast_entire_product(s: str) -> str:
     return s
 
 def _cast_entire_addsub(s: str) -> str:
-    token = r"(?:\([^()]*\)|[^\s()])+"
+    token = r"(?:\([^()]*\)|[^\s();,])+"
     pat = re.compile(r"\(\s*(ap_(?:u)?int<\d+>)\s*\)\s*(" + token + r")\s*([+-])\s*(" + token + r")")
     def repl(m):
         ty, lhs, op, rhs = m.group(1), m.group(2), m.group(3), m.group(4)
@@ -442,6 +444,8 @@ def convert_cp_to_hls(c_input_path: str, save_output: bool = True) -> str:
     code = _canonicalise_mxint8_alignment(code)
     code = _canonicalise_mxint8_raw_adder(code)
     code = _canonicalise_mxint8_normaliser_rounded(code)
+    code = _canonicalise_mxint8_mult_renorm_flag(code)
+    code = _canonicalise_mxint8_mult_mant(code)
 
     code = _canonicalise_add_full_sum(code)
 

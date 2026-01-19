@@ -7,6 +7,13 @@ def to_smt_bitvec(value: int, bits: int) -> str:
     return f"#b{value & mask:0{bits}b}"
 
 class MXINT8MultiplicationTarget:
+
+    def get_op_name(self) -> str:
+        return "multiplication"
+    
+    def get_dependency_map(self) -> Dict[str, list[str]]:
+        from src.dependencies import DEPENDENCY_MAP
+        return DEPENDENCY_MAP
     
     def calculate_ground_truth(self, float1: float, float2: float, config) -> Optional[Dict]:
         
@@ -66,20 +73,39 @@ class MXINT8MultiplicationTarget:
 
         synth_call = f"(mult_mxint_mant {m1_bv} {m2_bv})"
         return f"(constraint (= {synth_call} {oracle_bv4}))"
+    
+    def gen_full_product_constraint(self, data: Dict, config) -> str:
+        m1_bv = to_smt_bitvec(data["m1"], config.MANTISSA_WIDTH)
+        e1_bv = to_smt_bitvec(data["e1"], config.EXPONENT_WIDTH)
+        m2_bv = to_smt_bitvec(data["m2"], config.MANTISSA_WIDTH)
+        e2_bv = to_smt_bitvec(data["e2"], config.EXPONENT_WIDTH)
+        renorm_flag_bv = to_smt_bitvec(data["renorm_flag"], 1)
+
+        final_mant_bv = to_smt_bitvec(data["final_mant"], config.MANTISSA_WIDTH)
+        final_exp_bv = to_smt_bitvec(data["final_exp"], config.EXPONENT_WIDTH)
+
+        synth_call = f"(mult_mxint_full_product {m1_bv} {e1_bv} {m2_bv} {e2_bv} {renorm_flag_bv})"
+        concatenated_result = f"#b{final_mant_bv[2:]}{final_exp_bv[2:]}"
+        return f"(constraint (= {synth_call} {concatenated_result}))"
 
     def get_components(self) -> Dict:
     
         return {
             "renorm_flag": {
-                "template": "sygus_grammars/multiplication/MXINT8/mult_renorm_flag_template.sl",
+                "template": "sygus_grammars/multiplication/MXINT8/mxint8_mult_renorm_flag_template.sl",
                 "generator": self.gen_renorm_flag_constraint,
             },
             "exp": {
-                "template": "sygus_grammars/multiplication/MXINT8/mult_exp_template.sl",
+                "template": "sygus_grammars/multiplication/MXINT8/mxint8_mult_exp_template.sl",
                 "generator": self.gen_exp_constraint,
             },
             "mant": {
-                "template": "sygus_grammars/multiplication/MXINT8/mult_mant_template.sl",
+                "template": "sygus_grammars/multiplication/MXINT8/mxint8_mult_mant_template.sl",
                 "generator": self.gen_mant_constraint,
+            },
+            # Compose the full multiplier by chaining the earlier steps.
+            "full_product": {
+                "template": "sygus_grammars/multiplication/MXINT8/mxint8_mult_full_product_template.sl",
+                "generator": self.gen_full_product_constraint,
             },
         }
