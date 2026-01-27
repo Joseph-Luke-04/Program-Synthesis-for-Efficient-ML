@@ -30,6 +30,15 @@ class NaiveAdderTarget:
         self.kind = kind
         self.width = width
 
+    def get_op_name(self) -> str:
+        if self.kind == "fp32":
+            return "naivefp32adder"
+        return f"naiveadder_int{self.width}"
+
+    def get_dependency_map(self):
+        from src.dependencies import DEPENDENCY_MAP
+        return DEPENDENCY_MAP
+
     def calculate_ground_truth(self, a, b, config) -> Optional[Dict]:
         """
         The oracle for the naive adder. It takes two floats or ints, adds them, and returns

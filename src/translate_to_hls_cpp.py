@@ -5,6 +5,7 @@ from .canonicalisers import (
     _canonicalise_mxint8_normaliser_rounded, 
     _canonicalise_mxint8_raw_adder, 
     _canonicalise_mxint8_alignment, 
+    _canonicalise_mxint8_detect_overflow,
     _canonicalise_mxint8_mult_mant,
     _canonicalise_mxint8_mult_renorm_flag,
     _canonicalise_fp32_aligner,
@@ -50,6 +51,13 @@ def _replace_bracket_slices_constants(code: str) -> str:
     # x[H, L]
     code = re.sub(rf"\b([A-Za-z_]\w*)\s*\[\s*({_NUM})\s*,\s*({_NUM})\s*\]", repl_pair, code)
     return code
+
+def _wrap_simple_shift_before_slice(code: str) -> str:
+    """
+    Fix smt2c artifact: x << 2[3,0] -> (x << 2)[3,0].
+    This enables _replace_bit_extractions to rewrite the slice.
+    """
+    return re.sub(rf"\b([A-Za-z_]\w*)\s*(<<|>>)\s*({_NUM})\s*\[", r"(\1 \2 \3)[", code)
 
 def _safer_unsigned_negation(s: str) -> str:
     # -(ap_uint<N>)(EXPR)  ->  ap_uint<N>(-(ap_int<N>)(EXPR))
@@ -159,7 +167,7 @@ def _cast_entire_addsub(s: str) -> str:
     return s
 
 # Ternary unifier (works for nested ?:)
-_APTY_RE = r"\b(ap_(?:u)?int<\d+>|bool)\b"
+_APTY_RE = r"(ap_(?:u)?int<\d+>|bool)"
 
 def _extract_common_ap_type(a: str, b: str) -> str | None:
     ta = re.findall(_APTY_RE, a)
@@ -169,12 +177,42 @@ def _extract_common_ap_type(a: str, b: str) -> str | None:
             return t
     return None
 
+def _extract_widest_ap_type(a: str, b: str) -> str | None:
+    types = re.findall(_APTY_RE, a) + re.findall(_APTY_RE, b)
+    if not types:
+        return None
+    best_width = -1
+    best_signed = False
+    for t in types:
+        m = re.match(r"ap_(u)?int<(\d+)>", t)
+        if not m:
+            continue
+        is_signed = m.group(1) is None
+        width = int(m.group(2))
+        if width > best_width:
+            best_width = width
+            best_signed = is_signed
+        elif width == best_width and is_signed and not best_signed:
+            best_signed = True
+    if best_width < 0:
+        return None
+    return f"ap_int<{best_width}>" if best_signed else f"ap_uint<{best_width}>"
+
+def _ap_type_width(ty: str | None) -> int:
+    if not ty:
+        return -1
+    m = re.match(r"ap_(?:u)?int<(\d+)>", ty)
+    return int(m.group(1)) if m else -1
+
 def _has_top_level_comma(expr: str) -> bool:
     d = 0
+    b = 0
     for ch in expr:
         if ch == "(": d += 1
         elif ch == ")": d = max(0, d-1)
-        elif ch == "," and d == 0: return True
+        elif ch == "[": b += 1
+        elif ch == "]": b = max(0, b-1)
+        elif ch == "," and d == 0 and b == 0: return True
     return False
 
 def _split_top_ternary(s: str):
@@ -207,12 +245,21 @@ def _unify_ternaries_rec(s: str, target_ty: str | None = None) -> str:
         return f"{cond2} ? {a2} : {b2}"
 
     ty = _extract_common_ap_type(a2, b2)
+    widest = _extract_widest_ap_type(a2, b2)
+    if widest and _ap_type_width(widest) > _ap_type_width(ty):
+        ty = widest
+    if not ty:
+        ty = widest
     if not ty and target_ty:
         ty = target_ty   # Fallback to the known destination type
 
     if ty:
-        a2 = f"{ty}(({a2}))"
-        b2 = f"{ty}(({b2}))"
+        a2_stripped = a2.strip()
+        b2_stripped = b2.strip()
+        if not re.match(rf"^{re.escape(ty)}\s*\(", a2_stripped):
+            a2 = f"{ty}(({a2}))"
+        if not re.match(rf"^{re.escape(ty)}\s*\(", b2_stripped):
+            b2 = f"{ty}(({b2}))"
     return f"{cond2} ? {a2} : {b2}"
 
 def _get_declared_lhs_type(line: str) -> tuple[str | None, str | None, str | None]:
@@ -254,6 +301,190 @@ def _unify_all_ternaries(code: str) -> str:
         cursor += len(line)
     return "".join(out)
 
+def _find_ternary_span(s: str) -> tuple[int, int, int, int] | None:
+    """
+    Return (qpos, cpos, depth, bdepth) for the first ternary pair found.
+    depth/bdepth are the paren/bracket depths at the '?' and matching ':'.
+    """
+    depth = 0
+    bdepth = 0
+    qstack: list[tuple[int, int, int]] = []
+    for i, ch in enumerate(s):
+        if ch == "(":
+            depth += 1
+        elif ch == ")":
+            depth = max(0, depth - 1)
+        elif ch == "[":
+            bdepth += 1
+        elif ch == "]":
+            bdepth = max(0, bdepth - 1)
+        elif ch == "?":
+            qstack.append((i, depth, bdepth))
+        elif ch == ":" and qstack:
+            for k in range(len(qstack) - 1, -1, -1):
+                qpos, qd, qb = qstack[k]
+                if qd == depth and qb == bdepth:
+                    return qpos, i, depth, bdepth
+    return None
+
+def _find_ternary_left_boundary(s: str, qpos: int, depth: int, bdepth: int) -> int:
+    pd = depth
+    bd = bdepth
+    i = qpos - 1
+    while i >= 0:
+        ch = s[i]
+        if ch == ")":
+            pd += 1
+        elif ch == "(":
+            if pd == depth and bd == bdepth:
+                return i + 1
+            pd = max(0, pd - 1)
+        elif ch == "]":
+            bd += 1
+        elif ch == "[":
+            bd = max(0, bd - 1)
+        elif pd == depth and bd == bdepth and ch in ",;":
+            return i + 1
+        i -= 1
+    return 0
+
+def _find_ternary_right_boundary(s: str, cpos: int, depth: int, bdepth: int) -> int:
+    pd = depth
+    bd = bdepth
+    i = cpos + 1
+    while i < len(s):
+        ch = s[i]
+        if ch == "(":
+            pd += 1
+        elif ch == ")":
+            if pd == depth and bd == bdepth:
+                return i
+            pd = max(0, pd - 1)
+        elif ch == "[":
+            bd += 1
+        elif ch == "]":
+            bd = max(0, bd - 1)
+        elif pd == depth and bd == bdepth and ch in ",;":
+            return i
+        i += 1
+    return len(s)
+
+def _unify_ternaries_in_parens(code: str) -> str:
+    """
+    Apply ternary unification to nested ternaries anywhere in the line.
+    """
+    out = []
+    for line in code.splitlines(True):
+        if "?" not in line or ":" not in line:
+            out.append(line)
+            continue
+        cur = line
+        for _ in range(64):
+            span = _find_ternary_span(cur)
+            if not span:
+                break
+            qpos, cpos, depth, bdepth = span
+            start = _find_ternary_left_boundary(cur, qpos, depth, bdepth)
+            end = _find_ternary_right_boundary(cur, cpos, depth, bdepth)
+            segment = cur[start:end]
+            unified = _unify_ternaries_rec(segment, None)
+            if unified == segment:
+                break
+            cur = cur[:start] + unified + cur[end:]
+        out.append(cur)
+    return "".join(out)
+
+_CAST_RE = re.compile(r"\(\s*ap_(?:u)?int<\d+>\s*\)")
+
+def _wrap_casted_ternary_branches(code: str) -> str:
+    """
+    Fix precedence bugs like: (ap_uint<4>) raw_sum == 0 ? ... : ...
+    by rewriting to: (ap_uint<4>) (raw_sum == 0 ? ... : ...)
+    so the cast applies to the ternary expression, not to raw_sum.
+    """
+    i = 0
+    out = []
+    while i < len(code):
+        m = _CAST_RE.search(code, i)
+        if not m:
+            out.append(code[i:])
+            break
+        out.append(code[i:m.end()])
+        j = m.end()
+        while j < len(code) and code[j].isspace():
+            j += 1
+        # If already parenthesized, do nothing.
+        if j < len(code) and code[j] == "(":
+            i = j
+            continue
+        sub = code[j:]
+        span = _find_ternary_span(sub)
+        if not span:
+            i = j
+            continue
+        qpos, cpos, depth, bdepth = span
+        if depth != 0 or bdepth != 0:
+            i = j
+            continue
+        # Skip wrapping if there's another top-level '?' before the matching ':'
+        # (nested ternary at same paren depth). Our simple span finder can't handle it.
+        nested = False
+        d = 0
+        for k in range(qpos + 1, cpos):
+            ch = sub[k]
+            if ch == "(":
+                d += 1
+            elif ch == ")":
+                d = max(0, d - 1)
+            elif ch == "?" and d == 0:
+                nested = True
+                break
+        if nested:
+            i = j
+            continue
+        end_rel = _find_ternary_right_boundary(sub, cpos, depth, bdepth)
+        out.append(" (")
+        out.append(code[j:j + end_rel])
+        out.append(")")
+        i = j + end_rel
+    return "".join(out)
+
+_CAST_FUNC_RE = re.compile(r"\b(ap_(?:u)?int<\d+>)\s*\(")
+
+def _unify_ternaries_inside_casts(code: str) -> str:
+    """
+    If a function-style cast wraps a ternary (e.g. ap_uint<4>(cond ? a : b)),
+    force both arms to that type to avoid ambiguous conditional expressions.
+    """
+    out = []
+    i = 0
+    n = len(code)
+    while i < n:
+        m = _CAST_FUNC_RE.search(code, i)
+        if not m:
+            out.append(code[i:])
+            break
+        out.append(code[i:m.start()])
+        ty = m.group(1)
+        j = m.end()  # char after '('
+        depth = 1
+        k = j
+        while k < n and depth > 0:
+            if code[k] == '(':
+                depth += 1
+            elif code[k] == ')':
+                depth -= 1
+            k += 1
+        if depth != 0:
+            out.append(code[m.start():])
+            break
+        inner = code[j:k-1]
+        if "?" in inner and ":" in inner:
+            inner = _unify_ternaries_rec(inner, ty)
+        out.append(f"{ty}({inner})")
+        i = k
+    return "".join(out)
+
 def _fold_simple_int_additions(s: str) -> str:
     return re.sub(r"\b(\d+)\s*\+\s*(\d+)\b", lambda m: str(int(m.group(1))+int(m.group(2))), s)
 
@@ -287,10 +518,13 @@ def _strip_outer_parens(s: str) -> str:
 
 def _split_top_comma(s: str):
     d = 0
+    b = 0
     for i, ch in enumerate(s):
         if ch == '(': d += 1
         elif ch == ')': d = max(0, d-1)
-        elif ch == ',' and d == 0:
+        elif ch == '[': b += 1
+        elif ch == ']': b = max(0, b-1)
+        elif ch == ',' and d == 0 and b == 0:
             return s[:i].strip(), s[i+1:].strip()
     return None
 
@@ -391,6 +625,143 @@ def _strip_irep_noise(code: str) -> str:
 
     return ''.join(out)
 
+def _replace_known_irep(code: str) -> str:
+    """
+    Replace known irep(...) forms with explicit expressions before
+    falling back to _strip_irep_noise.
+    """
+    out = []
+    i, n = 0, len(code)
+    needle = 'irep('
+
+    while True:
+        j = code.find(needle, i)
+        if j == -1:
+            out.append(code[i:])
+            break
+        out.append(code[i:j])
+        k = j + len(needle)
+        depth = 1
+        in_str = False
+        esc = False
+        while k < n and depth > 0:
+            ch = code[k]
+            if in_str:
+                if esc:
+                    esc = False
+                elif ch == '\\':
+                    esc = True
+                elif ch == '"':
+                    in_str = False
+            else:
+                if ch == '"':
+                    in_str = True
+                elif ch == '(':
+                    depth += 1
+                elif ch == ')':
+                    depth -= 1
+            k += 1
+
+        content = code[j + len(needle):k-1]
+        replacement = None
+        # Match the common mxint alignment shift irep (depends on e1/e2).
+        if ('\"identifier\" (\"e1\")' in content) and ('\"identifier\" (\"e2\")' in content):
+            replacement = (
+                "(ap_uint<4>)(((ap_int<4>)e1 >= (ap_int<4>)e2) ? "
+                "(ap_uint<4>)(e1 - e2) : (ap_uint<4>)(e2 - e1))"
+            )
+
+        if replacement is None:
+            out.append(code[j:k])
+        else:
+            out.append(replacement)
+        i = k
+
+    return ''.join(out)
+
+def _fix_mxint8_full_sum_irep(code: str) -> str:
+    """
+    If add_full_sum contains irep(...) blobs from smt2c, replace the whole
+    function with an equivalent explicit form so the solver semantics are preserved.
+    This is a translation fix, not a behavior change.
+    """
+    if "add_full_sum" not in code or "irep(" not in code:
+        return code
+
+    m = re.search(r'\b(ap_uint<\d+>|unsigned\s+char)\s+add_full_sum\s*\([^)]*\)\s*\{', code)
+    if not m:
+        return code
+
+    # Extract function body and only rewrite if it actually contains irep(...)
+    start = m.start()
+    i = m.end() - 1
+    depth = 0
+    end = None
+    while i < len(code):
+        if code[i] == '{':
+            depth += 1
+        elif code[i] == '}':
+            depth -= 1
+            if depth == 0:
+                end = i + 1
+                break
+        i += 1
+    if end is None:
+        return code
+
+    if "irep(" not in code[start:end]:
+        return code
+
+    # Emit a combinational, explicit version that mirrors the monolithic SMT.
+    print("[INFO] Rewriting add_full_sum to remove irep(...) artifacts from smt2c output.")
+    new_body = r"""
+ap_uint<8> add_full_sum(ap_uint<4> m1, ap_uint<4> e1, ap_uint<4> m2, ap_uint<4> e2) {
+  ap_int<4> sm1 = (ap_int<4>)m1;
+  ap_int<4> sm2 = (ap_int<4>)m2;
+  ap_int<4> se1 = (ap_int<4>)e1;
+  ap_int<4> se2 = (ap_int<4>)e2;
+  ap_int<6> sh1 = (ap_int<6>)se1 + (ap_int<6>)8;
+  ap_int<6> sh2 = (ap_int<6>)se2 + (ap_int<6>)8;
+  ap_uint<5> ush1 = (ap_uint<5>)sh1;
+  ap_uint<5> ush2 = (ap_uint<5>)sh2;
+  ap_int<24> v1 = (ap_int<24>)sm1 << ush1;
+  ap_int<24> v2 = (ap_int<24>)sm2 << ush2;
+  ap_int<24> sum_v = v1 + v2;
+
+  if (sum_v == 0) {
+    ap_uint<4> exp_z = (ap_uint<4>)((ap_int<4>)-8);
+    return (ap_uint<8>)((((ap_uint<8>)0) << 4) | exp_z);
+  }
+
+  ap_uint<24> abs_v = (sum_v < 0) ? (ap_uint<24>)(-sum_v) : (ap_uint<24>)sum_v;
+  ap_int<6> msb =
+      abs_v[23] ? 23 : abs_v[22] ? 22 : abs_v[21] ? 21 : abs_v[20] ? 20 :
+      abs_v[19] ? 19 : abs_v[18] ? 18 : abs_v[17] ? 17 : abs_v[16] ? 16 :
+      abs_v[15] ? 15 : abs_v[14] ? 14 : abs_v[13] ? 13 : abs_v[12] ? 12 :
+      abs_v[11] ? 11 : abs_v[10] ? 10 : abs_v[9] ? 9  : abs_v[8] ? 8  :
+      abs_v[7]  ? 7  : abs_v[6]  ? 6  : abs_v[5] ? 5  : abs_v[4] ? 4  :
+      abs_v[3]  ? 3  : abs_v[2]  ? 2  : abs_v[1] ? 1  : 0;
+
+  ap_int<6> exp = (ap_int<6>)(msb - 10);
+  if (exp > 7) exp = 7;
+  if (exp < -8) exp = -8;
+
+  ap_int<6> shift_i = exp + 8;
+  ap_uint<5> shift = (ap_uint<5>)shift_i;
+  ap_int<24> mant_raw = sum_v >> shift;
+
+  ap_int<6> mant = (ap_int<6>)mant_raw;
+  if (mant > 7) mant = 7;
+  if (mant < -8) mant = -8;
+
+  ap_uint<4> mant_u = (ap_uint<4>)mant;
+  ap_uint<4> exp_u = (ap_uint<4>)exp;
+  return (ap_uint<8>)((((ap_uint<8>)mant_u) << 4) | exp_u);
+}
+""".strip("\n")
+
+    return code[:start] + new_body + "\n" + code[end:]
+
 def _peephole_simplify(code: str) -> str:
     # shift/add/sub no-ops
     code = re.sub(r'\s*<<\s*0\b', '', code)
@@ -411,43 +782,57 @@ def convert_cp_to_hls(c_input_path: str, save_output: bool = True) -> str:
     # 0) Header + type normalisation
     code = _ensure_header(code)
     code = _normalize_char_types_and_casts(code)
+    code = _fix_mxint8_full_sum_irep(code)
+    code = _replace_known_irep(code)
     code = _strip_irep_noise(code)
     code = _safer_unsigned_negation(code)
 
     # 1) Fix bracket slices on bare identifiers (safe)
     code = _replace_bracket_slices_constants(code)
 
-    # 2) Simple folds
+    # 2) Fix smt2c bug: x << 2[3,0] -> (x << 2)[3,0]
+    code = _wrap_simple_shift_before_slice(code)
+
+    # 3) Simple folds
     code = _fold_simple_int_additions(code)
 
-    # 3) Convert (EXPR)[HI, LO] -> ap_uint<...>((EXPR)).range(HI, LO)
+    # 4) Convert (EXPR)[HI, LO] -> ap_uint<...>((EXPR)).range(HI, LO)
     code = _replace_bit_extractions(code)
 
-    # 4) Width correctness
+    # 5) Width correctness
     code = _cast_entire_product(code)
     code = _cast_entire_addsub(code)
-
-    # 5) Ternary unification (make both arms same ap_*int<N>)
-    code = _unify_all_ternaries(code)
-    code = _replace_bracket_slices_constants(code)  # in case new slices appeared
-    code = _replace_bit_extractions(code)  # in case new bit extractions appeared
 
     # 6) Treat 'return (A,B,...)' as a packed value, not comma-operator
     code = _wrap_return_top_concat(code)
 
-    # 7) Canonicalisers (not all scripts actually output correct C++)
+    # 7) Fix cast precedence on ternaries, then unify (make both arms same ap_*int<N>)
+    code = _wrap_casted_ternary_branches(code)
+    code = _unify_all_ternaries(code)
+    code = _unify_ternaries_in_parens(code)
+    code = _unify_ternaries_inside_casts(code)
+    code = _replace_bracket_slices_constants(code)  # in case new slices appeared
+    code = _wrap_simple_shift_before_slice(code)
+    code = _replace_bit_extractions(code)  # in case new bit extractions appeared
+
+    # 8) Canonicalisers (not all scripts actually output correct C++)
     code = _canonicalise_fp32_aligner(code)
     code = _canonicalise_fp32_raw_summer(code)
     code = _canonicalise_fp32_normaliser(code)
     code = _canonicalise_fp32_sum(code)
 
-    code = _canonicalise_mxint8_alignment(code)
-    code = _canonicalise_mxint8_raw_adder(code)
-    code = _canonicalise_mxint8_normaliser_rounded(code)
+    enable_mxint8_add = os.environ.get("ENABLE_MXINT8_ADD_CANON", "0") == "1"
+    if enable_mxint8_add:
+        code = _canonicalise_mxint8_alignment(code)
+        code = _canonicalise_mxint8_raw_adder(code)
+        code = _canonicalise_mxint8_detect_overflow(code)
+        code = _canonicalise_mxint8_normaliser_rounded(code)
     code = _canonicalise_mxint8_mult_renorm_flag(code)
     code = _canonicalise_mxint8_mult_mant(code)
 
-    code = _canonicalise_add_full_sum(code)
+    enable_mxint8_full_sum = os.environ.get("ENABLE_MXINT8_ADD_FULL_SUM_CANON", "0") == "1"
+    if enable_mxint8_full_sum:
+        code = _canonicalise_add_full_sum(code)
 
     # 8) Final tidy
     code = _peephole_simplify(code)

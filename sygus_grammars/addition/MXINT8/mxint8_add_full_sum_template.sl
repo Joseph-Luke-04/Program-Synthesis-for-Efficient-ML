@@ -1,36 +1,28 @@
 (set-logic BV)
 
-; Pipeline for MXINT8 addition that reuses the previously synthesised stages:
-;   1) align_mantissas/select_exponent   (alignment)
-;   2) add_raw                           (raw sum + target exp)
-;   3) normalise_addition                (normalisation)
-
+; Compose the MXINT8 adder from alignment + raw sum + normalisation.
 (synth-fun add_full_sum
-  ((m1 (_ BitVec 4)) (e1 (_ BitVec 4)) (m2 (_ BitVec 4)) (e2 (_ BitVec 4)))
-  (_ BitVec 8)
+    ((m1 (_ BitVec 4)) (e1 (_ BitVec 4)) (m2 (_ BitVec 4)) (e2 (_ BitVec 4)))
+    (_ BitVec 8)
 
-  (
-    (Start8 (_ BitVec 8))
-    (Raw9   (_ BitVec 9))
-    (Raw5   (_ BitVec 5))
-    (Texp   (_ BitVec 4))
-  )
+    (
+        (Start8 (_ BitVec 8))
+        (Raw9   (_ BitVec 9))
+    )
 
-  (
-    ; Final output: normalise the raw sum using the target exponent.
-    (Start8 (_ BitVec 8) (
-      (normalise_addition Raw5 Texp)
-    ))
+    (
+      (Start8 (_ BitVec 8) (
+        (let ((raw Raw9))
+          (normalise_addition ((_ extract 8 4) raw) ((_ extract 3 0) raw)))
+      ))
 
-    ; Stage outputs
-    (Raw9 (_ BitVec 9) (
-      (add_raw m1 e1 m2 e2)
-    ))
-    (Raw5 (_ BitVec 5) (
-      ((_ extract 8 4) Raw9)
-    ))
-    (Texp (_ BitVec 4) (
-      ((_ extract 3 0) Raw9)
-    ))
-  )
+      (Raw9 (_ BitVec 9) (
+        (add_raw m1 e1 m2 e2)
+      ))
+    )
 )
+
+(declare-var m1 (_ BitVec 4))
+(declare-var e1 (_ BitVec 4))
+(declare-var m2 (_ BitVec 4))
+(declare-var e2 (_ BitVec 4))

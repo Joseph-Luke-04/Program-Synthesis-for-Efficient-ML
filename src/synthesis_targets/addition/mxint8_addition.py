@@ -9,14 +9,23 @@ def to_smt_bitvec(value: int, bits: int) -> str:
 class MXINT8AdditionTarget:
 
     def get_op_name(self) -> str:
-        return "addition"
+        return "mxint8addition"
     
     def get_dependency_map(self) -> Dict[str, list[str]]:
         from src.dependencies import DEPENDENCY_MAP
         return DEPENDENCY_MAP
 
     def calculate_ground_truth(self, float1: float, float2: float, config) -> Optional[Dict]:
-       
+
+        def to_signed(value: int, bits: int) -> int:
+            mask = (1 << bits) - 1
+            value &= mask
+            sign_bit = 1 << (bits - 1)
+            return value - (1 << bits) if value & sign_bit else value
+
+        def to_unsigned(value: int, bits: int) -> int:
+            return value & ((1 << bits) - 1)
+
         tensor1 = torch.tensor([[float1]])
         tensor2 = torch.tensor([[float2]])
         
@@ -24,10 +33,29 @@ class MXINT8AdditionTarget:
         dequant2, m2_t, e2_t = mxint_hardware(tensor2, config.Q_CONFIG_IN, config.PARALLELISM)
         m1, e1, m2, e2 = int(m1_t.item()), int(e1_t.item()), int(m2_t.item()), int(e2_t.item())
 
-        # Alignment
+        # Alignment with simple rounding; flush-to-zero for large shifts.
+        def round_shift(m: int, sh: int) -> int:
+            if sh <= 0:
+                return m
+            if sh >= config.MANTISSA_WIDTH:
+                return 0
+            bias = 0
+            if sh == 1:
+                bias = 1
+            elif sh == 2:
+                bias = 2
+            elif sh == 3:
+                bias = 4
+            if m < 0:
+                bias = -bias
+            return (m + bias) >> sh
+
         target_exponent = max(e1, e2)
         shift_amount = abs(e1 - e2)
-        aligned_m1, aligned_m2 = (m1, m2 >> shift_amount) if e1 >= e2 else (m1 >> shift_amount, m2)
+        if e1 >= e2:
+            aligned_m1, aligned_m2 = (m1, round_shift(m2, shift_amount))
+        else:
+            aligned_m1, aligned_m2 = (round_shift(m1, shift_amount), m2)
 
         # Raw Sum 
         raw_sum_mantissa = aligned_m1 + aligned_m2
@@ -37,8 +65,56 @@ class MXINT8AdditionTarget:
         INT4_MIN = -(2**(config.MANTISSA_WIDTH - 1))
         overflow_flag = 1 if (raw_sum_mantissa > INT4_MAX or raw_sum_mantissa < INT4_MIN) else 0
 
-        sum_dequant = dequant1 + dequant2
-        _, final_mant_t, final_exp_t = mxint_hardware(sum_dequant, config.Q_CONFIG_OUT, config.PARALLELISM)
+        # Finalisation: full renormalisation via MSB (LZC) + exponent clamp.
+        raw_sum_s5 = to_signed(raw_sum_mantissa, config.RAW_SUM_MANTISSA_WIDTH)
+        abs5 = abs(raw_sum_s5)
+
+        exp_min = -(1 << (config.EXPONENT_WIDTH - 1))
+        exp_max = (1 << (config.EXPONENT_WIDTH - 1)) - 1
+
+        def clamp_exp(exp: int) -> int:
+            if exp > exp_max:
+                return exp_max
+            if exp < exp_min:
+                return exp_min
+            return exp
+
+        if raw_sum_s5 == 0:
+            shifted_s5 = 0
+            final_exp = 0
+        else:
+            # find msb index of abs5 (0..4)
+            msb = 0
+            for i in range(config.RAW_SUM_MANTISSA_WIDTH - 1, -1, -1):
+                if (abs5 >> i) & 1:
+                    msb = i
+                    break
+            if msb > 2:
+                rsh = msb - 2
+                shifted_s5 = to_signed(
+                    to_unsigned(raw_sum_s5 >> rsh, config.RAW_SUM_MANTISSA_WIDTH),
+                    config.RAW_SUM_MANTISSA_WIDTH,
+                )
+                final_exp = clamp_exp(target_exponent + rsh)
+            elif msb < 2:
+                lsh = 2 - msb
+                raw_u5 = to_unsigned(raw_sum_s5, config.RAW_SUM_MANTISSA_WIDTH)
+                shifted_u5 = to_unsigned(raw_u5 << lsh, config.RAW_SUM_MANTISSA_WIDTH)
+                shifted_s5 = to_signed(shifted_u5, config.RAW_SUM_MANTISSA_WIDTH)
+                final_exp = clamp_exp(target_exponent - lsh)
+            else:
+                shifted_s5 = raw_sum_s5
+                final_exp = clamp_exp(target_exponent)
+
+        # Saturate to signed 4-bit mantissa range after normalization.
+        if shifted_s5 > INT4_MAX:
+            final_mant = INT4_MAX
+        elif shifted_s5 < INT4_MIN:
+            final_mant = INT4_MIN
+        else:
+            shifted_u5 = to_unsigned(shifted_s5, config.RAW_SUM_MANTISSA_WIDTH)
+            final_mant = to_signed(shifted_u5 & ((1 << config.MANTISSA_WIDTH) - 1),
+                                   config.MANTISSA_WIDTH)
 
         return {
             "m1": m1, "e1": e1, "m2": m2, "e2": e2,
@@ -46,8 +122,8 @@ class MXINT8AdditionTarget:
             "target_exponent": target_exponent,
             "raw_sum_mantissa": raw_sum_mantissa,
             "overflow_flag": overflow_flag,
-            "final_mant": int(final_mant_t.item()),
-            "final_exp": int(final_exp_t.item()),
+            "final_mant": final_mant,
+            "final_exp": final_exp,
         }
         
     def gen_alignment_constraint(self, data: Dict, config) -> str:

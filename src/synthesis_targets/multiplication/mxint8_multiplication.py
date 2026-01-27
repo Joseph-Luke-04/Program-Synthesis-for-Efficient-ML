@@ -9,7 +9,7 @@ def to_smt_bitvec(value: int, bits: int) -> str:
 class MXINT8MultiplicationTarget:
 
     def get_op_name(self) -> str:
-        return "multiplication"
+        return "mxint8multiplication"
     
     def get_dependency_map(self) -> Dict[str, list[str]]:
         from src.dependencies import DEPENDENCY_MAP

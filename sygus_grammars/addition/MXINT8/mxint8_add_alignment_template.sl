@@ -22,25 +22,33 @@
         (AlignedM2 (_ BitVec 4))
         (ShiftAmount (_ BitVec 4))
         (Condition Bool)
+        (LargeShift Bool)
     )
     (
       (Start8 (_ BitVec 8) ( (concat AlignedM1 AlignedM2) ))
+
       (AlignedM1 (_ BitVec 4) (
-        m1
-        (bvashr m1 ShiftAmount)
-        (ite Condition m1 (bvashr m1 ShiftAmount))
+        (ite Condition
+             m1
+             (ite LargeShift
+                  #b0000
+                  (bvashr m1 ShiftAmount)))
       ))
+
       (AlignedM2 (_ BitVec 4) (
-        m2
-        (bvashr m2 ShiftAmount)
-        (ite Condition (bvashr m2 ShiftAmount) m2)
+        (ite Condition
+             (ite LargeShift
+                  #b0000
+                  (bvashr m2 ShiftAmount))
+             m2)
       ))
+
       (ShiftAmount (_ BitVec 4) (
-        (bvsub e1 e2)
-        (bvsub e2 e1)
         (ite Condition (bvsub e1 e2) (bvsub e2 e1))
       ))
+
       (Condition Bool ( (bvsge e1 e2) ))
+      (LargeShift Bool ( (bvuge ShiftAmount #b0100) ))
     )
 )
 

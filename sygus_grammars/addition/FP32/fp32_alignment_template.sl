@@ -40,7 +40,8 @@
     (AlignedM1 (_ BitVec 24)
       ((ite E1_GE_E2
             M1Full
-            (bvlshr M1Full ShiftAmt24))))
+            (bvlshr M1Full ShiftAmt24))
+            ))
 
     ; 3 - Aligned mantissa for operand 2
     (AlignedM2 (_ BitVec 24)

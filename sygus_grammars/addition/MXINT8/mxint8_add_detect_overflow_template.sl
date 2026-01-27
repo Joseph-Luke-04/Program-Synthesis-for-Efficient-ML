@@ -10,15 +10,10 @@
     (
         (Start1 (_ BitVec 1))
         (Condition Bool)
-        (Constant5 (_ BitVec 5))
     )
     (
       (Start1 (_ BitVec 1) ( (ite Condition #b1 #b0) ))
-      (Condition Bool ( (or (bvsgt raw_sum Constant5) (bvslt raw_sum Constant5)) ))
-      (Constant5 (_ BitVec 5) (
-        #b00111
-        #b11000
-      ))
+      (Condition Bool ( (or (bvsgt raw_sum #b00111) (bvslt raw_sum #b11000)) ))
     )
 )
 

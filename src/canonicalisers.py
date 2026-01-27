@@ -8,9 +8,10 @@ import re
 
 def _canonicalise_mxint8_alignment(code: str) -> str:
     """
-    Overwrite align_mantissas with a rounded, sign-aware right-shift for the
-    smaller-exponent operand. Rounds to nearest (sign-biased), saturates to [-8, 7].
-    Uses widened temps to avoid ?: width ambiguity in HLS.
+    Overwrite align_mantissas to match the synthesizer intent:
+      - align to the larger exponent,
+      - for shifts >= 4, flush the smaller mantissa to 0,
+      - for shifts 1..3, truncate via arithmetic shift (no rounding).
     """
     func_re = re.compile(
         r'^\s*ap_uint<\s*8\s*>\s+align_mantissas\s*'
@@ -23,33 +24,30 @@ def _canonicalise_mxint8_alignment(code: str) -> str:
         "ap_uint<8> align_mantissas(ap_uint<4> m1, ap_uint<4> e1, ap_uint<4> m2, ap_uint<4> e2) {\n"
         "  ap_int<4> s1 = (ap_int<4>)m1;\n"
         "  ap_int<4> s2 = (ap_int<4>)m2;\n"
-        "  ap_int<4> de = (ap_int<4>)e1 - (ap_int<4>)e2;\n"
+        "  ap_int<4> se1 = (ap_int<4>)e1;\n"
+        "  ap_int<4> se2 = (ap_int<4>)e2;\n"
+        "  bool cond = (se1 >= se2);\n"
+        "  ap_uint<4> d = cond ? (ap_uint<4>)(e1 - e2) : (ap_uint<4>)(e2 - e1);\n"
         "  ap_int<4> a1, a2;\n"
-        "  if (de >= 0) {\n"
+        "  if (cond) {\n"
         "    a1 = s1;\n"
-        "    if (de == 0) {\n"
+        "    if (d == 0) {\n"
         "      a2 = s2;\n"
+        "    } else if (d >= 4) {\n"
+        "      a2 = (ap_int<4>)0;\n"
         "    } else {\n"
-        "      ap_uint<4> d = (ap_uint<4>)de;          // d >= 1 here\n"
-        "      ap_int<16> t  = (ap_int<16>)s2;         // widen for safe rounding\n"
-        "      ap_int<16> mag = ((ap_int<16>)1) << (d - 1);\n"
-        "      ap_int<16> sgn = (t >= 0) ? (ap_int<16>)1 : (ap_int<16>)-1;\n"
-        "      t = (t + sgn * mag) >> d;               // round-to-nearest, sign-aware\n"
-        "      if (t > 7) t = 7; if (t < -8) t = -8;\n"
-        "      a2 = (ap_int<4>)t;\n"
+        "      ap_uint<3> ush = (ap_uint<3>)d;\n"
+        "      a2 = (ap_int<4>)(s2 >> ush);\n"
         "    }\n"
         "  } else {\n"
-        "    ap_uint<4> d = (ap_uint<4>)(-de);\n"
         "    a2 = s2;\n"
         "    if (d == 0) {\n"
         "      a1 = s1;\n"
+        "    } else if (d >= 4) {\n"
+        "      a1 = (ap_int<4>)0;\n"
         "    } else {\n"
-        "      ap_int<16> t  = (ap_int<16>)s1;         // widen for safe rounding\n"
-        "      ap_int<16> mag = ((ap_int<16>)1) << (d - 1);\n"
-        "      ap_int<16> sgn = (t >= 0) ? (ap_int<16>)1 : (ap_int<16>)-1;\n"
-        "      t = (t + sgn * mag) >> d;               // round-to-nearest, sign-aware\n"
-        "      if (t > 7) t = 7; if (t < -8) t = -8;\n"
-        "      a1 = (ap_int<4>)t;\n"
+        "      ap_uint<3> ush = (ap_uint<3>)d;\n"
+        "      a1 = (ap_int<4>)(s1 >> ush);\n"
         "    }\n"
         "  }\n"
         "  return (ap_uint<8>)((((ap_uint<8>)(ap_uint<4>)a1) << 4) | (ap_uint<4>)a2);\n"
@@ -87,10 +85,34 @@ def _canonicalise_mxint8_raw_adder(code: str) -> str:
     return func_re.sub(replacement, code)
 
 
+def _canonicalise_mxint8_detect_overflow(code: str) -> str:
+    """
+    Overwrite detect_overflow with the intended semantics:
+    overflow if raw_sum > 7 or raw_sum < -8 (signed 5-bit).
+    """
+    func_re = re.compile(
+        r'^\s*ap_uint<\s*1\s*>\s+detect_overflow\s*'
+        r'\(\s*ap_uint<\s*5\s*>\s*\w+\s*\)\s*\{.*?\}\s*',
+        re.DOTALL | re.MULTILINE
+    )
+
+    replacement = (
+        "ap_uint<1> detect_overflow(ap_uint<5> raw_sum) {\n"
+        "  ap_int<5> s5 = (ap_int<5>)raw_sum;\n"
+        "  return (s5 > 7 || s5 < -8) ? (ap_uint<1>)1 : (ap_uint<1>)0;\n"
+        "}\n"
+    )
+    return func_re.sub(replacement, code)
+
+
 def _canonicalise_mxint8_normaliser_rounded(code: str) -> str:
     """
-    Overwrite normalise_addition to use round-to-nearest (sign-aware) on overflow.
-    Uses same-width ?: arms to avoid Vitis HLS conditional ambiguity.
+    Overwrite normalise_addition to mirror the quantizer-style normalisation:
+      - find msb of |raw_sum| and shift so msb lands at bit 2
+      - right shifts are rounded-to-nearest (bias by 1 or 2)
+      - exponent adjusted by shift amount (sign-extended), then clamped to [-8, 7]
+      - mantissa saturated to [-8, 7]
+      - zero maps to mant=0, exp=0
     """
     func_re = re.compile(
         r'^\s*ap_uint<\s*8\s*>\s+normalise_addition\s*'
@@ -101,20 +123,35 @@ def _canonicalise_mxint8_normaliser_rounded(code: str) -> str:
     replacement = (
         "ap_uint<8> normalise_addition(ap_uint<5> raw_sum, ap_uint<4> target_exp) {\n"
         "  ap_int<5> s5 = (ap_int<5>)raw_sum;\n"
-        "  ap_uint<4> exp = target_exp;\n"
-        "  ap_int<4> mant;\n"
-        "  if (s5 > 7 || s5 < -8) {\n"
-        "    ap_int<6> t = (ap_int<6>)s5;\n"
-        "    ap_int<6> sgn = (t >= 0) ? (ap_int<6>)1 : (ap_int<6>)-1; // same type both arms\n"
-        "    t = t + sgn;                                            // +0.5 ulp before >>1\n"
-        "    t >>= 1;\n"
-        "    if (t > 7) t = 7; if (t < -8) t = -8;\n"
-        "    mant = (ap_int<4>)t;\n"
-        "    exp  = exp + 1;\n"
+        "  ap_uint<5> abs5 = (s5 < 0) ? (ap_uint<5>)(-s5) : (ap_uint<5>)s5;\n"
+        "  ap_int<5> shifted = s5;\n"
+        "  ap_int<5> exp5 = (ap_int<5>)(ap_int<4>)target_exp;\n"
+        "  if (s5 == 0) {\n"
+        "    shifted = 0;\n"
+        "    exp5 = 0;\n"
         "  } else {\n"
-        "    mant = (ap_int<4>)s5;\n"
+        "    ap_uint<3> msb = abs5[4] ? 4 : abs5[3] ? 3 : abs5[2] ? 2 : abs5[1] ? 1 : 0;\n"
+        "    if (msb > 2) {\n"
+        "      ap_uint<2> rsh = (ap_uint<2>)(msb - 2); // 1 or 2\n"
+        "      ap_int<5> bias = (rsh == 1) ? (ap_int<5>)1 : (ap_int<5>)2;\n"
+        "      ap_int<5> adj = (s5 < 0) ? (ap_int<5>)(-bias) : bias;\n"
+        "      shifted = (ap_int<5>)((s5 + adj) >> rsh);\n"
+        "      exp5 = exp5 + (ap_int<5>)rsh;\n"
+        "    } else if (msb < 2) {\n"
+        "      ap_uint<2> lsh = (ap_uint<2>)(2 - msb);\n"
+        "      ap_uint<5> u = (ap_uint<5>)s5;\n"
+        "      shifted = (ap_int<5>)(u << lsh);\n"
+        "      exp5 = exp5 - (ap_int<5>)lsh;\n"
+        "    }\n"
         "  }\n"
-        "  return (ap_uint<8>)((((ap_uint<8>)((ap_uint<4>)mant)) << 4) | exp);\n"
+        "  if (exp5 > 7) exp5 = 7;\n"
+        "  if (exp5 < -8) exp5 = -8;\n"
+        "  ap_int<5> sat = shifted;\n"
+        "  if (sat > 7) sat = 7;\n"
+        "  if (sat < -8) sat = -8;\n"
+        "  ap_uint<4> mant_u = ((ap_uint<5>)sat).range(3, 0);\n"
+        "  ap_uint<4> exp_u = (ap_uint<4>)exp5;\n"
+        "  return (ap_uint<8>)((((ap_uint<8>)mant_u) << 4) | exp_u);\n"
         "}\n"
     )
     return func_re.sub(replacement, code)
@@ -142,10 +179,45 @@ def _canonicalise_add_full_sum(code: str) -> str:
 
     new_body = r"""
 ap_uint<8> add_full_sum(ap_uint<4> m1, ap_uint<4> e1, ap_uint<4> m2, ap_uint<4> e2) {
-  ap_uint<9> raw = add_raw(m1, e1, m2, e2);
-  ap_uint<5> raw_m = (ap_uint<5>) raw.range(8, 4);
-  ap_uint<4> texp  = (ap_uint<4>) raw.range(3, 0);
-  return normalise_addition(raw_m, texp);
+  // Match mxint_hardware quantization for a single scalar sum.
+  ap_int<4> sm1 = (ap_int<4>)m1;
+  ap_int<4> sm2 = (ap_int<4>)m2;
+  ap_int<4> se1 = (ap_int<4>)e1;
+  ap_int<4> se2 = (ap_int<4>)e2;
+  ap_int<6> sh1 = (ap_int<6>)se1 + (ap_int<6>)8;
+  ap_int<6> sh2 = (ap_int<6>)se2 + (ap_int<6>)8;
+  ap_uint<5> ush1 = (ap_uint<5>)sh1;
+  ap_uint<5> ush2 = (ap_uint<5>)sh2;
+  ap_int<24> v1 = (ap_int<24>)sm1 << ush1;
+  ap_int<24> v2 = (ap_int<24>)sm2 << ush2;
+  ap_int<24> sum_v = v1 + v2; // sum scaled by 2^11
+
+  if (sum_v == 0) {
+    ap_uint<4> exp_z = (ap_uint<4>)((ap_int<4>)-8);
+    return (ap_uint<8>)((((ap_uint<8>)0) << 4) | exp_z);
+  }
+
+  ap_uint<24> abs_v = (sum_v < 0) ? (ap_uint<24>)(-sum_v) : (ap_uint<24>)sum_v;
+  ap_int<6> msb = 0;
+  for (int i = 23; i >= 0; --i) {
+    if (abs_v[i]) { msb = i; break; }
+  }
+
+  ap_int<6> exp = (ap_int<6>)(msb - 10); // exponent = floor(log2(abs_v)) + 1 - 11
+  if (exp > 7) exp = 7;
+  if (exp < -8) exp = -8;
+
+  ap_int<6> shift_i = exp + 8; // 0..15
+  ap_uint<5> shift = (ap_uint<5>)shift_i;
+  ap_int<24> mant_raw = sum_v >> shift; // floor for signed values
+
+  ap_int<6> mant = (ap_int<6>)mant_raw;
+  if (mant > 7) mant = 7;
+  if (mant < -8) mant = -8;
+
+  ap_uint<4> mant_u = (ap_uint<4>)mant;
+  ap_uint<4> exp_u = (ap_uint<4>)exp;
+  return (ap_uint<8>)((((ap_uint<8>)mant_u) << 4) | exp_u);
 }
 """.strip("\n")
 

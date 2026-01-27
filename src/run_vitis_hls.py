@@ -22,6 +22,17 @@ def _detect_top_func_from_cpp(src: str) -> str | None:
 def create_hls_tcl(design_path: Path, top_func: str, output_dir: Path) -> Path:
     tcl_path = output_dir / "hls.tcl"
     design_name = design_path.stem
+    pipeline_line = ""
+    if "fp32" in top_func:
+        pipeline_line = (
+            f"set_directive_pipeline -II 1 {top_func}\n"
+            f"    set_directive_latency -min 1 -max 1 {top_func}"
+        )
+    elif top_func in {"add_full_sum", "mult_mxint_full_product"}:
+        pipeline_line = (
+            f"set_directive_pipeline -II 1 {top_func}\n"
+            f"    set_directive_latency -min 1 -max 1 {top_func}"
+        )
 
     tcl = f"""
     open_component -reset {design_name}_component -flow_target vivado
@@ -29,6 +40,7 @@ def create_hls_tcl(design_path: Path, top_func: str, output_dir: Path) -> Path:
     add_files {design_path}
     set_part {{xc7z020clg400-1}}
     create_clock -period 1000000ns
+    {pipeline_line}
     csynth_design
     export_design -rtl verilog
     """
@@ -39,6 +51,7 @@ def create_hls_tcl(design_path: Path, top_func: str, output_dir: Path) -> Path:
 def create_vivado_tcl(top_func: str, output_dir: Path) -> Path:
     tcl_path = output_dir / "vivado.tcl"
     verilog_dir = output_dir / "verilog_out"
+    clk_period_ns = float(os.environ.get("VIVADO_CLK_PERIOD_NS", "4.000"))
 
     tcl = f"""
     # --- Non-project flow: read RTL, synth, implement, report ---
@@ -58,7 +71,7 @@ def create_vivado_tcl(top_func: str, output_dir: Path) -> Path:
 
     # Add a clock ONLY if the port exists (combinational designs won't have ap_clk)
     if {{[llength [get_ports -quiet ap_clk]]}} {{
-      create_clock -name ap_clk -period 4.000 [get_ports ap_clk]
+      create_clock -name ap_clk -period {clk_period_ns:.3f} [get_ports ap_clk]
     }} else {{
       puts "INFO: No ap_clk port found; skipping create_clock (design appears combinational)."
     }}
@@ -77,6 +90,11 @@ def create_vivado_tcl(top_func: str, output_dir: Path) -> Path:
     if {{[catch {{report_timing_summary -rpx $rpx_path}} err]}} {{
       puts "INFO: RPX timing not available: $err"
     }}
+
+    # Critical path detail (only if clock exists)
+    if {{[llength [get_ports -quiet ap_clk]]}} {{
+      report_timing -delay_type max -max_paths 1 -nworst 1 -file {output_dir}/timing_detail.rpt
+    }}
     """
     tcl_path.write_text(tcl.strip() + "\n")
     return tcl_path
@@ -85,6 +103,23 @@ def create_vivado_tcl(top_func: str, output_dir: Path) -> Path:
 def parse_reports(output_dir: Path, top_func: str, design_name: str, run_impl: bool) -> dict:
     results = {"LUTs": -1, "FFs": -1, "DSPs": -1, "BRAMs": -1, "Cycles": -1, "Fmax_MHz": -1}
     comp = output_dir / f"{design_name}_component"
+
+    def parse_vivado_critical_delay_ns() -> float | None:
+        rpt = output_dir / "timing_detail.rpt"
+        if not rpt.exists():
+            return None
+        try:
+            with open(rpt, encoding="utf-8", errors="ignore") as f:
+                for line in f:
+                    m = re.search(r"Data Path Delay\s*:\s*([0-9.]+)\s*ns", line)
+                    if m:
+                        return float(m.group(1))
+                    m = re.search(r"Data Path Delay\s*:\s*([0-9.]+)\b", line)
+                    if m:
+                        return float(m.group(1))
+        except Exception:
+            return None
+        return None
 
     def parse_hls_estimated_clock_ns() -> float | None:
         # Prefer csynth.xml (always produced by csynth)
@@ -192,34 +227,60 @@ def parse_reports(output_dir: Path, top_func: str, design_name: str, run_impl: b
 
         # =================== Parse Vivado timing.rpt for Fmax ========================
         try:
+            period_ns = None
+            wns_ns = None
             with open(output_dir / "timing.rpt", encoding="utf-8", errors="ignore") as f:
                 in_clk = False; hdr = False
+                in_intra = False; intra_hdr = False
                 for raw in f:
                     line = raw.rstrip("\n")
                     if not in_clk and re.search(r"\bClock\s+Summary\b", line, re.IGNORECASE):
                         in_clk = True; continue
                     if in_clk and not hdr and re.search(r"^\s*Clock\s+Waveform", line):
                         hdr = True; continue
-                    if not (in_clk and hdr): continue
-                    r = line.strip()
-                    if not r or set(r) <= set("-|"): continue
-                    if r.startswith("ap_clk"):
-                        cols = re.split(r"\s{2,}", r)
-                        if len(cols) >= 3:
-                            try:
-                                results["Fmax_MHz"] = float(cols[-1])
-                            except ValueError:
-                                pass
-                            if results["Fmax_MHz"] == -1:
+                    if in_clk and hdr:
+                        r = line.strip()
+                        if not r or set(r) <= set("-|"): 
+                            continue
+                        if r.startswith("ap_clk"):
+                            cols = re.split(r"\s{2,}", r)
+                            if len(cols) >= 3:
                                 try:
                                     period_ns = float(cols[-2])
-                                    if period_ns > 0:
-                                        results["Fmax_MHz"] = round(1000.0/period_ns, 3)
+                                    results["Fmax_MHz"] = float(cols[-1])
                                 except ValueError:
                                     pass
-                        break
+                            continue
+                    if not in_intra and re.search(r"\bIntra Clock Table\b", line, re.IGNORECASE):
+                        in_intra = True; continue
+                    if in_intra and not intra_hdr and re.search(r"^\s*Clock\s+WNS", line):
+                        intra_hdr = True; continue
+                    if in_intra and intra_hdr:
+                        r = line.strip()
+                        if not r or set(r) <= set("-|"):
+                            continue
+                        if r.startswith("ap_clk"):
+                            cols = re.split(r"\s{2,}", r)
+                            if len(cols) >= 2:
+                                try:
+                                    wns_ns = float(cols[1])
+                                except ValueError:
+                                    wns_ns = None
+                            break
+            if period_ns is not None and wns_ns is not None:
+                # If WNS is positive, design can run faster than the constraint.
+                eff_period = period_ns - wns_ns
+                if eff_period > 0:
+                    results["Fmax_MHz"] = round(1000.0 / eff_period, 3)
+            elif results["Fmax_MHz"] == -1 and period_ns is not None and period_ns > 0:
+                results["Fmax_MHz"] = round(1000.0 / period_ns, 3)
         except Exception as e:
             print(f"[WARN] Could not parse timing.rpt: {e}")
+
+        # Prefer critical path delay if report_timing detail exists.
+        delay_ns = parse_vivado_critical_delay_ns()
+        if delay_ns is not None and delay_ns > 0:
+            results["Fmax_MHz"] = round(1000.0 / delay_ns, 3)
 
         # Fallback to HLS estimated clock if no ap_clk entry
         if results["Fmax_MHz"] == -1:
@@ -255,6 +316,8 @@ def run_vitis_hls(design_path: str, top_func: str = None, impl: bool = False):
         "solution_addition_raw_sum": "add_raw",
         "solution_addition_full_sum": "add_full_sum",
         "solution_mxint8addition_full_sum": "add_full_sum",
+        "solution_mxint8addition_alignment": "align_mantissas",
+        "solution_mxint8addition_raw_sum": "add_raw",
         "solution_mxint8multiplication_full_product": "mult_mxint_full_product",
     }
 

@@ -13,6 +13,10 @@ from .synthesis_targets.multiplication.naive_multiplier import NaiveMultiplierTa
 
 from .synthesis_targets.dot_product import DotProductTarget
 
+# Default: preserve solver output (disable add_full_sum canonicaliser).
+# Set ENABLE_MXINT8_ADD_FULL_SUM_CANON=1 to force the canonicaliser.
+os.environ.setdefault("ENABLE_MXINT8_ADD_FULL_SUM_CANON", "0")
+
 
 def unwrap_extra_parens(solution_text: str) -> str:
     """Remove a single outer s-expression wrapper when present.
@@ -119,7 +123,7 @@ def run_cvc5_synthesis(sygus_query: str, timeout: int) -> Optional[str]:
         
     try:
         result = subprocess.run(
-            ["cvc5", "--lang=sygus2", temp_filepath],
+            ["cvc5", "--lang=sygus2", "-o", "sygus", temp_filepath],
             capture_output=True, text=True, timeout=timeout
         )
         if result.stderr:
@@ -239,6 +243,48 @@ def synthesis_loop(
     return current_best_program
 
 
+def _op_name_for_target(target) -> str:
+    if hasattr(target, "get_op_name"):
+        return target.get_op_name()
+    return target.__class__.__name__.replace('Target', '').lower()
+
+
+def resolve_component_plan(target, component_name: str) -> list[str]:
+    if not hasattr(target, "get_dependency_map"):
+        return [component_name]
+
+    op_name = _op_name_for_target(target)
+    dep_map = target.get_dependency_map()
+    root_key = f"{op_name}_{component_name}"
+    deps = dep_map.get(root_key, [])
+    if not deps:
+        return [component_name]
+
+    order: list[str] = []
+    visited: set[str] = set()
+
+    def dfs(key: str) -> None:
+        if key in visited:
+            return
+        visited.add(key)
+        for dep in dep_map.get(key, []):
+            dfs(dep)
+        order.append(key)
+
+    dfs(root_key)
+
+    components = []
+    available = set(target.get_components().keys())
+    for key in order:
+        comp = key[len(op_name) + 1:] if key.startswith(f"{op_name}_") else key
+        if comp in available:
+            components.append(comp)
+        else:
+            print(f"[WARN] Dependency '{key}' not found in target components. Skipping.")
+
+    return components if components else [component_name]
+
+
 if __name__ == "__main__":
     config = SynthesisConfig()
 
@@ -332,50 +378,118 @@ if __name__ == "__main__":
                 synthesis_test_cases.append((vec1, vec2))
 
     elif isinstance(target_operation, (MXINT8AdditionTarget, MXINT8MultiplicationTarget, FP32AdditionTarget, FP32MultiplicationTarget)):
+        alignment_directed_cases: list[tuple[float, float]] = []
         if isinstance(target_operation, MXINT8AdditionTarget):
             max_val = 66
+            # Directed cases to exercise rounding and large-shift behavior.
+            scale = 1 << (config.MANTISSA_WIDTH - 1)
+
+            def mxint8_float(m: int, e: int) -> float:
+                return (m * (2.0 ** e)) / float(scale)
+
+            directed_pairs = [
+                ((5, 3), (5, 2)),   # d=1
+                ((5, 3), (-5, 2)),
+                ((5, 3), (5, 1)),   # d=2
+                ((5, 3), (-5, 1)),
+                ((5, 3), (5, 0)),   # d=3
+                ((5, 3), (-5, 0)),
+                ((5, 3), (5, -2)),  # d>=4
+                ((5, 3), (-5, -2)),
+                ((5, 2), (5, 3)),   # reverse (shift m1)
+                ((-5, 2), (5, 3)),
+                ((5, 1), (5, 3)),
+                ((5, 0), (5, 3)),
+                ((5, -2), (5, 3)),
+            ]
+
+            for (m1, e1), (m2, e2) in directed_pairs:
+                alignment_directed_cases.append((mxint8_float(m1, e1), mxint8_float(m2, e2)))
+
         elif isinstance(target_operation, MXINT8MultiplicationTarget):
             max_val = math.sqrt(112)
         elif isinstance(target_operation, (FP32AdditionTarget, FP32MultiplicationTarget)):
             max_val = 1e4
 
-        for _ in range(config.NUM_ITERATIONS):
+        while len(synthesis_test_cases) < config.NUM_ITERATIONS:
             f1 = random.uniform(-max_val, max_val)
             f2 = random.uniform(-max_val, max_val)
             synthesis_test_cases.append((f1, f2))
 
     # ===================================================================
 
-    final_program = synthesis_loop(
-        target=target_operation,
-        component_name=target_component,
-        test_cases=synthesis_test_cases,
-        config=config
-    )
+    op_name = _op_name_for_target(target_operation)
+    component_plan = resolve_component_plan(target_operation, target_component)
+    if len(component_plan) > 1:
+        print(f"[INFO] Synthesizing dependency chain: {component_plan}")
 
-    if final_program:
-        
-        op_name = target_operation.__class__.__name__.replace('Target','').lower()
-        output_filename = f"solution_{op_name}_{target_component}.smt2"
-        
+    final_program = None
+    final_component = component_plan[-1]
+    programs_by_component: dict[str, str] = {}
 
-        # Create organized results subdirectories
-        smt_dir = os.path.join('results', 'smt2')
-        c_dir = os.path.join('results', 'c')
-        cpp_dir = os.path.join('results', 'cpp')
-        os.makedirs(smt_dir, exist_ok=True)
-        os.makedirs(c_dir, exist_ok=True)
-        os.makedirs(cpp_dir, exist_ok=True)
+    # Create organized results subdirectories
+    smt_dir = os.path.join('results', 'smt2')
+    c_dir = os.path.join('results', 'c')
+    cpp_dir = os.path.join('results', 'cpp')
+    os.makedirs(smt_dir, exist_ok=True)
+    os.makedirs(c_dir, exist_ok=True)
+    os.makedirs(cpp_dir, exist_ok=True)
 
+    # Avoid stale helper definitions when grammars change.
+    for component in component_plan:
+        stale = os.path.join(smt_dir, f"solution_{op_name}_{component}.smt2")
+        if os.path.exists(stale):
+            os.remove(stale)
+
+    for component in component_plan:
+        if (
+            isinstance(target_operation, MXINT8AdditionTarget)
+            and component == "alignment"
+            and alignment_directed_cases
+        ):
+            remaining = max(0, config.NUM_ITERATIONS - len(alignment_directed_cases))
+            test_cases = alignment_directed_cases[:config.NUM_ITERATIONS] + synthesis_test_cases[:remaining]
+        else:
+            test_cases = synthesis_test_cases
+
+        program = synthesis_loop(
+            target=target_operation,
+            component_name=component,
+            test_cases=test_cases,
+            config=config
+        )
+        if not program:
+            print(f"[ERROR] Synthesis failed for component '{component}'. Aborting.")
+            break
+        programs_by_component[component] = program
+
+        output_filename = f"solution_{op_name}_{component}.smt2"
         output_path = os.path.join(smt_dir, output_filename)
-
         with open(output_path, "w") as f:
-            f.write(final_program)
+            f.write(program)
         print(f"\n Solution saved to: {output_path}")
 
+        if component == final_component:
+            final_program = program
+        else:
+            print(f"[INFO] Completed helper component '{component}'.")
+
+    if final_program and len(component_plan) > 1:
+        print("\n--- All Synthesized Programs (Dependency Chain) ---")
+        for component in component_plan:
+            program = programs_by_component.get(component)
+            if not program:
+                continue
+            print(f"\n--- {component} ---")
+            print(program)
+
+    if final_program:
         # Run the smt2c translation to get the C-like code
         from src.translate_smt_to_c import run_smt2c_translation
-        c_output_path = run_smt2c_translation(output_path, c_dir)
+        c_output_path = run_smt2c_translation(
+            os.path.join(smt_dir, f"solution_{op_name}_{final_component}.smt2"),
+            c_dir,
+        )
 
         # Convert the generated C code to HLS-compatible C++
         from src.translate_to_hls_cpp import run_hls_conversion
@@ -383,5 +497,5 @@ if __name__ == "__main__":
 
         # Run the conversion from C++ to Verilog using Vitis HLS
         from src.run_vitis_hls import run_vitis_hls
-        hls_cpp_path = os.path.join("results", "cpp", f"solution_{op_name}_{target_component}.cpp")
+        hls_cpp_path = os.path.join("results", "cpp", f"solution_{op_name}_{final_component}.cpp")
         run_vitis_hls(hls_cpp_path, impl=RUN_IMPLEMENTATION)

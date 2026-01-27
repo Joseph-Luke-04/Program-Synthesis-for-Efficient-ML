@@ -1,5 +1,6 @@
 import cocotb
-from cocotb.triggers import Timer
+from cocotb.clock import Clock
+from cocotb.triggers import RisingEdge, Timer
 import random 
 import struct
 import numpy as np
@@ -30,9 +31,25 @@ def ulp_distance(a_bits, b_bits):
 async def fp32_adder_accuracy_test(dut):
     dut._log.info("Starting FP32 adder accuracy test")
 
-    # combinational IP: tie handshakes
-    dut.ap_rst.value   = 0
-    dut.ap_start.value = 1
+    has_clk = hasattr(dut, "ap_clk")
+    if has_clk:
+        cocotb.start_soon(Clock(dut.ap_clk, 10, unit="ns").start())
+        dut.ap_rst.value = 1
+        dut.ap_start.value = 0
+        dut.s1.value = 0
+        dut.e1.value = 0
+        dut.m1.value = 0
+        dut.s2.value = 0
+        dut.e2.value = 0
+        dut.m2.value = 0
+        for _ in range(2):
+            await RisingEdge(dut.ap_clk)
+        dut.ap_rst.value = 0
+        for _ in range(2):
+            await RisingEdge(dut.ap_clk)
+    else:
+        dut.ap_rst.value = 0
+        dut.ap_start.value = 1
     
     num_samples = 100000
     ulps = []
@@ -53,7 +70,26 @@ async def fp32_adder_accuracy_test(dut):
         dut.s1.value, dut.e1.value, dut.m1.value = s1, e1, m1
         dut.s2.value, dut.e2.value, dut.m2.value = s2, e2, m2
 
-        await Timer(1, unit='ns')  # allow combinational logic to settle
+        if has_clk:
+            if hasattr(dut, "ap_idle") and hasattr(dut, "ap_ready"):
+                while int(dut.ap_idle.value) == 0 and int(dut.ap_ready.value) == 0:
+                    await RisingEdge(dut.ap_clk)
+            dut.ap_start.value = 1
+            await RisingEdge(dut.ap_clk)
+            dut.ap_start.value = 0
+            if hasattr(dut, "ap_done"):
+                done = False
+                for _ in range(100):
+                    await RisingEdge(dut.ap_clk)
+                    if int(dut.ap_done.value) == 1:
+                        done = True
+                        break
+                if not done:
+                    raise RuntimeError("Timeout waiting for ap_done from fp32_sum")
+            else:
+                await RisingEdge(dut.ap_clk)
+        else:
+            await Timer(1, unit="ns")  # allow combinational logic to settle
 
         got_bits = int(dut.ap_return.value)
 
