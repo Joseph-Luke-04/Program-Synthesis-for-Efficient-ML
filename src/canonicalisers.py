@@ -472,6 +472,178 @@ ap_uint<32> fp32_normaliser(ap_uint<25> raw_sum_mantissa, ap_uint<1> raw_sign, a
 
     return code[:func_start] + canonical + "\n" + code[func_end:]
 
+def _canonicalise_fp32_mult_renorm(code: str) -> str:
+    """
+    Replace fp32_mult_renorm(...) with a clean, HLS-friendly implementation.
+    """
+    if "fp32_mult_renorm(" not in code:
+        return code
+    m = re.search(r'\bap_uint<\s*1\s*>\s+fp32_mult_renorm\s*\([^)]*\)\s*\{', code)
+    if not m:
+        return code
+
+    func_start = m.start()
+    brace_pos = m.end() - 1
+
+    depth = 0
+    i = brace_pos
+    n = len(code)
+    while i < n:
+        if code[i] == '{':
+            depth += 1
+        elif code[i] == '}':
+            depth -= 1
+            if depth == 0:
+                func_end = i + 1
+                break
+        i += 1
+    else:
+        return code
+
+    canonical = r"""
+ap_uint<1> fp32_mult_renorm(ap_uint<24> Ma, ap_uint<24> Mb) {
+  ap_uint<48> prod = (ap_uint<48>)Ma * (ap_uint<48>)Mb;
+  return (ap_uint<1>)prod[47];
+}
+""".strip("\n")
+
+    return code[:func_start] + canonical + "\n" + code[func_end:]
+
+def _canonicalise_fp32_mult_exp(code: str) -> str:
+    """
+    Replace fp32_mult_exp(...) with a clean, HLS-friendly implementation.
+    exp = ea + eb - 127 + renorm + carry (8-bit result, wrap as BV does).
+    """
+    if "fp32_mult_exp(" not in code:
+        return code
+    m = re.search(r'\b(?:ap_uint<\s*8\s*>|unsigned\s+char)\s+fp32_mult_exp\s*\([^)]*\)\s*\{', code)
+    if not m:
+        return code
+
+    func_start = m.start()
+    brace_pos = m.end() - 1
+
+    depth = 0
+    i = brace_pos
+    n = len(code)
+    while i < n:
+        if code[i] == '{':
+            depth += 1
+        elif code[i] == '}':
+            depth -= 1
+            if depth == 0:
+                func_end = i + 1
+                break
+        i += 1
+    else:
+        return code
+
+    canonical = r"""
+ap_uint<8> fp32_mult_exp(ap_uint<8> ea, ap_uint<8> eb, ap_uint<1> renorm, ap_uint<1> carry) {
+  ap_uint<10> sum = (ap_uint<10>)ea + (ap_uint<10>)eb;
+  ap_uint<10> adj = sum - (ap_uint<10>)127 + (ap_uint<10>)renorm + (ap_uint<10>)carry;
+  return (ap_uint<8>)adj;
+}
+""".strip("\n")
+
+    return code[:func_start] + canonical + "\n" + code[func_end:]
+
+def _canonicalise_fp32_mult_mant(code: str) -> str:
+    """
+    Replace fp32_mult_mant(...) with a clean, HLS-friendly implementation.
+    mant = top 24 bits of product (bits 46:23) after optional renorm shift,
+    then round-to-nearest by adding bit 22, and return 23 LSBs.
+    """
+    if "fp32_mult_mant(" not in code:
+        return code
+    m = re.search(r'\bap_uint<\s*23\s*>\s+fp32_mult_mant\s*\([^)]*\)\s*\{', code)
+    if not m:
+        return code
+
+    func_start = m.start()
+    brace_pos = m.end() - 1
+
+    depth = 0
+    i = brace_pos
+    n = len(code)
+    while i < n:
+        if code[i] == '{':
+            depth += 1
+        elif code[i] == '}':
+            depth -= 1
+            if depth == 0:
+                func_end = i + 1
+                break
+        i += 1
+    else:
+        return code
+
+    canonical = r"""
+ap_uint<23> fp32_mult_mant(ap_uint<24> Ma, ap_uint<24> Mb, ap_uint<1> renorm) {
+  ap_uint<48> prod = (ap_uint<48>)Ma * (ap_uint<48>)Mb;
+  ap_uint<48> shifted = (renorm == 1) ? (prod >> 1) : prod;
+  ap_uint<24> top = (ap_uint<24>)shifted.range(46, 23);
+  ap_uint<1> round = (ap_uint<1>)shifted[22];
+  ap_uint<24> rounded = top + (ap_uint<24>)round;
+  return (ap_uint<23>)rounded.range(22, 0);
+}
+""".strip("\n")
+
+    return code[:func_start] + canonical + "\n" + code[func_end:]
+
+def _canonicalise_fp32_full_mul(code: str) -> str:
+    """
+    Replace fp32_full_mul(...) with a clean, HLS-friendly implementation that
+    mirrors the synthesizer expression:
+      sign = a[31] ^ b[31]
+      Ma = {1, a[22:0]}, Mb = {1, b[22:0]}
+      renorm = fp32_mult_renorm(Ma, Mb)
+      exp = fp32_mult_exp(a[30:23], b[30:23], renorm, 0)
+      mant = fp32_mult_mant(Ma, Mb, renorm)
+      pack = {sign, exp, mant}
+    """
+    if "fp32_full_mul(" not in code:
+        return code
+    m = re.search(r'\b(?:ap_uint<\s*32\s*>|unsigned\s+int)\s+fp32_full_mul\s*\([^)]*\)\s*\{', code)
+    if not m:
+        return code
+
+    func_start = m.start()
+    brace_pos = m.end() - 1
+
+    depth = 0
+    i = brace_pos
+    n = len(code)
+    while i < n:
+        if code[i] == '{':
+            depth += 1
+        elif code[i] == '}':
+            depth -= 1
+            if depth == 0:
+                func_end = i + 1
+                break
+        i += 1
+    else:
+        return code
+
+    canonical = r"""
+ap_uint<32> fp32_full_mul(ap_uint<32> a, ap_uint<32> b) {
+  ap_uint<1> sign = (ap_uint<1>)(a[31] ^ b[31]);
+  ap_uint<8> ea = (ap_uint<8>)a.range(30, 23);
+  ap_uint<8> eb = (ap_uint<8>)b.range(30, 23);
+  ap_uint<23> fa = (ap_uint<23>)a.range(22, 0);
+  ap_uint<23> fb = (ap_uint<23>)b.range(22, 0);
+  ap_uint<24> Ma = (ap_uint<24>)((ap_uint<24>)1 << 23) | (ap_uint<24>)fa;
+  ap_uint<24> Mb = (ap_uint<24>)((ap_uint<24>)1 << 23) | (ap_uint<24>)fb;
+  ap_uint<1> renorm = fp32_mult_renorm(Ma, Mb);
+  ap_uint<8> exp = fp32_mult_exp(ea, eb, renorm, (ap_uint<1>)0);
+  ap_uint<23> mant = fp32_mult_mant(Ma, Mb, renorm);
+  return (ap_uint<32>)(((ap_uint<32>)sign << 31) | ((ap_uint<32>)exp << 23) | (ap_uint<32>)mant);
+}
+""".strip("\n")
+
+    return code[:func_start] + canonical + "\n" + code[func_end:]
+
 def _canonicalise_fp32_sum(code: str) -> str:
     """
     Replace the whole fp32_sum(...) body with a simple, HLS-safe version that

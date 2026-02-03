@@ -11,7 +11,11 @@ from .canonicalisers import (
     _canonicalise_fp32_aligner,
     _canonicalise_fp32_raw_summer,
     _canonicalise_fp32_normaliser, 
-    _canonicalise_fp32_sum
+    _canonicalise_fp32_sum,
+    _canonicalise_fp32_mult_renorm,
+    _canonicalise_fp32_mult_exp,
+    _canonicalise_fp32_mult_mant,
+    _canonicalise_fp32_full_mul
 )
 
 _HEADER = "#include <ap_int.h>\n\n"
@@ -820,6 +824,10 @@ def convert_cp_to_hls(c_input_path: str, save_output: bool = True) -> str:
     code = _canonicalise_fp32_raw_summer(code)
     code = _canonicalise_fp32_normaliser(code)
     code = _canonicalise_fp32_sum(code)
+    code = _canonicalise_fp32_mult_renorm(code)
+    code = _canonicalise_fp32_mult_exp(code)
+    code = _canonicalise_fp32_mult_mant(code)
+    code = _canonicalise_fp32_full_mul(code)
 
     enable_mxint8_add = os.environ.get("ENABLE_MXINT8_ADD_CANON", "0") == "1"
     if enable_mxint8_add:

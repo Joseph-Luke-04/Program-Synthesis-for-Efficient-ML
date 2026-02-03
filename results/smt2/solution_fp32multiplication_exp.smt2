@@ -1,0 +1,1 @@
+(define-fun fp32_mult_exp ((ea (_ BitVec 8)) (eb (_ BitVec 8)) (renorm (_ BitVec 1)) (carry (_ BitVec 1))) (_ BitVec 8) ((_ extract 7 0) (bvadd (bvsub (bvadd ((_ zero_extend 2) ea) ((_ zero_extend 2) eb)) #b0001111111) ((_ zero_extend 9) renorm))))

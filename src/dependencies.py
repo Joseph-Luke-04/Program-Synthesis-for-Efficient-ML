@@ -51,4 +51,14 @@ DEPENDENCY_MAP = {
         "fp32addition_fp32_raw_sum",
         "fp32addition_fp32_normalisation",
     ],
+
+    # FP32 Multiplication
+    "fp32multiplication_renorm": [],
+    "fp32multiplication_exp": ["fp32multiplication_renorm"],
+    "fp32multiplication_mant": [],
+    "fp32multiplication_full_product": [
+        "fp32multiplication_renorm",
+        "fp32multiplication_exp",
+        "fp32multiplication_mant",
+    ],
 }

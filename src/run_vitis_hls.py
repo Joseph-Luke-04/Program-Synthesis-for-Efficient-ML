@@ -319,6 +319,10 @@ def run_vitis_hls(design_path: str, top_func: str = None, impl: bool = False):
         "solution_mxint8addition_alignment": "align_mantissas",
         "solution_mxint8addition_raw_sum": "add_raw",
         "solution_mxint8multiplication_full_product": "mult_mxint_full_product",
+        "solution_fp32multiplication_full_product": "fp32_full_mul",
+        "solution_fp32multiplication_renorm": "fp32_mult_renorm",
+        "solution_fp32multiplication_exp": "fp32_mult_exp",
+        "solution_fp32multiplication_mant": "fp32_mult_mant",
     }
 
     if top_func is None:

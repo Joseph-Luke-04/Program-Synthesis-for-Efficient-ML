@@ -17,6 +17,9 @@ from .synthesis_targets.dot_product import DotProductTarget
 # Set ENABLE_MXINT8_ADD_FULL_SUM_CANON=1 to force the canonicaliser.
 os.environ.setdefault("ENABLE_MXINT8_ADD_FULL_SUM_CANON", "0")
 
+# Toggle SyGuS candidate dump (-o sygus) here. Set to True to enable.
+ENABLE_SYGUS_DUMP = True
+
 
 def unwrap_extra_parens(solution_text: str) -> str:
     """Remove a single outer s-expression wrapper when present.
@@ -42,6 +45,101 @@ def unwrap_extra_parens(solution_text: str) -> str:
         return stripped[1:-1].strip()
 
     return stripped
+
+# An attempt at a pretty-printer for SMT-LIB expressions
+def pretty_print_smt(expr: str) -> str:
+    """Structure-aware s-expression pretty printer for solver outputs."""
+    tokens = re.findall(r"\(|\)|[^\s()]+", expr)
+    i = 0
+
+    def parse():
+        nonlocal i
+        if i >= len(tokens):
+            return None
+        tok = tokens[i]
+        if tok == "(":
+            i += 1
+            items = []
+            while i < len(tokens) and tokens[i] != ")":
+                items.append(parse())
+            if i < len(tokens) and tokens[i] == ")":
+                i += 1
+            return items
+        i += 1
+        return tok
+
+    tree = parse()
+
+    def is_atom(x):
+        return not isinstance(x, list)
+
+    def inline(x):
+        if is_atom(x):
+            return x
+        return "(" + " ".join(inline(c) for c in x) + ")"
+
+    def pretty(x, indent=0):
+        if is_atom(x):
+            return "  " * indent + x
+        if not x:
+            return "  " * indent + "()"
+
+        head = x[0] if is_atom(x[0]) else None
+        inl = inline(x)
+        if len(inl) <= 80 and all(is_atom(c) for c in x):
+            return "  " * indent + inl
+
+        if head == "define-fun" and len(x) >= 5:
+            name = inline(x[1])
+            args = inline(x[2])
+            ret = inline(x[3])
+            body = x[4]
+            lines = [f"{'  '*indent}(define-fun {name} {args} {ret}"]
+            lines.append(pretty(body, indent + 1))
+            lines.append("  " * indent + ")")
+            return "\n".join(lines)
+
+        if head == "let" and len(x) >= 3:
+            bindings = x[1]
+            body = x[2]
+            lines = [f"{'  '*indent}(let ("]
+            if isinstance(bindings, list):
+                for b in bindings:
+                    if isinstance(b, list) and len(b) == 2:
+                        lines.append(f"{'  '*(indent+1)}({inline(b[0])} {inline(b[1])})")
+                    else:
+                        lines.append(pretty(b, indent + 1))
+            else:
+                lines.append(pretty(bindings, indent + 1))
+            lines.append(f"{'  '*indent})")
+            lines.append(pretty(body, indent + 1))
+            lines.append("  " * indent + ")")
+            return "\n".join(lines)
+
+        if head == "ite" and len(x) == 4:
+            lines = [f"{'  '*indent}(ite"]
+            lines.append(pretty(x[1], indent + 1))
+            lines.append(pretty(x[2], indent + 1))
+            lines.append(pretty(x[3], indent + 1))
+            lines.append("  " * indent + ")")
+            return "\n".join(lines)
+
+        if head == "concat" and len(x) >= 3:
+            lines = [f"{'  '*indent}(concat"]
+            for c in x[1:]:
+                lines.append(pretty(c, indent + 1))
+            lines.append("  " * indent + ")")
+            return "\n".join(lines)
+
+        # default: multiline list
+        lines = [f"{'  '*indent}(" + (head if head else "")] if head else [f"{'  '*indent}("]
+        start_idx = 1 if head else 0
+        for c in x[start_idx:]:
+            lines.append(pretty(c, indent + 1))
+        lines.append("  " * indent + ")")
+        return "\n".join(lines)
+
+    return pretty(tree)
 
 
 # Helper functions to read the latest synthesized helper definition so that
@@ -121,9 +219,13 @@ def run_cvc5_synthesis(sygus_query: str, timeout: int) -> Optional[str]:
         temp_f.write(sygus_query)
         temp_filepath = temp_f.name
         
+    cmd = ["cvc5", "--lang=sygus2"]
+    if ENABLE_SYGUS_DUMP:
+        cmd += ["-o", "sygus"]
+    cmd.append(temp_filepath)
     try:
         result = subprocess.run(
-            ["cvc5", "--lang=sygus2", "-o", "sygus", temp_filepath],
+            cmd,
             capture_output=True, text=True, timeout=timeout
         )
         if result.stderr:
@@ -308,31 +410,35 @@ if __name__ == "__main__":
         synthesis_test_cases = custom_cases[:config.NUM_ITERATIONS]
     """
  
-    #target_operation = DotProductTarget()
-    #target_operation = MXINT8AdditionTarget()
-    #target_operation = MXINT8MultiplicationTarget()
-    #target_operation = FP32AdditionTarget()
-    #target_operation = FP32MultiplicationTarget()
+    # =========================================================================
+    #
+    # Select ONE target operation:
+    #   DotProductTarget(), 
+    #   MXINT8AdditionTarget(), 
+    #   MXINT8MultiplicationTarget(),
+    #   FP32AdditionTarget(), 
+    #   FP32MultiplicationTarget()
+    #
+    # =========================================================================
+    #
+    # Naive baselines:
+    #   NaiveAdderTarget(kind="int", width=32|8) or NaiveAdderTarget(kind="fp32")
+    #   NaiveMultiplierTarget(kind="int", width=32|8) or NaiveMultiplierTarget(kind="fp32")
+    #
+    # =========================================================================
+    #
+    # Components (per target):
+    #   MXINT8AdditionTarget:       ["alignment", "raw_sum", "overflow", "normalisation", "full_sum"]
+    #   MXINT8MultiplicationTarget: ["renorm_flag", "exp", "mant", "full_product"]
+    #   FP32AdditionTarget:         ["fp32_alignment", "fp32_raw_sum", "fp32_normalisation", "fp32_full_sum"]
+    #   FP32MultiplicationTarget:   ["renorm", "exp", "mant", "full_product"]
+    #   NaiveAdderTarget:           ["int_add", "fp32_adder"]
+    #   NaiveMultiplierTarget:      ["int_mul", "fp32_mul"]
+    #
+    # =========================================================================
 
-    # Operations for for NaiveAdderTarget(): 
-    # NaiveAdderTarget(kind="int", width=32 or 8)
-    # NaiveAdderTarget(kind="fp32")
-
-    # Operations for for NaiveMultiplierTarget():
-    # NaiveMultiplierTarget(kind="int", width=32 or 8)
-    # NaiveMultiplierTarget(kind="fp32")
-    
-    target_operation = MXINT8AdditionTarget()
-    
-    # Components for MXINT8AdditionTarget: "alignment", "raw_sum", "overflow", "normalisation", "full_sum"
-    # Components for MXINT8MultiplicationTarget: "renorm_flag", "mant", "exp", "full_product"
-    # Components for FP32AdditionTarget: "fp32_alignment", "fp32_raw_sum", "fp32_normalisation", "fp32_full_sum"
-    # Components for FP32MultiplicationTarget: "fp32_mantissa", "fp32_exponent"
-    
-    # Components for for NaiveAdderTarget: "int_add", "fp32_adder"
-    # Components for for NaiveMultiplierTarget: "fp32_mul", "int_mul"
-
-    target_component = "full_sum"
+    target_operation = FP32MultiplicationTarget()
+    target_component = "renorm"
  
     # False for a quick post-synthesis estimate (-p)
     # True for a full post-implementation run (-i)
@@ -481,7 +587,7 @@ if __name__ == "__main__":
             if not program:
                 continue
             print(f"\n--- {component} ---")
-            print(program)
+            print(pretty_print_smt(program))
 
     if final_program:
         # Run the smt2c translation to get the C-like code
