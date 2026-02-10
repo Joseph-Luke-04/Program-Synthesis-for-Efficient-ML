@@ -313,13 +313,17 @@ def run_vitis_hls(design_path: str, top_func: str = None, impl: bool = False):
     # Prefer: explicit CLI > filename hint > strong symbol > generic autodetect
     TOP_HINTS = {
         "solution_fp32addition_fp32_full_sum": "fp32_sum",
+        "solution_fp32addition_fp32_full_sum_combined": "fp32_sum",
         "solution_addition_raw_sum": "add_raw",
         "solution_addition_full_sum": "add_full_sum",
         "solution_mxint8addition_full_sum": "add_full_sum",
+        "solution_mxint8addition_full_sum_combined": "add_full_sum",
         "solution_mxint8addition_alignment": "align_mantissas",
         "solution_mxint8addition_raw_sum": "add_raw",
         "solution_mxint8multiplication_full_product": "mult_mxint_full_product",
+        "solution_mxint8multiplication_full_product_combined": "mult_mxint_full_product",
         "solution_fp32multiplication_full_product": "fp32_full_mul",
+        "solution_fp32multiplication_full_product_combined": "fp32_full_mul",
         "solution_fp32multiplication_renorm": "fp32_mult_renorm",
         "solution_fp32multiplication_exp": "fp32_mult_exp",
         "solution_fp32multiplication_mant": "fp32_mult_mant",

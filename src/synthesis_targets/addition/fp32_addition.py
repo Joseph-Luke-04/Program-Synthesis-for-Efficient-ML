@@ -197,4 +197,8 @@ class FP32AdditionTarget:
                 "template": "sygus_grammars/addition/FP32/fp32_full_sum_template.sl",
                 "generator": self.gen_sum_constraint,
             },
+            "fp32_full_sum_combined": {
+                "template": "sygus_grammars/addition/FP32/fp32_full_sum_combined_template.sl",
+                "generator": self.gen_sum_constraint,
+            },
         }

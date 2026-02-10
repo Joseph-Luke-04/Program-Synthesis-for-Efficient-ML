@@ -4,6 +4,7 @@ from cocotb.triggers import RisingEdge, Timer
 import random
 import struct
 import numpy as np
+import os
 
 # Helper functions for float quantisation/dequantisation
 def float_to_uint32(f): return struct.unpack('<I', struct.pack('<f', float(f)))[0]
@@ -16,7 +17,8 @@ def _order_for_ulp(u: int) -> int:
     if (u & 0x7FFFFFFF) == 0:   # ±0
         return 0
     if u & 0x80000000:          # negatives
-        return (~u + 1) & 0xFFFFFFFF   # two's complement mirrors the order
+        # Mirror negatives so adjacent floats remain adjacent in ordered space.
+        return (~u) & 0xFFFFFFFF
     else:                       # non-negatives
         return (u | 0x80000000) & 0xFFFFFFFF
 
@@ -27,9 +29,8 @@ def ulp_distance(a_bits, b_bits):
 #                         The Cocotb Testbench
 # =====================================================================
 
-@cocotb.test()
-async def fp32_multiplier_accuracy_test(dut):
-    dut._log.info("Starting FP32 multiplier accuracy test")
+async def _run_fp32_multiplier_accuracy(dut, label: str):
+    dut._log.info(f"Starting FP32 multiplier accuracy test ({label})")
 
     has_clk = hasattr(dut, "ap_clk")
     if has_clk:
@@ -89,7 +90,7 @@ async def fp32_multiplier_accuracy_test(dut):
                         done = True
                         break
                 if not done:
-                    raise RuntimeError("Timeout waiting for ap_done from fp32_full_mul")
+                    raise RuntimeError(f"Timeout waiting for ap_done from fp32_full_mul ({label})")
             else:
                 await RisingEdge(dut.ap_clk)
         else:
@@ -123,7 +124,40 @@ async def fp32_multiplier_accuracy_test(dut):
     within2 = sum(d <= 2 for d in ulps)
     within4 = sum(d <= 4 for d in ulps)
     dut._log.info(f"Exact {exact/N:.2%}, ≤1 ULP {within1/N:.2%}, ≤2 ULP {within2/N:.2%}, ≤4 ULP {within4/N:.2%}")
+    d1 = sum(d == 1 for d in ulps)
+    d2 = sum(d == 2 for d in ulps)
+    d3 = sum(d == 3 for d in ulps)
+    d4 = sum(d == 4 for d in ulps)
+    dgt4 = sum(d > 4 for d in ulps)
+    dut._log.info(
+        f"ULP buckets: ==1 {d1/N:.2%}, ==2 {d2/N:.2%}, ==3 {d3/N:.2%}, ==4 {d4/N:.2%}, >4 {dgt4/N:.2%}"
+    )
 
     # Set a tolerance you’re comfortable with. Without full IEEE handling,
     # expect occasional multi-ULP errors.
     assert p99_ulp <= 4, f"99th percentile ULP too high: {p99_ulp}"
+
+
+def _should_run(label: str) -> bool:
+    # Optional filter so you can run a single variant from the same test file.
+    # Use: FP32_MUL_VARIANT=combined or FP32_MUL_VARIANT=subcomponents
+    want = os.getenv("FP32_MUL_VARIANT", "").strip().lower()
+    if not want:
+        return True
+    return want == label.lower()
+
+
+@cocotb.test()
+async def fp32_multiplier_accuracy_subcomponents(dut):
+    if not _should_run("subcomponents"):
+        dut._log.info("Skipping subcomponents variant (FP32_MUL_VARIANT filter).")
+        return
+    await _run_fp32_multiplier_accuracy(dut, "subcomponents")
+
+
+@cocotb.test()
+async def fp32_multiplier_accuracy_combined(dut):
+    if not _should_run("combined"):
+        dut._log.info("Skipping combined variant (FP32_MUL_VARIANT filter).")
+        return
+    await _run_fp32_multiplier_accuracy(dut, "combined")

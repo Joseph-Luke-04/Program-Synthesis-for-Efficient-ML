@@ -4,6 +4,7 @@ from cocotb.triggers import RisingEdge, Timer
 import random 
 import struct
 import numpy as np
+import os
 
 # Helper functions for float quantisation/dequantisation
 def float_to_uint32(f): return struct.unpack('<I', struct.pack('<f', float(f)))[0]
@@ -27,9 +28,8 @@ def ulp_distance(a_bits, b_bits):
 #                         The Cocotb Testbench
 # =====================================================================
 
-@cocotb.test()
-async def fp32_adder_accuracy_test(dut):
-    dut._log.info("Starting FP32 adder accuracy test")
+async def _run_fp32_adder_accuracy(dut, label: str):
+    dut._log.info(f"Starting FP32 adder accuracy test ({label})")
 
     has_clk = hasattr(dut, "ap_clk")
     if has_clk:
@@ -85,7 +85,7 @@ async def fp32_adder_accuracy_test(dut):
                         done = True
                         break
                 if not done:
-                    raise RuntimeError("Timeout waiting for ap_done from fp32_sum")
+                    raise RuntimeError(f"Timeout waiting for ap_done from fp32_sum ({label})")
             else:
                 await RisingEdge(dut.ap_clk)
         else:
@@ -118,3 +118,28 @@ async def fp32_adder_accuracy_test(dut):
     # Set a tolerance you’re comfortable with. Without guard/sticky/round,
     # expect occasional multi-ULP errors.
     assert p99_ulp <= 4, f"99th percentile ULP too high: {p99_ulp}"
+
+
+def _should_run(label: str) -> bool:
+    # Optional filter so you can run a single variant from the same test file.
+    # Use: FP32_ADD_VARIANT=combined or FP32_ADD_VARIANT=subcomponents
+    want = os.getenv("FP32_ADD_VARIANT", "").strip().lower()
+    if not want:
+        return True
+    return want == label.lower()
+
+
+@cocotb.test()
+async def fp32_adder_accuracy_subcomponents(dut):
+    if not _should_run("subcomponents"):
+        dut._log.info("Skipping subcomponents variant (FP32_ADD_VARIANT filter).")
+        return
+    await _run_fp32_adder_accuracy(dut, "subcomponents")
+
+
+@cocotb.test()
+async def fp32_adder_accuracy_combined(dut):
+    if not _should_run("combined"):
+        dut._log.info("Skipping combined variant (FP32_ADD_VARIANT filter).")
+        return
+    await _run_fp32_adder_accuracy(dut, "combined")

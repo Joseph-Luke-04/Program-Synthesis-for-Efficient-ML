@@ -1,8 +1,7 @@
 <testsuites name="results">
   <testsuite name="all" package="all">
-    <property name="random_seed" value="1769554630" />
-    <testcase name="fp32_multiplier_accuracy_test" classname="tests.multiplication.test_fp32_multiplier" file="/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/accuracy_tests/tests/multiplication/test_fp32_multiplier.py" lineno="30" time="27.951646327972412" sim_time_ns="2975360.0" ratio_time="106446.68171199739">
-      <failure error_type="AssertionError" error_msg="99th percentile ULP too high: 4004073829" />
-    </testcase>
+    <property name="random_seed" value="1770742981" />
+    <testcase name="mxint8_adder_accuracy_subcomponents" classname="tests.addition.test_mxint8_adder" file="/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/accuracy_tests/tests/addition/test_mxint8_adder.py" lineno="225" time="79.38298511505127" sim_time_ns="3000020.0" ratio_time="37791.725716184825" />
+    <testcase name="mxint8_adder_accuracy_combined" classname="tests.addition.test_mxint8_adder" file="/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/accuracy_tests/tests/addition/test_mxint8_adder.py" lineno="233" time="0.00011277198791503906" sim_time_ns="0.0" ratio_time="0.0" />
   </testsuite>
 </testsuites>

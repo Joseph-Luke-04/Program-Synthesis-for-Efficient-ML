@@ -1,6 +1,6 @@
 (set-logic BV)
 
-(synth-fun naive_fp32_add ((x (_ BitVec 4)) (y (_ BitVec 4))) (_ BitVec 4)
+(synth-fun max2 ((x (_ BitVec 4)) (y (_ BitVec 4))) (_ BitVec 4)
 ;declare the nonterminals
 ((StartBV4 (_ BitVec 4)) (StartBool Bool) (StartBV3 (_ BitVec 3))
     (StartBV2 (_ BitVec 2))(StartBV1 (_ BitVec 1))) 

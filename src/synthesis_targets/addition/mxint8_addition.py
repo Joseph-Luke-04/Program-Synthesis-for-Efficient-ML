@@ -227,4 +227,9 @@ class MXINT8AdditionTarget:
                 "template": "sygus_grammars/addition/MXINT8/mxint8_add_full_sum_template.sl",
                 "generator": self.gen_full_sum_constraint,
             },
+            # Monolithic grammar, attempt to synthesise a full MXINT8 adder in one go.
+            "full_sum_combined": {
+                "template": "sygus_grammars/addition/MXINT8/mxint8_add_full_sum_combined_template.sl",
+                "generator": self.gen_full_sum_constraint,
+            }
         }

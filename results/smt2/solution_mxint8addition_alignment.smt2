@@ -1,7 +1,2 @@
-(sygus-enum (ite (bvsge e1 e2) e1 e2) (let ((_let_1 (bvsge e1 e2))) (let ((_let_2 (ite _let_1 (bvsub e1 e2) (bvsub e2 e1)))) (let ((_let_3 (bvuge _let_2 #b0100))) (concat (ite _let_1 m1 (ite _let_3 #b0000 (bvashr m1 _let_2))) (ite _let_1 (ite _let_3 #b0000 (bvashr m2 _let_2)) m2))))))
-(sygus-enum (let ((_let_1 (bvsge e1 e2))) (let ((_let_2 (ite _let_1 (bvsub e1 e2) (bvsub e2 e1)))) (let ((_let_3 (bvuge _let_2 #b0100))) (concat (ite _let_1 m1 (ite _let_3 #b0000 (bvashr m1 _let_2))) (ite _let_1 (ite _let_3 #b0000 (bvashr m2 _let_2)) m2))))))
-(sygus-candidate (select_exponent (ite (bvsge e1 e2) e1 e2))(align_mantissas (let ((_let_1 (bvsge e1 e2))) (let ((_let_2 (ite _let_1 (bvsub e1 e2) (bvsub e2 e1)))) (let ((_let_3 (bvuge _let_2 #b0100))) (concat (ite _let_1 m1 (ite _let_3 #b0000 (bvashr m1 _let_2))) (ite _let_1 (ite _let_3 #b0000 (bvashr m2 _let_2)) m2)))))))
-(
 (define-fun select_exponent ((e1 (_ BitVec 4)) (e2 (_ BitVec 4))) (_ BitVec 4) (ite (bvsge e1 e2) e1 e2))
 (define-fun align_mantissas ((m1 (_ BitVec 4)) (e1 (_ BitVec 4)) (m2 (_ BitVec 4)) (e2 (_ BitVec 4))) (_ BitVec 8) (let ((_let_1 (bvsge e1 e2))) (let ((_let_2 (ite _let_1 (bvsub e1 e2) (bvsub e2 e1)))) (let ((_let_3 (bvuge _let_2 #b0100))) (concat (ite _let_1 m1 (ite _let_3 #b0000 (bvashr m1 _let_2))) (ite _let_1 (ite _let_3 #b0000 (bvashr m2 _let_2)) m2))))))
-)

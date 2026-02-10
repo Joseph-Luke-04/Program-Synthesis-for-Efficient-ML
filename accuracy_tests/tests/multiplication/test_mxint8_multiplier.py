@@ -77,9 +77,8 @@ def oracle_mxint8_mul(m1: int, e1: int, m2: int, e2: int) -> tuple[int, int]:
 #                        The Cocotb Testbench
 # =====================================================================
 
-@cocotb.test()
-async def test_mxint8_multiplier(dut):
-    dut._log.info("Starting MXINT8 multiplier accuracy test")
+async def _run_mxint8_multiplier_accuracy(dut, label: str):
+    dut._log.info(f"Starting MXINT8 multiplier accuracy test ({label})")
 
     has_clk = hasattr(dut, "ap_clk")
     if has_clk:
@@ -213,4 +212,28 @@ async def test_mxint8_multiplier(dut):
 
     # Example smoke threshold; tune to taste.
     # No threshold assertions; report metrics only.
-    
+
+
+def _should_run(label: str) -> bool:
+    # Optional filter so you can run a single variant from the same test file.
+    # Use: MXINT8_MUL_VARIANT=combined or MXINT8_MUL_VARIANT=subcomponents
+    want = os.getenv("MXINT8_MUL_VARIANT", "").strip().lower()
+    if not want:
+        return True
+    return want == label.lower()
+
+
+@cocotb.test()
+async def mxint8_multiplier_accuracy_subcomponents(dut):
+    if not _should_run("subcomponents"):
+        dut._log.info("Skipping subcomponents variant (MXINT8_MUL_VARIANT filter).")
+        return
+    await _run_mxint8_multiplier_accuracy(dut, "subcomponents")
+
+
+@cocotb.test()
+async def mxint8_multiplier_accuracy_combined(dut):
+    if not _should_run("combined"):
+        dut._log.info("Skipping combined variant (MXINT8_MUL_VARIANT filter).")
+        return
+    await _run_mxint8_multiplier_accuracy(dut, "combined")

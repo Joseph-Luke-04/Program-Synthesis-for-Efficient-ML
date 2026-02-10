@@ -108,4 +108,9 @@ class MXINT8MultiplicationTarget:
                 "template": "sygus_grammars/multiplication/MXINT8/mxint8_mult_full_product_template.sl",
                 "generator": self.gen_full_product_constraint,
             },
+            # Monolithic grammar, attempt to synthesise a full MXINT8 multiplier in one go.
+            "full_product_combined": {
+                "template": "sygus_grammars/multiplication/MXINT8/mxint8_mult_full_product_combined_template.sl",
+                "generator": self.gen_full_product_constraint,
+            }
         }

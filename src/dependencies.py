@@ -12,6 +12,7 @@ DEPENDENCY_MAP = {
         "addition_overflow",
         "addition_normalisation",
     ],
+    "addition_full_sum_combined": [],
     # MXINT8 Addition (class-name-prefixed outputs)
     "mxint8addition_alignment": [],
     "mxint8addition_overflow": [],
@@ -23,6 +24,7 @@ DEPENDENCY_MAP = {
         "mxint8addition_overflow",
         "mxint8addition_normalisation",
     ],
+    "mxint8addition_full_sum_combined": [],
 
     # MXINT8 Multiplication
     "multiplication_renorm_flag": [],
@@ -33,6 +35,7 @@ DEPENDENCY_MAP = {
         "multiplication_exp",
         "multiplication_mant",
     ],
+    "multiplication_full_product_combined": [],
     # MXINT8 Multiplication (class-name-prefixed outputs)
     "mxint8multiplication_renorm_flag": [],
     "mxint8multiplication_exp": ["mxint8multiplication_renorm_flag"],
@@ -42,6 +45,7 @@ DEPENDENCY_MAP = {
         "mxint8multiplication_exp",
         "mxint8multiplication_mant",
     ],
+    "mxint8multiplication_full_product_combined": [],
 
     # FP32 Addition
     "fp32addition_fp32_alignment": [],
@@ -51,6 +55,7 @@ DEPENDENCY_MAP = {
         "fp32addition_fp32_raw_sum",
         "fp32addition_fp32_normalisation",
     ],
+    "fp32addition_fp32_full_sum_combined": [],
 
     # FP32 Multiplication
     "fp32multiplication_renorm": [],
@@ -61,4 +66,5 @@ DEPENDENCY_MAP = {
         "fp32multiplication_exp",
         "fp32multiplication_mant",
     ],
+    "fp32multiplication_full_product_combined": [],
 }

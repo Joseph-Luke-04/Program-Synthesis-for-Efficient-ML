@@ -18,7 +18,11 @@ from .synthesis_targets.dot_product import DotProductTarget
 os.environ.setdefault("ENABLE_MXINT8_ADD_FULL_SUM_CANON", "0")
 
 # Toggle SyGuS candidate dump (-o sygus) here. Set to True to enable.
-ENABLE_SYGUS_DUMP = True
+ENABLE_SYGUS_DUMP = False
+# Toggle fast SyGuS enumerator (cvc5 --sygus-enum=fast) here.
+ENABLE_SYGUS_FAST_ENUM = False
+# Toggle printing full smt2c-generated C code in terminal.
+SHOW_SMT2C_OUTPUT = False
 
 
 def unwrap_extra_parens(solution_text: str) -> str:
@@ -45,102 +49,6 @@ def unwrap_extra_parens(solution_text: str) -> str:
         return stripped[1:-1].strip()
 
     return stripped
-
-# An attempt at a pretty-printer for SMT-LIB expressions
-def pretty_print_smt(expr: str) -> str:
-    """Structure-aware s-expression pretty printer for solver outputs."""
-    tokens = re.findall(r"\(|\)|[^\s()]+", expr)
-    i = 0
-
-    def parse():
-        nonlocal i
-        if i >= len(tokens):
-            return None
-        tok = tokens[i]
-        if tok == "(":
-            i += 1
-            items = []
-            while i < len(tokens) and tokens[i] != ")":
-                items.append(parse())
-            if i < len(tokens) and tokens[i] == ")":
-                i += 1
-            return items
-        i += 1
-        return tok
-
-    tree = parse()
-
-    def is_atom(x):
-        return not isinstance(x, list)
-
-    def inline(x):
-        if is_atom(x):
-            return x
-        return "(" + " ".join(inline(c) for c in x) + ")"
-
-    def pretty(x, indent=0):
-        if is_atom(x):
-            return "  " * indent + x
-        if not x:
-            return "  " * indent + "()"
-
-        head = x[0] if is_atom(x[0]) else None
-        inl = inline(x)
-        if len(inl) <= 80 and all(is_atom(c) for c in x):
-            return "  " * indent + inl
-
-        if head == "define-fun" and len(x) >= 5:
-            name = inline(x[1])
-            args = inline(x[2])
-            ret = inline(x[3])
-            body = x[4]
-            lines = [f"{'  '*indent}(define-fun {name} {args} {ret}"]
-            lines.append(pretty(body, indent + 1))
-            lines.append("  " * indent + ")")
-            return "\n".join(lines)
-
-        if head == "let" and len(x) >= 3:
-            bindings = x[1]
-            body = x[2]
-            lines = [f"{'  '*indent}(let ("]
-            if isinstance(bindings, list):
-                for b in bindings:
-                    if isinstance(b, list) and len(b) == 2:
-                        lines.append(f"{'  '*(indent+1)}({inline(b[0])} {inline(b[1])})")
-                    else:
-                        lines.append(pretty(b, indent + 1))
-            else:
-                lines.append(pretty(bindings, indent + 1))
-            lines.append(f"{'  '*indent})")
-            lines.append(pretty(body, indent + 1))
-            lines.append("  " * indent + ")")
-            return "\n".join(lines)
-
-        if head == "ite" and len(x) == 4:
-            lines = [f"{'  '*indent}(ite"]
-            lines.append(pretty(x[1], indent + 1))
-            lines.append(pretty(x[2], indent + 1))
-            lines.append(pretty(x[3], indent + 1))
-            lines.append("  " * indent + ")")
-            return "\n".join(lines)
-
-        if head == "concat" and len(x) >= 3:
-            lines = [f"{'  '*indent}(concat"]
-            for c in x[1:]:
-                lines.append(pretty(c, indent + 1))
-            lines.append("  " * indent + ")")
-            return "\n".join(lines)
-
-        # default: multiline list
-        lines = [f"{'  '*indent}(" + (head if head else "")] if head else [f"{'  '*indent}("]
-        start_idx = 1 if head else 0
-        for c in x[start_idx:]:
-            lines.append(pretty(c, indent + 1))
-        lines.append("  " * indent + ")")
-        return "\n".join(lines)
-
-    return pretty(tree)
-
 
 # Helper functions to read the latest synthesized helper definition so that
 # it can be included in the synthesis query of a dependent component/target.
@@ -220,6 +128,8 @@ def run_cvc5_synthesis(sygus_query: str, timeout: int) -> Optional[str]:
         temp_filepath = temp_f.name
         
     cmd = ["cvc5", "--lang=sygus2"]
+    if ENABLE_SYGUS_FAST_ENUM:
+        cmd.append("--sygus-enum=fast")
     if ENABLE_SYGUS_DUMP:
         cmd += ["-o", "sygus"]
     cmd.append(temp_filepath)
@@ -387,6 +297,40 @@ def resolve_component_plan(target, component_name: str) -> list[str]:
     return components if components else [component_name]
 
 
+def _env_flag(name: str, default: bool) -> bool:
+    raw = os.getenv(name)
+    if raw is None:
+        return default
+    value = raw.strip().lower()
+    if value in {"1", "true", "yes", "on"}:
+        return True
+    if value in {"0", "false", "no", "off"}:
+        return False
+    return default
+
+
+def _target_from_name(name: str):
+    key = name.strip().lower()
+    mapping: dict[str, Callable[[], object]] = {
+        "mxint8_add": MXINT8AdditionTarget,
+        "mxint8_mul": MXINT8MultiplicationTarget,
+        "fp32_add": FP32AdditionTarget,
+        "fp32_mul": FP32MultiplicationTarget,
+        "dot_product": DotProductTarget,
+        "naive_int8_add": lambda: NaiveAdderTarget(kind="int", width=8),
+        "naive_int32_add": lambda: NaiveAdderTarget(kind="int", width=32),
+        "naive_fp32_add": lambda: NaiveAdderTarget(kind="fp32"),
+        "naive_int8_mul": lambda: NaiveMultiplierTarget(kind="int", width=8),
+        "naive_int32_mul": lambda: NaiveMultiplierTarget(kind="int", width=32),
+        "naive_fp32_mul": lambda: NaiveMultiplierTarget(kind="fp32"),
+    }
+    ctor = mapping.get(key)
+    if ctor is None:
+        valid = ", ".join(sorted(mapping.keys()))
+        raise ValueError(f"Unknown SYNTH_TARGET='{name}'. Valid: {valid}")
+    return ctor()
+
+
 if __name__ == "__main__":
     config = SynthesisConfig()
 
@@ -428,21 +372,59 @@ if __name__ == "__main__":
     # =========================================================================
     #
     # Components (per target):
-    #   MXINT8AdditionTarget:       ["alignment", "raw_sum", "overflow", "normalisation", "full_sum"]
-    #   MXINT8MultiplicationTarget: ["renorm_flag", "exp", "mant", "full_product"]
-    #   FP32AdditionTarget:         ["fp32_alignment", "fp32_raw_sum", "fp32_normalisation", "fp32_full_sum"]
-    #   FP32MultiplicationTarget:   ["renorm", "exp", "mant", "full_product"]
+    # -----------------------------------------------------------------------------------
+    #   MXINT8AdditionTarget:       ["alignment", "raw_sum", "overflow", "normalisation", 
+    #                                "full_sum", "full_sum_combined"]
+    # -----------------------------------------------------------------------------------
+    #   MXINT8MultiplicationTarget: ["renorm_flag", "exp", "mant", "full_product", "full_product_combined"]
+    # -----------------------------------------------------------------------------------
+    #   FP32AdditionTarget:         ["fp32_alignment", "fp32_raw_sum", "fp32_normalisation", 
+    #                                "fp32_full_sum", "fp32_full_sum_combined"]
+    # -----------------------------------------------------------------------------------
+    #   FP32MultiplicationTarget:   ["renorm", "exp", "mant", "full_product", "full_product_combined"]
+    # -----------------------------------------------------------------------------------
     #   NaiveAdderTarget:           ["int_add", "fp32_adder"]
+    # -----------------------------------------------------------------------------------
     #   NaiveMultiplierTarget:      ["int_mul", "fp32_mul"]
-    #
     # =========================================================================
 
-    target_operation = FP32MultiplicationTarget()
-    target_component = "renorm"
+    target_operation = MXINT8AdditionTarget()
+    target_component = "full_sum"
+
+    # Optional env-driven override for automation/notebooks.
+    # Examples:
+    #   SYNTH_TARGET=fp32_mul SYNTH_COMPONENT=full_product_combined python -m src.synthesis_driver
+    #   SYNTH_TARGET=mxint8_add SYNTH_COMPONENT=full_sum python -m src.synthesis_driver
+    env_target = os.getenv("SYNTH_TARGET", "").strip()
+    env_component = os.getenv("SYNTH_COMPONENT", "").strip()
+    if env_target:
+        target_operation = _target_from_name(env_target)
+    if env_component:
+        target_component = env_component
  
     # False for a quick post-synthesis estimate (-p)
     # True for a full post-implementation run (-i)
-    RUN_IMPLEMENTATION = True
+    RUN_IMPLEMENTATION = _env_flag("SYNTH_RUN_IMPL", True)
+    # Directed (hand-picked) IO constraint seeds to 
+    # guide synthesiser for monolithic components.
+    ENABLE_DIRECTED_IO_CONSTRAINTS = _env_flag("SYNTH_ENABLE_DIRECTED_IO", True)
+
+    env_num_iters = os.getenv("SYNTH_NUM_ITERATIONS", "").strip()
+    if env_num_iters:
+        try:
+            config.NUM_ITERATIONS = int(env_num_iters)
+        except ValueError:
+            print(f"[WARN] Invalid SYNTH_NUM_ITERATIONS='{env_num_iters}', using default {config.NUM_ITERATIONS}.")
+
+    env_solver_timeout = os.getenv("SYNTH_SOLVER_TIMEOUT", "").strip()
+    if env_solver_timeout:
+        try:
+            config.SOLVER_TIMEOUT_SECONDS = int(env_solver_timeout)
+        except ValueError:
+            print(f"[WARN] Invalid SYNTH_SOLVER_TIMEOUT='{env_solver_timeout}', using default {config.SOLVER_TIMEOUT_SECONDS}.")
+
+    print(f"[INFO] Target: {target_operation.__class__.__name__} | Component: {target_component}")
+    print(f"[INFO] NUM_ITERATIONS={config.NUM_ITERATIONS}, TIMEOUT={config.SOLVER_TIMEOUT_SECONDS}s, RUN_IMPLEMENTATION={RUN_IMPLEMENTATION}, DIRECTED_IO={ENABLE_DIRECTED_IO_CONSTRAINTS}")
     
     synthesis_test_cases = []
 
@@ -485,6 +467,8 @@ if __name__ == "__main__":
 
     elif isinstance(target_operation, (MXINT8AdditionTarget, MXINT8MultiplicationTarget, FP32AdditionTarget, FP32MultiplicationTarget)):
         alignment_directed_cases: list[tuple[float, float]] = []
+        fp32_add_directed_cases: list[tuple[float, float]] = []
+        fp32_mult_directed_cases: list[tuple[float, float]] = []
         if isinstance(target_operation, MXINT8AdditionTarget):
             max_val = 66
             # Directed cases to exercise rounding and large-shift behavior.
@@ -514,8 +498,48 @@ if __name__ == "__main__":
 
         elif isinstance(target_operation, MXINT8MultiplicationTarget):
             max_val = math.sqrt(112)
-        elif isinstance(target_operation, (FP32AdditionTarget, FP32MultiplicationTarget)):
+        elif isinstance(target_operation, FP32MultiplicationTarget):
             max_val = 1e4
+            # Diagnostic FP32 mult cases to hit specific branches early.
+            # Renorm=1 tends to occur when product in [2,4).
+            # Renorm=0 tends to occur when product in [1,2).
+            fp32_mult_directed_cases = [
+                (1.5, 1.5),   # renorm = 1 (approx 2.25)
+                (1.25, 1.25), # renorm = 0 (approx 1.5625)
+                (-1.5, 1.5),  # mixed sign
+                (1.5, -1.5),  # mixed sign (opposite)
+                # Rounding-sensitive: near-halfway in mantissa rounding
+                (float.fromhex("0x1.000002p+0"), float.fromhex("0x1.000002p+0")),
+            ]
+        elif isinstance(target_operation, FP32AdditionTarget):
+            max_val = 1e4
+            # Directed FP32 add cases to exercise specific branches first.
+            fp32_add_directed_cases = [
+                # Swap / exp tie-break by mantissa.
+                (1.25, 1.5),
+                (1.5, 1.25),
+
+                # Small exponent gaps (clean alignment).
+                (1.5, 0.75),
+                (1.5, 0.375),
+                (1.5, 0.1875),
+
+                # Same-sign overflow (right shift + exp increment).
+                (1.5, 1.5),
+                (1.75, 1.75),
+
+                # Opposite-sign controlled cancellation (<=2 left shifts).
+                (1.5, -1.25),
+                (1.25, -1.0),
+
+                # Huge exponent gap where small addend is negligible.
+                (8192.0, 1e-6),
+            ]
+
+        if ENABLE_DIRECTED_IO_CONSTRAINTS and fp32_add_directed_cases:
+            synthesis_test_cases.extend(fp32_add_directed_cases[:config.NUM_ITERATIONS])
+        if ENABLE_DIRECTED_IO_CONSTRAINTS and fp32_mult_directed_cases:
+            synthesis_test_cases.extend(fp32_mult_directed_cases[:config.NUM_ITERATIONS])
 
         while len(synthesis_test_cases) < config.NUM_ITERATIONS:
             f1 = random.uniform(-max_val, max_val)
@@ -587,7 +611,7 @@ if __name__ == "__main__":
             if not program:
                 continue
             print(f"\n--- {component} ---")
-            print(pretty_print_smt(program))
+            print(program.strip())
 
     if final_program:
         # Run the smt2c translation to get the C-like code
@@ -595,6 +619,7 @@ if __name__ == "__main__":
         c_output_path = run_smt2c_translation(
             os.path.join(smt_dir, f"solution_{op_name}_{final_component}.smt2"),
             c_dir,
+            show_generated_code=SHOW_SMT2C_OUTPUT,
         )
 
         # Convert the generated C code to HLS-compatible C++

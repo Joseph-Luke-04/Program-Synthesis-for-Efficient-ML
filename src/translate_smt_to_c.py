@@ -24,7 +24,11 @@ def _block_name(blk: str) -> str:
     m = re.search(r"\(define-fun\s+([^\s()]+)", blk)
     return m.group(1) if m else "<unknown>"
 
-def run_smt2c_translation(smt_path: str, save_dir: str) -> str | None:
+def run_smt2c_translation(
+    smt_path: str,
+    save_dir: str,
+    show_generated_code: bool = True,
+) -> str | None:
     smt2c_path = os.path.expanduser("~/Desktop/Uni/Year_4/Dissertation/smt2c/src/smt2c")
     if not os.path.exists(smt2c_path):
         print(f"[ERROR] smt2c binary not found at {smt2c_path}")
@@ -85,6 +89,9 @@ def run_smt2c_translation(smt_path: str, save_dir: str) -> str | None:
     out_path = str(Path(save_dir) / f"{base_name}.c")
     Path(out_path).write_text(final_c_code + "\n")
     print(f"C file saved to: {out_path}\n")
-    print("Generated C code:\n")
-    print(final_c_code)
+    if show_generated_code:
+        print("Generated C code:\n")
+        print(final_c_code)
+    else:
+        print("[INFO] Generated C code output suppressed (SHOW_SMT2C_OUTPUT=False).")
     return out_path
