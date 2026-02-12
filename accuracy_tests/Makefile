@@ -15,10 +15,17 @@ ifeq ($(strip $(HLS_SOLN)),)
   $(error Set HLS_SOLN=solution_... (subdir under $(HLS_BASE)))
 endif
 
-# Pick up all generated RTL in that verilog_out
-VERILOG_SOURCES := $(wildcard $(HLS_OUT_DIR)/*.v)
-ifeq ($(strip $(VERILOG_SOURCES)),)
-  $(error No Verilog found in $(HLS_OUT_DIR))
+# Pick up generated RTL under verilog_out, based on selected HDL.
+ifeq ($(TOPLEVEL_LANG),vhdl)
+  VHDL_SOURCES := $(wildcard $(HLS_OUT_DIR)/*.vhd) $(wildcard $(HLS_OUT_DIR)/*.vhdl)
+  ifeq ($(strip $(VHDL_SOURCES)),)
+    $(error No VHDL found in $(HLS_OUT_DIR))
+  endif
+else
+  VERILOG_SOURCES := $(wildcard $(HLS_OUT_DIR)/*.v)
+  ifeq ($(strip $(VERILOG_SOURCES)),)
+    $(error No Verilog found in $(HLS_OUT_DIR))
+  endif
 endif
 
 include $(shell cocotb-config --makefiles)/Makefile.sim

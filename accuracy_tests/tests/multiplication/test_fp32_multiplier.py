@@ -140,7 +140,7 @@ async def _run_fp32_multiplier_accuracy(dut, label: str):
 
 def _should_run(label: str) -> bool:
     # Optional filter so you can run a single variant from the same test file.
-    # Use: FP32_MUL_VARIANT=combined or FP32_MUL_VARIANT=subcomponents
+    # Use: FP32_MUL_VARIANT=combined | subcomponents | flopoco
     want = os.getenv("FP32_MUL_VARIANT", "").strip().lower()
     if not want:
         return True
@@ -161,3 +161,11 @@ async def fp32_multiplier_accuracy_combined(dut):
         dut._log.info("Skipping combined variant (FP32_MUL_VARIANT filter).")
         return
     await _run_fp32_multiplier_accuracy(dut, "combined")
+
+
+@cocotb.test()
+async def fp32_multiplier_accuracy_flopoco(dut):
+    if not _should_run("flopoco"):
+        dut._log.info("Skipping flopoco variant (FP32_MUL_VARIANT filter).")
+        return
+    await _run_fp32_multiplier_accuracy(dut, "flopoco")

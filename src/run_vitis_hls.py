@@ -148,7 +148,7 @@ def parse_reports(output_dir: Path, top_func: str, design_name: str, run_impl: b
         # 1) Prefer csynth.xml (always produced by csynth)
         for p in comp.rglob("*csynth.xml"):
             try:
-                import xml.etree.ElementTree as ET, re
+                import xml.etree.ElementTree as ET
                 root = ET.parse(p).getroot()
                 lat = root.find(".//PerformanceEstimates/SummaryOfOverallLatency")
                 if lat is not None:
@@ -180,7 +180,6 @@ def parse_reports(output_dir: Path, top_func: str, design_name: str, run_impl: b
                             if len(cols) > 4 and cols[4].isdigit():
                                 return int(cols[4])
                             # fallback: last integer on the row
-                            import re
                             nums = [int(x) for x in re.findall(r"\d+", line)]
                             if nums:
                                 return nums[-1]
@@ -190,7 +189,6 @@ def parse_reports(output_dir: Path, top_func: str, design_name: str, run_impl: b
         # 3) Text csynth.rpt
         for p in comp.rglob("*csynth.rpt"):
             try:
-                import re
                 with open(p, encoding="utf-8", errors="ignore") as f:
                     it = iter(f)
                     for line in it:
@@ -203,6 +201,55 @@ def parse_reports(output_dir: Path, top_func: str, design_name: str, run_impl: b
                                 return (nums[1] if len(nums) > 1 else nums[0])
             except Exception:
                 pass
+
+        # 4) Fallback: infer latency from hand-written wrappers (e.g., FloPoCo)
+        # that expose ap_done <= done_pipe(N).
+        verilog_out = output_dir / "verilog_out"
+        if verilog_out.exists():
+            # Prefer a file matching top name first.
+            ordered_files = []
+            for ext in ("v", "sv", "vhd", "vhdl"):
+                p = verilog_out / f"{top_func}.{ext}"
+                if p.exists():
+                    ordered_files.append(p)
+            for ext in ("*.v", "*.sv", "*.vhd", "*.vhdl"):
+                for p in verilog_out.glob(ext):
+                    if p not in ordered_files:
+                        ordered_files.append(p)
+
+            patt_done_idx = [
+                # VHDL: ap_done <= done_pipe(7);
+                re.compile(r"\bap_done\b\s*<=\s*[A-Za-z_]\w*\s*\(\s*(\d+)\s*\)", re.IGNORECASE),
+                # Verilog/SV: assign ap_done = done_pipe[7];
+                re.compile(r"\bap_done\b\s*(?:<=|=)\s*[A-Za-z_]\w*\s*\[\s*(\d+)\s*\]", re.IGNORECASE),
+            ]
+            patt_vec_width = [
+                # VHDL: signal done_pipe : std_logic_vector(7 downto 0)
+                re.compile(
+                    r"\bsignal\s+[A-Za-z_]\w*\s*:\s*std_logic_vector\s*\(\s*(\d+)\s+downto\s+0\s*\)",
+                    re.IGNORECASE,
+                ),
+                # Verilog/SV: reg [7:0] done_pipe;
+                re.compile(r"\[\s*(\d+)\s*:\s*0\s*\]\s*[A-Za-z_]\w*", re.IGNORECASE),
+            ]
+
+            for p in ordered_files:
+                try:
+                    text = p.read_text(encoding="utf-8", errors="ignore")
+                except Exception:
+                    continue
+
+                # First, try direct ap_done tap.
+                for pat in patt_done_idx:
+                    m = pat.search(text)
+                    if m:
+                        return int(m.group(1))
+
+                # Fallback: infer from done-pipe vector width.
+                for pat in patt_vec_width:
+                    m = pat.search(text)
+                    if m:
+                        return int(m.group(1))
 
         return -1
 
