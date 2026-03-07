@@ -18,8 +18,24 @@ from .canonicalisers import (
     _canonicalise_fp32_full_mul
 )
 
-# Toggle all canonicalisation passes.
-ENABLE_CANONICALISERS = True
+# Toggle all canonicalisation passes (default OFF to preserve smt2c output).
+ENABLE_CANONICALISERS = os.environ.get("ENABLE_CANONICALISERS", "0") == "1"
+# Preserve solver structure by default for FP32 addition combined output.
+ENABLE_FP32_ADD_COMBINED_IREP_REWRITE = (
+    os.environ.get("ENABLE_FP32_ADD_COMBINED_IREP_REWRITE", "0") == "1"
+)
+# Preserve solver/smt2c structure for FP32 multiplication subcomponents by default.
+ENABLE_FP32_MULT_SUBCOMP_IREP_REWRITE = (
+    os.environ.get("ENABLE_FP32_MULT_SUBCOMP_IREP_REWRITE", "0") == "1"
+)
+# Keep fp32_sum canonicaliser disabled by default (it replaces solver-found body).
+ENABLE_FP32_SUM_CANONICALISER = (
+    os.environ.get("ENABLE_FP32_SUM_CANONICALISER", "0") == "1"
+)
+# Keep risky cast/ternary rewrite passes OFF by default to preserve smt2c structure.
+ENABLE_AGGRESSIVE_EXPR_REWRITES = (
+    os.environ.get("ENABLE_AGGRESSIVE_EXPR_REWRITES", "0") == "1"
+)
 
 _HEADER = "#include <ap_int.h>\n\n"
 
@@ -154,8 +170,14 @@ def _cast_entire_product(s: str) -> str:
     """
     token = r"(?:\([^()]*\)|[^\s();,])+"
     pat = re.compile(r"\(\s*(ap_(?:u)?int<\d+>)\s*\)\s*(" + token + r")\s*\*\s*(" + token + r")")
+    cast_only_pat = re.compile(r"^\(\s*ap_(?:u)?int<\d+>\s*\)$")
     def repl(m):
         ty, lhs, rhs = m.group(1), m.group(2), m.group(3)
+        # Guard against partial matches like:
+        #   (ap_uint<48>)Ma * (ap_uint<48>)Mb
+        # where rhs could be mis-captured as '(ap_uint<48>)' only.
+        if cast_only_pat.match(lhs.strip()) or cast_only_pat.match(rhs.strip()):
+            return m.group(0)
         return f"{ty}(({lhs} * {rhs}))"
     prev = None
     while prev != s:
@@ -165,8 +187,11 @@ def _cast_entire_product(s: str) -> str:
 def _cast_entire_addsub(s: str) -> str:
     token = r"(?:\([^()]*\)|[^\s();,])+"
     pat = re.compile(r"\(\s*(ap_(?:u)?int<\d+>)\s*\)\s*(" + token + r")\s*([+-])\s*(" + token + r")")
+    cast_only_pat = re.compile(r"^\(\s*ap_(?:u)?int<\d+>\s*\)$")
     def repl(m):
         ty, lhs, op, rhs = m.group(1), m.group(2), m.group(3), m.group(4)
+        if cast_only_pat.match(lhs.strip()) or cast_only_pat.match(rhs.strip()):
+            return m.group(0)
         return f"{ty}(({lhs} {op} {rhs}))"
     prev = None
     while prev != s:
@@ -805,11 +830,28 @@ def _rewrite_fp32_full_mul_combined_irep(code: str) -> tuple[str, bool]:
     print("[INFO] Rewriting fp32_full_mul combined irep output.")
 
     new_body = """
+#ifndef FP32_MUL_EFFECTIVE_MANT_BITS
+#define FP32_MUL_EFFECTIVE_MANT_BITS 24
+#endif
+#if FP32_MUL_EFFECTIVE_MANT_BITS < 1
+#error "FP32_MUL_EFFECTIVE_MANT_BITS must be >= 1"
+#endif
+#if FP32_MUL_EFFECTIVE_MANT_BITS > 24
+#error "FP32_MUL_EFFECTIVE_MANT_BITS must be <= 24"
+#endif
+
 ap_uint<32> fp32_full_mul(ap_uint<32> a, ap_uint<32> b) {
   ap_uint<24> Ma = (ap_uint<24>)(((ap_uint<24>)1 << 23) | (ap_uint<23>)a.range(22, 0));
   ap_uint<24> Mb = (ap_uint<24>)(((ap_uint<24>)1 << 23) | (ap_uint<23>)b.range(22, 0));
+  const int drop = 24 - FP32_MUL_EFFECTIVE_MANT_BITS;
+  ap_uint<FP32_MUL_EFFECTIVE_MANT_BITS> Ma_eff =
+      (ap_uint<FP32_MUL_EFFECTIVE_MANT_BITS>)(Ma >> drop);
+  ap_uint<FP32_MUL_EFFECTIVE_MANT_BITS> Mb_eff =
+      (ap_uint<FP32_MUL_EFFECTIVE_MANT_BITS>)(Mb >> drop);
+  ap_uint<2 * FP32_MUL_EFFECTIVE_MANT_BITS> prod_eff =
+      (ap_uint<2 * FP32_MUL_EFFECTIVE_MANT_BITS>)Ma_eff * (ap_uint<2 * FP32_MUL_EFFECTIVE_MANT_BITS>)Mb_eff;
+  ap_uint<48> prod = ((ap_uint<48>)prod_eff) << (2 * drop);
 
-  ap_uint<48> prod = (ap_uint<48>)Ma * (ap_uint<48>)Mb;
   ap_uint<1> renorm = (ap_uint<1>)prod[47];
   ap_uint<48> pn = (renorm == 1) ? (prod >> 1) : prod;
 
@@ -1113,8 +1155,25 @@ def _rewrite_fp32_mult_subcomponents_irep(code: str) -> tuple[str, bool]:
         return code_in[:start] + new_body.strip("\n") + "\n" + code_in[end:], True
 
     renorm_body = r"""
+#ifndef FP32_MUL_EFFECTIVE_MANT_BITS
+#define FP32_MUL_EFFECTIVE_MANT_BITS 24
+#endif
+#if FP32_MUL_EFFECTIVE_MANT_BITS < 1
+#error "FP32_MUL_EFFECTIVE_MANT_BITS must be >= 1"
+#endif
+#if FP32_MUL_EFFECTIVE_MANT_BITS > 24
+#error "FP32_MUL_EFFECTIVE_MANT_BITS must be <= 24"
+#endif
+
 ap_uint<1> fp32_mult_renorm(ap_uint<24> Ma, ap_uint<24> Mb) {
-  ap_uint<48> prod = (ap_uint<48>)Ma * (ap_uint<48>)Mb;
+  const int drop = 24 - FP32_MUL_EFFECTIVE_MANT_BITS;
+  ap_uint<FP32_MUL_EFFECTIVE_MANT_BITS> Ma_eff =
+      (ap_uint<FP32_MUL_EFFECTIVE_MANT_BITS>)(Ma >> drop);
+  ap_uint<FP32_MUL_EFFECTIVE_MANT_BITS> Mb_eff =
+      (ap_uint<FP32_MUL_EFFECTIVE_MANT_BITS>)(Mb >> drop);
+  ap_uint<2 * FP32_MUL_EFFECTIVE_MANT_BITS> prod_eff =
+      (ap_uint<2 * FP32_MUL_EFFECTIVE_MANT_BITS>)Ma_eff * (ap_uint<2 * FP32_MUL_EFFECTIVE_MANT_BITS>)Mb_eff;
+  ap_uint<48> prod = ((ap_uint<48>)prod_eff) << (2 * drop);
   return (ap_uint<1>)prod[47];
 }
 """
@@ -1126,8 +1185,25 @@ ap_uint<8> fp32_mult_exp(ap_uint<8> ea, ap_uint<8> eb, ap_uint<1> renorm, ap_uin
 }
 """
     mant_body = r"""
+#ifndef FP32_MUL_EFFECTIVE_MANT_BITS
+#define FP32_MUL_EFFECTIVE_MANT_BITS 24
+#endif
+#if FP32_MUL_EFFECTIVE_MANT_BITS < 1
+#error "FP32_MUL_EFFECTIVE_MANT_BITS must be >= 1"
+#endif
+#if FP32_MUL_EFFECTIVE_MANT_BITS > 24
+#error "FP32_MUL_EFFECTIVE_MANT_BITS must be <= 24"
+#endif
+
 ap_uint<23> fp32_mult_mant(ap_uint<24> Ma, ap_uint<24> Mb, ap_uint<1> renorm) {
-  ap_uint<48> prod = (ap_uint<48>)Ma * (ap_uint<48>)Mb;
+  const int drop = 24 - FP32_MUL_EFFECTIVE_MANT_BITS;
+  ap_uint<FP32_MUL_EFFECTIVE_MANT_BITS> Ma_eff =
+      (ap_uint<FP32_MUL_EFFECTIVE_MANT_BITS>)(Ma >> drop);
+  ap_uint<FP32_MUL_EFFECTIVE_MANT_BITS> Mb_eff =
+      (ap_uint<FP32_MUL_EFFECTIVE_MANT_BITS>)(Mb >> drop);
+  ap_uint<2 * FP32_MUL_EFFECTIVE_MANT_BITS> prod_eff =
+      (ap_uint<2 * FP32_MUL_EFFECTIVE_MANT_BITS>)Ma_eff * (ap_uint<2 * FP32_MUL_EFFECTIVE_MANT_BITS>)Mb_eff;
+  ap_uint<48> prod = ((ap_uint<48>)prod_eff) << (2 * drop);
   ap_uint<48> pn = (renorm == 1) ? (prod >> 1) : prod;
   ap_uint<24> top = (ap_uint<24>)pn.range(46, 23);
   ap_uint<1> round = (ap_uint<1>)pn[22];
@@ -1186,11 +1262,20 @@ def convert_cp_to_hls(c_input_path: str, save_output: bool = True) -> str:
     code, mxint8_add_combined_rewritten = _rewrite_mxint8_add_full_sum_combined_solver_equiv(code, c_input_path)
     code = _fix_mxint8_full_sum_irep(code)
     code = _replace_known_irep(code)
-    code, fp32_add_combined_rewritten = _rewrite_fp32_sum_combined_irep(code)
+    if ENABLE_FP32_ADD_COMBINED_IREP_REWRITE:
+        code, fp32_add_combined_rewritten = _rewrite_fp32_sum_combined_irep(code)
+    else:
+        fp32_add_combined_rewritten = False
     code, fp32_combined_rewritten = _rewrite_fp32_full_mul_combined_irep(code)
     code, mxint8_mul_combined_rewritten = _rewrite_mxint8_mult_full_product_combined_broken(code, c_input_path)
     # Avoid rewriting subcomponent wrappers when we already rewrote the combined full_mul.
-    code, fp32_sub_rewritten = (code, False) if (fp32_combined_rewritten or fp32_add_combined_rewritten) else _rewrite_fp32_mult_subcomponents_irep(code)
+    # Also keep this rewrite opt-in so smt2c structure is preserved by default.
+    if fp32_combined_rewritten or fp32_add_combined_rewritten:
+        code, fp32_sub_rewritten = code, False
+    elif ENABLE_FP32_MULT_SUBCOMP_IREP_REWRITE:
+        code, fp32_sub_rewritten = _rewrite_fp32_mult_subcomponents_irep(code)
+    else:
+        fp32_sub_rewritten = False
     if not fp32_combined_rewritten and not fp32_add_combined_rewritten and not mxint8_mul_combined_rewritten and not mxint8_add_combined_rewritten:
         code = _strip_irep_noise(code)
     code = _safer_unsigned_negation(code)
@@ -1203,34 +1288,38 @@ def convert_cp_to_hls(c_input_path: str, save_output: bool = True) -> str:
         code = _wrap_simple_shift_before_slice(code)
 
         # 3) Simple folds
-        code = _fold_simple_int_additions(code)
+        if ENABLE_AGGRESSIVE_EXPR_REWRITES:
+            code = _fold_simple_int_additions(code)
 
         # 4) Convert (EXPR)[HI, LO] -> ap_uint<...>((EXPR)).range(HI, LO)
         code = _replace_bit_extractions(code)
 
-        # 5) Width correctness
-        code = _cast_entire_product(code)
-        code = _cast_entire_addsub(code)
+        # 5) Width correctness (aggressive; can alter cast structure)
+        if ENABLE_AGGRESSIVE_EXPR_REWRITES:
+            code = _cast_entire_product(code)
+            code = _cast_entire_addsub(code)
 
         # 6) Treat 'return (A,B,...)' as a packed value, not comma-operator
         code = _wrap_return_top_concat(code)
 
     # 7) Fix cast precedence on ternaries, then unify (make both arms same ap_*int<N>)
     if not fp32_combined_rewritten and not fp32_add_combined_rewritten and not fp32_sub_rewritten and not mxint8_mul_combined_rewritten and not mxint8_add_combined_rewritten:
-        code = _wrap_casted_ternary_branches(code)
-        code = _unify_all_ternaries(code)
-        code = _unify_ternaries_in_parens(code)
-        code = _unify_ternaries_inside_casts(code)
-        code = _replace_bracket_slices_constants(code)  # in case new slices appeared
-        code = _wrap_simple_shift_before_slice(code)
-        code = _replace_bit_extractions(code)  # in case new bit extractions appeared
+        if ENABLE_AGGRESSIVE_EXPR_REWRITES:
+            code = _wrap_casted_ternary_branches(code)
+            code = _unify_all_ternaries(code)
+            code = _unify_ternaries_in_parens(code)
+            code = _unify_ternaries_inside_casts(code)
+            code = _replace_bracket_slices_constants(code)  # in case new slices appeared
+            code = _wrap_simple_shift_before_slice(code)
+            code = _replace_bit_extractions(code)  # in case new bit extractions appeared
 
     # 8) Canonicalisers (not all scripts actually output correct C++)
     if ENABLE_CANONICALISERS and not fp32_combined_rewritten and not fp32_add_combined_rewritten and not fp32_sub_rewritten and not mxint8_mul_combined_rewritten and not mxint8_add_combined_rewritten:
         code = _canonicalise_fp32_aligner(code)
         code = _canonicalise_fp32_raw_summer(code)
         code = _canonicalise_fp32_normaliser(code)
-        code = _canonicalise_fp32_sum(code)
+        if ENABLE_FP32_SUM_CANONICALISER:
+            code = _canonicalise_fp32_sum(code)
         code = _canonicalise_fp32_mult_renorm(code)
         code = _canonicalise_fp32_mult_exp(code)
         code = _canonicalise_fp32_mult_mant(code)

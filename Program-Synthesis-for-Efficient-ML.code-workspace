@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"git.openRepositoryInParentFolders": "always",
+		"scm.alwaysShowRepositories": true,
+		"python.defaultInterpreterPath": "/home/joe/anaconda3/envs/prog-synth/bin/python",
+		"python.terminal.activateEnvironment": true,
+		"python.condaPath": "/home/joe/anaconda3/bin/conda"
+	}
+}

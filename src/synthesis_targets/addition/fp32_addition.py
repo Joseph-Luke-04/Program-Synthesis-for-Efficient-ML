@@ -6,6 +6,19 @@ def to_smt_bitvec(value: int, bits: int) -> str:
     mask = (1 << bits) - 1
     return f"#b{value & mask:0{bits}b}"
 
+def fp32_match_constraint(call_expr: str, expected_expr: str, msb_bits: int) -> str:
+    """Build exact or approximate FP32 equality over the top-msb bits."""
+    total_bits = 32
+    if msb_bits <= 0:
+        raise ValueError(f"FP32_OUTPUT_MATCH_MSB_BITS must be in [1, 32], got {msb_bits}.")
+    if msb_bits >= total_bits:
+        return f"(constraint (= {call_expr} {expected_expr}))"
+
+    low = total_bits - msb_bits
+    return (
+        f"(constraint (= ((_ extract {total_bits - 1} {low}) {call_expr}) "
+        f"((_ extract {total_bits - 1} {low}) {expected_expr})))"
+    )
 
 def float_to_components(value: float) -> Dict[str, int]:
     """Convert a float32 value to its sign, exponent, and mantissa components."""
@@ -175,7 +188,8 @@ class FP32AdditionTarget:
 
         call = f"(fp32_sum {s1} {e1} {m1} {s2} {e2} {m2})"
         expected = f"(concat {final_sign} (concat {final_exponent} {final_mantissa}))"
-        return f"(constraint (= {call} {expected}))"
+        msb_bits = getattr(config, "FP32_OUTPUT_MATCH_MSB_BITS", 32)
+        return fp32_match_constraint(call, expected, msb_bits)
 
 
     def get_components(self) -> Dict:

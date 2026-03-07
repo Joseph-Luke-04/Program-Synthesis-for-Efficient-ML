@@ -401,7 +401,12 @@ def run_vitis_hls(design_path: str, top_func: str = None, impl: bool = False):
         print(f"[ERROR] Top '{top_func}' not found in {design_path.name}.")
         sys.exit(1)
 
-    project_root = Path("/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS")
+    project_root = Path(
+        os.environ.get(
+            "VITIS_HLS_RESULTS_ROOT",
+            "/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS",
+        )
+    )
     output_dir = project_root / design_path.stem
     os.makedirs(output_dir, exist_ok=True)
     
@@ -438,6 +443,10 @@ def run_vitis_hls(design_path: str, top_func: str = None, impl: bool = False):
     ]
     verilog_out = output_dir / "verilog_out"
     verilog_out.mkdir(parents=True, exist_ok=True)
+    # Remove stale RTL files from previous runs of the same output directory.
+    for ext in ("*.v", "*.sv"):
+        for old in verilog_out.glob(ext):
+            old.unlink()
 
     copied = 0
     for d in rtl_candidates:
@@ -499,6 +508,7 @@ def run_vitis_hls(design_path: str, top_func: str = None, impl: bool = False):
     print("\n--- Hardware Results ---")
     results = parse_reports(output_dir, top_func, design_path.stem, impl)
     print(json.dumps(results, indent=4))
+    return results
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:

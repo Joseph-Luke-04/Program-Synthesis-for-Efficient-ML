@@ -11,6 +11,20 @@ def f32_to_u32(x: float) -> int:
 def u32_to_f32(u: int) -> float:
     return struct.unpack("<f", struct.pack("<I", u & 0xFFFFFFFF))[0]
 
+def fp32_match_constraint(call_expr: str, expected_expr: str, msb_bits: int) -> str:
+    """Build exact or approximate FP32 equality over the top-msb bits."""
+    total_bits = 32
+    if msb_bits <= 0:
+        raise ValueError(f"FP32_OUTPUT_MATCH_MSB_BITS must be in [1, 32], got {msb_bits}.")
+    if msb_bits >= total_bits:
+        return f"(constraint (= {call_expr} {expected_expr}))"
+
+    low = total_bits - msb_bits
+    return (
+        f"(constraint (= ((_ extract {total_bits - 1} {low}) {call_expr}) "
+        f"((_ extract {total_bits - 1} {low}) {expected_expr})))"
+    )
+
 class FP32MultiplicationTarget:
 
     def get_op_name(self) -> str:
@@ -153,7 +167,8 @@ class FP32MultiplicationTarget:
         out_bv = to_smt_bitvec(data["out"], 32)
 
         synth_call = f"(fp32_full_mul {a_bv} {b_bv})"
-        return f"(constraint (= {synth_call} {out_bv}))"
+        msb_bits = getattr(config, "FP32_OUTPUT_MATCH_MSB_BITS", 32)
+        return fp32_match_constraint(synth_call, out_bv, msb_bits)
 
 
     def get_components(self) -> Dict:

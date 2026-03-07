@@ -3,3 +3,5 @@ __pycache__/
 .DS_Store
 
 results/HLS/
+results/sweeps/
+accuracy_tests/sim_build

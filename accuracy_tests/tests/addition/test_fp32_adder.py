@@ -10,6 +10,15 @@ import os
 def float_to_uint32(f): return struct.unpack('<I', struct.pack('<f', float(f)))[0]
 def uint32_to_float(u): return struct.unpack('<f', struct.pack('<I', u))[0]
 
+def _is_finite_non_subnormal_u32(u: int) -> bool:
+    exp = (u >> 23) & 0xFF
+    frac = u & 0x7FFFFF
+    if exp == 0xFF:
+        return False  # NaN/Inf
+    if exp == 0 and frac != 0:
+        return False  # subnormal
+    return True  # zero or normal finite
+
 def _order_for_ulp(u: int) -> int:
     """Order-preserving map of IEEE754 bits to 32-bit unsigned ints.
        Treats +0 and -0 as the same."""
@@ -53,13 +62,14 @@ async def _run_fp32_adder_accuracy(dut, label: str):
     
     num_samples = 100000
     ulps = []
+    rel_err_pcts = []
     skipped = 0
     
     for _ in range(num_samples):
         a = random.getrandbits(32)
         b = random.getrandbits(32)
-        if ((a >> 23 ) & 0xFF) == 0xFF or ((b >> 23) & 0xFF) == 0xFF:
-            # skip NaNs/Infs
+        if not _is_finite_non_subnormal_u32(a) or not _is_finite_non_subnormal_u32(b):
+            # keep only finite, non-subnormal operands
             skipped += 1
             continue
 
@@ -94,9 +104,24 @@ async def _run_fp32_adder_accuracy(dut, label: str):
         got_bits = int(dut.ap_return.value)
 
         # IEEE-754 single-precision reference (rounded to nearest-even)
-        ref_bits = float_to_uint32(np.float32(uint32_to_float(a)) + np.float32(uint32_to_float(b)))
+        with np.errstate(over='ignore', invalid='ignore'):
+            ref_bits = float_to_uint32(np.float32(uint32_to_float(a)) + np.float32(uint32_to_float(b)))
+        if not _is_finite_non_subnormal_u32(ref_bits):
+            # keep only finite, non-subnormal oracle outputs
+            skipped += 1
+            continue
+
+        got_f = np.float32(uint32_to_float(got_bits))
+        ref_f = np.float32(uint32_to_float(ref_bits))
+        if not np.isfinite(got_f) or not np.isfinite(ref_f):
+            rel_pct = float('inf')
+        elif ref_f == 0.0:
+            rel_pct = 0.0 if got_f == 0.0 else float('inf')
+        else:
+            rel_pct = abs(float((got_f - ref_f) / ref_f)) * 100.0
 
         ulps.append(ulp_distance(got_bits, ref_bits))
+        rel_err_pcts.append(rel_pct)
 
     if not ulps:
         raise AssertionError("No samples tested (all skipped?)")
@@ -109,6 +134,14 @@ async def _run_fp32_adder_accuracy(dut, label: str):
                   f"ULP avg={avg_ulp:.3f}, p99={p99_ulp}, max={max_ulp}")
     
     N = len(ulps)
+    within_5pct = sum(e <= 5.0 for e in rel_err_pcts)
+    avg_rel_pct = float(np.mean(rel_err_pcts)) if rel_err_pcts else -1.0
+    p99_rel_pct = float(np.percentile(rel_err_pcts, 99)) if rel_err_pcts else -1.0
+    dut._log.info(
+        f"Within 5% relative error: {within_5pct/N:.2%} "
+        f"(avg={avg_rel_pct:.3f}%, p99={p99_rel_pct:.3f}%)"
+    )
+
     exact   = sum(d == 0 for d in ulps)
     within1 = sum(d <= 1 for d in ulps)
     within2 = sum(d <= 2 for d in ulps)
