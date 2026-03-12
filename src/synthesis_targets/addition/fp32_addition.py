@@ -195,23 +195,23 @@ class FP32AdditionTarget:
     def get_components(self) -> Dict:
         
         return {
-            "fp32_alignment": {
+            "alignment": {
                 "template": "sygus_grammars/addition/FP32/fp32_alignment_template.sl",
                 "generator": self.gen_alignment_constraint,
             },
-            "fp32_raw_sum": {
+            "raw_sum": {
                 "template": "sygus_grammars/addition/FP32/fp32_raw_sum_template.sl",
                 "generator": self.gen_raw_sum_constraint,
             },
-            "fp32_normalisation": {
+            "normalisation": {
                 "template": "sygus_grammars/addition/FP32/fp32_normalisation_template.sl",
                 "generator": self.gen_normalisation_constraint,
             },
-            "fp32_full_sum": {
+            "full_sum": {
                 "template": "sygus_grammars/addition/FP32/fp32_full_sum_template.sl",
                 "generator": self.gen_sum_constraint,
             },
-            "fp32_full_sum_combined": {
+            "full_sum_combined": {
                 "template": "sygus_grammars/addition/FP32/fp32_full_sum_combined_template.sl",
                 "generator": self.gen_sum_constraint,
             },

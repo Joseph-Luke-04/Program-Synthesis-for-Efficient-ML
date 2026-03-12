@@ -48,21 +48,24 @@ DEPENDENCY_MAP = {
     "mxint8multiplication_full_product_combined": [],
 
     # FP32 Addition
-    "fp32addition_fp32_alignment": [],
-    "fp32addition_fp32_normalisation": [],
-    "fp32addition_fp32_full_sum": [
-        "fp32addition_fp32_alignment",
-        "fp32addition_fp32_raw_sum",
-        "fp32addition_fp32_normalisation",
+    "fp32addition_alignment": [],
+    "fp32addition_raw_sum": [],
+    "fp32addition_normalisation": [],
+    "fp32addition_full_sum": [
+        "fp32addition_alignment",
+        "fp32addition_raw_sum",
+        "fp32addition_normalisation",
     ],
-    "fp32addition_fp32_full_sum_combined": [],
+    "fp32addition_full_sum_combined": [],
 
     # FP32 Multiplication
     "fp32multiplication_renorm": [],
+    "fp32multiplication_round_carry": [],
     "fp32multiplication_exp": ["fp32multiplication_renorm"],
     "fp32multiplication_mant": [],
     "fp32multiplication_full_product": [
         "fp32multiplication_renorm",
+        "fp32multiplication_round_carry",
         "fp32multiplication_exp",
         "fp32multiplication_mant",
     ],

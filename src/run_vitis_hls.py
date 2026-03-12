@@ -13,26 +13,43 @@ def _detect_top_func_from_cpp(src: str) -> str | None:
     # e.g. 'ap_uint<4> foo(' or 'static inline ap_int<5> bar('
     pat = r'\b(?:static\s+|inline\s+|constexpr\s+)*ap_(?:u)?int\s*<\s*\d+\s*>\s+([A-Za-z_]\w*)\s*\('
     m = re.findall(pat, src)
+    # Return the LAST non-main function: helpers (define-fun translations like
+    # norm_shifted5, clamp_exp4, etc.) are emitted first; the actual top-level
+    # synth-fun is always the last function in the file.
+    last = None
     for name in m:
         if name != "main":
-            return name
-    return None
+            last = name
+    return last
+
+
+def _get_hls_datapath_mode() -> str:
+    mode = os.environ.get("HLS_DATAPATH_MODE", "clocked_auto").strip().lower()
+    if mode not in {"clocked_auto", "forced_1cycle"}:
+        print(
+            f"[WARN] Invalid HLS_DATAPATH_MODE='{mode}', "
+            "using 'clocked_auto'."
+        )
+        return "clocked_auto"
+    return mode
 
 
 def create_hls_tcl(design_path: Path, top_func: str, output_dir: Path) -> Path:
     tcl_path = output_dir / "hls.tcl"
     design_name = design_path.stem
+    datapath_mode = _get_hls_datapath_mode()
     pipeline_line = ""
-    if "fp32" in top_func:
-        pipeline_line = (
-            f"set_directive_pipeline -II 1 {top_func}\n"
-            f"    set_directive_latency -min 1 -max 1 {top_func}"
-        )
-    elif top_func in {"add_full_sum", "mult_mxint_full_product"}:
-        pipeline_line = (
-            f"set_directive_pipeline -II 1 {top_func}\n"
-            f"    set_directive_latency -min 1 -max 1 {top_func}"
-        )
+    if datapath_mode == "forced_1cycle":
+        if "fp32" in top_func:
+            pipeline_line = (
+                f"set_directive_pipeline -II 1 {top_func}\n"
+                f"    set_directive_latency -min 1 -max 1 {top_func}"
+            )
+        elif top_func in {"add_full_sum", "mult_mxint_full_product"}:
+            pipeline_line = (
+                f"set_directive_pipeline -II 1 {top_func}\n"
+                f"    set_directive_latency -min 1 -max 1 {top_func}"
+            )
 
     tcl = f"""
     open_component -reset {design_name}_component -flow_target vivado
@@ -337,6 +354,23 @@ def parse_reports(output_dir: Path, top_func: str, design_name: str, run_impl: b
 
         # ================ ALSO parse HLS latency (cycles) ===================
         results["Cycles"] = parse_hls_cycles()
+
+        # Fallback: if Vivado utilization.rpt didn't yield LUTs, try HLS csynth.xml
+        if results["LUTs"] == -1:
+            for p in comp.rglob("*csynth.xml"):
+                try:
+                    root = ET.parse(p).getroot()
+                    res = root.find(".//AreaEstimates/Resources")
+                    if res is not None:
+                        for tag, key in [("LUT", "LUTs"), ("FF", "FFs"), ("DSP", "DSPs"), ("BRAM_18K", "BRAMs")]:
+                            if results[key] == -1:
+                                val = res.findtext(tag)
+                                if val and val.strip().isdigit():
+                                    results[key] = int(val.strip())
+                        break
+                except Exception:
+                    pass
+
         return results
 
     # HLS-only path
@@ -345,6 +379,27 @@ def parse_reports(output_dir: Path, top_func: str, design_name: str, run_impl: b
         period_ns = parse_hls_estimated_clock_ns()
         if period_ns and period_ns > 0:
             results["Fmax_MHz"] = round(1000.0 / period_ns, 3)
+
+    # Parse HLS resource estimates from csynth.xml (pre-implementation estimates).
+    # Prefer top-level csynth.xml or {top_func}_csynth.xml over sub-function reports.
+    if results["LUTs"] == -1:
+        candidates = sorted(
+            comp.rglob("*csynth.xml"),
+            key=lambda p: (0 if p.name == "csynth.xml" else 1 if p.name == f"{top_func}_csynth.xml" else 2),
+        )
+        for p in candidates:
+            try:
+                root = ET.parse(p).getroot()
+                res = root.find(".//AreaEstimates/Resources")
+                if res is not None:
+                    for tag, key in [("LUT", "LUTs"), ("FF", "FFs"), ("DSP", "DSPs"), ("BRAM_18K", "BRAMs")]:
+                        val = res.findtext(tag)
+                        if val and val.strip().isdigit():
+                            results[key] = int(val.strip())
+                    break
+            except Exception:
+                pass
+
     return results
 
 
@@ -359,8 +414,8 @@ def run_vitis_hls(design_path: str, top_func: str = None, impl: bool = False):
 
     # Prefer: explicit CLI > filename hint > strong symbol > generic autodetect
     TOP_HINTS = {
-        "solution_fp32addition_fp32_full_sum": "fp32_sum",
-        "solution_fp32addition_fp32_full_sum_combined": "fp32_sum",
+        "solution_fp32addition_full_sum": "fp32_sum",
+        "solution_fp32addition_full_sum_combined": "fp32_sum",
         "solution_addition_raw_sum": "add_raw",
         "solution_addition_full_sum": "add_full_sum",
         "solution_mxint8addition_full_sum": "add_full_sum",
@@ -372,6 +427,7 @@ def run_vitis_hls(design_path: str, top_func: str = None, impl: bool = False):
         "solution_fp32multiplication_full_product": "fp32_full_mul",
         "solution_fp32multiplication_full_product_combined": "fp32_full_mul",
         "solution_fp32multiplication_renorm": "fp32_mult_renorm",
+        "solution_fp32multiplication_round_carry": "fp32_mult_round_carry",
         "solution_fp32multiplication_exp": "fp32_mult_exp",
         "solution_fp32multiplication_mant": "fp32_mult_mant",
     }

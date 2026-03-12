@@ -1,233 +1,200 @@
 (set-logic BV)
 
 ; ===============================================================
-; "MINIMAL-HANDHOLDING v3" monolithic FP32 adder grammar (normals-only intent)
-;
-; Key changes vs v2:
-;   A) Remove shift recursion: shifts only apply to *base* terms (BV24B/BV27B/BV28B).
-;   B) Remove recursive boolean combos: only base predicates + optional NOT.
-;   C) Keep monolithic: no explicit staging variables like Swap/Ebig/etc.
-;
-; This should reduce timeouts substantially while still letting the solver
-; "discover" the structure via BV building blocks.
+; Monolithic FP32 adder — V2 "structural sketch" grammar.
+; Encodes the pipeline stages (ordering → alignment → raw sum →
+; normalisation → packing) but leaves implementation choices at
+; each stage open for the solver to discover.
+; Search space ≈ 15 500 combinations (vs V1 ≈ 15 000 000).
 ; ===============================================================
 
-; -------------------- helper: shr 24 by 0..7 --------------------
-(define-fun shr24_0_7 ((x (_ BitVec 24)) (d3 (_ BitVec 3))) (_ BitVec 24)
-  (ite (= d3 #b000) x
-    (ite (= d3 #b001) (bvlshr x (_ bv1 24))
-      (ite (= d3 #b010) (bvlshr x (_ bv2 24))
-        (ite (= d3 #b011) (bvlshr x (_ bv3 24))
-          (ite (= d3 #b100) (bvlshr x (_ bv4 24))
-            (ite (= d3 #b101) (bvlshr x (_ bv5 24))
-              (ite (= d3 #b110) (bvlshr x (_ bv6 24))
-                (bvlshr x (_ bv7 24))))))))))
+(define-fun shr24_sat ((x (_ BitVec 24)) (d (_ BitVec 8))) (_ BitVec 24)
+  (ite (bvuge d (_ bv24 8))
+       (_ bv0 24)
+       (bvlshr x ((_ zero_extend 16) d))))
 
-; -------------------- helper: shr 27 by 0..7 --------------------
-(define-fun shr27_0_7 ((x (_ BitVec 27)) (d3 (_ BitVec 3))) (_ BitVec 27)
-  (ite (= d3 #b000) x
-    (ite (= d3 #b001) (bvlshr x (_ bv1 27))
-      (ite (= d3 #b010) (bvlshr x (_ bv2 27))
-        (ite (= d3 #b011) (bvlshr x (_ bv3 27))
-          (ite (= d3 #b100) (bvlshr x (_ bv4 27))
-            (ite (= d3 #b101) (bvlshr x (_ bv5 27))
-              (ite (= d3 #b110) (bvlshr x (_ bv6 27))
-                (bvlshr x (_ bv7 27))))))))))
+(define-fun norm24_from_raw ((raw (_ BitVec 25))) (_ BitVec 24)
+  (ite (= raw (_ bv0 25)) (_ bv0 24)
+    (ite (= ((_ extract 24 24) raw) #b1) ((_ extract 24 1) raw)
+      (ite (= ((_ extract 23 23) raw) #b1) ((_ extract 23 0) raw)
+        (ite (= ((_ extract 22 22) raw) #b1) (concat ((_ extract 22 0) raw) (_ bv0 1))
+          (ite (= ((_ extract 21 21) raw) #b1) (concat ((_ extract 21 0) raw) (_ bv0 2))
+            (ite (= ((_ extract 20 20) raw) #b1) (concat ((_ extract 20 0) raw) (_ bv0 3))
+              (ite (= ((_ extract 19 19) raw) #b1) (concat ((_ extract 19 0) raw) (_ bv0 4))
+                (ite (= ((_ extract 18 18) raw) #b1) (concat ((_ extract 18 0) raw) (_ bv0 5))
+                  (ite (= ((_ extract 17 17) raw) #b1) (concat ((_ extract 17 0) raw) (_ bv0 6))
+                    (ite (= ((_ extract 16 16) raw) #b1) (concat ((_ extract 16 0) raw) (_ bv0 7))
+                      (ite (= ((_ extract 15 15) raw) #b1) (concat ((_ extract 15 0) raw) (_ bv0 8))
+                        (ite (= ((_ extract 14 14) raw) #b1) (concat ((_ extract 14 0) raw) (_ bv0 9))
+                          (ite (= ((_ extract 13 13) raw) #b1) (concat ((_ extract 13 0) raw) (_ bv0 10))
+                            (ite (= ((_ extract 12 12) raw) #b1) (concat ((_ extract 12 0) raw) (_ bv0 11))
+                              (ite (= ((_ extract 11 11) raw) #b1) (concat ((_ extract 11 0) raw) (_ bv0 12))
+                                (ite (= ((_ extract 10 10) raw) #b1) (concat ((_ extract 10 0) raw) (_ bv0 13))
+                                  (ite (= ((_ extract 9 9) raw) #b1) (concat ((_ extract 9 0) raw) (_ bv0 14))
+                                    (ite (= ((_ extract 8 8) raw) #b1) (concat ((_ extract 8 0) raw) (_ bv0 15))
+                                      (ite (= ((_ extract 7 7) raw) #b1) (concat ((_ extract 7 0) raw) (_ bv0 16))
+                                        (ite (= ((_ extract 6 6) raw) #b1) (concat ((_ extract 6 0) raw) (_ bv0 17))
+                                          (ite (= ((_ extract 5 5) raw) #b1) (concat ((_ extract 5 0) raw) (_ bv0 18))
+                                            (ite (= ((_ extract 4 4) raw) #b1) (concat ((_ extract 4 0) raw) (_ bv0 19))
+                                              (ite (= ((_ extract 3 3) raw) #b1) (concat ((_ extract 3 0) raw) (_ bv0 20))
+                                                (ite (= ((_ extract 2 2) raw) #b1) (concat ((_ extract 2 0) raw) (_ bv0 21))
+                                                  (ite (= ((_ extract 1 1) raw) #b1) (concat ((_ extract 1 0) raw) (_ bv0 22))
+                                                    (concat ((_ extract 0 0) raw) (_ bv0 23))))))))))))))))))))))))))))
 
-; -------------------- helper: shr 28 by 0..7 --------------------
-(define-fun shr28_0_7 ((x (_ BitVec 28)) (d3 (_ BitVec 3))) (_ BitVec 28)
-  (ite (= d3 #b000) x
-    (ite (= d3 #b001) (bvlshr x (_ bv1 28))
-      (ite (= d3 #b010) (bvlshr x (_ bv2 28))
-        (ite (= d3 #b011) (bvlshr x (_ bv3 28))
-          (ite (= d3 #b100) (bvlshr x (_ bv4 28))
-            (ite (= d3 #b101) (bvlshr x (_ bv5 28))
-              (ite (= d3 #b110) (bvlshr x (_ bv6 28))
-                (bvlshr x (_ bv7 28))))))))))
+(define-fun exp_delta_from_raw ((raw (_ BitVec 25))) (_ BitVec 8)
+  (ite (= raw (_ bv0 25)) (_ bv0 8)
+    (ite (= ((_ extract 24 24) raw) #b1) (_ bv1 8)
+      (ite (= ((_ extract 23 23) raw) #b1) (_ bv0 8)
+        (ite (= ((_ extract 22 22) raw) #b1) (bvneg (_ bv1 8))
+          (ite (= ((_ extract 21 21) raw) #b1) (bvneg (_ bv2 8))
+            (ite (= ((_ extract 20 20) raw) #b1) (bvneg (_ bv3 8))
+              (ite (= ((_ extract 19 19) raw) #b1) (bvneg (_ bv4 8))
+                (ite (= ((_ extract 18 18) raw) #b1) (bvneg (_ bv5 8))
+                  (ite (= ((_ extract 17 17) raw) #b1) (bvneg (_ bv6 8))
+                    (ite (= ((_ extract 16 16) raw) #b1) (bvneg (_ bv7 8))
+                      (ite (= ((_ extract 15 15) raw) #b1) (bvneg (_ bv8 8))
+                        (ite (= ((_ extract 14 14) raw) #b1) (bvneg (_ bv9 8))
+                          (ite (= ((_ extract 13 13) raw) #b1) (bvneg (_ bv10 8))
+                            (ite (= ((_ extract 12 12) raw) #b1) (bvneg (_ bv11 8))
+                              (ite (= ((_ extract 11 11) raw) #b1) (bvneg (_ bv12 8))
+                                (ite (= ((_ extract 10 10) raw) #b1) (bvneg (_ bv13 8))
+                                  (ite (= ((_ extract 9 9) raw) #b1) (bvneg (_ bv14 8))
+                                    (ite (= ((_ extract 8 8) raw) #b1) (bvneg (_ bv15 8))
+                                      (ite (= ((_ extract 7 7) raw) #b1) (bvneg (_ bv16 8))
+                                        (ite (= ((_ extract 6 6) raw) #b1) (bvneg (_ bv17 8))
+                                          (ite (= ((_ extract 5 5) raw) #b1) (bvneg (_ bv18 8))
+                                            (ite (= ((_ extract 4 4) raw) #b1) (bvneg (_ bv19 8))
+                                              (ite (= ((_ extract 3 3) raw) #b1) (bvneg (_ bv20 8))
+                                                (ite (= ((_ extract 2 2) raw) #b1) (bvneg (_ bv21 8))
+                                                  (ite (= ((_ extract 1 1) raw) #b1) (bvneg (_ bv22 8))
+                                                    (bvneg (_ bv23 8))))))))))))))))))))))))))))
 
-; -------------------- helper: shl 28 by 0..3 --------------------
-(define-fun shl28_0_3 ((x (_ BitVec 28)) (d2 (_ BitVec 2))) (_ BitVec 28)
-  (ite (= d2 #b00) x
-    (ite (= d2 #b01) (bvshl x (_ bv1 28))
-      (ite (= d2 #b10) (bvshl x (_ bv2 28))
-        (bvshl x (_ bv3 28))))))
-
-; ===============================================================
-; Synthesised FP32 sum
-; ===============================================================
 (synth-fun fp32_sum
   ((s1 (_ BitVec 1)) (e1 (_ BitVec 8)) (m1 (_ BitVec 23))
    (s2 (_ BitVec 1)) (e2 (_ BitVec 8)) (m2 (_ BitVec 23)))
   (_ BitVec 32)
   (
-    (Start32 (_ BitVec 32))
-
-    (B Bool)
-    (B0 Bool)
-
-    (S (_ BitVec 1))
-    (E (_ BitVec 8))
-    (F (_ BitVec 23))
-
-    (BV1 (_ BitVec 1))
-    (BV2 (_ BitVec 2))
-    (BV3 (_ BitVec 3))
-    (BV8 (_ BitVec 8))
-    (BV10 (_ BitVec 10))
-
-    (BV23 (_ BitVec 23))
-    (BV24B (_ BitVec 24))
-    (BV24 (_ BitVec 24))
-
-    (BV27B (_ BitVec 27))
-    (BV27 (_ BitVec 27))
-
-    (BV28B (_ BitVec 28))
-    (BV28 (_ BitVec 28))
+    (Start32      (_ BitVec 32))
+    (Cmp          Bool)
+    (SameSign     Bool)
+    (BigM         (_ BitVec 24))
+    (SmallM       (_ BitVec 24))
+    (BigE         (_ BitVec 8))
+    (Gap8         (_ BitVec 8))
+    (AlignedBig   (_ BitVec 24))
+    (AlignedSmall (_ BitVec 24))
+    (MagGE        Bool)
+    (Raw25        (_ BitVec 25))
+    (IsZero       Bool)
+    (FinalSign    (_ BitVec 1))
+    (FinalExp     (_ BitVec 8))
+    (FinalMant    (_ BitVec 23))
   )
   (
-    ; IEEE-like packing forced, content discovered.
-    (Start32 (_ BitVec 32) ((concat S (concat E F))))
+    (Start32 (_ BitVec 32)
+      ((concat FinalSign (concat FinalExp FinalMant))))
 
-    (B Bool (
-      B0
-      (not B0)
-    ))
-    ; ---- Boolean controls (bounded) ----
-    (B0 Bool (
-      true false
-      (= s1 s2)
-      (= e1 e2)
-      (bvult e1 e2)
+    ; --- Stage 1: Ordering ---
+    ; Solver must choose strict vs non-strict unsigned comparison.
+    (Cmp Bool (
+      (bvuge e1 e2)
       (bvugt e1 e2)
-      ; "gap >= 8?" style predicate
-      (bvugt (bvsub (ite (bvult e1 e2) e2 e1) (ite (bvult e1 e2) e1 e2)) (_ bv7 8))
-      ; "gap <= 3?" style predicate (helps cancellations)
-      (bvule (bvsub (ite (bvult e1 e2) e2 e1) (ite (bvult e1 e2) e1 e2)) (_ bv3 8))
     ))
 
-    (S (_ BitVec 1) (BV1))
-    (E (_ BitVec 8) (BV8))
-    (F (_ BitVec 23) (BV23))
-
-    ; ---- 1-bit ----
-    (BV1 (_ BitVec 1) (
-      s1 s2 #b0 #b1
-      (ite B s1 s2)
-      (ite B BV1 BV1)
-      (bvand BV1 BV1)
-      (bvor  BV1 BV1)
-      (bvnot BV1)
-
-      ; taps (supports G/R/S discovery)
-      ((_ extract 0 0) BV27)
-      ((_ extract 0 0) BV28)
-      ((_ extract 1 1) BV28)
-      ((_ extract 2 2) BV28)
-      ((_ extract 27 27) BV28)
+    (SameSign Bool (
+      (= s1 s2)
     ))
 
-    ; ---- shift amounts (bounded, derived from exponents) ----
-    (BV2 (_ BitVec 2) (
-      #b00 #b01 #b10 #b11
-      ((_ extract 1 0) (bvsub e1 e2))
-      ((_ extract 1 0) (bvsub e2 e1))
+    ; Solver must figure out which operand is "big" vs "small".
+    (BigM (_ BitVec 24) (
+      (ite Cmp (concat #b1 m1) (concat #b1 m2))
+      (ite Cmp (concat #b1 m2) (concat #b1 m1))
     ))
 
-    (BV3 (_ BitVec 3) (
-      #b000 #b001 #b010 #b011 #b100 #b101 #b110 #b111
-      ((_ extract 2 0) (bvsub e1 e2))
-      ((_ extract 2 0) (bvsub e2 e1))
+    (SmallM (_ BitVec 24) (
+      (ite Cmp (concat #b1 m2) (concat #b1 m1))
+      (ite Cmp (concat #b1 m1) (concat #b1 m2))
     ))
 
-    ; ---- exponents ----
-    (BV8 (_ BitVec 8) (
-      e1 e2
-      (_ bv0 8) (_ bv1 8) (_ bv2 8) (_ bv3 8)
-      (_ bv127 8) (_ bv128 8)
-      (ite B e1 e2)
-      (bvadd e1 e2)
+    (BigE (_ BitVec 8) (
+      (ite Cmp e1 e2)
+      (ite Cmp e2 e1)
+    ))
+
+    ; Solver must discover correct gap computation.
+    (Gap8 (_ BitVec 8) (
+      (ite Cmp (bvsub e1 e2) (bvsub e2 e1))
       (bvsub e1 e2)
       (bvsub e2 e1)
-      ((_ extract 7 0) BV10)
     ))
 
-    (BV10 (_ BitVec 10) (
-      ((_ zero_extend 2) BV8)
-      (_ bv0 10) (_ bv1 10) (_ bv2 10) (_ bv3 10)
-      (bvadd BV10 BV10)
-      (bvsub BV10 BV10)
+    ; --- Stage 2: Alignment ---
+    ; Does the bigger mantissa stay unshifted, or get shifted too?
+    (AlignedBig (_ BitVec 24) (
+      BigM
+      (shr24_sat BigM Gap8)
     ))
 
-    ; ---- fractions / mantissas ----
-    (BV23 (_ BitVec 23) (
-      m1 m2
-      (_ bv0 23)
-      (ite B m1 m2)
-      (bvand m1 m2)
-      (bvor  m1 m2)
-      (bvadd m1 m2)
-      (bvsub m1 m2)
-
-      ; taps from wider candidates
-      ((_ extract 22 0) BV24)
-      ((_ extract 22 0) ((_ extract 26 3) BV28))
+    ; Solver chooses the right alignment strategy for the smaller mantissa.
+    (AlignedSmall (_ BitVec 24) (
+      (shr24_sat SmallM Gap8)
+      (bvlshr SmallM ((_ zero_extend 16) Gap8))
+      SmallM
     ))
 
-    ; ---- 24-bit base mantissas (hidden-bit discoverable) ----
-    (BV24B (_ BitVec 24) (
-      (concat #b1 m1)
-      (concat #b1 m2)
-      (concat #b0 m1)
-      (concat #b0 m2)
-      (_ bv0 24)
-      (ite B (concat #b1 m1) (concat #b1 m2))
+    ; --- Stage 3: Raw sum ---
+    (MagGE Bool (
+      (bvuge AlignedBig AlignedSmall)
+      (bvugt AlignedBig AlignedSmall)
     ))
 
-    ; BV24 can do simple ops, and can align by shifting BV24B (not BV24 itself).
-    (BV24 (_ BitVec 24) (
-      BV24B
-      (bvadd BV24B BV24B)
-      (bvsub BV24B BV24B)
-      (bvand BV24B BV24B)
-      (bvor  BV24B BV24B)
-      (shr24_0_7 BV24B BV3)
-      (ite B BV24B (shr24_0_7 BV24B BV3))
+    ; Solver must discover: add when same sign, subtract when different
+    ; (and which order to subtract in).
+    (Raw25 (_ BitVec 25) (
+      (ite SameSign
+           (bvadd ((_ zero_extend 1) AlignedBig) ((_ zero_extend 1) AlignedSmall))
+           (ite MagGE
+                (bvsub ((_ zero_extend 1) AlignedBig) ((_ zero_extend 1) AlignedSmall))
+                (bvsub ((_ zero_extend 1) AlignedSmall) ((_ zero_extend 1) AlignedBig))))
+      (bvadd ((_ zero_extend 1) AlignedBig) ((_ zero_extend 1) AlignedSmall))
+      (bvsub ((_ zero_extend 1) AlignedBig) ((_ zero_extend 1) AlignedSmall))
     ))
 
-    ; ---- 27-bit base (GRS widening) ----
-    (BV27B (_ BitVec 27) (
-      (concat BV24 #b000)
-      (concat (shr24_0_7 BV24B BV3) #b000)
-      (_ bv0 27)
+    ; --- Stage 4: Normalisation & packing ---
+    (IsZero Bool (
+      (= Raw25 (_ bv0 25))
+      (= ((_ extract 23 0) Raw25) (_ bv0 24))
     ))
 
-    ; BV27: simple ops + shift of BV27B (not BV27 itself)
-    (BV27 (_ BitVec 27) (
-      BV27B
-      (bvadd BV27B BV27B)
-      (bvsub BV27B BV27B)
-      (bvand BV27B BV27B)
-      (bvor  BV27B BV27B)
-      (shr27_0_7 BV27B BV3)
-      (ite B BV27B (shr27_0_7 BV27B BV3))
+    ; Solver must discover sign logic for mixed-sign operands.
+    (FinalSign (_ BitVec 1) (
+      (ite IsZero
+           #b0
+           (ite SameSign
+                s1
+                (ite MagGE
+                     (ite Cmp s1 s2)
+                     (ite Cmp s2 s1))))
+      s1
+      (ite Cmp s1 s2)
     ))
 
-    ; ---- 28-bit base (raw add/sub + normalize candidates) ----
-    (BV28B (_ BitVec 28) (
-      ((_ zero_extend 1) BV27)
-      (bvadd ((_ zero_extend 1) BV27) ((_ zero_extend 1) BV27))
-      (bvsub ((_ zero_extend 1) BV27) ((_ zero_extend 1) BV27))
-      (_ bv0 28)
+    ; Solver must discover that exponent needs a normalisation delta.
+    (FinalExp (_ BitVec 8) (
+      (ite IsZero
+           (_ bv0 8)
+           (bvadd BigE (exp_delta_from_raw Raw25)))
+      (bvadd BigE (exp_delta_from_raw Raw25))
+      BigE
     ))
 
-    ; BV28: normalize candidates are applied to BV28B only (no chaining).
-    (BV28 (_ BitVec 28) (
-      BV28B
-      (shr28_0_7 BV28B BV3)
-      (bvlshr BV28B (_ bv1 28))     ; overflow normalize-by-1 candidate
-      (shl28_0_3 BV28B BV2)         ; small left-normalize candidate
-      (ite B BV28B (bvlshr BV28B (_ bv1 28)))
+    ; Solver must discover that the mantissa needs leading-one normalisation.
+    (FinalMant (_ BitVec 23) (
+      (ite IsZero
+           (_ bv0 23)
+           ((_ extract 22 0) (norm24_from_raw Raw25)))
+      ((_ extract 22 0) (norm24_from_raw Raw25))
+      ((_ extract 22 0) Raw25)
     ))
   )
 )

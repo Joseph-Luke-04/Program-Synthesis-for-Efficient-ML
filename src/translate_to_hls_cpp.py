@@ -1,41 +1,5 @@
 import os, re
 from pathlib import Path
-from .canonicalisers import (
-    _canonicalise_add_full_sum, 
-    _canonicalise_mxint8_normaliser_rounded, 
-    _canonicalise_mxint8_raw_adder, 
-    _canonicalise_mxint8_alignment, 
-    _canonicalise_mxint8_detect_overflow,
-    _canonicalise_mxint8_mult_mant,
-    _canonicalise_mxint8_mult_renorm_flag,
-    _canonicalise_fp32_aligner,
-    _canonicalise_fp32_raw_summer,
-    _canonicalise_fp32_normaliser, 
-    _canonicalise_fp32_sum,
-    _canonicalise_fp32_mult_renorm,
-    _canonicalise_fp32_mult_exp,
-    _canonicalise_fp32_mult_mant,
-    _canonicalise_fp32_full_mul
-)
-
-# Toggle all canonicalisation passes (default OFF to preserve smt2c output).
-ENABLE_CANONICALISERS = os.environ.get("ENABLE_CANONICALISERS", "0") == "1"
-# Preserve solver structure by default for FP32 addition combined output.
-ENABLE_FP32_ADD_COMBINED_IREP_REWRITE = (
-    os.environ.get("ENABLE_FP32_ADD_COMBINED_IREP_REWRITE", "0") == "1"
-)
-# Preserve solver/smt2c structure for FP32 multiplication subcomponents by default.
-ENABLE_FP32_MULT_SUBCOMP_IREP_REWRITE = (
-    os.environ.get("ENABLE_FP32_MULT_SUBCOMP_IREP_REWRITE", "0") == "1"
-)
-# Keep fp32_sum canonicaliser disabled by default (it replaces solver-found body).
-ENABLE_FP32_SUM_CANONICALISER = (
-    os.environ.get("ENABLE_FP32_SUM_CANONICALISER", "0") == "1"
-)
-# Keep risky cast/ternary rewrite passes OFF by default to preserve smt2c structure.
-ENABLE_AGGRESSIVE_EXPR_REWRITES = (
-    os.environ.get("ENABLE_AGGRESSIVE_EXPR_REWRITES", "0") == "1"
-)
 
 _HEADER = "#include <ap_int.h>\n\n"
 
@@ -44,13 +8,21 @@ def _ensure_header(s: str) -> str:
     return s if "#include <ap_int.h>" in s else _HEADER + s.strip()
 
 def _normalize_char_types_and_casts(s: str) -> str:
+    s = re.sub(r"\b__CPROVER_bool\b", "bool", s)
+
     # Decls
+    s = re.sub(r"\bunsigned\s+short\s+int\b", "ap_uint<16>", s)
+    s = re.sub(r"\bsigned\s+short\s+int\b", "ap_int<16>", s)
+    s = re.sub(r"(?<!unsigned\s)(?<!signed\s)\bshort\s+int\b", "ap_int<16>", s)
     s = re.sub(r"\bunsigned\s+char\b", "ap_uint<8>", s)
     s = re.sub(r"\bsigned\s+char\b",   "ap_int<8>",  s)
     s = re.sub(r'\bunsigned\s+int\b', 'ap_uint<32>', s)
     s = re.sub(r'(?<!unsigned\s)\bint\b', 'ap_int<32>', s)
 
     # Casts (keep parentheses intact)
+    s = re.sub(r"\(\s*unsigned\s+short\s+int\s*\)", "(ap_uint<16>)", s)
+    s = re.sub(r"\(\s*signed\s+short\s+int\s*\)",   "(ap_int<16>)",  s)
+    s = re.sub(r"\(\s*short\s+int\s*\)",            "(ap_int<16>)",  s)
     s = re.sub(r"\(\s*unsigned\s+char\s*\)", "(ap_uint<8>)", s)
     s = re.sub(r"\(\s*signed\s+char\s*\)",   "(ap_int<8>)",  s)
     return s
@@ -83,11 +55,20 @@ def _wrap_simple_shift_before_slice(code: str) -> str:
     return re.sub(rf"\b([A-Za-z_]\w*)\s*(<<|>>)\s*({_NUM})\s*\[", r"(\1 \2 \3)[", code)
 
 def _safer_unsigned_negation(s: str) -> str:
-    # -(ap_uint<N>)(EXPR)  ->  ap_uint<N>(-(ap_int<N>)(EXPR))
+    # Unary:  -(ap_uint<N>)(EXPR)  ->  ap_uint<N>(-(ap_int<N>)(EXPR))
+    # Guard carefully so we do not rewrite binary subtraction like:
+    #   lhs - (ap_uint<N>)(EXPR)
+    pat = re.compile(
+        r"(^|[=(:,?+\-*/%&|^!~<>]\s*|return\s+)"
+        r"-\s*\(\s*ap_uint<(\d+)>\s*\)\s*\(\s*(.+?)\s*\)",
+        re.MULTILINE,
+    )
+
     def fix(m):
-        N, expr = m.group(1), m.group(2)
-        return f"ap_uint<{N}>(-(ap_int<{N}>)({expr}))"
-    return re.sub(r"-\s*\(\s*ap_uint<(\d+)>\s*\)\s*\(\s*(.+?)\s*\)", fix, s)
+        prefix, N, expr = m.group(1), m.group(2), m.group(3)
+        return f"{prefix}ap_uint<{N}>(-(ap_int<{N}>)( {expr} ))"
+
+    return pat.sub(fix, s)
 
 def _replace_bit_extractions(c_code: str) -> str:
     """
@@ -171,6 +152,8 @@ def _cast_entire_product(s: str) -> str:
     token = r"(?:\([^()]*\)|[^\s();,])+"
     pat = re.compile(r"\(\s*(ap_(?:u)?int<\d+>)\s*\)\s*(" + token + r")\s*\*\s*(" + token + r")")
     cast_only_pat = re.compile(r"^\(\s*ap_(?:u)?int<\d+>\s*\)$")
+    # Chained cast: (ap_uint<5>)(ap_int<5>)x — TWO consecutive casts
+    chained_cast_pat = re.compile(r"^\(\s*ap_(?:u)?int<\d+>\s*\)\s*\(\s*ap_(?:u)?int<\d+>\s*\)")
     def repl(m):
         ty, lhs, rhs = m.group(1), m.group(2), m.group(3)
         # Guard against partial matches like:
@@ -178,347 +161,227 @@ def _cast_entire_product(s: str) -> str:
         # where rhs could be mis-captured as '(ap_uint<48>)' only.
         if cast_only_pat.match(lhs.strip()) or cast_only_pat.match(rhs.strip()):
             return m.group(0)
+        # Do not rewrite chained casts like:
+        #   (ap_uint<5>)(ap_int<5>)x * ...
+        # Those are already width-controlled and the generic rewrite can
+        # collapse them into the wrong intermediate type.
+        # But DO rewrite single casts like (ap_uint<25>)var * other_var.
+        if chained_cast_pat.match(lhs.strip()) or chained_cast_pat.match(rhs.strip()):
+            return m.group(0)
         return f"{ty}(({lhs} * {rhs}))"
     prev = None
     while prev != s:
         prev, s = s, pat.sub(repl, s)
     return s
 
+def _scan_balanced_token(s: str, pos: int) -> int:
+    """Starting at *pos*, consume one balanced token (handles nested parens).
+    Returns the index one past the last character of the token, or *pos* if
+    nothing could be consumed."""
+    n = len(s)
+    while pos < n:
+        ch = s[pos]
+        if ch == '(':
+            # Consume balanced parens
+            depth = 1
+            pos += 1
+            while pos < n and depth > 0:
+                if s[pos] == '(':
+                    depth += 1
+                elif s[pos] == ')':
+                    depth -= 1
+                pos += 1
+        elif ch in ' \t\n\r;,)':
+            break
+        else:
+            pos += 1
+    return pos
+
+
 def _cast_entire_addsub(s: str) -> str:
-    token = r"(?:\([^()]*\)|[^\s();,])+"
-    pat = re.compile(r"\(\s*(ap_(?:u)?int<\d+>)\s*\)\s*(" + token + r")\s*([+-])\s*(" + token + r")")
-    cast_only_pat = re.compile(r"^\(\s*ap_(?:u)?int<\d+>\s*\)$")
-    def repl(m):
-        ty, lhs, op, rhs = m.group(1), m.group(2), m.group(3), m.group(4)
-        if cast_only_pat.match(lhs.strip()) or cast_only_pat.match(rhs.strip()):
-            return m.group(0)
-        return f"{ty}(({lhs} {op} {rhs}))"
-    prev = None
-    while prev != s:
-        prev, s = s, pat.sub(repl, s)
+    cast_pat = re.compile(r"\(\s*(ap_(?:u)?int<\d+>)\s*\)")
+    chained_cast_pat = re.compile(r"^\(\s*ap_(?:u)?int<\d+>\s*\)\s*\(\s*ap_(?:u)?int<\d+>\s*\)")
+    changed = True
+    while changed:
+        changed = False
+        for m in cast_pat.finditer(s):
+            ty = m.group(1)
+            after_cast = m.end()
+            # Skip whitespace after cast
+            p = after_cast
+            while p < len(s) and s[p] in ' \t':
+                p += 1
+            # Scan the LHS token (balanced)
+            lhs_start = p
+            lhs_end = _scan_balanced_token(s, p)
+            if lhs_end == lhs_start:
+                continue
+            lhs = s[lhs_start:lhs_end]
+            # Skip whitespace
+            p = lhs_end
+            while p < len(s) and s[p] in ' \t':
+                p += 1
+            # Expect +/-
+            if p >= len(s) or s[p] not in '+-':
+                continue
+            op = s[p]
+            p += 1
+            # Skip whitespace
+            while p < len(s) and s[p] in ' \t':
+                p += 1
+            # Scan the RHS token (balanced)
+            rhs_start = p
+            rhs_end = _scan_balanced_token(s, p)
+            if rhs_end == rhs_start:
+                continue
+            rhs = s[rhs_start:rhs_end]
+            # Guard: skip if LHS or RHS is just a cast (partial match)
+            cast_only_pat = re.compile(r"^\(\s*ap_(?:u)?int<\d+>\s*\)$")
+            if cast_only_pat.match(lhs.strip()) or cast_only_pat.match(rhs.strip()):
+                continue
+            # Guard: skip chained casts like (ap_uint<5>)(ap_int<5>)x
+            if chained_cast_pat.match(lhs.strip()) or chained_cast_pat.match(rhs.strip()):
+                continue
+            # Rewrite: (ap_uint<N>) LHS op RHS -> ap_uint<N>((LHS op RHS))
+            replacement = f"{ty}(({lhs} {op} {rhs}))"
+            s = s[:m.start()] + replacement + s[rhs_end:]
+            changed = True
+            break  # restart after mutation
     return s
 
-# Ternary unifier (works for nested ?:)
-_APTY_RE = r"(ap_(?:u)?int<\d+>|bool)"
 
-def _extract_common_ap_type(a: str, b: str) -> str | None:
-    ta = re.findall(_APTY_RE, a)
-    tb = re.findall(_APTY_RE, b)
-    for t in ta:
-        if t in tb:
-            return t
-    return None
-
-def _extract_widest_ap_type(a: str, b: str) -> str | None:
-    types = re.findall(_APTY_RE, a) + re.findall(_APTY_RE, b)
-    if not types:
-        return None
-    best_width = -1
-    best_signed = False
-    for t in types:
-        m = re.match(r"ap_(u)?int<(\d+)>", t)
-        if not m:
-            continue
-        is_signed = m.group(1) is None
-        width = int(m.group(2))
-        if width > best_width:
-            best_width = width
-            best_signed = is_signed
-        elif width == best_width and is_signed and not best_signed:
-            best_signed = True
-    if best_width < 0:
-        return None
-    return f"ap_int<{best_width}>" if best_signed else f"ap_uint<{best_width}>"
-
-def _ap_type_width(ty: str | None) -> int:
-    if not ty:
-        return -1
-    m = re.match(r"ap_(?:u)?int<(\d+)>", ty)
-    return int(m.group(1)) if m else -1
-
-def _has_top_level_comma(expr: str) -> bool:
-    d = 0
-    b = 0
-    for ch in expr:
-        if ch == "(": d += 1
-        elif ch == ")": d = max(0, d-1)
-        elif ch == "[": b += 1
-        elif ch == "]": b = max(0, b-1)
-        elif ch == "," and d == 0 and b == 0: return True
-    return False
-
-def _split_top_ternary(s: str):
-    d = 0; q = None
-    for i, ch in enumerate(s):
-        if ch == "(": d += 1
-        elif ch == ")": d = max(0, d-1)
-        elif ch == "?" and d == 0: q = i; break
-    if q is None: return None
-    d = 0; c = None
-    for j in range(q+1, len(s)):
-        ch = s[j]
-        if ch == "(": d += 1
-        elif ch == ")": d = max(0, d-1)
-        elif ch == ":" and d == 0: c = j; break
-    if c is None: return None
-    return s[:q].strip(), s[q+1:c].strip(), s[c+1:].strip()
-
-def _unify_ternaries_rec(s: str, target_ty: str | None = None) -> str:
-    split = _split_top_ternary(s)
-    if not split:
-        return s
-    cond, a, b = split
-    cond2 = _unify_ternaries_rec(cond, target_ty)
-    a2 = _unify_ternaries_rec(a, target_ty)
-    b2 = _unify_ternaries_rec(b, target_ty)
-
-    # If either side already has commas at top level (concats), don't try to hoist casts inside them.
-    if _has_top_level_comma(a2) or _has_top_level_comma(b2):
-        return f"{cond2} ? {a2} : {b2}"
-
-    ty = _extract_common_ap_type(a2, b2)
-    widest = _extract_widest_ap_type(a2, b2)
-    if widest and _ap_type_width(widest) > _ap_type_width(ty):
-        ty = widest
-    if not ty:
-        ty = widest
-    if not ty and target_ty:
-        ty = target_ty   # Fallback to the known destination type
-
-    if ty:
-        a2_stripped = a2.strip()
-        b2_stripped = b2.strip()
-        if not re.match(rf"^{re.escape(ty)}\s*\(", a2_stripped):
-            a2 = f"{ty}(({a2}))"
-        if not re.match(rf"^{re.escape(ty)}\s*\(", b2_stripped):
-            b2 = f"{ty}(({b2}))"
-    return f"{cond2} ? {a2} : {b2}"
-
-def _get_declared_lhs_type(line: str) -> tuple[str | None, str | None, str | None]:
+def _cast_var_addsub_paren_rhs(s: str) -> str:
     """
-    Try to parse 'ap_uint<N> name = RHS;' or 'ap_int<N> name = RHS;' or 'bool name = RHS;'
-    Returns (lhs_type, lhs_name, rhs) or (None, None, None).
+    Fix ternary-shaped cases that the regex-only add/sub hoist misses, e.g.
+      (ap_uint<8>) target_exponent + (_let_26 ? ... : ...)
+    by turning them into
+      ap_uint<8>((target_exponent + (_let_26 ? ... : ...)))
     """
-    m = re.match(r"\s*(ap_(?:u)?int<\d+>|bool)\s+([A-Za-z_]\w*)\s*=\s*(.+?);\s*$", line)
-    if not m:
-        return None, None, None
-    return m.group(1), m.group(2), m.group(3)
+    pat = re.compile(
+        r"\(\s*(ap_(?:u)?int<\d+>)\s*\)\s*([A-Za-z_]\w*)\s*([+-])\s*\(",
+        re.MULTILINE,
+    )
 
-def _unify_all_ternaries(code: str) -> str:
     out = []
-    cursor = 0  # running index in the original string
-    for line in code.splitlines(True):  # keep line endings
-        if "?" in line and ":" in line:
-            # Case A: return ...;
-            m_ret = re.match(r"(\s*return\s+)(.+?)(;\s*)$", line)
-            if m_ret:
-                ret_ty = _ret_type_before_pos(code, cursor)
-                expr = _unify_ternaries_rec(m_ret.group(2).strip(), ret_ty)
-                out.append(f"{m_ret.group(1)}{expr}{m_ret.group(3)}")
-            else:
-                # Case B: typed assignment
-                lhs_ty, lhs_name, rhs = _get_declared_lhs_type(line)
-                if lhs_ty:
-                    lead = line[:line.find(lhs_ty)]
-                    out.append(f"{lead}{lhs_ty} {lhs_name} = {_unify_ternaries_rec(rhs, lhs_ty)};")
-                else:
-                    # Generic
-                    m_any = re.match(r"(\s*)(.+?)(;\s*)$", line)
-                    if m_any:
-                        out.append(f"{m_any.group(1)}{_unify_ternaries_rec(m_any.group(2), None)}{m_any.group(3)}")
-                    else:
-                        out.append(_unify_ternaries_rec(line, None))
-        else:
-            out.append(line)
-        cursor += len(line)
-    return "".join(out)
-
-def _find_ternary_span(s: str) -> tuple[int, int, int, int] | None:
-    """
-    Return (qpos, cpos, depth, bdepth) for the first ternary pair found.
-    depth/bdepth are the paren/bracket depths at the '?' and matching ':'.
-    """
-    depth = 0
-    bdepth = 0
-    qstack: list[tuple[int, int, int]] = []
-    for i, ch in enumerate(s):
-        if ch == "(":
-            depth += 1
-        elif ch == ")":
-            depth = max(0, depth - 1)
-        elif ch == "[":
-            bdepth += 1
-        elif ch == "]":
-            bdepth = max(0, bdepth - 1)
-        elif ch == "?":
-            qstack.append((i, depth, bdepth))
-        elif ch == ":" and qstack:
-            for k in range(len(qstack) - 1, -1, -1):
-                qpos, qd, qb = qstack[k]
-                if qd == depth and qb == bdepth:
-                    return qpos, i, depth, bdepth
-    return None
-
-def _find_ternary_left_boundary(s: str, qpos: int, depth: int, bdepth: int) -> int:
-    pd = depth
-    bd = bdepth
-    i = qpos - 1
-    while i >= 0:
-        ch = s[i]
-        if ch == ")":
-            pd += 1
-        elif ch == "(":
-            if pd == depth and bd == bdepth:
-                return i + 1
-            pd = max(0, pd - 1)
-        elif ch == "]":
-            bd += 1
-        elif ch == "[":
-            bd = max(0, bd - 1)
-        elif pd == depth and bd == bdepth and ch in ",;":
-            return i + 1
-        i -= 1
-    return 0
-
-def _find_ternary_right_boundary(s: str, cpos: int, depth: int, bdepth: int) -> int:
-    pd = depth
-    bd = bdepth
-    i = cpos + 1
+    i = 0
     while i < len(s):
-        ch = s[i]
-        if ch == "(":
-            pd += 1
-        elif ch == ")":
-            if pd == depth and bd == bdepth:
-                return i
-            pd = max(0, pd - 1)
-        elif ch == "[":
-            bd += 1
-        elif ch == "]":
-            bd = max(0, bd - 1)
-        elif pd == depth and bd == bdepth and ch in ",;":
-            return i
-        i += 1
-    return len(s)
-
-def _unify_ternaries_in_parens(code: str) -> str:
-    """
-    Apply ternary unification to nested ternaries anywhere in the line.
-    """
-    out = []
-    for line in code.splitlines(True):
-        if "?" not in line or ":" not in line:
-            out.append(line)
-            continue
-        cur = line
-        for _ in range(64):
-            span = _find_ternary_span(cur)
-            if not span:
-                break
-            qpos, cpos, depth, bdepth = span
-            start = _find_ternary_left_boundary(cur, qpos, depth, bdepth)
-            end = _find_ternary_right_boundary(cur, cpos, depth, bdepth)
-            segment = cur[start:end]
-            unified = _unify_ternaries_rec(segment, None)
-            if unified == segment:
-                break
-            cur = cur[:start] + unified + cur[end:]
-        out.append(cur)
-    return "".join(out)
-
-_CAST_RE = re.compile(r"\(\s*ap_(?:u)?int<\d+>\s*\)")
-
-def _wrap_casted_ternary_branches(code: str) -> str:
-    """
-    Fix precedence bugs like: (ap_uint<4>) raw_sum == 0 ? ... : ...
-    by rewriting to: (ap_uint<4>) (raw_sum == 0 ? ... : ...)
-    so the cast applies to the ternary expression, not to raw_sum.
-    """
-    i = 0
-    out = []
-    while i < len(code):
-        m = _CAST_RE.search(code, i)
+        m = pat.search(s, i)
         if not m:
-            out.append(code[i:])
+            out.append(s[i:])
             break
-        out.append(code[i:m.end()])
-        j = m.end()
-        while j < len(code) and code[j].isspace():
-            j += 1
-        # If already parenthesized, do nothing.
-        if j < len(code) and code[j] == "(":
-            i = j
-            continue
-        sub = code[j:]
-        span = _find_ternary_span(sub)
-        if not span:
-            i = j
-            continue
-        qpos, cpos, depth, bdepth = span
-        if depth != 0 or bdepth != 0:
-            i = j
-            continue
-        # Skip wrapping if there's another top-level '?' before the matching ':'
-        # (nested ternary at same paren depth). Our simple span finder can't handle it.
-        nested = False
-        d = 0
-        for k in range(qpos + 1, cpos):
-            ch = sub[k]
-            if ch == "(":
-                d += 1
-            elif ch == ")":
-                d = max(0, d - 1)
-            elif ch == "?" and d == 0:
-                nested = True
-                break
-        if nested:
-            i = j
-            continue
-        end_rel = _find_ternary_right_boundary(sub, cpos, depth, bdepth)
-        out.append(" (")
-        out.append(code[j:j + end_rel])
-        out.append(")")
-        i = j + end_rel
-    return "".join(out)
 
-_CAST_FUNC_RE = re.compile(r"\b(ap_(?:u)?int<\d+>)\s*\(")
+        out.append(s[i:m.start()])
+        ty, lhs, op = m.group(1), m.group(2), m.group(3)
+        rhs_open = m.end() - 1
 
-def _unify_ternaries_inside_casts(code: str) -> str:
-    """
-    If a function-style cast wraps a ternary (e.g. ap_uint<4>(cond ? a : b)),
-    force both arms to that type to avoid ambiguous conditional expressions.
-    """
-    out = []
-    i = 0
-    n = len(code)
-    while i < n:
-        m = _CAST_FUNC_RE.search(code, i)
-        if not m:
-            out.append(code[i:])
-            break
-        out.append(code[i:m.start()])
-        ty = m.group(1)
-        j = m.end()  # char after '('
-        depth = 1
-        k = j
-        while k < n and depth > 0:
-            if code[k] == '(':
+        depth = 0
+        j = rhs_open
+        while j < len(s):
+            if s[j] == '(':
                 depth += 1
-            elif code[k] == ')':
+            elif s[j] == ')':
                 depth -= 1
-            k += 1
-        if depth != 0:
-            out.append(code[m.start():])
-            break
-        inner = code[j:k-1]
-        if "?" in inner and ":" in inner:
-            inner = _unify_ternaries_rec(inner, ty)
-        out.append(f"{ty}({inner})")
-        i = k
-    return "".join(out)
+                if depth == 0:
+                    break
+            j += 1
 
-def _fold_simple_int_additions(s: str) -> str:
-    return re.sub(r"\b(\d+)\s*\+\s*(\d+)\b", lambda m: str(int(m.group(1))+int(m.group(2))), s)
+        if j >= len(s):
+            out.append(s[m.start():])
+            break
+
+        rhs = s[rhs_open:j + 1]
+        # Only rewrite the wide parenthesized ternary forms this helper was
+        # introduced for. Casted RHS expressions like `(ap_uint<24>)foo(...)`
+        # are handled correctly by the normal path and must be left alone.
+        if "?" not in rhs:
+            out.append(s[m.start():j + 1])
+            i = j + 1
+            continue
+        out.append(f"{ty}(({lhs} {op} {rhs}))")
+        i = j + 1
+
+    return ''.join(out)
+
+
+def _cast_paren_lhs_addsub_simple_rhs(s: str) -> str:
+    """
+    Fix cases like:
+      (ap_uint<8>) (_let_3 ? e1 : e2) + exp_delta(...)
+    by turning them into:
+      ap_uint<8>(((_let_3 ? e1 : e2) + exp_delta(...)))
+    The regex-only add/sub cast hoist cannot see through nested parentheses in
+    the lhs, so it leaves mixed-width conditional arms behind for HLS.
+    """
+    pat = re.compile(r"\(\s*(ap_(?:u)?int<\d+>)\s*\)\s*\(", re.MULTILINE)
+    token = re.compile(r"(?:\([^()]*\)|[^\s();,])+")
+
+    out = []
+    i = 0
+    while i < len(s):
+        m = pat.search(s, i)
+        if not m:
+            out.append(s[i:])
+            break
+
+        # Skip if this cast is part of a chain like (ap_uint<5>)(ap_int<5>)(ap_int<4>)(...)
+        # — the preceding ')' means another cast already controls the width.
+        pre = m.start() - 1
+        while pre >= 0 and s[pre].isspace():
+            pre -= 1
+        if pre >= 0 and s[pre] == ')':
+            out.append(s[i:m.start() + 1])
+            i = m.start() + 1
+            continue
+
+        out.append(s[i:m.start()])
+        ty = m.group(1)
+        lhs_open = m.end() - 1
+
+        depth = 0
+        j = lhs_open
+        while j < len(s):
+            if s[j] == '(':
+                depth += 1
+            elif s[j] == ')':
+                depth -= 1
+                if depth == 0:
+                    break
+            j += 1
+
+        if j >= len(s):
+            out.append(s[m.start():])
+            break
+
+        lhs = s[lhs_open:j + 1]
+        if "?" not in lhs:
+            out.append(s[m.start():m.start() + 1])
+            i = m.start() + 1
+            continue
+
+        k = j + 1
+        while k < len(s) and s[k].isspace():
+            k += 1
+        if k >= len(s) or s[k] not in "+-":
+            out.append(s[m.start():m.start() + 1])
+            i = m.start() + 1
+            continue
+
+        op = s[k]
+        rhs_start = k + 1
+        while rhs_start < len(s) and s[rhs_start].isspace():
+            rhs_start += 1
+
+        rhs_match = token.match(s, rhs_start)
+        if not rhs_match:
+            out.append(s[m.start():m.start() + 1])
+            i = m.start() + 1
+            continue
+
+        rhs = rhs_match.group(0)
+        out.append(f"{ty}(({lhs} {op} {rhs}))")
+        i = rhs_match.end()
+
+    return ''.join(out)
 
 # Find the function header *before* a given offset and return its type
 _FUNC_HDR_RE = re.compile(
@@ -618,627 +481,6 @@ def _wrap_return_top_concat(c_code: str) -> str:
 
     return "".join(out)
 
-def _strip_irep_noise(code: str) -> str:
-    """Replace any irep(...) (which may contain nested parens inside quoted strings)
-       with 0. This handles forms like: irep("(\"zero_extend\" ... (\"0\") ... )")."""
-    out = []
-    i, n = 0, len(code)
-    needle = 'irep('
-
-    while True:
-        j = code.find(needle, i)
-        if j == -1:
-            out.append(code[i:]); break
-        out.append(code[i:j])        # keep text before irep(
-        k = j + len(needle)          # start after 'irep('
-        depth = 1
-        in_str = False
-        esc = False
-        while k < n and depth > 0:
-            ch = code[k]
-            if in_str:
-                if esc:
-                    esc = False
-                elif ch == '\\':
-                    esc = True
-                elif ch == '"':
-                    in_str = False
-            else:
-                if ch == '"':
-                    in_str = True
-                elif ch == '(':
-                    depth += 1
-                elif ch == ')':
-                    depth -= 1
-            k += 1
-        # swallow entire irep(...) and emit 0
-        out.append('0')
-        i = k
-
-    return ''.join(out)
-
-def _replace_known_irep(code: str) -> str:
-    """
-    Replace known irep(...) forms with explicit expressions before
-    falling back to _strip_irep_noise.
-    """
-    out = []
-    i, n = 0, len(code)
-    needle = 'irep('
-
-    while True:
-        j = code.find(needle, i)
-        if j == -1:
-            out.append(code[i:])
-            break
-        out.append(code[i:j])
-        k = j + len(needle)
-        depth = 1
-        in_str = False
-        esc = False
-        while k < n and depth > 0:
-            ch = code[k]
-            if in_str:
-                if esc:
-                    esc = False
-                elif ch == '\\':
-                    esc = True
-                elif ch == '"':
-                    in_str = False
-            else:
-                if ch == '"':
-                    in_str = True
-                elif ch == '(':
-                    depth += 1
-                elif ch == ')':
-                    depth -= 1
-            k += 1
-
-        content = code[j + len(needle):k-1]
-        replacement = None
-        # Match the common mxint alignment shift irep (depends on e1/e2).
-        if ('\"identifier\" (\"e1\")' in content) and ('\"identifier\" (\"e2\")' in content):
-            replacement = (
-                "(ap_uint<4>)(((ap_int<4>)e1 >= (ap_int<4>)e2) ? "
-                "(ap_uint<4>)(e1 - e2) : (ap_uint<4>)(e2 - e1))"
-            )
-
-        if replacement is None:
-            out.append(code[j:k])
-        else:
-            out.append(replacement)
-        i = k
-
-    return ''.join(out)
-
-def _fix_mxint8_full_sum_irep(code: str) -> str:
-    """
-    If add_full_sum contains irep(...) blobs from smt2c, replace the whole
-    function with an equivalent explicit form so the solver semantics are preserved.
-    This is a translation fix, not a behavior change.
-    """
-    if "add_full_sum" not in code or "irep(" not in code:
-        return code
-
-    m = re.search(r'\b(ap_uint<\d+>|unsigned\s+char)\s+add_full_sum\s*\([^)]*\)\s*\{', code)
-    if not m:
-        return code
-
-    # Extract function body and only rewrite if it actually contains irep(...)
-    start = m.start()
-    i = m.end() - 1
-    depth = 0
-    end = None
-    while i < len(code):
-        if code[i] == '{':
-            depth += 1
-        elif code[i] == '}':
-            depth -= 1
-            if depth == 0:
-                end = i + 1
-                break
-        i += 1
-    if end is None:
-        return code
-
-    if "irep(" not in code[start:end]:
-        return code
-
-    # Emit a combinational, explicit version that mirrors the monolithic SMT.
-    print("[INFO] Rewriting add_full_sum to remove irep(...) artifacts from smt2c output.")
-    new_body = r"""
-ap_uint<8> add_full_sum(ap_uint<4> m1, ap_uint<4> e1, ap_uint<4> m2, ap_uint<4> e2) {
-  ap_int<4> sm1 = (ap_int<4>)m1;
-  ap_int<4> sm2 = (ap_int<4>)m2;
-  ap_int<4> se1 = (ap_int<4>)e1;
-  ap_int<4> se2 = (ap_int<4>)e2;
-  ap_int<6> sh1 = (ap_int<6>)se1 + (ap_int<6>)8;
-  ap_int<6> sh2 = (ap_int<6>)se2 + (ap_int<6>)8;
-  ap_uint<5> ush1 = (ap_uint<5>)sh1;
-  ap_uint<5> ush2 = (ap_uint<5>)sh2;
-  ap_int<24> v1 = (ap_int<24>)sm1 << ush1;
-  ap_int<24> v2 = (ap_int<24>)sm2 << ush2;
-  ap_int<24> sum_v = v1 + v2;
-
-  if (sum_v == 0) {
-    ap_uint<4> exp_z = (ap_uint<4>)((ap_int<4>)-8);
-    return (ap_uint<8>)((((ap_uint<8>)0) << 4) | exp_z);
-  }
-
-  ap_uint<24> abs_v = (sum_v < 0) ? (ap_uint<24>)(-sum_v) : (ap_uint<24>)sum_v;
-  ap_int<6> msb =
-      abs_v[23] ? 23 : abs_v[22] ? 22 : abs_v[21] ? 21 : abs_v[20] ? 20 :
-      abs_v[19] ? 19 : abs_v[18] ? 18 : abs_v[17] ? 17 : abs_v[16] ? 16 :
-      abs_v[15] ? 15 : abs_v[14] ? 14 : abs_v[13] ? 13 : abs_v[12] ? 12 :
-      abs_v[11] ? 11 : abs_v[10] ? 10 : abs_v[9] ? 9  : abs_v[8] ? 8  :
-      abs_v[7]  ? 7  : abs_v[6]  ? 6  : abs_v[5] ? 5  : abs_v[4] ? 4  :
-      abs_v[3]  ? 3  : abs_v[2]  ? 2  : abs_v[1] ? 1  : 0;
-
-  ap_int<6> exp = (ap_int<6>)(msb - 10);
-  if (exp > 7) exp = 7;
-  if (exp < -8) exp = -8;
-
-  ap_int<6> shift_i = exp + 8;
-  ap_uint<5> shift = (ap_uint<5>)shift_i;
-  ap_int<24> mant_raw = sum_v >> shift;
-
-  ap_int<6> mant = (ap_int<6>)mant_raw;
-  if (mant > 7) mant = 7;
-  if (mant < -8) mant = -8;
-
-  ap_uint<4> mant_u = (ap_uint<4>)mant;
-  ap_uint<4> exp_u = (ap_uint<4>)exp;
-  return (ap_uint<8>)((((ap_uint<8>)mant_u) << 4) | exp_u);
-}
-""".strip("\n")
-
-    return code[:start] + new_body + "\n" + code[end:]
-
-def _rewrite_fp32_full_mul_combined_irep(code: str) -> tuple[str, bool]:
-    """
-    Replace smt2c's irep-heavy fp32_full_mul (combined grammar) with an equivalent
-    direct C++ implementation that mirrors the solver expression.
-    This is a translation fix (keeps semantics), not a canonicaliser.
-    """
-    if "fp32_full_mul" not in code or "irep(" not in code:
-        return code, False
-
-    m = re.search(r'\bap_uint<32>\s+fp32_full_mul\s*\([^)]*\)\s*\{', code)
-    if not m:
-        return code, False
-
-    # Extract function body range
-    start = m.start()
-    i = m.end() - 1
-    depth = 0
-    end = None
-    while i < len(code):
-        if code[i] == '{':
-            depth += 1
-        elif code[i] == '}':
-            depth -= 1
-            if depth == 0:
-                end = i + 1
-                break
-        i += 1
-    if end is None:
-        return code, False
-
-    # Only rewrite if this function actually contains irep(...) artifacts.
-    if "irep(" not in code[start:end]:
-        return code, False
-    print("[INFO] Rewriting fp32_full_mul combined irep output.")
-
-    new_body = """
-#ifndef FP32_MUL_EFFECTIVE_MANT_BITS
-#define FP32_MUL_EFFECTIVE_MANT_BITS 24
-#endif
-#if FP32_MUL_EFFECTIVE_MANT_BITS < 1
-#error "FP32_MUL_EFFECTIVE_MANT_BITS must be >= 1"
-#endif
-#if FP32_MUL_EFFECTIVE_MANT_BITS > 24
-#error "FP32_MUL_EFFECTIVE_MANT_BITS must be <= 24"
-#endif
-
-ap_uint<32> fp32_full_mul(ap_uint<32> a, ap_uint<32> b) {
-  ap_uint<24> Ma = (ap_uint<24>)(((ap_uint<24>)1 << 23) | (ap_uint<23>)a.range(22, 0));
-  ap_uint<24> Mb = (ap_uint<24>)(((ap_uint<24>)1 << 23) | (ap_uint<23>)b.range(22, 0));
-  const int drop = 24 - FP32_MUL_EFFECTIVE_MANT_BITS;
-  ap_uint<FP32_MUL_EFFECTIVE_MANT_BITS> Ma_eff =
-      (ap_uint<FP32_MUL_EFFECTIVE_MANT_BITS>)(Ma >> drop);
-  ap_uint<FP32_MUL_EFFECTIVE_MANT_BITS> Mb_eff =
-      (ap_uint<FP32_MUL_EFFECTIVE_MANT_BITS>)(Mb >> drop);
-  ap_uint<2 * FP32_MUL_EFFECTIVE_MANT_BITS> prod_eff =
-      (ap_uint<2 * FP32_MUL_EFFECTIVE_MANT_BITS>)Ma_eff * (ap_uint<2 * FP32_MUL_EFFECTIVE_MANT_BITS>)Mb_eff;
-  ap_uint<48> prod = ((ap_uint<48>)prod_eff) << (2 * drop);
-
-  ap_uint<1> renorm = (ap_uint<1>)prod[47];
-  ap_uint<48> pn = (renorm == 1) ? (prod >> 1) : prod;
-
-  ap_uint<24> top = (ap_uint<24>)pn.range(46, 23);
-  ap_uint<1> round = (ap_uint<1>)pn[22];
-  ap_uint<25> rounded25 = (ap_uint<25>)(((ap_uint<25>)top) + (ap_uint<25>)round);
-  ap_uint<23> frac = (ap_uint<23>)rounded25.range(22, 0);
-
-  ap_uint<10> exp10 = (ap_uint<10>)a.range(30, 23) + (ap_uint<10>)b.range(30, 23);
-  exp10 = exp10 - (ap_uint<10>)127;
-  exp10 = exp10 + (ap_uint<10>)renorm;
-  ap_uint<8> exp = (ap_uint<8>)exp10;
-
-  ap_uint<1> sign = (ap_uint<1>)(a[31] ^ b[31]);
-
-  return (ap_uint<32>)(((ap_uint<32>)sign << 31) | ((ap_uint<32>)exp << 23) | (ap_uint<32>)frac);
-}
-""".strip("\n")
-
-    return code[:start] + new_body + "\n" + code[end:], True
-
-def _rewrite_fp32_sum_combined_irep(code: str) -> tuple[str, bool]:
-    """
-    Replace smt2c's irep-heavy fp32_sum (combined/monolithic grammar) with a
-    direct C++ translation of the synthesized SMT expression.
-    This preserves the solver-found behavior; it is not a canonicaliser.
-    """
-    if "fp32_sum" not in code or "irep(" not in code:
-        return code, False
-
-    m = re.search(r'\bap_uint<32>\s+fp32_sum\s*\([^)]*\)\s*\{', code)
-    if not m:
-        return code, False
-
-    # Extract function body range
-    start = m.start()
-    i = m.end() - 1
-    depth = 0
-    end = None
-    while i < len(code):
-        if code[i] == '{':
-            depth += 1
-        elif code[i] == '}':
-            depth -= 1
-            if depth == 0:
-                end = i + 1
-                break
-        i += 1
-    if end is None:
-        return code, False
-
-    # Only rewrite when this function still has irep artifacts.
-    if "irep(" not in code[start:end]:
-        return code, False
-    print("[INFO] Rewriting fp32_sum combined irep output.")
-
-    new_body = """
-ap_uint<32> fp32_sum(ap_uint<1> s1, ap_uint<8> e1, ap_uint<23> m1, ap_uint<1> s2, ap_uint<8> e2, ap_uint<23> m2) {
-  ap_uint<24> let1 = (ap_uint<24>)(((ap_uint<24>)1 << 23) | (ap_uint<23>)m2);
-  ap_uint<24> let2 = (ap_uint<24>)(((ap_uint<24>)1 << 23) | (ap_uint<23>)m1);
-
-  bool let3 = (e1 < e2) || ((e1 == e2) && (let2 < let1));
-  ap_uint<8> let4 = let3 ? e2 : e1;
-  ap_uint<8> esmall = let3 ? e1 : e2;
-  ap_uint<6> let5 = (ap_uint<6>)(let4 - esmall);
-
-  ap_uint<27> small27 = (ap_uint<27>)(((ap_uint<27>)(let3 ? let2 : let1)) << 3);
-  ap_uint<27> let6 = (ap_uint<27>)(small27 >> let5);
-  ap_uint<1> let7 = (ap_uint<1>)(let5 > (ap_uint<6>)0b011010);
-
-  ap_uint<28> let8 = (ap_uint<28>)(let7 ? (ap_uint<27>)0 : let6);
-  ap_uint<27> big27 = (ap_uint<27>)(((ap_uint<27>)(let3 ? let1 : let2)) << 3);
-  ap_uint<28> let9 = (ap_uint<28>)big27;
-  ap_uint<28> let10 = (ap_uint<28>)(let9 - let8);
-
-  ap_uint<1> let11 = (ap_uint<1>)(let3 ? s2 : s1);
-  bool let12 = (let11 == (let3 ? s1 : s2));
-
-  ap_uint<28> let13 = let12
-      ? (ap_uint<28>)(let9 + (ap_uint<28>)(let7 ? (ap_uint<27>)1 : let6))
-      : let10;
-  ap_uint<1> let14 = (ap_uint<1>)(let13[27] == 1);
-  ap_uint<28> let15 = let14
-      ? (ap_uint<28>)((let12 ? (ap_uint<28>)(let9 + let8) : let10) >> 1)
-      : let13;
-
-  bool let16 = ((ap_uint<28>)(let15 << 1)) == 0;
-
-  ap_uint<1> sign = let16 ? (ap_uint<1>)0 : let11;
-  ap_uint<8> exp = let16
-      ? (ap_uint<8>)0
-      : (ap_uint<8>)((ap_uint<10>)let4 + (ap_uint<10>)(let14 ? 1 : 0));
-  ap_uint<23> frac = let16 ? (ap_uint<23>)0 : (ap_uint<23>)let15.range(25, 3);
-
-  return (ap_uint<32>)(((ap_uint<32>)sign << 31) | ((ap_uint<32>)exp << 23) | (ap_uint<32>)frac);
-}
-""".strip("\n")
-
-    return code[:start] + new_body + "\n" + code[end:], True
-
-def _rewrite_mxint8_mult_full_product_combined_broken(code: str, c_input_path: str) -> tuple[str, bool]:
-    """
-    Fix a known smt2c malformed cast/ternary emission for
-    solution_mxint8multiplication_full_product_combined.
-    The replacement mirrors the synthesized SMT expression:
-      mant = extract(3,0, ashr(sext(m1)*sext(m2), 2))
-      exp  = extract(3,0, ite(renorm_flag==1, sext(e1)+sext(e2)-1, sext(e1)+sext(e2)))
-      out  = concat(mant, exp)
-    """
-    stem = Path(c_input_path).stem
-    if stem != "solution_mxint8multiplication_full_product_combined":
-        return code, False
-    if "mult_mxint_full_product" not in code:
-        return code, False
-
-    m = re.search(r'\b(?:ap_uint<8>|unsigned\s+char)\s+mult_mxint_full_product\s*\([^)]*\)\s*\{', code)
-    if not m:
-        return code, False
-
-    start = m.start()
-    i = m.end() - 1
-    depth = 0
-    end = None
-    while i < len(code):
-        if code[i] == '{':
-            depth += 1
-        elif code[i] == '}':
-            depth -= 1
-            if depth == 0:
-                end = i + 1
-                break
-        i += 1
-    if end is None:
-        return code, False
-
-    body = code[start:end]
-    # smt2c emits several malformed variants for this function; match broadly.
-    broken_markers = (
-        ("renorm_flag == 1" in body and "ap_int<5>" in body and "m1" in body and "m2" in body)
-        or "ap_uint<5>(-(ap_int<5>)(ap_int<5>))(ap_int<4>)1" in body
-        or "renorm_flag == 1 ? ap_uint<5>" in body
-    )
-    if not broken_markers:
-        return code, False
-
-    print("[INFO] Rewriting malformed MXINT8 full_product_combined C++ output.")
-    new_body = """
-ap_uint<8> mult_mxint_full_product(ap_uint<4> m1, ap_uint<4> e1, ap_uint<4> m2, ap_uint<4> e2, ap_uint<1> renorm_flag) {
-  ap_int<8> prod = (ap_int<8>)((ap_int<4>)m1) * (ap_int<8>)((ap_int<4>)m2);
-  ap_int<8> mant_shift = (ap_int<8>)(prod >> 2);
-  ap_uint<4> mant = (ap_uint<4>)mant_shift.range(3, 0);
-
-  ap_int<5> esum = (ap_int<5>)((ap_int<4>)e1) + (ap_int<5>)((ap_int<4>)e2);
-  ap_int<5> eadj = (renorm_flag == (ap_uint<1>)1) ? (ap_int<5>)(esum - (ap_int<5>)1) : esum;
-  ap_uint<4> exp = (ap_uint<4>)eadj.range(3, 0);
-
-  return (ap_uint<8>)((((ap_uint<8>)mant) << 4) | (ap_uint<8>)exp);
-}
-""".strip("\n")
-
-    return code[:start] + new_body + "\n" + code[end:], True
-
-def _rewrite_mxint8_add_full_sum_combined_solver_equiv(code: str, c_input_path: str) -> tuple[str, bool]:
-    """
-    For the monolithic MXINT8 adder solution, replace unreadable/malformed smt2c
-    output with a compact, solver-equivalent implementation.
-    This pass is scoped to solution_mxint8addition_full_sum_combined only.
-    """
-    stem = Path(c_input_path).stem
-    if stem != "solution_mxint8addition_full_sum_combined":
-        return code, False
-    if "add_full_sum" not in code:
-        return code, False
-
-    m = re.search(r'\b(?:ap_uint<8>|unsigned\s+char)\s+add_full_sum\s*\([^)]*\)\s*\{', code)
-    if not m:
-        return code, False
-
-    start = m.start()
-    i = m.end() - 1
-    depth = 0
-    end = None
-    while i < len(code):
-        if code[i] == '{':
-            depth += 1
-        elif code[i] == '}':
-            depth -= 1
-            if depth == 0:
-                end = i + 1
-                break
-        i += 1
-    if end is None:
-        return code, False
-
-    print("[INFO] Rewriting MXINT8 monolithic add_full_sum to solver-equivalent compact form.")
-    new_body = """
-ap_uint<8> add_full_sum(ap_uint<4> m1, ap_uint<4> e1, ap_uint<4> m2, ap_uint<4> e2) {
-  // Direct structured form of the synthesized BV expression from full_sum_combined.
-  bool swap = ((ap_int<4>)e1 >= (ap_int<4>)e2);
-  ap_int<4> mbig = (ap_int<4>)(swap ? m1 : m2);
-  ap_int<4> msmall = (ap_int<4>)(swap ? m2 : m1);
-  ap_uint<4> ebig = (ap_uint<4>)(swap ? e1 : e2);
-  ap_uint<4> esmall = (ap_uint<4>)(swap ? e2 : e1);
-
-  ap_uint<4> diff4 = (ap_uint<4>)(ebig - esmall);
-  ap_uint<4> bias4 =
-      (diff4 == (ap_uint<4>)1) ? (ap_uint<4>)1 :
-      (diff4 == (ap_uint<4>)2) ? (ap_uint<4>)2 :
-      (diff4 == (ap_uint<4>)3) ? (ap_uint<4>)4 : (ap_uint<4>)0;
-
-  ap_int<4> bias_signed4 = ((ap_int<4>)msmall < 0) ? (ap_int<4>)(-(ap_int<4>)bias4) : (ap_int<4>)bias4;
-  ap_int<5> sum_small5 = (ap_int<5>)msmall + (ap_int<5>)bias_signed4;
-
-  ap_int<4> aligned_small4;
-  if (diff4 >= (ap_uint<4>)4) {
-    aligned_small4 = (ap_int<4>)0;
-  } else if (diff4 == (ap_uint<4>)0) {
-    aligned_small4 = msmall;
-  } else if (diff4 == (ap_uint<4>)1) {
-    aligned_small4 = (ap_int<4>)(sum_small5 >> 1);
-  } else if (diff4 == (ap_uint<4>)2) {
-    aligned_small4 = (ap_int<4>)(sum_small5 >> 2);
-  } else if (diff4 == (ap_uint<4>)3) {
-    aligned_small4 = (ap_int<4>)(sum_small5 >> 3);
-  } else {
-    aligned_small4 = (ap_int<4>)0;
-  }
-
-  ap_int<5> raw5 = (ap_int<5>)mbig + (ap_int<5>)aligned_small4;
-  ap_int<5> abs5 = (raw5 < 0) ? (ap_int<5>)(-raw5) : raw5;
-  bool is_zero = (raw5 == 0);
-
-  bool is_b4 = (abs5[4] == 1);
-  bool is_b3 = (abs5[3] == 1);
-  bool is_b2 = (abs5[2] == 1);
-  bool is_b1 = (abs5[1] == 1);
-
-  ap_int<5> shifted5 = is_zero ? raw5 :
-                      (is_b4 ? (ap_int<5>)(raw5 >> 2) :
-                      (is_b3 ? (ap_int<5>)(raw5 >> 1) :
-                      (is_b2 ? raw5 :
-                      (is_b1 ? (ap_int<5>)(raw5 << 1) : (ap_int<5>)(raw5 << 2)))));
-
-  ap_int<5> adj5 = is_zero ? (ap_int<5>)0 :
-                  (is_b4 ? (ap_int<5>)2 :
-                  (is_b3 ? (ap_int<5>)1 :
-                  (is_b2 ? (ap_int<5>)0 :
-                  (is_b1 ? (ap_int<5>)-1 : (ap_int<5>)-2))));
-
-  ap_int<5> exp_adj5 = (ap_int<5>)((ap_int<4>)ebig) + adj5;
-  ap_int<5> exp_clamp5 = (exp_adj5 > (ap_int<5>)7) ? (ap_int<5>)7 :
-                         (exp_adj5 < (ap_int<5>)-8) ? (ap_int<5>)-8 : exp_adj5;
-
-  ap_int<4> mant4 = is_zero ? (ap_int<4>)0 :
-                   (shifted5 > (ap_int<5>)7) ? (ap_int<4>)7 :
-                   (shifted5 < (ap_int<5>)-8) ? (ap_int<4>)-8 :
-                   (ap_int<4>)shifted5;
-
-  ap_uint<4> exp4 = is_zero ? (ap_uint<4>)0 : (ap_uint<4>)exp_clamp5;
-  ap_uint<4> mant_u = (ap_uint<4>)mant4;
-  return (ap_uint<8>)((((ap_uint<8>)mant_u) << 4) | (ap_uint<8>)exp4);
-}
-""".strip("\n")
-
-    return code[:start] + new_body + "\n" + code[end:], True
-
-
-def _rewrite_fp32_mult_subcomponents_irep(code: str) -> tuple[str, bool]:
-    """
-    Replace smt2c irep-heavy outputs for fp32_mult_renorm/exp/mant/full_mul
-    with direct C++ equivalents that preserve solver semantics.
-    This is a translation fix (keeps semantics), not a canonicaliser.
-    """
-    changed = False
-
-    def _rewrite_func(code_in: str, name: str, new_body: str, require_irep: bool = True) -> tuple[str, bool]:
-        if name not in code_in:
-            return code_in, False
-        if require_irep and "irep(" not in code_in:
-            return code_in, False
-        m = re.search(rf'\bap_uint<\d+>\s+{name}\s*\([^)]*\)\s*\{{', code_in)
-        if not m:
-            return code_in, False
-        start = m.start()
-        i = m.end() - 1
-        depth = 0
-        end = None
-        while i < len(code_in):
-            if code_in[i] == '{':
-                depth += 1
-            elif code_in[i] == '}':
-                depth -= 1
-                if depth == 0:
-                    end = i + 1
-                    break
-            i += 1
-        if end is None:
-            return code_in, False
-        if require_irep and "irep(" not in code_in[start:end]:
-            return code_in, False
-        return code_in[:start] + new_body.strip("\n") + "\n" + code_in[end:], True
-
-    renorm_body = r"""
-#ifndef FP32_MUL_EFFECTIVE_MANT_BITS
-#define FP32_MUL_EFFECTIVE_MANT_BITS 24
-#endif
-#if FP32_MUL_EFFECTIVE_MANT_BITS < 1
-#error "FP32_MUL_EFFECTIVE_MANT_BITS must be >= 1"
-#endif
-#if FP32_MUL_EFFECTIVE_MANT_BITS > 24
-#error "FP32_MUL_EFFECTIVE_MANT_BITS must be <= 24"
-#endif
-
-ap_uint<1> fp32_mult_renorm(ap_uint<24> Ma, ap_uint<24> Mb) {
-  const int drop = 24 - FP32_MUL_EFFECTIVE_MANT_BITS;
-  ap_uint<FP32_MUL_EFFECTIVE_MANT_BITS> Ma_eff =
-      (ap_uint<FP32_MUL_EFFECTIVE_MANT_BITS>)(Ma >> drop);
-  ap_uint<FP32_MUL_EFFECTIVE_MANT_BITS> Mb_eff =
-      (ap_uint<FP32_MUL_EFFECTIVE_MANT_BITS>)(Mb >> drop);
-  ap_uint<2 * FP32_MUL_EFFECTIVE_MANT_BITS> prod_eff =
-      (ap_uint<2 * FP32_MUL_EFFECTIVE_MANT_BITS>)Ma_eff * (ap_uint<2 * FP32_MUL_EFFECTIVE_MANT_BITS>)Mb_eff;
-  ap_uint<48> prod = ((ap_uint<48>)prod_eff) << (2 * drop);
-  return (ap_uint<1>)prod[47];
-}
-"""
-    exp_body = r"""
-ap_uint<8> fp32_mult_exp(ap_uint<8> ea, ap_uint<8> eb, ap_uint<1> renorm, ap_uint<1> carry) {
-  ap_uint<10> sum = (ap_uint<10>)ea + (ap_uint<10>)eb;
-  ap_uint<10> adj = sum - (ap_uint<10>)127 + (ap_uint<10>)renorm;
-  return (ap_uint<8>)adj;
-}
-"""
-    mant_body = r"""
-#ifndef FP32_MUL_EFFECTIVE_MANT_BITS
-#define FP32_MUL_EFFECTIVE_MANT_BITS 24
-#endif
-#if FP32_MUL_EFFECTIVE_MANT_BITS < 1
-#error "FP32_MUL_EFFECTIVE_MANT_BITS must be >= 1"
-#endif
-#if FP32_MUL_EFFECTIVE_MANT_BITS > 24
-#error "FP32_MUL_EFFECTIVE_MANT_BITS must be <= 24"
-#endif
-
-ap_uint<23> fp32_mult_mant(ap_uint<24> Ma, ap_uint<24> Mb, ap_uint<1> renorm) {
-  const int drop = 24 - FP32_MUL_EFFECTIVE_MANT_BITS;
-  ap_uint<FP32_MUL_EFFECTIVE_MANT_BITS> Ma_eff =
-      (ap_uint<FP32_MUL_EFFECTIVE_MANT_BITS>)(Ma >> drop);
-  ap_uint<FP32_MUL_EFFECTIVE_MANT_BITS> Mb_eff =
-      (ap_uint<FP32_MUL_EFFECTIVE_MANT_BITS>)(Mb >> drop);
-  ap_uint<2 * FP32_MUL_EFFECTIVE_MANT_BITS> prod_eff =
-      (ap_uint<2 * FP32_MUL_EFFECTIVE_MANT_BITS>)Ma_eff * (ap_uint<2 * FP32_MUL_EFFECTIVE_MANT_BITS>)Mb_eff;
-  ap_uint<48> prod = ((ap_uint<48>)prod_eff) << (2 * drop);
-  ap_uint<48> pn = (renorm == 1) ? (prod >> 1) : prod;
-  ap_uint<24> top = (ap_uint<24>)pn.range(46, 23);
-  ap_uint<1> round = (ap_uint<1>)pn[22];
-  ap_uint<24> rounded = top + (ap_uint<24>)round;
-  return (ap_uint<23>)rounded.range(22, 0);
-}
-"""
-    full_body = r"""
-ap_uint<32> fp32_full_mul(ap_uint<32> a, ap_uint<32> b) {
-  ap_uint<24> Ma = (ap_uint<24>)(((ap_uint<24>)1 << 23) | (ap_uint<23>)a.range(22, 0));
-  ap_uint<24> Mb = (ap_uint<24>)(((ap_uint<24>)1 << 23) | (ap_uint<23>)b.range(22, 0));
-  ap_uint<1> renorm = fp32_mult_renorm(Ma, Mb);
-  ap_uint<8> exp = fp32_mult_exp((ap_uint<8>)a.range(30, 23),
-                                 (ap_uint<8>)b.range(30, 23),
-                                 renorm, (ap_uint<1>)0);
-  ap_uint<23> frac = fp32_mult_mant(Ma, Mb, renorm);
-  ap_uint<1> sign = (ap_uint<1>)(a[31] ^ b[31]);
-  return (ap_uint<32>)(((ap_uint<32>)sign << 31) | ((ap_uint<32>)exp << 23) | (ap_uint<32>)frac);
-}
-"""
-
-    code, did = _rewrite_func(code, "fp32_mult_renorm", renorm_body, require_irep=True)
-    changed = changed or did
-    code, did = _rewrite_func(code, "fp32_mult_exp", exp_body, require_irep=True)
-    changed = changed or did
-    code, did = _rewrite_func(code, "fp32_mult_mant", mant_body, require_irep=True)
-    changed = changed or did
-    # Always rewrite the full_mul wrapper to avoid comma-operator concat artifacts.
-    code, did = _rewrite_func(code, "fp32_full_mul", full_body, require_irep=False)
-    changed = changed or did
-
-    if changed:
-        print("[INFO] Rewriting fp32_mult_* subcomponent irep output.")
-    return code, changed
-
 def _peephole_simplify(code: str) -> str:
     # shift/add/sub no-ops
     code = re.sub(r'\s*<<\s*0\b', '', code)
@@ -1259,89 +501,34 @@ def convert_cp_to_hls(c_input_path: str, save_output: bool = True) -> str:
     # 0) Header + type normalisation
     code = _ensure_header(code)
     code = _normalize_char_types_and_casts(code)
-    code, mxint8_add_combined_rewritten = _rewrite_mxint8_add_full_sum_combined_solver_equiv(code, c_input_path)
-    code = _fix_mxint8_full_sum_irep(code)
-    code = _replace_known_irep(code)
-    if ENABLE_FP32_ADD_COMBINED_IREP_REWRITE:
-        code, fp32_add_combined_rewritten = _rewrite_fp32_sum_combined_irep(code)
-    else:
-        fp32_add_combined_rewritten = False
-    code, fp32_combined_rewritten = _rewrite_fp32_full_mul_combined_irep(code)
-    code, mxint8_mul_combined_rewritten = _rewrite_mxint8_mult_full_product_combined_broken(code, c_input_path)
-    # Avoid rewriting subcomponent wrappers when we already rewrote the combined full_mul.
-    # Also keep this rewrite opt-in so smt2c structure is preserved by default.
-    if fp32_combined_rewritten or fp32_add_combined_rewritten:
-        code, fp32_sub_rewritten = code, False
-    elif ENABLE_FP32_MULT_SUBCOMP_IREP_REWRITE:
-        code, fp32_sub_rewritten = _rewrite_fp32_mult_subcomponents_irep(code)
-    else:
-        fp32_sub_rewritten = False
-    if not fp32_combined_rewritten and not fp32_add_combined_rewritten and not mxint8_mul_combined_rewritten and not mxint8_add_combined_rewritten:
-        code = _strip_irep_noise(code)
+    if "irep(" in code:
+        raise ValueError(
+            "translate_to_hls_cpp.py no longer rewrites irep(...) artifacts. "
+            "Regenerate the C file with the patched smt2c pipeline."
+        )
+
     code = _safer_unsigned_negation(code)
+    # smt2c frequently emits ternary branches like `(ap_uint<5>) x + 2`,
+    # where the cast only applies to the left operand. HLS then sees
+    # mixed-width conditional arms.
+    code = _cast_entire_addsub(code)
+    code = _cast_var_addsub_paren_rhs(code)
+    code = _cast_paren_lhs_addsub_simple_rhs(code)
 
-    if not fp32_combined_rewritten and not fp32_add_combined_rewritten and not fp32_sub_rewritten and not mxint8_mul_combined_rewritten and not mxint8_add_combined_rewritten:
-        # 1) Fix bracket slices on bare identifiers (safe)
-        code = _replace_bracket_slices_constants(code)
+    # 1) Fix bracket slices on bare identifiers (safe)
+    code = _replace_bracket_slices_constants(code)
 
-        # 2) Fix smt2c bug: x << 2[3,0] -> (x << 2)[3,0]
-        code = _wrap_simple_shift_before_slice(code)
+    # 2) Fix smt2c bug: x << 2[3,0] -> (x << 2)[3,0]
+    code = _wrap_simple_shift_before_slice(code)
 
-        # 3) Simple folds
-        if ENABLE_AGGRESSIVE_EXPR_REWRITES:
-            code = _fold_simple_int_additions(code)
+    # 3) Convert (EXPR)[HI, LO] -> ap_uint<...>((EXPR)).range(HI, LO)
+    code = _replace_bit_extractions(code)
 
-        # 4) Convert (EXPR)[HI, LO] -> ap_uint<...>((EXPR)).range(HI, LO)
-        code = _replace_bit_extractions(code)
+    # 4) Treat 'return (A,B,...)' as a packed value, not comma-operator
+    code = _wrap_return_top_concat(code)
 
-        # 5) Width correctness (aggressive; can alter cast structure)
-        if ENABLE_AGGRESSIVE_EXPR_REWRITES:
-            code = _cast_entire_product(code)
-            code = _cast_entire_addsub(code)
-
-        # 6) Treat 'return (A,B,...)' as a packed value, not comma-operator
-        code = _wrap_return_top_concat(code)
-
-    # 7) Fix cast precedence on ternaries, then unify (make both arms same ap_*int<N>)
-    if not fp32_combined_rewritten and not fp32_add_combined_rewritten and not fp32_sub_rewritten and not mxint8_mul_combined_rewritten and not mxint8_add_combined_rewritten:
-        if ENABLE_AGGRESSIVE_EXPR_REWRITES:
-            code = _wrap_casted_ternary_branches(code)
-            code = _unify_all_ternaries(code)
-            code = _unify_ternaries_in_parens(code)
-            code = _unify_ternaries_inside_casts(code)
-            code = _replace_bracket_slices_constants(code)  # in case new slices appeared
-            code = _wrap_simple_shift_before_slice(code)
-            code = _replace_bit_extractions(code)  # in case new bit extractions appeared
-
-    # 8) Canonicalisers (not all scripts actually output correct C++)
-    if ENABLE_CANONICALISERS and not fp32_combined_rewritten and not fp32_add_combined_rewritten and not fp32_sub_rewritten and not mxint8_mul_combined_rewritten and not mxint8_add_combined_rewritten:
-        code = _canonicalise_fp32_aligner(code)
-        code = _canonicalise_fp32_raw_summer(code)
-        code = _canonicalise_fp32_normaliser(code)
-        if ENABLE_FP32_SUM_CANONICALISER:
-            code = _canonicalise_fp32_sum(code)
-        code = _canonicalise_fp32_mult_renorm(code)
-        code = _canonicalise_fp32_mult_exp(code)
-        code = _canonicalise_fp32_mult_mant(code)
-        code = _canonicalise_fp32_full_mul(code)
-
-        # Default ON for MXINT8 addition subcomponents; set to 0 to keep raw smt2c output.
-        enable_mxint8_add = os.environ.get("ENABLE_MXINT8_ADD_CANON", "1") == "1"
-        if enable_mxint8_add:
-            code = _canonicalise_mxint8_alignment(code)
-            code = _canonicalise_mxint8_raw_adder(code)
-            code = _canonicalise_mxint8_detect_overflow(code)
-            code = _canonicalise_mxint8_normaliser_rounded(code)
-        code = _canonicalise_mxint8_mult_renorm_flag(code)
-        code = _canonicalise_mxint8_mult_mant(code)
-
-        enable_mxint8_full_sum = os.environ.get("ENABLE_MXINT8_ADD_FULL_SUM_CANON", "0") == "1"
-        if enable_mxint8_full_sum:
-            code = _canonicalise_add_full_sum(code)
-
-    # 9) Final tidy
-    if not fp32_combined_rewritten and not fp32_add_combined_rewritten and not fp32_sub_rewritten and not mxint8_mul_combined_rewritten and not mxint8_add_combined_rewritten:
-        code = _peephole_simplify(code)
+    # 5) Final tidy
+    code = _peephole_simplify(code)
     code = _clean(code)
 
     if save_output:

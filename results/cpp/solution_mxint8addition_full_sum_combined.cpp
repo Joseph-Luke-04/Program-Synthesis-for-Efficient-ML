@@ -1,68 +1,93 @@
 #include <ap_int.h>
 
-ap_uint<8> add_full_sum(ap_uint<4> m1, ap_uint<4> e1, ap_uint<4> m2, ap_uint<4> e2) {
-  // Direct structured form of the synthesized BV expression from full_sum_combined.
-  bool swap = ((ap_int<4>)e1 >= (ap_int<4>)e2);
-  ap_int<4> mbig = (ap_int<4>)(swap ? m1 : m2);
-  ap_int<4> msmall = (ap_int<4>)(swap ? m2 : m1);
-  ap_uint<4> ebig = (ap_uint<4>)(swap ? e1 : e2);
-  ap_uint<4> esmall = (ap_uint<4>)(swap ? e2 : e1);
-
-  ap_uint<4> diff4 = (ap_uint<4>)(ebig - esmall);
-  ap_uint<4> bias4 =
-      (diff4 == (ap_uint<4>)1) ? (ap_uint<4>)1 :
-      (diff4 == (ap_uint<4>)2) ? (ap_uint<4>)2 :
-      (diff4 == (ap_uint<4>)3) ? (ap_uint<4>)4 : (ap_uint<4>)0;
-
-  ap_int<4> bias_signed4 = ((ap_int<4>)msmall < 0) ? (ap_int<4>)(-(ap_int<4>)bias4) : (ap_int<4>)bias4;
-  ap_int<5> sum_small5 = (ap_int<5>)msmall + (ap_int<5>)bias_signed4;
-
-  ap_int<4> aligned_small4;
-  if (diff4 >= (ap_uint<4>)4) {
-    aligned_small4 = (ap_int<4>)0;
-  } else if (diff4 == (ap_uint<4>)0) {
-    aligned_small4 = msmall;
-  } else if (diff4 == (ap_uint<4>)1) {
-    aligned_small4 = (ap_int<4>)(sum_small5 >> 1);
-  } else if (diff4 == (ap_uint<4>)2) {
-    aligned_small4 = (ap_int<4>)(sum_small5 >> 2);
-  } else if (diff4 == (ap_uint<4>)3) {
-    aligned_small4 = (ap_int<4>)(sum_small5 >> 3);
-  } else {
-    aligned_small4 = (ap_int<4>)0;
+ap_uint<5> norm_shifted5(ap_uint<5> raw) {
+  ap_uint<5> abs5 = (ap_int<5>)raw < (ap_int<5>)0 ? (ap_uint<5>)  -raw : (ap_uint<5>)  raw;
+  ap_uint<1> __smt2c_ext_0 = ((ap_uint<5>)abs5).range(4, 4);
+  ap_uint<1> __smt2c_ext_1 = ((ap_uint<5>)abs5).range(3, 3);
+  ap_uint<1> __smt2c_ext_2 = ((ap_uint<5>)abs5).range(2, 2);
+  ap_uint<1> __smt2c_ext_3 = ((ap_uint<5>)abs5).range(1, 1);
+  ap_uint<5> __smt2c_result;
+  if(raw == 0) {
+    __smt2c_result = raw;
   }
+  else if(__smt2c_ext_0 == 1) {
+    __smt2c_result = (ap_uint<5>)((ap_int<5>)raw >> (ap_int<5>)2);
+  }
+  else if(__smt2c_ext_1 == 1) {
+    __smt2c_result = (ap_uint<5>)((ap_int<5>)raw >> (ap_int<5>)1);
+  }
+  else if(__smt2c_ext_2 == 1) {
+    __smt2c_result = raw;
+  }
+  else if(__smt2c_ext_3 == 1) {
+    __smt2c_result = raw << 1;
+  }
+  else {
+    __smt2c_result = raw << 2;
+  }
+  return __smt2c_result;
+}
 
-  ap_int<5> raw5 = (ap_int<5>)mbig + (ap_int<5>)aligned_small4;
-  ap_int<5> abs5 = (raw5 < 0) ? (ap_int<5>)(-raw5) : raw5;
-  bool is_zero = (raw5 == 0);
+ap_uint<5> exp_delta5_from_raw(ap_uint<5> raw) {
+  ap_uint<5> abs5 = (ap_int<5>)raw < (ap_int<5>)0 ? (ap_uint<5>)  -raw : (ap_uint<5>)  raw;
+  ap_uint<1> __smt2c_ext_0 = ((ap_uint<5>)abs5).range(4, 4);
+  ap_uint<1> __smt2c_ext_1 = ((ap_uint<5>)abs5).range(3, 3);
+  ap_uint<1> __smt2c_ext_2 = ((ap_uint<5>)abs5).range(2, 2);
+  ap_uint<1> __smt2c_ext_3 = ((ap_uint<5>)abs5).range(1, 1);
+  ap_uint<5> __smt2c_result;
+  if(raw == 0) {
+    __smt2c_result = 0;
+  }
+  else if(__smt2c_ext_0 == 1) {
+    __smt2c_result = 2;
+  }
+  else if(__smt2c_ext_1 == 1) {
+    __smt2c_result = 1;
+  }
+  else if(__smt2c_ext_2 == 1) {
+    __smt2c_result = 0;
+  }
+  else if(__smt2c_ext_3 == 1) {
+    __smt2c_result = 31;
+  }
+  else {
+    __smt2c_result = 30;
+  }
+  return __smt2c_result;
+}
 
-  bool is_b4 = (abs5[4] == 1);
-  bool is_b3 = (abs5[3] == 1);
-  bool is_b2 = (abs5[2] == 1);
-  bool is_b1 = (abs5[1] == 1);
+ap_uint<4> sat_mant4(ap_uint<5> shifted) {
+  ap_uint<4> __smt2c_ext_0 = ((ap_uint<5>)shifted).range(3, 0);
+  ap_uint<4> __smt2c_result;
+  if((ap_int<5>)shifted > (ap_int<5>)7) {
+    __smt2c_result = 7;
+  }
+  else if((ap_int<5>)shifted < (ap_int<5>)24) {
+    __smt2c_result = 8;
+  }
+  else {
+    __smt2c_result = __smt2c_ext_0;
+  }
+  return __smt2c_result;
+}
 
-  ap_int<5> shifted5 = is_zero ? raw5 :
-                      (is_b4 ? (ap_int<5>)(raw5 >> 2) :
-                      (is_b3 ? (ap_int<5>)(raw5 >> 1) :
-                      (is_b2 ? raw5 :
-                      (is_b1 ? (ap_int<5>)(raw5 << 1) : (ap_int<5>)(raw5 << 2)))));
+ap_uint<4> clamp_exp4(ap_uint<5> exp_adj) {
+  ap_uint<5> __smt2c_src_0 = (ap_int<5>)exp_adj > (ap_int<5>)7 ? (ap_uint<5>)  7 : (ap_uint<5>)  ((ap_int<5>)exp_adj < (ap_int<5>)24 ? (ap_uint<5>)  24 : (ap_uint<5>)  exp_adj);
+  ap_uint<4> __smt2c_ext_1 = ((ap_uint<5>)__smt2c_src_0).range(3, 0);
+  return __smt2c_ext_1;
+}
 
-  ap_int<5> adj5 = is_zero ? (ap_int<5>)0 :
-                  (is_b4 ? (ap_int<5>)2 :
-                  (is_b3 ? (ap_int<5>)1 :
-                  (is_b2 ? (ap_int<5>)0 :
-                  (is_b1 ? (ap_int<5>)-1 : (ap_int<5>)-2))));
-
-  ap_int<5> exp_adj5 = (ap_int<5>)((ap_int<4>)ebig) + adj5;
-  ap_int<5> exp_clamp5 = (exp_adj5 > (ap_int<5>)7) ? (ap_int<5>)7 :
-                         (exp_adj5 < (ap_int<5>)-8) ? (ap_int<5>)-8 : exp_adj5;
-
-  ap_int<4> mant4 = is_zero ? (ap_int<4>)0 :
-                   (shifted5 > (ap_int<5>)7) ? (ap_int<4>)7 :
-                   (shifted5 < (ap_int<5>)-8) ? (ap_int<4>)-8 :
-                   (ap_int<4>)shifted5;
-
-  ap_uint<4> exp4 = is_zero ? (ap_uint<4>)0 : (ap_uint<4>)exp_clamp5;
-  ap_uint<4> mant_u = (ap_uint<4>)mant4;
-  return (ap_uint<8>)((((ap_uint<8>)mant_u) << 4) | (ap_uint<8>)exp4);
+ap_uint<8> add_full_sum(ap_uint<4> m1, ap_uint<4> e1, ap_uint<4> m2, ap_uint<4> e2) {
+  bool _let_1 = (ap_int<4>)e1 >= (ap_int<4>)e2;
+  ap_uint<5> _let_2 = (ap_uint<5>)(ap_int<5>)(ap_int<4>)(_let_1 ? (ap_uint<4>)  e1 : (ap_uint<4>)  e2);
+  ap_uint<5> _let_3 = _let_2 - (ap_uint<5>)(ap_int<5>)(ap_int<4>)(_let_1 ? (ap_uint<4>)  e2 : (ap_uint<4>)  e1);
+  ap_uint<4> __smt2c_ext_0 = ((ap_uint<5>)_let_3).range(3, 0);
+  ap_uint<4> _let_4 = __smt2c_ext_0;
+  ap_uint<4> _let_5 = _let_4 == 1 ? (ap_uint<4>)  1 : (ap_uint<4>)  (_let_4 == 2 ? (ap_uint<4>)  2 : (ap_uint<4>)  (_let_4 == 3 ? (ap_uint<4>)  4 : (ap_uint<4>)  0));
+  ap_uint<4> _let_6 = _let_1 ? (ap_uint<4>)  m2 : (ap_uint<4>)  m1;
+  ap_uint<5> __smt2c_src_1 = (ap_uint<5>)((ap_int<5>)((ap_uint<5>)(ap_int<5>)(ap_int<4>)_let_6 + (ap_uint<5>)(ap_int<5>)(ap_int<4>)((ap_int<4>)_let_6 < (ap_int<4>)0 ? (ap_uint<4>)  -_let_5 : (ap_uint<4>)  _let_5)) >> (ap_int<5>)_let_3);
+  ap_uint<4> __smt2c_ext_2 = ((ap_uint<5>)__smt2c_src_1).range(3, 0);
+  ap_uint<5> _let_7 = (ap_uint<5>)(ap_int<5>)(ap_int<4>)(_let_1 ? (ap_uint<4>)  m1 : (ap_uint<4>)  m2) + (ap_uint<5>)(ap_int<5>)(ap_int<4>)(_let_3 >= 4 ? (ap_uint<4>)  0 : (ap_uint<4>)  (_let_3 == 0 ? (ap_uint<4>)  _let_6 : (ap_uint<4>)  __smt2c_ext_2));
+  bool _let_8 = _let_7 == 0;
+  return (ap_uint<8>)(_let_8 ? (ap_uint<4>)  0 : (ap_uint<4>)  sat_mant4(norm_shifted5(_let_7))) << 4 | (ap_uint<8>)(_let_8 ? (ap_uint<4>)  0 : (ap_uint<4>)  clamp_exp4(_let_2 + exp_delta5_from_raw(_let_7)));
 }

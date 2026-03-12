@@ -47,8 +47,8 @@ TARGETS: dict[str, SweepTarget] = {
         op="Addition",
         dtype="FP32",
         synth_target="fp32_add",
-        synth_component="fp32_full_sum",
-        base_cpp_prefix="solution_fp32addition_fp32_full_sum",
+        synth_component="full_sum",
+        base_cpp_prefix="solution_fp32addition_full_sum",
         top_func="fp32_sum",
         cocotb_module="tests.addition.test_fp32_adder",
         variant_env="FP32_ADD_VARIANT",
@@ -162,6 +162,7 @@ def validate_base_cpp_layout(code: str, target: SweepTarget, force_rewrite: bool
             target,
         )
         _require_pattern(code, r"\bfp32_mult_renorm\s*\(", "fp32_mult_renorm helper", target)
+        _require_pattern(code, r"\bfp32_mult_round_carry\s*\(", "fp32_mult_round_carry helper", target)
         _require_pattern(code, r"\bfp32_mult_exp\s*\(", "fp32_mult_exp helper", target)
         _require_pattern(code, r"\bfp32_mult_mant\s*\(", "fp32_mult_mant helper", target)
     elif target.key == "fp32_add":

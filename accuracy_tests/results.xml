@@ -1,8 +1,10 @@
 <testsuites name="results">
   <testsuite name="all" package="all">
-    <property name="random_seed" value="1772723233" />
-    <testcase name="fp32_adder_accuracy_subcomponents" classname="tests.addition.test_fp32_adder" file="/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/accuracy_tests/tests/addition/test_fp32_adder.py" lineno="165" time="1939.6955230236053" sim_time_ns="2952410.0" ratio_time="1522.099713566267" />
-    <testcase name="fp32_adder_accuracy_combined" classname="tests.addition.test_fp32_adder" file="/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/accuracy_tests/tests/addition/test_fp32_adder.py" lineno="173" time="5.936622619628906e-05" sim_time_ns="0.0" ratio_time="0.0" />
-    <testcase name="fp32_adder_accuracy_flopoco" classname="tests.addition.test_fp32_adder" file="/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/accuracy_tests/tests/addition/test_fp32_adder.py" lineno="181" time="4.220008850097656e-05" sim_time_ns="0.0" ratio_time="0.0" />
+    <property name="random_seed" value="1773354501" />
+    <testcase name="fp32_multiplier_accuracy_subcomponents" classname="tests.multiplication.test_fp32_multiplier" file="/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/accuracy_tests/tests/multiplication/test_fp32_multiplier.py" lineno="314" time="5.506319999694824" sim_time_ns="100006.0" ratio_time="18162.039257715245">
+      <failure error_type="AssertionError" error_msg="99th percentile ULP too high: 4003591289" />
+    </testcase>
+    <testcase name="fp32_multiplier_accuracy_combined" classname="tests.multiplication.test_fp32_multiplier" file="/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/accuracy_tests/tests/multiplication/test_fp32_multiplier.py" lineno="322" time="4.8160552978515625e-05" sim_time_ns="0.0" ratio_time="0.0" />
+    <testcase name="fp32_multiplier_accuracy_flopoco" classname="tests.multiplication.test_fp32_multiplier" file="/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/accuracy_tests/tests/multiplication/test_fp32_multiplier.py" lineno="330" time="3.9577484130859375e-05" sim_time_ns="0.0" ratio_time="0.0" />
   </testsuite>
 </testsuites>

@@ -1,7 +1,7 @@
 import cocotb
 from cocotb.clock import Clock
 from cocotb.triggers import RisingEdge, Timer
-import random 
+import random
 import struct
 import numpy as np
 import os
@@ -18,6 +18,46 @@ def _is_finite_non_subnormal_u32(u: int) -> bool:
     if exp == 0 and frac != 0:
         return False  # subnormal
     return True  # zero or normal finite
+
+
+def _sample_normal_u32(rng: random.Random) -> int:
+    """Sample a finite normal FP32 bit-pattern uniformly over sign/exp/frac."""
+    sign = rng.getrandbits(1)
+    exp = rng.randint(1, 254)  # normal exponents only (no subnormals, no Inf/NaN)
+    frac = rng.getrandbits(23)
+    return (sign << 31) | (exp << 23) | frac
+
+
+def _sample_u32_from_float_range(rng: random.Random, lo: float, hi: float) -> int:
+    """Sample a float value in [lo, hi], quantize to FP32, return its uint32 bits.
+       Rejects subnormals, NaN, and Inf."""
+    while True:
+        u = float_to_uint32(np.float32(rng.uniform(lo, hi)))
+        if _is_finite_non_subnormal_u32(u):
+            return u
+
+
+def _sample_operands(rng: random.Random, mode: str) -> tuple[int, int]:
+    """Sample two operands. All modes guarantee finite, non-subnormal results."""
+    if mode == "bits" or mode == "normal_full":
+        # Uniform over all normal FP32 bit-patterns (skips subnormals/NaN/Inf).
+        return _sample_normal_u32(rng), _sample_normal_u32(rng)
+    if mode == "wide":
+        return (
+            _sample_u32_from_float_range(rng, -1024.0, 1024.0),
+            _sample_u32_from_float_range(rng, -1024.0, 1024.0),
+        )
+    if mode == "small":
+        return (
+            _sample_u32_from_float_range(rng, 0.0, 1.0),
+            _sample_u32_from_float_range(rng, 0.0, 1.0),
+        )
+    # Fallback: default range matches synthesis [-1e4, 1e4].
+    return (
+        _sample_u32_from_float_range(rng, -1e4, 1e4),
+        _sample_u32_from_float_range(rng, -1e4, 1e4),
+    )
+
 
 def _order_for_ulp(u: int) -> int:
     """Order-preserving map of IEEE754 bits to 32-bit unsigned ints.
@@ -36,6 +76,39 @@ def ulp_distance(a_bits, b_bits):
 # =====================================================================
 #                         The Cocotb Testbench
 # =====================================================================
+
+def _report_stats(dut, tag: str, ulps: list, rel_err_pcts: list,
+                  skipped: int, rel_err_threshold_pct: float):
+    """Print accuracy statistics for one sampling pass."""
+    if not ulps:
+        dut._log.warning(f"[{tag}] No samples tested (all skipped?).")
+        return
+
+    N = len(ulps)
+    avg_ulp = float(np.mean(ulps))
+    p99_ulp = int(np.percentile(ulps, 99))
+    max_ulp = int(np.max(ulps))
+
+    dut._log.info(f"[{tag}] Ran {N} cases (skipped {skipped}). "
+                  f"ULP avg={avg_ulp:.3f}, p99={p99_ulp}, max={max_ulp}")
+
+    within_rel = sum(e <= rel_err_threshold_pct for e in rel_err_pcts)
+    avg_rel_pct = float(np.mean(rel_err_pcts))
+    p99_rel_pct = float(np.percentile(rel_err_pcts, 99))
+    dut._log.info(
+        f"[{tag}] Within {rel_err_threshold_pct:g}% relative error: {within_rel/N:.2%} "
+        f"(avg={avg_rel_pct:.3f}%, p99={p99_rel_pct:.3f}%)"
+    )
+
+    exact   = sum(d == 0 for d in ulps)
+    within1 = sum(d <= 1 for d in ulps)
+    within2 = sum(d <= 2 for d in ulps)
+    within4 = sum(d <= 4 for d in ulps)
+    dut._log.info(
+        f"[{tag}] Exact {exact/N:.2%}, ≤1 ULP {within1/N:.2%}, "
+        f"≤2 ULP {within2/N:.2%}, ≤4 ULP {within4/N:.2%}"
+    )
+
 
 async def _run_fp32_adder_accuracy(dut, label: str):
     dut._log.info(f"Starting FP32 adder accuracy test ({label})")
@@ -59,24 +132,28 @@ async def _run_fp32_adder_accuracy(dut, label: str):
     else:
         dut.ap_rst.value = 0
         dut.ap_start.value = 1
-    
-    num_samples = 100000
-    ulps = []
-    rel_err_pcts = []
-    skipped = 0
-    
-    for _ in range(num_samples):
-        a = random.getrandbits(32)
-        b = random.getrandbits(32)
+
+    num_samples = int(os.getenv("FP32_ADD_RANDOM_SAMPLES", "100000"))
+    sample_seed = int(os.getenv("FP32_ADD_SEED", "7"))
+    rel_err_threshold_pct = float(os.getenv("FP32_ADD_REL_ERR_PCT", "5"))
+    sample_mode = os.getenv("FP32_ADD_MODE", "default").strip().lower()
+    gen_samples = int(os.getenv("FP32_ADD_GEN_SAMPLES", "50000"))
+    rng = random.Random(sample_seed)
+    valid_modes = {"bits", "normal_full", "wide", "small", "default"}
+    if sample_mode not in valid_modes:
+        dut._log.warning(f"Unknown FP32_ADD_MODE='{sample_mode}', falling back to 'default'.")
+        sample_mode = "default"
+    dut._log.info(f"Random operand sampler mode: {sample_mode} (seed={sample_seed})")
+
+    async def _drive_and_measure(a: int, b: int):
+        # All samplers already guarantee finite non-subnormal inputs,
+        # but guard just in case.
         if not _is_finite_non_subnormal_u32(a) or not _is_finite_non_subnormal_u32(b):
-            # keep only finite, non-subnormal operands
-            skipped += 1
-            continue
+            return None, None, None, None
 
         s1, e1, m1 = (a >> 31) & 1, (a >> 23) & 0xFF, a & 0x7FFFFF
         s2, e2, m2 = (b >> 31) & 1, (b >> 23) & 0xFF, b & 0x7FFFFF
 
-        # drive DUT
         dut.s1.value, dut.e1.value, dut.m1.value = s1, e1, m1
         dut.s2.value, dut.e2.value, dut.m2.value = s2, e2, m2
 
@@ -99,17 +176,16 @@ async def _run_fp32_adder_accuracy(dut, label: str):
             else:
                 await RisingEdge(dut.ap_clk)
         else:
-            await Timer(1, unit="ns")  # allow combinational logic to settle
+            await Timer(1, unit="ns")
 
         got_bits = int(dut.ap_return.value)
 
-        # IEEE-754 single-precision reference (rounded to nearest-even)
         with np.errstate(over='ignore', invalid='ignore'):
             ref_bits = float_to_uint32(np.float32(uint32_to_float(a)) + np.float32(uint32_to_float(b)))
+
+        # Skip if the *result* is NaN/Inf/subnormal (e.g. overflow from adding large normals).
         if not _is_finite_non_subnormal_u32(ref_bits):
-            # keep only finite, non-subnormal oracle outputs
-            skipped += 1
-            continue
+            return None, None, None, None
 
         got_f = np.float32(uint32_to_float(got_bits))
         ref_f = np.float32(uint32_to_float(ref_bits))
@@ -120,37 +196,65 @@ async def _run_fp32_adder_accuracy(dut, label: str):
         else:
             rel_pct = abs(float((got_f - ref_f) / ref_f)) * 100.0
 
-        ulps.append(ulp_distance(got_bits, ref_bits))
+        return got_bits, ref_bits, ulp_distance(got_bits, ref_bits), rel_pct
+
+    # --- Pass 1: in-distribution (synthesis range) ---
+    ulps = []
+    rel_err_pcts = []
+    skipped = 0
+
+    for _ in range(num_samples):
+        a, b = _sample_operands(rng, sample_mode)
+        _, _, d, rel_pct = await _drive_and_measure(a, b)
+        if d is None:
+            skipped += 1
+            continue
+        ulps.append(d)
         rel_err_pcts.append(rel_pct)
 
-    if not ulps:
-        raise AssertionError("No samples tested (all skipped?)")
+    _report_stats(dut, f"IN-DIST ({sample_mode})", ulps, rel_err_pcts,
+                  skipped, rel_err_threshold_pct)
 
-    avg_ulp = float(np.mean(ulps))
-    p99_ulp = int(np.percentile(ulps, 99))
-    max_ulp = int(np.max(ulps))
+    # Optional dump for downstream plotting.
+    dump_path = os.getenv("FP32_ADD_DUMP_PATH", "").strip()
+    if dump_path:
+        try:
+            dump_dir = os.path.dirname(dump_path)
+            if dump_dir:
+                os.makedirs(dump_dir, exist_ok=True)
+            np.savez_compressed(
+                dump_path,
+                rel_err_pct=np.asarray(rel_err_pcts, dtype=np.float32),
+                ulp=np.asarray(ulps, dtype=np.int32),
+                sample_mode=np.asarray([sample_mode]),
+                rel_err_threshold_pct=np.asarray([rel_err_threshold_pct], dtype=np.float32),
+            )
+            dut._log.info(f"Saved per-sample error dump: {dump_path}")
+        except Exception as exc:
+            dut._log.warning(f"Failed to dump per-sample errors to {dump_path}: {exc}")
 
-    dut._log.info(f"Ran {len(ulps)} cases (skipped {skipped}). "
-                  f"ULP avg={avg_ulp:.3f}, p99={p99_ulp}, max={max_ulp}")
-    
-    N = len(ulps)
-    within_5pct = sum(e <= 5.0 for e in rel_err_pcts)
-    avg_rel_pct = float(np.mean(rel_err_pcts)) if rel_err_pcts else -1.0
-    p99_rel_pct = float(np.percentile(rel_err_pcts, 99)) if rel_err_pcts else -1.0
-    dut._log.info(
-        f"Within 5% relative error: {within_5pct/N:.2%} "
-        f"(avg={avg_rel_pct:.3f}%, p99={p99_rel_pct:.3f}%)"
-    )
-
-    exact   = sum(d == 0 for d in ulps)
-    within1 = sum(d <= 1 for d in ulps)
-    within2 = sum(d <= 2 for d in ulps)
-    within4 = sum(d <= 4 for d in ulps)
-    dut._log.info(f"Exact {exact/N:.2%}, ≤1 ULP {within1/N:.2%}, ≤2 ULP {within2/N:.2%}, ≤4 ULP {within4/N:.2%}")
-
-    # Set a tolerance you’re comfortable with. Without guard/sticky/round,
-    # expect occasional multi-ULP errors.
+    p99_ulp = int(np.percentile(ulps, 99)) if ulps else 999
     assert p99_ulp <= 4, f"99th percentile ULP too high: {p99_ulp}"
+
+    # --- Pass 2: generalisation (full IEEE normal range) ---
+    # Skip if the primary mode already covers all normals.
+    if sample_mode not in ("bits", "normal_full") and gen_samples > 0:
+        gen_ulps = []
+        gen_rel = []
+        gen_skipped = 0
+        gen_rng = random.Random(sample_seed + 1)
+
+        for _ in range(gen_samples):
+            a, b = _sample_operands(gen_rng, "normal_full")
+            _, _, d, rel_pct = await _drive_and_measure(a, b)
+            if d is None:
+                gen_skipped += 1
+                continue
+            gen_ulps.append(d)
+            gen_rel.append(rel_pct)
+
+        _report_stats(dut, "GENERALISATION (normal_full)", gen_ulps, gen_rel,
+                      gen_skipped, rel_err_threshold_pct)
 
 
 def _should_run(label: str) -> bool:

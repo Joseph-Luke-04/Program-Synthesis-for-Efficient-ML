@@ -4,4 +4,5 @@ __pycache__/
 
 results/HLS/
 results/sweeps/
+results/grammar_selection/
 accuracy_tests/sim_build

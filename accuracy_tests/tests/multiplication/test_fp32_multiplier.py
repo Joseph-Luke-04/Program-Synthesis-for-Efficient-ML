@@ -37,9 +37,8 @@ def _sample_u32_from_float_range(rng: random.Random, lo: float, hi: float) -> in
 
 
 def _sample_operands(rng: random.Random, mode: str) -> tuple[int, int]:
-    if mode == "bits":
-        return rng.getrandbits(32), rng.getrandbits(32)
-    if mode == "normal_full":
+    """Sample two operands. All modes guarantee finite, non-subnormal results."""
+    if mode == "bits" or mode == "normal_full":
         return _sample_normal_u32(rng), _sample_normal_u32(rng)
     if mode == "wide":
         return (
@@ -110,6 +109,7 @@ async def _run_fp32_multiplier_accuracy(dut, label: str):
     sample_seed = int(os.getenv("FP32_MUL_SEED", "7"))
     rel_err_threshold_pct = float(os.getenv("FP32_MUL_REL_ERR_PCT", "5"))
     sample_mode = os.getenv("FP32_MUL_MODE", "bits").strip().lower()
+    gen_samples = int(os.getenv("FP32_MUL_GEN_SAMPLES", "50000"))
     rng = random.Random(sample_seed)
     valid_modes = {"bits", "normal_full", "wide", "small"}
     if sample_mode not in valid_modes:
@@ -258,6 +258,48 @@ async def _run_fp32_multiplier_accuracy(dut, label: str):
     # Set a tolerance you're comfortable with. Without full IEEE handling,
     # expect occasional multi-ULP errors.
     assert p99_ulp <= 4, f"99th percentile ULP too high: {p99_ulp}"
+
+    # --- Pass 2: generalisation (full IEEE normal range) ---
+    # Skip if the primary mode already covers all normals.
+    if sample_mode not in ("bits", "normal_full") and gen_samples > 0:
+        gen_ulps = []
+        gen_rel = []
+        gen_skipped = 0
+        gen_rng = random.Random(sample_seed + 1)
+
+        for _ in range(gen_samples):
+            a, b = _sample_operands(gen_rng, "normal_full")
+            _, _, d, rel_pct = await _drive_and_measure(a, b)
+            if d is None:
+                gen_skipped += 1
+                continue
+            gen_ulps.append(d)
+            gen_rel.append(rel_pct)
+
+        if gen_ulps:
+            gen_N = len(gen_ulps)
+            gen_avg_ulp = float(np.mean(gen_ulps))
+            gen_p99_ulp = int(np.percentile(gen_ulps, 99))
+            gen_max_ulp = int(np.max(gen_ulps))
+            dut._log.info(
+                f"[GENERALISATION (normal_full)] Ran {gen_N} cases (skipped {gen_skipped}). "
+                f"ULP avg={gen_avg_ulp:.3f}, p99={gen_p99_ulp}, max={gen_max_ulp}"
+            )
+            gen_within_rel = sum(e <= rel_err_threshold_pct for e in gen_rel)
+            gen_avg_rel = float(np.mean(gen_rel))
+            gen_p99_rel = float(np.percentile(gen_rel, 99))
+            dut._log.info(
+                f"[GENERALISATION (normal_full)] Within {rel_err_threshold_pct:g}% relative error: "
+                f"{gen_within_rel/gen_N:.2%} (avg={gen_avg_rel:.3f}%, p99={gen_p99_rel:.3f}%)"
+            )
+            gen_exact = sum(d == 0 for d in gen_ulps)
+            gen_w1 = sum(d <= 1 for d in gen_ulps)
+            gen_w2 = sum(d <= 2 for d in gen_ulps)
+            gen_w4 = sum(d <= 4 for d in gen_ulps)
+            dut._log.info(
+                f"[GENERALISATION (normal_full)] Exact {gen_exact/gen_N:.2%}, "
+                f"≤1 ULP {gen_w1/gen_N:.2%}, ≤2 ULP {gen_w2/gen_N:.2%}, ≤4 ULP {gen_w4/gen_N:.2%}"
+            )
 
 
 def _should_run(label: str) -> bool:

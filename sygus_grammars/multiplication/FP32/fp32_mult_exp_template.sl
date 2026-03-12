@@ -1,85 +1,94 @@
 (set-logic BV)
 
-; Exponent for normals-only multiply.
-; Expected shape (one valid option in grammar):
-;   e_out = ea + eb - 127 + renorm + carry
-; where ea/eb are biased exponents (8-bit), renorm/carry are 1-bit.
+; ===============================================================
+; FP32 multiplication exponent — "in-between" structural sketch.
+; Computes biased result exponent from two input exponents,
+; renorm flag, and carry flag.
+; Formula: result = ea + eb - bias + renorm + carry (approximately).
+; Search space ≈ 360 combinations.
+; SumRaw10(3) × Bias10(4) × Unbiased10(2) × RenormAdj10(3) × CarryAdj10(3) × Out8(2) = 432
+; ===============================================================
+
 (synth-fun fp32_mult_exp
   ((ea (_ BitVec 8)) (eb (_ BitVec 8)) (renorm (_ BitVec 1)) (carry (_ BitVec 1)))
   (_ BitVec 8)
 
   (
-    (Start8 (_ BitVec 8))
-    (Base8  (_ BitVec 8))
-    (Inc8   (_ BitVec 8))
-    (Sum8   (_ BitVec 8))
-    (W9     (_ BitVec 9))
-    (W10    (_ BitVec 10))
-    (Cond   Bool)
+    (Start8      (_ BitVec 8))
+    (EA10        (_ BitVec 10))
+    (EB10        (_ BitVec 10))
+    (SumRaw10    (_ BitVec 10))
+    (Bias10      (_ BitVec 10))
+    (Unbiased10  (_ BitVec 10))
+    (Renorm10    (_ BitVec 10))
+    (RenormAdj10 (_ BitVec 10))
+    (Carry10     (_ BitVec 10))
+    (CarryAdj10  (_ BitVec 10))
+    (Out8        (_ BitVec 8))
   )
   (
+    ; --- Output: truncate to 8 bits ---
     (Start8 (_ BitVec 8) (
-      Sum8
-      Base8
-      (bvadd Base8 Inc8)
-      (bvsub Base8 Inc8)
-      (ite Cond (bvadd Base8 Inc8) Base8)
+      Out8
     ))
 
-    ; Base exponent candidates (includes the standard one, plus nearby variants)
-    (Base8 (_ BitVec 8) (
-      (bvsub (bvadd ea eb) #b01111111)          ; ea+eb-127 (standard)
-      (bvsub (bvadd ea eb) #b01111110)          ; ea+eb-126
-      (bvsub (bvadd ea eb) #b10000000)          ; ea+eb-128
-      (bvadd ea eb)                             ; no bias sub (alternative)
-      (bvsub ea #b01111111)
-      (bvsub eb #b01111111)
+    ; --- Stage 0: Extend inputs to 10 bits ---
+    (EA10 (_ BitVec 10) (
+      ((_ zero_extend 2) ea)
     ))
 
-    ; Increment candidates from renorm/carry (lets synth explore)
-    (Inc8 (_ BitVec 8) (
-      #b00000000
-      #b00000001
-      #b00000010
-      ((_ zero_extend 7) renorm)
-      ((_ zero_extend 7) carry)
-      (bvadd ((_ zero_extend 7) renorm) ((_ zero_extend 7) carry))
-      (bvor  ((_ zero_extend 7) renorm) ((_ zero_extend 7) carry))
-      (bvand ((_ zero_extend 7) renorm) ((_ zero_extend 7) carry))
+    (EB10 (_ BitVec 10) (
+      ((_ zero_extend 2) eb)
     ))
 
-    (Sum8 (_ BitVec 8) (
-      (bvadd Base8 Inc8)
-      ((_ extract 7 0) W9)
-      ((_ extract 7 0) W10)
+    ; --- Stage 1: Sum the two exponents ---
+    (SumRaw10 (_ BitVec 10) (
+      (bvadd EA10 EB10)
+      (bvadd ((_ sign_extend 2) ea) ((_ sign_extend 2) eb))
+      (bvor EA10 EB10)
     ))
 
-    ; Another way: do the math in wider bitwidth then take low 8 bits
-    (W9 (_ BitVec 9) (
-      (bvsub (bvadd ((_ zero_extend 1) ea) ((_ zero_extend 1) eb)) (_ bv127 9))
-      (bvadd (bvsub (bvadd ((_ zero_extend 1) ea) ((_ zero_extend 1) eb)) (_ bv127 9))
-             ((_ zero_extend 8) renorm))
-      (bvadd (bvsub (bvadd ((_ zero_extend 1) ea) ((_ zero_extend 1) eb)) (_ bv127 9))
-             ((_ zero_extend 8) carry))
-      (bvadd (bvsub (bvadd ((_ zero_extend 1) ea) ((_ zero_extend 1) eb)) (_ bv127 9))
-             (bvadd ((_ zero_extend 8) renorm) ((_ zero_extend 8) carry)))
+    ; --- Stage 2: Subtract bias ---
+    (Bias10 (_ BitVec 10) (
+      (_ bv127 10)           ; standard IEEE 754 bias
+      (_ bv126 10)           ; bias - 1
+      (_ bv128 10)           ; bias + 1
+      (_ bv0 10)             ; no bias removal
     ))
 
-    (W10 (_ BitVec 10) (
-      (bvsub (bvadd ((_ zero_extend 2) ea) ((_ zero_extend 2) eb)) (_ bv127 10))
-      (bvadd (bvsub (bvadd ((_ zero_extend 2) ea) ((_ zero_extend 2) eb)) (_ bv127 10))
-             ((_ zero_extend 9) renorm))
-      (bvadd (bvsub (bvadd ((_ zero_extend 2) ea) ((_ zero_extend 2) eb)) (_ bv127 10))
-             ((_ zero_extend 9) carry))
+    (Unbiased10 (_ BitVec 10) (
+      (bvsub SumRaw10 Bias10)
+      (bvadd SumRaw10 Bias10)
     ))
 
-    (Cond Bool (
-      (= renorm #b1)
-      (= carry #b1)
-      (and (= renorm #b1) (= carry #b1))
-      (or  (= renorm #b1) (= carry #b1))
-      (bvugt ea eb)
-      (bvugt eb ea)
+    ; --- Stage 3: Renorm adjustment ---
+    (Renorm10 (_ BitVec 10) (
+      ((_ zero_extend 9) renorm)
+    ))
+
+    (RenormAdj10 (_ BitVec 10) (
+      (bvadd Unbiased10 Renorm10)
+      (bvsub Unbiased10 Renorm10)
+      Unbiased10
+    ))
+
+    ; --- Stage 4: Carry adjustment ---
+    (Carry10 (_ BitVec 10) (
+      ((_ zero_extend 9) carry)
+    ))
+
+    (CarryAdj10 (_ BitVec 10) (
+      (bvadd RenormAdj10 Carry10)
+      (bvsub RenormAdj10 Carry10)
+      RenormAdj10
+    ))
+
+    ; --- Stage 5: Extract result ---
+    (Out8 (_ BitVec 8) (
+      ((_ extract 7 0) CarryAdj10)
+      (ite (= renorm #b1)
+           ((_ extract 7 0) (bvadd CarryAdj10 (_ bv1 10)))
+           ((_ extract 7 0) CarryAdj10))
     ))
   )
 )

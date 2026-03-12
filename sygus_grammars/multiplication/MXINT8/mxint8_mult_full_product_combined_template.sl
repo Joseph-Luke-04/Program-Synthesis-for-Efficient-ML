@@ -1,9 +1,11 @@
 (set-logic BV)
 
 ; ===============================================================
-; Monolithic grammar for an approximate MXINT8 multiplier.
-; Renorm and mantissa scaling are kept small but with a few choices.
-; Packed output: [mant(4)][exp(4)].
+; Monolithic MXINT8 multiplier — V2 "structural sketch" grammar.
+; Encodes the pipeline stages (multiply → renorm → shift/round →
+; saturate → exponent adjust) but leaves implementation choices
+; at each stage open for the solver to discover.
+; Search space ≈ 25 000 combinations (vs V1 ≈ many millions).
 ; ===============================================================
 
 (synth-fun mult_mxint_full_product

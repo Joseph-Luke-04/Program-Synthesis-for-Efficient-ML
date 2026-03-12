@@ -1,1 +1,1 @@
-(define-fun detect_overflow ((raw_sum (_ BitVec 5))) (_ BitVec 1) (ite (or (bvsgt raw_sum #b00111) (bvslt raw_sum #b11000)) #b1 #b0))
+(define-fun detect_overflow ((raw_sum (_ BitVec 5))) (_ BitVec 1) (ite (not (= ((_ extract 4 4) raw_sum) ((_ extract 3 3) raw_sum))) #b1 #b0))

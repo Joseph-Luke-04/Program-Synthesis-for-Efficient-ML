@@ -24,6 +24,20 @@ def _block_name(blk: str) -> str:
     m = re.search(r"\(define-fun\s+([^\s()]+)", blk)
     return m.group(1) if m else "<unknown>"
 
+def _dedupe_define_fun_blocks(blocks: list[str]) -> tuple[list[str], list[str]]:
+    """Drop duplicate define-fun names while preserving first occurrence order."""
+    unique: list[str] = []
+    skipped: list[str] = []
+    seen: set[str] = set()
+    for blk in blocks:
+        name = _block_name(blk)
+        if name in seen:
+            skipped.append(name)
+            continue
+        seen.add(name)
+        unique.append(blk)
+    return unique, skipped
+
 def run_smt2c_translation(
     smt_path: str,
     save_dir: str,
@@ -62,6 +76,7 @@ def run_smt2c_translation(
     main_text = Path(smt_path).read_text()
     all_blocks.extend(_extract_define_funs(main_text))
 
+    all_blocks, skipped_dupes = _dedupe_define_fun_blocks(all_blocks)
     if not all_blocks:
         print("[ERROR] No '(define-fun ...)' expressions found.")
         return None
@@ -69,6 +84,9 @@ def run_smt2c_translation(
     print(f"[INFO] Found {len(all_blocks)} define-fun block(s). Order passed to smt2c:")
     for nm in map(_block_name, all_blocks):
         print(f"    - {nm}")
+    if skipped_dupes:
+        skipped_list = ", ".join(skipped_dupes)
+        print(f"[INFO] Skipped duplicate define-fun block(s): {skipped_list}")
 
     # One-shot call to smt2c with ALL blocks as separate argv items
     argv = [smt2c_path] + [re.sub(r"\s+", " ", b).strip() for b in all_blocks]
@@ -81,6 +99,9 @@ def run_smt2c_translation(
         return None
 
     final_c_code = (result.stdout or "").strip()
+    # smt2c emits uppercase TRUE/FALSE for SMT booleans; C++ needs lowercase.
+    final_c_code = re.sub(r'\bFALSE\b', 'false', final_c_code)
+    final_c_code = re.sub(r'\bTRUE\b', 'true', final_c_code)
     if not final_c_code:
         print("[ERROR] smt2c produced empty output.")
         return None

@@ -1,19 +1,55 @@
 (set-logic BV)
 
-(define-fun select_exponent ((e1 (_ BitVec 4)) (e2 (_ BitVec 4))) (_ BitVec 4) (ite (bvsge e1 e2) e1 e2))
-(define-fun align_mantissas ((m1 (_ BitVec 4)) (e1 (_ BitVec 4)) (m2 (_ BitVec 4)) (e2 (_ BitVec 4))) (_ BitVec 8) (let ((_let_1 (bvsge e1 e2))) (concat (ite _let_1 m1 (bvashr m1 (bvsub e2 e1))) (ite _let_1 (bvashr m2 (bvsub e1 e2)) m2))))
-(define-fun add_raw ((m1 (_ BitVec 4)) (e1 (_ BitVec 4)) (m2 (_ BitVec 4)) (e2 (_ BitVec 4))) (_ BitVec 9) (let ((_let_1 (align_mantissas m1 e1 m2 e2))) (concat (bvadd ((_ sign_extend 1) ((_ extract 7 4) _let_1)) ((_ sign_extend 1) ((_ extract 3 0) _let_1))) (select_exponent e1 e2))))
+; ===============================================================
+; MXINT8 addition overflow detection — "in-between" structural sketch.
+; Detects whether the 5-bit raw sum overflows signed 4-bit range.
+; Returns 1 if overflow, 0 otherwise.
+; Search space ≈ 75 combinations.
+; Abs5(3) × Threshold5(5) × Overflows(5) = 75
+; ===============================================================
+
+; Helper definitions are injected by the synthesis driver.
 
 (synth-fun detect_overflow
     ((raw_sum (_ BitVec 5)))
     (_ BitVec 1)
     (
-        (Start1 (_ BitVec 1))
-        (Condition Bool)
+        (Start1     (_ BitVec 1))
+        (Abs5       (_ BitVec 5))
+        (Threshold5 (_ BitVec 5))
+        (Overflows  Bool)
     )
     (
-      (Start1 (_ BitVec 1) ( (ite Condition #b1 #b0) ))
-      (Condition Bool ( (or (bvsgt raw_sum #b00111) (bvslt raw_sum #b11000)) ))
+      (Start1 (_ BitVec 1) (
+        (ite Overflows #b1 #b0)
+        #b0
+      ))
+
+      ; --- Stage 1: Absolute value computation ---
+      (Abs5 (_ BitVec 5) (
+        (ite (bvslt raw_sum #b00000) (bvneg raw_sum) raw_sum)
+        raw_sum
+        (bvand raw_sum #b01111)
+      ))
+
+      ; --- Stage 2: Overflow threshold ---
+      (Threshold5 (_ BitVec 5) (
+        #b00111       ; 7
+        #b01000       ; 8
+        #b01111       ; 15
+        #b00100       ; 4
+        #b01010       ; 10
+      ))
+
+      ; --- Stage 3: Overflow detection ---
+      ; Solver discovers comparison type and strategy.
+      (Overflows Bool (
+        (bvsgt Abs5 Threshold5)
+        (bvsge Abs5 Threshold5)
+        (bvugt Abs5 Threshold5)
+        (bvuge Abs5 Threshold5)
+        (not (= ((_ extract 4 4) raw_sum) ((_ extract 3 3) raw_sum)))
+      ))
     )
 )
 

@@ -152,6 +152,17 @@ class FP32MultiplicationTarget:
         synth_call = f"(fp32_mult_exp {ea_bv} {eb_bv} {ren_bv} {car_bv})"
         return f"(constraint (= {synth_call} {eout_bv}))"
 
+    def gen_round_carry_constraint(self, data: Dict, config) -> str:
+        round_carry = 1 if (data["E_norm"] - (data["E_sum"] + data["renorm"])) == 1 else 0
+
+        Ma_bv = to_smt_bitvec(data["Ma"], 24)
+        Mb_bv = to_smt_bitvec(data["Mb"], 24)
+        ren_bv = to_smt_bitvec(data["renorm"], 1)
+        car_bv = to_smt_bitvec(round_carry, 1)
+
+        synth_call = f"(fp32_mult_round_carry {Ma_bv} {Mb_bv} {ren_bv})"
+        return f"(constraint (= {synth_call} {car_bv}))"
+
     def gen_mant_constraint(self, data: Dict, config) -> str:
         Ma_bv = to_smt_bitvec(data["Ma"], 24)
         Mb_bv = to_smt_bitvec(data["Mb"], 24)
@@ -177,6 +188,10 @@ class FP32MultiplicationTarget:
             "renorm": {
                 "template": "sygus_grammars/multiplication/FP32/fp32_mult_renorm_template.sl",
                 "generator": self.gen_renorm_constraint,
+            },
+            "round_carry": {
+                "template": "sygus_grammars/multiplication/FP32/fp32_mult_round_carry_template.sl",
+                "generator": self.gen_round_carry_constraint,
             },
             "exp": {
                 "template": "sygus_grammars/multiplication/FP32/fp32_mult_exp_template.sl",
