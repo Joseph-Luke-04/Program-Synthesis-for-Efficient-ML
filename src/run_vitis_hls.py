@@ -48,7 +48,15 @@ def _resolve_xilinx_settings(tool: str) -> str:
     env_path = os.environ.get(env_key, "").strip()
     if env_path:
         return str(Path(env_path).expanduser())
-    return f"/tools/Xilinx/2025.1/{tool}/settings64.sh"
+    candidates = [
+        f"/tools/Xilinx/2025.1/{tool}/settings64.sh",
+        f"/home/tools/Xilinx/2025.1/2025.1/{tool}/settings64.sh",
+        f"/home/tools/Xilinx/2025.1/{tool}/settings64.sh",
+    ]
+    for candidate in candidates:
+        if Path(candidate).exists():
+            return candidate
+    return candidates[0]
 
 
 def create_hls_tcl(design_path: Path, top_func: str, output_dir: Path) -> Path:

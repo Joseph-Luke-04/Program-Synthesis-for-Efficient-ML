@@ -1,0 +1,15 @@
+.git
+.gitignore
+.venv
+__pycache__
+*.py[cod]
+.DS_Store
+
+results
+accuracy_tests/sim_build
+accuracy_tests/results.xml
+logs
+
+.vscode
+.idea
+*.ipynb_checkpoints

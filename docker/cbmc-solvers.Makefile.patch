@@ -1,0 +1,47 @@
+diff --git a/src/solvers/Makefile b/src/solvers/Makefile
+index d8c790ae..91c249e7 100644
+--- a/src/solvers/Makefile
++++ b/src/solvers/Makefile
+@@ -18,7 +18,10 @@ ifneq ($(MINISAT2),)
+   MINISAT2_SRC=sat/satcheck_minisat2.cpp
+   MINISAT2_INCLUDE=-I $(MINISAT2)
+   MINISAT2_LIB=$(MINISAT2)/minisat/simp/SimpSolver$(OBJEXT) $(MINISAT2)/minisat/core/Solver$(OBJEXT) $(MINISAT2)/minisat/utils/Options$(OBJEXT)
+-  CP_CXXFLAGS += -DHAVE_MINISAT2 -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS
++  # Relax warnings for Minisat2
++  CP_CXXFLAGS += -DHAVE_MINISAT2 -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS \
++               -Wno-error=literal-suffix -Wno-pedantic -Wno-deprecated-declarations
++
+   CLEANFILES += $(MINISAT2_LIB) $(patsubst %$(OBJEXT), %$(DEPEXT), $(MINISAT2_LIB))
+ endif
+ 
+@@ -276,6 +279,30 @@ ifneq ($(SOLVER_OBJS),)
+ -include $(SOLVER_OBJS:$(OBJEXT)=$(DEPEXT))
+ endif
+ 
++###############################################################################
++# --- FINAL FIX FOR MINISAT2 COMPILATION ON MODERN GCC ------------------------
++
++# These files come from the legacy Minisat 2.2.1 solver, which is not C++17 clean.
++# We compile them permissively under C++11 to avoid strict errors.
++
++$(MINISAT2)/minisat/simp/SimpSolver$(OBJEXT): $(MINISAT2)/minisat/simp/SimpSolver.cc
++	$(CXX) -std=c++11 -O2 -Wall -Wno-error -Wno-pedantic -Wno-deprecated-declarations -fpermissive \
++	-I .. -I ../../minisat-2.2.1 -c $< -o $@
++
++$(MINISAT2)/minisat/core/Solver$(OBJEXT): $(MINISAT2)/minisat/core/Solver.cc
++	$(CXX) -std=c++11 -O2 -Wall -Wno-error -Wno-pedantic -Wno-deprecated-declarations -fpermissive \
++	-I .. -I ../../minisat-2.2.1 -c $< -o $@
++
++$(MINISAT2)/minisat/utils/Options$(OBJEXT): $(MINISAT2)/minisat/utils/Options.cc
++	$(CXX) -std=c++11 -O2 -Wall -Wno-error -Wno-pedantic -Wno-deprecated-declarations -fpermissive \
++	-I .. -I ../../minisat-2.2.1 -c $< -o $@
++
++# CBMC wrapper around Minisat2 — keep it in C++17 but relax rules
++sat/satcheck_minisat2$(OBJEXT): sat/satcheck_minisat2.cpp
++	$(CXX) -std=c++17 -O2 -Wall -Wno-error -Wno-pedantic -Wno-deprecated-declarations -fpermissive \
++	-DHAVE_MINISAT2 -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS \
++	-I .. -I ../../minisat-2.2.1 -c $< -o $@
++
+ ###############################################################################
+ 
+ solvers$(LIBEXT): $(OBJ) $(SOLVER_LIB)
