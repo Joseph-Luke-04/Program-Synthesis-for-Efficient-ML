@@ -25,7 +25,23 @@ This project was completed under the supervision of Dr. Jianyi Cheng and Dr. Eli
     pip install -r requirements.txt
     ```
 
-3.  **Configure and Run Synthesis**
+3.  **Configure External Tools**
+
+    This project depends on external tools that are not bundled in the repo:
+
+    * `cvc5` must be on `PATH`
+    * `smt2c` should either be on `PATH` or exposed via `SMT2C_BIN=/path/to/smt2c`
+    * Vitis/Vivado settings scripts can be overridden with:
+      ```bash
+      export VITIS_SETTINGS_SH=/tools/Xilinx/2025.1/Vitis/settings64.sh
+      export VIVADO_SETTINGS_SH=/tools/Xilinx/2025.1/Vivado/settings64.sh
+      ```
+    * HLS build outputs can be redirected with:
+      ```bash
+      export VITIS_HLS_RESULTS_ROOT=/path/to/repo/results/HLS
+      ```
+
+4.  **Configure and Run Synthesis**
 
     a. **Open `src/synthesis_driver.py`** and go to the `if __name__ == "__main__":` block at the bottom.
 
@@ -100,3 +116,30 @@ This project was completed under the supervision of Dr. Jianyi Cheng and Dr. Eli
              #b0)))
     )
     ```
+
+## Running On a Remote Server
+
+For a fresh server, clone the repo and recreate the environment rather than copying your whole local machine state:
+
+```bash
+git clone <your-repo-url>
+cd Program-Synthesis-for-Efficient-ML
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+export SMT2C_BIN=/path/to/smt2c
+export VITIS_SETTINGS_SH=/tools/Xilinx/2025.1/Vitis/settings64.sh
+export VIVADO_SETTINGS_SH=/tools/Xilinx/2025.1/Vivado/settings64.sh
+```
+
+If you need to preserve uncommitted code or generated `results/` artefacts, use `rsync` in addition to git:
+
+```bash
+rsync -av --progress \
+  --exclude '.git' \
+  --exclude '.venv' \
+  /local/path/Program-Synthesis-for-Efficient-ML/ \
+  username@server:/remote/path/Program-Synthesis-for-Efficient-ML/
+```
+
+Use the same approach for external repos such as `smt2c`. You do not need to copy the Xilinx installation if it is already present on the server.

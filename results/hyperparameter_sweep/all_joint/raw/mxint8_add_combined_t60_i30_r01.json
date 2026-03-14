@@ -1,0 +1,39 @@
+{
+  "accuracy": {},
+  "component": "full_sum_combined",
+  "component_plan": [
+    "full_sum_combined"
+  ],
+  "components": {},
+  "config": {
+    "directed_io": true,
+    "fp32_auto_relax_output_match": true,
+    "fp32_min_output_match_msb_bits": 24,
+    "fp32_mul_mode": "small",
+    "fp32_output_match_msb_bits": 32,
+    "fp32_output_match_step": 1,
+    "fp32_relax_on_fail": true,
+    "fp32_relax_on_infeasible": true,
+    "fp32_relax_on_timeout": true,
+    "fp32_relax_schedule": "staged",
+    "fp32_reset_msb_per_sample": true,
+    "fp32_stage_mantissa_bits": 15,
+    "fp32_timeout_retry_multiplier": 4,
+    "fp32_timeout_retry_once": false,
+    "num_iterations": 30,
+    "random_seed": 42,
+    "run_accuracy": false,
+    "run_implementation": false,
+    "solver_timeout_seconds": 60,
+    "sygus_dump": false,
+    "sygus_fast_enum": false,
+    "sygus_pbe": true,
+    "sygus_sym_break_pbe": true
+  },
+  "error": "",
+  "hardware": {},
+  "op_name": "mxint8addition",
+  "paths": {},
+  "status": "started",
+  "target": "MXINT8AdditionTarget"
+}

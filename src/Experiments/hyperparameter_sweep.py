@@ -268,6 +268,15 @@ def main() -> None:
     parser.add_argument("--template-override", default="",
                         help="Force a specific grammar template for all runs.")
 
+    # Early stopping
+    parser.add_argument("--patience", type=int, default=0,
+                        help="Stop sweeping a dimension early if accepted constraints "
+                             "don't improve for this many consecutive grid points. "
+                             "0 = disabled (run full grid).")
+    parser.add_argument("--early-stop-metric", default="accepted_constraints",
+                        choices=["accepted_constraints", "solution_found"],
+                        help="Metric to track for early stopping.")
+
     # Synthesis settings
     parser.add_argument("--directed-io", action=argparse.BooleanOptionalAction, default=True)
     parser.add_argument("--fp32-auto-relax", action=argparse.BooleanOptionalAction, default=True)
@@ -303,9 +312,21 @@ def main() -> None:
     else:  # joint
         grid = [SweepPoint(t, n) for t, n in cartesian(args.timeouts, args.iterations)]
 
-    total_runs = len(selected) * len(grid) * args.repetitions
-    print(f"Sweep: {len(selected)} benchmarks x {len(grid)} points x {args.repetitions} reps = {total_runs} runs")
+    # For joint mode, restructure grid so iterations are the inner loop per timeout.
+    # This lets early stopping cut iteration sweeps short per timeout level.
+    if args.mode == "joint":
+        grid_by_timeout: list[list[SweepPoint]] = []
+        for t in sorted(set(p.timeout for p in grid)):
+            row = sorted([p for p in grid if p.timeout == t], key=lambda p: p.num_iterations)
+            grid_by_timeout.append(row)
+    else:
+        grid_by_timeout = [sorted(grid, key=lambda p: (p.timeout, p.num_iterations))]
+
+    total_runs_max = len(selected) * len(grid) * args.repetitions
+    print(f"Sweep: {len(selected)} benchmarks x {len(grid)} points x {args.repetitions} reps = {total_runs_max} runs (max)")
     print(f"Grid: {[(p.timeout, p.num_iterations) for p in grid]}")
+    if args.patience > 0:
+        print(f"Early stopping: patience={args.patience}, metric={args.early_stop_metric}")
 
     all_rows: list[dict[str, Any]] = []
     raw_jsonl = output_dir / "runs.jsonl"
@@ -313,18 +334,60 @@ def main() -> None:
         raw_jsonl.unlink()
 
     run_index = 0
+    skipped_count = 0
     for bench in selected:
-        for point in grid:
-            for rep in range(1, args.repetitions + 1):
-                run_index += 1
-                summary, rc, wall = run_sweep_point(
-                    repo_root, bench, point, rep, output_dir, args,
-                    run_index, total_runs,
-                )
-                row = _flatten_sweep_row(bench, point, rep, summary, rc, wall)
-                all_rows.append(row)
-                with raw_jsonl.open("a") as f:
-                    f.write(json.dumps(row, sort_keys=True) + "\n")
+        for timeout_row in grid_by_timeout:
+            best_metric = -1.0
+            stale_count = 0
+
+            for point in timeout_row:
+                # Check early stopping before running
+                if args.patience > 0 and stale_count >= args.patience:
+                    n_skipped = args.repetitions
+                    skipped_count += n_skipped
+                    run_index += n_skipped
+                    print(
+                        f"[SKIP] benchmark={bench.key} timeout={point.timeout} "
+                        f"iterations={point.num_iterations} — no improvement "
+                        f"for {args.patience} consecutive points"
+                    )
+                    continue
+
+                point_rows: list[dict[str, Any]] = []
+                for rep in range(1, args.repetitions + 1):
+                    run_index += 1
+                    summary, rc, wall = run_sweep_point(
+                        repo_root, bench, point, rep, output_dir, args,
+                        run_index, total_runs_max,
+                    )
+                    row = _flatten_sweep_row(bench, point, rep, summary, rc, wall)
+                    point_rows.append(row)
+                    all_rows.append(row)
+                    with raw_jsonl.open("a") as f:
+                        f.write(json.dumps(row, sort_keys=True) + "\n")
+
+                # Update early stopping tracker
+                if args.patience > 0:
+                    if args.early_stop_metric == "accepted_constraints":
+                        vals = [r["accepted_constraints"] for r in point_rows if r["accepted_constraints"] >= 0]
+                        current = sum(vals) / len(vals) if vals else -1.0
+                    else:  # solution_found
+                        current = sum(1 for r in point_rows if r.get("solution_found")) / len(point_rows)
+
+                    if current > best_metric + 1e-9:
+                        best_metric = current
+                        stale_count = 0
+                    else:
+                        stale_count += 1
+                        print(
+                            f"[EARLY-STOP] benchmark={bench.key} timeout={point.timeout} "
+                            f"iterations={point.num_iterations} — metric={current:.1f} "
+                            f"not better than best={best_metric:.1f} "
+                            f"(stale {stale_count}/{args.patience})"
+                        )
+
+    if skipped_count > 0:
+        print(f"\n[INFO] Early stopping saved {skipped_count} runs")
 
     _write_csv(output_dir / "runs.csv", all_rows)
     agg = _build_aggregate(all_rows)

@@ -208,8 +208,25 @@ async def _run_mxint8_adder_accuracy(dut, label: str):
     dut._log.info(f"99th Percentile Error: {p99_f}")
     dut._log.info(f"95th Percentile Absolute Error: {p95_f}")
     dut._log.info(f"Percent Within {ABS_ERR_TOL_FRAC * 100:.2f}% Full-Scale Error: {pct_f:.2f}%")
-    
-    # Use quantized oracle for the pass/fail threshold.
+
+    # Optional dump for downstream plotting (violin charts, etc.).
+    dump_path = os.getenv("MXINT8_ADD_DUMP_PATH", "").strip()
+    if dump_path:
+        try:
+            dump_dir = os.path.dirname(dump_path)
+            if dump_dir:
+                os.makedirs(dump_dir, exist_ok=True)
+            np.savez_compressed(
+                dump_path,
+                abs_err_quant=np.asarray(errors_quant, dtype=np.float32),
+                abs_err_full=np.asarray(errors_full, dtype=np.float32),
+                full_scale=np.asarray([FULL_SCALE], dtype=np.float32),
+                abs_err_tol_frac=np.asarray([ABS_ERR_TOL_FRAC], dtype=np.float32),
+            )
+            dut._log.info(f"Saved per-sample error dump: {dump_path}")
+        except Exception as exc:
+            dut._log.warning(f"Failed to dump per-sample errors to {dump_path}: {exc}")
+
     # No threshold assertions; report metrics only.
 
 

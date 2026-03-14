@@ -1,0 +1,567 @@
+[INFO] Target: MXINT8AdditionTarget | Component: full_sum_combined
+[INFO] NUM_ITERATIONS=50, TIMEOUT=30s, RUN_IMPLEMENTATION=False, DIRECTED_IO=True, RUN_ACCURACY=False, SYNTH_FP32_MUL_MODE=small, SYNTH_FP32_ADD_MODE=default, SYGUS_DUMP=False, SYGUS_FAST_ENUM=False, SYGUS_PBE=True, SYGUS_SYM_BREAK_PBE=True, FP32_OUTPUT_MATCH_MSB_BITS=32, FP32_AUTO_RELAX_OUTPUT_MATCH=True, FP32_RESET_MSB_PER_SAMPLE=True, FP32_RELAX_ON_TIMEOUT=True, FP32_TIMEOUT_RETRY_ONCE=False, FP32_TIMEOUT_RETRY_MULTIPLIER=4, FP32_RELAX_ON_INFEASIBLE=True, FP32_RELAX_ON_FAIL=True, FP32_RELAX_SCHEDULE=staged, FP32_STAGE_MANTISSA_BITS=15, FP32_MIN_OUTPUT_MATCH_MSB_BITS=24, FP32_OUTPUT_MATCH_STEP=1, RANDOM_SEED=42
+--- Starting Synthesis for [MXINT8AdditionTarget -> full_sum_combined] ---
+
+--- Iteration 1/50 ---
+Generating new constraint with inputs: (18.404337396440653, -62.698580310607966)
+(constraint (= (add_full_sum #b0100 #b0101 #b1000 #b0110) #b10100110))
+[INFO] Not relaxable (status=fail); not relaxing further for this sample.
+SKIPPED: (18.404, -62.699) could not be added (even after relaxation).
+
+--- Iteration 2/50 ---
+Generating new constraint with inputs: (-29.696129975276257, -36.5361825643554)
+(constraint (= (add_full_sum #b1000 #b0101 #b1011 #b0110) #b10110111))
+[INFO] Not relaxable (status=fail); not relaxing further for this sample.
+SKIPPED: (-29.696, -36.536) could not be added (even after relaxation).
+
+--- Iteration 3/50 ---
+Generating new constraint with inputs: (31.214200269649638, 23.324332339824295)
+(constraint (= (add_full_sum #b0111 #b0101 #b0101 #b0101) #b01100110))
+[INFO] Not relaxable (status=fail); not relaxing further for this sample.
+SKIPPED: (31.214, 23.324) could not be added (even after relaxation).
+
+--- Iteration 4/50 ---
+Generating new constraint with inputs: (51.76770293703959, -54.52407409291707)
+(constraint (= (add_full_sum #b0110 #b0110 #b1001 #b0110) #b11000100))
+SUCCESS: accepted (MSB match = 32). Total constraints: 1
+
+--- Iteration 5/50 ---
+Generating new constraint with inputs: (-10.306319801544305, -62.06676703417472)
+(constraint (= (add_full_sum #b1010 #b0100 #b1000 #b0110) #b10110111))
+[INFO] Not relaxable (status=fail); not relaxing further for this sample.
+SKIPPED: (-10.306, -62.067) could not be added (even after relaxation).
+
+--- Iteration 6/50 ---
+Generating new constraint with inputs: (-37.13978732592436, 0.7068980296438383)
+(constraint (= (add_full_sum #b1011 #b0110 #b0101 #b0000) #b10110110))
+[INFO] Not relaxable (status=fail); not relaxing further for this sample.
+SKIPPED: (-37.140, 0.707) could not be added (even after relaxation).
+
+--- Iteration 7/50 ---
+Generating new constraint with inputs: (-62.497252001730004, -39.7534301093624)
+(constraint (= (add_full_sum #b1000 #b0110 #b1011 #b0110) #b10010111))
+SUCCESS: accepted (MSB match = 32). Total constraints: 2
+
+--- Iteration 8/50 ---
+Generating new constraint with inputs: (19.784745786897062, 5.932275439624604)
+(constraint (= (add_full_sum #b0100 #b0101 #b0101 #b0011) #b01010101))
+SUCCESS: accepted (MSB match = 32). Total constraints: 3
+
+--- Iteration 9/50 ---
+Generating new constraint with inputs: (-36.90183789062804, 11.783070271619948)
+(constraint (= (add_full_sum #b1011 #b0110 #b0101 #b0100) #b11000110))
+SUCCESS: accepted (MSB match = 32). Total constraints: 4
+
+--- Iteration 10/50 ---
+Generating new constraint with inputs: (40.84482028147312, -65.14216372249595)
+(constraint (= (add_full_sum #b0101 #b0110 #b1011 #b0111) #b11000110))
+[INFO] Not relaxable (status=fail); not relaxing further for this sample.
+SKIPPED: (40.845, -65.142) could not be added (even after relaxation).
+
+--- Iteration 11/50 ---
+Generating new constraint with inputs: (40.368141241930644, 26.15440013844595)
+(constraint (= (add_full_sum #b0101 #b0110 #b0110 #b0101) #b01000111))
+SUCCESS: accepted (MSB match = 32). Total constraints: 5
+
+--- Iteration 12/50 ---
+Generating new constraint with inputs: (-21.08693181962507, -45.47670602484483)
+(constraint (= (add_full_sum #b1010 #b0101 #b1010 #b0110) #b10110111))
+SUCCESS: accepted (MSB match = 32). Total constraints: 6
+
+--- Iteration 13/50 ---
+Generating new constraint with inputs: (60.352125531295115, -21.569520045133267)
+(constraint (= (add_full_sum #b0111 #b0110 #b1010 #b0101) #b01100101))
+[INFO] Not relaxable (status=fail); not relaxing further for this sample.
+SKIPPED: (60.352, -21.570) could not be added (even after relaxation).
+
+--- Iteration 14/50 ---
+Generating new constraint with inputs: (-53.75754867382048, -53.233438257982755)
+(constraint (= (add_full_sum #b1001 #b0110 #b1001 #b0110) #b10010111))
+SUCCESS: accepted (MSB match = 32). Total constraints: 7
+
+--- Iteration 15/50 ---
+Generating new constraint with inputs: (45.869256357864685, 13.691836140429615)
+(constraint (= (add_full_sum #b0101 #b0110 #b0110 #b0100) #b01110110))
+[INFO] Not relaxable (status=fail); not relaxing further for this sample.
+SKIPPED: (45.869, 13.692) could not be added (even after relaxation).
+
+--- Iteration 16/50 ---
+Generating new constraint with inputs: (40.54093207221818, 30.324595843583964)
+(constraint (= (add_full_sum #b0101 #b0110 #b0111 #b0101) #b01000111))
+SUCCESS: accepted (MSB match = 32). Total constraints: 8
+
+--- Iteration 17/50 ---
+Generating new constraint with inputs: (4.782108072020492, 62.451280845276926)
+(constraint (= (add_full_sum #b0100 #b0011 #b0111 #b0110) #b01000111))
+[INFO] Not relaxable (status=fail); not relaxing further for this sample.
+SKIPPED: (4.782, 62.451) could not be added (even after relaxation).
+
+--- Iteration 18/50 ---
+Generating new constraint with inputs: (-16.03346220849734, 6.869363328065958)
+(constraint (= (add_full_sum #b1011 #b0101 #b0110 #b0011) #b10100100))
+[INFO] Not relaxable (status=fail); not relaxing further for this sample.
+SKIPPED: (-16.033, 6.869) could not be added (even after relaxation).
+
+--- Iteration 19/50 ---
+Generating new constraint with inputs: (43.48141568139532, 15.644607312080481)
+(constraint (= (add_full_sum #b0101 #b0110 #b0111 #b0100) #b01110110))
+[INFO] Not relaxable (status=fail); not relaxing further for this sample.
+SKIPPED: (43.481, 15.645) could not be added (even after relaxation).
+
+--- Iteration 20/50 ---
+Generating new constraint with inputs: (47.7453108410226, 10.210483173892584)
+(constraint (= (add_full_sum #b0101 #b0110 #b0101 #b0100) #b01100110))
+SUCCESS: accepted (MSB match = 32). Total constraints: 9
+
+--- Iteration 21/50 ---
+Generating new constraint with inputs: (27.003482380369903, -59.95118135745259)
+(constraint (= (add_full_sum #b0110 #b0101 #b1000 #b0110) #b10110110))
+SUCCESS: accepted (MSB match = 32). Total constraints: 10
+
+--- Iteration 22/50 ---
+Generating new constraint with inputs: (-35.91742761399581, -27.80078880452185)
+(constraint (= (add_full_sum #b1011 #b0110 #b1001 #b0101) #b10110111))
+SUCCESS: accepted (MSB match = 32). Total constraints: 11
+
+--- Iteration 23/50 ---
+Generating new constraint with inputs: (-55.467459046081174, -35.271603000344015)
+(constraint (= (add_full_sum #b1001 #b0110 #b1011 #b0110) #b10100111))
+SUCCESS: accepted (MSB match = 32). Total constraints: 12
+
+--- Iteration 24/50 ---
+Generating new constraint with inputs: (-52.667811317915756, -29.307484389467838)
+(constraint (= (add_full_sum #b1001 #b0110 #b1000 #b0101) #b10100111))
+SUCCESS: accepted (MSB match = 32). Total constraints: 13
+
+--- Iteration 25/50 ---
+Generating new constraint with inputs: (17.91034664290082, -17.842152375948878)
+(constraint (= (add_full_sum #b0100 #b0101 #b1011 #b0101) #b11000011))
+SUCCESS: accepted (MSB match = 32). Total constraints: 14
+
+--- Iteration 26/50 ---
+Generating new constraint with inputs: (-17.136112340571493, -38.34507193816363)
+(constraint (= (add_full_sum #b1011 #b0101 #b1011 #b0110) #b11000111))
+SUCCESS: accepted (MSB match = 32). Total constraints: 15
+
+--- Iteration 27/50 ---
+Generating new constraint with inputs: (-30.758927489517035, 57.6384055780492)
+(constraint (= (add_full_sum #b1000 #b0101 #b0111 #b0110) #b01000101))
+[CVC5] Solver timed out after 30 seconds.
+[INFO] Timeout. No staged fallback; skipping this sample.
+SKIPPED: (-30.759, 57.638) could not be added (even after relaxation).
+
+--- Iteration 28/50 ---
+Generating new constraint with inputs: (19.54067085255035, 14.405292748042442)
+(constraint (= (add_full_sum #b0100 #b0101 #b0111 #b0100) #b01000110))
+[CVC5] Solver timed out after 30 seconds.
+[INFO] Timeout. No staged fallback; skipping this sample.
+SKIPPED: (19.541, 14.405) could not be added (even after relaxation).
+
+--- Iteration 29/50 ---
+Generating new constraint with inputs: (-43.4096984378512, 30.244737329446096)
+(constraint (= (add_full_sum #b1010 #b0110 #b0111 #b0101) #b11000101))
+[CVC5] Solver timed out after 30 seconds.
+[INFO] Timeout. No staged fallback; skipping this sample.
+SKIPPED: (-43.410, 30.245) could not be added (even after relaxation).
+
+--- Iteration 30/50 ---
+Generating new constraint with inputs: (-44.43087082342545, -15.911881687990494)
+(constraint (= (add_full_sum #b1010 #b0110 #b1000 #b0100) #b10110111))
+[CVC5] Solver timed out after 30 seconds.
+[INFO] Timeout. No staged fallback; skipping this sample.
+SKIPPED: (-44.431, -15.912) could not be added (even after relaxation).
+
+--- Iteration 31/50 ---
+Generating new constraint with inputs: (64.61708228403057, 18.479968300740254)
+(constraint (= (add_full_sum #b0100 #b0111 #b0100 #b0101) #b01010111))
+SUCCESS: accepted (MSB match = 32). Total constraints: 16
+
+--- Iteration 32/50 ---
+Generating new constraint with inputs: (7.5173661782532974, 24.369081130663446)
+(constraint (= (add_full_sum #b0111 #b0011 #b0110 #b0101) #b01000110))
+[CVC5] Solver timed out after 30 seconds.
+[INFO] Timeout. No staged fallback; skipping this sample.
+SKIPPED: (7.517, 24.369) could not be added (even after relaxation).
+
+--- Iteration 33/50 ---
+Generating new constraint with inputs: (45.25645346505486, 36.43198832410431)
+(constraint (= (add_full_sum #b0101 #b0110 #b0100 #b0110) #b01000111))
+SUCCESS: accepted (MSB match = 32). Total constraints: 17
+
+--- Iteration 34/50 ---
+Generating new constraint with inputs: (-35.76565450073822, -61.762767804667014)
+(constraint (= (add_full_sum #b1011 #b0110 #b1000 #b0110) #b10010111))
+[CVC5] Solver timed out after 30 seconds.
+[INFO] Timeout. No staged fallback; skipping this sample.
+SKIPPED: (-35.766, -61.763) could not be added (even after relaxation).
+
+--- Iteration 35/50 ---
+Generating new constraint with inputs: (-24.360197656201187, -30.65820437120724)
+(constraint (= (add_full_sum #b1001 #b0101 #b1000 #b0101) #b10000110))
+[CVC5] Solver timed out after 30 seconds.
+[INFO] Timeout. No staged fallback; skipping this sample.
+SKIPPED: (-24.360, -30.658) could not be added (even after relaxation).
+
+--- Iteration 36/50 ---
+Generating new constraint with inputs: (-38.15026464660491, 58.46408229222719)
+(constraint (= (add_full_sum #b1011 #b0110 #b0111 #b0110) #b01000101))
+SUCCESS: accepted (MSB match = 32). Total constraints: 18
+
+--- Iteration 37/50 ---
+Generating new constraint with inputs: (49.680526694392285, -24.462519734600917)
+(constraint (= (add_full_sum #b0110 #b0110 #b1001 #b0101) #b01000101))
+SUCCESS: accepted (MSB match = 32). Total constraints: 19
+
+--- Iteration 38/50 ---
+Generating new constraint with inputs: (20.517903818924168, -13.776589059992318)
+(constraint (= (add_full_sum #b0101 #b0101 #b1001 #b0100) #b01000011))
+SUCCESS: accepted (MSB match = 32). Total constraints: 20
+
+--- Iteration 39/50 ---
+Generating new constraint with inputs: (54.72028184575174, -5.431555458463357)
+(constraint (= (add_full_sum #b0110 #b0110 #b1010 #b0011) #b01000110))
+[CVC5] Solver timed out after 30 seconds.
+[INFO] Timeout. No staged fallback; skipping this sample.
+SKIPPED: (54.720, -5.432) could not be added (even after relaxation).
+
+--- Iteration 40/50 ---
+Generating new constraint with inputs: (-31.035818022257075, -33.445168984394186)
+(constraint (= (add_full_sum #b1000 #b0101 #b1011 #b0110) #b10110111))
+[CVC5] Solver timed out after 30 seconds.
+[INFO] Timeout. No staged fallback; skipping this sample.
+SKIPPED: (-31.036, -33.445) could not be added (even after relaxation).
+
+--- Iteration 41/50 ---
+Generating new constraint with inputs: (8.1005937095359, -31.318107674972545)
+(constraint (= (add_full_sum #b0100 #b0100 #b1000 #b0101) #b10100101))
+[CVC5] Solver timed out after 30 seconds.
+[INFO] Timeout. No staged fallback; skipping this sample.
+SKIPPED: (8.101, -31.318) could not be added (even after relaxation).
+
+--- Iteration 42/50 ---
+Generating new constraint with inputs: (11.16535070950735, 52.51262063552696)
+(constraint (= (add_full_sum #b0101 #b0100 #b0110 #b0110) #b01110110))
+[CVC5] Solver timed out after 30 seconds.
+[INFO] Timeout. No staged fallback; skipping this sample.
+SKIPPED: (11.165, 52.513) could not be added (even after relaxation).
+
+--- Iteration 43/50 ---
+Generating new constraint with inputs: (-13.279133321467562, -37.0496597912386)
+(constraint (= (add_full_sum #b1001 #b0100 #b1011 #b0110) #b11000111))
+[CVC5] Solver timed out after 30 seconds.
+[INFO] Timeout. No staged fallback; skipping this sample.
+SKIPPED: (-13.279, -37.050) could not be added (even after relaxation).
+
+--- Iteration 44/50 ---
+Generating new constraint with inputs: (65.67496405735454, 1.25747076529332)
+(constraint (= (add_full_sum #b0100 #b0111 #b0101 #b0001) #b01000111))
+[CVC5] Solver timed out after 30 seconds.
+[INFO] Timeout. No staged fallback; skipping this sample.
+SKIPPED: (65.675, 1.257) could not be added (even after relaxation).
+
+--- Iteration 45/50 ---
+Generating new constraint with inputs: (-53.99995759305921, -59.78063844393504)
+(constraint (= (add_full_sum #b1001 #b0110 #b1000 #b0110) #b10000111))
+[CVC5] Solver timed out after 30 seconds.
+[INFO] Timeout. No staged fallback; skipping this sample.
+SKIPPED: (-54.000, -59.781) could not be added (even after relaxation).
+
+--- Iteration 46/50 ---
+Generating new constraint with inputs: (-51.52631479371299, 16.82287750480789)
+(constraint (= (add_full_sum #b1001 #b0110 #b0100 #b0101) #b10110110))
+[CVC5] Solver timed out after 30 seconds.
+[INFO] Timeout. No staged fallback; skipping this sample.
+SKIPPED: (-51.526, 16.823) could not be added (even after relaxation).
+
+--- Iteration 47/50 ---
+Generating new constraint with inputs: (38.55447609591127, -10.274884382441705)
+(constraint (= (add_full_sum #b0100 #b0110 #b1010 #b0100) #b01000101))
+[CVC5] Solver timed out after 30 seconds.
+[INFO] Timeout. No staged fallback; skipping this sample.
+SKIPPED: (38.554, -10.275) could not be added (even after relaxation).
+
+--- Iteration 48/50 ---
+Generating new constraint with inputs: (-57.61434278794166, -15.62625418113715)
+(constraint (= (add_full_sum #b1000 #b0110 #b1000 #b0100) #b10100111))
+[CVC5] Solver timed out after 30 seconds.
+[INFO] Timeout. No staged fallback; skipping this sample.
+SKIPPED: (-57.614, -15.626) could not be added (even after relaxation).
+
+--- Iteration 49/50 ---
+Generating new constraint with inputs: (65.48802219169278, 3.843093553086092)
+(constraint (= (add_full_sum #b0100 #b0111 #b0111 #b0010) #b01000111))
+[CVC5] Solver timed out after 30 seconds.
+[INFO] Timeout. No staged fallback; skipping this sample.
+SKIPPED: (65.488, 3.843) could not be added (even after relaxation).
+
+--- Iteration 50/50 ---
+Generating new constraint with inputs: (62.1823458449976, 47.62292069495375)
+(constraint (= (add_full_sum #b0111 #b0110 #b0101 #b0110) #b01100111))
+[CVC5] Solver timed out after 30 seconds.
+[INFO] Timeout. No staged fallback; skipping this sample.
+SKIPPED: (62.182, 47.623) could not be added (even after relaxation).
+
+
+--- Synthesis Complete! ---
+
+Constraints accepted: 20/50
+
+--- Final Synthesized Program ---
+(define-fun norm_shifted5 ((raw (_ BitVec 5))) (_ BitVec 5)
+  (let ((abs5 (ite (bvslt raw #b00000) (bvneg raw) raw)))
+    (ite (= raw #b00000)
+         raw
+         (ite (= ((_ extract 4 4) abs5) #b1)
+              (bvashr raw #b00010)
+              (ite (= ((_ extract 3 3) abs5) #b1)
+                   (bvashr raw #b00001)
+                   (ite (= ((_ extract 2 2) abs5) #b1)
+                        raw
+                        (ite (= ((_ extract 1 1) abs5) #b1)
+                             (bvshl raw #b00001)
+                             (bvshl raw #b00010))))))))
+
+(define-fun exp_delta5_from_raw ((raw (_ BitVec 5))) (_ BitVec 5)
+  (let ((abs5 (ite (bvslt raw #b00000) (bvneg raw) raw)))
+    (ite (= raw #b00000)
+         #b00000
+         (ite (= ((_ extract 4 4) abs5) #b1)
+              #b00010
+              (ite (= ((_ extract 3 3) abs5) #b1)
+                   #b00001
+                   (ite (= ((_ extract 2 2) abs5) #b1)
+                        #b00000
+                        (ite (= ((_ extract 1 1) abs5) #b1)
+                             #b11111
+                             #b11110)))))))
+
+(define-fun sat_mant4 ((shifted (_ BitVec 5))) (_ BitVec 4)
+  (ite (bvsgt shifted #b00111)
+       #b0111
+       (ite (bvslt shifted #b11000)
+            #b1000
+            ((_ extract 3 0) shifted))))
+
+(define-fun clamp_exp4 ((exp_adj (_ BitVec 5))) (_ BitVec 4)
+  ((_ extract 3 0)
+   (ite (bvsgt exp_adj #b00111)
+        #b00111
+        (ite (bvslt exp_adj #b11000) #b11000 exp_adj))))
+
+(define-fun add_full_sum ((m1 (_ BitVec 4)) (e1 (_ BitVec 4)) (m2 (_ BitVec 4)) (e2 (_ BitVec 4))) (_ BitVec 8) (let ((_let_1 (bvsge e1 e2))) (let ((_let_2 ((_ sign_extend 1) (ite (bvsgt e1 e2) e1 e2)))) (let ((_let_3 ((_ sign_extend 1) (ite _let_1 m1 m2)))) (let ((_let_4 (bvadd _let_3 ((_ sign_extend 1) ((_ extract 3 0) (bvashr ((_ sign_extend 1) (ite _let_1 m2 m1)) (bvsub _let_2 ((_ sign_extend 1) (ite _let_1 e2 e1))))))))) (concat (ite (= (bvadd _let_3 _let_3) #b00000) #b0000 (sat_mant4 (norm_shifted5 _let_4))) ((_ extract 3 0) (bvadd _let_2 (exp_delta5_from_raw _let_4)))))))))
+
+ Solution saved to: results/smt2/hpsweep_mxint8_add_combined_t30_i50_r01.smt2
+
+Translating SMT output to C using smt2c...
+[INFO] Found 5 define-fun block(s). Order passed to smt2c:
+    - norm_shifted5
+    - exp_delta5_from_raw
+    - sat_mant4
+    - clamp_exp4
+    - add_full_sum
+C file saved to: results/c/hpsweep_mxint8_add_combined_t30_i50_r01.c
+
+Generated C code:
+
+ap_uint<5> norm_shifted5(ap_uint<5> raw) {
+  ap_uint<5> abs5 = (ap_int<5>)raw < (ap_int<5>)0 ? (ap_uint<5>)  -raw : (ap_uint<5>)  raw;
+  ap_uint<1> __smt2c_ext_0 = ((ap_uint<5>)abs5).range(4, 4);
+  ap_uint<1> __smt2c_ext_1 = ((ap_uint<5>)abs5).range(3, 3);
+  ap_uint<1> __smt2c_ext_2 = ((ap_uint<5>)abs5).range(2, 2);
+  ap_uint<1> __smt2c_ext_3 = ((ap_uint<5>)abs5).range(1, 1);
+  ap_uint<5> __smt2c_result;
+  if(raw == 0) {
+    __smt2c_result = raw;
+  }
+  else if(__smt2c_ext_0 == 1) {
+    __smt2c_result = (ap_uint<5>)((ap_int<5>)raw >> (ap_int<5>)2);
+  }
+  else if(__smt2c_ext_1 == 1) {
+    __smt2c_result = (ap_uint<5>)((ap_int<5>)raw >> (ap_int<5>)1);
+  }
+  else if(__smt2c_ext_2 == 1) {
+    __smt2c_result = raw;
+  }
+  else if(__smt2c_ext_3 == 1) {
+    __smt2c_result = raw << 1;
+  }
+  else {
+    __smt2c_result = raw << 2;
+  }
+  return __smt2c_result;
+}
+
+ap_uint<5> exp_delta5_from_raw(ap_uint<5> raw) {
+  ap_uint<5> abs5 = (ap_int<5>)raw < (ap_int<5>)0 ? (ap_uint<5>)  -raw : (ap_uint<5>)  raw;
+  ap_uint<1> __smt2c_ext_0 = ((ap_uint<5>)abs5).range(4, 4);
+  ap_uint<1> __smt2c_ext_1 = ((ap_uint<5>)abs5).range(3, 3);
+  ap_uint<1> __smt2c_ext_2 = ((ap_uint<5>)abs5).range(2, 2);
+  ap_uint<1> __smt2c_ext_3 = ((ap_uint<5>)abs5).range(1, 1);
+  ap_uint<5> __smt2c_result;
+  if(raw == 0) {
+    __smt2c_result = 0;
+  }
+  else if(__smt2c_ext_0 == 1) {
+    __smt2c_result = 2;
+  }
+  else if(__smt2c_ext_1 == 1) {
+    __smt2c_result = 1;
+  }
+  else if(__smt2c_ext_2 == 1) {
+    __smt2c_result = 0;
+  }
+  else if(__smt2c_ext_3 == 1) {
+    __smt2c_result = 31;
+  }
+  else {
+    __smt2c_result = 30;
+  }
+  return __smt2c_result;
+}
+
+ap_uint<4> sat_mant4(ap_uint<5> shifted) {
+  ap_uint<4> __smt2c_ext_0 = ((ap_uint<5>)shifted).range(3, 0);
+  ap_uint<4> __smt2c_result;
+  if((ap_int<5>)shifted > (ap_int<5>)7) {
+    __smt2c_result = 7;
+  }
+  else if((ap_int<5>)shifted < (ap_int<5>)24) {
+    __smt2c_result = 8;
+  }
+  else {
+    __smt2c_result = __smt2c_ext_0;
+  }
+  return __smt2c_result;
+}
+
+ap_uint<4> clamp_exp4(ap_uint<5> exp_adj) {
+  ap_uint<5> __smt2c_src_0 = (ap_int<5>)exp_adj > (ap_int<5>)7 ? (ap_uint<5>)  7 : (ap_uint<5>)  ((ap_int<5>)exp_adj < (ap_int<5>)24 ? (ap_uint<5>)  24 : (ap_uint<5>)  exp_adj);
+  ap_uint<4> __smt2c_ext_1 = ((ap_uint<5>)__smt2c_src_0).range(3, 0);
+  return __smt2c_ext_1;
+}
+
+unsigned char add_full_sum(ap_uint<4> m1, ap_uint<4> e1, ap_uint<4> m2, ap_uint<4> e2) {
+  __CPROVER_bool _let_1 = (ap_int<4>)e1 >= (ap_int<4>)e2;
+  ap_uint<5> _let_2 = (ap_uint<5>)(ap_int<5>)(ap_int<4>)((ap_int<4>)e1 > (ap_int<4>)e2 ? (ap_uint<4>)  e1 : (ap_uint<4>)  e2);
+  ap_uint<5> _let_3 = (ap_uint<5>)(ap_int<5>)(ap_int<4>)(_let_1 ? (ap_uint<4>)  m1 : (ap_uint<4>)  m2);
+  ap_uint<5> __smt2c_src_0 = (ap_uint<5>)((ap_int<5>)(ap_uint<5>)(ap_int<5>)(ap_int<4>)(_let_1 ? (ap_uint<4>)  m2 : (ap_uint<4>)  m1) >> (ap_int<5>)(_let_2 - (ap_uint<5>)(ap_int<5>)(ap_int<4>)(_let_1 ? (ap_uint<4>)  e2 : (ap_uint<4>)  e1)));
+  ap_uint<4> __smt2c_ext_1 = ((ap_uint<5>)__smt2c_src_0).range(3, 0);
+  ap_uint<5> _let_4 = _let_3 + (ap_uint<5>)(ap_int<5>)(ap_int<4>)__smt2c_ext_1;
+  ap_uint<5> __smt2c_src_2 = _let_2 + exp_delta5_from_raw(_let_4);
+  ap_uint<4> __smt2c_ext_3 = ((ap_uint<5>)__smt2c_src_2).range(3, 0);
+  return (unsigned char)(_let_3 + _let_3 == 0 ? (ap_uint<4>)  0 : (ap_uint<4>)  sat_mant4(norm_shifted5(_let_4))) << 4 | (unsigned char)__smt2c_ext_3;
+}
+
+Converting C output to HLS-compatible C++...
+
+HLS C++ file saved to: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/hpsweep_mxint8_add_combined_t30_i50_r01.cpp
+Generated HLS-ready C++ code:
+
+#include <ap_int.h>
+
+ap_uint<5> norm_shifted5(ap_uint<5> raw) {
+  ap_uint<5> abs5 = (ap_int<5>)raw < (ap_int<5>)0 ? (ap_uint<5>)  -raw : (ap_uint<5>)  raw;
+  ap_uint<1> __smt2c_ext_0 = ((ap_uint<5>)abs5).range(4, 4);
+  ap_uint<1> __smt2c_ext_1 = ((ap_uint<5>)abs5).range(3, 3);
+  ap_uint<1> __smt2c_ext_2 = ((ap_uint<5>)abs5).range(2, 2);
+  ap_uint<1> __smt2c_ext_3 = ((ap_uint<5>)abs5).range(1, 1);
+  ap_uint<5> __smt2c_result;
+  if(raw == 0) {
+    __smt2c_result = raw;
+  }
+  else if(__smt2c_ext_0 == 1) {
+    __smt2c_result = (ap_uint<5>)((ap_int<5>)raw >> (ap_int<5>)2);
+  }
+  else if(__smt2c_ext_1 == 1) {
+    __smt2c_result = (ap_uint<5>)((ap_int<5>)raw >> (ap_int<5>)1);
+  }
+  else if(__smt2c_ext_2 == 1) {
+    __smt2c_result = raw;
+  }
+  else if(__smt2c_ext_3 == 1) {
+    __smt2c_result = raw << 1;
+  }
+  else {
+    __smt2c_result = raw << 2;
+  }
+  return __smt2c_result;
+}
+
+ap_uint<5> exp_delta5_from_raw(ap_uint<5> raw) {
+  ap_uint<5> abs5 = (ap_int<5>)raw < (ap_int<5>)0 ? (ap_uint<5>)  -raw : (ap_uint<5>)  raw;
+  ap_uint<1> __smt2c_ext_0 = ((ap_uint<5>)abs5).range(4, 4);
+  ap_uint<1> __smt2c_ext_1 = ((ap_uint<5>)abs5).range(3, 3);
+  ap_uint<1> __smt2c_ext_2 = ((ap_uint<5>)abs5).range(2, 2);
+  ap_uint<1> __smt2c_ext_3 = ((ap_uint<5>)abs5).range(1, 1);
+  ap_uint<5> __smt2c_result;
+  if(raw == 0) {
+    __smt2c_result = 0;
+  }
+  else if(__smt2c_ext_0 == 1) {
+    __smt2c_result = 2;
+  }
+  else if(__smt2c_ext_1 == 1) {
+    __smt2c_result = 1;
+  }
+  else if(__smt2c_ext_2 == 1) {
+    __smt2c_result = 0;
+  }
+  else if(__smt2c_ext_3 == 1) {
+    __smt2c_result = 31;
+  }
+  else {
+    __smt2c_result = 30;
+  }
+  return __smt2c_result;
+}
+
+ap_uint<4> sat_mant4(ap_uint<5> shifted) {
+  ap_uint<4> __smt2c_ext_0 = ((ap_uint<5>)shifted).range(3, 0);
+  ap_uint<4> __smt2c_result;
+  if((ap_int<5>)shifted > (ap_int<5>)7) {
+    __smt2c_result = 7;
+  }
+  else if((ap_int<5>)shifted < (ap_int<5>)24) {
+    __smt2c_result = 8;
+  }
+  else {
+    __smt2c_result = __smt2c_ext_0;
+  }
+  return __smt2c_result;
+}
+
+ap_uint<4> clamp_exp4(ap_uint<5> exp_adj) {
+  ap_uint<5> __smt2c_src_0 = (ap_int<5>)exp_adj > (ap_int<5>)7 ? (ap_uint<5>)  7 : (ap_uint<5>)  ((ap_int<5>)exp_adj < (ap_int<5>)24 ? (ap_uint<5>)  24 : (ap_uint<5>)  exp_adj);
+  ap_uint<4> __smt2c_ext_1 = ((ap_uint<5>)__smt2c_src_0).range(3, 0);
+  return __smt2c_ext_1;
+}
+
+ap_uint<8> add_full_sum(ap_uint<4> m1, ap_uint<4> e1, ap_uint<4> m2, ap_uint<4> e2) {
+  bool _let_1 = (ap_int<4>)e1 >= (ap_int<4>)e2;
+  ap_uint<5> _let_2 = (ap_uint<5>)(ap_int<5>)(ap_int<4>)((ap_int<4>)e1 > (ap_int<4>)e2 ? (ap_uint<4>)  e1 : (ap_uint<4>)  e2);
+  ap_uint<5> _let_3 = (ap_uint<5>)(ap_int<5>)(ap_int<4>)(_let_1 ? (ap_uint<4>)  m1 : (ap_uint<4>)  m2);
+  ap_uint<5> __smt2c_src_0 = (ap_uint<5>)((ap_int<5>)(ap_uint<5>)(ap_int<5>)(ap_int<4>)(_let_1 ? (ap_uint<4>)  m2 : (ap_uint<4>)  m1) >> (ap_int<5>)(_let_2 - (ap_uint<5>)(ap_int<5>)(ap_int<4>)(_let_1 ? (ap_uint<4>)  e2 : (ap_uint<4>)  e1)));
+  ap_uint<4> __smt2c_ext_1 = ((ap_uint<5>)__smt2c_src_0).range(3, 0);
+  ap_uint<5> _let_4 = _let_3 + (ap_uint<5>)(ap_int<5>)(ap_int<4>)__smt2c_ext_1;
+  ap_uint<5> __smt2c_src_2 = _let_2 + exp_delta5_from_raw(_let_4);
+  ap_uint<4> __smt2c_ext_3 = ((ap_uint<5>)__smt2c_src_2).range(3, 0);
+  return (ap_uint<8>)(_let_3 + _let_3 == 0 ? (ap_uint<4>)  0 : (ap_uint<4>)  sat_mant4(norm_shifted5(_let_4))) << 4 | (ap_uint<8>)__smt2c_ext_3;
+}
+
+[INFO] Auto-detected top function: add_full_sum
+[INFO] Generated HLS TCL script: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/hpsweep_mxint8_add_combined_t30_i50_r01/hls.tcl
+[INFO] Running Vitis HLS synthesis...
+
+[SUCCESS] Vitis HLS run completed successfully.
+[INFO] Staged 3 Verilog files into: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/hpsweep_mxint8_add_combined_t30_i50_r01/verilog_out
+[INFO] Candidate RTL modules: ['add_full_sum', 'add_full_sum_sparsemux_11_4_5_1_1', 'add_full_sum_sparsemux_7_2_4_1_1']
+
+--- Hardware Results ---
+{
+    "LUTs": 454,
+    "FFs": 0,
+    "DSPs": 0,
+    "BRAMs": 0,
+    "Cycles": 0,
+    "Fmax_MHz": 43.812
+}

@@ -34,6 +34,23 @@ def _get_hls_datapath_mode() -> str:
     return mode
 
 
+def _resolve_results_root() -> Path:
+    return Path(
+        os.environ.get(
+            "VITIS_HLS_RESULTS_ROOT",
+            str(Path("results/HLS").resolve()),
+        )
+    )
+
+
+def _resolve_xilinx_settings(tool: str) -> str:
+    env_key = f"{tool.upper()}_SETTINGS_SH"
+    env_path = os.environ.get(env_key, "").strip()
+    if env_path:
+        return str(Path(env_path).expanduser())
+    return f"/tools/Xilinx/2025.1/{tool}/settings64.sh"
+
+
 def create_hls_tcl(design_path: Path, top_func: str, output_dir: Path) -> Path:
     tcl_path = output_dir / "hls.tcl"
     design_name = design_path.stem
@@ -457,17 +474,12 @@ def run_vitis_hls(design_path: str, top_func: str = None, impl: bool = False):
         print(f"[ERROR] Top '{top_func}' not found in {design_path.name}.")
         sys.exit(1)
 
-    project_root = Path(
-        os.environ.get(
-            "VITIS_HLS_RESULTS_ROOT",
-            "/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS",
-        )
-    )
+    project_root = _resolve_results_root()
     output_dir = project_root / design_path.stem
     os.makedirs(output_dir, exist_ok=True)
     
-    vitis_settings = "/tools/Xilinx/2025.1/Vitis/settings64.sh"
-    vivado_settings = "/tools/Xilinx/2025.1/Vivado/settings64.sh" # Vivado has its own settings script
+    vitis_settings = _resolve_xilinx_settings("Vitis")
+    vivado_settings = _resolve_xilinx_settings("Vivado")
 
     # STAGE 1: HLS Synthesis
     hls_tcl_path = create_hls_tcl(design_path, top_func, output_dir)

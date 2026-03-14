@@ -1,4 +1,4 @@
-import os, re, subprocess
+import os, re, shutil, subprocess
 from pathlib import Path
 from src.dependencies import DEPENDENCY_MAP
 
@@ -38,14 +38,43 @@ def _dedupe_define_fun_blocks(blocks: list[str]) -> tuple[list[str], list[str]]:
         unique.append(blk)
     return unique, skipped
 
+def _resolve_smt2c_binary() -> str | None:
+    env_path = os.environ.get("SMT2C_BIN", "").strip()
+    if env_path:
+        resolved = str(Path(env_path).expanduser())
+        if os.path.exists(resolved):
+            return resolved
+        print(f"[ERROR] SMT2C_BIN is set but does not exist: {resolved}")
+        return None
+
+    path_binary = shutil.which("smt2c")
+    if path_binary:
+        return path_binary
+
+    fallback_candidates = (
+        "third_party/smt2c/src/smt2c",
+        "tools/smt2c/src/smt2c",
+        "~/Desktop/Uni/Year_4/Dissertation/smt2c/src/smt2c",
+        "~/smt2c/src/smt2c",
+        "../smt2c/src/smt2c",
+    )
+    for candidate in fallback_candidates:
+        resolved = str(Path(candidate).expanduser().resolve())
+        if os.path.exists(resolved):
+            return resolved
+    return None
+
 def run_smt2c_translation(
     smt_path: str,
     save_dir: str,
     show_generated_code: bool = True,
 ) -> str | None:
-    smt2c_path = os.path.expanduser("~/Desktop/Uni/Year_4/Dissertation/smt2c/src/smt2c")
-    if not os.path.exists(smt2c_path):
-        print(f"[ERROR] smt2c binary not found at {smt2c_path}")
+    smt2c_path = _resolve_smt2c_binary()
+    if not smt2c_path:
+        print(
+            "[ERROR] smt2c binary not found. Set SMT2C_BIN, add 'smt2c' to PATH, "
+            "or place it in a supported fallback location."
+        )
         return None
     if not os.path.exists(smt_path):
         print(f"[ERROR] SMT2 file not found at {smt_path}")
