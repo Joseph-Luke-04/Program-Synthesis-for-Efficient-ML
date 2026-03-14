@@ -20,6 +20,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     flex \
     git \
     libgmp-dev \
+    libtinfo5 \
     locales \
     patch \
     perl \
