@@ -5,6 +5,7 @@ repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 image_tag="${IMAGE_TAG:-prog-synth:latest}"
 engine="${CONTAINER_ENGINE:-}"
 xilinx_root="${XILINX_ROOT:-/home/tools/Xilinx}"
+host_cvc5_bin="${HOST_CVC5_BIN:-}"
 
 if [[ -z "$engine" ]]; then
   if command -v podman >/dev/null 2>&1; then
@@ -15,6 +16,15 @@ if [[ -z "$engine" ]]; then
     echo "Neither podman nor docker is available on PATH." >&2
     exit 1
   fi
+fi
+
+if [[ -z "$host_cvc5_bin" ]] && command -v cvc5 >/dev/null 2>&1; then
+  host_cvc5_bin="$(command -v cvc5)"
+fi
+
+if ! "$engine" image exists "$image_tag" >/dev/null 2>&1; then
+  echo "Container image '$image_tag' does not exist locally. Build it first." >&2
+  exit 1
 fi
 
 runtime_args=(--rm -it -w /workspace)
@@ -34,6 +44,14 @@ runtime_args+=(
 
 if [[ -d "$xilinx_root" ]]; then
   runtime_args+=(-v "${xilinx_root}:${xilinx_root}:ro")
+fi
+
+if [[ -n "$host_cvc5_bin" ]]; then
+  host_cvc5_dir="$(dirname "$host_cvc5_bin")"
+  runtime_args+=(
+    -e HOST_CVC5_DIR="$host_cvc5_dir"
+    -v "${host_cvc5_dir}:${host_cvc5_dir}:ro"
+  )
 fi
 
 if [[ $# -eq 0 ]]; then

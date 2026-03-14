@@ -6,6 +6,10 @@ export MPLBACKEND="${MPLBACKEND:-Agg}"
 export PYTHONPATH="/workspace${PYTHONPATH:+:$PYTHONPATH}"
 export SMT2C_BIN="${SMT2C_BIN:-/opt/smt2c/src/smt2c}"
 
+if [[ -n "${HOST_CVC5_DIR:-}" ]]; then
+  export PATH="${HOST_CVC5_DIR}:${PATH}"
+fi
+
 if [[ -z "${VITIS_SETTINGS_SH:-}" ]]; then
   for candidate in \
     /home/tools/Xilinx/2025.1/2025.1/Vitis/settings64.sh \

@@ -32,7 +32,6 @@ RUN curl -Ls https://micro.mamba.pm/api/micromamba/linux-64/latest \
 RUN micromamba install -y -n base -c conda-forge \
     python=3.11 \
     pip \
-    cvc5=1.2.2 \
     iverilog \
     pytest \
     jupyter \
