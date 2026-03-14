@@ -27,7 +27,7 @@ if ! "$engine" image exists "$image_tag" >/dev/null 2>&1; then
   exit 1
 fi
 
-runtime_args=(--rm -it -w /workspace)
+runtime_args=(--rm -it -w /workspace --entrypoint /usr/local/bin/container-entrypoint.sh)
 if [[ "$engine" == "podman" ]]; then
   runtime_args+=(--userns keep-id)
 else
