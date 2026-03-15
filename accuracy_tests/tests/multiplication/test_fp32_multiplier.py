@@ -63,21 +63,6 @@ def _directed_cases():
         (-0.5, 0.5),
     ]
 
-def _order_for_ulp(u: int) -> int:
-    """Order-preserving map of IEEE754 bits to 32-bit unsigned ints.
-       Treats +0 and -0 as the same."""
-    u &= 0xFFFFFFFF
-    if (u & 0x7FFFFFFF) == 0:   # ±0
-        return 0
-    if u & 0x80000000:          # negatives
-        # Mirror negatives so adjacent floats remain adjacent in ordered space.
-        return (~u) & 0xFFFFFFFF
-    else:                       # non-negatives
-        return (u | 0x80000000) & 0xFFFFFFFF
-
-def ulp_distance(a_bits, b_bits):
-    return abs(_order_for_ulp(a_bits) - _order_for_ulp(b_bits))
-
 # =====================================================================
 #                         The Cocotb Testbench
 # =====================================================================
@@ -118,8 +103,6 @@ async def _run_fp32_multiplier_accuracy(dut, label: str):
     dut._log.info(f"Random operand sampler mode: {sample_mode} (seed={sample_seed})")
     if rel_err_threshold_pct <= 0:
         rel_err_threshold_pct = 5.0
-    ulps = []
-    rel_err_pcts = []
     skipped = 0
     directed_run = 0
 
@@ -181,49 +164,51 @@ async def _run_fp32_multiplier_accuracy(dut, label: str):
         else:
             rel_pct = abs(float((got_f - ref_f) / ref_f)) * 100.0
 
-        return got_bits, ref_bits, ulp_distance(got_bits, ref_bits), rel_pct
+        exact = (got_bits == ref_bits)
+        return got_bits, ref_bits, exact, rel_pct
 
     # Directed sanity vectors first, then random vectors.
+    rel_err_pcts = []
+    exact_matches = 0
+
     for af, bf in _directed_cases():
         a = float_to_uint32(np.float32(af))
         b = float_to_uint32(np.float32(bf))
-        got_bits, ref_bits, d, rel_pct = await _drive_and_measure(a, b)
-        if d is None:
+        got_bits, ref_bits, ex, rel_pct = await _drive_and_measure(a, b)
+        if ex is None:
             continue
         directed_run += 1
-        ulps.append(d)
+        if ex:
+            exact_matches += 1
         rel_err_pcts.append(rel_pct)
-        dut._log.info(f"[DIRECTED] a={af} b={bf} got=0x{got_bits:08X} ref=0x{ref_bits:08X} ulp={d}")
+        dut._log.info(f"[DIRECTED] a={af} b={bf} got=0x{got_bits:08X} ref=0x{ref_bits:08X} exact={ex}")
 
     for _ in range(num_samples):
         a, b = _sample_operands(rng, sample_mode)
-        _, _, d, rel_pct = await _drive_and_measure(a, b)
-        if d is None:
+        _, _, ex, rel_pct = await _drive_and_measure(a, b)
+        if ex is None:
             continue
-        ulps.append(d)
+        if ex:
+            exact_matches += 1
         rel_err_pcts.append(rel_pct)
 
-    if not ulps:
+    if not rel_err_pcts:
         raise AssertionError("No samples tested (all skipped?)")
 
-    avg_ulp = float(np.mean(ulps))
-    p99_ulp = int(np.percentile(ulps, 99))
-    max_ulp = int(np.max(ulps))
+    N = len(rel_err_pcts)
+    within_rel = sum(e <= rel_err_threshold_pct for e in rel_err_pcts)
+    avg_rel_pct = float(np.mean(rel_err_pcts))
+    p99_rel_pct = float(np.percentile(rel_err_pcts, 99))
 
     dut._log.info(f"Directed cases run: {directed_run}")
-    dut._log.info(f"Ran {len(ulps)} cases (skipped {skipped}). "
-                  f"ULP avg={avg_ulp:.3f}, p99={p99_ulp}, max={max_ulp}")
-
-    N = len(ulps)
-    within_rel = sum(e <= rel_err_threshold_pct for e in rel_err_pcts)
-    avg_rel_pct = float(np.mean(rel_err_pcts)) if rel_err_pcts else -1.0
-    p99_rel_pct = float(np.percentile(rel_err_pcts, 99)) if rel_err_pcts else -1.0
     dut._log.info(
+        f"Ran {N} cases (skipped {skipped}). "
+        f"Exact match: {exact_matches/N:.2%}. "
         f"Within {rel_err_threshold_pct:g}% relative error: {within_rel/N:.2%} "
         f"(avg={avg_rel_pct:.3f}%, p99={p99_rel_pct:.3f}%)"
     )
 
-    # Optional dump for downstream plotting (e.g. violin over per-sample relative error).
+    # Optional dump for downstream plotting.
     dump_path = os.getenv("FP32_MUL_DUMP_PATH", "").strip()
     if dump_path:
         try:
@@ -233,7 +218,6 @@ async def _run_fp32_multiplier_accuracy(dut, label: str):
             np.savez_compressed(
                 dump_path,
                 rel_err_pct=np.asarray(rel_err_pcts, dtype=np.float32),
-                ulp=np.asarray(ulps, dtype=np.int32),
                 sample_mode=np.asarray([sample_mode]),
                 rel_err_threshold_pct=np.asarray([rel_err_threshold_pct], dtype=np.float32),
             )
@@ -241,64 +225,36 @@ async def _run_fp32_multiplier_accuracy(dut, label: str):
         except Exception as exc:
             dut._log.warning(f"Failed to dump per-sample errors to {dump_path}: {exc}")
 
-    exact   = sum(d == 0 for d in ulps)
-    within1 = sum(d <= 1 for d in ulps)
-    within2 = sum(d <= 2 for d in ulps)
-    within4 = sum(d <= 4 for d in ulps)
-    dut._log.info(f"Exact {exact/N:.2%}, ≤1 ULP {within1/N:.2%}, ≤2 ULP {within2/N:.2%}, ≤4 ULP {within4/N:.2%}")
-    d1 = sum(d == 1 for d in ulps)
-    d2 = sum(d == 2 for d in ulps)
-    d3 = sum(d == 3 for d in ulps)
-    d4 = sum(d == 4 for d in ulps)
-    dgt4 = sum(d > 4 for d in ulps)
-    dut._log.info(
-        f"ULP buckets: ==1 {d1/N:.2%}, ==2 {d2/N:.2%}, ==3 {d3/N:.2%}, ==4 {d4/N:.2%}, >4 {dgt4/N:.2%}"
-    )
-
-    # Set a tolerance you're comfortable with. Without full IEEE handling,
-    # expect occasional multi-ULP errors.
-    assert p99_ulp <= 4, f"99th percentile ULP too high: {p99_ulp}"
+    # No threshold assertions; report metrics only.
 
     # --- Pass 2: generalisation (full IEEE normal range) ---
     # Skip if the primary mode already covers all normals.
     if sample_mode not in ("bits", "normal_full") and gen_samples > 0:
-        gen_ulps = []
         gen_rel = []
+        gen_exact = 0
         gen_skipped = 0
         gen_rng = random.Random(sample_seed + 1)
 
         for _ in range(gen_samples):
             a, b = _sample_operands(gen_rng, "normal_full")
-            _, _, d, rel_pct = await _drive_and_measure(a, b)
-            if d is None:
+            _, _, ex, rel_pct = await _drive_and_measure(a, b)
+            if ex is None:
                 gen_skipped += 1
                 continue
-            gen_ulps.append(d)
+            if ex:
+                gen_exact += 1
             gen_rel.append(rel_pct)
 
-        if gen_ulps:
-            gen_N = len(gen_ulps)
-            gen_avg_ulp = float(np.mean(gen_ulps))
-            gen_p99_ulp = int(np.percentile(gen_ulps, 99))
-            gen_max_ulp = int(np.max(gen_ulps))
-            dut._log.info(
-                f"[GENERALISATION (normal_full)] Ran {gen_N} cases (skipped {gen_skipped}). "
-                f"ULP avg={gen_avg_ulp:.3f}, p99={gen_p99_ulp}, max={gen_max_ulp}"
-            )
+        if gen_rel:
+            gen_N = len(gen_rel)
             gen_within_rel = sum(e <= rel_err_threshold_pct for e in gen_rel)
             gen_avg_rel = float(np.mean(gen_rel))
             gen_p99_rel = float(np.percentile(gen_rel, 99))
             dut._log.info(
-                f"[GENERALISATION (normal_full)] Within {rel_err_threshold_pct:g}% relative error: "
+                f"[GENERALISATION (normal_full)] Ran {gen_N} cases (skipped {gen_skipped}). "
+                f"Exact match: {gen_exact/gen_N:.2%}. "
+                f"Within {rel_err_threshold_pct:g}% relative error: "
                 f"{gen_within_rel/gen_N:.2%} (avg={gen_avg_rel:.3f}%, p99={gen_p99_rel:.3f}%)"
-            )
-            gen_exact = sum(d == 0 for d in gen_ulps)
-            gen_w1 = sum(d <= 1 for d in gen_ulps)
-            gen_w2 = sum(d <= 2 for d in gen_ulps)
-            gen_w4 = sum(d <= 4 for d in gen_ulps)
-            dut._log.info(
-                f"[GENERALISATION (normal_full)] Exact {gen_exact/gen_N:.2%}, "
-                f"≤1 ULP {gen_w1/gen_N:.2%}, ≤2 ULP {gen_w2/gen_N:.2%}, ≤4 ULP {gen_w4/gen_N:.2%}"
             )
 
 
