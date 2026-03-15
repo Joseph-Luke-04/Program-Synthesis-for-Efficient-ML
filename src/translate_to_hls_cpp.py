@@ -481,6 +481,42 @@ def _wrap_return_top_concat(c_code: str) -> str:
 
     return "".join(out)
 
+def _cast_ternary_branches(code: str) -> str:
+    """
+    Fix Vitis HLS ambiguity when ternary branches have mismatched types.
+    E.g.  ap_uint<5> x = cond ? (ap_uint<5>) a - (ap_uint<5>) b : (ap_uint<5>) c;
+    The subtraction widens to ap_int<6>, making the ternary ambiguous.
+    We wrap each branch with the declared variable type:
+          ap_uint<5> x = cond ? (ap_uint<5>)((ap_uint<5>) a - (ap_uint<5>) b) : (ap_uint<5>) c;
+    """
+    # Match:  ap_uint<N> var = COND ? TRUE_BRANCH : FALSE_BRANCH;
+    pat = re.compile(
+        r"^(\s*)(ap_(?:u)?int<\d+>)\s+\w+\s*=\s*(.+?)\s*\?\s*(.+?)\s*:\s*(.+?)\s*;",
+        re.MULTILINE,
+    )
+
+    def _needs_cast(branch: str) -> bool:
+        """True if the branch contains an add/sub that Vitis may widen."""
+        # Strip outer cast if present to peek at inner expression
+        inner = re.sub(r"^\(\s*ap_(?:u)?int<\d+>\s*\)\s*", "", branch.strip())
+        return bool(re.search(r"[+-]", inner))
+
+    def repl(m):
+        indent, ty, cond, true_br, false_br = m.groups()
+        changed = False
+        if _needs_cast(true_br):
+            true_br = f"({ty})({true_br.strip()})"
+            changed = True
+        if _needs_cast(false_br):
+            false_br = f"({ty})({false_br.strip()})"
+            changed = True
+        if not changed:
+            return m.group(0)
+        return f"{indent}{ty} {m.group(0).split('=')[0].split()[-1]} = {cond.strip()} ? {true_br} : {false_br};"
+
+    return pat.sub(repl, code)
+
+
 def _peephole_simplify(code: str) -> str:
     # shift/add/sub no-ops
     code = re.sub(r'\s*<<\s*0\b', '', code)
@@ -527,7 +563,10 @@ def convert_cp_to_hls(c_input_path: str, save_output: bool = True) -> str:
     # 4) Treat 'return (A,B,...)' as a packed value, not comma-operator
     code = _wrap_return_top_concat(code)
 
-    # 5) Final tidy
+    # 5) Disambiguate ternary branches for Vitis HLS
+    code = _cast_ternary_branches(code)
+
+    # 6) Final tidy
     code = _peephole_simplify(code)
     code = _clean(code)
 

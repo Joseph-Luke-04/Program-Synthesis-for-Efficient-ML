@@ -1,7 +1,7 @@
 <testsuites name="results">
   <testsuite name="all" package="all">
-    <property name="random_seed" value="1773516803" />
-    <testcase name="mxint8_adder_accuracy_subcomponents" classname="tests.addition.test_mxint8_adder" file="/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/accuracy_tests/tests/addition/test_mxint8_adder.py" lineno="242" time="67.04081845283508" sim_time_ns="100000.0" ratio_time="1491.6285676069504" />
-    <testcase name="mxint8_adder_accuracy_combined" classname="tests.addition.test_mxint8_adder" file="/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/accuracy_tests/tests/addition/test_mxint8_adder.py" lineno="250" time="4.1484832763671875e-05" sim_time_ns="0.0" ratio_time="0.0" />
+    <property name="random_seed" value="1773599109" />
+    <testcase name="mxint8_multiplier_accuracy_subcomponents" classname="tests.multiplication.test_mxint8_multiplier" file="/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/accuracy_tests/tests/multiplication/test_mxint8_multiplier.py" lineno="243" time="8.082389831542969e-05" sim_time_ns="0.0" ratio_time="0.0" />
+    <testcase name="mxint8_multiplier_accuracy_combined" classname="tests.multiplication.test_mxint8_multiplier" file="/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/accuracy_tests/tests/multiplication/test_mxint8_multiplier.py" lineno="251" time="57.169697523117065" sim_time_ns="100000.0" ratio_time="1749.178399265872" />
   </testsuite>
 </testsuites>
