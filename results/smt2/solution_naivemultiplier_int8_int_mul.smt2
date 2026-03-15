@@ -1,1 +1,0 @@
-(define-fun naive_int_mul ((x (_ BitVec 8)) (y (_ BitVec 8))) (_ BitVec 8) (bvmul x y))

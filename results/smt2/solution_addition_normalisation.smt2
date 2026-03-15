@@ -1,1 +1,0 @@
-(define-fun normalise_addition ((raw_sum (_ BitVec 5)) (target_exp (_ BitVec 4))) (_ BitVec 8) (let ((_let_1 (or (bvsgt raw_sum #b00111) (bvslt raw_sum #b11000)))) (concat (ite _let_1 ((_ extract 3 0) (bvashr raw_sum #b00001)) ((_ extract 3 0) (bvshl raw_sum ((_ zero_extend 1) #b0000)))) (ite _let_1 (bvadd target_exp #b0001) (bvsub target_exp #b0000)))))

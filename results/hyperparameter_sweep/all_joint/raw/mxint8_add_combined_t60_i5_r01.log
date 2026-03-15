@@ -182,7 +182,7 @@ unsigned char add_full_sum(ap_uint<4> m1, ap_uint<4> e1, ap_uint<4> m2, ap_uint<
 
 Converting C output to HLS-compatible C++...
 
-HLS C++ file saved to: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/hpsweep_mxint8_add_combined_t60_i5_r01.cpp
+HLS C++ file saved to: /home/josephluke/Program-Synthesis-for-Efficient-ML/results/cpp/hpsweep_mxint8_add_combined_t60_i5_r01.cpp
 Generated HLS-ready C++ code:
 
 #include <ap_int.h>
@@ -275,11 +275,11 @@ ap_uint<8> add_full_sum(ap_uint<4> m1, ap_uint<4> e1, ap_uint<4> m2, ap_uint<4> 
 }
 
 [INFO] Auto-detected top function: add_full_sum
-[INFO] Generated HLS TCL script: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/hpsweep_mxint8_add_combined_t60_i5_r01/hls.tcl
+[INFO] Generated HLS TCL script: /home/josephluke/Program-Synthesis-for-Efficient-ML/results/HLS/hpsweep_mxint8_add_combined_t60_i5_r01/hls.tcl
 [INFO] Running Vitis HLS synthesis...
 
 [SUCCESS] Vitis HLS run completed successfully.
-[INFO] Staged 1 Verilog files into: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/hpsweep_mxint8_add_combined_t60_i5_r01/verilog_out
+[INFO] Staged 1 Verilog files into: /home/josephluke/Program-Synthesis-for-Efficient-ML/results/HLS/hpsweep_mxint8_add_combined_t60_i5_r01/verilog_out
 [INFO] Candidate RTL modules: ['add_full_sum']
 
 --- Hardware Results ---

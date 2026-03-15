@@ -244,11 +244,13 @@ ap_uint<8> exp_delta_from_raw(ap_uint<25> raw) {
 }
 
 ap_uint<32> fp32_sum(ap_uint<1> s1, ap_uint<8> e1, ap_uint<23> m1, ap_uint<1> s2, ap_uint<8> e2, ap_uint<23> m2) {
-  ap_uint<24> _let_1 = (ap_uint<24>)1 << 23 | (ap_uint<24>)m1;
-  ap_uint<24> _let_2 = (ap_uint<24>)1 << 23 | (ap_uint<24>)m2;
-  bool _let_3 = e1 >= e2;
-  ap_uint<25> _let_4 = ap_uint<25>(((_let_3 ? (ap_uint<24>)  _let_1 : (ap_uint<24>)  _let_2) + (ap_uint<25>)shr24_sat(_let_3 ? (ap_uint<24>)  _let_2 : (ap_uint<24>)  _let_1, e1 - e2)));
-  ap_uint<24> __smt2c_src_0 = norm24_from_raw(_let_4);
+  ap_uint<8> _let_1 = e1 - e2;
+  bool _let_2 = e1 >= e2;
+  ap_uint<24> _let_3 = (ap_uint<24>)1 << 23 | (ap_uint<24>)m1;
+  ap_uint<24> _let_4 = (ap_uint<24>)1 << 23 | (ap_uint<24>)m2;
+  ap_uint<24> _let_5 = _let_2 ? (ap_uint<24>)  _let_4 : (ap_uint<24>)  _let_3;
+  ap_uint<25> _let_6 = (ap_uint<25>)(_let_2 ? (ap_uint<24>)  _let_3 : (ap_uint<24>)  _let_4);
+  ap_uint<24> __smt2c_src_0 = norm24_from_raw(_let_6 + (ap_uint<25>)shr24_sat(_let_5, _let_2 ? (ap_uint<8>)  _let_1 : ap_uint<8>((e2 - e1))));
   ap_uint<23> __smt2c_ext_1 = ((ap_uint<24>)__smt2c_src_0).range(22, 0);
-  return (ap_uint<32>)s1 << 31 | (ap_uint<32>)((ap_uint<31>)((e1 > e2 ? (ap_uint<8>)  e1 : (ap_uint<8>)  e2) + exp_delta_from_raw(_let_4)) << 23 | (ap_uint<31>)__smt2c_ext_1);
+  return (ap_uint<32>)s1 << 31 | (ap_uint<32>)((ap_uint<31>)((e1 > e2 ? (ap_uint<8>)  e1 : (ap_uint<8>)  e2) + exp_delta_from_raw(_let_6 + (ap_uint<25>)shr24_sat(_let_5, _let_1))) << 23 | (ap_uint<31>)__smt2c_ext_1);
 }

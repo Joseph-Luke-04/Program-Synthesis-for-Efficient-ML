@@ -330,8 +330,22 @@ def main() -> None:
 
     all_rows: list[dict[str, Any]] = []
     raw_jsonl = output_dir / "runs.jsonl"
+
+    # ── Resume support: load previously completed runs and skip them ──
+    done_keys: set[tuple[str, int, int, int]] = set()
     if raw_jsonl.exists():
-        raw_jsonl.unlink()
+        for line in raw_jsonl.read_text().strip().split("\n"):
+            if not line:
+                continue
+            try:
+                prev = json.loads(line)
+                done_keys.add((prev["benchmark"], prev["timeout"],
+                               prev["num_iterations"], prev["repetition"]))
+                all_rows.append(prev)
+            except (json.JSONDecodeError, KeyError):
+                continue
+        if done_keys:
+            print(f"[RESUME] Found {len(done_keys)} completed runs in {raw_jsonl}, skipping them.")
 
     run_index = 0
     skipped_count = 0
@@ -356,6 +370,21 @@ def main() -> None:
                 point_rows: list[dict[str, Any]] = []
                 for rep in range(1, args.repetitions + 1):
                     run_index += 1
+                    # Skip if already completed in a previous run
+                    resume_key = (bench.key, point.timeout, point.num_iterations, rep)
+                    if resume_key in done_keys:
+                        prev_row = next(
+                            r for r in all_rows
+                            if (r["benchmark"], r["timeout"],
+                                r["num_iterations"], r["repetition"]) == resume_key
+                        )
+                        point_rows.append(prev_row)
+                        print(
+                            f"  [{run_index}/{total_runs_max}] "
+                            f"benchmark={bench.key} t={point.timeout} "
+                            f"i={point.num_iterations} rep={rep} — RESUMED (skipped)"
+                        )
+                        continue
                     summary, rc, wall = run_sweep_point(
                         repo_root, bench, point, rep, output_dir, args,
                         run_index, total_runs_max,

@@ -78,11 +78,12 @@ ap_uint<4> clamp_exp4(ap_uint<5> exp_adj) {
 }
 
 ap_uint<8> add_full_sum(ap_uint<4> m1, ap_uint<4> e1, ap_uint<4> m2, ap_uint<4> e2) {
-  bool _let_1 = (ap_int<4>)e1 > (ap_int<4>)e2;
-  ap_uint<5> _let_2 = (ap_uint<5>)(ap_int<5>)(ap_int<4>)(_let_1 ? (ap_uint<4>)  m2 : (ap_uint<4>)  m1);
-  bool _let_3 = (ap_int<4>)e1 >= (ap_int<4>)e2;
-  ap_uint<5> _let_4 = (ap_uint<5>)(ap_int<5>)(ap_int<4>)(_let_3 ? (ap_uint<4>)  m1 : (ap_uint<4>)  m2);
-  ap_uint<5> __smt2c_src_0 = (ap_uint<5>)ap_int<5>((ap_int<4>(((_let_3 ? (ap_uint<4>)  e2 : (ap_uint<4>)  e1) + exp_delta5_from_raw((ap_uint<5>)ap_int<5>((ap_int<4>(((_let_3 ? (ap_uint<4>)  m2 : (ap_uint<4>)  m1) + _let_2)))))))));
+  bool _let_1 = (ap_int<4>)e1 >= (ap_int<4>)e2;
+  ap_uint<5> _let_2 = (ap_uint<5>)(ap_int<5>)(ap_int<4>)(_let_1 ? (ap_uint<4>)  m1 : (ap_uint<4>)  m2);
+  bool _let_3 = (ap_int<4>)e1 > (ap_int<4>)e2;
+  ap_uint<5> __smt2c_src_0 = (ap_uint<5>)((ap_int<5>)(ap_uint<5>)(ap_int<5>)(ap_int<4>)(_let_1 ? (ap_uint<4>)  m2 : (ap_uint<4>)  m1) >> (ap_int<5>)((ap_uint<5>)(ap_int<5>)(ap_int<4>)(_let_1 ? (ap_uint<4>)  e2 : (ap_uint<4>)  e1) - (ap_uint<5>)(ap_int<5>)(ap_int<4>)(_let_1 ? (ap_uint<4>)  e1 : (ap_uint<4>)  e2)));
   ap_uint<4> __smt2c_ext_1 = ((ap_uint<5>)__smt2c_src_0).range(3, 0);
-  return (ap_uint<8>)(_let_4 + _let_4 == 0 ? (ap_uint<4>)  0 : (ap_uint<4>)  sat_mant4(norm_shifted5((ap_uint<5>)ap_int<5>((ap_int<4>(((_let_1 ? (ap_uint<4>)  m1 : (ap_uint<4>)  m2) + _let_2))))))) << 4 | (ap_uint<8>)__smt2c_ext_1;
+  ap_uint<5> __smt2c_src_2 = (ap_uint<5>)ap_int<5>((ap_int<4>(((_let_3 ? (ap_uint<4>)  e1 : (ap_uint<4>)  e2) + exp_delta5_from_raw(_let_2 + (ap_uint<5>)(ap_int<5>)(ap_int<4>)__smt2c_ext_1)))));
+  ap_uint<4> __smt2c_ext_3 = ((ap_uint<5>)__smt2c_src_2).range(3, 0);
+  return (ap_uint<8>)(_let_2 + _let_2 == 0 ? (ap_uint<4>)  0 : (ap_uint<4>)  sat_mant4(norm_shifted5(_let_2 + (ap_uint<5>)(ap_int<5>)(ap_int<4>)(_let_3 ? (ap_uint<4>)  m1 : (ap_uint<4>)  m2)))) << 4 | (ap_uint<8>)__smt2c_ext_3;
 }

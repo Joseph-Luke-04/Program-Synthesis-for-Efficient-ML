@@ -245,8 +245,9 @@ unsigned int fp32_sum(ap_uint<1> s1, unsigned char e1, ap_uint<23> m1, ap_uint<1
   ap_uint<24> _let_1 = (ap_uint<24>)1 << 23 | (ap_uint<24>)m1;
   ap_uint<24> _let_2 = (ap_uint<24>)1 << 23 | (ap_uint<24>)m2;
   __CPROVER_bool _let_3 = e1 >= e2;
-  ap_uint<25> _let_4 = (ap_uint<25>)(_let_3 ? (ap_uint<24>)  _let_1 : (ap_uint<24>)  _let_2) + (ap_uint<25>)shr24_sat(_let_3 ? (ap_uint<24>)  _let_2 : (ap_uint<24>)  _let_1, e1 - e2);
-  ap_uint<24> __smt2c_src_0 = norm24_from_raw(_let_4);
+  ap_uint<24> _let_4 = _let_3 ? (ap_uint<24>)  _let_2 : (ap_uint<24>)  _let_1;
+  ap_uint<25> _let_5 = (ap_uint<25>)shr24_sat(_let_4, e1 - e2);
+  ap_uint<24> __smt2c_src_0 = norm24_from_raw((ap_uint<25>)(_let_3 ? (ap_uint<24>)  _let_1 : (ap_uint<24>)  _let_2) + _let_5);
   ap_uint<23> __smt2c_ext_1 = ((ap_uint<24>)__smt2c_src_0).range(22, 0);
-  return (unsigned int)s1 << 31 | (unsigned int)((ap_uint<31>)((e1 > e2 ? (unsigned char)  e1 : (unsigned char)  e2) + exp_delta_from_raw(_let_4)) << 23 | (ap_uint<31>)__smt2c_ext_1);
+  return (unsigned int)s1 << 31 | (unsigned int)((ap_uint<31>)((e1 > e2 ? (unsigned char)  e1 : (unsigned char)  e2) + exp_delta_from_raw((ap_uint<25>)_let_4 + _let_5)) << 23 | (ap_uint<31>)__smt2c_ext_1);
 }

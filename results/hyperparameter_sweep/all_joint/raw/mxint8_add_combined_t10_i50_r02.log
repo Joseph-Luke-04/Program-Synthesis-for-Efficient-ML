@@ -216,14 +216,12 @@ SKIPPED: (-51.620, 4.645) could not be added (even after relaxation).
 --- Iteration 37/50 ---
 Generating new constraint with inputs: (-7.513881910572557, -60.9874298919224)
 (constraint (= (add_full_sum #b1000 #b0011 #b1000 #b0110) #b10110111))
-[CVC5] Solver timed out after 10 seconds.
-[INFO] Timeout. No staged fallback; skipping this sample.
-SKIPPED: (-7.514, -60.987) could not be added (even after relaxation).
+SUCCESS: accepted (MSB match = 32). Total constraints: 15
 
 --- Iteration 38/50 ---
 Generating new constraint with inputs: (-65.66743038624676, 53.265992466142734)
 (constraint (= (add_full_sum #b1011 #b0111 #b0110 #b0110) #b11000110))
-SUCCESS: accepted (MSB match = 32). Total constraints: 15
+SUCCESS: accepted (MSB match = 32). Total constraints: 16
 
 --- Iteration 39/50 ---
 Generating new constraint with inputs: (62.91221068283946, -49.589783425357204)
@@ -242,12 +240,12 @@ SKIPPED: (30.966, 64.572) could not be added (even after relaxation).
 --- Iteration 41/50 ---
 Generating new constraint with inputs: (53.30398321498768, 50.82514702561522)
 (constraint (= (add_full_sum #b0110 #b0110 #b0110 #b0110) #b01100111))
-SUCCESS: accepted (MSB match = 32). Total constraints: 16
+SUCCESS: accepted (MSB match = 32). Total constraints: 17
 
 --- Iteration 42/50 ---
 Generating new constraint with inputs: (-21.43138483429381, 28.680829780320238)
 (constraint (= (add_full_sum #b1010 #b0101 #b0111 #b0101) #b01000011))
-SUCCESS: accepted (MSB match = 32). Total constraints: 17
+SUCCESS: accepted (MSB match = 32). Total constraints: 18
 
 --- Iteration 43/50 ---
 Generating new constraint with inputs: (-0.24930123846120011, 57.729435261781745)
@@ -259,7 +257,7 @@ SKIPPED: (-0.249, 57.729) could not be added (even after relaxation).
 --- Iteration 44/50 ---
 Generating new constraint with inputs: (26.798566551677524, 45.36639983118704)
 (constraint (= (add_full_sum #b0110 #b0101 #b0101 #b0110) #b01000111))
-SUCCESS: accepted (MSB match = 32). Total constraints: 18
+SUCCESS: accepted (MSB match = 32). Total constraints: 19
 
 --- Iteration 45/50 ---
 Generating new constraint with inputs: (47.15191013686423, -15.101470563535734)
@@ -278,12 +276,12 @@ SKIPPED: (28.032, -53.730) could not be added (even after relaxation).
 --- Iteration 47/50 ---
 Generating new constraint with inputs: (-38.7956191311439, 57.62745258766506)
 (constraint (= (add_full_sum #b1011 #b0110 #b0111 #b0110) #b01000101))
-SUCCESS: accepted (MSB match = 32). Total constraints: 19
+SUCCESS: accepted (MSB match = 32). Total constraints: 20
 
 --- Iteration 48/50 ---
 Generating new constraint with inputs: (-12.584844219636466, 24.426215823346567)
 (constraint (= (add_full_sum #b1001 #b0100 #b0110 #b0101) #b01000100))
-SUCCESS: accepted (MSB match = 32). Total constraints: 20
+SUCCESS: accepted (MSB match = 32). Total constraints: 21
 
 --- Iteration 49/50 ---
 Generating new constraint with inputs: (9.983275691099763, -31.637661021640668)
@@ -295,14 +293,12 @@ SKIPPED: (9.983, -31.638) could not be added (even after relaxation).
 --- Iteration 50/50 ---
 Generating new constraint with inputs: (11.39474366567103, 54.443896544437635)
 (constraint (= (add_full_sum #b0101 #b0100 #b0110 #b0110) #b01110110))
-[CVC5] Solver timed out after 10 seconds.
-[INFO] Timeout. No staged fallback; skipping this sample.
-SKIPPED: (11.395, 54.444) could not be added (even after relaxation).
+SUCCESS: accepted (MSB match = 32). Total constraints: 22
 
 
 --- Synthesis Complete! ---
 
-Constraints accepted: 20/50
+Constraints accepted: 22/50
 
 --- Final Synthesized Program ---
 (define-fun norm_shifted5 ((raw (_ BitVec 5))) (_ BitVec 5)
@@ -452,7 +448,7 @@ unsigned char add_full_sum(ap_uint<4> m1, ap_uint<4> e1, ap_uint<4> m2, ap_uint<
 
 Converting C output to HLS-compatible C++...
 
-HLS C++ file saved to: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/hpsweep_mxint8_add_combined_t10_i50_r02.cpp
+HLS C++ file saved to: /home/josephluke/Program-Synthesis-for-Efficient-ML/results/cpp/hpsweep_mxint8_add_combined_t10_i50_r02.cpp
 Generated HLS-ready C++ code:
 
 #include <ap_int.h>
@@ -547,11 +543,11 @@ ap_uint<8> add_full_sum(ap_uint<4> m1, ap_uint<4> e1, ap_uint<4> m2, ap_uint<4> 
 }
 
 [INFO] Auto-detected top function: add_full_sum
-[INFO] Generated HLS TCL script: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/hpsweep_mxint8_add_combined_t10_i50_r02/hls.tcl
+[INFO] Generated HLS TCL script: /home/josephluke/Program-Synthesis-for-Efficient-ML/results/HLS/hpsweep_mxint8_add_combined_t10_i50_r02/hls.tcl
 [INFO] Running Vitis HLS synthesis...
 
 [SUCCESS] Vitis HLS run completed successfully.
-[INFO] Staged 3 Verilog files into: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/hpsweep_mxint8_add_combined_t10_i50_r02/verilog_out
+[INFO] Staged 3 Verilog files into: /home/josephluke/Program-Synthesis-for-Efficient-ML/results/HLS/hpsweep_mxint8_add_combined_t10_i50_r02/verilog_out
 [INFO] Candidate RTL modules: ['add_full_sum', 'add_full_sum_sparsemux_11_4_5_1_1', 'add_full_sum_sparsemux_7_2_4_1_1']
 
 --- Hardware Results ---

@@ -94,15 +94,13 @@ SUCCESS: accepted (MSB match = 32). Total constraints: 8
 --- Iteration 17/20 ---
 Generating new constraint with inputs: (4.782108072020492, 62.451280845276926)
 (constraint (= (add_full_sum #b0100 #b0011 #b0111 #b0110) #b01000111))
-[CVC5] Solver timed out after 10 seconds.
-[INFO] Timeout. No staged fallback; skipping this sample.
+[INFO] Not relaxable (status=fail); not relaxing further for this sample.
 SKIPPED: (4.782, 62.451) could not be added (even after relaxation).
 
 --- Iteration 18/20 ---
 Generating new constraint with inputs: (-16.03346220849734, 6.869363328065958)
 (constraint (= (add_full_sum #b1011 #b0101 #b0110 #b0011) #b10100100))
-[CVC5] Solver timed out after 10 seconds.
-[INFO] Timeout. No staged fallback; skipping this sample.
+[INFO] Not relaxable (status=fail); not relaxing further for this sample.
 SKIPPED: (-16.033, 6.869) could not be added (even after relaxation).
 
 --- Iteration 19/20 ---
@@ -270,7 +268,7 @@ unsigned char add_full_sum(ap_uint<4> m1, ap_uint<4> e1, ap_uint<4> m2, ap_uint<
 
 Converting C output to HLS-compatible C++...
 
-HLS C++ file saved to: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/cpp/hpsweep_mxint8_add_combined_t10_i20_r01.cpp
+HLS C++ file saved to: /home/josephluke/Program-Synthesis-for-Efficient-ML/results/cpp/hpsweep_mxint8_add_combined_t10_i20_r01.cpp
 Generated HLS-ready C++ code:
 
 #include <ap_int.h>
@@ -365,11 +363,11 @@ ap_uint<8> add_full_sum(ap_uint<4> m1, ap_uint<4> e1, ap_uint<4> m2, ap_uint<4> 
 }
 
 [INFO] Auto-detected top function: add_full_sum
-[INFO] Generated HLS TCL script: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/hpsweep_mxint8_add_combined_t10_i20_r01/hls.tcl
+[INFO] Generated HLS TCL script: /home/josephluke/Program-Synthesis-for-Efficient-ML/results/HLS/hpsweep_mxint8_add_combined_t10_i20_r01/hls.tcl
 [INFO] Running Vitis HLS synthesis...
 
 [SUCCESS] Vitis HLS run completed successfully.
-[INFO] Staged 3 Verilog files into: /home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/results/HLS/hpsweep_mxint8_add_combined_t10_i20_r01/verilog_out
+[INFO] Staged 3 Verilog files into: /home/josephluke/Program-Synthesis-for-Efficient-ML/results/HLS/hpsweep_mxint8_add_combined_t10_i20_r01/verilog_out
 [INFO] Candidate RTL modules: ['add_full_sum', 'add_full_sum_sparsemux_11_4_5_1_1', 'add_full_sum_sparsemux_7_2_4_1_1']
 
 --- Hardware Results ---
