@@ -484,35 +484,32 @@ def _wrap_return_top_concat(c_code: str) -> str:
 def _cast_ternary_branches(code: str) -> str:
     """
     Fix Vitis HLS ambiguity when ternary branches have mismatched types.
-    E.g.  ap_uint<5> x = cond ? (ap_uint<5>) a - (ap_uint<5>) b : (ap_uint<5>) c;
-    The subtraction widens to ap_int<6>, making the ternary ambiguous.
-    We wrap each branch with the declared variable type:
-          ap_uint<5> x = cond ? (ap_uint<5>)((ap_uint<5>) a - (ap_uint<5>) b) : (ap_uint<5>) c;
+    Always cast both branches to the declared variable type to prevent
+    any width mismatch (arithmetic widening, different ap_uint widths, etc.).
     """
     # Match:  ap_uint<N> var = COND ? TRUE_BRANCH : FALSE_BRANCH;
     pat = re.compile(
-        r"^(\s*)(ap_(?:u)?int<\d+>)\s+\w+\s*=\s*(.+?)\s*\?\s*(.+?)\s*:\s*(.+?)\s*;",
+        r"^(\s*)(ap_(?:u)?int<\d+>)\s+(\w+)\s*=\s*(.+?)\s*\?\s*(.+?)\s*:\s*(.+?)\s*;",
         re.MULTILINE,
     )
 
-    def _needs_cast(branch: str) -> bool:
-        """True if the branch contains an add/sub that Vitis may widen."""
-        # Strip outer cast if present to peek at inner expression
-        inner = re.sub(r"^\(\s*ap_(?:u)?int<\d+>\s*\)\s*", "", branch.strip())
-        return bool(re.search(r"[+-]", inner))
+    def _already_exact_cast(branch: str, ty: str) -> bool:
+        """True if the branch is already exactly `(ty)expr` with nothing else."""
+        branch = branch.strip()
+        prefix = f"({ty})"
+        if not branch.startswith(prefix):
+            return False
+        rest = branch[len(prefix):].strip()
+        # Must be a simple identifier or already-parenthesised expression
+        return bool(re.match(r"^[A-Za-z_]\w*$", rest) or re.match(r"^\(.*\)$", rest))
 
     def repl(m):
-        indent, ty, cond, true_br, false_br = m.groups()
-        changed = False
-        if _needs_cast(true_br):
+        indent, ty, var, cond, true_br, false_br = m.groups()
+        if not _already_exact_cast(true_br, ty):
             true_br = f"({ty})({true_br.strip()})"
-            changed = True
-        if _needs_cast(false_br):
+        if not _already_exact_cast(false_br, ty):
             false_br = f"({ty})({false_br.strip()})"
-            changed = True
-        if not changed:
-            return m.group(0)
-        return f"{indent}{ty} {m.group(0).split('=')[0].split()[-1]} = {cond.strip()} ? {true_br} : {false_br};"
+        return f"{indent}{ty} {var} = {cond.strip()} ? {true_br} : {false_br};"
 
     return pat.sub(repl, code)
 

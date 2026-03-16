@@ -1,7 +1,8 @@
 <testsuites name="results">
   <testsuite name="all" package="all">
-    <property name="random_seed" value="1773619097" />
-    <testcase name="mxint8_multiplier_accuracy_subcomponents" classname="tests.multiplication.test_mxint8_multiplier" file="/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/accuracy_tests/tests/multiplication/test_mxint8_multiplier.py" lineno="250" time="7.176399230957031e-05" sim_time_ns="0.0" ratio_time="0.0" />
-    <testcase name="mxint8_multiplier_accuracy_combined" classname="tests.multiplication.test_mxint8_multiplier" file="/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/accuracy_tests/tests/multiplication/test_mxint8_multiplier.py" lineno="258" time="61.44379115104675" sim_time_ns="100000.0" ratio_time="1627.5037416583043" />
+    <property name="random_seed" value="1773660015" />
+    <testcase name="fp32_adder_accuracy_subcomponents" classname="tests.addition.test_fp32_adder" file="/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/accuracy_tests/tests/addition/test_fp32_adder.py" lineno="240" time="0.00012445449829101562" sim_time_ns="0.0" ratio_time="0.0" />
+    <testcase name="fp32_adder_accuracy_combined" classname="tests.addition.test_fp32_adder" file="/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/accuracy_tests/tests/addition/test_fp32_adder.py" lineno="248" time="13.259612560272217" sim_time_ns="150000.0" ratio_time="11312.547732308743" />
+    <testcase name="fp32_adder_accuracy_flopoco" classname="tests.addition.test_fp32_adder" file="/home/joe/Desktop/Uni/Year_4/Dissertation/Program-Synthesis-for-Efficient-ML/accuracy_tests/tests/addition/test_fp32_adder.py" lineno="256" time="4.315376281738281e-05" sim_time_ns="0.0" ratio_time="0.0" />
   </testsuite>
 </testsuites>
