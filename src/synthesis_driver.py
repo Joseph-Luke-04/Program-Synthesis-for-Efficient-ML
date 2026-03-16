@@ -55,7 +55,7 @@ from .synthesis_targets.dot_product import DotProductTarget
 # Target/component defaults when running `python -m src.synthesis_driver`.
 # Use class-style defaults directly (can be switched to any target class instance).
 DEFAULT_TARGET_OPERATION = MXINT8MultiplicationTarget()
-DEFAULT_COMPONENT = "full_product_combined"
+DEFAULT_COMPONENT = "full_product"
 
 # Pipeline toggles.
 

@@ -141,8 +141,15 @@ async def _run_mxint8_multiplier_accuracy(dut, label: str):
         dut.m2.value = m2
         dut.e2.value = e2
         if hasattr(dut, "renorm_flag"):
-            # The synthesized multiplier currently recomputes this internally.
-            dut.renorm_flag.value = 0
+            if label == "combined":
+                # Combined solution takes renorm_flag as an explicit input.
+                # Flag=1 when |m1*m2| is large enough that the exponent
+                # needs adjusting down to compensate for the mantissa shift.
+                dut.renorm_flag.value = 1 if abs(m1 * m2) >= 32 else 0
+            else:
+                # Subcomponents version computes renorm_flag internally
+                # via a dedicated sub-circuit; the port value is unused.
+                dut.renorm_flag.value = 0
 
         if has_clk:
             # Start the transaction and wait for ap_done.
