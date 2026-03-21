@@ -33,18 +33,18 @@ ap_uint<1> detect_overflow(ap_uint<5> raw_sum) {
 }
 
 ap_uint<8> normalise_addition(ap_uint<5> raw_sum, ap_uint<4> target_exp) {
-  ap_uint<5> _let_1 = (ap_int<5>)raw_sum < (ap_int<5>)0 ? (ap_uint<5>)  -raw_sum : (ap_uint<5>)  raw_sum;
+  ap_uint<5> _let_1 = (ap_int<5>)raw_sum < (ap_int<5>)0 ? (ap_uint<5>)((ap_uint<5>)  -raw_sum) : (ap_uint<5>)  raw_sum;
   bool _let_2 = raw_sum == 0;
   ap_uint<1> __smt2c_ext_0 = ((ap_uint<5>)_let_1).range(4, 4);
   ap_uint<1> __smt2c_ext_1 = ((ap_uint<5>)_let_1).range(3, 3);
   ap_uint<1> __smt2c_ext_2 = ((ap_uint<5>)_let_1).range(2, 2);
   ap_uint<1> __smt2c_ext_3 = ((ap_uint<5>)_let_1).range(1, 1);
-  ap_uint<5> _let_3 = _let_2 ? (ap_uint<5>)  0 : (ap_uint<5>)  (__smt2c_ext_0 == 1 ? (ap_uint<5>)  2 : (ap_uint<5>)  (__smt2c_ext_1 == 1 ? (ap_uint<5>)  1 : (ap_uint<5>)  (__smt2c_ext_2 == 1 ? (ap_uint<5>)  0 : (ap_uint<5>)  (__smt2c_ext_3 == 1 ? (ap_uint<5>)  31 : (ap_uint<5>)  30))));
-  ap_uint<5> __smt2c_src_4 = (ap_int<5>)_let_3 >= (ap_int<5>)0 ? (ap_uint<5>)  (ap_uint<5>)((ap_int<5>)raw_sum >> (ap_int<5>)_let_3) : (ap_uint<5>)  raw_sum << -_let_3;
+  ap_uint<5> _let_3 = _let_2 ? (ap_uint<5>)((ap_uint<5>)  0) : (ap_uint<5>)  (__smt2c_ext_0 == 1 ? (ap_uint<5>)  2 : (ap_uint<5>)  (__smt2c_ext_1 == 1 ? (ap_uint<5>)  1 : (ap_uint<5>)  (__smt2c_ext_2 == 1 ? (ap_uint<5>)  0 : (ap_uint<5>)  (__smt2c_ext_3 == 1 ? (ap_uint<5>)  31 : (ap_uint<5>)  30))));
+  ap_uint<5> __smt2c_src_4 = (ap_uint<5>)ap_int<5>((ap_int<4>((target_exp + _let_3))));
   ap_uint<4> __smt2c_ext_5 = ((ap_uint<5>)__smt2c_src_4).range(3, 0);
-  ap_uint<5> __smt2c_src_6 = (ap_uint<5>)ap_int<5>((ap_int<4>((target_exp + _let_3))));
+  ap_uint<5> __smt2c_src_6 = (ap_int<5>)_let_3 >= (ap_int<5>)0 ? (ap_uint<5>)  (ap_uint<5>)((ap_int<5>)raw_sum >> (ap_int<5>)_let_3) : (ap_uint<5>)((ap_uint<5>)  raw_sum << -_let_3);
   ap_uint<4> __smt2c_ext_7 = ((ap_uint<5>)__smt2c_src_6).range(3, 0);
-  return (ap_uint<8>)(_let_2 ? (ap_uint<4>)  0 : (ap_uint<4>)  __smt2c_ext_5) << 4 | (ap_uint<8>)__smt2c_ext_7;
+  return (ap_uint<8>)(_let_2 ? (ap_uint<4>)  0 : (ap_uint<4>)  __smt2c_ext_5) << 4 | (ap_uint<8>)(_let_2 ? (ap_uint<4>)  0 : (ap_uint<4>)  __smt2c_ext_7);
 }
 
 ap_uint<8> add_full_sum(ap_uint<4> m1, ap_uint<4> e1, ap_uint<4> m2, ap_uint<4> e2) {

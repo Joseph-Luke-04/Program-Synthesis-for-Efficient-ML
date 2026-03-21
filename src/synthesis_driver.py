@@ -37,15 +37,15 @@ from .synthesis_targets.dot_product import DotProductTarget
     #
     # Components (per target):
     # -----------------------------------------------------------------------------------
-    #   MXINT8AdditionTarget:       ["alignment", "raw_sum", "overflow", "normalisation", 
-    #                                "full_sum", "full_sum_combined"]
+    #   MXINT8AdditionTarget:       ["alignment", "raw_sum", "overflow", "normalisation",
+    #                                "full_sum", "full_sum_v2"]
     # -----------------------------------------------------------------------------------
-    #   MXINT8MultiplicationTarget: ["renorm_flag", "exp", "mant", "full_product", "full_product_combined"]
+    #   MXINT8MultiplicationTarget: ["renorm_flag", "exp", "mant", "full_product", "full_product_v2"]
     # -----------------------------------------------------------------------------------
     #   FP32AdditionTarget:         ["alignment", "raw_sum", "normalisation",
-    #                                "full_sum", "full_sum_combined"]
+    #                                "full_sum", "full_sum_v2"]
     # -----------------------------------------------------------------------------------
-    #   FP32MultiplicationTarget:   ["renorm", "round_carry", "exp", "mant", "full_product", "full_product_combined"]
+    #   FP32MultiplicationTarget:   ["renorm", "round_carry", "exp", "mant", "full_product", "full_product_v2"]
     # -----------------------------------------------------------------------------------
     #   NaiveAdderTarget:           ["int_add", "fp32_adder"]
     # -----------------------------------------------------------------------------------
@@ -55,7 +55,7 @@ from .synthesis_targets.dot_product import DotProductTarget
 # Target/component defaults when running `python -m src.synthesis_driver`.
 # Use class-style defaults directly (can be switched to any target class instance).
 DEFAULT_TARGET_OPERATION = FP32AdditionTarget()
-DEFAULT_COMPONENT = "full_sum_combined"
+DEFAULT_COMPONENT = "full_sum"
 
 # Pipeline toggles.
 
@@ -77,6 +77,17 @@ DEFAULT_ENABLE_SYGUS_SYM_BREAK_PBE = False
 # Core synthesis loop defaults.
 DEFAULT_SOLVER_TIMEOUT_SECONDS = 120
 DEFAULT_NUM_ITERATIONS = 30
+
+# MXINT8 output-match relaxation defaults.
+# Output is packed as exp(4) || mant(4), so stage-0 = top 4 bits = exponent only.
+DEFAULT_MXINT8_OUTPUT_MATCH_BITS = 8
+DEFAULT_MXINT8_AUTO_RELAX_OUTPUT_MATCH = False
+DEFAULT_MXINT8_MIN_OUTPUT_MATCH_BITS = 4
+DEFAULT_MXINT8_STAGE_MANTISSA_BITS = 2   # stage-1 = 4 + 2 = 6 bits (exp + 2 mant)
+DEFAULT_MXINT8_RESET_BITS_PER_SAMPLE = True
+DEFAULT_MXINT8_RELAX_ON_TIMEOUT = True
+DEFAULT_MXINT8_RELAX_ON_INFEASIBLE = True
+DEFAULT_MXINT8_RELAX_ON_FAIL = True
 
 # FP32 output-match relaxation defaults.
 DEFAULT_FP32_OUTPUT_MATCH_MSB_BITS = 32
@@ -213,6 +224,16 @@ class SynthesisConfig:
     # Solver settings
     SOLVER_TIMEOUT_SECONDS: int = DEFAULT_SOLVER_TIMEOUT_SECONDS
     NUM_ITERATIONS: int = DEFAULT_NUM_ITERATIONS
+
+    # MXINT8 output-match relaxation (output packed as exp||mant, stage-0 = exp only = 4 bits).
+    MXINT8_OUTPUT_MATCH_BITS: int = DEFAULT_MXINT8_OUTPUT_MATCH_BITS
+    MXINT8_AUTO_RELAX_OUTPUT_MATCH: bool = DEFAULT_MXINT8_AUTO_RELAX_OUTPUT_MATCH
+    MXINT8_MIN_OUTPUT_MATCH_BITS: int = DEFAULT_MXINT8_MIN_OUTPUT_MATCH_BITS
+    MXINT8_STAGE_MANTISSA_BITS: int = DEFAULT_MXINT8_STAGE_MANTISSA_BITS
+    MXINT8_RESET_BITS_PER_SAMPLE: bool = DEFAULT_MXINT8_RESET_BITS_PER_SAMPLE
+    MXINT8_RELAX_ON_TIMEOUT: bool = DEFAULT_MXINT8_RELAX_ON_TIMEOUT
+    MXINT8_RELAX_ON_INFEASIBLE: bool = DEFAULT_MXINT8_RELAX_ON_INFEASIBLE
+    MXINT8_RELAX_ON_FAIL: bool = DEFAULT_MXINT8_RELAX_ON_FAIL
 
     # FP32 full-output constraint strictness:
     #   32 -> exact 32-bit match
@@ -448,18 +469,31 @@ def synthesis_loop(
     enum_keys_seen: set[str] = set()
     attempt_status_counts: dict[str, int] = {}
     last_status: SolveStatus = "unknown"
-    initial_strict_bits = config.FP32_OUTPUT_MATCH_MSB_BITS
     auto_relax_components = {
         "full_sum",
-        "full_sum_combined",
+        "full_sum_v2",
         "full_product",
-        "full_product_combined",
+        "full_product_v2",
     }
-    can_relax = (
-        isinstance(target, (FP32AdditionTarget, FP32MultiplicationTarget))
-        and component_name in auto_relax_components
-        and getattr(config, "FP32_AUTO_RELAX_OUTPUT_MATCH", False)
-    )
+    is_mxint8_target = isinstance(target, (MXINT8AdditionTarget, MXINT8MultiplicationTarget))
+    is_fp32_target = isinstance(target, (FP32AdditionTarget, FP32MultiplicationTarget))
+    if is_mxint8_target:
+        initial_strict_bits = config.MXINT8_OUTPUT_MATCH_BITS
+        can_relax = (
+            component_name in auto_relax_components
+            and getattr(config, "MXINT8_AUTO_RELAX_OUTPUT_MATCH", False)
+        )
+        stage0_bits = 4
+        relax_schedule = "staged"  # MXINT8 always uses staged relaxation
+    else:
+        initial_strict_bits = config.FP32_OUTPUT_MATCH_MSB_BITS
+        can_relax = (
+            is_fp32_target
+            and component_name in auto_relax_components
+            and getattr(config, "FP32_AUTO_RELAX_OUTPUT_MATCH", False)
+        )
+        stage0_bits = 9
+        relax_schedule = str(getattr(config, "FP32_RELAX_SCHEDULE", "linear")).strip().lower()
 
     for i, args in enumerate(test_cases):
         print(f"\n--- Iteration {i+1}/{len(test_cases)} ---")
@@ -472,12 +506,17 @@ def synthesis_loop(
             continue
 
         if can_relax:
-            start_bits = (
-                initial_strict_bits
-                if getattr(config, "FP32_RESET_MSB_PER_SAMPLE", True)
-                else config.FP32_OUTPUT_MATCH_MSB_BITS
-            )
-            msb_candidates = _fp32_relax_candidates(config, start_bits)
+            if is_mxint8_target:
+                reset_per_sample = getattr(config, "MXINT8_RESET_BITS_PER_SAMPLE", True)
+                current_bits = config.MXINT8_OUTPUT_MATCH_BITS
+            else:
+                reset_per_sample = getattr(config, "FP32_RESET_MSB_PER_SAMPLE", True)
+                current_bits = config.FP32_OUTPUT_MATCH_MSB_BITS
+            start_bits = initial_strict_bits if reset_per_sample else current_bits
+            if is_mxint8_target:
+                msb_candidates = _mxint8_relax_candidates(config, start_bits)
+            else:
+                msb_candidates = _fp32_relax_candidates(config, start_bits)
         else:
             start_bits = initial_strict_bits
             msb_candidates = [start_bits]
@@ -485,12 +524,17 @@ def synthesis_loop(
         accepted_this_iter = False
         accepted_bits_this_iter: Optional[int] = None
         spec_relax_statuses = set()
-        if getattr(config, "FP32_RELAX_ON_INFEASIBLE", True):
-            spec_relax_statuses.add("infeasible")
-        if getattr(config, "FP32_RELAX_ON_FAIL", True):
-            spec_relax_statuses.add("fail")
+        if is_mxint8_target:
+            if getattr(config, "MXINT8_RELAX_ON_INFEASIBLE", True):
+                spec_relax_statuses.add("infeasible")
+            if getattr(config, "MXINT8_RELAX_ON_FAIL", True):
+                spec_relax_statuses.add("fail")
+        else:
+            if getattr(config, "FP32_RELAX_ON_INFEASIBLE", True):
+                spec_relax_statuses.add("infeasible")
+            if getattr(config, "FP32_RELAX_ON_FAIL", True):
+                spec_relax_statuses.add("fail")
         timeout_status = "timeout"
-        relax_schedule = str(getattr(config, "FP32_RELAX_SCHEDULE", "linear")).strip().lower()
 
         def _query_with_constraints(constraints: List[str]) -> str:
             return (
@@ -533,7 +577,10 @@ def synthesis_loop(
             last_status = status
 
         def _solve_with_bits(bits: int, prefix: List[str], timeout: int) -> Tuple[Optional[str], SolveStatus, str]:
-            config.FP32_OUTPUT_MATCH_MSB_BITS = bits
+            if is_mxint8_target:
+                config.MXINT8_OUTPUT_MATCH_BITS = bits
+            else:
+                config.FP32_OUTPUT_MATCH_MSB_BITS = bits
             c = constraint_generator(ground_truth_data, config)
             print(c)
             q = _query_with_constraints(prefix + [c])
@@ -541,12 +588,20 @@ def synthesis_loop(
             _record_attempt(st, meta, bits)
             return sol, st, c
 
-        def _stage_label(bits: int, stage1_bits: int) -> str:
+        def _stage_label(bits: int, stage1_b: int) -> str:
+            if is_mxint8_target:
+                if bits == stage0_bits:
+                    return f"stage-0 (exp only, bits={bits})"
+                if bits == stage1_b:
+                    return f"stage-1 (bits={bits})"
+                if bits == start_bits:
+                    return f"stage-2 strict (bits={bits})"
+                return f"bits={bits}"
             if relax_schedule != "staged":
                 return f"MSB={bits}"
-            if bits == 9:
-                return "stage-0 (sign+exp, MSB=9)"
-            if bits == stage1_bits:
+            if bits == stage0_bits:
+                return f"stage-0 (sign+exp, MSB={bits})"
+            if bits == stage1_b:
                 return f"stage-1 (MSB={bits})"
             if bits == start_bits:
                 return f"stage-2 strict (MSB={bits})"
@@ -566,15 +621,31 @@ def synthesis_loop(
                     break
             return None, None
 
+        # Compute stage-1 threshold once per sample (depends on target type).
+        if is_mxint8_target:
+            stage1_bits = stage0_bits + int(getattr(config, "MXINT8_STAGE_MANTISSA_BITS", 2))
+        else:
+            stage1_bits = stage0_bits + int(getattr(config, "FP32_STAGE_MANTISSA_BITS", 15))
+
+        def _reset_strict_bits() -> None:
+            if is_mxint8_target:
+                if getattr(config, "MXINT8_RESET_BITS_PER_SAMPLE", True):
+                    config.MXINT8_OUTPUT_MATCH_BITS = initial_strict_bits
+            else:
+                if getattr(config, "FP32_RESET_MSB_PER_SAMPLE", True):
+                    config.FP32_OUTPUT_MATCH_MSB_BITS = initial_strict_bits
+
         for bits in msb_candidates:
             solution, status, new_constraint = _solve_with_bits(
                 bits,
                 accepted_constraints,
                 config.SOLVER_TIMEOUT_SECONDS,
             )
+            # FP32-only: optional single retry on timeout with longer timeout.
             if (
                 not solution
                 and status == timeout_status
+                and not is_mxint8_target
                 and getattr(config, "FP32_TIMEOUT_RETRY_ONCE", True)
             ):
                 retry_timeout = max(
@@ -595,10 +666,9 @@ def synthesis_loop(
                 current_best_program = _decorate_solution(solution)
                 accepted_this_iter = True
                 accepted_bits_this_iter = bits
-                print(f"SUCCESS: accepted (MSB match = {bits}). Total constraints: {len(accepted_constraints)}")
-                # If stage-0 (sign+exp) was accepted, try immediate upgrade for the same sample.
-                if can_relax and relax_schedule == "staged" and bits == 9:
-                    stage1_bits = 9 + int(getattr(config, "FP32_STAGE_MANTISSA_BITS", 15))
+                print(f"SUCCESS: accepted (bits = {bits}). Total constraints: {len(accepted_constraints)}")
+                # If stage-0 was accepted, try immediate upgrade for the same sample.
+                if can_relax and relax_schedule == "staged" and bits == stage0_bits:
                     upgrade_sol, upgraded_bits = _try_upgrade_last_constraint(
                         [stage1_bits, start_bits],
                         config.SOLVER_TIMEOUT_SECONDS,
@@ -611,16 +681,13 @@ def synthesis_loop(
                         )
                     else:
                         print("[INFO] Stage-0 accepted, but no upgrade succeeded for this sample.")
-                # Keep strict baseline for next sample if reset mode is enabled.
-                if getattr(config, "FP32_RESET_MSB_PER_SAMPLE", True):
-                    config.FP32_OUTPUT_MATCH_MSB_BITS = initial_strict_bits
+                _reset_strict_bits()
                 break
 
             if status == timeout_status:
                 if can_relax and relax_schedule == "staged":
-                    stage0_bits = 9
                     if bits != stage0_bits:
-                        print("[INFO] Timeout at this stage. Trying stage-0 (sign+exp) fallback...")
+                        print(f"[INFO] Timeout at this stage (bits={bits}). Trying stage-0 fallback...")
                         sol0, st0, c0 = _solve_with_bits(
                             stage0_bits,
                             accepted_constraints,
@@ -633,7 +700,6 @@ def synthesis_loop(
                             accepted_bits_this_iter = stage0_bits
                             print("SUCCESS: accepted at stage-0 after timeout.")
 
-                            stage1_bits = 9 + int(getattr(config, "FP32_STAGE_MANTISSA_BITS", 15))
                             upgrade_sol, upgraded_bits = _try_upgrade_last_constraint(
                                 [stage1_bits, start_bits],
                                 config.SOLVER_TIMEOUT_SECONDS,
@@ -646,28 +712,29 @@ def synthesis_loop(
                                 )
                             else:
                                 print("[INFO] Stage-0 accepted, but no upgrade succeeded for this sample.")
-                            if getattr(config, "FP32_RESET_MSB_PER_SAMPLE", True):
-                                config.FP32_OUTPUT_MATCH_MSB_BITS = initial_strict_bits
+                            _reset_strict_bits()
                             break
                 print("[INFO] Timeout. No staged fallback; skipping this sample.")
                 break
 
             if can_relax and status in spec_relax_statuses:
-                print(f"[INFO] {status} at MSB match = {bits}. Trying weaker match...")
+                print(f"[INFO] {status} at bits = {bits}. Trying weaker match...")
                 continue
 
             print(f"[INFO] Not relaxable (status={status}); not relaxing further for this sample.")
             break
 
         if accepted_this_iter and accepted_bits_this_iter is not None and can_relax and relax_schedule == "staged":
-            stage1_bits = 9 + int(getattr(config, "FP32_STAGE_MANTISSA_BITS", 15))
             print(
                 f"[INFO] Final accepted level for this sample: {_stage_label(accepted_bits_this_iter, stage1_bits)}."
             )
 
         if not accepted_this_iter:
             # Keep previously active strictness when current sample could not be added.
-            config.FP32_OUTPUT_MATCH_MSB_BITS = start_bits
+            if is_mxint8_target:
+                config.MXINT8_OUTPUT_MATCH_BITS = start_bits
+            else:
+                config.FP32_OUTPUT_MATCH_MSB_BITS = start_bits
             a, b = args
             print(f"SKIPPED: ({a:.3f}, {b:.3f}) could not be added (even after relaxation).")
 
@@ -795,6 +862,31 @@ def _fp32_relax_candidates(config: SynthesisConfig, start_bits: int) -> list[int
     return _descending_msb_candidates(start_bits, min_bits, config.FP32_OUTPUT_MATCH_STEP)
 
 
+def _mxint8_staged_candidates(start: int, stage_mantissa_bits: int, minimum: int) -> list[int]:
+    """Build staged MXINT8 relaxation candidates: full(8) -> exp+mant_k -> exp(4) -> minimum."""
+    start = max(1, min(8, start))
+    minimum = max(1, min(8, minimum))
+    stage_mantissa_bits = max(0, min(4, stage_mantissa_bits))
+
+    exp_bits = 4  # exponent-only stage-0
+    exp_mant_bits = exp_bits + stage_mantissa_bits
+
+    candidates: list[int] = [start]
+    for b in (exp_mant_bits, exp_bits, minimum):
+        if b < candidates[-1]:
+            candidates.append(b)
+    return candidates
+
+
+def _mxint8_relax_candidates(config: SynthesisConfig, start_bits: int) -> list[int]:
+    """Return MXINT8 bit-match candidates (always staged: exp+mant -> exp-only)."""
+    return _mxint8_staged_candidates(
+        start=start_bits,
+        stage_mantissa_bits=getattr(config, "MXINT8_STAGE_MANTISSA_BITS", 2),
+        minimum=getattr(config, "MXINT8_MIN_OUTPUT_MATCH_BITS", 4),
+    )
+
+
 def _target_from_name(name: str):
     key = name.strip().lower()
     mapping: dict[str, Callable[[], object]] = {
@@ -818,31 +910,31 @@ def _target_from_name(name: str):
 
 def _accuracy_make_config(target, component_name: str) -> dict[str, str] | None:
     """Map synthesized top component to accuracy_tests make variables."""
-    if isinstance(target, FP32MultiplicationTarget) and component_name in {"full_product", "full_product_combined"}:
+    if isinstance(target, FP32MultiplicationTarget) and component_name in {"full_product", "full_product_v2"}:
         return {
             "variant_env": "FP32_MUL_VARIANT",
-            "variant_val": "combined" if component_name == "full_product_combined" else "subcomponents",
+            "variant_val": "v2" if component_name == "full_product_v2" else "subcomponents",
             "toplevel": "fp32_full_mul",
             "module": "tests.multiplication.test_fp32_multiplier",
         }
-    if isinstance(target, FP32AdditionTarget) and component_name in {"full_sum", "full_sum_combined"}:
+    if isinstance(target, FP32AdditionTarget) and component_name in {"full_sum", "full_sum_v2"}:
         return {
             "variant_env": "FP32_ADD_VARIANT",
-            "variant_val": "combined" if component_name == "full_sum_combined" else "subcomponents",
+            "variant_val": "v2" if component_name == "full_sum_v2" else "subcomponents",
             "toplevel": "fp32_sum",
             "module": "tests.addition.test_fp32_adder",
         }
-    if isinstance(target, MXINT8MultiplicationTarget) and component_name in {"full_product", "full_product_combined"}:
+    if isinstance(target, MXINT8MultiplicationTarget) and component_name in {"full_product", "full_product_v2"}:
         return {
             "variant_env": "MXINT8_MUL_VARIANT",
-            "variant_val": "combined" if component_name == "full_product_combined" else "subcomponents",
+            "variant_val": "v2" if component_name == "full_product_v2" else "subcomponents",
             "toplevel": "mult_mxint_full_product",
             "module": "tests.multiplication.test_mxint8_multiplier",
         }
-    if isinstance(target, MXINT8AdditionTarget) and component_name in {"full_sum", "full_sum_combined"}:
+    if isinstance(target, MXINT8AdditionTarget) and component_name in {"full_sum", "full_sum_v2"}:
         return {
             "variant_env": "MXINT8_ADD_VARIANT",
-            "variant_val": "combined" if component_name == "full_sum_combined" else "subcomponents",
+            "variant_val": "v2" if component_name == "full_sum_v2" else "subcomponents",
             "toplevel": "add_full_sum",
             "module": "tests.addition.test_mxint8_adder",
         }
@@ -879,9 +971,12 @@ def run_accuracy_tests_for_solution(target, component_name: str, solution_name: 
     if acc_python:
         env["PYTHON"] = acc_python
         py_bin = str(Path(acc_python).expanduser().resolve().parent)
-        env["PATH"] = py_bin + os.pathsep + env.get("PATH", "")
     else:
         env.setdefault("PYTHON", sys.executable)
+        py_bin = str(Path(sys.executable).resolve().parent)
+    # Always ensure the Python env's bin/ is on PATH so that cocotb-config
+    # is found when make invokes $(shell cocotb-config --makefiles).
+    env["PATH"] = py_bin + os.pathsep + env.get("PATH", "")
 
     rel_err_pct = os.environ.get("SYNTH_FP32_MUL_REL_ERR_PCT", "").strip()
     if rel_err_pct:
@@ -950,7 +1045,7 @@ if __name__ == "__main__":
 
     # Optional env-driven override for automation/notebooks.
     # Examples:
-    #   SYNTH_TARGET=fp32_mul SYNTH_COMPONENT=full_product_combined python -m src.synthesis_driver
+    #   SYNTH_TARGET=fp32_mul SYNTH_COMPONENT=full_product_v2 python -m src.synthesis_driver
     #   SYNTH_TARGET=mxint8_add SYNTH_COMPONENT=full_sum python -m src.synthesis_driver
     env_target = os.getenv("SYNTH_TARGET", "").strip()
     env_component = os.getenv("SYNTH_COMPONENT", "").strip()
@@ -1119,6 +1214,86 @@ if __name__ == "__main__":
                 f"using default {config.FP32_STAGE_MANTISSA_BITS}."
             )
 
+    # --- MXINT8 relaxation env vars ---
+    env_mxint8_match_bits = os.getenv("SYNTH_MXINT8_OUTPUT_MATCH_BITS", "").strip()
+    if env_mxint8_match_bits:
+        try:
+            parsed = int(env_mxint8_match_bits)
+            if 1 <= parsed <= 8:
+                config.MXINT8_OUTPUT_MATCH_BITS = parsed
+            else:
+                print(
+                    f"[WARN] SYNTH_MXINT8_OUTPUT_MATCH_BITS must be in [1, 8], "
+                    f"got '{env_mxint8_match_bits}'. Using default {config.MXINT8_OUTPUT_MATCH_BITS}."
+                )
+        except ValueError:
+            print(
+                f"[WARN] Invalid SYNTH_MXINT8_OUTPUT_MATCH_BITS='{env_mxint8_match_bits}', "
+                f"using default {config.MXINT8_OUTPUT_MATCH_BITS}."
+            )
+
+    config.MXINT8_AUTO_RELAX_OUTPUT_MATCH = _env_flag(
+        "SYNTH_MXINT8_AUTO_RELAX_OUTPUT_MATCH",
+        config.MXINT8_AUTO_RELAX_OUTPUT_MATCH,
+    )
+    config.MXINT8_RESET_BITS_PER_SAMPLE = _env_flag(
+        "SYNTH_MXINT8_RESET_BITS_PER_SAMPLE",
+        config.MXINT8_RESET_BITS_PER_SAMPLE,
+    )
+    config.MXINT8_RELAX_ON_TIMEOUT = _env_flag(
+        "SYNTH_MXINT8_RELAX_ON_TIMEOUT",
+        config.MXINT8_RELAX_ON_TIMEOUT,
+    )
+    config.MXINT8_RELAX_ON_INFEASIBLE = _env_flag(
+        "SYNTH_MXINT8_RELAX_ON_INFEASIBLE",
+        config.MXINT8_RELAX_ON_INFEASIBLE,
+    )
+    config.MXINT8_RELAX_ON_FAIL = _env_flag(
+        "SYNTH_MXINT8_RELAX_ON_FAIL",
+        config.MXINT8_RELAX_ON_FAIL,
+    )
+
+    env_mxint8_min_bits = os.getenv("SYNTH_MXINT8_MIN_OUTPUT_MATCH_BITS", "").strip()
+    if env_mxint8_min_bits:
+        try:
+            parsed = int(env_mxint8_min_bits)
+            if 1 <= parsed <= 8:
+                config.MXINT8_MIN_OUTPUT_MATCH_BITS = parsed
+            else:
+                print(
+                    f"[WARN] SYNTH_MXINT8_MIN_OUTPUT_MATCH_BITS must be in [1, 8], "
+                    f"got '{env_mxint8_min_bits}'. Using default {config.MXINT8_MIN_OUTPUT_MATCH_BITS}."
+                )
+        except ValueError:
+            print(
+                f"[WARN] Invalid SYNTH_MXINT8_MIN_OUTPUT_MATCH_BITS='{env_mxint8_min_bits}', "
+                f"using default {config.MXINT8_MIN_OUTPUT_MATCH_BITS}."
+            )
+
+    env_mxint8_stage_mant = os.getenv("SYNTH_MXINT8_STAGE_MANTISSA_BITS", "").strip()
+    if env_mxint8_stage_mant:
+        try:
+            parsed = int(env_mxint8_stage_mant)
+            if 0 <= parsed <= 4:
+                config.MXINT8_STAGE_MANTISSA_BITS = parsed
+            else:
+                print(
+                    f"[WARN] SYNTH_MXINT8_STAGE_MANTISSA_BITS must be in [0, 4], "
+                    f"got '{env_mxint8_stage_mant}'. Using default {config.MXINT8_STAGE_MANTISSA_BITS}."
+                )
+        except ValueError:
+            print(
+                f"[WARN] Invalid SYNTH_MXINT8_STAGE_MANTISSA_BITS='{env_mxint8_stage_mant}', "
+                f"using default {config.MXINT8_STAGE_MANTISSA_BITS}."
+            )
+
+    if config.MXINT8_MIN_OUTPUT_MATCH_BITS > config.MXINT8_OUTPUT_MATCH_BITS:
+        print(
+            f"[WARN] MXINT8 min bits ({config.MXINT8_MIN_OUTPUT_MATCH_BITS}) > start "
+            f"({config.MXINT8_OUTPUT_MATCH_BITS}); clamping min to start."
+        )
+        config.MXINT8_MIN_OUTPUT_MATCH_BITS = config.MXINT8_OUTPUT_MATCH_BITS
+
     fp32_mul_synth_mode = os.getenv(
         "SYNTH_FP32_MUL_MODE",
         DEFAULT_SYNTH_FP32_MUL_MODE,
@@ -1163,6 +1338,10 @@ if __name__ == "__main__":
         f"SYGUS_FAST_ENUM={ENABLE_SYGUS_FAST_ENUM}, "
         f"SYGUS_PBE={ENABLE_SYGUS_PBE}, "
         f"SYGUS_SYM_BREAK_PBE={ENABLE_SYGUS_SYM_BREAK_PBE}, "
+        f"MXINT8_OUTPUT_MATCH_BITS={config.MXINT8_OUTPUT_MATCH_BITS}, "
+        f"MXINT8_AUTO_RELAX_OUTPUT_MATCH={config.MXINT8_AUTO_RELAX_OUTPUT_MATCH}, "
+        f"MXINT8_MIN_OUTPUT_MATCH_BITS={config.MXINT8_MIN_OUTPUT_MATCH_BITS}, "
+        f"MXINT8_STAGE_MANTISSA_BITS={config.MXINT8_STAGE_MANTISSA_BITS}, "
         f"FP32_OUTPUT_MATCH_MSB_BITS={config.FP32_OUTPUT_MATCH_MSB_BITS}, "
         f"FP32_AUTO_RELAX_OUTPUT_MATCH={config.FP32_AUTO_RELAX_OUTPUT_MATCH}, "
         f"FP32_RESET_MSB_PER_SAMPLE={config.FP32_RESET_MSB_PER_SAMPLE}, "
@@ -1189,6 +1368,10 @@ if __name__ == "__main__":
         "sygus_fast_enum": ENABLE_SYGUS_FAST_ENUM,
         "sygus_pbe": ENABLE_SYGUS_PBE,
         "sygus_sym_break_pbe": ENABLE_SYGUS_SYM_BREAK_PBE,
+        "mxint8_output_match_bits": config.MXINT8_OUTPUT_MATCH_BITS,
+        "mxint8_auto_relax_output_match": config.MXINT8_AUTO_RELAX_OUTPUT_MATCH,
+        "mxint8_min_output_match_bits": config.MXINT8_MIN_OUTPUT_MATCH_BITS,
+        "mxint8_stage_mantissa_bits": config.MXINT8_STAGE_MANTISSA_BITS,
         "fp32_output_match_msb_bits": config.FP32_OUTPUT_MATCH_MSB_BITS,
         "fp32_auto_relax_output_match": config.FP32_AUTO_RELAX_OUTPUT_MATCH,
         "fp32_reset_msb_per_sample": config.FP32_RESET_MSB_PER_SAMPLE,
@@ -1420,8 +1603,8 @@ if __name__ == "__main__":
             # cases (designed for full-pipeline semantics) don't
             # confuse intermediate representations.
             top_level_components = {
-                "full_sum", "full_sum_combined",
-                "full_product", "full_product_combined",
+                "full_sum", "full_sum_v2",
+                "full_product", "full_product_v2",
             }
             is_top_level = component in top_level_components
 
@@ -1490,13 +1673,22 @@ if __name__ == "__main__":
                 print(program.strip())
 
         if final_program:
-            # Run the smt2c translation to get the C-like code
+            # Run the smt2c translation to get the C-like code.
+            # For multi-component chains, pass the dependency smt2 paths
+            # explicitly so smt2c can resolve cross-file function calls
+            # regardless of whether a custom solution stem was used.
             from src.translate_smt_to_c import run_smt2c_translation
             final_stem = solution_stem_override or f"solution_{op_name}_{final_component}"
+            dep_smt2_paths = [
+                run_summary["paths"]["smt2"][comp]
+                for comp in component_plan[:-1]
+                if comp in run_summary.get("paths", {}).get("smt2", {})
+            ]
             c_output_path = run_smt2c_translation(
                 os.path.join(smt_dir, f"{final_stem}.smt2"),
                 c_dir,
                 show_generated_code=SHOW_SMT2C_OUTPUT,
+                extra_dep_paths=dep_smt2_paths or None,
             )
             if not c_output_path:
                 print("[ERROR] Stopping pipeline: smt2c translation failed.")

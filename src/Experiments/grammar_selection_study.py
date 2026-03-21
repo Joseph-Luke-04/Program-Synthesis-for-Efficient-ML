@@ -15,36 +15,82 @@ from typing import Any
 class GrammarBenchmark:
     key: str
     synth_target: str
-    component: str
+    component: str          # V1/V2 combined component (e.g. "full_sum_v2")
     v2_template: str
+    subcomp_component: str = ""  # Subcomponent top-level component (e.g. "full_sum"); "" = no subcomponent variant
+    template: str = ""      # Per-benchmark template override for sweep runs ("" = use synthesis target default)
+    min_timeout: int = 0    # Minimum solver timeout for this benchmark; 0 = no floor (used by HP sweep for V1)
 
 
 BENCHMARKS: tuple[GrammarBenchmark, ...] = (
     GrammarBenchmark(
-        key="mxint8_add_combined",
+        key="mxint8_add",
         synth_target="mxint8_add",
-        component="full_sum_combined",
-        v2_template="sygus_grammars/addition/MXINT8/mxint8_add_full_sum_combined_template.sl",
+        component="full_sum_v2",
+        v2_template="sygus_grammars/addition/MXINT8/mxint8_add_full_sum_v2_template.sl",
+        subcomp_component="full_sum",
     ),
     GrammarBenchmark(
-        key="mxint8_mul_combined",
+        key="mxint8_mul",
         synth_target="mxint8_mul",
-        component="full_product_combined",
-        v2_template="sygus_grammars/multiplication/MXINT8/mxint8_mult_full_product_combined_template.sl",
+        component="full_product_v2",
+        v2_template="sygus_grammars/multiplication/MXINT8/mxint8_mult_full_product_v2_template.sl",
+        subcomp_component="full_product",
     ),
     GrammarBenchmark(
-        key="fp32_add_combined",
+        key="fp32_add",
         synth_target="fp32_add",
-        component="full_sum_combined",
-        v2_template="sygus_grammars/addition/FP32/fp32_full_sum_combined_template.sl",
+        component="full_sum_v2",
+        v2_template="sygus_grammars/addition/FP32/fp32_full_sum_v2_template.sl",
+        subcomp_component="full_sum",
     ),
     GrammarBenchmark(
-        key="fp32_mul_combined",
+        key="fp32_mul",
         synth_target="fp32_mul",
-        component="full_product_combined",
-        v2_template="sygus_grammars/multiplication/FP32/fp32_full_prod_combined_template.sl",
+        component="full_product_v2",
+        v2_template="sygus_grammars/multiplication/FP32/fp32_full_prod_v2_template.sl",
+        subcomp_component="full_product",
     ),
 )
+
+# Grammar template files used by each subcomponent chain (in synthesis order).
+# Includes the top-level template that assembles the subcomponents.
+SUBCOMPONENT_GRAMMAR_FILES: dict[str, list[str]] = {
+    "mxint8_add": [
+        "sygus_grammars/addition/MXINT8/mxint8_add_alignment_template.sl",
+        "sygus_grammars/addition/MXINT8/mxint8_add_raw_sum_template.sl",
+        "sygus_grammars/addition/MXINT8/mxint8_add_detect_overflow_template.sl",
+        "sygus_grammars/addition/MXINT8/mxint8_add_normalisation_template.sl",
+        "sygus_grammars/addition/MXINT8/mxint8_add_full_sum_template.sl",
+    ],
+    "mxint8_mul": [
+        "sygus_grammars/multiplication/MXINT8/mxint8_mult_renorm_flag_template.sl",
+        "sygus_grammars/multiplication/MXINT8/mxint8_mult_exp_template.sl",
+        "sygus_grammars/multiplication/MXINT8/mxint8_mult_mant_template.sl",
+        "sygus_grammars/multiplication/MXINT8/mxint8_mult_full_product_template.sl",
+    ],
+    "fp32_add": [
+        "sygus_grammars/addition/FP32/fp32_alignment_template.sl",
+        "sygus_grammars/addition/FP32/fp32_raw_sum_template.sl",
+        "sygus_grammars/addition/FP32/fp32_normalisation_template.sl",
+        "sygus_grammars/addition/FP32/fp32_full_sum_template.sl",
+    ],
+    "fp32_mul": [
+        "sygus_grammars/multiplication/FP32/fp32_mult_renorm_template.sl",
+        "sygus_grammars/multiplication/FP32/fp32_mult_round_carry_template.sl",
+        "sygus_grammars/multiplication/FP32/fp32_mult_exp_template.sl",
+        "sygus_grammars/multiplication/FP32/fp32_mult_mant_template.sl",
+        "sygus_grammars/multiplication/FP32/fp32_full_prod_template.sl",
+    ],
+}
+
+# Component keys stored in summary["components"] for each subcomponent chain.
+SUBCOMPONENT_COMPONENT_KEYS: dict[str, list[str]] = {
+    "mxint8_add": ["alignment", "raw_sum", "overflow", "normalisation", "full_sum"],
+    "mxint8_mul": ["renorm_flag", "exp", "mant", "full_product"],
+    "fp32_add":   ["alignment", "raw_sum", "normalisation", "full_sum"],
+    "fp32_mul":   ["renorm", "round_carry", "exp", "mant", "full_product"],
+}
 
 
 def _strip_comments(text: str) -> str:
@@ -137,14 +183,61 @@ def analyze_sygus_grammar(path: Path) -> dict[str, Any]:
     }
 
 
-def _default_v1_from_v2(v2_path: str) -> str:
-    p = Path(v2_path)
-    stem = p.stem
-    if stem.endswith("_template"):
-        v1_stem = stem[:-len("_template")] + "_v1_template"
+def _aggregate_subcomponent_grammar_metrics(paths: list[Path]) -> dict[str, Any]:
+    """Aggregate grammar metrics across all subcomponent template files."""
+    all_metrics = [analyze_sygus_grammar(p) for p in paths]
+    return {
+        "grammar_path": ";".join(str(p) for p in paths),
+        "nonterminals": sum(m["nonterminals"] for m in all_metrics),
+        "total_productions": sum(m["total_productions"] for m in all_metrics),
+        "branching_nonterminals": sum(m["branching_nonterminals"] for m in all_metrics),
+        "single_production_nonterminals": sum(m["single_production_nonterminals"] for m in all_metrics),
+        "has_constant_production": any(m["has_constant_production"] for m in all_metrics),
+        "constant_nonterminals": sorted({nt for m in all_metrics for nt in m["constant_nonterminals"]}),
+        "has_self_recursive_nonterminal": any(m["has_self_recursive_nonterminal"] for m in all_metrics),
+        "self_recursive_nonterminals": sorted({nt for m in all_metrics for nt in m["self_recursive_nonterminals"]}),
+        "search_space_proxy_is_lower_bound": any(m["search_space_proxy_is_lower_bound"] for m in all_metrics),
+        "search_space_proxy": str(sum(int(m["search_space_proxy"]) for m in all_metrics)),
+    }
+
+
+def _aggregate_subcomponent_comp_metrics(summary: dict[str, Any], component_keys: list[str]) -> dict[str, Any]:
+    """Aggregate component-level metrics across all subcomponent entries in a summary."""
+    comps = summary.get("components", {})
+    all_solved = all(comps.get(k, {}).get("solution_found", False) for k in component_keys)
+    statuses = [comps.get(k, {}).get("solve_status", "unknown") for k in component_keys]
+    if all(s == "solved" for s in statuses):
+        solve_status = "solved"
+    elif any(s == "timeout" for s in statuses):
+        solve_status = "timeout"
     else:
-        v1_stem = stem + "_v1"
-    return str(p.with_name(v1_stem + p.suffix))
+        first_non_solved = next((s for s in statuses if s != "solved"), "unknown")
+        solve_status = first_non_solved
+
+    def _safe_sum(field: str) -> float:
+        return sum(comps.get(k, {}).get(field) or 0 for k in component_keys)
+
+    return {
+        "solve_status": solve_status,
+        "solution_found": all_solved,
+        "accepted_constraints": int(_safe_sum("accepted_constraints")),
+        "total_constraints": int(_safe_sum("total_constraints")),
+        "solver_attempts": int(_safe_sum("solver_attempts")),
+        "solver_runtime_seconds_total": _safe_sum("solver_runtime_seconds_total"),
+        "solver_runtime_seconds_max": max(
+            (comps.get(k, {}).get("solver_runtime_seconds_max") or 0 for k in component_keys), default=0
+        ),
+        "enum_count_primary_total": int(_safe_sum("enum_count_primary_total")),
+        "enum_count_primary_last": None,
+        "enum_primary_keys_seen": [],
+    }
+
+
+def _default_v1_from_v2(v2_path: str) -> str:
+    """Derive V1 template path from V2 path by replacing '_v2' with '_v1'."""
+    p = Path(v2_path)
+    new_name = p.name.replace("_v2_template", "_v1_template").replace("_v2.", "_v1.")
+    return str(p.with_name(new_name))
 
 
 def load_variant_manifest(manifest_path: Path | None) -> dict[str, dict[str, str]]:
@@ -178,22 +271,25 @@ def _flatten_run_summary(
     bench: GrammarBenchmark,
     version: str,
     repetition: int,
-    template_path: Path,
+    template_path: Path | None,
     grammar_metrics: dict[str, Any],
     summary: dict[str, Any],
     driver_returncode: int,
+    comp_override: dict[str, Any] | None = None,
+    num_subcomponents: int = 1,
 ) -> dict[str, Any]:
-    comp = summary.get("components", {}).get(bench.component, {})
+    comp = comp_override if comp_override is not None else summary.get("components", {}).get(bench.component, {})
     hardware = summary.get("hardware", {}) if isinstance(summary.get("hardware"), dict) else {}
     accuracy = summary.get("accuracy", {}) if isinstance(summary.get("accuracy"), dict) else {}
 
     row: dict[str, Any] = {
         "benchmark": bench.key,
         "synth_target": bench.synth_target,
-        "component": bench.component,
+        "component": bench.component if comp_override is None else bench.subcomp_component,
         "grammar_version": version,
+        "num_subcomponents": num_subcomponents,
         "repetition": repetition,
-        "template_path": str(template_path),
+        "template_path": str(template_path) if template_path is not None else "",
         "driver_returncode": driver_returncode,
         "run_status": summary.get("status", "unknown"),
         "component_solve_status": comp.get("solve_status", "unknown"),
@@ -233,6 +329,7 @@ def _flatten_run_summary(
         "BRAMs": hardware.get("BRAMs", -1),
         "Cycles": hardware.get("Cycles", -1),
         "Fmax_MHz": hardware.get("Fmax_MHz", -1),
+        "Latency_ns": hardware.get("Latency_ns", -1),
         "summary_path": summary.get("_summary_path", ""),
         "log_path": summary.get("_log_path", ""),
     }
@@ -260,6 +357,7 @@ def build_aggregate_rows(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
         agg = {
             "benchmark": benchmark,
             "grammar_version": version,
+            "num_subcomponents": items[0].get("num_subcomponents", 1),
             "runs": len(items),
             "solve_successes": sum(1 for r in items if r.get("solution_found")),
             "solve_rate": sum(1 for r in items if r.get("solution_found")) / float(len(items)),
@@ -292,30 +390,48 @@ def build_aggregate_rows(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
                 for r in items
                 if isinstance(r.get("Fmax_MHz"), (int, float)) and float(r["Fmax_MHz"]) >= 0.0
             ]),
+            "mean_Latency_ns": _mean([
+                float(r["Latency_ns"])
+                for r in items
+                if isinstance(r.get("Latency_ns"), (int, float)) and float(r["Latency_ns"]) >= 0.0
+            ]),
         }
         by_benchmark.setdefault(benchmark, {})[version] = agg
 
     out: list[dict[str, Any]] = []
     for benchmark, variants in sorted(by_benchmark.items()):
-        for version in ("V1", "V2"):
-            if version in variants:
-                row = dict(variants[version])
-                other = variants.get("V1" if version == "V2" else "V2")
-                if other:
-                    cur_rt = row.get("mean_runtime_seconds")
-                    other_rt = other.get("mean_runtime_seconds")
-                    cur_enum = row.get("mean_enum_count")
-                    other_enum = other.get("mean_enum_count")
-                    if version == "V2":
-                        row["runtime_ratio_vs_v1"] = (
-                            other_rt / cur_rt if isinstance(cur_rt, (int, float)) and cur_rt not in {0, None}
-                            and isinstance(other_rt, (int, float)) else None
-                        )
-                        row["enum_ratio_vs_v1"] = (
-                            other_enum / cur_enum if isinstance(cur_enum, (int, float)) and cur_enum not in {0, None}
-                            and isinstance(other_enum, (int, float)) else None
-                        )
-                out.append(row)
+        v1 = variants.get("V1")
+        for version in ("V1", "V2", "Subcomponents"):
+            if version not in variants:
+                continue
+            row = dict(variants[version])
+            if version == "V2" and v1:
+                cur_rt = row.get("mean_runtime_seconds")
+                v1_rt = v1.get("mean_runtime_seconds")
+                cur_enum = row.get("mean_enum_count")
+                v1_enum = v1.get("mean_enum_count")
+                row["runtime_ratio_vs_v1"] = (
+                    v1_rt / cur_rt if isinstance(cur_rt, (int, float)) and cur_rt not in {0, None}
+                    and isinstance(v1_rt, (int, float)) else None
+                )
+                row["enum_ratio_vs_v1"] = (
+                    v1_enum / cur_enum if isinstance(cur_enum, (int, float)) and cur_enum not in {0, None}
+                    and isinstance(v1_enum, (int, float)) else None
+                )
+            if version == "Subcomponents" and v1:
+                cur_rt = row.get("mean_runtime_seconds")
+                v1_rt = v1.get("mean_runtime_seconds")
+                cur_enum = row.get("mean_enum_count")
+                v1_enum = v1.get("mean_enum_count")
+                row["runtime_ratio_vs_v1"] = (
+                    v1_rt / cur_rt if isinstance(cur_rt, (int, float)) and cur_rt not in {0, None}
+                    and isinstance(v1_rt, (int, float)) else None
+                )
+                row["enum_ratio_vs_v1"] = (
+                    v1_enum / cur_enum if isinstance(cur_enum, (int, float)) and cur_enum not in {0, None}
+                    and isinstance(v1_enum, (int, float)) else None
+                )
+            out.append(row)
     return out
 
 
@@ -361,11 +477,13 @@ def run_driver_once(
     bench: GrammarBenchmark,
     version: str,
     repetition: int,
-    template_path: Path,
+    template_path: Path | None,
     out_dir: Path,
     args: argparse.Namespace,
     run_index: int,
     total_runs: int,
+    synth_component_override: str = "",
+    timeout_override: int | None = None,
 ) -> tuple[dict[str, Any], int]:
     raw_dir = out_dir / "raw"
     raw_dir.mkdir(parents=True, exist_ok=True)
@@ -374,12 +492,15 @@ def run_driver_once(
     solution_stem = f"grammarstudy_{bench.key}_{version.lower()}_r{repetition:02d}"
     run_seed = args.seed + repetition - 1 + (args.benchmark_order[bench.key] * 1000)
 
+    synth_component = synth_component_override if synth_component_override else bench.component
+    effective_timeout = timeout_override if timeout_override is not None else args.timeout
+
     env = os.environ.copy()
     env.update({
         "SYNTH_TARGET": bench.synth_target,
-        "SYNTH_COMPONENT": bench.component,
-        "SYNTH_TEMPLATE_OVERRIDE": str(template_path),
-        "SYNTH_SOLVER_TIMEOUT": str(args.timeout),
+        "SYNTH_COMPONENT": synth_component,
+        "SYNTH_TEMPLATE_OVERRIDE": str(template_path) if template_path is not None else "",
+        "SYNTH_SOLVER_TIMEOUT": str(effective_timeout),
         "SYNTH_NUM_ITERATIONS": str(args.num_iterations),
         "SYNTH_RUN_IMPL": "1" if args.run_impl else "0",
         "SYNTH_RUN_ACCURACY": "1" if args.run_accuracy else "0",
@@ -388,18 +509,17 @@ def run_driver_once(
         "SYNTH_ENABLE_SYGUS_FAST_ENUM": "1" if args.sygus_fast_enum else "0",
         "SYNTH_ENABLE_SYGUS_PBE": "1" if args.sygus_pbe else "0",
         "SYNTH_ENABLE_SYGUS_SYM_BREAK_PBE": "1" if args.sygus_sym_break_pbe else "0",
-        "SYNTH_FP32_AUTO_RELAX_OUTPUT_MATCH": "1" if args.fp32_auto_relax else "0",
+        "SYNTH_MXINT8_AUTO_RELAX_OUTPUT_MATCH": "0",
+        "SYNTH_MXINT8_RELAX_ON_TIMEOUT": "0",
+        "SYNTH_MXINT8_RELAX_ON_INFEASIBLE": "0",
+        "SYNTH_MXINT8_RELAX_ON_FAIL": "0",
+        "SYNTH_FP32_AUTO_RELAX_OUTPUT_MATCH": "0",
+        "SYNTH_FP32_RELAX_ON_TIMEOUT": "0",
+        "SYNTH_FP32_TIMEOUT_RETRY_ONCE": "0",
+        "SYNTH_FP32_RELAX_ON_INFEASIBLE": "0",
+        "SYNTH_FP32_RELAX_ON_FAIL": "0",
         "SYNTH_FP32_OUTPUT_MATCH_MSB_BITS": str(args.fp32_output_match_msb_bits),
-        "SYNTH_FP32_MIN_OUTPUT_MATCH_MSB_BITS": str(args.fp32_min_output_match_msb_bits),
-        "SYNTH_FP32_OUTPUT_MATCH_STEP": str(args.fp32_output_match_step),
-        "SYNTH_FP32_RELAX_SCHEDULE": args.fp32_relax_schedule,
         "SYNTH_FP32_STAGE_MANTISSA_BITS": str(args.fp32_stage_mantissa_bits),
-        "SYNTH_FP32_RESET_MSB_PER_SAMPLE": "1" if args.fp32_reset_msb_per_sample else "0",
-        "SYNTH_FP32_RELAX_ON_TIMEOUT": "1" if args.fp32_relax_on_timeout else "0",
-        "SYNTH_FP32_TIMEOUT_RETRY_ONCE": "1" if args.fp32_timeout_retry_once else "0",
-        "SYNTH_FP32_TIMEOUT_RETRY_MULTIPLIER": str(args.fp32_timeout_retry_multiplier),
-        "SYNTH_FP32_RELAX_ON_INFEASIBLE": "1" if args.fp32_relax_on_infeasible else "0",
-        "SYNTH_FP32_RELAX_ON_FAIL": "1" if args.fp32_relax_on_fail else "0",
         "SYNTH_FP32_MUL_MODE": args.fp32_mul_mode,
         "SYNTH_SUMMARY_PATH": str(summary_path),
         "SYNTH_SOLUTION_STEM": solution_stem,
@@ -408,9 +528,10 @@ def run_driver_once(
     })
 
     cmd = [sys.executable, "-m", "src.synthesis_driver"]
+    template_str = str(template_path) if template_path is not None else "(driver default)"
     print(
         f"[RUN {run_index}/{total_runs}] benchmark={bench.key} grammar={version} repetition={repetition} "
-        f"seed={run_seed} template={template_path}"
+        f"seed={run_seed} template={template_str}"
     )
     start = time.time()
     proc = _run_and_tee(cmd, cwd=repo_root, env=env, log_path=log_path)
@@ -432,7 +553,9 @@ def run_driver_once(
     summary = json.loads(summary_path.read_text())
     summary["_summary_path"] = str(summary_path)
     summary["_log_path"] = str(log_path)
-    comp = summary.get("components", {}).get(bench.component, {})
+    # Use subcomp_component key for subcomponent runs, combined component otherwise.
+    lookup_component = synth_component_override if synth_component_override else bench.component
+    comp = summary.get("components", {}).get(lookup_component, {})
     accepted = comp.get("accepted_constraints", "?")
     total = comp.get("total_constraints", "?")
     solve_status = comp.get("solve_status", summary.get("status", "unknown"))
@@ -445,7 +568,7 @@ def run_driver_once(
 
 def main() -> None:
     parser = argparse.ArgumentParser(
-        description="Run V1 vs V2 combined-grammar selection experiments."
+        description="Run V1 vs V2 vs Subcomponents grammar selection experiments."
     )
     parser.add_argument("--output-dir", default="results/grammar_selection", help="Experiment output directory.")
     parser.add_argument("--variant-manifest", default="", help="Optional JSON manifest overriding V1/V2 template paths.")
@@ -453,6 +576,7 @@ def main() -> None:
     parser.add_argument("--repetitions", type=int, default=1, help="Number of repetitions per benchmark/version.")
     parser.add_argument("--seed", type=int, default=12345, help="Base RNG seed. Same seed is used for V1/V2 within a repetition.")
     parser.add_argument("--timeout", type=int, default=120, help="Per-driver solver timeout in seconds.")
+    parser.add_argument("--v1-timeout", type=int, default=None, help="Solver timeout for V1 grammar runs (overrides --timeout for V1 only).")
     parser.add_argument("--num-iterations", type=int, default=30, help="Synthesis iterations per run.")
     parser.add_argument("--run-impl", action=argparse.BooleanOptionalAction, default=True, help="Run post-implementation flow.")
     parser.add_argument("--run-accuracy", action=argparse.BooleanOptionalAction, default=True, help="Run cocotb accuracy.")
@@ -460,19 +584,9 @@ def main() -> None:
     parser.add_argument("--sygus-fast-enum", action=argparse.BooleanOptionalAction, default=False, help="Freeze cvc5 --sygus-enum=fast.")
     parser.add_argument("--sygus-pbe", action=argparse.BooleanOptionalAction, default=True, help="Freeze cvc5 --sygus-pbe.")
     parser.add_argument("--sygus-sym-break-pbe", action=argparse.BooleanOptionalAction, default=True, help="Freeze cvc5 --sygus-sym-break-pbe.")
-    parser.add_argument("--fp32-auto-relax", action=argparse.BooleanOptionalAction, default=True, help="Freeze FP32 relaxation policy.")
     parser.add_argument("--fp32-output-match-msb-bits", type=int, default=32)
-    parser.add_argument("--fp32-min-output-match-msb-bits", type=int, default=24)
-    parser.add_argument("--fp32-output-match-step", type=int, default=1)
-    parser.add_argument("--fp32-relax-schedule", default="staged", choices=["linear", "staged"])
     parser.add_argument("--fp32-stage-mantissa-bits", type=int, default=15)
-    parser.add_argument("--fp32-reset-msb-per-sample", action=argparse.BooleanOptionalAction, default=True)
-    parser.add_argument("--fp32-relax-on-timeout", action=argparse.BooleanOptionalAction, default=True)
-    parser.add_argument("--fp32-timeout-retry-once", action=argparse.BooleanOptionalAction, default=False)
-    parser.add_argument("--fp32-timeout-retry-multiplier", type=int, default=4)
-    parser.add_argument("--fp32-relax-on-infeasible", action=argparse.BooleanOptionalAction, default=True)
-    parser.add_argument("--fp32-relax-on-fail", action=argparse.BooleanOptionalAction, default=True)
-    parser.add_argument("--fp32-mul-mode", default="small", choices=["default", "wide", "small"])
+    parser.add_argument("--fp32-mul-mode", default="default", choices=["default", "wide", "small"])
     args = parser.parse_args()
 
     repo_root = Path(__file__).resolve().parents[2]
@@ -496,10 +610,16 @@ def main() -> None:
     if raw_jsonl.exists():
         raw_jsonl.unlink()
 
-    total_runs = len(selected_benchmarks) * 2 * args.repetitions
+    # Count runs: 2 (V1/V2) + 1 (Subcomponents if available) per benchmark, times repetitions.
+    versions_per_bench = {
+        bench.key: 2 + (1 if bench.subcomp_component else 0)
+        for bench in selected_benchmarks
+    }
+    total_runs = sum(versions_per_bench[b.key] for b in selected_benchmarks) * args.repetitions
     run_index = 0
 
     for bench in selected_benchmarks:
+        # --- V1 and V2 combined-grammar runs ---
         for version in ("V1", "V2"):
             template_path = (repo_root / variant_manifest[bench.key][version]).resolve()
             if not template_path.exists():
@@ -508,6 +628,7 @@ def main() -> None:
                     "Provide it via --variant-manifest or add the expected file."
                 )
             grammar_metrics = analyze_sygus_grammar(template_path)
+            v1_timeout = args.v1_timeout if version == "V1" and args.v1_timeout is not None else None
             for repetition in range(1, args.repetitions + 1):
                 run_index += 1
                 summary, returncode = run_driver_once(
@@ -520,6 +641,7 @@ def main() -> None:
                     args=args,
                     run_index=run_index,
                     total_runs=total_runs,
+                    timeout_override=v1_timeout,
                 )
                 row = _flatten_run_summary(
                     bench=bench,
@@ -529,6 +651,50 @@ def main() -> None:
                     grammar_metrics=grammar_metrics,
                     summary=summary,
                     driver_returncode=returncode,
+                    num_subcomponents=1,
+                )
+                all_rows.append(row)
+                with raw_jsonl.open("a") as f:
+                    f.write(json.dumps(row, sort_keys=True) + "\n")
+
+        # --- Subcomponents run (uses driver's dependency chain, no template override) ---
+        if bench.subcomp_component:
+            subcomp_files = [
+                (repo_root / rel).resolve()
+                for rel in SUBCOMPONENT_GRAMMAR_FILES[bench.synth_target]
+            ]
+            for f in subcomp_files:
+                if not f.exists():
+                    raise FileNotFoundError(f"Missing subcomponent grammar: {f}")
+            subcomp_keys = SUBCOMPONENT_COMPONENT_KEYS[bench.synth_target]
+            grammar_metrics = _aggregate_subcomponent_grammar_metrics(subcomp_files)
+            num_subcomponents = len(subcomp_keys)
+            version = "Subcomponents"
+            for repetition in range(1, args.repetitions + 1):
+                run_index += 1
+                summary, returncode = run_driver_once(
+                    repo_root=repo_root,
+                    bench=bench,
+                    version=version,
+                    repetition=repetition,
+                    template_path=None,  # no template override — use driver defaults
+                    out_dir=output_dir,
+                    args=args,
+                    run_index=run_index,
+                    total_runs=total_runs,
+                    synth_component_override=bench.subcomp_component,
+                )
+                comp_agg = _aggregate_subcomponent_comp_metrics(summary, subcomp_keys)
+                row = _flatten_run_summary(
+                    bench=bench,
+                    version=version,
+                    repetition=repetition,
+                    template_path=None,
+                    grammar_metrics=grammar_metrics,
+                    summary=summary,
+                    driver_returncode=returncode,
+                    comp_override=comp_agg,
+                    num_subcomponents=num_subcomponents,
                 )
                 all_rows.append(row)
                 with raw_jsonl.open("a") as f:

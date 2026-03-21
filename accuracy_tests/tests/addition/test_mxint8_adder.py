@@ -168,12 +168,12 @@ async def _run_mxint8_adder_accuracy(dut, label: str):
             await Timer(1, unit="ns")
 
         # 5. Read the DUT output
-        # The synthesized adder returns a packed 8-bit vector: {mant_out[3:0], exp_out[3:0]}
+        # The synthesized adder returns a packed 8-bit vector: {exp_out[3:0], mant_out[3:0]}
         dut_return_val = dut.ap_return.value
-        
-        # Extract the mantissa and exponent. The mantissa is signed.
-        m_dut = dut_return_val[7:4].to_signed()
-        e_dut = dut_return_val[3:0].to_signed()
+
+        # Extract the exponent (upper nibble) and mantissa (lower nibble). Both are signed.
+        e_dut = dut_return_val[7:4].to_signed()
+        m_dut = dut_return_val[3:0].to_signed()
         
         # Convert the DUT's output back to a float for comparison
         dut_float = dequantize_mxint8(m_dut, e_dut)
@@ -232,7 +232,7 @@ async def _run_mxint8_adder_accuracy(dut, label: str):
 
 def _should_run(label: str) -> bool:
     # Optional filter so you can run a single variant from the same test file.
-    # Use: MXINT8_ADD_VARIANT=combined or MXINT8_ADD_VARIANT=subcomponents
+    # Use: MXINT8_ADD_VARIANT=v2 or MXINT8_ADD_VARIANT=subcomponents
     want = os.getenv("MXINT8_ADD_VARIANT", "").strip().lower()
     if not want:
         return True
@@ -248,8 +248,16 @@ async def mxint8_adder_accuracy_subcomponents(dut):
 
 
 @cocotb.test()
-async def mxint8_adder_accuracy_combined(dut):
-    if not _should_run("combined"):
-        dut._log.info("Skipping combined variant (MXINT8_ADD_VARIANT filter).")
+async def mxint8_adder_accuracy_v2(dut):
+    if not _should_run("v2"):
+        dut._log.info("Skipping v2 variant (MXINT8_ADD_VARIANT filter).")
         return
-    await _run_mxint8_adder_accuracy(dut, "combined")
+    await _run_mxint8_adder_accuracy(dut, "v2")
+
+
+@cocotb.test()
+async def mxint8_adder_accuracy_v1(dut):
+    if not _should_run("v1"):
+        dut._log.info("Skipping v1 variant (MXINT8_ADD_VARIANT filter).")
+        return
+    await _run_mxint8_adder_accuracy(dut, "v1")

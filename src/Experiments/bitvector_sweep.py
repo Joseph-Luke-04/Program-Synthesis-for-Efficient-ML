@@ -27,9 +27,15 @@ class SweepTarget:
     cocotb_module: str
     variant_env: str
     fp32: bool
+    # monolithic=True: single function output (V1/V2 combined) — no subcomponent
+    # helpers to truncate, so the sweep runs exactly one full-precision point.
+    monolithic: bool = False
+    # Which cocotb variant label to select (default "subcomponents"; "v1"/"v2" for combined).
+    cocotb_variant: str = "subcomponents"
 
 
 TARGETS: dict[str, SweepTarget] = {
+    # ── Subcomponent targets (truncation sweep over mantissa bits) ──────────
     "fp32_mul": SweepTarget(
         key="fp32_mul",
         op="Multiplication",
@@ -77,6 +83,120 @@ TARGETS: dict[str, SweepTarget] = {
         cocotb_module="tests.addition.test_mxint8_adder",
         variant_env="MXINT8_ADD_VARIANT",
         fp32=False,
+    ),
+    # ── V1 combined (monolithic, broad grammar — single full-precision point) ─
+    "fp32_mul_v1": SweepTarget(
+        key="fp32_mul_v1",
+        op="Multiplication",
+        dtype="FP32",
+        synth_target="fp32_mul",
+        synth_component="full_product_v2",
+        base_cpp_prefix="solution_fp32multiplication_full_product_v1",
+        top_func="fp32_full_mul",
+        cocotb_module="tests.multiplication.test_fp32_multiplier",
+        variant_env="FP32_MUL_VARIANT",
+        fp32=True,
+        monolithic=True,
+        cocotb_variant="v1",
+    ),
+    "fp32_add_v1": SweepTarget(
+        key="fp32_add_v1",
+        op="Addition",
+        dtype="FP32",
+        synth_target="fp32_add",
+        synth_component="full_sum_v2",
+        base_cpp_prefix="solution_fp32addition_full_sum_v1",
+        top_func="fp32_sum",
+        cocotb_module="tests.addition.test_fp32_adder",
+        variant_env="FP32_ADD_VARIANT",
+        fp32=True,
+        monolithic=True,
+        cocotb_variant="v1",
+    ),
+    "mxint8_mul_v1": SweepTarget(
+        key="mxint8_mul_v1",
+        op="Multiplication",
+        dtype="MXINT8",
+        synth_target="mxint8_mul",
+        synth_component="full_product_v2",
+        base_cpp_prefix="solution_mxint8multiplication_full_product_v1",
+        top_func="mult_mxint_full_product",
+        cocotb_module="tests.multiplication.test_mxint8_multiplier",
+        variant_env="MXINT8_MUL_VARIANT",
+        fp32=False,
+        monolithic=True,
+        cocotb_variant="v1",
+    ),
+    "mxint8_add_v1": SweepTarget(
+        key="mxint8_add_v1",
+        op="Addition",
+        dtype="MXINT8",
+        synth_target="mxint8_add",
+        synth_component="full_sum_v2",
+        base_cpp_prefix="solution_mxint8addition_full_sum_v1",
+        top_func="add_full_sum",
+        cocotb_module="tests.addition.test_mxint8_adder",
+        variant_env="MXINT8_ADD_VARIANT",
+        fp32=False,
+        monolithic=True,
+        cocotb_variant="v1",
+    ),
+    # ── V2 combined (monolithic, tight structural sketch — single full-precision point) ─
+    "fp32_mul_v2": SweepTarget(
+        key="fp32_mul_v2",
+        op="Multiplication",
+        dtype="FP32",
+        synth_target="fp32_mul",
+        synth_component="full_product_v2",
+        base_cpp_prefix="solution_fp32multiplication_full_product_v2",
+        top_func="fp32_full_mul",
+        cocotb_module="tests.multiplication.test_fp32_multiplier",
+        variant_env="FP32_MUL_VARIANT",
+        fp32=True,
+        monolithic=True,
+        cocotb_variant="v2",
+    ),
+    "fp32_add_v2": SweepTarget(
+        key="fp32_add_v2",
+        op="Addition",
+        dtype="FP32",
+        synth_target="fp32_add",
+        synth_component="full_sum_v2",
+        base_cpp_prefix="solution_fp32addition_full_sum_v2",
+        top_func="fp32_sum",
+        cocotb_module="tests.addition.test_fp32_adder",
+        variant_env="FP32_ADD_VARIANT",
+        fp32=True,
+        monolithic=True,
+        cocotb_variant="v2",
+    ),
+    "mxint8_mul_v2": SweepTarget(
+        key="mxint8_mul_v2",
+        op="Multiplication",
+        dtype="MXINT8",
+        synth_target="mxint8_mul",
+        synth_component="full_product_v2",
+        base_cpp_prefix="solution_mxint8multiplication_full_product_v2",
+        top_func="mult_mxint_full_product",
+        cocotb_module="tests.multiplication.test_mxint8_multiplier",
+        variant_env="MXINT8_MUL_VARIANT",
+        fp32=False,
+        monolithic=True,
+        cocotb_variant="v2",
+    ),
+    "mxint8_add_v2": SweepTarget(
+        key="mxint8_add_v2",
+        op="Addition",
+        dtype="MXINT8",
+        synth_target="mxint8_add",
+        synth_component="full_sum_v2",
+        base_cpp_prefix="solution_mxint8addition_full_sum_v2",
+        top_func="add_full_sum",
+        cocotb_module="tests.addition.test_mxint8_adder",
+        variant_env="MXINT8_ADD_VARIANT",
+        fp32=False,
+        monolithic=True,
+        cocotb_variant="v2",
     ),
 }
 
@@ -373,7 +493,7 @@ ap_uint<1> mult_renorm_flag(ap_uint<4> m1, ap_uint<4> m2) {{
   ap_int<4> s2_q = (ap_int<4>)((s2 >> {drop_m}) << {drop_m});
   ap_int<8> prod = (ap_int<8>)(s1_q * s2_q);
   ap_int<8> abs_p = (prod < 0) ? (ap_int<8>)-prod : prod;
-  return (abs_p <= (ap_int<8>)32) ? (ap_uint<1>)1 : (ap_uint<1>)0;
+  return (abs_p >= (ap_int<8>)32) ? (ap_uint<1>)1 : (ap_uint<1>)0;
 }}
 """
 
@@ -617,7 +737,7 @@ def run_cocotb_accuracy(
     acc_root = repo_root / "accuracy_tests"
     env = os.environ.copy()
     env["TOPLEVEL_LANG"] = "verilog"
-    env[target.variant_env] = "subcomponents"
+    env[target.variant_env] = target.cocotb_variant
 
     if target.key == "fp32_mul":
         env["FP32_MUL_REL_ERR_PCT"] = f"{rel_error_pct}"
@@ -917,6 +1037,92 @@ def main() -> None:
     if not base_cpp.exists():
         raise FileNotFoundError(f"Base C++ file not found: {base_cpp}")
 
+    # Monolithic targets (V1/V2 combined) have a single unseparable function —
+    # there are no helper subcomponents to truncate. Run HLS + accuracy once at
+    # full precision and return immediately.
+    if target.monolithic:
+        full_mant = FULL_FP32_EXP_BITS if target.fp32 else 4  # reuse as "full precision" sentinel
+        print(f"[INFO] Target {target.key} is monolithic — skipping truncation sweep, running one full-precision point.")
+        base_code = base_cpp.read_text()
+
+        variant_stem = base_cpp.stem
+        variant_cpp = variants_dir / f"{variant_stem}.cpp"
+        variant_cpp.write_text(base_code)
+
+        hw: dict[str, Any] = {"LUTs": -1, "FFs": -1, "DSPs": -1, "BRAMs": -1, "Cycles": -1, "Fmax_MHz": -1}
+        if not args.skip_hls:
+            hw = run_vitis_hls(str(variant_cpp), top_func=target.top_func, impl=args.impl) or hw
+
+        cocotb_log = cocotb_logs_dir / f"{variant_stem}_full.log"
+        sample_dump = error_samples_dir / f"{variant_stem}_full.npz"
+        acc = run_cocotb_accuracy(
+            repo_root=repo_root,
+            hls_root=hls_root,
+            variant_stem=variant_stem,
+            target=target,
+            timeout_seconds=args.cocotb_timeout,
+            log_path=cocotb_log,
+            rel_error_pct=float(args.rel_error_pct),
+            cocotb_mode=str(args.cocotb_mode),
+            dump_samples_path=sample_dump,
+        )
+
+        exp_bits = FULL_FP32_EXP_BITS if target.fp32 else 4
+        row: dict[str, Any] = {
+            "search_mode": "monolithic",
+            "target": target.key,
+            "op": target.op,
+            "dtype": target.dtype,
+            "variant_cpp": str(variant_cpp),
+            "mantissa_bits": full_mant,
+            "mantissa_bits_a": full_mant,
+            "mantissa_bits_b": full_mant,
+            "mantissa_bits_effective": full_mant,
+            "exponent_bits": exp_bits,
+            "exponent_bits_a": exp_bits,
+            "exponent_bits_b": exp_bits,
+            "accuracy_source": acc.get("accuracy_source"),
+            "cocotb_mode": args.cocotb_mode if target.key.startswith("fp32_mul") else "",
+            "exact_matches": acc.get("exact_matches", -1),
+            "total_cases": acc.get("total_cases", -1),
+            "accuracy_exact_match": acc.get("accuracy_exact_match", -1.0),
+            "within_rel_pct": acc.get("within_rel_pct", -1.0),
+            "within_rel_threshold_pct": acc.get("within_rel_threshold_pct", -1.0),
+            "within_5pct_rel": acc.get("within_5pct_rel", -1.0),
+            "ulp_avg": acc.get("ulp_avg", -1.0),
+            "ulp_p99": acc.get("ulp_p99", -1),
+            "ulp_max": acc.get("ulp_max", -1),
+            "abs_err_avg": acc.get("abs_err_avg", -1.0),
+            "abs_err_p99": acc.get("abs_err_p99", -1.0),
+            "abs_err_max": acc.get("abs_err_max", -1.0),
+            "cocotb_passed": acc.get("cocotb_passed"),
+            "cocotb_returncode": acc.get("cocotb_returncode"),
+            "accuracy_log": str(cocotb_log),
+            "error_samples_npz": acc.get("error_samples_npz", ""),
+            "LUTs": hw.get("LUTs", -1),
+            "FFs": hw.get("FFs", -1),
+            "DSPs": hw.get("DSPs", -1),
+            "BRAMs": hw.get("BRAMs", -1),
+            "Cycles": hw.get("Cycles", -1),
+            "Fmax_MHz": hw.get("Fmax_MHz", -1),
+            "Latency_ns": hw.get("Latency_ns", -1),
+        }
+        row["area_score"] = compute_area_score(
+            row, args.area_lut_weight, args.area_ff_weight, args.area_dsp_weight, args.area_bram_weight,
+        )
+        rows = [row]
+
+        summary_csv = output_dir / "summary.csv"
+        summary_json = output_dir / "summary.json"
+        with open(summary_csv, "w", newline="") as f:
+            writer = csv.DictWriter(f, fieldnames=list(rows[0].keys()))
+            writer.writeheader()
+            writer.writerows(rows)
+        summary_json.write_text(json.dumps(rows, indent=2))
+        print(f"[INFO] Wrote summary: {summary_csv}")
+        print(f"[INFO] Wrote summary: {summary_json}")
+        return
+
     if target.fp32:
         mant_spec = args.mant_bits if args.mant_bits else "24:1:1"
         mant_bits_list = parse_mant_bits(mant_spec, fp32=True)
@@ -1024,6 +1230,7 @@ def main() -> None:
             "BRAMs": hw.get("BRAMs", -1),
             "Cycles": hw.get("Cycles", -1),
             "Fmax_MHz": hw.get("Fmax_MHz", -1),
+            "Latency_ns": hw.get("Latency_ns", -1),
         }
         row["area_score"] = compute_area_score(
             row,

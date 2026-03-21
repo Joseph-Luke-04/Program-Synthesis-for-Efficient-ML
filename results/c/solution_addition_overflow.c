@@ -1,3 +1,0 @@
-ap_uint<1> detect_overflow(ap_uint<5> raw_sum) {
-  return (ap_int<5>)raw_sum > (ap_int<5>)7 || (ap_int<5>)raw_sum < (ap_int<5>)24 ? (ap_uint<1>)  1 : (ap_uint<1>)  0;
-}

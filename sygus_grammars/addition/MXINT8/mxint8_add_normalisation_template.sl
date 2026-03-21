@@ -28,7 +28,7 @@
   )
   (
     (Start8 (_ BitVec 8) (
-      (concat Mant4 Exp4)
+      (concat Exp4 Mant4)
     ))
 
     ; --- Helpers: absolute value and MSB detection ---

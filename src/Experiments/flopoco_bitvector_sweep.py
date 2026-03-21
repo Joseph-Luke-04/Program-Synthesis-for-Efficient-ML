@@ -515,6 +515,7 @@ def run_one_target(args: argparse.Namespace, target: FlopocoTarget) -> None:
             "BRAMs": hw.get("BRAMs", -1),
             "Cycles": hw.get("Cycles", -1),
             "Fmax_MHz": hw.get("Fmax_MHz", -1),
+            "Latency_ns": hw.get("Latency_ns", -1),
         }
         row["area_score"] = compute_area_score(
             row,
@@ -527,7 +528,7 @@ def run_one_target(args: argparse.Namespace, target: FlopocoTarget) -> None:
             f"[AREA] LUTs={row['LUTs']} FFs={row['FFs']} DSPs={row['DSPs']} BRAMs={row['BRAMs']} "
             f"area_score={row['area_score']:.3f}"
         )
-        print(f"[PERF] Cycles={row['Cycles']} Fmax_MHz={row['Fmax_MHz']}")
+        print(f"[PERF] Cycles={row['Cycles']} Fmax_MHz={row['Fmax_MHz']} Latency_ns={row['Latency_ns']}")
         rows.append(row)
         return row
 

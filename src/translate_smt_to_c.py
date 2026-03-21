@@ -68,6 +68,7 @@ def run_smt2c_translation(
     smt_path: str,
     save_dir: str,
     show_generated_code: bool = True,
+    extra_dep_paths: list[str] | None = None,
 ) -> str | None:
     smt2c_path = _resolve_smt2c_binary()
     if not smt2c_path:
@@ -88,18 +89,29 @@ def run_smt2c_translation(
     smt_dir = Path(smt_path).parent
     all_blocks: list[str] = []
 
-    # Load dependencies first (so helpers come before top)
-    deps = DEPENDENCY_MAP.get(component_key, [])
-    if deps:
-        print(f"[INFO] Component '{component_key}' has dependencies: {deps}")
-    for dep in deps:
-        dep_file = smt_dir / f"solution_{dep}.smt2"
-        if not dep_file.exists():
-            print(f"[ERROR] Dependency file not found: {dep_file}")
-            return None
-        print(f"       -> Loading functions from: {dep_file.name}")
-        dep_text = dep_file.read_text()
-        all_blocks.extend(_extract_define_funs(dep_text))
+    # Load dependencies first (so helpers come before top).
+    # Explicit extra_dep_paths take priority over the DEPENDENCY_MAP lookup
+    # (needed when solution files use non-standard stems, e.g. sweep runs).
+    if extra_dep_paths:
+        print(f"[INFO] Loading {len(extra_dep_paths)} explicit dependency file(s):")
+        for dep_path in extra_dep_paths:
+            if not Path(dep_path).exists():
+                print(f"[ERROR] Explicit dependency file not found: {dep_path}")
+                return None
+            print(f"       -> Loading functions from: {Path(dep_path).name}")
+            all_blocks.extend(_extract_define_funs(Path(dep_path).read_text()))
+    else:
+        deps = DEPENDENCY_MAP.get(component_key, [])
+        if deps:
+            print(f"[INFO] Component '{component_key}' has dependencies: {deps}")
+        for dep in deps:
+            dep_file = smt_dir / f"solution_{dep}.smt2"
+            if not dep_file.exists():
+                print(f"[ERROR] Dependency file not found: {dep_file}")
+                return None
+            print(f"       -> Loading functions from: {dep_file.name}")
+            dep_text = dep_file.read_text()
+            all_blocks.extend(_extract_define_funs(dep_text))
 
     # Load main file blocks
     main_text = Path(smt_path).read_text()

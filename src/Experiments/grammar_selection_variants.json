@@ -1,18 +1,18 @@
 {
-  "mxint8_add_combined": {
-    "V1": "sygus_grammars/addition/MXINT8/mxint8_add_full_sum_combined_v1_template.sl",
-    "V2": "sygus_grammars/addition/MXINT8/mxint8_add_full_sum_combined_template.sl"
+  "mxint8_add": {
+    "V1": "sygus_grammars/addition/MXINT8/mxint8_add_full_sum_v1_template.sl",
+    "V2": "sygus_grammars/addition/MXINT8/mxint8_add_full_sum_v2_template.sl"
   },
-  "mxint8_mul_combined": {
-    "V1": "sygus_grammars/multiplication/MXINT8/mxint8_mult_full_product_combined_v1_template.sl",
-    "V2": "sygus_grammars/multiplication/MXINT8/mxint8_mult_full_product_combined_template.sl"
+  "mxint8_mul": {
+    "V1": "sygus_grammars/multiplication/MXINT8/mxint8_mult_full_product_v1_template.sl",
+    "V2": "sygus_grammars/multiplication/MXINT8/mxint8_mult_full_product_v2_template.sl"
   },
-  "fp32_add_combined": {
-    "V1": "sygus_grammars/addition/FP32/fp32_full_sum_combined_v1_template.sl",
-    "V2": "sygus_grammars/addition/FP32/fp32_full_sum_combined_template.sl"
+  "fp32_add": {
+    "V1": "sygus_grammars/addition/FP32/fp32_full_sum_v1_template.sl",
+    "V2": "sygus_grammars/addition/FP32/fp32_full_sum_v2_template.sl"
   },
-  "fp32_mul_combined": {
-    "V1": "sygus_grammars/multiplication/FP32/fp32_full_prod_combined_v1_template.sl",
-    "V2": "sygus_grammars/multiplication/FP32/fp32_full_prod_combined_template.sl"
+  "fp32_mul": {
+    "V1": "sygus_grammars/multiplication/FP32/fp32_full_prod_v1_template.sl",
+    "V2": "sygus_grammars/multiplication/FP32/fp32_full_prod_v2_template.sl"
   }
 }

@@ -1,0 +1,1 @@
+(define-fun mult_mxint_full_product ((m1 (_ BitVec 4)) (e1 (_ BitVec 4)) (m2 (_ BitVec 4)) (e2 (_ BitVec 4)) (renorm_flag (_ BitVec 1))) (_ BitVec 8) (concat (mult_mxint_exp e1 e2 renorm_flag) (mult_mxint_mant m1 m2)))

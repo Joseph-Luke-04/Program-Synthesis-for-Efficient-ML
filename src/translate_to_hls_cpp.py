@@ -481,37 +481,69 @@ def _wrap_return_top_concat(c_code: str) -> str:
 
     return "".join(out)
 
+def _find_top_level_ternary(rhs: str):
+    """
+    Find the positions of the top-level '?' and ':' (at paren depth 0) in rhs.
+    Returns (q_pos, c_pos) or None if no top-level ternary exists.
+    """
+    depth = 0
+    q_pos = None
+    for i, ch in enumerate(rhs):
+        if ch == '(':
+            depth += 1
+        elif ch == ')':
+            depth -= 1
+        elif ch == '?' and depth == 0:
+            q_pos = i
+        elif ch == ':' and depth == 0 and q_pos is not None:
+            return (q_pos, i)
+    return None
+
+
+def _already_exact_cast(branch: str, ty: str) -> bool:
+    """True if the branch is already exactly `(ty)expr` with nothing else."""
+    branch = branch.strip()
+    prefix = f"({ty})"
+    if not branch.startswith(prefix):
+        return False
+    rest = branch[len(prefix):].strip()
+    return bool(re.match(r"^[A-Za-z_]\w*$", rest) or re.match(r"^\(.*\)$", rest))
+
+
 def _cast_ternary_branches(code: str) -> str:
     """
     Fix Vitis HLS ambiguity when ternary branches have mismatched types.
-    Always cast both branches to the declared variable type to prevent
-    any width mismatch (arithmetic widening, different ap_uint widths, etc.).
+    Only rewrites statements where the RHS has a TOP-LEVEL ternary (? at
+    paren depth 0). Skips lines where ? is buried inside a cast chain or
+    nested expression, which the old regex-based approach incorrectly split.
     """
-    # Match:  ap_uint<N> var = COND ? TRUE_BRANCH : FALSE_BRANCH;
-    pat = re.compile(
-        r"^(\s*)(ap_(?:u)?int<\d+>)\s+(\w+)\s*=\s*(.+?)\s*\?\s*(.+?)\s*:\s*(.+?)\s*;",
+    decl_pat = re.compile(
+        r"^(\s*)(ap_(?:u)?int<\d+>)\s+(\w+)\s*=\s*(.+?)\s*;$",
         re.MULTILINE,
     )
 
-    def _already_exact_cast(branch: str, ty: str) -> bool:
-        """True if the branch is already exactly `(ty)expr` with nothing else."""
-        branch = branch.strip()
-        prefix = f"({ty})"
-        if not branch.startswith(prefix):
-            return False
-        rest = branch[len(prefix):].strip()
-        # Must be a simple identifier or already-parenthesised expression
-        return bool(re.match(r"^[A-Za-z_]\w*$", rest) or re.match(r"^\(.*\)$", rest))
+    out = []
+    prev = 0
+    for m in decl_pat.finditer(code):
+        out.append(code[prev:m.start()])
+        indent, ty, var, rhs = m.group(1), m.group(2), m.group(3), m.group(4)
 
-    def repl(m):
-        indent, ty, var, cond, true_br, false_br = m.groups()
-        if not _already_exact_cast(true_br, ty):
-            true_br = f"({ty})({true_br.strip()})"
-        if not _already_exact_cast(false_br, ty):
-            false_br = f"({ty})({false_br.strip()})"
-        return f"{indent}{ty} {var} = {cond.strip()} ? {true_br} : {false_br};"
-
-    return pat.sub(repl, code)
+        result = _find_top_level_ternary(rhs)
+        if result is None:
+            out.append(m.group(0))
+        else:
+            q_pos, c_pos = result
+            cond     = rhs[:q_pos].strip()
+            true_br  = rhs[q_pos + 1:c_pos].strip()
+            false_br = rhs[c_pos + 1:].strip()
+            if not _already_exact_cast(true_br, ty):
+                true_br = f"({ty})({true_br})"
+            if not _already_exact_cast(false_br, ty):
+                false_br = f"({ty})({false_br})"
+            out.append(f"{indent}{ty} {var} = {cond} ? {true_br} : {false_br};")
+        prev = m.end()
+    out.append(code[prev:])
+    return ''.join(out)
 
 
 def _peephole_simplify(code: str) -> str:

@@ -141,8 +141,8 @@ async def _run_mxint8_multiplier_accuracy(dut, label: str):
         dut.m2.value = m2
         dut.e2.value = e2
         if hasattr(dut, "renorm_flag"):
-            if label == "combined":
-                # Combined solution takes renorm_flag as an explicit input.
+            if label == "v2":
+                # V2 solution takes renorm_flag as an explicit input.
                 # Flag=1 when |m1*m2| is large enough that the exponent
                 # needs adjusting down to compensate for the mantissa shift.
                 dut.renorm_flag.value = 1 if abs(m1 * m2) >= 32 else 0
@@ -176,12 +176,12 @@ async def _run_mxint8_multiplier_accuracy(dut, label: str):
             await Timer(1, unit="ns")
 
         # 5. Read the DUT output
-        # The synthesized multiplier returns a packed 8-bit vector: {mant_out[3:0], exp_out[3:0]}
+        # The synthesized multiplier returns a packed 8-bit vector: {exp_out[3:0], mant_out[3:0]}
         dut_return_val = dut.ap_return.value
 
-        # Extract the mantissa and exponent. The mantissa is signed.
-        m_dut = dut_return_val[7:4].to_signed()
-        e_dut = dut_return_val[3:0].to_signed()
+        # Extract the exponent (upper nibble) and mantissa (lower nibble). Both are signed.
+        e_dut = dut_return_val[7:4].to_signed()
+        m_dut = dut_return_val[3:0].to_signed()
 
         # Convert the DUT's output back to a float for comparison
         dut_float = dequantize_mxint8(m_dut, e_dut)
@@ -240,7 +240,7 @@ async def _run_mxint8_multiplier_accuracy(dut, label: str):
 
 def _should_run(label: str) -> bool:
     # Optional filter so you can run a single variant from the same test file.
-    # Use: MXINT8_MUL_VARIANT=combined or MXINT8_MUL_VARIANT=subcomponents
+    # Use: MXINT8_MUL_VARIANT=v2 or MXINT8_MUL_VARIANT=subcomponents
     want = os.getenv("MXINT8_MUL_VARIANT", "").strip().lower()
     if not want:
         return True
@@ -256,8 +256,16 @@ async def mxint8_multiplier_accuracy_subcomponents(dut):
 
 
 @cocotb.test()
-async def mxint8_multiplier_accuracy_combined(dut):
-    if not _should_run("combined"):
-        dut._log.info("Skipping combined variant (MXINT8_MUL_VARIANT filter).")
+async def mxint8_multiplier_accuracy_v2(dut):
+    if not _should_run("v2"):
+        dut._log.info("Skipping v2 variant (MXINT8_MUL_VARIANT filter).")
         return
-    await _run_mxint8_multiplier_accuracy(dut, "combined")
+    await _run_mxint8_multiplier_accuracy(dut, "v2")
+
+
+@cocotb.test()
+async def mxint8_multiplier_accuracy_v1(dut):
+    if not _should_run("v1"):
+        dut._log.info("Skipping v1 variant (MXINT8_MUL_VARIANT filter).")
+        return
+    await _run_mxint8_multiplier_accuracy(dut, "v1")

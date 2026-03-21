@@ -14,9 +14,9 @@
   )
 
   (
-    ; pack as [mant(4)][exp(4)] to match your concatenated_result
+    ; pack as [exp(4)][mant(4)] — exponent in upper nibble for MSB-relaxation
     (Start8 (_ BitVec 8) (
-      (concat Mant4 Exp4)
+      (concat Exp4 Mant4)
     ))
 
     (Mant4 (_ BitVec 4) (

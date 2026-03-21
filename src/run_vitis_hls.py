@@ -396,6 +396,8 @@ def parse_reports(output_dir: Path, top_func: str, design_name: str, run_impl: b
                 except Exception:
                     pass
 
+        fmax = results["Fmax_MHz"]
+        results["Latency_ns"] = round(1000.0 / fmax, 4) if fmax > 0 else -1
         return results
 
     # HLS-only path
@@ -424,6 +426,9 @@ def parse_reports(output_dir: Path, top_func: str, design_name: str, run_impl: b
                     break
             except Exception:
                 pass
+
+    fmax = results["Fmax_MHz"]
+    results["Latency_ns"] = round(1000.0 / fmax, 4) if fmax > 0 else -1
 
     return results
 

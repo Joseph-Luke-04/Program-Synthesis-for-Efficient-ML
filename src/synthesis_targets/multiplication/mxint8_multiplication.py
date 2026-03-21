@@ -6,6 +6,17 @@ def to_smt_bitvec(value: int, bits: int) -> str:
     mask = (1 << bits) - 1
     return f"#b{value & mask:0{bits}b}"
 
+def _mxint8_prefix_constraint(synth_call: str, full_result_bv: str, match_bits: int) -> str:
+    """Generate a constraint matching only the top match_bits of an 8-bit output.
+    When match_bits >= 8, generates a full equality constraint.
+    """
+    if match_bits >= 8:
+        return f"(constraint (= {synth_call} {full_result_bv}))"
+    hi = 7
+    lo = 8 - match_bits
+    prefix_bv = f"#b{full_result_bv[2:2 + match_bits]}"
+    return f"(constraint (= ((_ extract {hi} {lo}) {synth_call}) {prefix_bv}))"
+
 class MXINT8MultiplicationTarget:
 
     def get_op_name(self) -> str:
@@ -83,10 +94,10 @@ class MXINT8MultiplicationTarget:
 
         final_mant_bv = to_smt_bitvec(data["final_mant"], config.MANTISSA_WIDTH)
         final_exp_bv = to_smt_bitvec(data["final_exp"], config.EXPONENT_WIDTH)
-
+        concatenated_result = f"#b{final_exp_bv[2:]}{final_mant_bv[2:]}"
+        match_bits = getattr(config, "MXINT8_OUTPUT_MATCH_BITS", 8)
         synth_call = f"(mult_mxint_full_product {m1_bv} {e1_bv} {m2_bv} {e2_bv} {renorm_flag_bv})"
-        concatenated_result = f"#b{final_mant_bv[2:]}{final_exp_bv[2:]}"
-        return f"(constraint (= {synth_call} {concatenated_result}))"
+        return _mxint8_prefix_constraint(synth_call, concatenated_result, match_bits)
 
     def get_components(self) -> Dict:
     
@@ -108,9 +119,9 @@ class MXINT8MultiplicationTarget:
                 "template": "sygus_grammars/multiplication/MXINT8/mxint8_mult_full_product_template.sl",
                 "generator": self.gen_full_product_constraint,
             },
-            # Monolithic grammar, attempt to synthesise a full MXINT8 multiplier in one go.
-            "full_product_combined": {
-                "template": "sygus_grammars/multiplication/MXINT8/mxint8_mult_full_product_combined_template.sl",
+            # Monolithic V2 grammar, attempt to synthesise a full MXINT8 multiplier in one go.
+            "full_product_v2": {
+                "template": "sygus_grammars/multiplication/MXINT8/mxint8_mult_full_product_v2_template.sl",
                 "generator": self.gen_full_product_constraint,
             }
         }

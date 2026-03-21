@@ -230,7 +230,7 @@ async def _run_fp32_adder_accuracy(dut, label: str):
 
 def _should_run(label: str) -> bool:
     # Optional filter so you can run a single variant from the same test file.
-    # Use: FP32_ADD_VARIANT=combined | subcomponents | flopoco
+    # Use: FP32_ADD_VARIANT=v2 | subcomponents | flopoco
     want = os.getenv("FP32_ADD_VARIANT", "").strip().lower()
     if not want:
         return True
@@ -246,11 +246,19 @@ async def fp32_adder_accuracy_subcomponents(dut):
 
 
 @cocotb.test()
-async def fp32_adder_accuracy_combined(dut):
-    if not _should_run("combined"):
-        dut._log.info("Skipping combined variant (FP32_ADD_VARIANT filter).")
+async def fp32_adder_accuracy_v2(dut):
+    if not _should_run("v2"):
+        dut._log.info("Skipping v2 variant (FP32_ADD_VARIANT filter).")
         return
-    await _run_fp32_adder_accuracy(dut, "combined")
+    await _run_fp32_adder_accuracy(dut, "v2")
+
+
+@cocotb.test()
+async def fp32_adder_accuracy_v1(dut):
+    if not _should_run("v1"):
+        dut._log.info("Skipping v1 variant (FP32_ADD_VARIANT filter).")
+        return
+    await _run_fp32_adder_accuracy(dut, "v1")
 
 
 @cocotb.test()

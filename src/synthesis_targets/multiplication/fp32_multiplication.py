@@ -205,9 +205,9 @@ class FP32MultiplicationTarget:
                 "template": "sygus_grammars/multiplication/FP32/fp32_full_prod_template.sl",
                 "generator": self.gen_full_product_constraint,
             },
-            # Monolithic full-product grammar (no subcomponent dependencies).
-            "full_product_combined": {
-                "template": "sygus_grammars/multiplication/FP32/fp32_full_prod_combined_template.sl",
+            # Monolithic V2 full-product grammar (no subcomponent dependencies).
+            "full_product_v2": {
+                "template": "sygus_grammars/multiplication/FP32/fp32_full_prod_v2_template.sl",
                 "generator": self.gen_full_product_constraint,
             },
         }

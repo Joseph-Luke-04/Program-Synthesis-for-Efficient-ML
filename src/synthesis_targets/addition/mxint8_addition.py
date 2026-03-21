@@ -6,6 +6,18 @@ def to_smt_bitvec(value: int, bits: int) -> str:
     mask = (1 << bits) - 1
     return f"#b{value & mask:0{bits}b}"
 
+def _mxint8_prefix_constraint(synth_call: str, full_result_bv: str, match_bits: int) -> str:
+    """Generate a constraint matching only the top match_bits of an 8-bit output.
+    When match_bits >= 8, generates a full equality constraint.
+    Used for staged relaxation where stage-0 matches exp only (top 4 bits).
+    """
+    if match_bits >= 8:
+        return f"(constraint (= {synth_call} {full_result_bv}))"
+    hi = 7
+    lo = 8 - match_bits
+    prefix_bv = f"#b{full_result_bv[2:2 + match_bits]}"
+    return f"(constraint (= ((_ extract {hi} {lo}) {synth_call}) {prefix_bv}))"
+
 class MXINT8AdditionTarget:
 
     def get_op_name(self) -> str:
@@ -182,15 +194,16 @@ class MXINT8AdditionTarget:
     def gen_normalisation_constraint(self, data: Dict, config) -> str:
         raw_sum_bv = to_smt_bitvec(data["raw_sum_mantissa"], config.RAW_SUM_MANTISSA_WIDTH)
         target_exp_bv = to_smt_bitvec(data["target_exponent"], config.EXPONENT_WIDTH)
-        
+
         final_mant_bv = to_smt_bitvec(data["final_mant"], config.MANTISSA_WIDTH)
         final_exp_bv = to_smt_bitvec(data["final_exp"], config.EXPONENT_WIDTH)
-        final_result_bv = f"#b{final_mant_bv[2:]}{final_exp_bv[2:]}"
-        
-        return f"(constraint (= (normalise_addition {raw_sum_bv} {target_exp_bv}) {final_result_bv}))"
+        final_result_bv = f"#b{final_exp_bv[2:]}{final_mant_bv[2:]}"
+        match_bits = getattr(config, "MXINT8_OUTPUT_MATCH_BITS", 8)
+        synth_call = f"(normalise_addition {raw_sum_bv} {target_exp_bv})"
+        return _mxint8_prefix_constraint(synth_call, final_result_bv, match_bits)
 
     def gen_full_sum_constraint(self, data: Dict, config) -> str:
-        """Constraint for the complete MXINT8 adder (mantissa || exponent)."""
+        """Constraint for the complete MXINT8 adder (exponent || mantissa)."""
         m1_bv = to_smt_bitvec(data["m1"], config.MANTISSA_WIDTH)
         e1_bv = to_smt_bitvec(data["e1"], config.EXPONENT_WIDTH)
         m2_bv = to_smt_bitvec(data["m2"], config.MANTISSA_WIDTH)
@@ -198,10 +211,10 @@ class MXINT8AdditionTarget:
 
         final_mant_bv = to_smt_bitvec(data["final_mant"], config.MANTISSA_WIDTH)
         final_exp_bv = to_smt_bitvec(data["final_exp"], config.EXPONENT_WIDTH)
-        final_result_bv = f"#b{final_mant_bv[2:]}{final_exp_bv[2:]}"
-        
+        final_result_bv = f"#b{final_exp_bv[2:]}{final_mant_bv[2:]}"
+        match_bits = getattr(config, "MXINT8_OUTPUT_MATCH_BITS", 8)
         synth_call = f"(add_full_sum {m1_bv} {e1_bv} {m2_bv} {e2_bv})"
-        return f"(constraint (= {synth_call} {final_result_bv}))"
+        return _mxint8_prefix_constraint(synth_call, final_result_bv, match_bits)
 
     def get_components(self) -> Dict:
         
@@ -227,9 +240,9 @@ class MXINT8AdditionTarget:
                 "template": "sygus_grammars/addition/MXINT8/mxint8_add_full_sum_template.sl",
                 "generator": self.gen_full_sum_constraint,
             },
-            # Monolithic grammar, attempt to synthesise a full MXINT8 adder in one go.
-            "full_sum_combined": {
-                "template": "sygus_grammars/addition/MXINT8/mxint8_add_full_sum_combined_template.sl",
+            # Monolithic V2 grammar, attempt to synthesise a full MXINT8 adder in one go.
+            "full_sum_v2": {
+                "template": "sygus_grammars/addition/MXINT8/mxint8_add_full_sum_v2_template.sl",
                 "generator": self.gen_full_sum_constraint,
             }
         }

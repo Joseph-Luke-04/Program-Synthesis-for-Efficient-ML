@@ -2,7 +2,40 @@ __pycache__/
 *.py[cod]
 .DS_Store
 
+# Virtual environment
+.venv/
+
+# Logs
+logs/
+
+# Vitis HLS build artefacts and large sweep output directories
 results/HLS/
 results/sweeps/
+
+# Grammar selection study outputs (regenerable)
 results/grammar_selection/
+results/grammar_selection_v2/
+
+# Per-run raw data from HP sweeps (JSON + log per run — regenerable from sweep)
+results/hyperparameter_sweep/*/raw/
+
+# Sweep-run and grammar-study generated C/C++/SMT2 translations
+# (solution_* canonical files are kept; hpsweep_* / grammarstudy_* are transient)
+results/c/hpsweep_*.c
+results/c/grammarstudy_*.c
+results/cpp/hpsweep_*.cpp
+results/cpp/grammarstudy_*.cpp
+results/smt2/hpsweep_*.smt2
+results/smt2/grammarstudy_*.smt2
+
 accuracy_tests/sim_build
+
+# Compiled smt2c tool artefacts
+tools/smt2c/src/*.o
+tools/smt2c/src/*.d
+tools/smt2c/src/smt2c
+
+# HP sweep subdirectory results (keep tracked; raw/ already excluded above)
+# Backup and notebook output files
+*.bak
+results/notebooks/
