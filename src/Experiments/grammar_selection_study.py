@@ -573,6 +573,7 @@ def main() -> None:
     parser.add_argument("--output-dir", default="results/grammar_selection", help="Experiment output directory.")
     parser.add_argument("--variant-manifest", default="", help="Optional JSON manifest overriding V1/V2 template paths.")
     parser.add_argument("--benchmarks", nargs="+", default=[], help="Optional benchmark keys to run. Defaults to all.")
+    parser.add_argument("--versions", nargs="+", default=[], help="Optional grammar versions to run (V1, V2, Subcomponents). Defaults to all.")
     parser.add_argument("--repetitions", type=int, default=1, help="Number of repetitions per benchmark/version.")
     parser.add_argument("--seed", type=int, default=12345, help="Base RNG seed. Same seed is used for V1/V2 within a repetition.")
     parser.add_argument("--timeout", type=int, default=120, help="Per-driver solver timeout in seconds.")
@@ -605,22 +606,35 @@ def main() -> None:
             raise ValueError(f"Unknown benchmark key(s): {', '.join(missing)}. Valid: {valid}")
     args.benchmark_order = {bench.key: idx for idx, bench in enumerate(selected_benchmarks)}
 
+    # Version filtering
+    selected_versions = set(args.versions) if args.versions else {"V1", "V2", "Subcomponents"}
+    valid_versions = {"V1", "V2", "Subcomponents"}
+    invalid = selected_versions - valid_versions
+    if invalid:
+        raise ValueError(f"Unknown version(s): {', '.join(sorted(invalid))}. Valid: {', '.join(sorted(valid_versions))}")
+
     all_rows: list[dict[str, Any]] = []
     raw_jsonl = output_dir / "runs.jsonl"
-    if raw_jsonl.exists():
+    # Append mode: don't delete if other sessions may be writing to the same dir
+    if raw_jsonl.exists() and not args.versions:
         raw_jsonl.unlink()
 
-    # Count runs: 2 (V1/V2) + 1 (Subcomponents if available) per benchmark, times repetitions.
-    versions_per_bench = {
-        bench.key: 2 + (1 if bench.subcomp_component else 0)
-        for bench in selected_benchmarks
-    }
-    total_runs = sum(versions_per_bench[b.key] for b in selected_benchmarks) * args.repetitions
+    # Count runs
+    def _versions_for_bench(bench):
+        v = []
+        if "V1" in selected_versions: v.append("V1")
+        if "V2" in selected_versions: v.append("V2")
+        if "Subcomponents" in selected_versions and bench.subcomp_component: v.append("Subcomponents")
+        return v
+
+    total_runs = sum(len(_versions_for_bench(b)) for b in selected_benchmarks) * args.repetitions
     run_index = 0
 
     for bench in selected_benchmarks:
         # --- V1 and V2 combined-grammar runs ---
         for version in ("V1", "V2"):
+            if version not in selected_versions:
+                continue
             template_path = (repo_root / variant_manifest[bench.key][version]).resolve()
             if not template_path.exists():
                 raise FileNotFoundError(
@@ -658,7 +672,7 @@ def main() -> None:
                     f.write(json.dumps(row, sort_keys=True) + "\n")
 
         # --- Subcomponents run (uses driver's dependency chain, no template override) ---
-        if bench.subcomp_component:
+        if bench.subcomp_component and "Subcomponents" in selected_versions:
             subcomp_files = [
                 (repo_root / rel).resolve()
                 for rel in SUBCOMPONENT_GRAMMAR_FILES[bench.synth_target]

@@ -54,8 +54,8 @@ from .synthesis_targets.dot_product import DotProductTarget
 
 # Target/component defaults when running `python -m src.synthesis_driver`.
 # Use class-style defaults directly (can be switched to any target class instance).
-DEFAULT_TARGET_OPERATION = FP32AdditionTarget()
-DEFAULT_COMPONENT = "full_sum"
+DEFAULT_TARGET_OPERATION = MXINT8MultiplicationTarget()
+DEFAULT_COMPONENT = "full_product"
 
 # Pipeline toggles.
 
@@ -468,6 +468,7 @@ def synthesis_loop(
     last_enum_primary: int | float | None = None
     enum_keys_seen: set[str] = set()
     attempt_status_counts: dict[str, int] = {}
+    iter_results: list[dict] = []
     last_status: SolveStatus = "unknown"
     auto_relax_components = {
         "full_sum",
@@ -495,6 +496,13 @@ def synthesis_loop(
         stage0_bits = 9
         relax_schedule = str(getattr(config, "FP32_RELAX_SCHEDULE", "linear")).strip().lower()
 
+    is_staged_relax_run = can_relax and relax_schedule == "staged"
+    allow_timeout_relax = (
+        getattr(config, "MXINT8_RELAX_ON_TIMEOUT", True)
+        if is_mxint8_target
+        else getattr(config, "FP32_RELAX_ON_TIMEOUT", True)
+    )
+
     for i, args in enumerate(test_cases):
         print(f"\n--- Iteration {i+1}/{len(test_cases)} ---")
         print(f"Generating new constraint with inputs: {args}")
@@ -503,6 +511,17 @@ def synthesis_loop(
         
         if not ground_truth_data:
             print(f"Could not generate ground truth for inputs {args}. Skipping.")
+            iter_results.append({
+                "accepted": False,
+                "start_bits": initial_strict_bits,
+                "first_success_bits": None,
+                "final_bits": None,
+                "used_relaxation": False,
+                "is_staged_run": is_staged_relax_run,
+                "stage0_bits": stage0_bits,
+                "stage1_bits": None,
+                "ground_truth_invalid": True,
+            })
             continue
 
         if can_relax:
@@ -522,7 +541,10 @@ def synthesis_loop(
             msb_candidates = [start_bits]
 
         accepted_this_iter = False
+        first_success_bits_this_iter: Optional[int] = None
         accepted_bits_this_iter: Optional[int] = None
+        used_relaxation_this_iter = False
+        ground_truth_invalid_this_iter = False
         spec_relax_statuses = set()
         if is_mxint8_target:
             if getattr(config, "MXINT8_RELAX_ON_INFEASIBLE", True):
@@ -665,6 +687,9 @@ def synthesis_loop(
                 # resolve helper symbols used in the final body.
                 current_best_program = _decorate_solution(solution)
                 accepted_this_iter = True
+                if first_success_bits_this_iter is None:
+                    first_success_bits_this_iter = bits
+                    used_relaxation_this_iter = (bits != start_bits)
                 accepted_bits_this_iter = bits
                 print(f"SUCCESS: accepted (bits = {bits}). Total constraints: {len(accepted_constraints)}")
                 # If stage-0 was accepted, try immediate upgrade for the same sample.
@@ -685,7 +710,7 @@ def synthesis_loop(
                 break
 
             if status == timeout_status:
-                if can_relax and relax_schedule == "staged":
+                if is_staged_relax_run and allow_timeout_relax:
                     if bits != stage0_bits:
                         print(f"[INFO] Timeout at this stage (bits={bits}). Trying stage-0 fallback...")
                         sol0, st0, c0 = _solve_with_bits(
@@ -697,6 +722,9 @@ def synthesis_loop(
                             accepted_constraints.append(c0)
                             current_best_program = _decorate_solution(sol0)
                             accepted_this_iter = True
+                            if first_success_bits_this_iter is None:
+                                first_success_bits_this_iter = stage0_bits
+                                used_relaxation_this_iter = True
                             accepted_bits_this_iter = stage0_bits
                             print("SUCCESS: accepted at stage-0 after timeout.")
 
@@ -738,6 +766,18 @@ def synthesis_loop(
             a, b = args
             print(f"SKIPPED: ({a:.3f}, {b:.3f}) could not be added (even after relaxation).")
 
+        iter_results.append({
+            "accepted":              accepted_this_iter,
+            "start_bits":            start_bits,
+            "first_success_bits":    first_success_bits_this_iter,
+            "final_bits":            accepted_bits_this_iter,
+            "used_relaxation":       used_relaxation_this_iter,
+            "is_staged_run":         is_staged_relax_run,
+            "stage0_bits":           stage0_bits,
+            "stage1_bits":           stage1_bits,
+            "ground_truth_invalid":  ground_truth_invalid_this_iter,
+        })
+
     print("\n\n--- Synthesis Complete! ---")
     print(f"\nConstraints accepted: {len(accepted_constraints)}/{len(test_cases)}")
     if current_best_program:
@@ -760,6 +800,40 @@ def synthesis_loop(
         "enum_primary_keys_seen": sorted(enum_keys_seen),
         "attempt_status_counts": attempt_status_counts,
         "attempts": solver_attempts,
+        "accepted_strict": sum(
+            1 for r in iter_results
+            if r["accepted"]
+            and r["first_success_bits"] == r["start_bits"]
+            and not r["used_relaxation"]
+        ),
+        "accepted_final_strict": sum(
+            1 for r in iter_results
+            if r["accepted"] and r["final_bits"] == r["start_bits"]
+        ),
+        "accepted_stage1": sum(
+            1 for r in iter_results
+            if r["accepted"]
+            and r["is_staged_run"]
+            and r["final_bits"] == r["stage1_bits"]
+        ),
+        "accepted_stage0": sum(
+            1 for r in iter_results
+            if r["accepted"]
+            and r["is_staged_run"]
+            and r["final_bits"] == r["stage0_bits"]
+        ),
+        "accepted_used_relaxation": sum(
+            1 for r in iter_results
+            if r["accepted"] and r["used_relaxation"]
+        ),
+        "true_skips": sum(
+            1 for r in iter_results
+            if not r["accepted"] and not r["ground_truth_invalid"]
+        ),
+        "invalid_ground_truth_skips": sum(
+            1 for r in iter_results
+            if r["ground_truth_invalid"]
+        ),
     }
 
 
@@ -970,10 +1044,13 @@ def run_accuracy_tests_for_solution(target, component_name: str, solution_name: 
     acc_python = os.environ.get("SYNTH_ACCURACY_PYTHON", "").strip()
     if acc_python:
         env["PYTHON"] = acc_python
-        py_bin = str(Path(acc_python).expanduser().resolve().parent)
+        py_bin = str(Path(acc_python).expanduser().parent.resolve())
     else:
         env.setdefault("PYTHON", sys.executable)
-        py_bin = str(Path(sys.executable).resolve().parent)
+        # Use the *unresolved* parent so we get .venv/bin/ rather than
+        # following the symlink to e.g. /usr/bin where cocotb-config
+        # does not exist.
+        py_bin = str(Path(sys.executable).parent.resolve())
     # Always ensure the Python env's bin/ is on PATH so that cocotb-config
     # is found when make invokes $(shell cocotb-config --makefiles).
     env["PATH"] = py_bin + os.pathsep + env.get("PATH", "")

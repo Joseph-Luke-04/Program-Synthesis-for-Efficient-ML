@@ -1,8 +1,15 @@
 <testsuites name="results">
   <testsuite name="all" package="all">
-    <property name="random_seed" value="1774121995" />
-    <testcase name="mxint8_adder_accuracy_subcomponents" classname="tests.addition.test_mxint8_adder" file="/home/josephluke/Program-Synthesis-for-Efficient-ML/accuracy_tests/tests/addition/test_mxint8_adder.py" lineno="242" time="5.793571472167969e-05" sim_time_ns="0.0" ratio_time="0.0" />
-    <testcase name="mxint8_adder_accuracy_v2" classname="tests.addition.test_mxint8_adder" file="/home/josephluke/Program-Synthesis-for-Efficient-ML/accuracy_tests/tests/addition/test_mxint8_adder.py" lineno="250" time="26.873965740203857" sim_time_ns="100000.0" ratio_time="3721.0734346661197" />
-    <testcase name="mxint8_adder_accuracy_v1" classname="tests.addition.test_mxint8_adder" file="/home/josephluke/Program-Synthesis-for-Efficient-ML/accuracy_tests/tests/addition/test_mxint8_adder.py" lineno="258" time="2.956390380859375e-05" sim_time_ns="0.0" ratio_time="0.0" />
+    <property name="random_seed" value="1774731889" />
+    <testcase name="fp32_adder_accuracy_subcomponents" classname="tests.addition.test_fp32_adder" file="/home/josephluke/Program-Synthesis-for-Efficient-ML/accuracy_tests/tests/addition/test_fp32_adder.py" lineno="240" time="4.7206878662109375e-05" sim_time_ns="0.0" ratio_time="0.0" />
+    <testcase name="fp32_adder_accuracy_v2" classname="tests.addition.test_fp32_adder" file="/home/josephluke/Program-Synthesis-for-Efficient-ML/accuracy_tests/tests/addition/test_fp32_adder.py" lineno="248" time="30.77463936805725" sim_time_ns="7966895.0" ratio_time="258878.58196217543">
+      <failure error_type="SimFailure" error_msg="Simulator shut down prematurely" />
+    </testcase>
+    <testcase name="fp32_adder_accuracy_v1" classname="tests.addition.test_fp32_adder" file="/home/josephluke/Program-Synthesis-for-Efficient-ML/accuracy_tests/tests/addition/test_fp32_adder.py" lineno="256" time="0" sim_time_ns="0" ratio_time="nan">
+      <failure error_type="SimFailure" error_msg="Simulator shut down prematurely" />
+    </testcase>
+    <testcase name="fp32_adder_accuracy_flopoco" classname="tests.addition.test_fp32_adder" file="/home/josephluke/Program-Synthesis-for-Efficient-ML/accuracy_tests/tests/addition/test_fp32_adder.py" lineno="264" time="0" sim_time_ns="0" ratio_time="nan">
+      <failure error_type="SimFailure" error_msg="Simulator shut down prematurely" />
+    </testcase>
   </testsuite>
 </testsuites>

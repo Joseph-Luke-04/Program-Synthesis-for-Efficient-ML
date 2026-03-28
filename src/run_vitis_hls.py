@@ -23,6 +23,20 @@ def _detect_top_func_from_cpp(src: str) -> str | None:
     return last
 
 
+def _get_hls_clock_period_ns() -> float:
+    try:
+        return float(os.environ.get("HLS_CLK_PERIOD_NS", "5.000"))
+    except ValueError:
+        return 5.000
+
+
+def _get_hls_clock_uncertainty_ns() -> float:
+    try:
+        return float(os.environ.get("HLS_CLK_UNCERTAINTY_NS", "0.200"))
+    except ValueError:
+        return 0.200
+
+
 def _get_hls_datapath_mode() -> str:
     mode = os.environ.get("HLS_DATAPATH_MODE", "clocked_auto").strip().lower()
     if mode not in {"clocked_auto", "forced_1cycle"}:
@@ -63,6 +77,9 @@ def create_hls_tcl(design_path: Path, top_func: str, output_dir: Path) -> Path:
     tcl_path = output_dir / "hls.tcl"
     design_name = design_path.stem
     datapath_mode = _get_hls_datapath_mode()
+    clk_period_ns = _get_hls_clock_period_ns()
+    clk_uncertainty_ns = _get_hls_clock_uncertainty_ns()
+
     pipeline_line = ""
     if datapath_mode == "forced_1cycle":
         if "fp32" in top_func:
@@ -81,7 +98,8 @@ def create_hls_tcl(design_path: Path, top_func: str, output_dir: Path) -> Path:
     set_top {top_func}
     add_files {design_path}
     set_part {{xc7z020clg400-1}}
-    create_clock -period 1000000ns
+    create_clock -period {clk_period_ns:.3f}ns
+    set_clock_uncertainty {clk_uncertainty_ns:.3f}
     {pipeline_line}
     csynth_design
     export_design -rtl verilog
@@ -93,7 +111,7 @@ def create_hls_tcl(design_path: Path, top_func: str, output_dir: Path) -> Path:
 def create_vivado_tcl(top_func: str, output_dir: Path) -> Path:
     tcl_path = output_dir / "vivado.tcl"
     verilog_dir = output_dir / "verilog_out"
-    clk_period_ns = float(os.environ.get("VIVADO_CLK_PERIOD_NS", "4.000"))
+    clk_period_ns = float(os.environ.get("VIVADO_CLK_PERIOD_NS", "5.000"))
 
     tcl = f"""
     # --- Non-project flow: read RTL, synth, implement, report ---
@@ -108,15 +126,15 @@ def create_vivado_tcl(top_func: str, output_dir: Path) -> Path:
     if {{[llength $v_files]  > 0}} {{ read_verilog $v_files }}
     foreach f $sv_files {{ read_verilog -sv $f }}
 
-    # Synthesis
-    synth_design -top {top_func} -part xc7z020clg400-1
-
-    # Add a clock ONLY if the port exists (combinational designs won't have ap_clk)
+    # Add a clock ONLY if the port exists
     if {{[llength [get_ports -quiet ap_clk]]}} {{
       create_clock -name ap_clk -period {clk_period_ns:.3f} [get_ports ap_clk]
     }} else {{
       puts "INFO: No ap_clk port found; skipping create_clock (design appears combinational)."
     }}
+
+    # Synthesis
+    synth_design -top {top_func} -part xc7z020clg400-1
 
     # Implementation
     opt_design
@@ -127,13 +145,11 @@ def create_vivado_tcl(top_func: str, output_dir: Path) -> Path:
     report_utilization    -file {output_dir}/utilization.rpt
     report_timing_summary -file {output_dir}/timing.rpt
 
-    # Try XML (RPX) timing if supported (avoid nested braces in catch)
     set rpx_path "{output_dir}/timing.rpx"
     if {{[catch {{report_timing_summary -rpx $rpx_path}} err]}} {{
       puts "INFO: RPX timing not available: $err"
     }}
 
-    # Critical path detail (only if clock exists)
     if {{[llength [get_ports -quiet ap_clk]]}} {{
       report_timing -delay_type max -max_paths 1 -nworst 1 -file {output_dir}/timing_detail.rpt
     }}
@@ -397,7 +413,14 @@ def parse_reports(output_dir: Path, top_func: str, design_name: str, run_impl: b
                     pass
 
         fmax = results["Fmax_MHz"]
-        results["Latency_ns"] = round(1000.0 / fmax, 4) if fmax > 0 else -1
+        if fmax > 0:
+            clock_ns = 1000.0 / fmax
+            cycles = results["Cycles"]
+            # Cycles=0 means combinational (fits in one clock period).
+            # Cycles>0 means pipelined: total latency = N × clock period.
+            results["Latency_ns"] = round((cycles if cycles > 0 else 1) * clock_ns, 4)
+        else:
+            results["Latency_ns"] = -1
         return results
 
     # HLS-only path
@@ -428,7 +451,12 @@ def parse_reports(output_dir: Path, top_func: str, design_name: str, run_impl: b
                 pass
 
     fmax = results["Fmax_MHz"]
-    results["Latency_ns"] = round(1000.0 / fmax, 4) if fmax > 0 else -1
+    if fmax > 0:
+        clock_ns = 1000.0 / fmax
+        cycles = results["Cycles"]
+        results["Latency_ns"] = round((cycles if cycles > 0 else 1) * clock_ns, 4)
+    else:
+        results["Latency_ns"] = -1
 
     return results
 

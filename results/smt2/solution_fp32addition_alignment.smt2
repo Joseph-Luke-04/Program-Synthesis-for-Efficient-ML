@@ -1,4 +1,0 @@
-(define-fun fp32_hidden1 ((m (_ BitVec 23))) (_ BitVec 24)
-  (concat #b1 m))
-
-(define-fun fp32_aligner ((e1 (_ BitVec 8)) (m1 (_ BitVec 23)) (e2 (_ BitVec 8)) (m2 (_ BitVec 23))) (_ BitVec 56) (let ((_let_1 (bvuge e1 e2))) (let ((_let_2 (ite _let_1 e1 e2))) (let ((_let_3 (fp32_hidden1 m2))) (let ((_let_4 (fp32_hidden1 m1))) (let ((_let_5 (ite _let_1 _let_4 _let_3))) (let ((_let_6 (ite _let_1 _let_3 _let_4))) (concat (ite _let_1 _let_5 (bvlshr _let_6 ((_ zero_extend 16) (bvsub _let_2 (ite _let_1 e2 e1))))) (concat (ite _let_1 (bvlshr _let_6 ((_ zero_extend 16) (bvsub e1 e2))) _let_5) _let_2)))))))))

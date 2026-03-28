@@ -493,7 +493,7 @@ ap_uint<1> mult_renorm_flag(ap_uint<4> m1, ap_uint<4> m2) {{
   ap_int<4> s2_q = (ap_int<4>)((s2 >> {drop_m}) << {drop_m});
   ap_int<8> prod = (ap_int<8>)(s1_q * s2_q);
   ap_int<8> abs_p = (prod < 0) ? (ap_int<8>)-prod : prod;
-  return (abs_p >= (ap_int<8>)32) ? (ap_uint<1>)1 : (ap_uint<1>)0;
+  return (abs_p <= (ap_int<8>)32) ? (ap_uint<1>)1 : (ap_uint<1>)0;
 }}
 """
 
@@ -641,12 +641,16 @@ def run_synthesis_for_target(target: SweepTarget, repo_root: Path) -> None:
 
 
 def find_latest_base_cpp(results_cpp_dir: Path, base_prefix: str) -> Path | None:
+    # Prefer the exact-match file (no version suffix) when it exists — versioned
+    # _v1/_v2 files have a different (monolithic) structure and should not be used
+    # as the subcomponent sweep base even if they have a more recent mtime.
+    exact = results_cpp_dir / f"{base_prefix}.cpp"
+    if exact.exists():
+        return exact
+
     candidates: list[Path] = []
     for p in results_cpp_dir.glob("*.cpp"):
         stem = p.stem
-        if stem == base_prefix:
-            candidates.append(p)
-            continue
         # Never auto-pick combined artefacts when caller asked for subcomponent base.
         if stem.startswith(base_prefix + "_combined"):
             continue
@@ -686,7 +690,7 @@ def parse_cocotb_metrics(text: str, target: SweepTarget) -> dict[str, Any]:
             out["ulp_p99"] = int(m_ulp.group(2))
             out["ulp_max"] = int(m_ulp.group(3))
 
-        m_exact = re.search(r"Exact\s+([0-9.]+)%", text)
+        m_exact = re.search(r"Exact(?:\s+match)?:\s*([0-9.]+)%", text)
         if m_exact:
             exact_ratio = float(m_exact.group(1)) / 100.0
             out["accuracy_exact_match"] = exact_ratio
@@ -745,12 +749,15 @@ def run_cocotb_accuracy(
         if dump_samples_path is not None:
             env["FP32_MUL_DUMP_PATH"] = str(dump_samples_path.resolve())
     elif target.key == "fp32_add":
+        env["FP32_ADD_MODE"] = cocotb_mode
         if dump_samples_path is not None:
             env["FP32_ADD_DUMP_PATH"] = str(dump_samples_path.resolve())
     elif target.key == "mxint8_mul":
+        env["MXINT8_MUL_MODE"] = cocotb_mode
         if dump_samples_path is not None:
             env["MXINT8_MUL_DUMP_PATH"] = str(dump_samples_path.resolve())
     elif target.key == "mxint8_add":
+        env["MXINT8_ADD_MODE"] = cocotb_mode
         if dump_samples_path is not None:
             env["MXINT8_ADD_DUMP_PATH"] = str(dump_samples_path.resolve())
 
@@ -865,7 +872,7 @@ def main() -> None:
         "--cocotb-mode",
         default="bits",
         choices=["bits", "normal_full", "wide", "small"],
-        help="FP32 multiplier operand sampler mode in cocotb tests.",
+        help="Operand sampler mode for cocotb accuracy tests (all targets).",
     )
     parser.add_argument("--cocotb-timeout", type=int, default=0, help="Per-variant cocotb timeout seconds.")
 
@@ -943,8 +950,7 @@ def main() -> None:
                 cmd += ["--optuna-storage", storage]
 
             cmd += ["--rel-error-pct", str(args.rel_error_pct)]
-            if t_key == "fp32_mul":
-                cmd += ["--cocotb-mode", str(args.cocotb_mode)]
+            cmd += ["--cocotb-mode", str(args.cocotb_mode)]
 
             if args.cocotb_timeout:
                 cmd += ["--cocotb-timeout", str(args.cocotb_timeout)]
@@ -1002,11 +1008,7 @@ def main() -> None:
     src_dir = Path(__file__).resolve().parent
     repo_root = src_dir.parent.parent
 
-    mode_tag = (
-        re.sub(r"[^a-zA-Z0-9_.-]+", "_", str(args.cocotb_mode).strip().lower())
-        if target.key == "fp32_mul"
-        else "default"
-    )
+    mode_tag = re.sub(r"[^a-zA-Z0-9_.-]+", "_", str(args.cocotb_mode).strip().lower())
 
     output_dir = (
         Path(args.output_dir).resolve()
@@ -1082,7 +1084,7 @@ def main() -> None:
             "exponent_bits_a": exp_bits,
             "exponent_bits_b": exp_bits,
             "accuracy_source": acc.get("accuracy_source"),
-            "cocotb_mode": args.cocotb_mode if target.key.startswith("fp32_mul") else "",
+            "cocotb_mode": args.cocotb_mode,
             "exact_matches": acc.get("exact_matches", -1),
             "total_cases": acc.get("total_cases", -1),
             "accuracy_exact_match": acc.get("accuracy_exact_match", -1.0),
@@ -1110,6 +1112,9 @@ def main() -> None:
         row["area_score"] = compute_area_score(
             row, args.area_lut_weight, args.area_ff_weight, args.area_dsp_weight, args.area_bram_weight,
         )
+        _luts = row.get("LUTs", -1)
+        _lat  = row.get("Latency_ns", -1)
+        row["adp_lut_ns"] = round(_luts * _lat, 3) if _luts > 0 and _lat > 0 else -1
         rows = [row]
 
         summary_csv = output_dir / "summary.csv"
@@ -1207,7 +1212,7 @@ def main() -> None:
             "exponent_bits_a": exp_bits,
             "exponent_bits_b": exp_bits,
             "accuracy_source": acc.get("accuracy_source"),
-            "cocotb_mode": args.cocotb_mode if target.key == "fp32_mul" else "",
+            "cocotb_mode": args.cocotb_mode,
             "exact_matches": acc.get("exact_matches", -1),
             "total_cases": acc.get("total_cases", -1),
             "accuracy_exact_match": acc.get("accuracy_exact_match", -1.0),
@@ -1239,6 +1244,9 @@ def main() -> None:
             args.area_dsp_weight,
             args.area_bram_weight,
         )
+        _luts = row.get("LUTs", -1)
+        _lat  = row.get("Latency_ns", -1)
+        row["adp_lut_ns"] = round(_luts * _lat, 3) if _luts > 0 and _lat > 0 else -1
         rows.append(row)
         return row
 

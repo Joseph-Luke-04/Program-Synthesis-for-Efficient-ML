@@ -107,13 +107,28 @@ async def _run_mxint8_adder_accuracy(dut, label: str):
     tested = 0
     skipped = 0
 
+    # Sampling mode: controls the float range used to generate inputs.
+    sample_mode = os.getenv("MXINT8_ADD_MODE", "normal_full").strip().lower()
+    valid_modes = {"normal_full", "small", "wide"}
+    if sample_mode not in valid_modes:
+        dut._log.warning(f"Unknown MXINT8_ADD_MODE='{sample_mode}', falling back to 'normal_full'.")
+        sample_mode = "normal_full"
+    dut._log.info(f"Random operand sampler mode: {sample_mode}")
+
     # Representable range for MXINT8 addition is roughly +/-112.
-    max_val = FULL_SCALE / 2.0
-    
+    default_max = FULL_SCALE / 2.0
+
+    if sample_mode == "small":
+        lo, hi = 0.0, 1.0
+    elif sample_mode == "wide":
+        lo, hi = -1024.0, 1024.0
+    else:  # normal_full
+        lo, hi = -default_max, default_max
+
     while tested < num_samples:
         # 1. Generate random float inputs and quantize using mxint_hardware
-        f1 = random.uniform(-max_val, max_val)
-        f2 = random.uniform(-max_val, max_val)
+        f1 = random.uniform(lo, hi)
+        f2 = random.uniform(lo, hi)
 
         t1 = torch.tensor([[f1]])
         t2 = torch.tensor([[f2]])
@@ -222,6 +237,7 @@ async def _run_mxint8_adder_accuracy(dut, label: str):
                 abs_err_full=np.asarray(errors_full, dtype=np.float32),
                 full_scale=np.asarray([FULL_SCALE], dtype=np.float32),
                 abs_err_tol_frac=np.asarray([ABS_ERR_TOL_FRAC], dtype=np.float32),
+                sample_mode=np.asarray([sample_mode]),
             )
             dut._log.info(f"Saved per-sample error dump: {dump_path}")
         except Exception as exc:

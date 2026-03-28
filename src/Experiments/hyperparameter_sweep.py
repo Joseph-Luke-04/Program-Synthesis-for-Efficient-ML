@@ -13,7 +13,7 @@ Coarse (preliminary — informs pipeline/bitvector sweep choices):
   Grid: timeouts=[30,60,180] × iterations=[15,30]  →  6 pts × 8 benchmarks × 3 reps = 144 runs
   Note: t=30 is below the empirical safe floor for MXINT8 (t≥60); those points may have reduced solve rates.
 
-Fine (dissertation quality):
+Fine:
   python -m src.Experiments.hyperparameter_sweep \\
       --preset fine \\
       --output-dir results/hyperparameter_sweep/fine
