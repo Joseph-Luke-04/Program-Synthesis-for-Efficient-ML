@@ -3,6 +3,7 @@ FROM ubuntu:22.04
 ARG DEBIAN_FRONTEND=noninteractive
 ARG CBMC_REPO=https://github.com/diffblue/cbmc.git
 ARG CBMC_COMMIT=e88ed5f7661c896e3c3f11212edc99373607d4da
+ARG CVC5_VERSION=1.2.2
 ARG MAMBA_ROOT_PREFIX=/opt/conda
 
 ENV MAMBA_ROOT_PREFIX=${MAMBA_ROOT_PREFIX}
@@ -25,6 +26,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     patch \
     perl \
     pkg-config \
+    unzip \
     zlib1g-dev \
     && rm -rf /var/lib/apt/lists/*
 
@@ -42,15 +44,18 @@ RUN micromamba install -y -n base -c conda-forge \
     pip \
     iverilog \
     pytest \
-    jupyter \
-    nbconvert \
-    ipykernel \
     && micromamba clean --all --yes
 
 WORKDIR /tmp/build
 
 COPY requirements.txt /tmp/build/requirements.txt
-RUN pip install --no-cache-dir -r requirements.txt cocotb==2.0.0
+RUN pip install --no-cache-dir -r requirements.txt
+
+RUN curl -L "https://github.com/cvc5/cvc5/releases/download/cvc5-${CVC5_VERSION}/cvc5-Linux-x86_64-static.zip" \
+      -o /tmp/cvc5.zip \
+    && unzip /tmp/cvc5.zip -d /opt \
+    && ln -sf /opt/cvc5-Linux-x86_64-static/bin/cvc5 /usr/local/bin/cvc5 \
+    && rm -f /tmp/cvc5.zip
 
 RUN git clone "${CBMC_REPO}" /opt/cbmc-hls
 WORKDIR /opt/cbmc-hls

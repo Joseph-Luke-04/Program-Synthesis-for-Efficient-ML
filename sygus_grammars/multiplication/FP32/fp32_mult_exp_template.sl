@@ -1,12 +1,10 @@
 (set-logic BV)
 
 ; ===============================================================
-; FP32 multiplication exponent — "in-between" structural sketch.
+; FP32 multiplication exponent
 ; Computes biased result exponent from two input exponents,
 ; renorm flag, and carry flag.
 ; Formula: result = ea + eb - bias + renorm + carry (approximately).
-; Search space ≈ 360 combinations.
-; SumRaw10(3) × Bias10(4) × Unbiased10(2) × RenormAdj10(3) × CarryAdj10(3) × Out8(2) = 432
 ; ===============================================================
 
 (synth-fun fp32_mult_exp
@@ -27,12 +25,12 @@
     (Out8        (_ BitVec 8))
   )
   (
-    ; --- Output: truncate to 8 bits ---
+    ; Output: truncate to 8 bits
     (Start8 (_ BitVec 8) (
       Out8
     ))
 
-    ; --- Stage 0: Extend inputs to 10 bits ---
+    ; Extend inputs to 10 bits
     (EA10 (_ BitVec 10) (
       ((_ zero_extend 2) ea)
     ))
@@ -41,14 +39,14 @@
       ((_ zero_extend 2) eb)
     ))
 
-    ; --- Stage 1: Sum the two exponents ---
+    ; Sum the two exponents
     (SumRaw10 (_ BitVec 10) (
       (bvadd EA10 EB10)
       (bvadd ((_ sign_extend 2) ea) ((_ sign_extend 2) eb))
       (bvor EA10 EB10)
     ))
 
-    ; --- Stage 2: Subtract bias ---
+    ; Subtract bias
     (Bias10 (_ BitVec 10) (
       (_ bv127 10)           ; standard IEEE 754 bias
       (_ bv126 10)           ; bias - 1
@@ -61,7 +59,7 @@
       (bvadd SumRaw10 Bias10)
     ))
 
-    ; --- Stage 3: Renorm adjustment ---
+    ; Renorm adjustment
     (Renorm10 (_ BitVec 10) (
       ((_ zero_extend 9) renorm)
     ))
@@ -72,7 +70,7 @@
       Unbiased10
     ))
 
-    ; --- Stage 4: Carry adjustment ---
+    ; Carry adjustment
     (Carry10 (_ BitVec 10) (
       ((_ zero_extend 9) carry)
     ))
@@ -83,7 +81,7 @@
       RenormAdj10
     ))
 
-    ; --- Stage 5: Extract result ---
+    ; Extract result
     (Out8 (_ BitVec 8) (
       ((_ extract 7 0) CarryAdj10)
       (ite (= renorm #b1)

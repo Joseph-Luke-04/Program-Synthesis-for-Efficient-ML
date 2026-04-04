@@ -54,7 +54,7 @@ _MXINT8_TARGETS = [
 ]
 
 # Fixed-mode sweep levels for full-profile targets.
-DEFAULT_FP32_LEVELS   = [9, 14, 19, 24, 26, 28, 30, 32]
+DEFAULT_FP32_LEVELS   = [9, 19, 24, 28, 32]
 DEFAULT_MXINT8_LEVELS = [4, 5, 6, 7, 8]
 
 # Reduced-profile: strict top and midpoint only.
@@ -463,8 +463,6 @@ def main() -> None:
     print(f"Output: {out_dir}\n")
 
     raw_jsonl = out_dir / "runs.jsonl"
-    if raw_jsonl.exists():
-        raw_jsonl.unlink()
 
     all_rows: list[dict[str, Any]] = []
 

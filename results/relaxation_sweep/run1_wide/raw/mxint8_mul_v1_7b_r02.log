@@ -1,0 +1,299 @@
+[INFO] Target: MXINT8MultiplicationTarget | Component: full_product_v2
+[INFO] NUM_ITERATIONS=30, TIMEOUT=180s, RUN_IMPLEMENTATION=True, DIRECTED_IO=True, RUN_ACCURACY=True, SYNTH_FP32_MUL_MODE=default, SYNTH_FP32_ADD_MODE=default, SYGUS_DUMP=False, SYGUS_FAST_ENUM=False, SYGUS_PBE=True, SYGUS_SYM_BREAK_PBE=True, MXINT8_OUTPUT_MATCH_BITS=7, MXINT8_AUTO_RELAX_OUTPUT_MATCH=False, MXINT8_MIN_OUTPUT_MATCH_BITS=4, MXINT8_STAGE_MANTISSA_BITS=2, FP32_OUTPUT_MATCH_MSB_BITS=32, FP32_AUTO_RELAX_OUTPUT_MATCH=False, FP32_RESET_MSB_PER_SAMPLE=True, FP32_RELAX_ON_TIMEOUT=False, FP32_TIMEOUT_RETRY_ONCE=False, FP32_TIMEOUT_RETRY_MULTIPLIER=4, FP32_RELAX_ON_INFEASIBLE=False, FP32_RELAX_ON_FAIL=False, FP32_RELAX_SCHEDULE=staged, FP32_STAGE_MANTISSA_BITS=15, FP32_MIN_OUTPUT_MATCH_MSB_BITS=24, FP32_OUTPUT_MATCH_STEP=1, RANDOM_SEED=12346
+--- Starting Synthesis for [MXINT8MultiplicationTarget -> full_product_v2] ---
+
+--- Iteration 1/30 ---
+Generating new constraint with inputs: (-0.7792519740347235, 5.071392169334439)
+(constraint (= ((_ extract 7 1) (mult_mxint_full_product #b1001 #b0000 #b0101 #b0011 #b0)) #b0011101))
+SUCCESS: accepted (bits = 7). Total constraints: 1
+
+--- Iteration 2/30 ---
+Generating new constraint with inputs: (-2.3751017241424, 4.398791238705277)
+(constraint (= ((_ extract 7 1) (mult_mxint_full_product #b1011 #b0010 #b0100 #b0011 #b1)) #b0100101))
+[INFO] Not relaxable (status=infeasible); not relaxing further for this sample.
+SKIPPED: (-2.375, 4.399) could not be added (even after relaxation).
+
+--- Iteration 3/30 ---
+Generating new constraint with inputs: (5.192228378110121, -5.534116442039584)
+(constraint (= ((_ extract 7 1) (mult_mxint_full_product #b0101 #b0011 #b1010 #b0011 #b1)) #b0101100))
+[INFO] Not relaxable (status=infeasible); not relaxing further for this sample.
+SKIPPED: (5.192, -5.534) could not be added (even after relaxation).
+
+--- Iteration 4/30 ---
+Generating new constraint with inputs: (10.490401869663945, -3.4391728686760343)
+(constraint (= ((_ extract 7 1) (mult_mxint_full_product #b0101 #b0100 #b1001 #b0010 #b0)) #b0110101))
+SUCCESS: accepted (bits = 7). Total constraints: 2
+
+--- Iteration 5/30 ---
+Generating new constraint with inputs: (1.6070649159122876, -1.1723331821038272)
+(constraint (= ((_ extract 7 1) (mult_mxint_full_product #b0110 #b0001 #b1011 #b0001 #b1)) #b0001100))
+[INFO] Not relaxable (status=infeasible); not relaxing further for this sample.
+SKIPPED: (1.607, -1.172) could not be added (even after relaxation).
+
+--- Iteration 6/30 ---
+Generating new constraint with inputs: (8.133870917470542, -4.752830033662051)
+(constraint (= ((_ extract 7 1) (mult_mxint_full_product #b0100 #b0100 #b1011 #b0011 #b1)) #b0110101))
+[INFO] Not relaxable (status=infeasible); not relaxing further for this sample.
+SKIPPED: (8.134, -4.753) could not be added (even after relaxation).
+
+--- Iteration 7/30 ---
+Generating new constraint with inputs: (-1.9874787333973387, -4.705831566115549)
+(constraint (= ((_ extract 7 1) (mult_mxint_full_product #b1000 #b0001 #b1011 #b0011 #b0)) #b0100010))
+SUCCESS: accepted (bits = 7). Total constraints: 3
+
+--- Iteration 8/30 ---
+Generating new constraint with inputs: (-6.323652979432826, -5.248303358290004)
+(constraint (= ((_ extract 7 1) (mult_mxint_full_product #b1001 #b0011 #b1010 #b0011 #b0)) #b0110010))
+SUCCESS: accepted (bits = 7). Total constraints: 4
+
+--- Iteration 9/30 ---
+Generating new constraint with inputs: (-1.938859878087868, 6.624650671690766)
+(constraint (= ((_ extract 7 1) (mult_mxint_full_product #b1000 #b0001 #b0110 #b0011 #b0)) #b0100101))
+SUCCESS: accepted (bits = 7). Total constraints: 5
+
+--- Iteration 10/30 ---
+Generating new constraint with inputs: (-4.061510304675184, -4.741772917802515)
+(constraint (= ((_ extract 7 1) (mult_mxint_full_product #b1011 #b0011 #b1011 #b0011 #b1)) #b0101011))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout. No staged fallback; skipping this sample.
+SKIPPED: (-4.062, -4.742) could not be added (even after relaxation).
+
+--- Iteration 11/30 ---
+Generating new constraint with inputs: (5.868311236177124, 7.639983838764454)
+(constraint (= ((_ extract 7 1) (mult_mxint_full_product #b0101 #b0011 #b0111 #b0011 #b0)) #b0110010))
+SUCCESS: accepted (bits = 7). Total constraints: 6
+
+--- Iteration 12/30 ---
+Generating new constraint with inputs: (-8.973703736115752, 1.2873970477467882)
+(constraint (= ((_ extract 7 1) (mult_mxint_full_product #b1011 #b0100 #b0101 #b0001 #b1)) #b0100100))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout. No staged fallback; skipping this sample.
+SKIPPED: (-8.974, 1.287) could not be added (even after relaxation).
+
+--- Iteration 13/30 ---
+Generating new constraint with inputs: (-4.462127219069874, -5.7917292258601725)
+(constraint (= ((_ extract 7 1) (mult_mxint_full_product #b1011 #b0011 #b1010 #b0011 #b1)) #b0101011))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout. No staged fallback; skipping this sample.
+SKIPPED: (-4.462, -5.792) could not be added (even after relaxation).
+
+--- Iteration 14/30 ---
+Generating new constraint with inputs: (-4.415640187748189, -10.572347151723944)
+(constraint (= ((_ extract 7 1) (mult_mxint_full_product #b1011 #b0011 #b1010 #b0100 #b1)) #b0110011))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout. No staged fallback; skipping this sample.
+SKIPPED: (-4.416, -10.572) could not be added (even after relaxation).
+
+--- Iteration 15/30 ---
+Generating new constraint with inputs: (-8.77994246994371, 5.2347776622986935)
+(constraint (= ((_ extract 7 1) (mult_mxint_full_product #b1011 #b0100 #b0101 #b0011 #b1)) #b0110100))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout. No staged fallback; skipping this sample.
+SKIPPED: (-8.780, 5.235) could not be added (even after relaxation).
+
+--- Iteration 16/30 ---
+Generating new constraint with inputs: (-6.460521645746814, -1.0348243504072503)
+(constraint (= ((_ extract 7 1) (mult_mxint_full_product #b1001 #b0011 #b1011 #b0001 #b0)) #b0100010))
+SUCCESS: accepted (bits = 7). Total constraints: 7
+
+--- Iteration 17/30 ---
+Generating new constraint with inputs: (9.447180206956041, 7.916399747618456)
+(constraint (= ((_ extract 7 1) (mult_mxint_full_product #b0100 #b0100 #b0111 #b0011 #b1)) #b0110011))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout. No staged fallback; skipping this sample.
+SKIPPED: (9.447, 7.916) could not be added (even after relaxation).
+
+--- Iteration 18/30 ---
+Generating new constraint with inputs: (-2.8004494787968746, -8.229513918351865)
+(constraint (= ((_ extract 7 1) (mult_mxint_full_product #b1010 #b0010 #b1011 #b0100 #b1)) #b0101011))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout. No staged fallback; skipping this sample.
+SKIPPED: (-2.800, -8.230) could not be added (even after relaxation).
+
+--- Iteration 19/30 ---
+Generating new constraint with inputs: (-9.114802053446617, -6.681895198237775)
+(constraint (= ((_ extract 7 1) (mult_mxint_full_product #b1011 #b0100 #b1001 #b0011 #b0)) #b0111010))
+SUCCESS: accepted (bits = 7). Total constraints: 8
+
+--- Iteration 20/30 ---
+Generating new constraint with inputs: (6.479405378415649, 5.140894097754197)
+(constraint (= ((_ extract 7 1) (mult_mxint_full_product #b0110 #b0011 #b0101 #b0011 #b1)) #b0101011))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout. No staged fallback; skipping this sample.
+SKIPPED: (6.479, 5.141) could not be added (even after relaxation).
+
+--- Iteration 21/30 ---
+Generating new constraint with inputs: (5.18191488666727, 7.801960177427091)
+(constraint (= ((_ extract 7 1) (mult_mxint_full_product #b0101 #b0011 #b0111 #b0011 #b0)) #b0110010))
+SUCCESS: accepted (bits = 7). Total constraints: 9
+
+--- Iteration 22/30 ---
+Generating new constraint with inputs: (-4.505931860212113, 10.461200223552886)
+(constraint (= ((_ extract 7 1) (mult_mxint_full_product #b1011 #b0011 #b0101 #b0100 #b1)) #b0110100))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout. No staged fallback; skipping this sample.
+SKIPPED: (-4.506, 10.461) could not be added (even after relaxation).
+
+--- Iteration 23/30 ---
+Generating new constraint with inputs: (5.011407943774046, 7.396539207487901)
+(constraint (= ((_ extract 7 1) (mult_mxint_full_product #b0101 #b0011 #b0111 #b0011 #b0)) #b0110010))
+SUCCESS: accepted (bits = 7). Total constraints: 10
+
+--- Iteration 24/30 ---
+Generating new constraint with inputs: (6.469545275920382, -0.21875394222282907)
+(constraint (= ((_ extract 7 1) (mult_mxint_full_product #b0110 #b0011 #b1000 #b1110 #b0)) #b0001101))
+SUCCESS: accepted (bits = 7). Total constraints: 11
+
+--- Iteration 25/30 ---
+Generating new constraint with inputs: (-7.311362589476956, -0.02565138866802208)
+(constraint (= ((_ extract 7 1) (mult_mxint_full_product #b1000 #b0011 #b1001 #b1011 #b0)) #b1110011))
+SUCCESS: accepted (bits = 7). Total constraints: 12
+
+--- Iteration 26/30 ---
+Generating new constraint with inputs: (-10.242702516564647, 8.379149377481088)
+(constraint (= ((_ extract 7 1) (mult_mxint_full_product #b1010 #b0100 #b0100 #b0100 #b1)) #b0111101))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout. No staged fallback; skipping this sample.
+SKIPPED: (-10.243, 8.379) could not be added (even after relaxation).
+
+--- Iteration 27/30 ---
+Generating new constraint with inputs: (4.645701057348852, 0.8763619690446554)
+(constraint (= ((_ extract 7 1) (mult_mxint_full_product #b0100 #b0011 #b0111 #b0000 #b1)) #b0010011))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout. No staged fallback; skipping this sample.
+SKIPPED: (4.646, 0.876) could not be added (even after relaxation).
+
+--- Iteration 28/30 ---
+Generating new constraint with inputs: (-6.996431384617196, -7.379167581118928)
+(constraint (= ((_ extract 7 1) (mult_mxint_full_product #b1001 #b0011 #b1000 #b0011 #b0)) #b0110011))
+SUCCESS: accepted (bits = 7). Total constraints: 13
+
+--- Iteration 29/30 ---
+Generating new constraint with inputs: (-5.5429797448686635, 9.909161731917475)
+(constraint (= ((_ extract 7 1) (mult_mxint_full_product #b1010 #b0011 #b0100 #b0100 #b1)) #b0110101))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout. No staged fallback; skipping this sample.
+SKIPPED: (-5.543, 9.909) could not be added (even after relaxation).
+
+--- Iteration 30/30 ---
+Generating new constraint with inputs: (-3.319029113475291, -8.595898339030612)
+(constraint (= ((_ extract 7 1) (mult_mxint_full_product #b1001 #b0010 #b1011 #b0100 #b0)) #b0110010))
+SUCCESS: accepted (bits = 7). Total constraints: 14
+
+
+--- Synthesis Complete! ---
+
+Constraints accepted: 14/30
+
+--- Final Synthesized Program ---
+(define-fun mult_mxint_full_product ((m1 (_ BitVec 4)) (e1 (_ BitVec 4)) (m2 (_ BitVec 4)) (e2 (_ BitVec 4)) (renorm_flag (_ BitVec 1))) (_ BitVec 8) (concat ((_ extract 3 0) (bvadd ((_ sign_extend 1) e1) ((_ sign_extend 1) e2))) ((_ extract 3 0) (bvashr (bvmul ((_ sign_extend 4) m1) ((_ sign_extend 4) m2)) #b00000011))))
+
+ Solution saved to: results/smt2/relaxsweep_mxint8_mul_v1_7b_r02.smt2
+
+Translating SMT output to C using smt2c...
+[INFO] Found 1 define-fun block(s). Order passed to smt2c:
+    - mult_mxint_full_product
+C file saved to: results/c/relaxsweep_mxint8_mul_v1_7b_r02.c
+
+Generated C code:
+
+unsigned char mult_mxint_full_product(ap_uint<4> m1, ap_uint<4> e1, ap_uint<4> m2, ap_uint<4> e2, ap_uint<1> renorm_flag) {
+  ap_uint<5> __smt2c_src_0 = (ap_uint<5>)(ap_int<5>)(ap_int<4>)e1 + (ap_uint<5>)(ap_int<5>)(ap_int<4>)e2;
+  ap_uint<4> __smt2c_ext_1 = ((ap_uint<5>)__smt2c_src_0).range(3, 0);
+  unsigned char __smt2c_src_2 = (unsigned char)((signed char)((unsigned char)(signed char)(ap_int<4>)m1 * (unsigned char)(signed char)(ap_int<4>)m2) >> (signed char)3);
+  ap_uint<4> __smt2c_ext_3 = ((ap_uint<8>)__smt2c_src_2).range(3, 0);
+  return (unsigned char)__smt2c_ext_1 << 4 | (unsigned char)__smt2c_ext_3;
+}
+
+Converting C output to HLS-compatible C++...
+
+HLS C++ file saved to: /home/josephluke/Program-Synthesis-for-Efficient-ML/results/cpp/relaxsweep_mxint8_mul_v1_7b_r02.cpp
+Generated HLS-ready C++ code:
+
+#include <ap_int.h>
+
+ap_uint<8> mult_mxint_full_product(ap_uint<4> m1, ap_uint<4> e1, ap_uint<4> m2, ap_uint<4> e2, ap_uint<1> renorm_flag) {
+  ap_uint<5> __smt2c_src_0 = (ap_uint<5>)(ap_int<5>)(ap_int<4>)e1 + (ap_uint<5>)(ap_int<5>)(ap_int<4>)e2;
+  ap_uint<4> __smt2c_ext_1 = ((ap_uint<5>)__smt2c_src_0).range(3, 0);
+  ap_uint<8> __smt2c_src_2 = (ap_uint<8>)((ap_int<8>)((ap_uint<8>)(ap_int<8>)(ap_int<4>)m1 * (ap_uint<8>)(ap_int<8>)(ap_int<4>)m2) >> (ap_int<8>)3);
+  ap_uint<4> __smt2c_ext_3 = ((ap_uint<8>)__smt2c_src_2).range(3, 0);
+  return (ap_uint<8>)__smt2c_ext_1 << 4 | (ap_uint<8>)__smt2c_ext_3;
+}
+
+[INFO] Auto-detected top function: mult_mxint_full_product
+[INFO] Generated HLS TCL script: /home/josephluke/Program-Synthesis-for-Efficient-ML/results/HLS/relaxsweep_mxint8_mul_v1_7b_r02/hls.tcl
+[INFO] Running Vitis HLS synthesis...
+
+[SUCCESS] Vitis HLS run completed successfully.
+[INFO] Staged 2 Verilog files into: /home/josephluke/Program-Synthesis-for-Efficient-ML/results/HLS/relaxsweep_mxint8_mul_v1_7b_r02/verilog_out
+[INFO] Candidate RTL modules: ['mult_mxint_full_product', 'mult_mxint_full_product_mul_4s_4s_8_1_1']
+[INFO] Generated Vivado TCL script: /home/josephluke/Program-Synthesis-for-Efficient-ML/results/HLS/relaxsweep_mxint8_mul_v1_7b_r02/vivado.tcl
+[INFO] Cleaning up previous Vivado log and journal files...
+[INFO] Running Vivado implementation (this will take several minutes)...
+
+[SUCCESS] Vivado implementation completed successfully.
+
+--- Hardware Results ---
+{
+    "LUTs": 23,
+    "FFs": 0,
+    "DSPs": 0,
+    "BRAMs": 0,
+    "Cycles": 0,
+    "Fmax_MHz": 427.35,
+    "Latency_ns": 2.34
+}
+[ACC-CMD] MXINT8_MUL_VARIANT=v2 PYTHON=/home/josephluke/Program-Synthesis-for-Efficient-ML/.venv/bin/python make HLS_BASE=/home/josephluke/Program-Synthesis-for-Efficient-ML/results/HLS HLS_SOLN=relaxsweep_mxint8_mul_v1_7b_r02 TOPLEVEL=mult_mxint_full_product MODULE=tests.multiplication.test_mxint8_multiplier TOPLEVEL_LANG=verilog
+rm -f results.xml
+"make" -f Makefile results.xml
+make[1]: Entering directory '/home/josephluke/Program-Synthesis-for-Efficient-ML/accuracy_tests'
+/home/josephluke/.conda/pkgs/iverilog-11.0-hd56c0c9_0/bin/iverilog -o /home/josephluke/Program-Synthesis-for-Efficient-ML/accuracy_tests/sim_build/mult_mxint_full_product_relaxsweep_mxint8_mul_v1_7b_r02/sim.vvp -s mult_mxint_full_product -g2012 -f /home/josephluke/Program-Synthesis-for-Efficient-ML/accuracy_tests/sim_build/mult_mxint_full_product_relaxsweep_mxint8_mul_v1_7b_r02/cmds.f  /home/josephluke/Program-Synthesis-for-Efficient-ML/results/HLS/relaxsweep_mxint8_mul_v1_7b_r02/verilog_out/mult_mxint_full_product_mul_4s_4s_8_1_1.v /home/josephluke/Program-Synthesis-for-Efficient-ML/results/HLS/relaxsweep_mxint8_mul_v1_7b_r02/verilog_out/mult_mxint_full_product.v
+rm -f results.xml
+COCOTB_TEST_MODULES=tests.multiplication.test_mxint8_multiplier COCOTB_TESTCASE= COCOTB_TEST_FILTER= COCOTB_TOPLEVEL=mult_mxint_full_product TOPLEVEL_LANG=verilog \
+         /home/josephluke/.conda/pkgs/iverilog-11.0-hd56c0c9_0/bin/vvp -M /home/josephluke/Program-Synthesis-for-Efficient-ML/.venv/lib/python3.11/site-packages/cocotb/libs -m libcocotbvpi_icarus   /home/josephluke/Program-Synthesis-for-Efficient-ML/accuracy_tests/sim_build/mult_mxint_full_product_relaxsweep_mxint8_mul_v1_7b_r02/sim.vvp  -none 
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:93   in _embed_init_python              Using Python 3.11.9 interpreter at /home/josephluke/Program-Synthesis-for-Efficient-ML/.venv/bin/python
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:79   in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 11.0 (stable)
+     0.00ns WARNING  gpi                                vpi_iterate returned NULL for type vpiInstance for object NULL
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774898809
+     0.00ns INFO     cocotb                             Initialized cocotb v2.0.0 from /home/josephluke/Program-Synthesis-for-Efficient-ML/.venv/lib64/python3.11/site-packages/cocotb
+     0.00ns INFO     cocotb                             Running tests
+     0.00ns INFO     cocotb.regression                  running tests.multiplication.test_mxint8_multiplier.mxint8_multiplier_accuracy_subcomponents (1/3)
+     0.00ns INFO     cocotb.mult_mxint_full_product     Skipping subcomponents variant (MXINT8_MUL_VARIANT filter).
+     0.00ns INFO     cocotb.regression                  tests.multiplication.test_mxint8_multiplier.mxint8_multiplier_accuracy_subcomponents passed
+     0.00ns INFO     cocotb.regression                  running tests.multiplication.test_mxint8_multiplier.mxint8_multiplier_accuracy_v2 (2/3)
+     0.00ns INFO     cocotb.mult_mxint_full_product     Starting MXINT8 multiplier accuracy test (v2)
+     0.00ns INFO     cocotb.mult_mxint_full_product     Random operand sampler mode: wide
+100000.00ns INFO     cocotb.mult_mxint_full_product     --- Test Finished ---
+100000.00ns INFO     cocotb.mult_mxint_full_product     Ran 100000 test cases (skipped 0).
+100000.00ns INFO     cocotb.mult_mxint_full_product     Exact match (quantized oracle): 0.19%
+100000.00ns INFO     cocotb.mult_mxint_full_product     Quantized oracle:
+100000.00ns INFO     cocotb.mult_mxint_full_product     Max Absolute Error: 240.0
+100000.00ns INFO     cocotb.mult_mxint_full_product     Average Absolute Error: 119.64994083496094
+100000.00ns INFO     cocotb.mult_mxint_full_product     99th Percentile Error: 127.98046875
+100000.00ns INFO     cocotb.mult_mxint_full_product     95th Percentile Absolute Error: 127.890625
+100000.00ns INFO     cocotb.mult_mxint_full_product     Percent Within 5.00% Full-Scale Error: 0.21%
+100000.00ns INFO     cocotb.mult_mxint_full_product     Full-precision oracle:
+100000.00ns INFO     cocotb.mult_mxint_full_product     Max Absolute Error: 1043438.3373161071
+100000.00ns INFO     cocotb.mult_mxint_full_product     Average Absolute Error: 261888.57700661613
+100000.00ns INFO     cocotb.mult_mxint_full_product     99th Percentile Error: 906708.7866729868
+100000.00ns INFO     cocotb.mult_mxint_full_product     95th Percentile Absolute Error: 732664.1303644074
+100000.00ns INFO     cocotb.mult_mxint_full_product     Percent Within 5.00% Full-Scale Error: 0.03%
+100000.00ns INFO     cocotb.mult_mxint_full_product     Saved per-sample error dump: /home/josephluke/Program-Synthesis-for-Efficient-ML/results/relaxation_sweep/run1_wide/error_samples/mxint8_mul_v1_7b_r02.npz
+100000.00ns INFO     cocotb.regression                  tests.multiplication.test_mxint8_multiplier.mxint8_multiplier_accuracy_v2 passed
+100000.00ns INFO     cocotb.regression                  running tests.multiplication.test_mxint8_multiplier.mxint8_multiplier_accuracy_v1 (3/3)
+100000.00ns INFO     cocotb.mult_mxint_full_product     Skipping v1 variant (MXINT8_MUL_VARIANT filter).
+100000.00ns INFO     cocotb.regression                  tests.multiplication.test_mxint8_multiplier.mxint8_multiplier_accuracy_v1 passed
+100000.00ns INFO     cocotb.regression                  **********************************************************************************************************************************************
+                                                        ** TEST                                                                                  STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        **********************************************************************************************************************************************
+                                                        ** tests.multiplication.test_mxint8_multiplier.mxint8_multiplier_accuracy_subcomponents   PASS           0.00           0.00          0.00  **
+                                                        ** tests.multiplication.test_mxint8_multiplier.mxint8_multiplier_accuracy_v2              PASS      100000.00          27.35       3656.02  **
+                                                        ** tests.multiplication.test_mxint8_multiplier.mxint8_multiplier_accuracy_v1              PASS           0.00           0.00          0.00  **
+                                                        **********************************************************************************************************************************************
+                                                        ** TESTS=3 PASS=3 FAIL=0 SKIP=0                                                                     100000.00          27.35       3655.91  **
+                                                        **********************************************************************************************************************************************
+make[1]: Leaving directory '/home/josephluke/Program-Synthesis-for-Efficient-ML/accuracy_tests'
+
+/home/josephluke/Program-Synthesis-for-Efficient-ML/.venv/lib/python3.11/site-packages/cocotb_tools/makefiles/simulators/Makefile.icarus:66: Using MODULE is deprecated, please use COCOTB_TEST_MODULES instead.
+[SUCCESS] Accuracy run completed successfully.

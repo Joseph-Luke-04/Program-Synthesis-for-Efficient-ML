@@ -1,11 +1,9 @@
 (set-logic BV)
 
 ; ===============================================================
-; FP32 multiplication round-carry — "in-between" structural sketch.
+; FP32 multiplication round-carry
 ; Detects whether rounding the mantissa product causes a carry
 ; into the exponent field (i.e., mantissa overflows to all zeros).
-; Search space ≈ 216 combinations.
-; ShiftedProd48(3) × Extract24(3) × Guard1(2) × Round1(2) × RoundUp(3) × Carry(2) = 216
 ; ===============================================================
 
 ; Structural helper: the raw product (definitional, not synthesised).

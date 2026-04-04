@@ -1,0 +1,345 @@
+[INFO] Target: MXINT8MultiplicationTarget | Component: full_product_v2
+[INFO] NUM_ITERATIONS=30, TIMEOUT=180s, RUN_IMPLEMENTATION=True, DIRECTED_IO=True, RUN_ACCURACY=True, SYNTH_FP32_MUL_MODE=default, SYNTH_FP32_ADD_MODE=default, SYGUS_DUMP=False, SYGUS_FAST_ENUM=False, SYGUS_PBE=True, SYGUS_SYM_BREAK_PBE=True, MXINT8_OUTPUT_MATCH_BITS=8, MXINT8_AUTO_RELAX_OUTPUT_MATCH=True, MXINT8_MIN_OUTPUT_MATCH_BITS=4, MXINT8_STAGE_MANTISSA_BITS=2, FP32_OUTPUT_MATCH_MSB_BITS=32, FP32_AUTO_RELAX_OUTPUT_MATCH=False, FP32_RESET_MSB_PER_SAMPLE=True, FP32_RELAX_ON_TIMEOUT=False, FP32_TIMEOUT_RETRY_ONCE=False, FP32_TIMEOUT_RETRY_MULTIPLIER=4, FP32_RELAX_ON_INFEASIBLE=False, FP32_RELAX_ON_FAIL=False, FP32_RELAX_SCHEDULE=staged, FP32_STAGE_MANTISSA_BITS=15, FP32_MIN_OUTPUT_MATCH_MSB_BITS=24, FP32_OUTPUT_MATCH_STEP=1, RANDOM_SEED=12347
+--- Starting Synthesis for [MXINT8MultiplicationTarget -> full_product_v2] ---
+
+--- Iteration 1/30 ---
+Generating new constraint with inputs: (-3.095376898505246, 6.938960029739285)
+(constraint (= (mult_mxint_full_product #b1001 #b0010 #b0110 #b0011 #b0) #b01011010))
+SUCCESS: accepted (bits = 8). Total constraints: 1
+[INFO] Final accepted level for this sample: stage-2 strict (bits=8).
+
+--- Iteration 2/30 ---
+Generating new constraint with inputs: (-0.2397443854802308, -3.3454818696419153)
+(constraint (= (mult_mxint_full_product #b1000 #b1110 #b1001 #b0010 #b0) #b00000111))
+SUCCESS: accepted (bits = 8). Total constraints: 2
+[INFO] Final accepted level for this sample: stage-2 strict (bits=8).
+
+--- Iteration 3/30 ---
+Generating new constraint with inputs: (-4.419640475257819, 3.460917021502132)
+(constraint (= (mult_mxint_full_product #b1011 #b0011 #b0110 #b0010 #b1) #b01001000))
+[INFO] fail at bits = 8. Trying weaker match...
+(constraint (= ((_ extract 7 2) (mult_mxint_full_product #b1011 #b0011 #b0110 #b0010 #b1)) #b010010))
+[INFO] infeasible at bits = 6. Trying weaker match...
+(constraint (= ((_ extract 7 4) (mult_mxint_full_product #b1011 #b0011 #b0110 #b0010 #b1)) #b0100))
+[INFO] infeasible at bits = 4. Trying weaker match...
+SKIPPED: (-4.420, 3.461) could not be added (even after relaxation).
+
+--- Iteration 4/30 ---
+Generating new constraint with inputs: (-3.3748043569544404, 7.086936694566429)
+(constraint (= (mult_mxint_full_product #b1001 #b0010 #b0111 #b0011 #b0) #b01011001))
+SUCCESS: accepted (bits = 8). Total constraints: 3
+[INFO] Final accepted level for this sample: stage-2 strict (bits=8).
+
+--- Iteration 5/30 ---
+Generating new constraint with inputs: (-1.5675332955184338, -8.077020903698404)
+(constraint (= (mult_mxint_full_product #b1001 #b0001 #b1011 #b0100 #b0) #b01010100))
+SUCCESS: accepted (bits = 8). Total constraints: 4
+[INFO] Final accepted level for this sample: stage-2 strict (bits=8).
+
+--- Iteration 6/30 ---
+Generating new constraint with inputs: (9.069800475686751, 7.242142093730575)
+(constraint (= (mult_mxint_full_product #b0100 #b0100 #b0111 #b0011 #b1) #b01100111))
+[INFO] fail at bits = 8. Trying weaker match...
+(constraint (= ((_ extract 7 2) (mult_mxint_full_product #b0100 #b0100 #b0111 #b0011 #b1)) #b011001))
+[INFO] infeasible at bits = 6. Trying weaker match...
+(constraint (= ((_ extract 7 4) (mult_mxint_full_product #b0100 #b0100 #b0111 #b0011 #b1)) #b0110))
+[INFO] infeasible at bits = 4. Trying weaker match...
+SKIPPED: (9.070, 7.242) could not be added (even after relaxation).
+
+--- Iteration 7/30 ---
+Generating new constraint with inputs: (7.94379869845503, -1.7289514928652245)
+(constraint (= (mult_mxint_full_product #b0111 #b0011 #b1001 #b0001 #b0) #b01001001))
+SUCCESS: accepted (bits = 8). Total constraints: 5
+[INFO] Final accepted level for this sample: stage-2 strict (bits=8).
+
+--- Iteration 8/30 ---
+Generating new constraint with inputs: (-7.171168757408962, -4.871146486107634)
+(constraint (= (mult_mxint_full_product #b1000 #b0011 #b1011 #b0011 #b0) #b01100101))
+SUCCESS: accepted (bits = 8). Total constraints: 6
+[INFO] Final accepted level for this sample: stage-2 strict (bits=8).
+
+--- Iteration 9/30 ---
+Generating new constraint with inputs: (-6.491682998957609, 3.825841696440934)
+(constraint (= (mult_mxint_full_product #b1001 #b0011 #b0111 #b0010 #b0) #b01011001))
+SUCCESS: accepted (bits = 8). Total constraints: 7
+[INFO] Final accepted level for this sample: stage-2 strict (bits=8).
+
+--- Iteration 10/30 ---
+Generating new constraint with inputs: (3.6429113295893565, -5.981350241808689)
+(constraint (= (mult_mxint_full_product #b0111 #b0010 #b1010 #b0011 #b0) #b01011010))
+SUCCESS: accepted (bits = 8). Total constraints: 8
+[INFO] Final accepted level for this sample: stage-2 strict (bits=8).
+
+--- Iteration 11/30 ---
+Generating new constraint with inputs: (-1.640563407948715, 3.710665995762511)
+(constraint (= (mult_mxint_full_product #b1001 #b0001 #b0111 #b0010 #b0) #b00111001))
+SUCCESS: accepted (bits = 8). Total constraints: 9
+[INFO] Final accepted level for this sample: stage-2 strict (bits=8).
+
+--- Iteration 12/30 ---
+Generating new constraint with inputs: (-10.369647674638347, -3.5175868090480797)
+(constraint (= (mult_mxint_full_product #b1010 #b0100 #b1000 #b0010 #b0) #b01100110))
+SUCCESS: accepted (bits = 8). Total constraints: 10
+[INFO] Final accepted level for this sample: stage-2 strict (bits=8).
+
+--- Iteration 13/30 ---
+Generating new constraint with inputs: (2.0959380345673146, 3.276989805106057)
+(constraint (= (mult_mxint_full_product #b0100 #b0010 #b0110 #b0010 #b1) #b00110110))
+[INFO] fail at bits = 8. Trying weaker match...
+(constraint (= ((_ extract 7 2) (mult_mxint_full_product #b0100 #b0010 #b0110 #b0010 #b1)) #b001101))
+[INFO] infeasible at bits = 6. Trying weaker match...
+(constraint (= ((_ extract 7 4) (mult_mxint_full_product #b0100 #b0010 #b0110 #b0010 #b1)) #b0011))
+[INFO] infeasible at bits = 4. Trying weaker match...
+SKIPPED: (2.096, 3.277) could not be added (even after relaxation).
+
+--- Iteration 14/30 ---
+Generating new constraint with inputs: (-8.379337498298149, 6.805752107430209)
+(constraint (= (mult_mxint_full_product #b1011 #b0100 #b0110 #b0011 #b1) #b01101000))
+[INFO] fail at bits = 8. Trying weaker match...
+(constraint (= ((_ extract 7 2) (mult_mxint_full_product #b1011 #b0100 #b0110 #b0011 #b1)) #b011010))
+[INFO] infeasible at bits = 6. Trying weaker match...
+(constraint (= ((_ extract 7 4) (mult_mxint_full_product #b1011 #b0100 #b0110 #b0011 #b1)) #b0110))
+[INFO] infeasible at bits = 4. Trying weaker match...
+SKIPPED: (-8.379, 6.806) could not be added (even after relaxation).
+
+--- Iteration 15/30 ---
+Generating new constraint with inputs: (-4.87959685112959, 1.0095143478415523)
+(constraint (= (mult_mxint_full_product #b1011 #b0011 #b0100 #b0001 #b1) #b00111011))
+[INFO] fail at bits = 8. Trying weaker match...
+(constraint (= ((_ extract 7 2) (mult_mxint_full_product #b1011 #b0011 #b0100 #b0001 #b1)) #b001110))
+[INFO] infeasible at bits = 6. Trying weaker match...
+(constraint (= ((_ extract 7 4) (mult_mxint_full_product #b1011 #b0011 #b0100 #b0001 #b1)) #b0011))
+[INFO] infeasible at bits = 4. Trying weaker match...
+SKIPPED: (-4.880, 1.010) could not be added (even after relaxation).
+
+--- Iteration 16/30 ---
+Generating new constraint with inputs: (-8.335491294432822, -6.267045720461159)
+(constraint (= (mult_mxint_full_product #b1011 #b0100 #b1001 #b0011 #b0) #b01110100))
+SUCCESS: accepted (bits = 8). Total constraints: 11
+[INFO] Final accepted level for this sample: stage-2 strict (bits=8).
+
+--- Iteration 17/30 ---
+Generating new constraint with inputs: (6.335244287631582, -7.611584099524599)
+(constraint (= (mult_mxint_full_product #b0110 #b0011 #b1000 #b0011 #b0) #b01101010))
+SUCCESS: accepted (bits = 8). Total constraints: 12
+[INFO] Final accepted level for this sample: stage-2 strict (bits=8).
+
+--- Iteration 18/30 ---
+Generating new constraint with inputs: (6.090631447187427, -8.263090222881392)
+(constraint (= (mult_mxint_full_product #b0110 #b0011 #b1011 #b0100 #b1) #b01101000))
+[INFO] fail at bits = 8. Trying weaker match...
+(constraint (= ((_ extract 7 2) (mult_mxint_full_product #b0110 #b0011 #b1011 #b0100 #b1)) #b011010))
+[INFO] infeasible at bits = 6. Trying weaker match...
+(constraint (= ((_ extract 7 4) (mult_mxint_full_product #b0110 #b0011 #b1011 #b0100 #b1)) #b0110))
+[INFO] infeasible at bits = 4. Trying weaker match...
+SKIPPED: (6.091, -8.263) could not be added (even after relaxation).
+
+--- Iteration 19/30 ---
+Generating new constraint with inputs: (-5.297542252875085, -8.993332799628448)
+(constraint (= (mult_mxint_full_product #b1010 #b0011 #b1011 #b0100 #b1) #b01100111))
+[INFO] fail at bits = 8. Trying weaker match...
+(constraint (= ((_ extract 7 2) (mult_mxint_full_product #b1010 #b0011 #b1011 #b0100 #b1)) #b011001))
+[INFO] infeasible at bits = 6. Trying weaker match...
+(constraint (= ((_ extract 7 4) (mult_mxint_full_product #b1010 #b0011 #b1011 #b0100 #b1)) #b0110))
+[INFO] infeasible at bits = 4. Trying weaker match...
+SKIPPED: (-5.298, -8.993) could not be added (even after relaxation).
+
+--- Iteration 20/30 ---
+Generating new constraint with inputs: (-7.948367465503867, 10.047472159223322)
+(constraint (= (mult_mxint_full_product #b1000 #b0011 #b0101 #b0100 #b0) #b01111011))
+SUCCESS: accepted (bits = 8). Total constraints: 13
+[INFO] Final accepted level for this sample: stage-2 strict (bits=8).
+
+--- Iteration 21/30 ---
+Generating new constraint with inputs: (-3.910614643625168, 1.0129194661788663)
+(constraint (= (mult_mxint_full_product #b1000 #b0010 #b0100 #b0001 #b1) #b00111100))
+SUCCESS: accepted (bits = 8). Total constraints: 14
+[INFO] Final accepted level for this sample: stage-2 strict (bits=8).
+
+--- Iteration 22/30 ---
+Generating new constraint with inputs: (1.7707510892766631, -6.179610470626197)
+(constraint (= (mult_mxint_full_product #b0111 #b0001 #b1001 #b0011 #b0) #b01001001))
+SUCCESS: accepted (bits = 8). Total constraints: 15
+[INFO] Final accepted level for this sample: stage-2 strict (bits=8).
+
+--- Iteration 23/30 ---
+Generating new constraint with inputs: (0.6311229161069019, -9.080282517374906)
+(constraint (= (mult_mxint_full_product #b0101 #b0000 #b1011 #b0100 #b1) #b00111001))
+[INFO] fail at bits = 8. Trying weaker match...
+(constraint (= ((_ extract 7 2) (mult_mxint_full_product #b0101 #b0000 #b1011 #b0100 #b1)) #b001110))
+[INFO] infeasible at bits = 6. Trying weaker match...
+(constraint (= ((_ extract 7 4) (mult_mxint_full_product #b0101 #b0000 #b1011 #b0100 #b1)) #b0011))
+[INFO] infeasible at bits = 4. Trying weaker match...
+SKIPPED: (0.631, -9.080) could not be added (even after relaxation).
+
+--- Iteration 24/30 ---
+Generating new constraint with inputs: (-7.504144240297775, -5.840890415694822)
+(constraint (= (mult_mxint_full_product #b1000 #b0011 #b1010 #b0011 #b0) #b01100110))
+SUCCESS: accepted (bits = 8). Total constraints: 16
+[INFO] Final accepted level for this sample: stage-2 strict (bits=8).
+
+--- Iteration 25/30 ---
+Generating new constraint with inputs: (5.138909395511067, -9.754992165604184)
+(constraint (= (mult_mxint_full_product #b0101 #b0011 #b1011 #b0100 #b1) #b01101001))
+[INFO] fail at bits = 8. Trying weaker match...
+(constraint (= ((_ extract 7 2) (mult_mxint_full_product #b0101 #b0011 #b1011 #b0100 #b1)) #b011010))
+[INFO] infeasible at bits = 6. Trying weaker match...
+(constraint (= ((_ extract 7 4) (mult_mxint_full_product #b0101 #b0011 #b1011 #b0100 #b1)) #b0110))
+[INFO] infeasible at bits = 4. Trying weaker match...
+SKIPPED: (5.139, -9.755) could not be added (even after relaxation).
+
+--- Iteration 26/30 ---
+Generating new constraint with inputs: (7.589919555917437, -6.550613826628161)
+(constraint (= (mult_mxint_full_product #b0111 #b0011 #b1001 #b0011 #b0) #b01101001))
+SUCCESS: accepted (bits = 8). Total constraints: 17
+[INFO] Final accepted level for this sample: stage-2 strict (bits=8).
+
+--- Iteration 27/30 ---
+Generating new constraint with inputs: (-7.8857009735114145, 9.104788428390723)
+(constraint (= (mult_mxint_full_product #b1000 #b0011 #b0100 #b0100 #b1) #b01111100))
+SUCCESS: accepted (bits = 8). Total constraints: 18
+[INFO] Final accepted level for this sample: stage-2 strict (bits=8).
+
+--- Iteration 28/30 ---
+Generating new constraint with inputs: (5.968820638944987, -7.587058397232843)
+(constraint (= (mult_mxint_full_product #b0101 #b0011 #b1000 #b0011 #b0) #b01101011))
+SUCCESS: accepted (bits = 8). Total constraints: 19
+[INFO] Final accepted level for this sample: stage-2 strict (bits=8).
+
+--- Iteration 29/30 ---
+Generating new constraint with inputs: (9.92548686394618, 3.7478059761337175)
+(constraint (= (mult_mxint_full_product #b0100 #b0100 #b0111 #b0010 #b1) #b01010111))
+[INFO] fail at bits = 8. Trying weaker match...
+(constraint (= ((_ extract 7 2) (mult_mxint_full_product #b0100 #b0100 #b0111 #b0010 #b1)) #b010101))
+[INFO] infeasible at bits = 6. Trying weaker match...
+(constraint (= ((_ extract 7 4) (mult_mxint_full_product #b0100 #b0100 #b0111 #b0010 #b1)) #b0101))
+[INFO] infeasible at bits = 4. Trying weaker match...
+SKIPPED: (9.925, 3.748) could not be added (even after relaxation).
+
+--- Iteration 30/30 ---
+Generating new constraint with inputs: (-5.573735143140836, -2.410243607385347)
+(constraint (= (mult_mxint_full_product #b1010 #b0011 #b1011 #b0010 #b1) #b01000111))
+[INFO] fail at bits = 8. Trying weaker match...
+(constraint (= ((_ extract 7 2) (mult_mxint_full_product #b1010 #b0011 #b1011 #b0010 #b1)) #b010001))
+[INFO] infeasible at bits = 6. Trying weaker match...
+(constraint (= ((_ extract 7 4) (mult_mxint_full_product #b1010 #b0011 #b1011 #b0010 #b1)) #b0100))
+[INFO] infeasible at bits = 4. Trying weaker match...
+SKIPPED: (-5.574, -2.410) could not be added (even after relaxation).
+
+
+--- Synthesis Complete! ---
+
+Constraints accepted: 19/30
+
+--- Final Synthesized Program ---
+(define-fun mult_mxint_full_product ((m1 (_ BitVec 4)) (e1 (_ BitVec 4)) (m2 (_ BitVec 4)) (e2 (_ BitVec 4)) (renorm_flag (_ BitVec 1))) (_ BitVec 8) (concat ((_ extract 3 0) (bvadd ((_ sign_extend 1) e1) ((_ sign_extend 1) e2))) ((_ extract 3 0) (bvashr (bvmul ((_ sign_extend 4) m1) ((_ sign_extend 4) m2)) (ite (= #b1 #b1) #b00000011 #b00000010)))))
+
+ Solution saved to: results/smt2/relaxsweep_mxint8_mul_v2_staged_r03.smt2
+
+Translating SMT output to C using smt2c...
+[INFO] Found 1 define-fun block(s). Order passed to smt2c:
+    - mult_mxint_full_product
+C file saved to: results/c/relaxsweep_mxint8_mul_v2_staged_r03.c
+
+Generated C code:
+
+unsigned char mult_mxint_full_product(ap_uint<4> m1, ap_uint<4> e1, ap_uint<4> m2, ap_uint<4> e2, ap_uint<1> renorm_flag) {
+  ap_uint<5> __smt2c_src_0 = (ap_uint<5>)(ap_int<5>)(ap_int<4>)e1 + (ap_uint<5>)(ap_int<5>)(ap_int<4>)e2;
+  ap_uint<4> __smt2c_ext_1 = ((ap_uint<5>)__smt2c_src_0).range(3, 0);
+  unsigned char __smt2c_src_2 = (unsigned char)((signed char)((unsigned char)(signed char)(ap_int<4>)m1 * (unsigned char)(signed char)(ap_int<4>)m2) >> (signed char)(1 == 1 ? (unsigned char)  3 : (unsigned char)  2));
+  ap_uint<4> __smt2c_ext_3 = ((ap_uint<8>)__smt2c_src_2).range(3, 0);
+  return (unsigned char)__smt2c_ext_1 << 4 | (unsigned char)__smt2c_ext_3;
+}
+
+Converting C output to HLS-compatible C++...
+
+HLS C++ file saved to: /home/josephluke/Program-Synthesis-for-Efficient-ML/results/cpp/relaxsweep_mxint8_mul_v2_staged_r03.cpp
+Generated HLS-ready C++ code:
+
+#include <ap_int.h>
+
+ap_uint<8> mult_mxint_full_product(ap_uint<4> m1, ap_uint<4> e1, ap_uint<4> m2, ap_uint<4> e2, ap_uint<1> renorm_flag) {
+  ap_uint<5> __smt2c_src_0 = (ap_uint<5>)(ap_int<5>)(ap_int<4>)e1 + (ap_uint<5>)(ap_int<5>)(ap_int<4>)e2;
+  ap_uint<4> __smt2c_ext_1 = ((ap_uint<5>)__smt2c_src_0).range(3, 0);
+  ap_uint<8> __smt2c_src_2 = (ap_uint<8>)((ap_int<8>)((ap_uint<8>)(ap_int<8>)(ap_int<4>)m1 * (ap_uint<8>)(ap_int<8>)(ap_int<4>)m2) >> (ap_int<8>)(1 == 1 ? (ap_uint<8>)  3 : (ap_uint<8>)  2));
+  ap_uint<4> __smt2c_ext_3 = ((ap_uint<8>)__smt2c_src_2).range(3, 0);
+  return (ap_uint<8>)__smt2c_ext_1 << 4 | (ap_uint<8>)__smt2c_ext_3;
+}
+
+[INFO] Auto-detected top function: mult_mxint_full_product
+[INFO] Generated HLS TCL script: /home/josephluke/Program-Synthesis-for-Efficient-ML/results/HLS/relaxsweep_mxint8_mul_v2_staged_r03/hls.tcl
+[INFO] Running Vitis HLS synthesis...
+
+[SUCCESS] Vitis HLS run completed successfully.
+[INFO] Staged 2 Verilog files into: /home/josephluke/Program-Synthesis-for-Efficient-ML/results/HLS/relaxsweep_mxint8_mul_v2_staged_r03/verilog_out
+[INFO] Candidate RTL modules: ['mult_mxint_full_product', 'mult_mxint_full_product_mul_4s_4s_8_1_1']
+[INFO] Generated Vivado TCL script: /home/josephluke/Program-Synthesis-for-Efficient-ML/results/HLS/relaxsweep_mxint8_mul_v2_staged_r03/vivado.tcl
+[INFO] Cleaning up previous Vivado log and journal files...
+[INFO] Running Vivado implementation (this will take several minutes)...
+
+[SUCCESS] Vivado implementation completed successfully.
+
+--- Hardware Results ---
+{
+    "LUTs": 23,
+    "FFs": 0,
+    "DSPs": 0,
+    "BRAMs": 0,
+    "Cycles": 0,
+    "Fmax_MHz": 427.35,
+    "Latency_ns": 2.34
+}
+[ACC-CMD] MXINT8_MUL_VARIANT=v2 PYTHON=/home/josephluke/Program-Synthesis-for-Efficient-ML/.venv/bin/python make HLS_BASE=/home/josephluke/Program-Synthesis-for-Efficient-ML/results/HLS HLS_SOLN=relaxsweep_mxint8_mul_v2_staged_r03 TOPLEVEL=mult_mxint_full_product MODULE=tests.multiplication.test_mxint8_multiplier TOPLEVEL_LANG=verilog
+rm -f results.xml
+"make" -f Makefile results.xml
+make[1]: Entering directory '/home/josephluke/Program-Synthesis-for-Efficient-ML/accuracy_tests'
+/home/josephluke/.conda/pkgs/iverilog-11.0-hd56c0c9_0/bin/iverilog -o /home/josephluke/Program-Synthesis-for-Efficient-ML/accuracy_tests/sim_build/mult_mxint_full_product_relaxsweep_mxint8_mul_v2_staged_r03/sim.vvp -s mult_mxint_full_product -g2012 -f /home/josephluke/Program-Synthesis-for-Efficient-ML/accuracy_tests/sim_build/mult_mxint_full_product_relaxsweep_mxint8_mul_v2_staged_r03/cmds.f  /home/josephluke/Program-Synthesis-for-Efficient-ML/results/HLS/relaxsweep_mxint8_mul_v2_staged_r03/verilog_out/mult_mxint_full_product_mul_4s_4s_8_1_1.v /home/josephluke/Program-Synthesis-for-Efficient-ML/results/HLS/relaxsweep_mxint8_mul_v2_staged_r03/verilog_out/mult_mxint_full_product.v
+rm -f results.xml
+COCOTB_TEST_MODULES=tests.multiplication.test_mxint8_multiplier COCOTB_TESTCASE= COCOTB_TEST_FILTER= COCOTB_TOPLEVEL=mult_mxint_full_product TOPLEVEL_LANG=verilog \
+         /home/josephluke/.conda/pkgs/iverilog-11.0-hd56c0c9_0/bin/vvp -M /home/josephluke/Program-Synthesis-for-Efficient-ML/.venv/lib/python3.11/site-packages/cocotb/libs -m libcocotbvpi_icarus   /home/josephluke/Program-Synthesis-for-Efficient-ML/accuracy_tests/sim_build/mult_mxint_full_product_relaxsweep_mxint8_mul_v2_staged_r03/sim.vvp  -none 
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:93   in _embed_init_python              Using Python 3.11.9 interpreter at /home/josephluke/Program-Synthesis-for-Efficient-ML/.venv/bin/python
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:79   in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 11.0 (stable)
+     0.00ns WARNING  gpi                                vpi_iterate returned NULL for type vpiInstance for object NULL
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774925343
+     0.00ns INFO     cocotb                             Initialized cocotb v2.0.0 from /home/josephluke/Program-Synthesis-for-Efficient-ML/.venv/lib64/python3.11/site-packages/cocotb
+     0.00ns INFO     cocotb                             Running tests
+     0.00ns INFO     cocotb.regression                  running tests.multiplication.test_mxint8_multiplier.mxint8_multiplier_accuracy_subcomponents (1/3)
+     0.00ns INFO     cocotb.mult_mxint_full_product     Skipping subcomponents variant (MXINT8_MUL_VARIANT filter).
+     0.00ns INFO     cocotb.regression                  tests.multiplication.test_mxint8_multiplier.mxint8_multiplier_accuracy_subcomponents passed
+     0.00ns INFO     cocotb.regression                  running tests.multiplication.test_mxint8_multiplier.mxint8_multiplier_accuracy_v2 (2/3)
+     0.00ns INFO     cocotb.mult_mxint_full_product     Starting MXINT8 multiplier accuracy test (v2)
+     0.00ns INFO     cocotb.mult_mxint_full_product     Random operand sampler mode: small
+100000.00ns INFO     cocotb.mult_mxint_full_product     --- Test Finished ---
+100000.00ns INFO     cocotb.mult_mxint_full_product     Ran 100000 test cases (skipped 116).
+100000.00ns INFO     cocotb.mult_mxint_full_product     Exact match (quantized oracle): 37.88%
+100000.00ns INFO     cocotb.mult_mxint_full_product     Quantized oracle:
+100000.00ns INFO     cocotb.mult_mxint_full_product     Max Absolute Error: 95.99853515625
+100000.00ns INFO     cocotb.mult_mxint_full_product     Average Absolute Error: 0.29260931640625
+100000.00ns INFO     cocotb.mult_mxint_full_product     99th Percentile Error: 0.0625
+100000.00ns INFO     cocotb.mult_mxint_full_product     95th Percentile Absolute Error: 0.0625
+100000.00ns INFO     cocotb.mult_mxint_full_product     Percent Within 5.00% Full-Scale Error: 99.28%
+100000.00ns INFO     cocotb.mult_mxint_full_product     Full-precision oracle:
+100000.00ns INFO     cocotb.mult_mxint_full_product     Max Absolute Error: 95.99845193445123
+100000.00ns INFO     cocotb.mult_mxint_full_product     Average Absolute Error: 0.3411591511549604
+100000.00ns INFO     cocotb.mult_mxint_full_product     99th Percentile Error: 0.24585515891138576
+100000.00ns INFO     cocotb.mult_mxint_full_product     95th Percentile Absolute Error: 0.18498422654427069
+100000.00ns INFO     cocotb.mult_mxint_full_product     Percent Within 5.00% Full-Scale Error: 99.28%
+100000.00ns INFO     cocotb.mult_mxint_full_product     Saved per-sample error dump: /home/josephluke/Program-Synthesis-for-Efficient-ML/results/relaxation_sweep/run1_small/error_samples/mxint8_mul_v2_staged_r03.npz
+100000.00ns INFO     cocotb.regression                  tests.multiplication.test_mxint8_multiplier.mxint8_multiplier_accuracy_v2 passed
+100000.00ns INFO     cocotb.regression                  running tests.multiplication.test_mxint8_multiplier.mxint8_multiplier_accuracy_v1 (3/3)
+100000.00ns INFO     cocotb.mult_mxint_full_product     Skipping v1 variant (MXINT8_MUL_VARIANT filter).
+100000.00ns INFO     cocotb.regression                  tests.multiplication.test_mxint8_multiplier.mxint8_multiplier_accuracy_v1 passed
+100000.00ns INFO     cocotb.regression                  **********************************************************************************************************************************************
+                                                        ** TEST                                                                                  STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        **********************************************************************************************************************************************
+                                                        ** tests.multiplication.test_mxint8_multiplier.mxint8_multiplier_accuracy_subcomponents   PASS           0.00           0.00          0.00  **
+                                                        ** tests.multiplication.test_mxint8_multiplier.mxint8_multiplier_accuracy_v2              PASS      100000.00          27.65       3616.23  **
+                                                        ** tests.multiplication.test_mxint8_multiplier.mxint8_multiplier_accuracy_v1              PASS           0.00           0.00          0.00  **
+                                                        **********************************************************************************************************************************************
+                                                        ** TESTS=3 PASS=3 FAIL=0 SKIP=0                                                                     100000.00          27.65       3616.12  **
+                                                        **********************************************************************************************************************************************
+make[1]: Leaving directory '/home/josephluke/Program-Synthesis-for-Efficient-ML/accuracy_tests'
+
+/home/josephluke/Program-Synthesis-for-Efficient-ML/.venv/lib/python3.11/site-packages/cocotb_tools/makefiles/simulators/Makefile.icarus:66: Using MODULE is deprecated, please use COCOTB_TEST_MODULES instead.
+[SUCCESS] Accuracy run completed successfully.

@@ -54,7 +54,7 @@ from .synthesis_targets.dot_product import DotProductTarget
 
 # Target/component defaults when running `python -m src.synthesis_driver`.
 # Use class-style defaults directly (can be switched to any target class instance).
-DEFAULT_TARGET_OPERATION = MXINT8MultiplicationTarget()
+DEFAULT_TARGET_OPERATION = FP32MultiplicationTarget()
 DEFAULT_COMPONENT = "full_product"
 
 # Pipeline toggles.
@@ -75,8 +75,8 @@ DEFAULT_ENABLE_SYGUS_PBE = True
 DEFAULT_ENABLE_SYGUS_SYM_BREAK_PBE = False
 
 # Core synthesis loop defaults.
-DEFAULT_SOLVER_TIMEOUT_SECONDS = 120
-DEFAULT_NUM_ITERATIONS = 30
+DEFAULT_SOLVER_TIMEOUT_SECONDS = 300
+DEFAULT_NUM_ITERATIONS = 10
 
 # MXINT8 output-match relaxation defaults.
 # Output is packed as exp(4) || mant(4), so stage-0 = top 4 bits = exponent only.
@@ -367,7 +367,8 @@ def run_cvc5_synthesis(sygus_query: str, timeout: int) -> Tuple[Optional[str], S
     except subprocess.TimeoutExpired as exc:
         runtime_seconds = time.perf_counter() - t0
         print(f"[CVC5] Solver timed out after {timeout} seconds.")
-        stderr_text = (exc.stderr or "") if hasattr(exc, "stderr") else ""
+        _raw_stderr = (exc.stderr or "") if hasattr(exc, "stderr") else ""
+        stderr_text = _raw_stderr.decode("utf-8", errors="replace") if isinstance(_raw_stderr, bytes) else _raw_stderr
         meta = {
             "timeout_seconds": timeout,
             "runtime_seconds": runtime_seconds,
@@ -455,8 +456,8 @@ def synthesis_loop(
             else:
                 base_sygus_query = logic_cmd + rest_query
             
-    except FileNotFoundError:
-        print(f"[ERROR] Template file not found: {template_file}")
+    except FileNotFoundError as e:
+        print(f"[ERROR] File not found during synthesis setup: {e} (template={template_file})")
         return None
 
     accepted_constraints: List[str] = []
@@ -1511,7 +1512,7 @@ if __name__ == "__main__":
         sample_lo: Optional[float] = None
         sample_hi: Optional[float] = None
         if isinstance(target_operation, MXINT8AdditionTarget):
-            max_val = 66
+            max_val = 56
             # Directed cases to exercise rounding and large-shift behavior.
             scale = 1 << (config.MANTISSA_WIDTH - 1)
 
@@ -1732,6 +1733,14 @@ if __name__ == "__main__":
                 f.write(program)
             print(f"\n Solution saved to: {output_path}")
             run_summary["paths"].setdefault("smt2", {})[component] = output_path
+
+            # When using a custom solution stem, also save helpers with the
+            # standard name so collect_helper_definitions() can resolve them.
+            if solution_stem_override and component != final_component:
+                std_stem = f"solution_{op_name}_{component}"
+                std_path = os.path.join(smt_dir, f"{std_stem}.smt2")
+                with open(std_path, "w") as f:
+                    f.write(program)
 
             if component == final_component:
                 final_program = program

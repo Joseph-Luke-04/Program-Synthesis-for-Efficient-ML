@@ -1,0 +1,957 @@
+[INFO] Target: FP32AdditionTarget | Component: full_sum_v2
+[INFO] NUM_ITERATIONS=30, TIMEOUT=180s, RUN_IMPLEMENTATION=True, DIRECTED_IO=True, RUN_ACCURACY=True, SYNTH_FP32_MUL_MODE=default, SYNTH_FP32_ADD_MODE=default, SYGUS_DUMP=False, SYGUS_FAST_ENUM=False, SYGUS_PBE=True, SYGUS_SYM_BREAK_PBE=True, MXINT8_OUTPUT_MATCH_BITS=8, MXINT8_AUTO_RELAX_OUTPUT_MATCH=False, MXINT8_MIN_OUTPUT_MATCH_BITS=4, MXINT8_STAGE_MANTISSA_BITS=2, FP32_OUTPUT_MATCH_MSB_BITS=32, FP32_AUTO_RELAX_OUTPUT_MATCH=True, FP32_RESET_MSB_PER_SAMPLE=True, FP32_RELAX_ON_TIMEOUT=True, FP32_TIMEOUT_RETRY_ONCE=False, FP32_TIMEOUT_RETRY_MULTIPLIER=4, FP32_RELAX_ON_INFEASIBLE=True, FP32_RELAX_ON_FAIL=True, FP32_RELAX_SCHEDULE=staged, FP32_STAGE_MANTISSA_BITS=15, FP32_MIN_OUTPUT_MATCH_MSB_BITS=9, FP32_OUTPUT_MATCH_STEP=1, RANDOM_SEED=12347
+[INFO] FP32 add synthesis operand mode=default range=[-10000.0, 10000.0]
+--- Starting Synthesis for [FP32AdditionTarget -> full_sum_v2] ---
+
+--- Iteration 1/30 ---
+Generating new constraint with inputs: (1.0, 1.0)
+(constraint (= (fp32_sum #b0 #b01111111 #b00000000000000000000000 #b0 #b01111111 #b00000000000000000000000) (concat #b0 (concat #b10000000 #b00000000000000000000000))))
+[INFO] fail at bits = 32. Trying weaker match...
+(constraint (= ((_ extract 31 8) (fp32_sum #b0 #b01111111 #b00000000000000000000000 #b0 #b01111111 #b00000000000000000000000)) ((_ extract 31 8) (concat #b0 (concat #b10000000 #b00000000000000000000000)))))
+[INFO] infeasible at bits = 24. Trying weaker match...
+(constraint (= ((_ extract 31 23) (fp32_sum #b0 #b01111111 #b00000000000000000000000 #b0 #b01111111 #b00000000000000000000000)) ((_ extract 31 23) (concat #b0 (concat #b10000000 #b00000000000000000000000)))))
+[INFO] infeasible at bits = 9. Trying weaker match...
+SKIPPED: (1.000, 1.000) could not be added (even after relaxation).
+
+--- Iteration 2/30 ---
+Generating new constraint with inputs: (1.5, -1.5)
+(constraint (= (fp32_sum #b0 #b01111111 #b10000000000000000000000 #b1 #b01111111 #b10000000000000000000000) (concat #b0 (concat #b00000000 #b00000000000000000000000))))
+SUCCESS: accepted (bits = 32). Total constraints: 1
+[INFO] Final accepted level for this sample: stage-2 strict (MSB=32).
+
+--- Iteration 3/30 ---
+Generating new constraint with inputs: (1.5, -0.5)
+(constraint (= (fp32_sum #b0 #b01111111 #b10000000000000000000000 #b1 #b01111110 #b00000000000000000000000) (concat #b0 (concat #b01111111 #b00000000000000000000000))))
+SUCCESS: accepted (bits = 32). Total constraints: 2
+[INFO] Final accepted level for this sample: stage-2 strict (MSB=32).
+
+--- Iteration 4/30 ---
+Generating new constraint with inputs: (1.5, -1.25)
+(constraint (= (fp32_sum #b0 #b01111111 #b10000000000000000000000 #b1 #b01111111 #b01000000000000000000000) (concat #b0 (concat #b01111101 #b00000000000000000000000))))
+SUCCESS: accepted (bits = 32). Total constraints: 3
+[INFO] Final accepted level for this sample: stage-2 strict (MSB=32).
+
+--- Iteration 5/30 ---
+Generating new constraint with inputs: (1.25, -1.0)
+(constraint (= (fp32_sum #b0 #b01111111 #b01000000000000000000000 #b1 #b01111111 #b00000000000000000000000) (concat #b0 (concat #b01111101 #b00000000000000000000000))))
+SUCCESS: accepted (bits = 32). Total constraints: 4
+[INFO] Final accepted level for this sample: stage-2 strict (MSB=32).
+
+--- Iteration 6/30 ---
+Generating new constraint with inputs: (1.5, 1.5)
+(constraint (= (fp32_sum #b0 #b01111111 #b10000000000000000000000 #b0 #b01111111 #b10000000000000000000000) (concat #b0 (concat #b10000000 #b10000000000000000000000))))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout at this stage (bits=32). Trying stage-0 fallback...
+(constraint (= ((_ extract 31 23) (fp32_sum #b0 #b01111111 #b10000000000000000000000 #b0 #b01111111 #b10000000000000000000000)) ((_ extract 31 23) (concat #b0 (concat #b10000000 #b10000000000000000000000)))))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout. No staged fallback; skipping this sample.
+SKIPPED: (1.500, 1.500) could not be added (even after relaxation).
+
+--- Iteration 7/30 ---
+Generating new constraint with inputs: (1.75, 1.75)
+(constraint (= (fp32_sum #b0 #b01111111 #b11000000000000000000000 #b0 #b01111111 #b11000000000000000000000) (concat #b0 (concat #b10000000 #b11000000000000000000000))))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout at this stage (bits=32). Trying stage-0 fallback...
+(constraint (= ((_ extract 31 23) (fp32_sum #b0 #b01111111 #b11000000000000000000000 #b0 #b01111111 #b11000000000000000000000)) ((_ extract 31 23) (concat #b0 (concat #b10000000 #b11000000000000000000000)))))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout. No staged fallback; skipping this sample.
+SKIPPED: (1.750, 1.750) could not be added (even after relaxation).
+
+--- Iteration 8/30 ---
+Generating new constraint with inputs: (1.5, 0.75)
+(constraint (= (fp32_sum #b0 #b01111111 #b10000000000000000000000 #b0 #b01111110 #b10000000000000000000000) (concat #b0 (concat #b10000000 #b00100000000000000000000))))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout at this stage (bits=32). Trying stage-0 fallback...
+(constraint (= ((_ extract 31 23) (fp32_sum #b0 #b01111111 #b10000000000000000000000 #b0 #b01111110 #b10000000000000000000000)) ((_ extract 31 23) (concat #b0 (concat #b10000000 #b00100000000000000000000)))))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout. No staged fallback; skipping this sample.
+SKIPPED: (1.500, 0.750) could not be added (even after relaxation).
+
+--- Iteration 9/30 ---
+Generating new constraint with inputs: (1.5, 0.375)
+(constraint (= (fp32_sum #b0 #b01111111 #b10000000000000000000000 #b0 #b01111101 #b10000000000000000000000) (concat #b0 (concat #b01111111 #b11100000000000000000000))))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout at this stage (bits=32). Trying stage-0 fallback...
+(constraint (= ((_ extract 31 23) (fp32_sum #b0 #b01111111 #b10000000000000000000000 #b0 #b01111101 #b10000000000000000000000)) ((_ extract 31 23) (concat #b0 (concat #b01111111 #b11100000000000000000000)))))
+SUCCESS: accepted at stage-0 after timeout.
+(constraint (= ((_ extract 31 8) (fp32_sum #b0 #b01111111 #b10000000000000000000000 #b0 #b01111101 #b10000000000000000000000)) ((_ extract 31 8) (concat #b0 (concat #b01111111 #b11100000000000000000000)))))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Stage-0 accepted, but no upgrade succeeded for this sample.
+[INFO] Final accepted level for this sample: stage-0 (sign+exp, MSB=9).
+
+--- Iteration 10/30 ---
+Generating new constraint with inputs: (1.5, 0.1875)
+(constraint (= (fp32_sum #b0 #b01111111 #b10000000000000000000000 #b0 #b01111100 #b10000000000000000000000) (concat #b0 (concat #b01111111 #b10110000000000000000000))))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout at this stage (bits=32). Trying stage-0 fallback...
+(constraint (= ((_ extract 31 23) (fp32_sum #b0 #b01111111 #b10000000000000000000000 #b0 #b01111100 #b10000000000000000000000)) ((_ extract 31 23) (concat #b0 (concat #b01111111 #b10110000000000000000000)))))
+SUCCESS: accepted at stage-0 after timeout.
+(constraint (= ((_ extract 31 8) (fp32_sum #b0 #b01111111 #b10000000000000000000000 #b0 #b01111100 #b10000000000000000000000)) ((_ extract 31 8) (concat #b0 (concat #b01111111 #b10110000000000000000000)))))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Stage-0 accepted, but no upgrade succeeded for this sample.
+[INFO] Final accepted level for this sample: stage-0 (sign+exp, MSB=9).
+
+--- Iteration 11/30 ---
+Generating new constraint with inputs: (1.25, 1.5)
+(constraint (= (fp32_sum #b0 #b01111111 #b01000000000000000000000 #b0 #b01111111 #b10000000000000000000000) (concat #b0 (concat #b10000000 #b01100000000000000000000))))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout at this stage (bits=32). Trying stage-0 fallback...
+(constraint (= ((_ extract 31 23) (fp32_sum #b0 #b01111111 #b01000000000000000000000 #b0 #b01111111 #b10000000000000000000000)) ((_ extract 31 23) (concat #b0 (concat #b10000000 #b01100000000000000000000)))))
+SUCCESS: accepted at stage-0 after timeout.
+(constraint (= ((_ extract 31 8) (fp32_sum #b0 #b01111111 #b01000000000000000000000 #b0 #b01111111 #b10000000000000000000000)) ((_ extract 31 8) (concat #b0 (concat #b10000000 #b01100000000000000000000)))))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Stage-0 accepted, but no upgrade succeeded for this sample.
+[INFO] Final accepted level for this sample: stage-0 (sign+exp, MSB=9).
+
+--- Iteration 12/30 ---
+Generating new constraint with inputs: (1.5, 1.25)
+(constraint (= (fp32_sum #b0 #b01111111 #b10000000000000000000000 #b0 #b01111111 #b01000000000000000000000) (concat #b0 (concat #b10000000 #b01100000000000000000000))))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout at this stage (bits=32). Trying stage-0 fallback...
+(constraint (= ((_ extract 31 23) (fp32_sum #b0 #b01111111 #b10000000000000000000000 #b0 #b01111111 #b01000000000000000000000)) ((_ extract 31 23) (concat #b0 (concat #b10000000 #b01100000000000000000000)))))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout. No staged fallback; skipping this sample.
+SKIPPED: (1.500, 1.250) could not be added (even after relaxation).
+
+--- Iteration 13/30 ---
+Generating new constraint with inputs: (8192.0, 1e-06)
+(constraint (= (fp32_sum #b0 #b10001100 #b00000000000000000000000 #b0 #b01101011 #b00001100011011110111101) (concat #b0 (concat #b10001100 #b00000000000000000000000))))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout at this stage (bits=32). Trying stage-0 fallback...
+(constraint (= ((_ extract 31 23) (fp32_sum #b0 #b10001100 #b00000000000000000000000 #b0 #b01101011 #b00001100011011110111101)) ((_ extract 31 23) (concat #b0 (concat #b10001100 #b00000000000000000000000)))))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout. No staged fallback; skipping this sample.
+SKIPPED: (8192.000, 0.000) could not be added (even after relaxation).
+
+--- Iteration 14/30 ---
+Generating new constraint with inputs: (-2924.8562455211795, 6556.700927181249)
+(constraint (= (fp32_sum #b1 #b10001010 #b01101101100110110110011 #b0 #b10001011 #b10011001110010110011011) (concat #b0 (concat #b10001010 #b11000101111110110000100))))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout at this stage (bits=32). Trying stage-0 fallback...
+(constraint (= ((_ extract 31 23) (fp32_sum #b1 #b10001010 #b01101101100110110110011 #b0 #b10001011 #b10011001110010110011011)) ((_ extract 31 23) (concat #b0 (concat #b10001010 #b11000101111110110000100)))))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout. No staged fallback; skipping this sample.
+SKIPPED: (-2924.856, 6556.701) could not be added (even after relaxation).
+
+--- Iteration 15/30 ---
+Generating new constraint with inputs: (-226.5371507873915, -3161.1832295528266)
+(constraint (= (fp32_sum #b1 #b10000110 #b11000101000100110000011 #b1 #b10001010 #b10001011001001011101111) (concat #b1 (concat #b10001010 #b10100111011101110000111))))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout at this stage (bits=32). Trying stage-0 fallback...
+(constraint (= ((_ extract 31 23) (fp32_sum #b1 #b10000110 #b11000101000100110000011 #b1 #b10001010 #b10001011001001011101111)) ((_ extract 31 23) (concat #b1 (concat #b10001010 #b10100111011101110000111)))))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout. No staged fallback; skipping this sample.
+SKIPPED: (-226.537, -3161.183) could not be added (even after relaxation).
+
+--- Iteration 16/30 ---
+Generating new constraint with inputs: (-4176.1677078026805, 3270.2591954017953)
+(constraint (= (fp32_sum #b1 #b10001011 #b00000101000000101010111 #b0 #b10001010 #b10011000110010000100110) (concat #b1 (concat #b10001000 #b11000100111101000100000))))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout at this stage (bits=32). Trying stage-0 fallback...
+(constraint (= ((_ extract 31 23) (fp32_sum #b1 #b10001011 #b00000101000000101010111 #b0 #b10001010 #b10011000110010000100110)) ((_ extract 31 23) (concat #b1 (concat #b10001000 #b11000100111101000100000)))))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout. No staged fallback; skipping this sample.
+SKIPPED: (-4176.168, 3270.259) could not be added (even after relaxation).
+
+--- Iteration 17/30 ---
+Generating new constraint with inputs: (-3188.8903757138223, 6696.525732528888)
+(constraint (= (fp32_sum #b1 #b10001010 #b10001110100111000111111 #b0 #b10001011 #b10100010100010000110101) (concat #b0 (concat #b10001010 #b10110110011101000101100))))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout at this stage (bits=32). Trying stage-0 fallback...
+(constraint (= ((_ extract 31 23) (fp32_sum #b1 #b10001010 #b10001110100111000111111 #b0 #b10001011 #b10100010100010000110101)) ((_ extract 31 23) (concat #b0 (concat #b10001010 #b10110110011101000101100)))))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout. No staged fallback; skipping this sample.
+SKIPPED: (-3188.890, 6696.526) could not be added (even after relaxation).
+
+--- Iteration 18/30 ---
+Generating new constraint with inputs: (-1481.1797399126062, -7632.067373377198)
+(constraint (= (fp32_sum #b1 #b10001001 #b01110010010010111000000 #b1 #b10001011 #b11011101000000010001010) (concat #b1 (concat #b10001100 #b00011100110010011111101))))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout at this stage (bits=32). Trying stage-0 fallback...
+(constraint (= ((_ extract 31 23) (fp32_sum #b1 #b10001001 #b01110010010010111000000 #b1 #b10001011 #b11011101000000010001010)) ((_ extract 31 23) (concat #b1 (concat #b10001100 #b00011100110010011111101)))))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout. No staged fallback; skipping this sample.
+SKIPPED: (-1481.180, -7632.067) could not be added (even after relaxation).
+
+--- Iteration 19/30 ---
+Generating new constraint with inputs: (8570.155892729454, 6843.1810497870465)
+(constraint (= (fp32_sum #b0 #b10001100 #b00001011110100010100000 #b0 #b10001011 #b10101011101100101110011) (concat #b0 (concat #b10001100 #b11100001101010101011001))))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout at this stage (bits=32). Trying stage-0 fallback...
+(constraint (= ((_ extract 31 23) (fp32_sum #b0 #b10001100 #b00001011110100010100000 #b0 #b10001011 #b10101011101100101110011)) ((_ extract 31 23) (concat #b0 (concat #b10001100 #b11100001101010101011001)))))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout. No staged fallback; skipping this sample.
+SKIPPED: (8570.156, 6843.181) could not be added (even after relaxation).
+
+--- Iteration 20/30 ---
+Generating new constraint with inputs: (7506.184221882351, -1633.7055996483032)
+(constraint (= (fp32_sum #b0 #b10001011 #b11010101001000101111001 #b1 #b10001001 #b10011000011011010010100) (concat #b0 (concat #b10001011 #b01101111000001111010100))))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout at this stage (bits=32). Trying stage-0 fallback...
+(constraint (= ((_ extract 31 23) (fp32_sum #b0 #b10001011 #b11010101001000101111001 #b1 #b10001001 #b10011000011011010010100)) ((_ extract 31 23) (concat #b0 (concat #b10001011 #b01101111000001111010100)))))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout. No staged fallback; skipping this sample.
+SKIPPED: (7506.184, -1633.706) could not be added (even after relaxation).
+
+--- Iteration 21/30 ---
+Generating new constraint with inputs: (-6776.117550635783, -4602.800786431051)
+(constraint (= (fp32_sum #b1 #b10001011 #b10100111100000011110001 #b1 #b10001011 #b00011111101011001101000) (concat #b1 (concat #b10001100 #b01100011100101110101100))))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout at this stage (bits=32). Trying stage-0 fallback...
+(constraint (= ((_ extract 31 23) (fp32_sum #b1 #b10001011 #b10100111100000011110001 #b1 #b10001011 #b00011111101011001101000)) ((_ extract 31 23) (concat #b1 (concat #b10001100 #b01100011100101110101100)))))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout. No staged fallback; skipping this sample.
+SKIPPED: (-6776.118, -4602.801) could not be added (even after relaxation).
+
+--- Iteration 22/30 ---
+Generating new constraint with inputs: (-6134.0638591099305, 3615.0806015300623)
+(constraint (= (fp32_sum #b1 #b10001011 #b01111111011000010000011 #b0 #b10001010 #b11000011111000101001010) (concat #b1 (concat #b10001010 #b00111010110111110111100))))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout at this stage (bits=32). Trying stage-0 fallback...
+(constraint (= ((_ extract 31 23) (fp32_sum #b1 #b10001011 #b01111111011000010000011 #b0 #b10001010 #b11000011111000101001010)) ((_ extract 31 23) (concat #b1 (concat #b10001010 #b00111010110111110111100)))))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout. No staged fallback; skipping this sample.
+SKIPPED: (-6134.064, 3615.081) could not be added (even after relaxation).
+
+--- Iteration 23/30 ---
+Generating new constraint with inputs: (3442.227652268961, -5651.844730072086)
+(constraint (= (fp32_sum #b0 #b10001010 #b10101110010001110100100 #b1 #b10001011 #b01100001001111011000010) (concat #b1 (concat #b10001010 #b00010100001100111100000))))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout at this stage (bits=32). Trying stage-0 fallback...
+(constraint (= ((_ extract 31 23) (fp32_sum #b0 #b10001010 #b10101110010001110100100 #b1 #b10001011 #b01100001001111011000010)) ((_ extract 31 23) (concat #b1 (concat #b10001010 #b00010100001100111100000)))))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout. No staged fallback; skipping this sample.
+SKIPPED: (3442.228, -5651.845) could not be added (even after relaxation).
+
+--- Iteration 24/30 ---
+Generating new constraint with inputs: (-1550.1867098088933, 3506.249794004092)
+(constraint (= (fp32_sum #b1 #b10001001 #b10000011100010111111010 #b0 #b10001010 #b10110110010001111111111) (concat #b0 (concat #b10001001 #b11101001000001000000100))))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout at this stage (bits=32). Trying stage-0 fallback...
+(constraint (= ((_ extract 31 23) (fp32_sum #b1 #b10001001 #b10000011100010111111010 #b0 #b10001010 #b10110110010001111111111)) ((_ extract 31 23) (concat #b0 (concat #b10001001 #b11101001000001000000100)))))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout. No staged fallback; skipping this sample.
+SKIPPED: (-1550.187, 3506.250) could not be added (even after relaxation).
+
+--- Iteration 25/30 ---
+Generating new constraint with inputs: (-9798.396046590104, -3323.8071113651667)
+(constraint (= (fp32_sum #b1 #b10001100 #b00110010001100110010110 #b1 #b10001010 #b10011111011110011101010) (concat #b1 (concat #b10001100 #b10011010000100011010000))))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout at this stage (bits=32). Trying stage-0 fallback...
+(constraint (= ((_ extract 31 23) (fp32_sum #b1 #b10001100 #b00110010001100110010110 #b1 #b10001010 #b10011111011110011101010)) ((_ extract 31 23) (concat #b1 (concat #b10001100 #b10011010000100011010000)))))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout. No staged fallback; skipping this sample.
+SKIPPED: (-9798.396, -3323.807) could not be added (even after relaxation).
+
+--- Iteration 26/30 ---
+Generating new constraint with inputs: (1980.4752867380776, 3096.464311858803)
+(constraint (= (fp32_sum #b0 #b10001001 #b11101111000111100110110 #b0 #b10001010 #b10000011000011101101110) (concat #b0 (concat #b10001011 #b00111101010011110000100))))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout at this stage (bits=32). Trying stage-0 fallback...
+(constraint (= ((_ extract 31 23) (fp32_sum #b0 #b10001001 #b11101111000111100110110 #b0 #b10001010 #b10000011000011101101110)) ((_ extract 31 23) (concat #b0 (concat #b10001011 #b00111101010011110000100)))))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout. No staged fallback; skipping this sample.
+SKIPPED: (1980.475, 3096.464) could not be added (even after relaxation).
+
+--- Iteration 27/30 ---
+Generating new constraint with inputs: (-7917.72970427679, 6430.831271790743)
+(constraint (= (fp32_sum #b1 #b10001011 #b11101110110110111010110 #b0 #b10001011 #b10010001111011010100110) (concat #b1 (concat #b10001001 #b01110011101110011000000))))
+SUCCESS: accepted (bits = 32). Total constraints: 8
+[INFO] Final accepted level for this sample: stage-2 strict (MSB=32).
+
+--- Iteration 28/30 ---
+Generating new constraint with inputs: (-4610.7856308367, 953.901396192965)
+(constraint (= (fp32_sum #b1 #b10001011 #b00100000001011001001001 #b0 #b10001000 #b11011100111100110110000) (concat #b1 (concat #b10001010 #b11001001000111000100110))))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout at this stage (bits=32). Trying stage-0 fallback...
+(constraint (= ((_ extract 31 23) (fp32_sum #b1 #b10001011 #b00100000001011001001001 #b0 #b10001000 #b11011100111100110110000)) ((_ extract 31 23) (concat #b1 (concat #b10001010 #b11001001000111000100110)))))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout. No staged fallback; skipping this sample.
+SKIPPED: (-4610.786, 953.901) could not be added (even after relaxation).
+
+--- Iteration 29/30 ---
+Generating new constraint with inputs: (-7876.298935933257, -5921.8015826470855)
+(constraint (= (fp32_sum #b1 #b10001011 #b11101100010001001100100 #b1 #b10001011 #b01110010000111001101010) (concat #b1 (concat #b10001100 #b10101111001100001100111))))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout at this stage (bits=32). Trying stage-0 fallback...
+(constraint (= ((_ extract 31 23) (fp32_sum #b1 #b10001011 #b11101100010001001100100 #b1 #b10001011 #b01110010000111001101010)) ((_ extract 31 23) (concat #b1 (concat #b10001100 #b10101111001100001100111)))))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout. No staged fallback; skipping this sample.
+SKIPPED: (-7876.299, -5921.802) could not be added (even after relaxation).
+
+--- Iteration 30/30 ---
+Generating new constraint with inputs: (5986.243171398468, -7192.270932355571)
+(constraint (= (fp32_sum #b0 #b10001011 #b01110110001000111110010 #b1 #b10001011 #b11000001100001000101011) (concat #b1 (concat #b10001001 #b00101101100000011100100))))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout at this stage (bits=32). Trying stage-0 fallback...
+(constraint (= ((_ extract 31 23) (fp32_sum #b0 #b10001011 #b01110110001000111110010 #b1 #b10001011 #b11000001100001000101011)) ((_ extract 31 23) (concat #b1 (concat #b10001001 #b00101101100000011100100)))))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout. No staged fallback; skipping this sample.
+SKIPPED: (5986.243, -7192.271) could not be added (even after relaxation).
+
+
+--- Synthesis Complete! ---
+
+Constraints accepted: 8/30
+
+--- Final Synthesized Program ---
+(define-fun shr24_sat ((x (_ BitVec 24)) (d (_ BitVec 8))) (_ BitVec 24)
+  (ite (bvuge d (_ bv24 8))
+       (_ bv0 24)
+       (bvlshr x ((_ zero_extend 16) d))))
+
+(define-fun norm24_from_raw ((raw (_ BitVec 25))) (_ BitVec 24)
+  (ite (= raw (_ bv0 25)) (_ bv0 24)
+    (ite (= ((_ extract 24 24) raw) #b1) ((_ extract 24 1) raw)
+      (ite (= ((_ extract 23 23) raw) #b1) ((_ extract 23 0) raw)
+        (ite (= ((_ extract 22 22) raw) #b1) (concat ((_ extract 22 0) raw) (_ bv0 1))
+          (ite (= ((_ extract 21 21) raw) #b1) (concat ((_ extract 21 0) raw) (_ bv0 2))
+            (ite (= ((_ extract 20 20) raw) #b1) (concat ((_ extract 20 0) raw) (_ bv0 3))
+              (ite (= ((_ extract 19 19) raw) #b1) (concat ((_ extract 19 0) raw) (_ bv0 4))
+                (ite (= ((_ extract 18 18) raw) #b1) (concat ((_ extract 18 0) raw) (_ bv0 5))
+                  (ite (= ((_ extract 17 17) raw) #b1) (concat ((_ extract 17 0) raw) (_ bv0 6))
+                    (ite (= ((_ extract 16 16) raw) #b1) (concat ((_ extract 16 0) raw) (_ bv0 7))
+                      (ite (= ((_ extract 15 15) raw) #b1) (concat ((_ extract 15 0) raw) (_ bv0 8))
+                        (ite (= ((_ extract 14 14) raw) #b1) (concat ((_ extract 14 0) raw) (_ bv0 9))
+                          (ite (= ((_ extract 13 13) raw) #b1) (concat ((_ extract 13 0) raw) (_ bv0 10))
+                            (ite (= ((_ extract 12 12) raw) #b1) (concat ((_ extract 12 0) raw) (_ bv0 11))
+                              (ite (= ((_ extract 11 11) raw) #b1) (concat ((_ extract 11 0) raw) (_ bv0 12))
+                                (ite (= ((_ extract 10 10) raw) #b1) (concat ((_ extract 10 0) raw) (_ bv0 13))
+                                  (ite (= ((_ extract 9 9) raw) #b1) (concat ((_ extract 9 0) raw) (_ bv0 14))
+                                    (ite (= ((_ extract 8 8) raw) #b1) (concat ((_ extract 8 0) raw) (_ bv0 15))
+                                      (ite (= ((_ extract 7 7) raw) #b1) (concat ((_ extract 7 0) raw) (_ bv0 16))
+                                        (ite (= ((_ extract 6 6) raw) #b1) (concat ((_ extract 6 0) raw) (_ bv0 17))
+                                          (ite (= ((_ extract 5 5) raw) #b1) (concat ((_ extract 5 0) raw) (_ bv0 18))
+                                            (ite (= ((_ extract 4 4) raw) #b1) (concat ((_ extract 4 0) raw) (_ bv0 19))
+                                              (ite (= ((_ extract 3 3) raw) #b1) (concat ((_ extract 3 0) raw) (_ bv0 20))
+                                                (ite (= ((_ extract 2 2) raw) #b1) (concat ((_ extract 2 0) raw) (_ bv0 21))
+                                                  (ite (= ((_ extract 1 1) raw) #b1) (concat ((_ extract 1 0) raw) (_ bv0 22))
+                                                    (concat ((_ extract 0 0) raw) (_ bv0 23))))))))))))))))))))))))))))
+
+(define-fun exp_delta_from_raw ((raw (_ BitVec 25))) (_ BitVec 8)
+  (ite (= raw (_ bv0 25)) (_ bv0 8)
+    (ite (= ((_ extract 24 24) raw) #b1) (_ bv1 8)
+      (ite (= ((_ extract 23 23) raw) #b1) (_ bv0 8)
+        (ite (= ((_ extract 22 22) raw) #b1) (bvneg (_ bv1 8))
+          (ite (= ((_ extract 21 21) raw) #b1) (bvneg (_ bv2 8))
+            (ite (= ((_ extract 20 20) raw) #b1) (bvneg (_ bv3 8))
+              (ite (= ((_ extract 19 19) raw) #b1) (bvneg (_ bv4 8))
+                (ite (= ((_ extract 18 18) raw) #b1) (bvneg (_ bv5 8))
+                  (ite (= ((_ extract 17 17) raw) #b1) (bvneg (_ bv6 8))
+                    (ite (= ((_ extract 16 16) raw) #b1) (bvneg (_ bv7 8))
+                      (ite (= ((_ extract 15 15) raw) #b1) (bvneg (_ bv8 8))
+                        (ite (= ((_ extract 14 14) raw) #b1) (bvneg (_ bv9 8))
+                          (ite (= ((_ extract 13 13) raw) #b1) (bvneg (_ bv10 8))
+                            (ite (= ((_ extract 12 12) raw) #b1) (bvneg (_ bv11 8))
+                              (ite (= ((_ extract 11 11) raw) #b1) (bvneg (_ bv12 8))
+                                (ite (= ((_ extract 10 10) raw) #b1) (bvneg (_ bv13 8))
+                                  (ite (= ((_ extract 9 9) raw) #b1) (bvneg (_ bv14 8))
+                                    (ite (= ((_ extract 8 8) raw) #b1) (bvneg (_ bv15 8))
+                                      (ite (= ((_ extract 7 7) raw) #b1) (bvneg (_ bv16 8))
+                                        (ite (= ((_ extract 6 6) raw) #b1) (bvneg (_ bv17 8))
+                                          (ite (= ((_ extract 5 5) raw) #b1) (bvneg (_ bv18 8))
+                                            (ite (= ((_ extract 4 4) raw) #b1) (bvneg (_ bv19 8))
+                                              (ite (= ((_ extract 3 3) raw) #b1) (bvneg (_ bv20 8))
+                                                (ite (= ((_ extract 2 2) raw) #b1) (bvneg (_ bv21 8))
+                                                  (ite (= ((_ extract 1 1) raw) #b1) (bvneg (_ bv22 8))
+                                                    (bvneg (_ bv23 8))))))))))))))))))))))))))))
+
+(define-fun fp32_sum ((s1 (_ BitVec 1)) (e1 (_ BitVec 8)) (m1 (_ BitVec 23)) (s2 (_ BitVec 1)) (e2 (_ BitVec 8)) (m2 (_ BitVec 23))) (_ BitVec 32) (let ((_let_1 (concat #b1 m2))) (let ((_let_2 (concat #b1 m1))) (let ((_let_3 ((_ zero_extend 1) _let_2))) (let ((_let_4 (bvsub _let_3 ((_ zero_extend 1) _let_1)))) (concat s1 (concat (ite (= (ite (= s1 s2) (bvadd _let_3 _let_3) (ite (bvuge _let_2 _let_2) _let_4 (bvsub _let_3 _let_3))) #b0000000000000000000000000) #b00000000 (bvadd e1 (exp_delta_from_raw (bvsub _let_3 ((_ zero_extend 1) (ite (bvugt e1 e2) _let_2 _let_1)))))) ((_ extract 22 0) (norm24_from_raw _let_4)))))))))
+
+ Solution saved to: results/smt2/relaxsweep_fp32_add_v1_staged_r03.smt2
+
+Translating SMT output to C using smt2c...
+[INFO] Found 4 define-fun block(s). Order passed to smt2c:
+    - shr24_sat
+    - norm24_from_raw
+    - exp_delta_from_raw
+    - fp32_sum
+C file saved to: results/c/relaxsweep_fp32_add_v1_staged_r03.c
+
+Generated C code:
+
+ap_uint<24> shr24_sat(ap_uint<24> x, unsigned char d) {
+  return d >= 24 ? (ap_uint<24>)  0 : (ap_uint<24>)  x >> (ap_uint<24>)d;
+}
+
+ap_uint<24> norm24_from_raw(ap_uint<25> raw) {
+  ap_uint<1> __smt2c_ext_0 = ((ap_uint<25>)raw).range(24, 24);
+  ap_uint<24> __smt2c_ext_1 = ((ap_uint<25>)raw).range(24, 1);
+  ap_uint<1> __smt2c_ext_2 = ((ap_uint<25>)raw).range(23, 23);
+  ap_uint<24> __smt2c_ext_3 = ((ap_uint<25>)raw).range(23, 0);
+  ap_uint<1> __smt2c_ext_4 = ((ap_uint<25>)raw).range(22, 22);
+  ap_uint<23> __smt2c_ext_5 = ((ap_uint<25>)raw).range(22, 0);
+  ap_uint<1> __smt2c_ext_6 = ((ap_uint<25>)raw).range(21, 21);
+  ap_uint<22> __smt2c_ext_7 = ((ap_uint<25>)raw).range(21, 0);
+  ap_uint<1> __smt2c_ext_8 = ((ap_uint<25>)raw).range(20, 20);
+  ap_uint<21> __smt2c_ext_9 = ((ap_uint<25>)raw).range(20, 0);
+  ap_uint<1> __smt2c_ext_10 = ((ap_uint<25>)raw).range(19, 19);
+  ap_uint<20> __smt2c_ext_11 = ((ap_uint<25>)raw).range(19, 0);
+  ap_uint<1> __smt2c_ext_12 = ((ap_uint<25>)raw).range(18, 18);
+  ap_uint<19> __smt2c_ext_13 = ((ap_uint<25>)raw).range(18, 0);
+  ap_uint<1> __smt2c_ext_14 = ((ap_uint<25>)raw).range(17, 17);
+  ap_uint<18> __smt2c_ext_15 = ((ap_uint<25>)raw).range(17, 0);
+  ap_uint<1> __smt2c_ext_16 = ((ap_uint<25>)raw).range(16, 16);
+  ap_uint<17> __smt2c_ext_17 = ((ap_uint<25>)raw).range(16, 0);
+  ap_uint<1> __smt2c_ext_18 = ((ap_uint<25>)raw).range(15, 15);
+  unsigned short int __smt2c_ext_19 = ((ap_uint<25>)raw).range(15, 0);
+  ap_uint<1> __smt2c_ext_20 = ((ap_uint<25>)raw).range(14, 14);
+  ap_uint<15> __smt2c_ext_21 = ((ap_uint<25>)raw).range(14, 0);
+  ap_uint<1> __smt2c_ext_22 = ((ap_uint<25>)raw).range(13, 13);
+  ap_uint<14> __smt2c_ext_23 = ((ap_uint<25>)raw).range(13, 0);
+  ap_uint<1> __smt2c_ext_24 = ((ap_uint<25>)raw).range(12, 12);
+  ap_uint<13> __smt2c_ext_25 = ((ap_uint<25>)raw).range(12, 0);
+  ap_uint<1> __smt2c_ext_26 = ((ap_uint<25>)raw).range(11, 11);
+  ap_uint<12> __smt2c_ext_27 = ((ap_uint<25>)raw).range(11, 0);
+  ap_uint<1> __smt2c_ext_28 = ((ap_uint<25>)raw).range(10, 10);
+  ap_uint<11> __smt2c_ext_29 = ((ap_uint<25>)raw).range(10, 0);
+  ap_uint<1> __smt2c_ext_30 = ((ap_uint<25>)raw).range(9, 9);
+  ap_uint<10> __smt2c_ext_31 = ((ap_uint<25>)raw).range(9, 0);
+  ap_uint<1> __smt2c_ext_32 = ((ap_uint<25>)raw).range(8, 8);
+  ap_uint<9> __smt2c_ext_33 = ((ap_uint<25>)raw).range(8, 0);
+  ap_uint<1> __smt2c_ext_34 = ((ap_uint<25>)raw).range(7, 7);
+  unsigned char __smt2c_ext_35 = ((ap_uint<25>)raw).range(7, 0);
+  ap_uint<1> __smt2c_ext_36 = ((ap_uint<25>)raw).range(6, 6);
+  ap_uint<7> __smt2c_ext_37 = ((ap_uint<25>)raw).range(6, 0);
+  ap_uint<1> __smt2c_ext_38 = ((ap_uint<25>)raw).range(5, 5);
+  ap_uint<6> __smt2c_ext_39 = ((ap_uint<25>)raw).range(5, 0);
+  ap_uint<1> __smt2c_ext_40 = ((ap_uint<25>)raw).range(4, 4);
+  ap_uint<5> __smt2c_ext_41 = ((ap_uint<25>)raw).range(4, 0);
+  ap_uint<1> __smt2c_ext_42 = ((ap_uint<25>)raw).range(3, 3);
+  ap_uint<4> __smt2c_ext_43 = ((ap_uint<25>)raw).range(3, 0);
+  ap_uint<1> __smt2c_ext_44 = ((ap_uint<25>)raw).range(2, 2);
+  ap_uint<3> __smt2c_ext_45 = ((ap_uint<25>)raw).range(2, 0);
+  ap_uint<1> __smt2c_ext_46 = ((ap_uint<25>)raw).range(1, 1);
+  ap_uint<2> __smt2c_ext_47 = ((ap_uint<25>)raw).range(1, 0);
+  ap_uint<1> __smt2c_ext_48 = ((ap_uint<25>)raw).range(0, 0);
+  ap_uint<24> __smt2c_result;
+  if(raw == 0) {
+    __smt2c_result = 0;
+  }
+  else if(__smt2c_ext_0 == 1) {
+    __smt2c_result = __smt2c_ext_1;
+  }
+  else if(__smt2c_ext_2 == 1) {
+    __smt2c_result = __smt2c_ext_3;
+  }
+  else if(__smt2c_ext_4 == 1) {
+    __smt2c_result = (ap_uint<24>)__smt2c_ext_5 << 1 | (ap_uint<24>)0;
+  }
+  else if(__smt2c_ext_6 == 1) {
+    __smt2c_result = (ap_uint<24>)__smt2c_ext_7 << 2 | (ap_uint<24>)0;
+  }
+  else if(__smt2c_ext_8 == 1) {
+    __smt2c_result = (ap_uint<24>)__smt2c_ext_9 << 3 | (ap_uint<24>)0;
+  }
+  else if(__smt2c_ext_10 == 1) {
+    __smt2c_result = (ap_uint<24>)__smt2c_ext_11 << 4 | (ap_uint<24>)0;
+  }
+  else if(__smt2c_ext_12 == 1) {
+    __smt2c_result = (ap_uint<24>)__smt2c_ext_13 << 5 | (ap_uint<24>)0;
+  }
+  else if(__smt2c_ext_14 == 1) {
+    __smt2c_result = (ap_uint<24>)__smt2c_ext_15 << 6 | (ap_uint<24>)0;
+  }
+  else if(__smt2c_ext_16 == 1) {
+    __smt2c_result = (ap_uint<24>)__smt2c_ext_17 << 7 | (ap_uint<24>)0;
+  }
+  else if(__smt2c_ext_18 == 1) {
+    __smt2c_result = (ap_uint<24>)__smt2c_ext_19 << 8 | (ap_uint<24>)0;
+  }
+  else if(__smt2c_ext_20 == 1) {
+    __smt2c_result = (ap_uint<24>)__smt2c_ext_21 << 9 | (ap_uint<24>)0;
+  }
+  else if(__smt2c_ext_22 == 1) {
+    __smt2c_result = (ap_uint<24>)__smt2c_ext_23 << 10 | (ap_uint<24>)0;
+  }
+  else if(__smt2c_ext_24 == 1) {
+    __smt2c_result = (ap_uint<24>)__smt2c_ext_25 << 11 | (ap_uint<24>)0;
+  }
+  else if(__smt2c_ext_26 == 1) {
+    __smt2c_result = (ap_uint<24>)__smt2c_ext_27 << 12 | (ap_uint<24>)0;
+  }
+  else if(__smt2c_ext_28 == 1) {
+    __smt2c_result = (ap_uint<24>)__smt2c_ext_29 << 13 | (ap_uint<24>)0;
+  }
+  else if(__smt2c_ext_30 == 1) {
+    __smt2c_result = (ap_uint<24>)__smt2c_ext_31 << 14 | (ap_uint<24>)0;
+  }
+  else if(__smt2c_ext_32 == 1) {
+    __smt2c_result = (ap_uint<24>)__smt2c_ext_33 << 15 | (ap_uint<24>)0;
+  }
+  else if(__smt2c_ext_34 == 1) {
+    __smt2c_result = (ap_uint<24>)__smt2c_ext_35 << 16 | (ap_uint<24>)0;
+  }
+  else if(__smt2c_ext_36 == 1) {
+    __smt2c_result = (ap_uint<24>)__smt2c_ext_37 << 17 | (ap_uint<24>)0;
+  }
+  else if(__smt2c_ext_38 == 1) {
+    __smt2c_result = (ap_uint<24>)__smt2c_ext_39 << 18 | (ap_uint<24>)0;
+  }
+  else if(__smt2c_ext_40 == 1) {
+    __smt2c_result = (ap_uint<24>)__smt2c_ext_41 << 19 | (ap_uint<24>)0;
+  }
+  else if(__smt2c_ext_42 == 1) {
+    __smt2c_result = (ap_uint<24>)__smt2c_ext_43 << 20 | (ap_uint<24>)0;
+  }
+  else if(__smt2c_ext_44 == 1) {
+    __smt2c_result = (ap_uint<24>)__smt2c_ext_45 << 21 | (ap_uint<24>)0;
+  }
+  else if(__smt2c_ext_46 == 1) {
+    __smt2c_result = (ap_uint<24>)__smt2c_ext_47 << 22 | (ap_uint<24>)0;
+  }
+  else {
+    __smt2c_result = (ap_uint<24>)__smt2c_ext_48 << 23 | (ap_uint<24>)0;
+  }
+  return __smt2c_result;
+}
+
+unsigned char exp_delta_from_raw(ap_uint<25> raw) {
+  ap_uint<1> __smt2c_ext_0 = ((ap_uint<25>)raw).range(24, 24);
+  ap_uint<1> __smt2c_ext_1 = ((ap_uint<25>)raw).range(23, 23);
+  ap_uint<1> __smt2c_ext_2 = ((ap_uint<25>)raw).range(22, 22);
+  ap_uint<1> __smt2c_ext_3 = ((ap_uint<25>)raw).range(21, 21);
+  ap_uint<1> __smt2c_ext_4 = ((ap_uint<25>)raw).range(20, 20);
+  ap_uint<1> __smt2c_ext_5 = ((ap_uint<25>)raw).range(19, 19);
+  ap_uint<1> __smt2c_ext_6 = ((ap_uint<25>)raw).range(18, 18);
+  ap_uint<1> __smt2c_ext_7 = ((ap_uint<25>)raw).range(17, 17);
+  ap_uint<1> __smt2c_ext_8 = ((ap_uint<25>)raw).range(16, 16);
+  ap_uint<1> __smt2c_ext_9 = ((ap_uint<25>)raw).range(15, 15);
+  ap_uint<1> __smt2c_ext_10 = ((ap_uint<25>)raw).range(14, 14);
+  ap_uint<1> __smt2c_ext_11 = ((ap_uint<25>)raw).range(13, 13);
+  ap_uint<1> __smt2c_ext_12 = ((ap_uint<25>)raw).range(12, 12);
+  ap_uint<1> __smt2c_ext_13 = ((ap_uint<25>)raw).range(11, 11);
+  ap_uint<1> __smt2c_ext_14 = ((ap_uint<25>)raw).range(10, 10);
+  ap_uint<1> __smt2c_ext_15 = ((ap_uint<25>)raw).range(9, 9);
+  ap_uint<1> __smt2c_ext_16 = ((ap_uint<25>)raw).range(8, 8);
+  ap_uint<1> __smt2c_ext_17 = ((ap_uint<25>)raw).range(7, 7);
+  ap_uint<1> __smt2c_ext_18 = ((ap_uint<25>)raw).range(6, 6);
+  ap_uint<1> __smt2c_ext_19 = ((ap_uint<25>)raw).range(5, 5);
+  ap_uint<1> __smt2c_ext_20 = ((ap_uint<25>)raw).range(4, 4);
+  ap_uint<1> __smt2c_ext_21 = ((ap_uint<25>)raw).range(3, 3);
+  ap_uint<1> __smt2c_ext_22 = ((ap_uint<25>)raw).range(2, 2);
+  ap_uint<1> __smt2c_ext_23 = ((ap_uint<25>)raw).range(1, 1);
+  unsigned char __smt2c_result;
+  if(raw == 0) {
+    __smt2c_result = 0;
+  }
+  else if(__smt2c_ext_0 == 1) {
+    __smt2c_result = 1;
+  }
+  else if(__smt2c_ext_1 == 1) {
+    __smt2c_result = 0;
+  }
+  else if(__smt2c_ext_2 == 1) {
+    __smt2c_result = -1;
+  }
+  else if(__smt2c_ext_3 == 1) {
+    __smt2c_result = -2;
+  }
+  else if(__smt2c_ext_4 == 1) {
+    __smt2c_result = -3;
+  }
+  else if(__smt2c_ext_5 == 1) {
+    __smt2c_result = -4;
+  }
+  else if(__smt2c_ext_6 == 1) {
+    __smt2c_result = -5;
+  }
+  else if(__smt2c_ext_7 == 1) {
+    __smt2c_result = -6;
+  }
+  else if(__smt2c_ext_8 == 1) {
+    __smt2c_result = -7;
+  }
+  else if(__smt2c_ext_9 == 1) {
+    __smt2c_result = -8;
+  }
+  else if(__smt2c_ext_10 == 1) {
+    __smt2c_result = -9;
+  }
+  else if(__smt2c_ext_11 == 1) {
+    __smt2c_result = -10;
+  }
+  else if(__smt2c_ext_12 == 1) {
+    __smt2c_result = -11;
+  }
+  else if(__smt2c_ext_13 == 1) {
+    __smt2c_result = -12;
+  }
+  else if(__smt2c_ext_14 == 1) {
+    __smt2c_result = -13;
+  }
+  else if(__smt2c_ext_15 == 1) {
+    __smt2c_result = -14;
+  }
+  else if(__smt2c_ext_16 == 1) {
+    __smt2c_result = -15;
+  }
+  else if(__smt2c_ext_17 == 1) {
+    __smt2c_result = -16;
+  }
+  else if(__smt2c_ext_18 == 1) {
+    __smt2c_result = -17;
+  }
+  else if(__smt2c_ext_19 == 1) {
+    __smt2c_result = -18;
+  }
+  else if(__smt2c_ext_20 == 1) {
+    __smt2c_result = -19;
+  }
+  else if(__smt2c_ext_21 == 1) {
+    __smt2c_result = -20;
+  }
+  else if(__smt2c_ext_22 == 1) {
+    __smt2c_result = -21;
+  }
+  else if(__smt2c_ext_23 == 1) {
+    __smt2c_result = -22;
+  }
+  else {
+    __smt2c_result = -23;
+  }
+  return __smt2c_result;
+}
+
+unsigned int fp32_sum(ap_uint<1> s1, unsigned char e1, ap_uint<23> m1, ap_uint<1> s2, unsigned char e2, ap_uint<23> m2) {
+  ap_uint<24> _let_1 = (ap_uint<24>)1 << 23 | (ap_uint<24>)m2;
+  ap_uint<24> _let_2 = (ap_uint<24>)1 << 23 | (ap_uint<24>)m1;
+  ap_uint<25> _let_3 = (ap_uint<25>)_let_2;
+  ap_uint<25> _let_4 = _let_3 - (ap_uint<25>)_let_1;
+  ap_uint<24> __smt2c_src_0 = norm24_from_raw(_let_4);
+  ap_uint<23> __smt2c_ext_1 = ((ap_uint<24>)__smt2c_src_0).range(22, 0);
+  return (unsigned int)s1 << 31 | (unsigned int)((ap_uint<31>)((s1 == s2 ? (ap_uint<25>)  _let_3 + _let_3 : (ap_uint<25>)  (_let_2 >= _let_2 ? (ap_uint<25>)  _let_4 : (ap_uint<25>)  _let_3 - _let_3)) == 0 ? (unsigned char)  0 : (unsigned char)  e1 + exp_delta_from_raw(_let_3 - (ap_uint<25>)(e1 > e2 ? (ap_uint<24>)  _let_2 : (ap_uint<24>)  _let_1))) << 23 | (ap_uint<31>)__smt2c_ext_1);
+}
+
+Converting C output to HLS-compatible C++...
+
+HLS C++ file saved to: /home/josephluke/Program-Synthesis-for-Efficient-ML/results/cpp/relaxsweep_fp32_add_v1_staged_r03.cpp
+Generated HLS-ready C++ code:
+
+#include <ap_int.h>
+
+ap_uint<24> shr24_sat(ap_uint<24> x, ap_uint<8> d) {
+  return d >= 24 ? (ap_uint<24>)  0 : (ap_uint<24>)  x >> (ap_uint<24>)d;
+}
+
+ap_uint<24> norm24_from_raw(ap_uint<25> raw) {
+  ap_uint<1> __smt2c_ext_0 = ((ap_uint<25>)raw).range(24, 24);
+  ap_uint<24> __smt2c_ext_1 = ((ap_uint<25>)raw).range(24, 1);
+  ap_uint<1> __smt2c_ext_2 = ((ap_uint<25>)raw).range(23, 23);
+  ap_uint<24> __smt2c_ext_3 = ((ap_uint<25>)raw).range(23, 0);
+  ap_uint<1> __smt2c_ext_4 = ((ap_uint<25>)raw).range(22, 22);
+  ap_uint<23> __smt2c_ext_5 = ((ap_uint<25>)raw).range(22, 0);
+  ap_uint<1> __smt2c_ext_6 = ((ap_uint<25>)raw).range(21, 21);
+  ap_uint<22> __smt2c_ext_7 = ((ap_uint<25>)raw).range(21, 0);
+  ap_uint<1> __smt2c_ext_8 = ((ap_uint<25>)raw).range(20, 20);
+  ap_uint<21> __smt2c_ext_9 = ((ap_uint<25>)raw).range(20, 0);
+  ap_uint<1> __smt2c_ext_10 = ((ap_uint<25>)raw).range(19, 19);
+  ap_uint<20> __smt2c_ext_11 = ((ap_uint<25>)raw).range(19, 0);
+  ap_uint<1> __smt2c_ext_12 = ((ap_uint<25>)raw).range(18, 18);
+  ap_uint<19> __smt2c_ext_13 = ((ap_uint<25>)raw).range(18, 0);
+  ap_uint<1> __smt2c_ext_14 = ((ap_uint<25>)raw).range(17, 17);
+  ap_uint<18> __smt2c_ext_15 = ((ap_uint<25>)raw).range(17, 0);
+  ap_uint<1> __smt2c_ext_16 = ((ap_uint<25>)raw).range(16, 16);
+  ap_uint<17> __smt2c_ext_17 = ((ap_uint<25>)raw).range(16, 0);
+  ap_uint<1> __smt2c_ext_18 = ((ap_uint<25>)raw).range(15, 15);
+  ap_uint<16> __smt2c_ext_19 = ((ap_uint<25>)raw).range(15, 0);
+  ap_uint<1> __smt2c_ext_20 = ((ap_uint<25>)raw).range(14, 14);
+  ap_uint<15> __smt2c_ext_21 = ((ap_uint<25>)raw).range(14, 0);
+  ap_uint<1> __smt2c_ext_22 = ((ap_uint<25>)raw).range(13, 13);
+  ap_uint<14> __smt2c_ext_23 = ((ap_uint<25>)raw).range(13, 0);
+  ap_uint<1> __smt2c_ext_24 = ((ap_uint<25>)raw).range(12, 12);
+  ap_uint<13> __smt2c_ext_25 = ((ap_uint<25>)raw).range(12, 0);
+  ap_uint<1> __smt2c_ext_26 = ((ap_uint<25>)raw).range(11, 11);
+  ap_uint<12> __smt2c_ext_27 = ((ap_uint<25>)raw).range(11, 0);
+  ap_uint<1> __smt2c_ext_28 = ((ap_uint<25>)raw).range(10, 10);
+  ap_uint<11> __smt2c_ext_29 = ((ap_uint<25>)raw).range(10, 0);
+  ap_uint<1> __smt2c_ext_30 = ((ap_uint<25>)raw).range(9, 9);
+  ap_uint<10> __smt2c_ext_31 = ((ap_uint<25>)raw).range(9, 0);
+  ap_uint<1> __smt2c_ext_32 = ((ap_uint<25>)raw).range(8, 8);
+  ap_uint<9> __smt2c_ext_33 = ((ap_uint<25>)raw).range(8, 0);
+  ap_uint<1> __smt2c_ext_34 = ((ap_uint<25>)raw).range(7, 7);
+  ap_uint<8> __smt2c_ext_35 = ((ap_uint<25>)raw).range(7, 0);
+  ap_uint<1> __smt2c_ext_36 = ((ap_uint<25>)raw).range(6, 6);
+  ap_uint<7> __smt2c_ext_37 = ((ap_uint<25>)raw).range(6, 0);
+  ap_uint<1> __smt2c_ext_38 = ((ap_uint<25>)raw).range(5, 5);
+  ap_uint<6> __smt2c_ext_39 = ((ap_uint<25>)raw).range(5, 0);
+  ap_uint<1> __smt2c_ext_40 = ((ap_uint<25>)raw).range(4, 4);
+  ap_uint<5> __smt2c_ext_41 = ((ap_uint<25>)raw).range(4, 0);
+  ap_uint<1> __smt2c_ext_42 = ((ap_uint<25>)raw).range(3, 3);
+  ap_uint<4> __smt2c_ext_43 = ((ap_uint<25>)raw).range(3, 0);
+  ap_uint<1> __smt2c_ext_44 = ((ap_uint<25>)raw).range(2, 2);
+  ap_uint<3> __smt2c_ext_45 = ((ap_uint<25>)raw).range(2, 0);
+  ap_uint<1> __smt2c_ext_46 = ((ap_uint<25>)raw).range(1, 1);
+  ap_uint<2> __smt2c_ext_47 = ((ap_uint<25>)raw).range(1, 0);
+  ap_uint<1> __smt2c_ext_48 = ((ap_uint<25>)raw).range(0, 0);
+  ap_uint<24> __smt2c_result;
+  if(raw == 0) {
+    __smt2c_result = 0;
+  }
+  else if(__smt2c_ext_0 == 1) {
+    __smt2c_result = __smt2c_ext_1;
+  }
+  else if(__smt2c_ext_2 == 1) {
+    __smt2c_result = __smt2c_ext_3;
+  }
+  else if(__smt2c_ext_4 == 1) {
+    __smt2c_result = (ap_uint<24>)__smt2c_ext_5 << 1 | (ap_uint<24>)0;
+  }
+  else if(__smt2c_ext_6 == 1) {
+    __smt2c_result = (ap_uint<24>)__smt2c_ext_7 << 2 | (ap_uint<24>)0;
+  }
+  else if(__smt2c_ext_8 == 1) {
+    __smt2c_result = (ap_uint<24>)__smt2c_ext_9 << 3 | (ap_uint<24>)0;
+  }
+  else if(__smt2c_ext_10 == 1) {
+    __smt2c_result = (ap_uint<24>)__smt2c_ext_11 << 4 | (ap_uint<24>)0;
+  }
+  else if(__smt2c_ext_12 == 1) {
+    __smt2c_result = (ap_uint<24>)__smt2c_ext_13 << 5 | (ap_uint<24>)0;
+  }
+  else if(__smt2c_ext_14 == 1) {
+    __smt2c_result = (ap_uint<24>)__smt2c_ext_15 << 6 | (ap_uint<24>)0;
+  }
+  else if(__smt2c_ext_16 == 1) {
+    __smt2c_result = (ap_uint<24>)__smt2c_ext_17 << 7 | (ap_uint<24>)0;
+  }
+  else if(__smt2c_ext_18 == 1) {
+    __smt2c_result = (ap_uint<24>)__smt2c_ext_19 << 8 | (ap_uint<24>)0;
+  }
+  else if(__smt2c_ext_20 == 1) {
+    __smt2c_result = (ap_uint<24>)__smt2c_ext_21 << 9 | (ap_uint<24>)0;
+  }
+  else if(__smt2c_ext_22 == 1) {
+    __smt2c_result = (ap_uint<24>)__smt2c_ext_23 << 10 | (ap_uint<24>)0;
+  }
+  else if(__smt2c_ext_24 == 1) {
+    __smt2c_result = (ap_uint<24>)__smt2c_ext_25 << 11 | (ap_uint<24>)0;
+  }
+  else if(__smt2c_ext_26 == 1) {
+    __smt2c_result = (ap_uint<24>)__smt2c_ext_27 << 12 | (ap_uint<24>)0;
+  }
+  else if(__smt2c_ext_28 == 1) {
+    __smt2c_result = (ap_uint<24>)__smt2c_ext_29 << 13 | (ap_uint<24>)0;
+  }
+  else if(__smt2c_ext_30 == 1) {
+    __smt2c_result = (ap_uint<24>)__smt2c_ext_31 << 14 | (ap_uint<24>)0;
+  }
+  else if(__smt2c_ext_32 == 1) {
+    __smt2c_result = (ap_uint<24>)__smt2c_ext_33 << 15 | (ap_uint<24>)0;
+  }
+  else if(__smt2c_ext_34 == 1) {
+    __smt2c_result = (ap_uint<24>)__smt2c_ext_35 << 16 | (ap_uint<24>)0;
+  }
+  else if(__smt2c_ext_36 == 1) {
+    __smt2c_result = (ap_uint<24>)__smt2c_ext_37 << 17 | (ap_uint<24>)0;
+  }
+  else if(__smt2c_ext_38 == 1) {
+    __smt2c_result = (ap_uint<24>)__smt2c_ext_39 << 18 | (ap_uint<24>)0;
+  }
+  else if(__smt2c_ext_40 == 1) {
+    __smt2c_result = (ap_uint<24>)__smt2c_ext_41 << 19 | (ap_uint<24>)0;
+  }
+  else if(__smt2c_ext_42 == 1) {
+    __smt2c_result = (ap_uint<24>)__smt2c_ext_43 << 20 | (ap_uint<24>)0;
+  }
+  else if(__smt2c_ext_44 == 1) {
+    __smt2c_result = (ap_uint<24>)__smt2c_ext_45 << 21 | (ap_uint<24>)0;
+  }
+  else if(__smt2c_ext_46 == 1) {
+    __smt2c_result = (ap_uint<24>)__smt2c_ext_47 << 22 | (ap_uint<24>)0;
+  }
+  else {
+    __smt2c_result = (ap_uint<24>)__smt2c_ext_48 << 23 | (ap_uint<24>)0;
+  }
+  return __smt2c_result;
+}
+
+ap_uint<8> exp_delta_from_raw(ap_uint<25> raw) {
+  ap_uint<1> __smt2c_ext_0 = ((ap_uint<25>)raw).range(24, 24);
+  ap_uint<1> __smt2c_ext_1 = ((ap_uint<25>)raw).range(23, 23);
+  ap_uint<1> __smt2c_ext_2 = ((ap_uint<25>)raw).range(22, 22);
+  ap_uint<1> __smt2c_ext_3 = ((ap_uint<25>)raw).range(21, 21);
+  ap_uint<1> __smt2c_ext_4 = ((ap_uint<25>)raw).range(20, 20);
+  ap_uint<1> __smt2c_ext_5 = ((ap_uint<25>)raw).range(19, 19);
+  ap_uint<1> __smt2c_ext_6 = ((ap_uint<25>)raw).range(18, 18);
+  ap_uint<1> __smt2c_ext_7 = ((ap_uint<25>)raw).range(17, 17);
+  ap_uint<1> __smt2c_ext_8 = ((ap_uint<25>)raw).range(16, 16);
+  ap_uint<1> __smt2c_ext_9 = ((ap_uint<25>)raw).range(15, 15);
+  ap_uint<1> __smt2c_ext_10 = ((ap_uint<25>)raw).range(14, 14);
+  ap_uint<1> __smt2c_ext_11 = ((ap_uint<25>)raw).range(13, 13);
+  ap_uint<1> __smt2c_ext_12 = ((ap_uint<25>)raw).range(12, 12);
+  ap_uint<1> __smt2c_ext_13 = ((ap_uint<25>)raw).range(11, 11);
+  ap_uint<1> __smt2c_ext_14 = ((ap_uint<25>)raw).range(10, 10);
+  ap_uint<1> __smt2c_ext_15 = ((ap_uint<25>)raw).range(9, 9);
+  ap_uint<1> __smt2c_ext_16 = ((ap_uint<25>)raw).range(8, 8);
+  ap_uint<1> __smt2c_ext_17 = ((ap_uint<25>)raw).range(7, 7);
+  ap_uint<1> __smt2c_ext_18 = ((ap_uint<25>)raw).range(6, 6);
+  ap_uint<1> __smt2c_ext_19 = ((ap_uint<25>)raw).range(5, 5);
+  ap_uint<1> __smt2c_ext_20 = ((ap_uint<25>)raw).range(4, 4);
+  ap_uint<1> __smt2c_ext_21 = ((ap_uint<25>)raw).range(3, 3);
+  ap_uint<1> __smt2c_ext_22 = ((ap_uint<25>)raw).range(2, 2);
+  ap_uint<1> __smt2c_ext_23 = ((ap_uint<25>)raw).range(1, 1);
+  ap_uint<8> __smt2c_result;
+  if(raw == 0) {
+    __smt2c_result = 0;
+  }
+  else if(__smt2c_ext_0 == 1) {
+    __smt2c_result = 1;
+  }
+  else if(__smt2c_ext_1 == 1) {
+    __smt2c_result = 0;
+  }
+  else if(__smt2c_ext_2 == 1) {
+    __smt2c_result = -1;
+  }
+  else if(__smt2c_ext_3 == 1) {
+    __smt2c_result = -2;
+  }
+  else if(__smt2c_ext_4 == 1) {
+    __smt2c_result = -3;
+  }
+  else if(__smt2c_ext_5 == 1) {
+    __smt2c_result = -4;
+  }
+  else if(__smt2c_ext_6 == 1) {
+    __smt2c_result = -5;
+  }
+  else if(__smt2c_ext_7 == 1) {
+    __smt2c_result = -6;
+  }
+  else if(__smt2c_ext_8 == 1) {
+    __smt2c_result = -7;
+  }
+  else if(__smt2c_ext_9 == 1) {
+    __smt2c_result = -8;
+  }
+  else if(__smt2c_ext_10 == 1) {
+    __smt2c_result = -9;
+  }
+  else if(__smt2c_ext_11 == 1) {
+    __smt2c_result = -10;
+  }
+  else if(__smt2c_ext_12 == 1) {
+    __smt2c_result = -11;
+  }
+  else if(__smt2c_ext_13 == 1) {
+    __smt2c_result = -12;
+  }
+  else if(__smt2c_ext_14 == 1) {
+    __smt2c_result = -13;
+  }
+  else if(__smt2c_ext_15 == 1) {
+    __smt2c_result = -14;
+  }
+  else if(__smt2c_ext_16 == 1) {
+    __smt2c_result = -15;
+  }
+  else if(__smt2c_ext_17 == 1) {
+    __smt2c_result = -16;
+  }
+  else if(__smt2c_ext_18 == 1) {
+    __smt2c_result = -17;
+  }
+  else if(__smt2c_ext_19 == 1) {
+    __smt2c_result = -18;
+  }
+  else if(__smt2c_ext_20 == 1) {
+    __smt2c_result = -19;
+  }
+  else if(__smt2c_ext_21 == 1) {
+    __smt2c_result = -20;
+  }
+  else if(__smt2c_ext_22 == 1) {
+    __smt2c_result = -21;
+  }
+  else if(__smt2c_ext_23 == 1) {
+    __smt2c_result = -22;
+  }
+  else {
+    __smt2c_result = -23;
+  }
+  return __smt2c_result;
+}
+
+ap_uint<32> fp32_sum(ap_uint<1> s1, ap_uint<8> e1, ap_uint<23> m1, ap_uint<1> s2, ap_uint<8> e2, ap_uint<23> m2) {
+  ap_uint<24> _let_1 = (ap_uint<24>)1 << 23 | (ap_uint<24>)m2;
+  ap_uint<24> _let_2 = (ap_uint<24>)1 << 23 | (ap_uint<24>)m1;
+  ap_uint<25> _let_3 = (ap_uint<25>)_let_2;
+  ap_uint<25> _let_4 = _let_3 - (ap_uint<25>)_let_1;
+  ap_uint<24> __smt2c_src_0 = norm24_from_raw(_let_4);
+  ap_uint<23> __smt2c_ext_1 = ((ap_uint<24>)__smt2c_src_0).range(22, 0);
+  return (ap_uint<32>)s1 << 31 | (ap_uint<32>)((ap_uint<31>)((s1 == s2 ? ap_uint<25>((_let_3 + _let_3)) : (ap_uint<25>)  (_let_2 >= _let_2 ? (ap_uint<25>)  _let_4 : ap_uint<25>((_let_3 - _let_3)))) == 0 ? (ap_uint<8>)  0 : ap_uint<8>((e1 + exp_delta_from_raw(_let_3 - (ap_uint<25>)(e1 > e2 ? (ap_uint<24>)  _let_2 : (ap_uint<24>)  _let_1))))) << 23 | (ap_uint<31>)__smt2c_ext_1);
+}
+
+[INFO] Selected top by symbol presence: fp32_sum
+[INFO] Generated HLS TCL script: /home/josephluke/Program-Synthesis-for-Efficient-ML/results/HLS/relaxsweep_fp32_add_v1_staged_r03/hls.tcl
+[INFO] Running Vitis HLS synthesis...
+
+[SUCCESS] Vitis HLS run completed successfully.
+[INFO] Staged 2 Verilog files into: /home/josephluke/Program-Synthesis-for-Efficient-ML/results/HLS/relaxsweep_fp32_add_v1_staged_r03/verilog_out
+[INFO] Candidate RTL modules: ['fp32_sum', 'fp32_sum_norm24_from_raw']
+[INFO] Generated Vivado TCL script: /home/josephluke/Program-Synthesis-for-Efficient-ML/results/HLS/relaxsweep_fp32_add_v1_staged_r03/vivado.tcl
+[INFO] Cleaning up previous Vivado log and journal files...
+[INFO] Running Vivado implementation (this will take several minutes)...
+
+[SUCCESS] Vivado implementation completed successfully.
+
+--- Hardware Results ---
+{
+    "LUTs": 285,
+    "FFs": 0,
+    "DSPs": 0,
+    "BRAMs": 0,
+    "Cycles": 0,
+    "Fmax_MHz": 139.063,
+    "Latency_ns": 7.191
+}
+[ACC-CMD] FP32_ADD_VARIANT=v2 PYTHON=/home/josephluke/Program-Synthesis-for-Efficient-ML/.venv/bin/python make HLS_BASE=/home/josephluke/Program-Synthesis-for-Efficient-ML/results/HLS HLS_SOLN=relaxsweep_fp32_add_v1_staged_r03 TOPLEVEL=fp32_sum MODULE=tests.addition.test_fp32_adder TOPLEVEL_LANG=verilog
+rm -f results.xml
+"make" -f Makefile results.xml
+make[1]: Entering directory '/home/josephluke/Program-Synthesis-for-Efficient-ML/accuracy_tests'
+rm -f results.xml
+COCOTB_TEST_MODULES=tests.addition.test_fp32_adder COCOTB_TESTCASE= COCOTB_TEST_FILTER= COCOTB_TOPLEVEL=fp32_sum TOPLEVEL_LANG=verilog \
+         /home/josephluke/.conda/pkgs/iverilog-11.0-hd56c0c9_0/bin/vvp -M /home/josephluke/Program-Synthesis-for-Efficient-ML/.venv/lib/python3.11/site-packages/cocotb/libs -m libcocotbvpi_icarus   /home/josephluke/Program-Synthesis-for-Efficient-ML/accuracy_tests/sim_build/fp32_sum_relaxsweep_fp32_add_v1_staged_r03/sim.vvp  -none 
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:93   in _embed_init_python              Using Python 3.11.9 interpreter at /home/josephluke/Program-Synthesis-for-Efficient-ML/.venv/bin/python
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:79   in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 11.0 (stable)
+     0.00ns WARNING  gpi                                vpi_iterate returned NULL for type vpiInstance for object NULL
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774953368
+     0.00ns INFO     cocotb                             Initialized cocotb v2.0.0 from /home/josephluke/Program-Synthesis-for-Efficient-ML/.venv/lib64/python3.11/site-packages/cocotb
+     0.00ns INFO     cocotb                             Running tests
+     0.00ns INFO     cocotb.regression                  running tests.addition.test_fp32_adder.fp32_adder_accuracy_subcomponents (1/4)
+     0.00ns INFO     cocotb.fp32_sum                    Skipping subcomponents variant (FP32_ADD_VARIANT filter).
+     0.00ns INFO     cocotb.regression                  tests.addition.test_fp32_adder.fp32_adder_accuracy_subcomponents passed
+     0.00ns INFO     cocotb.regression                  running tests.addition.test_fp32_adder.fp32_adder_accuracy_v2 (2/4)
+     0.00ns INFO     cocotb.fp32_sum                    Starting FP32 adder accuracy test (v2)
+     0.00ns INFO     cocotb.fp32_sum                    Random operand sampler mode: normal_full (seed=7)
+   726.00ns WARNING  py.warnings                        /home/josephluke/Program-Synthesis-for-Efficient-ML/accuracy_tests/tests/addition/test_fp32_adder.py:169: RuntimeWarning: overflow encountered in scalar divide
+                                                          rel_pct = abs(float((got_f - ref_f) / ref_f)) * 100.0
+ 56252.00ns WARNING  py.warnings                        /home/josephluke/Program-Synthesis-for-Efficient-ML/accuracy_tests/tests/addition/test_fp32_adder.py:169: RuntimeWarning: overflow encountered in scalar subtract
+                                                          rel_pct = abs(float((got_f - ref_f) / ref_f)) * 100.0
+100000.00ns INFO     cocotb.fp32_sum                    [IN-DIST (normal_full)] Ran 99992 cases (skipped 8). Exact match: 0.10%. Within 5% relative error: 3.74% (avg=inf%, p99=114.397%)
+100000.00ns WARNING  py.warnings                        /home/josephluke/Program-Synthesis-for-Efficient-ML/accuracy_tests/tests/addition/test_fp32_adder.py:201: RuntimeWarning: overflow encountered in cast
+                                                          rel_err_pct=np.asarray(rel_err_pcts, dtype=np.float32),
+100000.00ns INFO     cocotb.fp32_sum                    Saved per-sample error dump: /home/josephluke/Program-Synthesis-for-Efficient-ML/results/relaxation_sweep/run1_normal_full/error_samples/fp32_add_v1_staged_r03.npz
+100000.00ns INFO     cocotb.regression                  tests.addition.test_fp32_adder.fp32_adder_accuracy_v2 passed
+100000.00ns INFO     cocotb.regression                  running tests.addition.test_fp32_adder.fp32_adder_accuracy_v1 (3/4)
+100000.00ns INFO     cocotb.fp32_sum                    Skipping v1 variant (FP32_ADD_VARIANT filter).
+100000.00ns INFO     cocotb.regression                  tests.addition.test_fp32_adder.fp32_adder_accuracy_v1 passed
+100000.00ns INFO     cocotb.regression                  running tests.addition.test_fp32_adder.fp32_adder_accuracy_flopoco (4/4)
+100000.00ns INFO     cocotb.fp32_sum                    Skipping flopoco variant (FP32_ADD_VARIANT filter).
+100000.00ns INFO     cocotb.regression                  tests.addition.test_fp32_adder.fp32_adder_accuracy_flopoco passed
+100000.00ns INFO     cocotb.regression                  **************************************************************************************************************************
+                                                        ** TEST                                                              STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        **************************************************************************************************************************
+                                                        ** tests.addition.test_fp32_adder.fp32_adder_accuracy_subcomponents   PASS           0.00           0.00          0.00  **
+                                                        ** tests.addition.test_fp32_adder.fp32_adder_accuracy_v2              PASS      100000.00           6.03      16590.68  **
+                                                        ** tests.addition.test_fp32_adder.fp32_adder_accuracy_v1              PASS           0.00           0.00          0.00  **
+                                                        ** tests.addition.test_fp32_adder.fp32_adder_accuracy_flopoco         PASS           0.00           0.00          0.00  **
+                                                        **************************************************************************************************************************
+                                                        ** TESTS=4 PASS=4 FAIL=0 SKIP=0                                                 100000.00           6.03      16584.97  **
+                                                        **************************************************************************************************************************
+make[1]: Leaving directory '/home/josephluke/Program-Synthesis-for-Efficient-ML/accuracy_tests'
+
+/home/josephluke/Program-Synthesis-for-Efficient-ML/.venv/lib/python3.11/site-packages/cocotb_tools/makefiles/simulators/Makefile.icarus:66: Using MODULE is deprecated, please use COCOTB_TEST_MODULES instead.
+[SUCCESS] Accuracy run completed successfully.

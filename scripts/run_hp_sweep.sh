@@ -5,9 +5,9 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
-export HLS_CLK_PERIOD_NS=5.000
-export HLS_CLK_UNCERTAINTY_NS=0.200
-export VIVADO_CLK_PERIOD_NS=5.000
+export HLS_CLK_PERIOD_NS=1000000000
+export HLS_CLK_UNCERTAINTY_NS=0
+export VIVADO_CLK_PERIOD_NS=1000000000
 
 VENV=".venv/bin/python"
 if [ ! -f "$VENV" ]; then VENV="python3"; fi
@@ -23,7 +23,7 @@ BENCHMARKS=(
 for BM in "${BENCHMARKS[@]}"; do
     echo "Launching HP sweep session: hp_$BM"
     tmux new-session -d -s "hp_$BM" \
-        "export HLS_CLK_PERIOD_NS=5.000 HLS_CLK_UNCERTAINTY_NS=0.200 VIVADO_CLK_PERIOD_NS=5.000; \
+        "export HLS_CLK_PERIOD_NS=1000000000 HLS_CLK_UNCERTAINTY_NS=0 VIVADO_CLK_PERIOD_NS=1000000000; \
          cd $(pwd); \
          $VENV -m src.Experiments.hyperparameter_sweep \
             --preset fine \

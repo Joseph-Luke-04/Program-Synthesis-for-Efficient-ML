@@ -1,0 +1,510 @@
+{
+  "accuracy": {
+    "abs_err_avg": -1.0,
+    "abs_err_max": -1.0,
+    "abs_err_p99": -1.0,
+    "accuracy_exact_match": 0.1226,
+    "accuracy_source": "cocotb",
+    "cocotb_passed": true,
+    "cocotb_returncode": 0,
+    "exact_matches": 12260,
+    "ran": true,
+    "skipped": false,
+    "total_cases": 100000,
+    "ulp_avg": -1.0,
+    "ulp_max": -1,
+    "ulp_p99": -1,
+    "within_5pct_rel": 0.1861,
+    "within_rel_pct": 0.1861,
+    "within_rel_threshold_pct": 5.0
+  },
+  "component": "full_sum_v2",
+  "component_plan": [
+    "full_sum_v2"
+  ],
+  "components": {
+    "full_sum_v2": {
+      "accepted_constraints": 7,
+      "accepted_final_strict": 7,
+      "accepted_stage0": 0,
+      "accepted_stage1": 0,
+      "accepted_strict": 7,
+      "accepted_used_relaxation": 0,
+      "attempt_status_counts": {
+        "fail": 1,
+        "solved": 7,
+        "timeout": 22
+      },
+      "attempts": [
+        {
+          "bits": 32,
+          "enum_count_primary": 87,
+          "enum_count_primary_key": "SygusEnumerator::enumTermsRewrite",
+          "enum_matches": [
+            {
+              "key": "SygusEnumerator::enumTerms",
+              "value": 24
+            },
+            {
+              "key": "SygusEnumerator::enumTermsEvalExamples",
+              "value": 65
+            },
+            {
+              "key": "SygusEnumerator::enumTermsRewrite",
+              "value": 87
+            }
+          ],
+          "runtime_seconds": 0.01573815383017063,
+          "stats_raw": "DefaultModel::ee::functionTermsCount = 54\nDefaultModel::ee::mergesCount = 92\nDefaultModel::ee::termsCount = 178\nQuantifiersEngine::Num_Quantifiers = 1\nQuantifiersEngine::Rounds_Instantiation_Last_Call = 3\nSygusEnumerator::enumTerms = 24\nSygusEnumerator::enumTermsEvalExamples = 65\nSygusEnumerator::enumTermsRewrite = 87\nTheoryEngine::Checks_Full = 17\nTheoryEngine::Checks_Last_Call = 3\nTheoryEngine::Checks_Standard = 390\nTheoryEngine::combineTheoriesCalls = 3\nTheoryEngine::combineTheoriesTime = 0ms\narith::ee::functionTermsCount = 32\narith::ee::mergesCount = 102\narith::ee::termsCount = 156\ndriver::filename = /home/podman-storage/tmp/tmp3z3ymuxz.sl\nglobal::totalTime = 13ms\npreprocessing::apply-substs = 0ms\npreprocessing::ff-disjunctive-bit = 0ms\npreprocessing::non-clausal-simp = 0ms\npreprocessing::quantifiers-preprocess = 0ms\npreprocessing::rewrite = 0ms\npreprocessing::static-learning = 0ms\npreprocessing::static-rewrite = 0ms\npreprocessing::theory-preprocess = 0ms\nprop::CnfStream::cnfConversionTime = 3ms\nprop::CnfStream::numAtoms = 120\nprop::PropEngine::numInputAtoms = 2\nresource::resourceUnitsUsed = 10258\nresource::spendResourceCalls = 10258\nresource::steps::inference-id = { ARITH_CONF_SIMPLEX: 14, ARITH_SPLIT_DEQ: 6, ARITH_TIGHTEN_FLOOR: 1, DATATYPES_INST: 80, DATATYPES_LABEL_EXH: 43, DATATYPES_SPLIT: 14, DATATYPES_SYGUS_FAIR_SIZE: 3, DATATYPES_SYGUS_MT_BOUND: 1, DATATYPES_SYGUS_MT_POS: 1, DATATYPES_SYGUS_SIMPLE_SYM_BREAK: 22, DATATYPES_SYGUS_VALUE_CORRECTION: 1, QUANTIFIERS_SYGUS_ACTIVE_GEN_EXCLUDE_CURRENT: 1, QUANTIFIERS_SYGUS_ENUM_ACTIVE_GUARD_SPLIT: 1 }\nresource::steps::resource = { ArithPivotStep: 11, BvSatStep: 1, CnfStep: 109, DecisionStep: 337, LemmaStep: 57, PreprocessStep: 10, RewriteStep: 8243, SatConflictStep: 368, SygusCheckStep: 375, TheoryCheckStep: 559 }\nsat::clauses_literals = 199\nsat::conflicts = 5\nsat::decisions = 349\nsat::learnts_literals = 14\nsat::max_literals = 15\nsat::propagations = 661\nsat::starts = 1\nsat::tot_literals = 15\nshared::ee::functionTermsCount = 31\nshared::ee::mergesCount = 188\nshared::ee::termsCount = 86\nsmt::SolverEngine::processAssertionsTime = 0ms\ntheory::QuantifiersEngine::time = 2ms\ntheory::QuantifiersEngine::time_ematching = 0ms\ntheory::arith::AuxiliaryVariables = 14\ntheory::arith::UserVariables = 28\ntheory::arith::adjTime = 0ms\ntheory::arith::bound::time = 0ms\ntheory::arith::cd::unatePropagateCalls = 140\ntheory::arith::cd::unatePropagateImplications = 19\ntheory::arith::checkTime = 1ms\ntheory::arith::conflicts = 15\ntheory::arith::congruence::equalsConstantCalls = 66\ntheory::arith::congruence::watchedVariableIsNotZero = 43\ntheory::arith::congruence::watchedVariableIsZero = 4\ntheory::arith::congruence::watchedVariables = 6\ntheory::arith::dual::findConflictOnTheQueueTime = 0ms\ntheory::arith::dual::recentViolationCatches = 14\ntheory::arith::dual::searchTime = 0ms\ntheory::arith::inferencesConflict = { ARITH_CONF_SIMPLEX: 14, ARITH_TIGHTEN_FLOOR: 1 }\ntheory::arith::inferencesLemma = { ARITH_SPLIT_DEQ: 6 }\ntheory::arith::lemmas = 6\ntheory::arith::newPropTimer = 0ms\ntheory::arith::pivotTime = 0ms\ntheory::arith::pivots = 11\ntheory::arith::ppRewriteTimer = 0ms\ntheory::arith::presolveTime = 0ms\ntheory::arith::propagations = 28\ntheory::arith::staticLearningTimer = 0ms\ntheory::arith::status::avgUnknownsInARow = 0\ntheory::arith::status::commitsOnConflicts = 12\ntheory::arith::status::nontrivialSatChecks = 180\ntheory::arith::updates = 15\ntheory::arith::weakening::attempts = 14\ntheory::arith::weakening::success = 14\ntheory::arith::weakening::time = 0ms\ntheory::arith::weakening::total = 16\ntheory::arith::z::solveRealRelax::timer = 0ms\ntheory::arrays::ee::termsCount = 2\ntheory::arrays::mayEqual::termsCount = 2\ntheory::arrays::pp::termsCount = 2\ntheory::bags::ee::termsCount = 2\ntheory::builtin::propagations = 133\ntheory::bv::BVSolverBitblast::cadical::calls_to_solve = 17\ntheory::bv::BVSolverBitblast::cadical::solve_time = 0ms\ntheory::bv::BVSolverBitblast::cadical::variables = 2\ntheory::bv::checkTime = 0ms\ntheory::bv::ee::termsCount = 2\ntheory::datatypes::checkTime = 4ms\ntheory::datatypes::computeCareGraphTime = 0ms\ntheory::datatypes::ee::functionTermsCount = 263\ntheory::datatypes::ee::mergesCount = 423\ntheory::datatypes::ee::termsCount = 501\ntheory::datatypes::inferencesFact = { DATATYPES_INST: 80, DATATYPES_LABEL_EXH: 43 }\ntheory::datatypes::inferencesLemma = { DATATYPES_SPLIT: 14, DATATYPES_SYGUS_FAIR_SIZE: 3, DATATYPES_SYGUS_MT_BOUND: 1, DATATYPES_SYGUS_MT_POS: 1, DATATYPES_SYGUS_SIMPLE_SYM_BREAK: 22, DATATYPES_SYGUS_VALUE_CORRECTION: 1 }\ntheory::datatypes::lemmas = 42\ntheory::datatypes::propagations = 326\ntheory::ff::ee::termsCount = 2\ntheory::fp::ee::termsCount = 2\ntheory::master::functionTermsCount = 32\ntheory::master::mergesCount = 525\ntheory::master::termsCount = 413\ntheory::quantifiers::checkTime = 0ms\ntheory::quantifiers::inferencesLemma = { QUANTIFIERS_SYGUS_ACTIVE_GEN_EXCLUDE_CURRENT: 1, QUANTIFIERS_SYGUS_ENUM_ACTIVE_GUARD_SPLIT: 1 }\ntheory::quantifiers::lemmas = 2\ntheory::quantifiers::preferPhase = 1\ntheory::sep::ee::termsCount = 2\ntheory::sets::ee::termsCount = 2\ntheory::strings::ee::termsCount = 2\ntheory::uf::checkTime = 0ms\ntheory::uf::computeCareGraphTime = 0ms\ntheory::uf::ee::termsCount = 2\ncvc5::CONSTANT = { UNKNOWN_TYPE_CONSTANT: 3 }\ncvc5::TERM = { APPLY_UF: 8, BITVECTOR_ADD: 3, BITVECTOR_CONCAT: 39, BITVECTOR_EXTRACT: 78, BITVECTOR_LSHR: 2, BITVECTOR_NEG: 23, BITVECTOR_SUB: 8, BITVECTOR_UGE: 4, BITVECTOR_UGT: 3, BITVECTOR_XOR: 1, BITVECTOR_ZERO_EXTEND: 14, EQUAL: 56, ITE: 67 }\ncvc5::VARIABLE = { Boolean type: 4, UNKNOWN_TYPE_CONSTANT: 21 }",
+          "status": "fail",
+          "timeout_seconds": 180
+        },
+        {
+          "bits": 32,
+          "enum_count_primary": 79,
+          "enum_count_primary_key": "SygusEnumerator::enumTermsRewrite",
+          "enum_matches": [
+            {
+              "key": "SygusEnumerator::enumTerms",
+              "value": 34
+            },
+            {
+              "key": "SygusEnumerator::enumTermsEvalExamples",
+              "value": 65
+            },
+            {
+              "key": "SygusEnumerator::enumTermsRewrite",
+              "value": 79
+            }
+          ],
+          "runtime_seconds": 0.014299102127552032,
+          "stats_raw": "DefaultModel::ee::functionTermsCount = 27\nDefaultModel::ee::mergesCount = 47\nDefaultModel::ee::termsCount = 91\nQuantifiersEngine::Num_Quantifiers = 1\nQuantifiersEngine::Rounds_Instantiation_Last_Call = 2\nSygusEnumerator::enumTerms = 34\nSygusEnumerator::enumTermsEvalExamples = 65\nSygusEnumerator::enumTermsRewrite = 79\nSynthConjecture::solutions = 1\nTheoryEngine::Checks_Full = 16\nTheoryEngine::Checks_Last_Call = 2\nTheoryEngine::Checks_Standard = 330\nTheoryEngine::combineTheoriesCalls = 2\nTheoryEngine::combineTheoriesTime = 0ms\narith::ee::functionTermsCount = 29\narith::ee::mergesCount = 92\narith::ee::termsCount = 142\ndriver::filename = /home/podman-storage/tmp/tmpp0i2vmey.sl\nglobal::totalTime = 12ms\npreprocessing::apply-substs = 0ms\npreprocessing::ff-disjunctive-bit = 0ms\npreprocessing::non-clausal-simp = 0ms\npreprocessing::quantifiers-preprocess = 0ms\npreprocessing::rewrite = 0ms\npreprocessing::static-learning = 0ms\npreprocessing::static-rewrite = 0ms\npreprocessing::theory-preprocess = 0ms\nprop::CnfStream::cnfConversionTime = 3ms\nprop::CnfStream::numAtoms = 120\nprop::PropEngine::numInputAtoms = 2\nresource::resourceUnitsUsed = 9520\nresource::spendResourceCalls = 9520\nresource::steps::inference-id = { ARITH_CONF_SIMPLEX: 14, ARITH_SPLIT_DEQ: 6, ARITH_TIGHTEN_FLOOR: 1, DATATYPES_INST: 66, DATATYPES_LABEL_EXH: 41, DATATYPES_SPLIT: 14, DATATYPES_SYGUS_FAIR_SIZE: 3, DATATYPES_SYGUS_MT_BOUND: 1, DATATYPES_SYGUS_MT_POS: 1, DATATYPES_SYGUS_SIMPLE_SYM_BREAK: 22, DATATYPES_SYGUS_VALUE_CORRECTION: 1, QUANTIFIERS_SYGUS_ENUM_ACTIVE_GUARD_SPLIT: 1 }\nresource::steps::resource = { ArithPivotStep: 11, BvSatStep: 1, CnfStep: 107, DecisionStep: 283, LemmaStep: 56, PreprocessStep: 10, RewriteStep: 7957, SatConflictStep: 313, SygusCheckStep: 127, TheoryCheckStep: 484 }\nsat::clauses_literals = 199\nsat::conflicts = 5\nsat::decisions = 295\nsat::learnts_literals = 14\nsat::max_literals = 15\nsat::propagations = 577\nsat::starts = 1\nsat::tot_literals = 15\nshared::ee::functionTermsCount = 31\nshared::ee::mergesCount = 167\nshared::ee::termsCount = 85\nsmt::SolverEngine::processAssertionsTime = 0ms\ntheory::QuantifiersEngine::time = 1ms\ntheory::QuantifiersEngine::time_ematching = 0ms\ntheory::arith::AuxiliaryVariables = 14\ntheory::arith::UserVariables = 28\ntheory::arith::adjTime = 0ms\ntheory::arith::bound::time = 0ms\ntheory::arith::cd::unatePropagateCalls = 129\ntheory::arith::cd::unatePropagateImplications = 16\ntheory::arith::checkTime = 1ms\ntheory::arith::conflicts = 15\ntheory::arith::congruence::equalsConstantCalls = 60\ntheory::arith::congruence::watchedVariableIsNotZero = 39\ntheory::arith::congruence::watchedVariableIsZero = 3\ntheory::arith::congruence::watchedVariables = 6\ntheory::arith::dual::findConflictOnTheQueueTime = 0ms\ntheory::arith::dual::recentViolationCatches = 14\ntheory::arith::dual::searchTime = 0ms\ntheory::arith::inferencesConflict = { ARITH_CONF_SIMPLEX: 14, ARITH_TIGHTEN_FLOOR: 1 }\ntheory::arith::inferencesLemma = { ARITH_SPLIT_DEQ: 6 }\ntheory::arith::lemmas = 6\ntheory::arith::newPropTimer = 0ms\ntheory::arith::pivotTime = 0ms\ntheory::arith::pivots = 11\ntheory::arith::ppRewriteTimer = 0ms\ntheory::arith::presolveTime = 0ms\ntheory::arith::propagations = 25\ntheory::arith::staticLearningTimer = 0ms\ntheory::arith::status::avgUnknownsInARow = 0\ntheory::arith::status::commitsOnConflicts = 12\ntheory::arith::status::nontrivialSatChecks = 161\ntheory::arith::updates = 15\ntheory::arith::weakening::attempts = 14\ntheory::arith::weakening::success = 14\ntheory::arith::weakening::time = 0ms\ntheory::arith::weakening::total = 16\ntheory::arith::z::solveRealRelax::timer = 0ms\ntheory::arrays::ee::termsCount = 2\ntheory::arrays::mayEqual::termsCount = 2\ntheory::arrays::pp::termsCount = 2\ntheory::bags::ee::termsCount = 2\ntheory::builtin::propagations = 118\ntheory::bv::BVSolverBitblast::cadical::calls_to_solve = 16\ntheory::bv::BVSolverBitblast::cadical::solve_time = 0ms\ntheory::bv::BVSolverBitblast::cadical::variables = 2\ntheory::bv::checkTime = 0ms\ntheory::bv::ee::termsCount = 2\ntheory::datatypes::checkTime = 3ms\ntheory::datatypes::computeCareGraphTime = 0ms\ntheory::datatypes::ee::functionTermsCount = 225\ntheory::datatypes::ee::mergesCount = 355\ntheory::datatypes::ee::termsCount = 435\ntheory::datatypes::inferencesFact = { DATATYPES_INST: 66, DATATYPES_LABEL_EXH: 41 }\ntheory::datatypes::inferencesLemma = { DATATYPES_SPLIT: 14, DATATYPES_SYGUS_FAIR_SIZE: 3, DATATYPES_SYGUS_MT_BOUND: 1, DATATYPES_SYGUS_MT_POS: 1, DATATYPES_SYGUS_SIMPLE_SYM_BREAK: 22, DATATYPES_SYGUS_VALUE_CORRECTION: 1 }\ntheory::datatypes::lemmas = 42\ntheory::datatypes::propagations = 273\ntheory::ff::ee::termsCount = 2\ntheory::fp::ee::termsCount = 2\ntheory::master::functionTermsCount = 29\ntheory::master::mergesCount = 447\ntheory::master::termsCount = 360\ntheory::quantifiers::checkTime = 0ms\ntheory::quantifiers::inferencesLemma = { QUANTIFIERS_SYGUS_ENUM_ACTIVE_GUARD_SPLIT: 1 }\ntheory::quantifiers::lemmas = 1\ntheory::quantifiers::preferPhase = 1\ntheory::sep::ee::termsCount = 2\ntheory::sets::ee::termsCount = 2\ntheory::strings::ee::termsCount = 2\ntheory::uf::checkTime = 0ms\ntheory::uf::computeCareGraphTime = 0ms\ntheory::uf::ee::termsCount = 2\ncvc5::CONSTANT = { UNKNOWN_TYPE_CONSTANT: 3 }\ncvc5::TERM = { APPLY_UF: 8, BITVECTOR_ADD: 3, BITVECTOR_CONCAT: 39, BITVECTOR_EXTRACT: 78, BITVECTOR_LSHR: 2, BITVECTOR_NEG: 23, BITVECTOR_SUB: 8, BITVECTOR_UGE: 4, BITVECTOR_UGT: 3, BITVECTOR_XOR: 1, BITVECTOR_ZERO_EXTEND: 14, EQUAL: 56, ITE: 67 }\ncvc5::VARIABLE = { Boolean type: 4, UNKNOWN_TYPE_CONSTANT: 21 }",
+          "status": "solved",
+          "timeout_seconds": 180
+        },
+        {
+          "bits": 32,
+          "enum_count_primary": 29345,
+          "enum_count_primary_key": "SygusEnumerator::enumTermsRewrite",
+          "enum_matches": [
+            {
+              "key": "SygusEnumerator::enumTerms",
+              "value": 316
+            },
+            {
+              "key": "SygusEnumerator::enumTermsEvalExamples",
+              "value": 7081
+            },
+            {
+              "key": "SygusEnumerator::enumTermsRewrite",
+              "value": 29345
+            }
+          ],
+          "runtime_seconds": 0.4908237121999264,
+          "stats_raw": "DefaultModel::ee::functionTermsCount = 27\nDefaultModel::ee::mergesCount = 47\nDefaultModel::ee::termsCount = 91\nQuantifiersEngine::Num_Quantifiers = 1\nQuantifiersEngine::Rounds_Instantiation_Last_Call = 2\nSygusEnumerator::enumTerms = 316\nSygusEnumerator::enumTermsEvalExamples = 7081\nSygusEnumerator::enumTermsRewrite = 29345\nSynthConjecture::solutions = 1\nTheoryEngine::Checks_Full = 16\nTheoryEngine::Checks_Last_Call = 2\nTheoryEngine::Checks_Standard = 330\nTheoryEngine::combineTheoriesCalls = 2\nTheoryEngine::combineTheoriesTime = 0ms\narith::ee::functionTermsCount = 29\narith::ee::mergesCount = 92\narith::ee::termsCount = 142\ndriver::filename = /home/podman-storage/tmp/tmpwfmnxwp9.sl\nglobal::totalTime = 488ms\npreprocessing::apply-substs = 0ms\npreprocessing::ff-disjunctive-bit = 0ms\npreprocessing::non-clausal-simp = 0ms\npreprocessing::quantifiers-preprocess = 0ms\npreprocessing::rewrite = 0ms\npreprocessing::static-learning = 0ms\npreprocessing::static-rewrite = 0ms\npreprocessing::theory-preprocess = 0ms\nprop::CnfStream::cnfConversionTime = 3ms\nprop::CnfStream::numAtoms = 120\nprop::PropEngine::numInputAtoms = 2\nresource::resourceUnitsUsed = 410088\nresource::spendResourceCalls = 410088\nresource::steps::inference-id = { ARITH_CONF_SIMPLEX: 14, ARITH_SPLIT_DEQ: 6, ARITH_TIGHTEN_FLOOR: 1, DATATYPES_INST: 66, DATATYPES_LABEL_EXH: 41, DATATYPES_SPLIT: 14, DATATYPES_SYGUS_FAIR_SIZE: 3, DATATYPES_SYGUS_MT_BOUND: 1, DATATYPES_SYGUS_MT_POS: 1, DATATYPES_SYGUS_SIMPLE_SYM_BREAK: 22, DATATYPES_SYGUS_VALUE_CORRECTION: 1, QUANTIFIERS_SYGUS_ENUM_ACTIVE_GUARD_SPLIT: 1 }\nresource::steps::resource = { ArithPivotStep: 11, BvSatStep: 1, CnfStep: 107, DecisionStep: 283, LemmaStep: 56, PreprocessStep: 10, RewriteStep: 333054, SatConflictStep: 313, SygusCheckStep: 75598, TheoryCheckStep: 484 }\nsat::clauses_literals = 199\nsat::conflicts = 5\nsat::decisions = 295\nsat::learnts_literals = 14\nsat::max_literals = 15\nsat::propagations = 577\nsat::starts = 1\nsat::tot_literals = 15\nshared::ee::functionTermsCount = 31\nshared::ee::mergesCount = 167\nshared::ee::termsCount = 85\nsmt::SolverEngine::processAssertionsTime = 0ms\ntheory::QuantifiersEngine::time = 477ms\ntheory::QuantifiersEngine::time_ematching = 0ms\ntheory::arith::AuxiliaryVariables = 14\ntheory::arith::UserVariables = 28\ntheory::arith::adjTime = 0ms\ntheory::arith::bound::time = 0ms\ntheory::arith::cd::unatePropagateCalls = 129\ntheory::arith::cd::unatePropagateImplications = 16\ntheory::arith::checkTime = 1ms\ntheory::arith::conflicts = 15\ntheory::arith::congruence::equalsConstantCalls = 60\ntheory::arith::congruence::watchedVariableIsNotZero = 39\ntheory::arith::congruence::watchedVariableIsZero = 3\ntheory::arith::congruence::watchedVariables = 6\ntheory::arith::dual::findConflictOnTheQueueTime = 0ms\ntheory::arith::dual::recentViolationCatches = 14\ntheory::arith::dual::searchTime = 0ms\ntheory::arith::inferencesConflict = { ARITH_CONF_SIMPLEX: 14, ARITH_TIGHTEN_FLOOR: 1 }\ntheory::arith::inferencesLemma = { ARITH_SPLIT_DEQ: 6 }\ntheory::arith::lemmas = 6\ntheory::arith::newPropTimer = 0ms\ntheory::arith::pivotTime = 0ms\ntheory::arith::pivots = 11\ntheory::arith::ppRewriteTimer = 0ms\ntheory::arith::presolveTime = 0ms\ntheory::arith::propagations = 25\ntheory::arith::staticLearningTimer = 0ms\ntheory::arith::status::avgUnknownsInARow = 0\ntheory::arith::status::commitsOnConflicts = 12\ntheory::arith::status::nontrivialSatChecks = 161\ntheory::arith::updates = 15\ntheory::arith::weakening::attempts = 14\ntheory::arith::weakening::success = 14\ntheory::arith::weakening::time = 0ms\ntheory::arith::weakening::total = 16\ntheory::arith::z::solveRealRelax::timer = 0ms\ntheory::arrays::ee::termsCount = 2\ntheory::arrays::mayEqual::termsCount = 2\ntheory::arrays::pp::termsCount = 2\ntheory::bags::ee::termsCount = 2\ntheory::builtin::propagations = 118\ntheory::bv::BVSolverBitblast::cadical::calls_to_solve = 16\ntheory::bv::BVSolverBitblast::cadical::solve_time = 0ms\ntheory::bv::BVSolverBitblast::cadical::variables = 2\ntheory::bv::checkTime = 0ms\ntheory::bv::ee::termsCount = 2\ntheory::datatypes::checkTime = 3ms\ntheory::datatypes::computeCareGraphTime = 0ms\ntheory::datatypes::ee::functionTermsCount = 225\ntheory::datatypes::ee::mergesCount = 355\ntheory::datatypes::ee::termsCount = 435\ntheory::datatypes::inferencesFact = { DATATYPES_INST: 66, DATATYPES_LABEL_EXH: 41 }\ntheory::datatypes::inferencesLemma = { DATATYPES_SPLIT: 14, DATATYPES_SYGUS_FAIR_SIZE: 3, DATATYPES_SYGUS_MT_BOUND: 1, DATATYPES_SYGUS_MT_POS: 1, DATATYPES_SYGUS_SIMPLE_SYM_BREAK: 22, DATATYPES_SYGUS_VALUE_CORRECTION: 1 }\ntheory::datatypes::lemmas = 42\ntheory::datatypes::propagations = 273\ntheory::ff::ee::termsCount = 2\ntheory::fp::ee::termsCount = 2\ntheory::master::functionTermsCount = 29\ntheory::master::mergesCount = 447\ntheory::master::termsCount = 360\ntheory::quantifiers::checkTime = 0ms\ntheory::quantifiers::inferencesLemma = { QUANTIFIERS_SYGUS_ENUM_ACTIVE_GUARD_SPLIT: 1 }\ntheory::quantifiers::lemmas = 1\ntheory::quantifiers::preferPhase = 1\ntheory::sep::ee::termsCount = 2\ntheory::sets::ee::termsCount = 2\ntheory::strings::ee::termsCount = 2\ntheory::uf::checkTime = 0ms\ntheory::uf::computeCareGraphTime = 0ms\ntheory::uf::ee::termsCount = 2\ncvc5::CONSTANT = { UNKNOWN_TYPE_CONSTANT: 3 }\ncvc5::TERM = { APPLY_UF: 9, BITVECTOR_ADD: 3, BITVECTOR_CONCAT: 41, BITVECTOR_EXTRACT: 78, BITVECTOR_LSHR: 2, BITVECTOR_NEG: 23, BITVECTOR_SUB: 8, BITVECTOR_UGE: 4, BITVECTOR_UGT: 3, BITVECTOR_XOR: 1, BITVECTOR_ZERO_EXTEND: 14, EQUAL: 57, ITE: 67 }\ncvc5::VARIABLE = { Boolean type: 4, UNKNOWN_TYPE_CONSTANT: 21 }",
+          "status": "solved",
+          "timeout_seconds": 180
+        },
+        {
+          "bits": 32,
+          "enum_count_primary": 863012,
+          "enum_count_primary_key": "SygusEnumerator::enumTermsRewrite",
+          "enum_matches": [
+            {
+              "key": "SygusEnumerator::enumTerms",
+              "value": 3091
+            },
+            {
+              "key": "SygusEnumerator::enumTermsEvalExamples",
+              "value": 253361
+            },
+            {
+              "key": "SygusEnumerator::enumTermsRewrite",
+              "value": 863012
+            }
+          ],
+          "runtime_seconds": 22.933638555929065,
+          "stats_raw": "DefaultModel::ee::functionTermsCount = 27\nDefaultModel::ee::mergesCount = 47\nDefaultModel::ee::termsCount = 91\nQuantifiersEngine::Num_Quantifiers = 1\nQuantifiersEngine::Rounds_Instantiation_Last_Call = 2\nSygusEnumerator::enumTerms = 3091\nSygusEnumerator::enumTermsEvalExamples = 253361\nSygusEnumerator::enumTermsRewrite = 863012\nSynthConjecture::solutions = 1\nTheoryEngine::Checks_Full = 16\nTheoryEngine::Checks_Last_Call = 2\nTheoryEngine::Checks_Standard = 330\nTheoryEngine::combineTheoriesCalls = 2\nTheoryEngine::combineTheoriesTime = 0ms\narith::ee::functionTermsCount = 29\narith::ee::mergesCount = 92\narith::ee::termsCount = 142\ndriver::filename = /home/podman-storage/tmp/tmpf1y3jpli.sl\nglobal::totalTime = 22922ms\npreprocessing::apply-substs = 0ms\npreprocessing::ff-disjunctive-bit = 0ms\npreprocessing::non-clausal-simp = 0ms\npreprocessing::quantifiers-preprocess = 0ms\npreprocessing::rewrite = 0ms\npreprocessing::static-learning = 0ms\npreprocessing::static-rewrite = 0ms\npreprocessing::theory-preprocess = 0ms\nprop::CnfStream::cnfConversionTime = 3ms\nprop::CnfStream::numAtoms = 120\nprop::PropEngine::numInputAtoms = 2\nresource::resourceUnitsUsed = 15137807\nresource::spendResourceCalls = 15137807\nresource::steps::inference-id = { ARITH_CONF_SIMPLEX: 14, ARITH_SPLIT_DEQ: 6, ARITH_TIGHTEN_FLOOR: 1, DATATYPES_INST: 66, DATATYPES_LABEL_EXH: 41, DATATYPES_SPLIT: 14, DATATYPES_SYGUS_FAIR_SIZE: 3, DATATYPES_SYGUS_MT_BOUND: 1, DATATYPES_SYGUS_MT_POS: 1, DATATYPES_SYGUS_SIMPLE_SYM_BREAK: 22, DATATYPES_SYGUS_VALUE_CORRECTION: 1, QUANTIFIERS_SYGUS_ENUM_ACTIVE_GUARD_SPLIT: 1 }\nresource::steps::resource = { ArithPivotStep: 11, BvSatStep: 1, CnfStep: 107, DecisionStep: 283, LemmaStep: 56, PreprocessStep: 10, RewriteStep: 13236068, SatConflictStep: 313, SygusCheckStep: 1900303, TheoryCheckStep: 484 }\nsat::clauses_literals = 199\nsat::conflicts = 5\nsat::decisions = 295\nsat::learnts_literals = 14\nsat::max_literals = 15\nsat::propagations = 577\nsat::starts = 1\nsat::tot_literals = 15\nshared::ee::functionTermsCount = 31\nshared::ee::mergesCount = 167\nshared::ee::termsCount = 85\nsmt::SolverEngine::processAssertionsTime = 0ms\ntheory::QuantifiersEngine::time = 22911ms\ntheory::QuantifiersEngine::time_ematching = 0ms\ntheory::arith::AuxiliaryVariables = 14\ntheory::arith::UserVariables = 28\ntheory::arith::adjTime = 0ms\ntheory::arith::bound::time = 0ms\ntheory::arith::cd::unatePropagateCalls = 129\ntheory::arith::cd::unatePropagateImplications = 16\ntheory::arith::checkTime = 1ms\ntheory::arith::conflicts = 15\ntheory::arith::congruence::equalsConstantCalls = 60\ntheory::arith::congruence::watchedVariableIsNotZero = 39\ntheory::arith::congruence::watchedVariableIsZero = 3\ntheory::arith::congruence::watchedVariables = 6\ntheory::arith::dual::findConflictOnTheQueueTime = 0ms\ntheory::arith::dual::recentViolationCatches = 14\ntheory::arith::dual::searchTime = 0ms\ntheory::arith::inferencesConflict = { ARITH_CONF_SIMPLEX: 14, ARITH_TIGHTEN_FLOOR: 1 }\ntheory::arith::inferencesLemma = { ARITH_SPLIT_DEQ: 6 }\ntheory::arith::lemmas = 6\ntheory::arith::newPropTimer = 0ms\ntheory::arith::pivotTime = 0ms\ntheory::arith::pivots = 11\ntheory::arith::ppRewriteTimer = 0ms\ntheory::arith::presolveTime = 0ms\ntheory::arith::propagations = 25\ntheory::arith::staticLearningTimer = 0ms\ntheory::arith::status::avgUnknownsInARow = 0\ntheory::arith::status::commitsOnConflicts = 12\ntheory::arith::status::nontrivialSatChecks = 161\ntheory::arith::updates = 15\ntheory::arith::weakening::attempts = 14\ntheory::arith::weakening::success = 14\ntheory::arith::weakening::time = 0ms\ntheory::arith::weakening::total = 16\ntheory::arith::z::solveRealRelax::timer = 0ms\ntheory::arrays::ee::termsCount = 2\ntheory::arrays::mayEqual::termsCount = 2\ntheory::arrays::pp::termsCount = 2\ntheory::bags::ee::termsCount = 2\ntheory::builtin::propagations = 118\ntheory::bv::BVSolverBitblast::cadical::calls_to_solve = 16\ntheory::bv::BVSolverBitblast::cadical::solve_time = 0ms\ntheory::bv::BVSolverBitblast::cadical::variables = 2\ntheory::bv::checkTime = 0ms\ntheory::bv::ee::termsCount = 2\ntheory::datatypes::checkTime = 3ms\ntheory::datatypes::computeCareGraphTime = 0ms\ntheory::datatypes::ee::functionTermsCount = 225\ntheory::datatypes::ee::mergesCount = 355\ntheory::datatypes::ee::termsCount = 435\ntheory::datatypes::inferencesFact = { DATATYPES_INST: 66, DATATYPES_LABEL_EXH: 41 }\ntheory::datatypes::inferencesLemma = { DATATYPES_SPLIT: 14, DATATYPES_SYGUS_FAIR_SIZE: 3, DATATYPES_SYGUS_MT_BOUND: 1, DATATYPES_SYGUS_MT_POS: 1, DATATYPES_SYGUS_SIMPLE_SYM_BREAK: 22, DATATYPES_SYGUS_VALUE_CORRECTION: 1 }\ntheory::datatypes::lemmas = 42\ntheory::datatypes::propagations = 273\ntheory::ff::ee::termsCount = 2\ntheory::fp::ee::termsCount = 2\ntheory::master::functionTermsCount = 29\ntheory::master::mergesCount = 447\ntheory::master::termsCount = 360\ntheory::quantifiers::checkTime = 0ms\ntheory::quantifiers::inferencesLemma = { QUANTIFIERS_SYGUS_ENUM_ACTIVE_GUARD_SPLIT: 1 }\ntheory::quantifiers::lemmas = 1\ntheory::quantifiers::preferPhase = 1\ntheory::sep::ee::termsCount = 2\ntheory::sets::ee::termsCount = 2\ntheory::strings::ee::termsCount = 2\ntheory::uf::checkTime = 0ms\ntheory::uf::computeCareGraphTime = 0ms\ntheory::uf::ee::termsCount = 2\ncvc5::CONSTANT = { UNKNOWN_TYPE_CONSTANT: 3 }\ncvc5::TERM = { APPLY_UF: 10, BITVECTOR_ADD: 3, BITVECTOR_CONCAT: 43, BITVECTOR_EXTRACT: 78, BITVECTOR_LSHR: 2, BITVECTOR_NEG: 23, BITVECTOR_SUB: 8, BITVECTOR_UGE: 4, BITVECTOR_UGT: 3, BITVECTOR_XOR: 1, BITVECTOR_ZERO_EXTEND: 14, EQUAL: 58, ITE: 67 }\ncvc5::VARIABLE = { Boolean type: 4, UNKNOWN_TYPE_CONSTANT: 21 }",
+          "status": "solved",
+          "timeout_seconds": 180
+        },
+        {
+          "bits": 32,
+          "enum_count_primary": 864512,
+          "enum_count_primary_key": "SygusEnumerator::enumTermsRewrite",
+          "enum_matches": [
+            {
+              "key": "SygusEnumerator::enumTerms",
+              "value": 4160
+            },
+            {
+              "key": "SygusEnumerator::enumTermsEvalExamples",
+              "value": 254859
+            },
+            {
+              "key": "SygusEnumerator::enumTermsRewrite",
+              "value": 864512
+            }
+          ],
+          "runtime_seconds": 24.932471301406622,
+          "stats_raw": "DefaultModel::ee::functionTermsCount = 27\nDefaultModel::ee::mergesCount = 47\nDefaultModel::ee::termsCount = 91\nQuantifiersEngine::Num_Quantifiers = 1\nQuantifiersEngine::Rounds_Instantiation_Last_Call = 2\nSygusEnumerator::enumTerms = 4160\nSygusEnumerator::enumTermsEvalExamples = 254859\nSygusEnumerator::enumTermsRewrite = 864512\nSynthConjecture::solutions = 1\nTheoryEngine::Checks_Full = 16\nTheoryEngine::Checks_Last_Call = 2\nTheoryEngine::Checks_Standard = 330\nTheoryEngine::combineTheoriesCalls = 2\nTheoryEngine::combineTheoriesTime = 0ms\narith::ee::functionTermsCount = 29\narith::ee::mergesCount = 92\narith::ee::termsCount = 142\ndriver::filename = /home/podman-storage/tmp/tmpiq45p9r6.sl\nglobal::totalTime = 24923ms\npreprocessing::apply-substs = 0ms\npreprocessing::ff-disjunctive-bit = 0ms\npreprocessing::non-clausal-simp = 0ms\npreprocessing::quantifiers-preprocess = 0ms\npreprocessing::rewrite = 0ms\npreprocessing::static-learning = 0ms\npreprocessing::static-rewrite = 0ms\npreprocessing::theory-preprocess = 0ms\nprop::CnfStream::cnfConversionTime = 3ms\nprop::CnfStream::numAtoms = 120\nprop::PropEngine::numInputAtoms = 2\nresource::resourceUnitsUsed = 15169823\nresource::spendResourceCalls = 15169823\nresource::steps::inference-id = { ARITH_CONF_SIMPLEX: 14, ARITH_SPLIT_DEQ: 6, ARITH_TIGHTEN_FLOOR: 1, DATATYPES_INST: 66, DATATYPES_LABEL_EXH: 41, DATATYPES_SPLIT: 14, DATATYPES_SYGUS_FAIR_SIZE: 3, DATATYPES_SYGUS_MT_BOUND: 1, DATATYPES_SYGUS_MT_POS: 1, DATATYPES_SYGUS_SIMPLE_SYM_BREAK: 22, DATATYPES_SYGUS_VALUE_CORRECTION: 1, QUANTIFIERS_SYGUS_ENUM_ACTIVE_GUARD_SPLIT: 1 }\nresource::steps::resource = { ArithPivotStep: 11, BvSatStep: 1, CnfStep: 107, DecisionStep: 283, LemmaStep: 56, PreprocessStep: 10, RewriteStep: 13266108, SatConflictStep: 313, SygusCheckStep: 1902279, TheoryCheckStep: 484 }\nsat::clauses_literals = 199\nsat::conflicts = 5\nsat::decisions = 295\nsat::learnts_literals = 14\nsat::max_literals = 15\nsat::propagations = 577\nsat::starts = 1\nsat::tot_literals = 15\nshared::ee::functionTermsCount = 31\nshared::ee::mergesCount = 167\nshared::ee::termsCount = 85\nsmt::SolverEngine::processAssertionsTime = 0ms\ntheory::QuantifiersEngine::time = 24911ms\ntheory::QuantifiersEngine::time_ematching = 0ms\ntheory::arith::AuxiliaryVariables = 14\ntheory::arith::UserVariables = 28\ntheory::arith::adjTime = 0ms\ntheory::arith::bound::time = 0ms\ntheory::arith::cd::unatePropagateCalls = 129\ntheory::arith::cd::unatePropagateImplications = 16\ntheory::arith::checkTime = 1ms\ntheory::arith::conflicts = 15\ntheory::arith::congruence::equalsConstantCalls = 60\ntheory::arith::congruence::watchedVariableIsNotZero = 39\ntheory::arith::congruence::watchedVariableIsZero = 3\ntheory::arith::congruence::watchedVariables = 6\ntheory::arith::dual::findConflictOnTheQueueTime = 0ms\ntheory::arith::dual::recentViolationCatches = 14\ntheory::arith::dual::searchTime = 0ms\ntheory::arith::inferencesConflict = { ARITH_CONF_SIMPLEX: 14, ARITH_TIGHTEN_FLOOR: 1 }\ntheory::arith::inferencesLemma = { ARITH_SPLIT_DEQ: 6 }\ntheory::arith::lemmas = 6\ntheory::arith::newPropTimer = 0ms\ntheory::arith::pivotTime = 0ms\ntheory::arith::pivots = 11\ntheory::arith::ppRewriteTimer = 0ms\ntheory::arith::presolveTime = 0ms\ntheory::arith::propagations = 25\ntheory::arith::staticLearningTimer = 0ms\ntheory::arith::status::avgUnknownsInARow = 0\ntheory::arith::status::commitsOnConflicts = 12\ntheory::arith::status::nontrivialSatChecks = 161\ntheory::arith::updates = 15\ntheory::arith::weakening::attempts = 14\ntheory::arith::weakening::success = 14\ntheory::arith::weakening::time = 0ms\ntheory::arith::weakening::total = 16\ntheory::arith::z::solveRealRelax::timer = 0ms\ntheory::arrays::ee::termsCount = 2\ntheory::arrays::mayEqual::termsCount = 2\ntheory::arrays::pp::termsCount = 2\ntheory::bags::ee::termsCount = 2\ntheory::builtin::propagations = 118\ntheory::bv::BVSolverBitblast::cadical::calls_to_solve = 16\ntheory::bv::BVSolverBitblast::cadical::solve_time = 0ms\ntheory::bv::BVSolverBitblast::cadical::variables = 2\ntheory::bv::checkTime = 0ms\ntheory::bv::ee::termsCount = 2\ntheory::datatypes::checkTime = 3ms\ntheory::datatypes::computeCareGraphTime = 0ms\ntheory::datatypes::ee::functionTermsCount = 225\ntheory::datatypes::ee::mergesCount = 355\ntheory::datatypes::ee::termsCount = 435\ntheory::datatypes::inferencesFact = { DATATYPES_INST: 66, DATATYPES_LABEL_EXH: 41 }\ntheory::datatypes::inferencesLemma = { DATATYPES_SPLIT: 14, DATATYPES_SYGUS_FAIR_SIZE: 3, DATATYPES_SYGUS_MT_BOUND: 1, DATATYPES_SYGUS_MT_POS: 1, DATATYPES_SYGUS_SIMPLE_SYM_BREAK: 22, DATATYPES_SYGUS_VALUE_CORRECTION: 1 }\ntheory::datatypes::lemmas = 42\ntheory::datatypes::propagations = 273\ntheory::ff::ee::termsCount = 2\ntheory::fp::ee::termsCount = 2\ntheory::master::functionTermsCount = 29\ntheory::master::mergesCount = 447\ntheory::master::termsCount = 360\ntheory::quantifiers::checkTime = 0ms\ntheory::quantifiers::inferencesLemma = { QUANTIFIERS_SYGUS_ENUM_ACTIVE_GUARD_SPLIT: 1 }\ntheory::quantifiers::lemmas = 1\ntheory::quantifiers::preferPhase = 1\ntheory::sep::ee::termsCount = 2\ntheory::sets::ee::termsCount = 2\ntheory::strings::ee::termsCount = 2\ntheory::uf::checkTime = 0ms\ntheory::uf::computeCareGraphTime = 0ms\ntheory::uf::ee::termsCount = 2\ncvc5::CONSTANT = { UNKNOWN_TYPE_CONSTANT: 3 }\ncvc5::TERM = { APPLY_UF: 11, BITVECTOR_ADD: 3, BITVECTOR_CONCAT: 45, BITVECTOR_EXTRACT: 78, BITVECTOR_LSHR: 2, BITVECTOR_NEG: 23, BITVECTOR_SUB: 8, BITVECTOR_UGE: 4, BITVECTOR_UGT: 3, BITVECTOR_XOR: 1, BITVECTOR_ZERO_EXTEND: 14, EQUAL: 59, ITE: 67 }\ncvc5::VARIABLE = { Boolean type: 4, UNKNOWN_TYPE_CONSTANT: 21 }",
+          "status": "solved",
+          "timeout_seconds": 180
+        },
+        {
+          "bits": 32,
+          "enum_count_primary": null,
+          "enum_count_primary_key": null,
+          "enum_matches": [],
+          "runtime_seconds": 180.14963978901505,
+          "stats_raw": "",
+          "status": "timeout",
+          "timeout_seconds": 180
+        },
+        {
+          "bits": 32,
+          "enum_count_primary": null,
+          "enum_count_primary_key": null,
+          "enum_matches": [],
+          "runtime_seconds": 180.14764405228198,
+          "stats_raw": "",
+          "status": "timeout",
+          "timeout_seconds": 180
+        },
+        {
+          "bits": 32,
+          "enum_count_primary": null,
+          "enum_count_primary_key": null,
+          "enum_matches": [],
+          "runtime_seconds": 180.14631713368,
+          "stats_raw": "",
+          "status": "timeout",
+          "timeout_seconds": 180
+        },
+        {
+          "bits": 32,
+          "enum_count_primary": null,
+          "enum_count_primary_key": null,
+          "enum_matches": [],
+          "runtime_seconds": 180.14835015498102,
+          "stats_raw": "",
+          "status": "timeout",
+          "timeout_seconds": 180
+        },
+        {
+          "bits": 32,
+          "enum_count_primary": null,
+          "enum_count_primary_key": null,
+          "enum_matches": [],
+          "runtime_seconds": 180.14969196170568,
+          "stats_raw": "",
+          "status": "timeout",
+          "timeout_seconds": 180
+        },
+        {
+          "bits": 32,
+          "enum_count_primary": 3239497,
+          "enum_count_primary_key": "SygusEnumerator::enumTermsRewrite",
+          "enum_matches": [
+            {
+              "key": "SygusEnumerator::enumTerms",
+              "value": 15711
+            },
+            {
+              "key": "SygusEnumerator::enumTermsEvalExamples",
+              "value": 919850
+            },
+            {
+              "key": "SygusEnumerator::enumTermsRewrite",
+              "value": 3239497
+            }
+          ],
+          "runtime_seconds": 119.65403160825372,
+          "stats_raw": "DefaultModel::ee::functionTermsCount = 27\nDefaultModel::ee::mergesCount = 47\nDefaultModel::ee::termsCount = 91\nQuantifiersEngine::Num_Quantifiers = 1\nQuantifiersEngine::Rounds_Instantiation_Last_Call = 2\nSygusEnumerator::enumTerms = 15711\nSygusEnumerator::enumTermsEvalExamples = 919850\nSygusEnumerator::enumTermsRewrite = 3239497\nSynthConjecture::solutions = 1\nTheoryEngine::Checks_Full = 16\nTheoryEngine::Checks_Last_Call = 2\nTheoryEngine::Checks_Standard = 330\nTheoryEngine::combineTheoriesCalls = 2\nTheoryEngine::combineTheoriesTime = 0ms\narith::ee::functionTermsCount = 29\narith::ee::mergesCount = 92\narith::ee::termsCount = 142\ndriver::filename = /home/podman-storage/tmp/tmpg5k73yt5.sl\nglobal::totalTime = 119621ms\npreprocessing::apply-substs = 0ms\npreprocessing::ff-disjunctive-bit = 0ms\npreprocessing::non-clausal-simp = 0ms\npreprocessing::quantifiers-preprocess = 0ms\npreprocessing::rewrite = 0ms\npreprocessing::static-learning = 0ms\npreprocessing::static-rewrite = 0ms\npreprocessing::theory-preprocess = 0ms\nprop::CnfStream::cnfConversionTime = 3ms\nprop::CnfStream::numAtoms = 120\nprop::PropEngine::numInputAtoms = 2\nresource::resourceUnitsUsed = 64286318\nresource::spendResourceCalls = 64286318\nresource::steps::inference-id = { ARITH_CONF_SIMPLEX: 14, ARITH_SPLIT_DEQ: 6, ARITH_TIGHTEN_FLOOR: 1, DATATYPES_INST: 66, DATATYPES_LABEL_EXH: 41, DATATYPES_SPLIT: 14, DATATYPES_SYGUS_FAIR_SIZE: 3, DATATYPES_SYGUS_MT_BOUND: 1, DATATYPES_SYGUS_MT_POS: 1, DATATYPES_SYGUS_SIMPLE_SYM_BREAK: 22, DATATYPES_SYGUS_VALUE_CORRECTION: 1, QUANTIFIERS_SYGUS_ENUM_ACTIVE_GUARD_SPLIT: 1 }\nresource::steps::resource = { ArithPivotStep: 11, BvSatStep: 1, CnfStep: 107, DecisionStep: 283, LemmaStep: 56, PreprocessStep: 10, RewriteStep: 57629643, SatConflictStep: 313, SygusCheckStep: 6655239, TheoryCheckStep: 484 }\nsat::clauses_literals = 199\nsat::conflicts = 5\nsat::decisions = 295\nsat::learnts_literals = 14\nsat::max_literals = 15\nsat::propagations = 577\nsat::starts = 1\nsat::tot_literals = 15\nshared::ee::functionTermsCount = 31\nshared::ee::mergesCount = 167\nshared::ee::termsCount = 85\nsmt::SolverEngine::processAssertionsTime = 0ms\ntheory::QuantifiersEngine::time = 119609ms\ntheory::QuantifiersEngine::time_ematching = 0ms\ntheory::arith::AuxiliaryVariables = 14\ntheory::arith::UserVariables = 28\ntheory::arith::adjTime = 0ms\ntheory::arith::bound::time = 0ms\ntheory::arith::cd::unatePropagateCalls = 129\ntheory::arith::cd::unatePropagateImplications = 16\ntheory::arith::checkTime = 1ms\ntheory::arith::conflicts = 15\ntheory::arith::congruence::equalsConstantCalls = 60\ntheory::arith::congruence::watchedVariableIsNotZero = 39\ntheory::arith::congruence::watchedVariableIsZero = 3\ntheory::arith::congruence::watchedVariables = 6\ntheory::arith::dual::findConflictOnTheQueueTime = 0ms\ntheory::arith::dual::recentViolationCatches = 14\ntheory::arith::dual::searchTime = 0ms\ntheory::arith::inferencesConflict = { ARITH_CONF_SIMPLEX: 14, ARITH_TIGHTEN_FLOOR: 1 }\ntheory::arith::inferencesLemma = { ARITH_SPLIT_DEQ: 6 }\ntheory::arith::lemmas = 6\ntheory::arith::newPropTimer = 0ms\ntheory::arith::pivotTime = 0ms\ntheory::arith::pivots = 11\ntheory::arith::ppRewriteTimer = 0ms\ntheory::arith::presolveTime = 0ms\ntheory::arith::propagations = 25\ntheory::arith::staticLearningTimer = 0ms\ntheory::arith::status::avgUnknownsInARow = 0\ntheory::arith::status::commitsOnConflicts = 12\ntheory::arith::status::nontrivialSatChecks = 161\ntheory::arith::updates = 15\ntheory::arith::weakening::attempts = 14\ntheory::arith::weakening::success = 14\ntheory::arith::weakening::time = 0ms\ntheory::arith::weakening::total = 16\ntheory::arith::z::solveRealRelax::timer = 0ms\ntheory::arrays::ee::termsCount = 2\ntheory::arrays::mayEqual::termsCount = 2\ntheory::arrays::pp::termsCount = 2\ntheory::bags::ee::termsCount = 2\ntheory::builtin::propagations = 118\ntheory::bv::BVSolverBitblast::cadical::calls_to_solve = 16\ntheory::bv::BVSolverBitblast::cadical::solve_time = 0ms\ntheory::bv::BVSolverBitblast::cadical::variables = 2\ntheory::bv::checkTime = 0ms\ntheory::bv::ee::termsCount = 2\ntheory::datatypes::checkTime = 3ms\ntheory::datatypes::computeCareGraphTime = 0ms\ntheory::datatypes::ee::functionTermsCount = 225\ntheory::datatypes::ee::mergesCount = 355\ntheory::datatypes::ee::termsCount = 435\ntheory::datatypes::inferencesFact = { DATATYPES_INST: 66, DATATYPES_LABEL_EXH: 41 }\ntheory::datatypes::inferencesLemma = { DATATYPES_SPLIT: 14, DATATYPES_SYGUS_FAIR_SIZE: 3, DATATYPES_SYGUS_MT_BOUND: 1, DATATYPES_SYGUS_MT_POS: 1, DATATYPES_SYGUS_SIMPLE_SYM_BREAK: 22, DATATYPES_SYGUS_VALUE_CORRECTION: 1 }\ntheory::datatypes::lemmas = 42\ntheory::datatypes::propagations = 273\ntheory::ff::ee::termsCount = 2\ntheory::fp::ee::termsCount = 2\ntheory::master::functionTermsCount = 29\ntheory::master::mergesCount = 447\ntheory::master::termsCount = 360\ntheory::quantifiers::checkTime = 0ms\ntheory::quantifiers::inferencesLemma = { QUANTIFIERS_SYGUS_ENUM_ACTIVE_GUARD_SPLIT: 1 }\ntheory::quantifiers::lemmas = 1\ntheory::quantifiers::preferPhase = 1\ntheory::sep::ee::termsCount = 2\ntheory::sets::ee::termsCount = 2\ntheory::strings::ee::termsCount = 2\ntheory::uf::checkTime = 0ms\ntheory::uf::computeCareGraphTime = 0ms\ntheory::uf::ee::termsCount = 2\ncvc5::CONSTANT = { UNKNOWN_TYPE_CONSTANT: 3 }\ncvc5::TERM = { APPLY_UF: 12, BITVECTOR_ADD: 3, BITVECTOR_CONCAT: 47, BITVECTOR_EXTRACT: 78, BITVECTOR_LSHR: 2, BITVECTOR_NEG: 23, BITVECTOR_SUB: 8, BITVECTOR_UGE: 4, BITVECTOR_UGT: 3, BITVECTOR_XOR: 1, BITVECTOR_ZERO_EXTEND: 14, EQUAL: 60, ITE: 67 }\ncvc5::VARIABLE = { Boolean type: 4, UNKNOWN_TYPE_CONSTANT: 21 }",
+          "status": "solved",
+          "timeout_seconds": 180
+        },
+        {
+          "bits": 32,
+          "enum_count_primary": null,
+          "enum_count_primary_key": null,
+          "enum_matches": [],
+          "runtime_seconds": 180.13947472535074,
+          "stats_raw": "",
+          "status": "timeout",
+          "timeout_seconds": 180
+        },
+        {
+          "bits": 32,
+          "enum_count_primary": null,
+          "enum_count_primary_key": null,
+          "enum_matches": [],
+          "runtime_seconds": 180.14669206738472,
+          "stats_raw": "",
+          "status": "timeout",
+          "timeout_seconds": 180
+        },
+        {
+          "bits": 32,
+          "enum_count_primary": null,
+          "enum_count_primary_key": null,
+          "enum_matches": [],
+          "runtime_seconds": 180.16611221060157,
+          "stats_raw": "",
+          "status": "timeout",
+          "timeout_seconds": 180
+        },
+        {
+          "bits": 32,
+          "enum_count_primary": null,
+          "enum_count_primary_key": null,
+          "enum_matches": [],
+          "runtime_seconds": 180.15826676413417,
+          "stats_raw": "",
+          "status": "timeout",
+          "timeout_seconds": 180
+        },
+        {
+          "bits": 32,
+          "enum_count_primary": null,
+          "enum_count_primary_key": null,
+          "enum_matches": [],
+          "runtime_seconds": 180.16410140693188,
+          "stats_raw": "",
+          "status": "timeout",
+          "timeout_seconds": 180
+        },
+        {
+          "bits": 32,
+          "enum_count_primary": null,
+          "enum_count_primary_key": null,
+          "enum_matches": [],
+          "runtime_seconds": 180.17176692560315,
+          "stats_raw": "",
+          "status": "timeout",
+          "timeout_seconds": 180
+        },
+        {
+          "bits": 32,
+          "enum_count_primary": null,
+          "enum_count_primary_key": null,
+          "enum_matches": [],
+          "runtime_seconds": 180.0748737975955,
+          "stats_raw": "",
+          "status": "timeout",
+          "timeout_seconds": 180
+        },
+        {
+          "bits": 32,
+          "enum_count_primary": null,
+          "enum_count_primary_key": null,
+          "enum_matches": [],
+          "runtime_seconds": 180.1717824153602,
+          "stats_raw": "",
+          "status": "timeout",
+          "timeout_seconds": 180
+        },
+        {
+          "bits": 32,
+          "enum_count_primary": null,
+          "enum_count_primary_key": null,
+          "enum_matches": [],
+          "runtime_seconds": 180.1686357539147,
+          "stats_raw": "",
+          "status": "timeout",
+          "timeout_seconds": 180
+        },
+        {
+          "bits": 32,
+          "enum_count_primary": null,
+          "enum_count_primary_key": null,
+          "enum_matches": [],
+          "runtime_seconds": 180.15736430510879,
+          "stats_raw": "",
+          "status": "timeout",
+          "timeout_seconds": 180
+        },
+        {
+          "bits": 32,
+          "enum_count_primary": null,
+          "enum_count_primary_key": null,
+          "enum_matches": [],
+          "runtime_seconds": 180.15992277488112,
+          "stats_raw": "",
+          "status": "timeout",
+          "timeout_seconds": 180
+        },
+        {
+          "bits": 32,
+          "enum_count_primary": null,
+          "enum_count_primary_key": null,
+          "enum_matches": [],
+          "runtime_seconds": 180.16708480007946,
+          "stats_raw": "",
+          "status": "timeout",
+          "timeout_seconds": 180
+        },
+        {
+          "bits": 32,
+          "enum_count_primary": null,
+          "enum_count_primary_key": null,
+          "enum_matches": [],
+          "runtime_seconds": 180.1457859519869,
+          "stats_raw": "",
+          "status": "timeout",
+          "timeout_seconds": 180
+        },
+        {
+          "bits": 32,
+          "enum_count_primary": null,
+          "enum_count_primary_key": null,
+          "enum_matches": [],
+          "runtime_seconds": 180.0887392964214,
+          "stats_raw": "",
+          "status": "timeout",
+          "timeout_seconds": 180
+        },
+        {
+          "bits": 32,
+          "enum_count_primary": null,
+          "enum_count_primary_key": null,
+          "enum_matches": [],
+          "runtime_seconds": 180.17257871106267,
+          "stats_raw": "",
+          "status": "timeout",
+          "timeout_seconds": 180
+        },
+        {
+          "bits": 32,
+          "enum_count_primary": null,
+          "enum_count_primary_key": null,
+          "enum_matches": [],
+          "runtime_seconds": 180.14998433925211,
+          "stats_raw": "",
+          "status": "timeout",
+          "timeout_seconds": 180
+        },
+        {
+          "bits": 32,
+          "enum_count_primary": 3239160,
+          "enum_count_primary_key": "SygusEnumerator::enumTermsRewrite",
+          "enum_matches": [
+            {
+              "key": "SygusEnumerator::enumTerms",
+              "value": 16811
+            },
+            {
+              "key": "SygusEnumerator::enumTermsEvalExamples",
+              "value": 919693
+            },
+            {
+              "key": "SygusEnumerator::enumTermsRewrite",
+              "value": 3239160
+            }
+          ],
+          "runtime_seconds": 121.79517847113311,
+          "stats_raw": "DefaultModel::ee::functionTermsCount = 27\nDefaultModel::ee::mergesCount = 47\nDefaultModel::ee::termsCount = 91\nQuantifiersEngine::Num_Quantifiers = 1\nQuantifiersEngine::Rounds_Instantiation_Last_Call = 2\nSygusEnumerator::enumTerms = 16811\nSygusEnumerator::enumTermsEvalExamples = 919693\nSygusEnumerator::enumTermsRewrite = 3239160\nSynthConjecture::solutions = 1\nTheoryEngine::Checks_Full = 16\nTheoryEngine::Checks_Last_Call = 2\nTheoryEngine::Checks_Standard = 330\nTheoryEngine::combineTheoriesCalls = 2\nTheoryEngine::combineTheoriesTime = 0ms\narith::ee::functionTermsCount = 29\narith::ee::mergesCount = 92\narith::ee::termsCount = 142\ndriver::filename = /home/podman-storage/tmp/tmpyvltpwqs.sl\nglobal::totalTime = 121763ms\npreprocessing::apply-substs = 0ms\npreprocessing::ff-disjunctive-bit = 0ms\npreprocessing::non-clausal-simp = 0ms\npreprocessing::quantifiers-preprocess = 0ms\npreprocessing::rewrite = 0ms\npreprocessing::static-learning = 0ms\npreprocessing::static-rewrite = 0ms\npreprocessing::theory-preprocess = 0ms\nprop::CnfStream::cnfConversionTime = 3ms\nprop::CnfStream::numAtoms = 120\nprop::PropEngine::numInputAtoms = 2\nresource::resourceUnitsUsed = 64207438\nresource::spendResourceCalls = 64207438\nresource::steps::inference-id = { ARITH_CONF_SIMPLEX: 14, ARITH_SPLIT_DEQ: 6, ARITH_TIGHTEN_FLOOR: 1, DATATYPES_INST: 66, DATATYPES_LABEL_EXH: 41, DATATYPES_SPLIT: 14, DATATYPES_SYGUS_FAIR_SIZE: 3, DATATYPES_SYGUS_MT_BOUND: 1, DATATYPES_SYGUS_MT_POS: 1, DATATYPES_SYGUS_SIMPLE_SYM_BREAK: 22, DATATYPES_SYGUS_VALUE_CORRECTION: 1, QUANTIFIERS_SYGUS_ENUM_ACTIVE_GUARD_SPLIT: 1 }\nresource::steps::resource = { ArithPivotStep: 11, BvSatStep: 1, CnfStep: 107, DecisionStep: 283, LemmaStep: 56, PreprocessStep: 10, RewriteStep: 57551836, SatConflictStep: 313, SygusCheckStep: 6654166, TheoryCheckStep: 484 }\nsat::clauses_literals = 199\nsat::conflicts = 5\nsat::decisions = 295\nsat::learnts_literals = 14\nsat::max_literals = 15\nsat::propagations = 577\nsat::starts = 1\nsat::tot_literals = 15\nshared::ee::functionTermsCount = 31\nshared::ee::mergesCount = 167\nshared::ee::termsCount = 85\nsmt::SolverEngine::processAssertionsTime = 0ms\ntheory::QuantifiersEngine::time = 121752ms\ntheory::QuantifiersEngine::time_ematching = 0ms\ntheory::arith::AuxiliaryVariables = 14\ntheory::arith::UserVariables = 28\ntheory::arith::adjTime = 0ms\ntheory::arith::bound::time = 0ms\ntheory::arith::cd::unatePropagateCalls = 129\ntheory::arith::cd::unatePropagateImplications = 16\ntheory::arith::checkTime = 1ms\ntheory::arith::conflicts = 15\ntheory::arith::congruence::equalsConstantCalls = 60\ntheory::arith::congruence::watchedVariableIsNotZero = 39\ntheory::arith::congruence::watchedVariableIsZero = 3\ntheory::arith::congruence::watchedVariables = 6\ntheory::arith::dual::findConflictOnTheQueueTime = 0ms\ntheory::arith::dual::recentViolationCatches = 14\ntheory::arith::dual::searchTime = 0ms\ntheory::arith::inferencesConflict = { ARITH_CONF_SIMPLEX: 14, ARITH_TIGHTEN_FLOOR: 1 }\ntheory::arith::inferencesLemma = { ARITH_SPLIT_DEQ: 6 }\ntheory::arith::lemmas = 6\ntheory::arith::newPropTimer = 0ms\ntheory::arith::pivotTime = 0ms\ntheory::arith::pivots = 11\ntheory::arith::ppRewriteTimer = 0ms\ntheory::arith::presolveTime = 0ms\ntheory::arith::propagations = 25\ntheory::arith::staticLearningTimer = 0ms\ntheory::arith::status::avgUnknownsInARow = 0\ntheory::arith::status::commitsOnConflicts = 12\ntheory::arith::status::nontrivialSatChecks = 161\ntheory::arith::updates = 15\ntheory::arith::weakening::attempts = 14\ntheory::arith::weakening::success = 14\ntheory::arith::weakening::time = 0ms\ntheory::arith::weakening::total = 16\ntheory::arith::z::solveRealRelax::timer = 0ms\ntheory::arrays::ee::termsCount = 2\ntheory::arrays::mayEqual::termsCount = 2\ntheory::arrays::pp::termsCount = 2\ntheory::bags::ee::termsCount = 2\ntheory::builtin::propagations = 118\ntheory::bv::BVSolverBitblast::cadical::calls_to_solve = 16\ntheory::bv::BVSolverBitblast::cadical::solve_time = 0ms\ntheory::bv::BVSolverBitblast::cadical::variables = 2\ntheory::bv::checkTime = 0ms\ntheory::bv::ee::termsCount = 2\ntheory::datatypes::checkTime = 4ms\ntheory::datatypes::computeCareGraphTime = 0ms\ntheory::datatypes::ee::functionTermsCount = 225\ntheory::datatypes::ee::mergesCount = 355\ntheory::datatypes::ee::termsCount = 435\ntheory::datatypes::inferencesFact = { DATATYPES_INST: 66, DATATYPES_LABEL_EXH: 41 }\ntheory::datatypes::inferencesLemma = { DATATYPES_SPLIT: 14, DATATYPES_SYGUS_FAIR_SIZE: 3, DATATYPES_SYGUS_MT_BOUND: 1, DATATYPES_SYGUS_MT_POS: 1, DATATYPES_SYGUS_SIMPLE_SYM_BREAK: 22, DATATYPES_SYGUS_VALUE_CORRECTION: 1 }\ntheory::datatypes::lemmas = 42\ntheory::datatypes::propagations = 273\ntheory::ff::ee::termsCount = 2\ntheory::fp::ee::termsCount = 2\ntheory::master::functionTermsCount = 29\ntheory::master::mergesCount = 447\ntheory::master::termsCount = 360\ntheory::quantifiers::checkTime = 0ms\ntheory::quantifiers::inferencesLemma = { QUANTIFIERS_SYGUS_ENUM_ACTIVE_GUARD_SPLIT: 1 }\ntheory::quantifiers::lemmas = 1\ntheory::quantifiers::preferPhase = 1\ntheory::sep::ee::termsCount = 2\ntheory::sets::ee::termsCount = 2\ntheory::strings::ee::termsCount = 2\ntheory::uf::checkTime = 0ms\ntheory::uf::computeCareGraphTime = 0ms\ntheory::uf::ee::termsCount = 2\ncvc5::CONSTANT = { UNKNOWN_TYPE_CONSTANT: 3 }\ncvc5::TERM = { APPLY_UF: 13, BITVECTOR_ADD: 3, BITVECTOR_CONCAT: 49, BITVECTOR_EXTRACT: 78, BITVECTOR_LSHR: 2, BITVECTOR_NEG: 23, BITVECTOR_SUB: 8, BITVECTOR_UGE: 4, BITVECTOR_UGT: 3, BITVECTOR_XOR: 1, BITVECTOR_ZERO_EXTEND: 14, EQUAL: 61, ITE: 67 }\ncvc5::VARIABLE = { Boolean type: 4, UNKNOWN_TYPE_CONSTANT: 21 }",
+          "status": "solved",
+          "timeout_seconds": 180
+        },
+        {
+          "bits": 32,
+          "enum_count_primary": null,
+          "enum_count_primary_key": null,
+          "enum_matches": [],
+          "runtime_seconds": 180.14358777180314,
+          "stats_raw": "",
+          "status": "timeout",
+          "timeout_seconds": 180
+        },
+        {
+          "bits": 32,
+          "enum_count_primary": 3240317,
+          "enum_count_primary_key": "SygusEnumerator::enumTermsRewrite",
+          "enum_matches": [
+            {
+              "key": "SygusEnumerator::enumTerms",
+              "value": 17988
+            },
+            {
+              "key": "SygusEnumerator::enumTermsEvalExamples",
+              "value": 920850
+            },
+            {
+              "key": "SygusEnumerator::enumTermsRewrite",
+              "value": 3240317
+            }
+          ],
+          "runtime_seconds": 130.2658093497157,
+          "stats_raw": "DefaultModel::ee::functionTermsCount = 27\nDefaultModel::ee::mergesCount = 47\nDefaultModel::ee::termsCount = 91\nQuantifiersEngine::Num_Quantifiers = 1\nQuantifiersEngine::Rounds_Instantiation_Last_Call = 2\nSygusEnumerator::enumTerms = 17988\nSygusEnumerator::enumTermsEvalExamples = 920850\nSygusEnumerator::enumTermsRewrite = 3240317\nSynthConjecture::solutions = 1\nTheoryEngine::Checks_Full = 16\nTheoryEngine::Checks_Last_Call = 2\nTheoryEngine::Checks_Standard = 330\nTheoryEngine::combineTheoriesCalls = 2\nTheoryEngine::combineTheoriesTime = 0ms\narith::ee::functionTermsCount = 29\narith::ee::mergesCount = 92\narith::ee::termsCount = 142\ndriver::filename = /home/podman-storage/tmp/tmpc01is7bt.sl\nglobal::totalTime = 130235ms\npreprocessing::apply-substs = 0ms\npreprocessing::ff-disjunctive-bit = 0ms\npreprocessing::non-clausal-simp = 0ms\npreprocessing::quantifiers-preprocess = 0ms\npreprocessing::rewrite = 0ms\npreprocessing::static-learning = 0ms\npreprocessing::static-rewrite = 0ms\npreprocessing::theory-preprocess = 0ms\nprop::CnfStream::cnfConversionTime = 3ms\nprop::CnfStream::numAtoms = 120\nprop::PropEngine::numInputAtoms = 2\nresource::resourceUnitsUsed = 64336351\nresource::spendResourceCalls = 64336351\nresource::steps::inference-id = { ARITH_CONF_SIMPLEX: 14, ARITH_SPLIT_DEQ: 6, ARITH_TIGHTEN_FLOOR: 1, DATATYPES_INST: 66, DATATYPES_LABEL_EXH: 41, DATATYPES_SPLIT: 14, DATATYPES_SYGUS_FAIR_SIZE: 3, DATATYPES_SYGUS_MT_BOUND: 1, DATATYPES_SYGUS_MT_POS: 1, DATATYPES_SYGUS_SIMPLE_SYM_BREAK: 22, DATATYPES_SYGUS_VALUE_CORRECTION: 1, QUANTIFIERS_SYGUS_ENUM_ACTIVE_GUARD_SPLIT: 1 }\nresource::steps::resource = { ArithPivotStep: 11, BvSatStep: 1, CnfStep: 107, DecisionStep: 283, LemmaStep: 56, PreprocessStep: 10, RewriteStep: 57679800, SatConflictStep: 313, SygusCheckStep: 6655115, TheoryCheckStep: 484 }\nsat::clauses_literals = 199\nsat::conflicts = 5\nsat::decisions = 295\nsat::learnts_literals = 14\nsat::max_literals = 15\nsat::propagations = 577\nsat::starts = 1\nsat::tot_literals = 15\nshared::ee::functionTermsCount = 31\nshared::ee::mergesCount = 167\nshared::ee::termsCount = 85\nsmt::SolverEngine::processAssertionsTime = 0ms\ntheory::QuantifiersEngine::time = 130223ms\ntheory::QuantifiersEngine::time_ematching = 0ms\ntheory::arith::AuxiliaryVariables = 14\ntheory::arith::UserVariables = 28\ntheory::arith::adjTime = 0ms\ntheory::arith::bound::time = 0ms\ntheory::arith::cd::unatePropagateCalls = 129\ntheory::arith::cd::unatePropagateImplications = 16\ntheory::arith::checkTime = 1ms\ntheory::arith::conflicts = 15\ntheory::arith::congruence::equalsConstantCalls = 60\ntheory::arith::congruence::watchedVariableIsNotZero = 39\ntheory::arith::congruence::watchedVariableIsZero = 3\ntheory::arith::congruence::watchedVariables = 6\ntheory::arith::dual::findConflictOnTheQueueTime = 0ms\ntheory::arith::dual::recentViolationCatches = 14\ntheory::arith::dual::searchTime = 0ms\ntheory::arith::inferencesConflict = { ARITH_CONF_SIMPLEX: 14, ARITH_TIGHTEN_FLOOR: 1 }\ntheory::arith::inferencesLemma = { ARITH_SPLIT_DEQ: 6 }\ntheory::arith::lemmas = 6\ntheory::arith::newPropTimer = 0ms\ntheory::arith::pivotTime = 0ms\ntheory::arith::pivots = 11\ntheory::arith::ppRewriteTimer = 0ms\ntheory::arith::presolveTime = 0ms\ntheory::arith::propagations = 25\ntheory::arith::staticLearningTimer = 0ms\ntheory::arith::status::avgUnknownsInARow = 0\ntheory::arith::status::commitsOnConflicts = 12\ntheory::arith::status::nontrivialSatChecks = 161\ntheory::arith::updates = 15\ntheory::arith::weakening::attempts = 14\ntheory::arith::weakening::success = 14\ntheory::arith::weakening::time = 0ms\ntheory::arith::weakening::total = 16\ntheory::arith::z::solveRealRelax::timer = 0ms\ntheory::arrays::ee::termsCount = 2\ntheory::arrays::mayEqual::termsCount = 2\ntheory::arrays::pp::termsCount = 2\ntheory::bags::ee::termsCount = 2\ntheory::builtin::propagations = 118\ntheory::bv::BVSolverBitblast::cadical::calls_to_solve = 16\ntheory::bv::BVSolverBitblast::cadical::solve_time = 0ms\ntheory::bv::BVSolverBitblast::cadical::variables = 2\ntheory::bv::checkTime = 0ms\ntheory::bv::ee::termsCount = 2\ntheory::datatypes::checkTime = 4ms\ntheory::datatypes::computeCareGraphTime = 0ms\ntheory::datatypes::ee::functionTermsCount = 225\ntheory::datatypes::ee::mergesCount = 355\ntheory::datatypes::ee::termsCount = 435\ntheory::datatypes::inferencesFact = { DATATYPES_INST: 66, DATATYPES_LABEL_EXH: 41 }\ntheory::datatypes::inferencesLemma = { DATATYPES_SPLIT: 14, DATATYPES_SYGUS_FAIR_SIZE: 3, DATATYPES_SYGUS_MT_BOUND: 1, DATATYPES_SYGUS_MT_POS: 1, DATATYPES_SYGUS_SIMPLE_SYM_BREAK: 22, DATATYPES_SYGUS_VALUE_CORRECTION: 1 }\ntheory::datatypes::lemmas = 42\ntheory::datatypes::propagations = 273\ntheory::ff::ee::termsCount = 2\ntheory::fp::ee::termsCount = 2\ntheory::master::functionTermsCount = 29\ntheory::master::mergesCount = 447\ntheory::master::termsCount = 360\ntheory::quantifiers::checkTime = 0ms\ntheory::quantifiers::inferencesLemma = { QUANTIFIERS_SYGUS_ENUM_ACTIVE_GUARD_SPLIT: 1 }\ntheory::quantifiers::lemmas = 1\ntheory::quantifiers::preferPhase = 1\ntheory::sep::ee::termsCount = 2\ntheory::sets::ee::termsCount = 2\ntheory::strings::ee::termsCount = 2\ntheory::uf::checkTime = 0ms\ntheory::uf::computeCareGraphTime = 0ms\ntheory::uf::ee::termsCount = 2\ncvc5::CONSTANT = { UNKNOWN_TYPE_CONSTANT: 3 }\ncvc5::TERM = { APPLY_UF: 14, BITVECTOR_ADD: 3, BITVECTOR_CONCAT: 51, BITVECTOR_EXTRACT: 78, BITVECTOR_LSHR: 2, BITVECTOR_NEG: 23, BITVECTOR_SUB: 8, BITVECTOR_UGE: 4, BITVECTOR_UGT: 3, BITVECTOR_XOR: 1, BITVECTOR_ZERO_EXTEND: 14, EQUAL: 62, ITE: 67 }\ncvc5::VARIABLE = { Boolean type: 4, UNKNOWN_TYPE_CONSTANT: 21 }",
+          "status": "solved",
+          "timeout_seconds": 180
+        }
+      ],
+      "component": "full_sum_v2",
+      "enum_count_primary_last": 3240317,
+      "enum_count_primary_total": 11476009,
+      "enum_primary_keys_seen": [
+        "SygusEnumerator::enumTermsRewrite"
+      ],
+      "invalid_ground_truth_skips": 0,
+      "solution_found": true,
+      "solve_status": "solved",
+      "solver_attempts": 30,
+      "solver_runtime_seconds_max": 180.17257871106267,
+      "solver_runtime_seconds_total": 4383.390387363732,
+      "template_file": "sygus_grammars/addition/FP32/fp32_full_sum_v1_template.sl",
+      "total_constraints": 30,
+      "true_skips": 23
+    }
+  },
+  "config": {
+    "directed_io": true,
+    "fp32_auto_relax_output_match": false,
+    "fp32_min_output_match_msb_bits": 32,
+    "fp32_mul_mode": "default",
+    "fp32_output_match_msb_bits": 32,
+    "fp32_output_match_step": 1,
+    "fp32_relax_on_fail": false,
+    "fp32_relax_on_infeasible": false,
+    "fp32_relax_on_timeout": false,
+    "fp32_relax_schedule": "staged",
+    "fp32_reset_msb_per_sample": true,
+    "fp32_stage_mantissa_bits": 15,
+    "fp32_timeout_retry_multiplier": 4,
+    "fp32_timeout_retry_once": false,
+    "mxint8_auto_relax_output_match": false,
+    "mxint8_min_output_match_bits": 4,
+    "mxint8_output_match_bits": 8,
+    "mxint8_stage_mantissa_bits": 2,
+    "num_iterations": 30,
+    "random_seed": 12345,
+    "run_accuracy": true,
+    "run_implementation": true,
+    "solver_timeout_seconds": 180,
+    "sygus_dump": false,
+    "sygus_fast_enum": false,
+    "sygus_pbe": true,
+    "sygus_sym_break_pbe": true
+  },
+  "error": "",
+  "hardware": {
+    "BRAMs": 0,
+    "Cycles": 0,
+    "DSPs": 0,
+    "FFs": 0,
+    "Fmax_MHz": 133.316,
+    "LUTs": 331,
+    "Latency_ns": 7.501
+  },
+  "op_name": "fp32addition",
+  "paths": {
+    "c": "results/c/relaxsweep_fp32_add_v1_32b_r01.c",
+    "cpp": "/home/josephluke/Program-Synthesis-for-Efficient-ML/results/cpp/relaxsweep_fp32_add_v1_32b_r01.cpp",
+    "smt2": {
+      "full_sum_v2": "results/smt2/relaxsweep_fp32_add_v1_32b_r01.smt2"
+    }
+  },
+  "status": "solved",
+  "target": "FP32AdditionTarget"
+}

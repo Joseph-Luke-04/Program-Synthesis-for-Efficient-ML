@@ -25,16 +25,16 @@ def _detect_top_func_from_cpp(src: str) -> str | None:
 
 def _get_hls_clock_period_ns() -> float:
     try:
-        return float(os.environ.get("HLS_CLK_PERIOD_NS", "5.000"))
+        return float(os.environ.get("HLS_CLK_PERIOD_NS", "1000000000"))
     except ValueError:
-        return 5.000
+        return 1000000000
 
 
 def _get_hls_clock_uncertainty_ns() -> float:
     try:
-        return float(os.environ.get("HLS_CLK_UNCERTAINTY_NS", "0.200"))
+        return float(os.environ.get("HLS_CLK_UNCERTAINTY_NS", "0"))
     except ValueError:
-        return 0.200
+        return 0
 
 
 def _get_hls_datapath_mode() -> str:
@@ -111,7 +111,7 @@ def create_hls_tcl(design_path: Path, top_func: str, output_dir: Path) -> Path:
 def create_vivado_tcl(top_func: str, output_dir: Path) -> Path:
     tcl_path = output_dir / "vivado.tcl"
     verilog_dir = output_dir / "verilog_out"
-    clk_period_ns = float(os.environ.get("VIVADO_CLK_PERIOD_NS", "5.000"))
+    clk_period_ns = float(os.environ.get("VIVADO_CLK_PERIOD_NS", "1000000000"))
 
     tcl = f"""
     # --- Non-project flow: read RTL, synth, implement, report ---

@@ -18,10 +18,6 @@ if [[ -z "$engine" ]]; then
   fi
 fi
 
-if [[ -z "$host_cvc5_bin" ]] && command -v cvc5 >/dev/null 2>&1; then
-  host_cvc5_bin="$(command -v cvc5)"
-fi
-
 if ! "$engine" image exists "$image_tag" >/dev/null 2>&1; then
   echo "Container image '$image_tag' does not exist locally. Build it first." >&2
   exit 1

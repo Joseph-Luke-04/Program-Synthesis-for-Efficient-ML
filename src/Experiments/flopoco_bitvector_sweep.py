@@ -672,6 +672,10 @@ def run_cocotb_accuracy(
         raise FileNotFoundError(f"Variant wrapper VHDL not found for cocotb: {wrapper_path}")
 
     env = os.environ.copy()
+    # Ensure the venv's bin/ is on PATH so cocotb-config is found by make
+    py_bin = str(Path(sys.executable).parent.resolve())
+    env["PATH"] = py_bin + os.pathsep + env.get("PATH", "")
+    env["PYTHON"] = sys.executable
     env["SIM"] = "ghdl"
     env["TOPLEVEL_LANG"] = "vhdl"
     env["GHDL_ARGS"] = "-fsynopsys -fexplicit"

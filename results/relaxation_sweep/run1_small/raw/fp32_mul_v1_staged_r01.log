@@ -1,0 +1,414 @@
+[INFO] Target: FP32MultiplicationTarget | Component: full_product_v2
+[INFO] NUM_ITERATIONS=30, TIMEOUT=180s, RUN_IMPLEMENTATION=True, DIRECTED_IO=True, RUN_ACCURACY=True, SYNTH_FP32_MUL_MODE=default, SYNTH_FP32_ADD_MODE=default, SYGUS_DUMP=False, SYGUS_FAST_ENUM=False, SYGUS_PBE=True, SYGUS_SYM_BREAK_PBE=True, MXINT8_OUTPUT_MATCH_BITS=8, MXINT8_AUTO_RELAX_OUTPUT_MATCH=False, MXINT8_MIN_OUTPUT_MATCH_BITS=4, MXINT8_STAGE_MANTISSA_BITS=2, FP32_OUTPUT_MATCH_MSB_BITS=32, FP32_AUTO_RELAX_OUTPUT_MATCH=True, FP32_RESET_MSB_PER_SAMPLE=True, FP32_RELAX_ON_TIMEOUT=True, FP32_TIMEOUT_RETRY_ONCE=False, FP32_TIMEOUT_RETRY_MULTIPLIER=4, FP32_RELAX_ON_INFEASIBLE=True, FP32_RELAX_ON_FAIL=True, FP32_RELAX_SCHEDULE=staged, FP32_STAGE_MANTISSA_BITS=15, FP32_MIN_OUTPUT_MATCH_MSB_BITS=9, FP32_OUTPUT_MATCH_STEP=1, RANDOM_SEED=12345
+[INFO] FP32 synthesis operand mode=default range=[-10000.0, 10000.0]
+--- Starting Synthesis for [FP32MultiplicationTarget -> full_product_v2] ---
+
+--- Iteration 1/30 ---
+Generating new constraint with inputs: (1.5, 1.5)
+(constraint (= (fp32_full_mul #b00111111110000000000000000000000 #b00111111110000000000000000000000) #b01000000000100000000000000000000))
+SUCCESS: accepted (bits = 32). Total constraints: 1
+[INFO] Final accepted level for this sample: stage-2 strict (MSB=32).
+
+--- Iteration 2/30 ---
+Generating new constraint with inputs: (1.25, 1.25)
+(constraint (= (fp32_full_mul #b00111111101000000000000000000000 #b00111111101000000000000000000000) #b00111111110010000000000000000000))
+[INFO] fail at bits = 32. Trying weaker match...
+(constraint (= ((_ extract 31 8) (fp32_full_mul #b00111111101000000000000000000000 #b00111111101000000000000000000000)) ((_ extract 31 8) #b00111111110010000000000000000000)))
+[INFO] infeasible at bits = 24. Trying weaker match...
+(constraint (= ((_ extract 31 23) (fp32_full_mul #b00111111101000000000000000000000 #b00111111101000000000000000000000)) ((_ extract 31 23) #b00111111110010000000000000000000)))
+[INFO] infeasible at bits = 9. Trying weaker match...
+SKIPPED: (1.250, 1.250) could not be added (even after relaxation).
+
+--- Iteration 3/30 ---
+Generating new constraint with inputs: (-1.5, 1.5)
+(constraint (= (fp32_full_mul #b10111111110000000000000000000000 #b00111111110000000000000000000000) #b11000000000100000000000000000000))
+SUCCESS: accepted (bits = 32). Total constraints: 2
+[INFO] Final accepted level for this sample: stage-2 strict (MSB=32).
+
+--- Iteration 4/30 ---
+Generating new constraint with inputs: (1.5, -1.5)
+(constraint (= (fp32_full_mul #b00111111110000000000000000000000 #b10111111110000000000000000000000) #b11000000000100000000000000000000))
+SUCCESS: accepted (bits = 32). Total constraints: 3
+[INFO] Final accepted level for this sample: stage-2 strict (MSB=32).
+
+--- Iteration 5/30 ---
+Generating new constraint with inputs: (1.0000001192092896, 1.0000001192092896)
+(constraint (= (fp32_full_mul #b00111111100000000000000000000001 #b00111111100000000000000000000001) #b00111111100000000000000000000010))
+[INFO] fail at bits = 32. Trying weaker match...
+(constraint (= ((_ extract 31 8) (fp32_full_mul #b00111111100000000000000000000001 #b00111111100000000000000000000001)) ((_ extract 31 8) #b00111111100000000000000000000010)))
+[INFO] infeasible at bits = 24. Trying weaker match...
+(constraint (= ((_ extract 31 23) (fp32_full_mul #b00111111100000000000000000000001 #b00111111100000000000000000000001)) ((_ extract 31 23) #b00111111100000000000000000000010)))
+[INFO] infeasible at bits = 9. Trying weaker match...
+SKIPPED: (1.000, 1.000) could not be added (even after relaxation).
+
+--- Iteration 6/30 ---
+Generating new constraint with inputs: (-1667.602549093177, -9796.616610858633)
+(constraint (= (fp32_full_mul #b11000100110100000111001101001000 #b11000110000110010001001001110111) #b01001011011110010100011111011110))
+[INFO] fail at bits = 32. Trying weaker match...
+(constraint (= ((_ extract 31 8) (fp32_full_mul #b11000100110100000111001101001000 #b11000110000110010001001001110111)) ((_ extract 31 8) #b01001011011110010100011111011110)))
+[INFO] infeasible at bits = 24. Trying weaker match...
+(constraint (= ((_ extract 31 23) (fp32_full_mul #b11000100110100000111001101001000 #b11000110000110010001001001110111)) ((_ extract 31 23) #b01001011011110010100011111011110)))
+[INFO] infeasible at bits = 9. Trying weaker match...
+SKIPPED: (-1667.603, -9796.617) could not be added (even after relaxation).
+
+--- Iteration 7/30 ---
+Generating new constraint with inputs: (6504.130185074864, -4027.2028960081443)
+(constraint (= (fp32_full_mul #b01000101110010110100000100001011 #b11000101011110111011001100111111) #b11001011110001111101011100010110))
+SUCCESS: accepted (bits = 32). Total constraints: 4
+[INFO] Final accepted level for this sample: stage-2 strict (MSB=32).
+
+--- Iteration 8/30 ---
+Generating new constraint with inputs: (-2631.7662102304857, -6126.773019098515)
+(constraint (= (fp32_full_mul #b11000101001001000111110001000010 #b11000101101111110111011000101111) #b01001011011101100000100101001001))
+[INFO] fail at bits = 32. Trying weaker match...
+(constraint (= ((_ extract 31 8) (fp32_full_mul #b11000101001001000111110001000010 #b11000101101111110111011000101111)) ((_ extract 31 8) #b01001011011101100000100101001001)))
+[INFO] infeasible at bits = 24. Trying weaker match...
+(constraint (= ((_ extract 31 23) (fp32_full_mul #b11000101001001000111110001000010 #b11000101101111110111011000101111)) ((_ extract 31 23) #b01001011011101100000100101001001)))
+[INFO] infeasible at bits = 9. Trying weaker match...
+SKIPPED: (-2631.766, -6126.773) could not be added (even after relaxation).
+
+--- Iteration 9/30 ---
+Generating new constraint with inputs: (1320.163374577225, -6766.243521412636)
+(constraint (= (fp32_full_mul #b01000100101001010000010100111010 #b11000101110100110111000111110011) #b11001011000010000100110011000011))
+SUCCESS: accepted (bits = 32). Total constraints: 5
+[INFO] Final accepted level for this sample: stage-2 strict (MSB=32).
+
+--- Iteration 10/30 ---
+Generating new constraint with inputs: (-7514.662314329396, -1341.2746398016825)
+(constraint (= (fp32_full_mul #b11000101111010101101010101001100 #b11000100101001111010100011001010) #b01001011000110011100101111111010))
+SUCCESS: accepted (bits = 32). Total constraints: 6
+[INFO] Final accepted level for this sample: stage-2 strict (MSB=32).
+
+--- Iteration 11/30 ---
+Generating new constraint with inputs: (1241.5697615168592, -6513.128785525364)
+(constraint (= (fp32_full_mul #b01000100100110110011001000111011 #b11000101110010111000100100001000) #b11001010111101101100011111001111))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout at this stage (bits=32). Trying stage-0 fallback...
+(constraint (= ((_ extract 31 23) (fp32_full_mul #b01000100100110110011001000111011 #b11000101110010111000100100001000)) ((_ extract 31 23) #b11001010111101101100011111001111)))
+SUCCESS: accepted at stage-0 after timeout.
+(constraint (= ((_ extract 31 8) (fp32_full_mul #b01000100100110110011001000111011 #b11000101110010111000100100001000)) ((_ extract 31 8) #b11001010111101101100011111001111)))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Stage-0 accepted, but no upgrade succeeded for this sample.
+[INFO] Final accepted level for this sample: stage-0 (sign+exp, MSB=9).
+
+--- Iteration 12/30 ---
+Generating new constraint with inputs: (1064.4217113865961, -2901.9722732680257)
+(constraint (= (fp32_full_mul #b01000100100001010000110101111111 #b11000101001101010101111110001110) #b11001010001111001000100001101001))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout at this stage (bits=32). Trying stage-0 fallback...
+(constraint (= ((_ extract 31 23) (fp32_full_mul #b01000100100001010000110101111111 #b11000101001101010101111110001110)) ((_ extract 31 23) #b11001010001111001000100001101001)))
+SUCCESS: accepted at stage-0 after timeout.
+(constraint (= ((_ extract 31 8) (fp32_full_mul #b01000100100001010000110101111111 #b11000101001101010101111110001110)) ((_ extract 31 8) #b11001010001111001000100001101001)))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Stage-0 accepted, but no upgrade succeeded for this sample.
+[INFO] Final accepted level for this sample: stage-0 (sign+exp, MSB=9).
+
+--- Iteration 13/30 ---
+Generating new constraint with inputs: (9161.295701990974, -8174.118022465298)
+(constraint (= (fp32_full_mul #b01000110000011110010010100101111 #b11000101111111110111000011110010) #b11001100100011101101010100110001))
+SUCCESS: accepted (bits = 32). Total constraints: 9
+[INFO] Final accepted level for this sample: stage-2 strict (MSB=32).
+
+--- Iteration 14/30 ---
+Generating new constraint with inputs: (9572.799911408201, -1757.61214121398)
+(constraint (= (fp32_full_mul #b01000110000101011001001100110011 #b11000100110110111011001110010111) #b11001011100000000101110111011011))
+SUCCESS: accepted (bits = 32). Total constraints: 10
+[INFO] Final accepted level for this sample: stage-2 strict (MSB=32).
+
+--- Iteration 15/30 ---
+Generating new constraint with inputs: (78.70736220075014, -7037.076621396216)
+(constraint (= (fp32_full_mul #b01000010100111010110101000101011 #b11000101110110111110100010011101) #b11001001000001110011100011011100))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout at this stage (bits=32). Trying stage-0 fallback...
+(constraint (= ((_ extract 31 23) (fp32_full_mul #b01000010100111010110101000101011 #b11000101110110111110100010011101)) ((_ extract 31 23) #b11001001000001110011100011011100)))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout. No staged fallback; skipping this sample.
+SKIPPED: (78.707, -7037.077) could not be added (even after relaxation).
+
+--- Iteration 16/30 ---
+Generating new constraint with inputs: (4379.342806017701, -6200.572425563592)
+(constraint (= (fp32_full_mul #b01000101100010001101101010111110 #b11000101110000011100010010010100) #b11001011110011110010110000000000))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout at this stage (bits=32). Trying stage-0 fallback...
+(constraint (= ((_ extract 31 23) (fp32_full_mul #b01000101100010001101101010111110 #b11000101110000011100010010010100)) ((_ extract 31 23) #b11001011110011110010110000000000)))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout. No staged fallback; skipping this sample.
+SKIPPED: (4379.343, -6200.572) could not be added (even after relaxation).
+
+--- Iteration 17/30 ---
+Generating new constraint with inputs: (-3168.791484528957, -9529.57563715599)
+(constraint (= (fp32_full_mul #b11000101010001100000110010101010 #b11000110000101001110011001001101) #b01001011111001100110001011111010))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout at this stage (bits=32). Trying stage-0 fallback...
+(constraint (= ((_ extract 31 23) (fp32_full_mul #b11000101010001100000110010101010 #b11000110000101001110011001001101)) ((_ extract 31 23) #b01001011111001100110001011111010)))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout. No staged fallback; skipping this sample.
+SKIPPED: (-3168.791, -9529.576) could not be added (even after relaxation).
+
+--- Iteration 18/30 ---
+Generating new constraint with inputs: (-3209.6445520415864, 9349.649177597428)
+(constraint (= (fp32_full_mul #b11000101010010001001101001010000 #b01000110000100100001011010011001) #b11001011111001001111001101101110))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout at this stage (bits=32). Trying stage-0 fallback...
+(constraint (= ((_ extract 31 23) (fp32_full_mul #b11000101010010001001101001010000 #b01000110000100100001011010011001)) ((_ extract 31 23) #b11001011111001001111001101101110)))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout. No staged fallback; skipping this sample.
+SKIPPED: (-3209.645, 9349.649) could not be added (even after relaxation).
+
+--- Iteration 19/30 ---
+Generating new constraint with inputs: (9575.969083713135, 4890.6008028206925)
+(constraint (= (fp32_full_mul #b01000110000101011001111111100000 #b01000101100110001101010011001110) #b01001100001100101010011010011100))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout at this stage (bits=32). Trying stage-0 fallback...
+(constraint (= ((_ extract 31 23) (fp32_full_mul #b01000110000101011001111111100000 #b01000101100110001101010011001110)) ((_ extract 31 23) #b01001100001100101010011010011100)))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout. No staged fallback; skipping this sample.
+SKIPPED: (9575.969, 4890.601) could not be added (even after relaxation).
+
+--- Iteration 20/30 ---
+Generating new constraint with inputs: (-9930.907784898089, 8804.770061954856)
+(constraint (= (fp32_full_mul #b11000110000110110010101110100010 #b01000110000010011001001100010101) #b11001100101001101100011100000001))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout at this stage (bits=32). Trying stage-0 fallback...
+(constraint (= ((_ extract 31 23) (fp32_full_mul #b11000110000110110010101110100010 #b01000110000010011001001100010101)) ((_ extract 31 23) #b11001100101001101100011100000001)))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout. No staged fallback; skipping this sample.
+SKIPPED: (-9930.908, 8804.770) could not be added (even after relaxation).
+
+--- Iteration 21/30 ---
+Generating new constraint with inputs: (7415.339375109528, 5416.686770336217)
+(constraint (= (fp32_full_mul #b01000101111001111011101010110111 #b01000101101010010100010101111111) #b01001100000110010011100100101011))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout at this stage (bits=32). Trying stage-0 fallback...
+(constraint (= ((_ extract 31 23) (fp32_full_mul #b01000101111001111011101010110111 #b01000101101010010100010101111111)) ((_ extract 31 23) #b01001100000110010011100100101011)))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout. No staged fallback; skipping this sample.
+SKIPPED: (7415.339, 5416.687) could not be added (even after relaxation).
+
+--- Iteration 22/30 ---
+Generating new constraint with inputs: (-6422.5247075296975, -8010.0073438077725)
+(constraint (= (fp32_full_mul #b11000101110010001011010000110011 #b11000101111110100101000000001111) #b01001100010001000011111010111110))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout at this stage (bits=32). Trying stage-0 fallback...
+(constraint (= ((_ extract 31 23) (fp32_full_mul #b11000101110010001011010000110011 #b11000101111110100101000000001111)) ((_ extract 31 23) #b01001100010001000011111010111110)))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout. No staged fallback; skipping this sample.
+SKIPPED: (-6422.525, -8010.007) could not be added (even after relaxation).
+
+--- Iteration 23/30 ---
+Generating new constraint with inputs: (-1709.3506297628446, 7710.729342909592)
+(constraint (= (fp32_full_mul #b11000100110101011010101100111000 #b01000101111100001111010111010110) #b11001011010010010001110110110100))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout at this stage (bits=32). Trying stage-0 fallback...
+(constraint (= ((_ extract 31 23) (fp32_full_mul #b11000100110101011010101100111000 #b01000101111100001111010111010110)) ((_ extract 31 23) #b11001011010010010001110110110100)))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout. No staged fallback; skipping this sample.
+SKIPPED: (-1709.351, 7710.729) could not be added (even after relaxation).
+
+--- Iteration 24/30 ---
+Generating new constraint with inputs: (1561.720547326464, 4731.644298881645)
+(constraint (= (fp32_full_mul #b01000100110000110011011100001111 #b01000101100100111101110100101000) #b01001010111000011000001010000101))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout at this stage (bits=32). Trying stage-0 fallback...
+(constraint (= ((_ extract 31 23) (fp32_full_mul #b01000100110000110011011100001111 #b01000101100100111101110100101000)) ((_ extract 31 23) #b01001010111000011000001010000101)))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout. No staged fallback; skipping this sample.
+SKIPPED: (1561.721, 4731.644) could not be added (even after relaxation).
+
+--- Iteration 25/30 ---
+Generating new constraint with inputs: (-5347.5779354318465, 471.95160329316786)
+(constraint (= (fp32_full_mul #b11000101101001110001110010100000 #b01000011111010111111100111001110) #b11001010000110100000101001011000))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout at this stage (bits=32). Trying stage-0 fallback...
+(constraint (= ((_ extract 31 23) (fp32_full_mul #b11000101101001110001110010100000 #b01000011111010111111100111001110)) ((_ extract 31 23) #b11001010000110100000101001011000)))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout. No staged fallback; skipping this sample.
+SKIPPED: (-5347.578, 471.952) could not be added (even after relaxation).
+
+--- Iteration 26/30 ---
+Generating new constraint with inputs: (4187.728749682634, 6496.678937955614)
+(constraint (= (fp32_full_mul #b01000101100000101101110111010100 #b01000101110010110000010101101110) #b01001011110011111001000101011011))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout at this stage (bits=32). Trying stage-0 fallback...
+(constraint (= ((_ extract 31 23) (fp32_full_mul #b01000101100000101101110111010100 #b01000101110010110000010101101110)) ((_ extract 31 23) #b01001011110011111001000101011011)))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout. No staged fallback; skipping this sample.
+SKIPPED: (4187.729, 6496.679) could not be added (even after relaxation).
+
+--- Iteration 27/30 ---
+Generating new constraint with inputs: (6142.490661181659, -5353.837740450757)
+(constraint (= (fp32_full_mul #b01000101101111111111001111101101 #b11000101101001110100111010110100) #b11001011111110101110011001000110))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout at this stage (bits=32). Trying stage-0 fallback...
+(constraint (= ((_ extract 31 23) (fp32_full_mul #b01000101101111111111001111101101 #b11000101101001110100111010110100)) ((_ extract 31 23) #b11001011111110101110011001000110)))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout. No staged fallback; skipping this sample.
+SKIPPED: (6142.491, -5353.838) could not be added (even after relaxation).
+
+--- Iteration 28/30 ---
+Generating new constraint with inputs: (7463.799342397582, -5672.391394199106)
+(constraint (= (fp32_full_mul #b01000101111010010011111001100101 #b11000101101100010100001100100010) #b11001100001000011000000101001110))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout at this stage (bits=32). Trying stage-0 fallback...
+(constraint (= ((_ extract 31 23) (fp32_full_mul #b01000101111010010011111001100101 #b11000101101100010100001100100010)) ((_ extract 31 23) #b11001100001000011000000101001110)))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout. No staged fallback; skipping this sample.
+SKIPPED: (7463.799, -5672.391) could not be added (even after relaxation).
+
+--- Iteration 29/30 ---
+Generating new constraint with inputs: (6037.984752066286, 1101.705978767548)
+(constraint (= (fp32_full_mul #b01000101101111001010111111100001 #b01000100100010011011011010010111) #b01001010110010110000000101100111))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout at this stage (bits=32). Trying stage-0 fallback...
+(constraint (= ((_ extract 31 23) (fp32_full_mul #b01000101101111001010111111100001 #b01000100100010011011011010010111)) ((_ extract 31 23) #b01001010110010110000000101100111)))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout. No staged fallback; skipping this sample.
+SKIPPED: (6037.985, 1101.706) could not be added (even after relaxation).
+
+--- Iteration 30/30 ---
+Generating new constraint with inputs: (-6283.432802895681, 1772.1723666303205)
+(constraint (= (fp32_full_mul #b11000101110001000101101101110110 #b01000100110111011000010110000100) #b11001011001010011110100101011110))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout at this stage (bits=32). Trying stage-0 fallback...
+(constraint (= ((_ extract 31 23) (fp32_full_mul #b11000101110001000101101101110110 #b01000100110111011000010110000100)) ((_ extract 31 23) #b11001011001010011110100101011110)))
+[CVC5] Solver timed out after 180 seconds.
+[INFO] Timeout. No staged fallback; skipping this sample.
+SKIPPED: (-6283.433, 1772.172) could not be added (even after relaxation).
+
+
+--- Synthesis Complete! ---
+
+Constraints accepted: 10/30
+
+--- Final Synthesized Program ---
+(define-fun fp32_full_mul ((a (_ BitVec 32)) (b (_ BitVec 32))) (_ BitVec 32) (let ((_let_1 (bvmul ((_ zero_extend 24) (concat #b1 ((_ extract 22 0) a))) ((_ zero_extend 24) (concat #b1 ((_ extract 22 0) b)))))) (concat (bvxor ((_ extract 31 31) a) ((_ extract 31 31) b)) (concat (bvadd (bvsub (bvadd ((_ extract 30 23) a) ((_ extract 30 23) b)) #b01111111) ((_ zero_extend 7) ((_ extract 47 47) _let_1))) ((_ extract 22 0) (bvadd ((_ zero_extend 1) ((_ extract 47 24) _let_1)) ((_ zero_extend 24) (bvand ((_ extract 23 23) _let_1) (bvor ((_ extract 22 22) _let_1) #b0)))))))))
+
+ Solution saved to: results/smt2/relaxsweep_fp32_mul_v1_staged_r01.smt2
+
+Translating SMT output to C using smt2c...
+[INFO] Found 1 define-fun block(s). Order passed to smt2c:
+    - fp32_full_mul
+C file saved to: results/c/relaxsweep_fp32_mul_v1_staged_r01.c
+
+Generated C code:
+
+unsigned int fp32_full_mul(unsigned int a, unsigned int b) {
+  ap_uint<23> __smt2c_ext_0 = ((ap_uint<32>)a).range(22, 0);
+  ap_uint<23> __smt2c_ext_1 = ((ap_uint<32>)b).range(22, 0);
+  ap_uint<48> _let_1 = (ap_uint<48>)((ap_uint<24>)1 << 23 | (ap_uint<24>)__smt2c_ext_0) * (ap_uint<48>)((ap_uint<24>)1 << 23 | (ap_uint<24>)__smt2c_ext_1);
+  ap_uint<1> __smt2c_ext_2 = ((ap_uint<32>)a).range(31, 31);
+  ap_uint<1> __smt2c_ext_3 = ((ap_uint<32>)b).range(31, 31);
+  unsigned char __smt2c_ext_4 = ((ap_uint<32>)a).range(30, 23);
+  unsigned char __smt2c_ext_5 = ((ap_uint<32>)b).range(30, 23);
+  ap_uint<1> __smt2c_ext_6 = ((ap_uint<48>)_let_1).range(47, 47);
+  ap_uint<24> __smt2c_ext_7 = ((ap_uint<48>)_let_1).range(47, 24);
+  ap_uint<1> __smt2c_ext_8 = ((ap_uint<48>)_let_1).range(23, 23);
+  ap_uint<1> __smt2c_ext_9 = ((ap_uint<48>)_let_1).range(22, 22);
+  ap_uint<25> __smt2c_src_10 = (ap_uint<25>)__smt2c_ext_7 + (ap_uint<25>)(__smt2c_ext_8 & (__smt2c_ext_9 | 0));
+  ap_uint<23> __smt2c_ext_11 = ((ap_uint<25>)__smt2c_src_10).range(22, 0);
+  return (unsigned int)(__smt2c_ext_2 ^ __smt2c_ext_3) << 31 | (unsigned int)((ap_uint<31>)(((__smt2c_ext_4 + __smt2c_ext_5) - 127) + (unsigned char)__smt2c_ext_6) << 23 | (ap_uint<31>)__smt2c_ext_11);
+}
+
+Converting C output to HLS-compatible C++...
+
+HLS C++ file saved to: /home/josephluke/Program-Synthesis-for-Efficient-ML/results/cpp/relaxsweep_fp32_mul_v1_staged_r01.cpp
+Generated HLS-ready C++ code:
+
+#include <ap_int.h>
+
+ap_uint<32> fp32_full_mul(ap_uint<32> a, ap_uint<32> b) {
+  ap_uint<23> __smt2c_ext_0 = ((ap_uint<32>)a).range(22, 0);
+  ap_uint<23> __smt2c_ext_1 = ((ap_uint<32>)b).range(22, 0);
+  ap_uint<48> _let_1 = (ap_uint<48>)((ap_uint<24>)1 << 23 | (ap_uint<24>)__smt2c_ext_0) * (ap_uint<48>)((ap_uint<24>)1 << 23 | (ap_uint<24>)__smt2c_ext_1);
+  ap_uint<1> __smt2c_ext_2 = ((ap_uint<32>)a).range(31, 31);
+  ap_uint<1> __smt2c_ext_3 = ((ap_uint<32>)b).range(31, 31);
+  ap_uint<8> __smt2c_ext_4 = ((ap_uint<32>)a).range(30, 23);
+  ap_uint<8> __smt2c_ext_5 = ((ap_uint<32>)b).range(30, 23);
+  ap_uint<1> __smt2c_ext_6 = ((ap_uint<48>)_let_1).range(47, 47);
+  ap_uint<24> __smt2c_ext_7 = ((ap_uint<48>)_let_1).range(47, 24);
+  ap_uint<1> __smt2c_ext_8 = ((ap_uint<48>)_let_1).range(23, 23);
+  ap_uint<1> __smt2c_ext_9 = ((ap_uint<48>)_let_1).range(22, 22);
+  ap_uint<25> __smt2c_src_10 = ap_uint<25>((__smt2c_ext_7 + (ap_uint<25>)(__smt2c_ext_8 & (__smt2c_ext_9 | 0))));
+  ap_uint<23> __smt2c_ext_11 = ((ap_uint<25>)__smt2c_src_10).range(22, 0);
+  return (ap_uint<32>)(__smt2c_ext_2 ^ __smt2c_ext_3) << 31 | (ap_uint<32>)((ap_uint<31>)(((__smt2c_ext_4 + __smt2c_ext_5) - 127) + (ap_uint<8>)__smt2c_ext_6) << 23 | (ap_uint<31>)__smt2c_ext_11);
+}
+
+[INFO] Auto-detected top function: fp32_full_mul
+[INFO] Generated HLS TCL script: /home/josephluke/Program-Synthesis-for-Efficient-ML/results/HLS/relaxsweep_fp32_mul_v1_staged_r01/hls.tcl
+[INFO] Running Vitis HLS synthesis...
+
+[SUCCESS] Vitis HLS run completed successfully.
+[INFO] Staged 2 Verilog files into: /home/josephluke/Program-Synthesis-for-Efficient-ML/results/HLS/relaxsweep_fp32_mul_v1_staged_r01/verilog_out
+[INFO] Candidate RTL modules: ['fp32_full_mul', 'fp32_full_mul_mul_24ns_24ns_48_1_1']
+[INFO] Generated Vivado TCL script: /home/josephluke/Program-Synthesis-for-Efficient-ML/results/HLS/relaxsweep_fp32_mul_v1_staged_r01/vivado.tcl
+[INFO] Cleaning up previous Vivado log and journal files...
+[INFO] Running Vivado implementation (this will take several minutes)...
+
+[SUCCESS] Vivado implementation completed successfully.
+
+--- Hardware Results ---
+{
+    "LUTs": 10,
+    "FFs": 0,
+    "DSPs": 2,
+    "BRAMs": 0,
+    "Cycles": 0,
+    "Fmax_MHz": 87.283,
+    "Latency_ns": 11.457
+}
+[ACC-CMD] FP32_MUL_VARIANT=v2 PYTHON=/home/josephluke/Program-Synthesis-for-Efficient-ML/.venv/bin/python make HLS_BASE=/home/josephluke/Program-Synthesis-for-Efficient-ML/results/HLS HLS_SOLN=relaxsweep_fp32_mul_v1_staged_r01 TOPLEVEL=fp32_full_mul MODULE=tests.multiplication.test_fp32_multiplier TOPLEVEL_LANG=verilog
+rm -f results.xml
+"make" -f Makefile results.xml
+make[1]: Entering directory '/home/josephluke/Program-Synthesis-for-Efficient-ML/accuracy_tests'
+/home/josephluke/.conda/pkgs/iverilog-11.0-hd56c0c9_0/bin/iverilog -o /home/josephluke/Program-Synthesis-for-Efficient-ML/accuracy_tests/sim_build/fp32_full_mul_relaxsweep_fp32_mul_v1_staged_r01/sim.vvp -s fp32_full_mul -g2012 -f /home/josephluke/Program-Synthesis-for-Efficient-ML/accuracy_tests/sim_build/fp32_full_mul_relaxsweep_fp32_mul_v1_staged_r01/cmds.f  /home/josephluke/Program-Synthesis-for-Efficient-ML/results/HLS/relaxsweep_fp32_mul_v1_staged_r01/verilog_out/fp32_full_mul_mul_24ns_24ns_48_1_1.v /home/josephluke/Program-Synthesis-for-Efficient-ML/results/HLS/relaxsweep_fp32_mul_v1_staged_r01/verilog_out/fp32_full_mul.v
+rm -f results.xml
+COCOTB_TEST_MODULES=tests.multiplication.test_fp32_multiplier COCOTB_TESTCASE= COCOTB_TEST_FILTER= COCOTB_TOPLEVEL=fp32_full_mul TOPLEVEL_LANG=verilog \
+         /home/josephluke/.conda/pkgs/iverilog-11.0-hd56c0c9_0/bin/vvp -M /home/josephluke/Program-Synthesis-for-Efficient-ML/.venv/lib/python3.11/site-packages/cocotb/libs -m libcocotbvpi_icarus   /home/josephluke/Program-Synthesis-for-Efficient-ML/accuracy_tests/sim_build/fp32_full_mul_relaxsweep_fp32_mul_v1_staged_r01/sim.vvp  -none 
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:93   in _embed_init_python              Using Python 3.11.9 interpreter at /home/josephluke/Program-Synthesis-for-Efficient-ML/.venv/bin/python
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:79   in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 11.0 (stable)
+     0.00ns WARNING  gpi                                vpi_iterate returned NULL for type vpiInstance for object NULL
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774918180
+     0.00ns INFO     cocotb                             Initialized cocotb v2.0.0 from /home/josephluke/Program-Synthesis-for-Efficient-ML/.venv/lib64/python3.11/site-packages/cocotb
+     0.00ns INFO     cocotb                             Running tests
+     0.00ns INFO     cocotb.regression                  running tests.multiplication.test_fp32_multiplier.fp32_multiplier_accuracy_subcomponents (1/4)
+     0.00ns INFO     cocotb.fp32_full_mul               Skipping subcomponents variant (FP32_MUL_VARIANT filter).
+     0.00ns INFO     cocotb.regression                  tests.multiplication.test_fp32_multiplier.fp32_multiplier_accuracy_subcomponents passed
+     0.00ns INFO     cocotb.regression                  running tests.multiplication.test_fp32_multiplier.fp32_multiplier_accuracy_v2 (2/4)
+     0.00ns INFO     cocotb.fp32_full_mul               Starting FP32 multiplier accuracy test (v2)
+     0.00ns INFO     cocotb.fp32_full_mul               Random operand sampler mode: small (seed=7)
+     1.00ns INFO     cocotb.fp32_full_mul               [DIRECTED] a=0.5 b=0.5 got=0x3EC00000 ref=0x3E800000 exact=False
+     2.00ns INFO     cocotb.fp32_full_mul               [DIRECTED] a=1.0 b=1.0 got=0x3FC00000 ref=0x3F800000 exact=False
+     3.00ns INFO     cocotb.fp32_full_mul               [DIRECTED] a=2.0 b=0.5 got=0x3FC00000 ref=0x3F800000 exact=False
+     4.00ns INFO     cocotb.fp32_full_mul               [DIRECTED] a=1.5 b=2.0 got=0x40600000 ref=0x40400000 exact=False
+     5.00ns INFO     cocotb.fp32_full_mul               [DIRECTED] a=0.25 b=4.0 got=0x3FC00000 ref=0x3F800000 exact=False
+     6.00ns INFO     cocotb.fp32_full_mul               [DIRECTED] a=-0.5 b=0.5 got=0xBEC00000 ref=0xBE800000 exact=False
+100006.00ns INFO     cocotb.fp32_full_mul               Directed cases run: 6
+100006.00ns INFO     cocotb.fp32_full_mul               Ran 100006 cases (skipped 0). Exact match: 45.95%. Within 5% relative error: 73.03% (avg=4.734%, p99=37.211%)
+100006.00ns INFO     cocotb.fp32_full_mul               Saved per-sample error dump: /home/josephluke/Program-Synthesis-for-Efficient-ML/results/relaxation_sweep/run1_small/error_samples/fp32_mul_v1_staged_r01.npz
+100014.00ns WARNING  py.warnings                        /home/josephluke/Program-Synthesis-for-Efficient-ML/accuracy_tests/tests/multiplication/test_fp32_multiplier.py:151: RuntimeWarning: overflow encountered in scalar multiply
+                                                          ref_bits = float_to_uint32(np.float32(uint32_to_float(a)) * np.float32(uint32_to_float(b)))
+150006.00ns WARNING  py.warnings                        /home/josephluke/Program-Synthesis-for-Efficient-ML/.venv/lib64/python3.11/site-packages/numpy/lib/_function_base_impl.py:4596: RuntimeWarning: invalid value encountered in scalar subtract
+                                                          diff_b_a = b - a
+150006.00ns INFO     cocotb.fp32_full_mul               [GENERALISATION (normal_full)] Ran 41618 cases (skipped 8382). Exact match: 41.39%. Within 5% relative error: 66.04% (avg=inf%, p99=nan%)
+150006.00ns INFO     cocotb.regression                  tests.multiplication.test_fp32_multiplier.fp32_multiplier_accuracy_v2 passed
+150006.00ns INFO     cocotb.regression                  running tests.multiplication.test_fp32_multiplier.fp32_multiplier_accuracy_v1 (3/4)
+150006.00ns INFO     cocotb.fp32_full_mul               Skipping v1 variant (FP32_MUL_VARIANT filter).
+150006.00ns INFO     cocotb.regression                  tests.multiplication.test_fp32_multiplier.fp32_multiplier_accuracy_v1 passed
+150006.00ns INFO     cocotb.regression                  running tests.multiplication.test_fp32_multiplier.fp32_multiplier_accuracy_flopoco (4/4)
+150006.00ns INFO     cocotb.fp32_full_mul               Skipping flopoco variant (FP32_MUL_VARIANT filter).
+150006.00ns INFO     cocotb.regression                  tests.multiplication.test_fp32_multiplier.fp32_multiplier_accuracy_flopoco passed
+150006.00ns INFO     cocotb.regression                  ******************************************************************************************************************************************
+                                                        ** TEST                                                                              STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ******************************************************************************************************************************************
+                                                        ** tests.multiplication.test_fp32_multiplier.fp32_multiplier_accuracy_subcomponents   PASS           0.00           0.00          0.00  **
+                                                        ** tests.multiplication.test_fp32_multiplier.fp32_multiplier_accuracy_v2              PASS      150006.00           3.63      41271.37  **
+                                                        ** tests.multiplication.test_fp32_multiplier.fp32_multiplier_accuracy_v1              PASS           0.00           0.00          0.00  **
+                                                        ** tests.multiplication.test_fp32_multiplier.fp32_multiplier_accuracy_flopoco         PASS           0.00           0.00          0.00  **
+                                                        ******************************************************************************************************************************************
+                                                        ** TESTS=4 PASS=4 FAIL=0 SKIP=0                                                                 150006.00           3.64      41245.85  **
+                                                        ******************************************************************************************************************************************
+make[1]: Leaving directory '/home/josephluke/Program-Synthesis-for-Efficient-ML/accuracy_tests'
+
+/home/josephluke/Program-Synthesis-for-Efficient-ML/.venv/lib/python3.11/site-packages/cocotb_tools/makefiles/simulators/Makefile.icarus:66: Using MODULE is deprecated, please use COCOTB_TEST_MODULES instead.
+[SUCCESS] Accuracy run completed successfully.

@@ -1,15 +1,9 @@
 <testsuites name="results">
   <testsuite name="all" package="all">
-    <property name="random_seed" value="1774731889" />
-    <testcase name="fp32_adder_accuracy_subcomponents" classname="tests.addition.test_fp32_adder" file="/home/josephluke/Program-Synthesis-for-Efficient-ML/accuracy_tests/tests/addition/test_fp32_adder.py" lineno="240" time="4.7206878662109375e-05" sim_time_ns="0.0" ratio_time="0.0" />
-    <testcase name="fp32_adder_accuracy_v2" classname="tests.addition.test_fp32_adder" file="/home/josephluke/Program-Synthesis-for-Efficient-ML/accuracy_tests/tests/addition/test_fp32_adder.py" lineno="248" time="30.77463936805725" sim_time_ns="7966895.0" ratio_time="258878.58196217543">
-      <failure error_type="SimFailure" error_msg="Simulator shut down prematurely" />
-    </testcase>
-    <testcase name="fp32_adder_accuracy_v1" classname="tests.addition.test_fp32_adder" file="/home/josephluke/Program-Synthesis-for-Efficient-ML/accuracy_tests/tests/addition/test_fp32_adder.py" lineno="256" time="0" sim_time_ns="0" ratio_time="nan">
-      <failure error_type="SimFailure" error_msg="Simulator shut down prematurely" />
-    </testcase>
-    <testcase name="fp32_adder_accuracy_flopoco" classname="tests.addition.test_fp32_adder" file="/home/josephluke/Program-Synthesis-for-Efficient-ML/accuracy_tests/tests/addition/test_fp32_adder.py" lineno="264" time="0" sim_time_ns="0" ratio_time="nan">
-      <failure error_type="SimFailure" error_msg="Simulator shut down prematurely" />
-    </testcase>
+    <property name="random_seed" value="1775252376" />
+    <testcase name="fp32_multiplier_accuracy_subcomponents" classname="tests.multiplication.test_fp32_multiplier" file="/home/josephluke/Program-Synthesis-for-Efficient-ML/accuracy_tests/tests/multiplication/test_fp32_multiplier.py" lineno="270" time="2.3914005756378174" sim_time_ns="100006.0" ratio_time="41819.00808204293" />
+    <testcase name="fp32_multiplier_accuracy_v2" classname="tests.multiplication.test_fp32_multiplier" file="/home/josephluke/Program-Synthesis-for-Efficient-ML/accuracy_tests/tests/multiplication/test_fp32_multiplier.py" lineno="278" time="2.5033950805664062e-05" sim_time_ns="0.0" ratio_time="0.0" />
+    <testcase name="fp32_multiplier_accuracy_v1" classname="tests.multiplication.test_fp32_multiplier" file="/home/josephluke/Program-Synthesis-for-Efficient-ML/accuracy_tests/tests/multiplication/test_fp32_multiplier.py" lineno="286" time="1.811981201171875e-05" sim_time_ns="0.0" ratio_time="0.0" />
+    <testcase name="fp32_multiplier_accuracy_flopoco" classname="tests.multiplication.test_fp32_multiplier" file="/home/josephluke/Program-Synthesis-for-Efficient-ML/accuracy_tests/tests/multiplication/test_fp32_multiplier.py" lineno="294" time="1.8358230590820312e-05" sim_time_ns="0.0" ratio_time="0.0" />
   </testsuite>
 </testsuites>

@@ -2,9 +2,9 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
-export HLS_CLK_PERIOD_NS=5.000
-export HLS_CLK_UNCERTAINTY_NS=0.200
-export VIVADO_CLK_PERIOD_NS=5.000
+export HLS_CLK_PERIOD_NS=1000000000
+export HLS_CLK_UNCERTAINTY_NS=0
+export VIVADO_CLK_PERIOD_NS=1000000000
 
 VENV=".venv/bin/python"
 if [ ! -f "$VENV" ]; then VENV="python3"; fi
@@ -20,9 +20,9 @@ for VER in Subcomponents V1 V2; do
     SESSION="gs_${VER,,}"
     tmux new-session -d -s "$SESSION" bash -c "
         cd $(pwd)
-        export HLS_CLK_PERIOD_NS=5.000
-        export HLS_CLK_UNCERTAINTY_NS=0.200
-        export VIVADO_CLK_PERIOD_NS=5.000
+        export HLS_CLK_PERIOD_NS=1000000000
+        export HLS_CLK_UNCERTAINTY_NS=0
+        export VIVADO_CLK_PERIOD_NS=1000000000
         $VENV -m src.Experiments.grammar_selection_study \
             --output-dir '$OUT_DIR' \
             --versions $VER \

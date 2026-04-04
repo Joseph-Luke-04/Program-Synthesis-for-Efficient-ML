@@ -1,0 +1,295 @@
+[INFO] Target: FP32MultiplicationTarget | Component: full_product_v2
+[INFO] NUM_ITERATIONS=30, TIMEOUT=180s, RUN_IMPLEMENTATION=True, DIRECTED_IO=True, RUN_ACCURACY=True, SYNTH_FP32_MUL_MODE=default, SYNTH_FP32_ADD_MODE=default, SYGUS_DUMP=False, SYGUS_FAST_ENUM=False, SYGUS_PBE=True, SYGUS_SYM_BREAK_PBE=True, MXINT8_OUTPUT_MATCH_BITS=8, MXINT8_AUTO_RELAX_OUTPUT_MATCH=False, MXINT8_MIN_OUTPUT_MATCH_BITS=4, MXINT8_STAGE_MANTISSA_BITS=2, FP32_OUTPUT_MATCH_MSB_BITS=32, FP32_AUTO_RELAX_OUTPUT_MATCH=False, FP32_RESET_MSB_PER_SAMPLE=True, FP32_RELAX_ON_TIMEOUT=False, FP32_TIMEOUT_RETRY_ONCE=False, FP32_TIMEOUT_RETRY_MULTIPLIER=4, FP32_RELAX_ON_INFEASIBLE=False, FP32_RELAX_ON_FAIL=False, FP32_RELAX_SCHEDULE=staged, FP32_STAGE_MANTISSA_BITS=15, FP32_MIN_OUTPUT_MATCH_MSB_BITS=32, FP32_OUTPUT_MATCH_STEP=1, RANDOM_SEED=12346
+[INFO] FP32 synthesis operand mode=default range=[-10000.0, 10000.0]
+--- Starting Synthesis for [FP32MultiplicationTarget -> full_product_v2] ---
+
+--- Iteration 1/30 ---
+Generating new constraint with inputs: (1.5, 1.5)
+(constraint (= (fp32_full_mul #b00111111110000000000000000000000 #b00111111110000000000000000000000) #b01000000000100000000000000000000))
+SUCCESS: accepted (bits = 32). Total constraints: 1
+
+--- Iteration 2/30 ---
+Generating new constraint with inputs: (1.25, 1.25)
+(constraint (= (fp32_full_mul #b00111111101000000000000000000000 #b00111111101000000000000000000000) #b00111111110010000000000000000000))
+SUCCESS: accepted (bits = 32). Total constraints: 2
+
+--- Iteration 3/30 ---
+Generating new constraint with inputs: (-1.5, 1.5)
+(constraint (= (fp32_full_mul #b10111111110000000000000000000000 #b00111111110000000000000000000000) #b11000000000100000000000000000000))
+SUCCESS: accepted (bits = 32). Total constraints: 3
+
+--- Iteration 4/30 ---
+Generating new constraint with inputs: (1.5, -1.5)
+(constraint (= (fp32_full_mul #b00111111110000000000000000000000 #b10111111110000000000000000000000) #b11000000000100000000000000000000))
+SUCCESS: accepted (bits = 32). Total constraints: 4
+
+--- Iteration 5/30 ---
+Generating new constraint with inputs: (1.0000001192092896, 1.0000001192092896)
+(constraint (= (fp32_full_mul #b00111111100000000000000000000001 #b00111111100000000000000000000001) #b00111111100000000000000000000010))
+SUCCESS: accepted (bits = 32). Total constraints: 5
+
+--- Iteration 6/30 ---
+Generating new constraint with inputs: (-736.3239042685855, 4792.015171764033)
+(constraint (= (fp32_full_mul #b11000100001110000001010010111011 #b01000101100101011100000000011111) #b11001010010101110101110001101101))
+SUCCESS: accepted (bits = 32). Total constraints: 6
+
+--- Iteration 7/30 ---
+Generating new constraint with inputs: (-2244.260178771973, 4156.467031037115)
+(constraint (= (fp32_full_mul #b11000101000011000100010000101010 #b01000101100000011110001110111100) #b11001011000011100101011001000001))
+SUCCESS: accepted (bits = 32). Total constraints: 7
+
+--- Iteration 8/30 ---
+Generating new constraint with inputs: (4906.194656689866, -5229.248511467977)
+(constraint (= (fp32_full_mul #b01000101100110010101000110001111 #b11000101101000110110100111111101) #b11001011110000111011110011010000))
+SUCCESS: accepted (bits = 32). Total constraints: 8
+
+--- Iteration 9/30 ---
+Generating new constraint with inputs: (9912.498035806362, -3249.712902241924)
+(constraint (= (fp32_full_mul #b01000110000110101110000111111110 #b11000101010010110001101101101000) #b11001011111101011100001110010010))
+SUCCESS: accepted (bits = 32). Total constraints: 9
+
+--- Iteration 10/30 ---
+Generating new constraint with inputs: (1518.533610086015, -1107.7507334127586)
+(constraint (= (fp32_full_mul #b01000100101111011101000100010011 #b11000100100010100111100000000110) #b11001001110011010101011101100101))
+SUCCESS: accepted (bits = 32). Total constraints: 10
+
+--- Iteration 11/30 ---
+Generating new constraint with inputs: (7685.785587117083, -4491.002247438762)
+(constraint (= (fp32_full_mul #b01000101111100000010111001001001 #b11000101100011000101100000000101) #b11001100000000111010101111100101))
+SUCCESS: accepted (bits = 32). Total constraints: 11
+
+--- Iteration 12/30 ---
+Generating new constraint with inputs: (-1877.990880213929, -4446.592869892625)
+(constraint (= (fp32_full_mul #b11000100111010101011111110110101 #b11000101100010101111010010111110) #b01001010111111101101011110001001))
+SUCCESS: accepted (bits = 32). Total constraints: 12
+
+--- Iteration 13/30 ---
+Generating new constraint with inputs: (-5975.290414661394, -4959.180532521596)
+(constraint (= (fp32_full_mul #b11000101101110101011101001010011 #b11000101100110101111100101110010) #b01001011111000100001010000010001))
+SUCCESS: accepted (bits = 32). Total constraints: 13
+
+--- Iteration 14/30 ---
+Generating new constraint with inputs: (-1832.0503801505383, 6259.706499989559)
+(constraint (= (fp32_full_mul #b11000100111001010000000110011101 #b01000101110000111001110110100111) #b11001011001011101111110101000010))
+SUCCESS: accepted (bits = 32). Total constraints: 14
+
+--- Iteration 15/30 ---
+Generating new constraint with inputs: (-3837.7665048202543, -4480.554255016633)
+(constraint (= (fp32_full_mul #b11000101011011111101110001000100 #b11000101100011000000010001101111) #b01001011100000110011000010011101))
+SUCCESS: accepted (bits = 32). Total constraints: 15
+
+--- Iteration 16/30 ---
+Generating new constraint with inputs: (5545.032909589534, 7219.106163544049)
+(constraint (= (fp32_full_mul #b01000101101011010100100001000011 #b01000101111000011001100011011001) #b01001100000110001011001111111001))
+SUCCESS: accepted (bits = 32). Total constraints: 16
+
+--- Iteration 17/30 ---
+Generating new constraint with inputs: (-8479.353008904809, 1216.475866763125)
+(constraint (= (fp32_full_mul #b11000110000001000111110101101001 #b01000100100110000000111100111010) #b11001011000111010110010010101111))
+SUCCESS: accepted (bits = 32). Total constraints: 17
+
+--- Iteration 18/30 ---
+Generating new constraint with inputs: (-4216.313907139684, -5472.669711660949)
+(constraint (= (fp32_full_mul #b11000101100000111100001010000011 #b11000101101010110000010101011100) #b01001011101100000000101101011111))
+SUCCESS: accepted (bits = 32). Total constraints: 18
+
+--- Iteration 19/30 ---
+Generating new constraint with inputs: (-4172.387791401524, -9989.929049179862)
+(constraint (= (fp32_full_mul #b11000101100000100110001100011010 #b11000110000111000001011110110111) #b01001100000111110000000011110000))
+SUCCESS: accepted (bits = 32). Total constraints: 19
+
+--- Iteration 20/30 ---
+Generating new constraint with inputs: (-8296.26582175902, 4946.399951128)
+(constraint (= (fp32_full_mul #b11000110000000011010000100010000 #b01000101100110101001001100110011) #b11001100000111001000101011011010))
+SUCCESS: accepted (bits = 32). Total constraints: 20
+
+--- Iteration 21/30 ---
+Generating new constraint with inputs: (-6104.6191479985, -977.8171006469802)
+(constraint (= (fp32_full_mul #b11000101101111101100010011110100 #b11000100011101000111010001001011) #b01001010101101100010101001100010))
+SUCCESS: accepted (bits = 32). Total constraints: 21
+
+--- Iteration 22/30 ---
+Generating new constraint with inputs: (8926.746220863355, 7480.294646847473)
+(constraint (= (fp32_full_mul #b01000110000010110111101011111100 #b01000101111010011100001001011011) #b01001100011111101011100110101000))
+SUCCESS: accepted (bits = 32). Total constraints: 22
+
+--- Iteration 23/30 ---
+Generating new constraint with inputs: (-2646.1760286060644, -7776.159728179908)
+(constraint (= (fp32_full_mul #b11000101001001010110001011010001 #b11000101111100110000000101000111) #b01001011100111001111110110100000))
+SUCCESS: accepted (bits = 32). Total constraints: 23
+
+--- Iteration 24/30 ---
+Generating new constraint with inputs: (-8612.678386785932, -6313.7974932620655)
+(constraint (= (fp32_full_mul #b11000110000001101001001010110111 #b11000101110001010100111001100001) #b01001100010011110111000000110101))
+SUCCESS: accepted (bits = 32). Total constraints: 24
+
+--- Iteration 25/30 ---
+Generating new constraint with inputs: (6122.462598165059, 4857.6883211347795)
+(constraint (= (fp32_full_mul #b01000101101111110101001110110011 #b01000101100101111100110110000010) #b01001011111000101110011111101100))
+SUCCESS: accepted (bits = 32). Total constraints: 25
+
+--- Iteration 26/30 ---
+Generating new constraint with inputs: (4896.449323294661, 7372.159417250517)
+(constraint (= (fp32_full_mul #b01000101100110010000001110011000 #b01000101111001100110000101000110) #b01001100000010011011001101011111))
+SUCCESS: accepted (bits = 32). Total constraints: 26
+
+--- Iteration 27/30 ---
+Generating new constraint with inputs: (-4257.705402401395, 9884.905073847942)
+(constraint (= (fp32_full_mul #b11000101100001010000110110100101 #b01000110000110100111001110011111) #b11001100001000001000110010011010))
+SUCCESS: accepted (bits = 32). Total constraints: 27
+
+--- Iteration 28/30 ---
+Generating new constraint with inputs: (4735.335406257031, 6989.072609125629)
+(constraint (= (fp32_full_mul #b01000101100100111111101010101111 #b01000101110110100110100010010101) #b01001011111111000111111111011010))
+SUCCESS: accepted (bits = 32). Total constraints: 28
+
+--- Iteration 29/30 ---
+Generating new constraint with inputs: (6113.145677056455, -206.70304622735603)
+(constraint (= (fp32_full_mul #b01000101101111110000100100101010 #b11000011010011101011001111111011) #b11001001100110100011111110101111))
+SUCCESS: accepted (bits = 32). Total constraints: 29
+
+--- Iteration 30/30 ---
+Generating new constraint with inputs: (-6908.588270277591, -24.23828399966078)
+(constraint (= (fp32_full_mul #b11000101110101111110010010110101 #b11000001110000011110100000000001) #b01001000001000111000011100010101))
+SUCCESS: accepted (bits = 32). Total constraints: 30
+
+
+--- Synthesis Complete! ---
+
+Constraints accepted: 30/30
+
+--- Final Synthesized Program ---
+(define-fun fp32_full_mul ((a (_ BitVec 32)) (b (_ BitVec 32))) (_ BitVec 32) (let ((_let_1 (bvmul ((_ zero_extend 24) (concat #b1 ((_ extract 22 0) a))) ((_ zero_extend 24) (concat #b1 ((_ extract 22 0) b)))))) (let ((_let_2 ((_ extract 47 47) _let_1))) (let ((_let_3 (ite (= _let_2 #b1) (bvlshr _let_1 #b000000000000000000000000000000000000000000000001) _let_1))) (concat (bvxor ((_ extract 31 31) a) ((_ extract 31 31) b)) (concat (bvadd (bvsub (bvadd ((_ extract 30 23) a) ((_ extract 30 23) b)) #b01111111) ((_ zero_extend 7) _let_2)) ((_ extract 22 0) ((_ extract 23 0) (bvadd ((_ zero_extend 1) ((_ extract 46 23) _let_3)) ((_ zero_extend 24) ((_ extract 22 22) _let_3)))))))))))
+
+ Solution saved to: results/smt2/relaxsweep_fp32_mul_v2_32b_r02.smt2
+
+Translating SMT output to C using smt2c...
+[INFO] Found 1 define-fun block(s). Order passed to smt2c:
+    - fp32_full_mul
+C file saved to: results/c/relaxsweep_fp32_mul_v2_32b_r02.c
+
+Generated C code:
+
+unsigned int fp32_full_mul(unsigned int a, unsigned int b) {
+  ap_uint<23> __smt2c_ext_0 = ((ap_uint<32>)a).range(22, 0);
+  ap_uint<23> __smt2c_ext_1 = ((ap_uint<32>)b).range(22, 0);
+  ap_uint<48> _let_1 = (ap_uint<48>)((ap_uint<24>)1 << 23 | (ap_uint<24>)__smt2c_ext_0) * (ap_uint<48>)((ap_uint<24>)1 << 23 | (ap_uint<24>)__smt2c_ext_1);
+  ap_uint<1> __smt2c_ext_2 = ((ap_uint<48>)_let_1).range(47, 47);
+  ap_uint<1> _let_2 = __smt2c_ext_2;
+  ap_uint<48> _let_3 = _let_2 == 1 ? (ap_uint<48>)  _let_1 >> 1 : (ap_uint<48>)  _let_1;
+  ap_uint<1> __smt2c_ext_3 = ((ap_uint<32>)a).range(31, 31);
+  ap_uint<1> __smt2c_ext_4 = ((ap_uint<32>)b).range(31, 31);
+  unsigned char __smt2c_ext_5 = ((ap_uint<32>)a).range(30, 23);
+  unsigned char __smt2c_ext_6 = ((ap_uint<32>)b).range(30, 23);
+  ap_uint<24> __smt2c_ext_7 = ((ap_uint<48>)_let_3).range(46, 23);
+  ap_uint<1> __smt2c_ext_8 = ((ap_uint<48>)_let_3).range(22, 22);
+  ap_uint<25> __smt2c_src_9 = (ap_uint<25>)__smt2c_ext_7 + (ap_uint<25>)__smt2c_ext_8;
+  ap_uint<24> __smt2c_ext_10 = ((ap_uint<25>)__smt2c_src_9).range(23, 0);
+  ap_uint<23> __smt2c_ext_11 = ((ap_uint<24>)__smt2c_ext_10).range(22, 0);
+  return (unsigned int)(__smt2c_ext_3 ^ __smt2c_ext_4) << 31 | (unsigned int)((ap_uint<31>)(((__smt2c_ext_5 + __smt2c_ext_6) - 127) + (unsigned char)_let_2) << 23 | (ap_uint<31>)__smt2c_ext_11);
+}
+
+Converting C output to HLS-compatible C++...
+
+HLS C++ file saved to: /home/josephluke/Program-Synthesis-for-Efficient-ML/results/cpp/relaxsweep_fp32_mul_v2_32b_r02.cpp
+Generated HLS-ready C++ code:
+
+#include <ap_int.h>
+
+ap_uint<32> fp32_full_mul(ap_uint<32> a, ap_uint<32> b) {
+  ap_uint<23> __smt2c_ext_0 = ((ap_uint<32>)a).range(22, 0);
+  ap_uint<23> __smt2c_ext_1 = ((ap_uint<32>)b).range(22, 0);
+  ap_uint<48> _let_1 = (ap_uint<48>)((ap_uint<24>)1 << 23 | (ap_uint<24>)__smt2c_ext_0) * (ap_uint<48>)((ap_uint<24>)1 << 23 | (ap_uint<24>)__smt2c_ext_1);
+  ap_uint<1> __smt2c_ext_2 = ((ap_uint<48>)_let_1).range(47, 47);
+  ap_uint<1> _let_2 = __smt2c_ext_2;
+  ap_uint<48> _let_3 = _let_2 == 1 ? (ap_uint<48>)((ap_uint<48>)  _let_1 >> 1) : (ap_uint<48>)  _let_1;
+  ap_uint<1> __smt2c_ext_3 = ((ap_uint<32>)a).range(31, 31);
+  ap_uint<1> __smt2c_ext_4 = ((ap_uint<32>)b).range(31, 31);
+  ap_uint<8> __smt2c_ext_5 = ((ap_uint<32>)a).range(30, 23);
+  ap_uint<8> __smt2c_ext_6 = ((ap_uint<32>)b).range(30, 23);
+  ap_uint<24> __smt2c_ext_7 = ((ap_uint<48>)_let_3).range(46, 23);
+  ap_uint<1> __smt2c_ext_8 = ((ap_uint<48>)_let_3).range(22, 22);
+  ap_uint<25> __smt2c_src_9 = ap_uint<25>((__smt2c_ext_7 + (ap_uint<25>)__smt2c_ext_8));
+  ap_uint<24> __smt2c_ext_10 = ((ap_uint<25>)__smt2c_src_9).range(23, 0);
+  ap_uint<23> __smt2c_ext_11 = ((ap_uint<24>)__smt2c_ext_10).range(22, 0);
+  return (ap_uint<32>)(__smt2c_ext_3 ^ __smt2c_ext_4) << 31 | (ap_uint<32>)((ap_uint<31>)(((__smt2c_ext_5 + __smt2c_ext_6) - 127) + (ap_uint<8>)_let_2) << 23 | (ap_uint<31>)__smt2c_ext_11);
+}
+
+[INFO] Auto-detected top function: fp32_full_mul
+[INFO] Generated HLS TCL script: /home/josephluke/Program-Synthesis-for-Efficient-ML/results/HLS/relaxsweep_fp32_mul_v2_32b_r02/hls.tcl
+[INFO] Running Vitis HLS synthesis...
+
+[SUCCESS] Vitis HLS run completed successfully.
+[INFO] Staged 2 Verilog files into: /home/josephluke/Program-Synthesis-for-Efficient-ML/results/HLS/relaxsweep_fp32_mul_v2_32b_r02/verilog_out
+[INFO] Candidate RTL modules: ['fp32_full_mul', 'fp32_full_mul_mul_24ns_24ns_48_1_1']
+[INFO] Generated Vivado TCL script: /home/josephluke/Program-Synthesis-for-Efficient-ML/results/HLS/relaxsweep_fp32_mul_v2_32b_r02/vivado.tcl
+[INFO] Cleaning up previous Vivado log and journal files...
+[INFO] Running Vivado implementation (this will take several minutes)...
+
+[SUCCESS] Vivado implementation completed successfully.
+
+--- Hardware Results ---
+{
+    "LUTs": 32,
+    "FFs": 0,
+    "DSPs": 2,
+    "BRAMs": 0,
+    "Cycles": 0,
+    "Fmax_MHz": 87.283,
+    "Latency_ns": 11.457
+}
+[ACC-CMD] FP32_MUL_VARIANT=v2 PYTHON=/home/josephluke/Program-Synthesis-for-Efficient-ML/.venv/bin/python make HLS_BASE=/home/josephluke/Program-Synthesis-for-Efficient-ML/results/HLS HLS_SOLN=relaxsweep_fp32_mul_v2_32b_r02 TOPLEVEL=fp32_full_mul MODULE=tests.multiplication.test_fp32_multiplier TOPLEVEL_LANG=verilog
+rm -f results.xml
+"make" -f Makefile results.xml
+make[1]: Entering directory '/home/josephluke/Program-Synthesis-for-Efficient-ML/accuracy_tests'
+/home/josephluke/.conda/pkgs/iverilog-11.0-hd56c0c9_0/bin/iverilog -o /home/josephluke/Program-Synthesis-for-Efficient-ML/accuracy_tests/sim_build/fp32_full_mul_relaxsweep_fp32_mul_v2_32b_r02/sim.vvp -s fp32_full_mul -g2012 -f /home/josephluke/Program-Synthesis-for-Efficient-ML/accuracy_tests/sim_build/fp32_full_mul_relaxsweep_fp32_mul_v2_32b_r02/cmds.f  /home/josephluke/Program-Synthesis-for-Efficient-ML/results/HLS/relaxsweep_fp32_mul_v2_32b_r02/verilog_out/fp32_full_mul_mul_24ns_24ns_48_1_1.v /home/josephluke/Program-Synthesis-for-Efficient-ML/results/HLS/relaxsweep_fp32_mul_v2_32b_r02/verilog_out/fp32_full_mul.v
+rm -f results.xml
+COCOTB_TEST_MODULES=tests.multiplication.test_fp32_multiplier COCOTB_TESTCASE= COCOTB_TEST_FILTER= COCOTB_TOPLEVEL=fp32_full_mul TOPLEVEL_LANG=verilog \
+         /home/josephluke/.conda/pkgs/iverilog-11.0-hd56c0c9_0/bin/vvp -M /home/josephluke/Program-Synthesis-for-Efficient-ML/.venv/lib/python3.11/site-packages/cocotb/libs -m libcocotbvpi_icarus   /home/josephluke/Program-Synthesis-for-Efficient-ML/accuracy_tests/sim_build/fp32_full_mul_relaxsweep_fp32_mul_v2_32b_r02/sim.vvp  -none 
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:93   in _embed_init_python              Using Python 3.11.9 interpreter at /home/josephluke/Program-Synthesis-for-Efficient-ML/.venv/bin/python
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:79   in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 11.0 (stable)
+     0.00ns WARNING  gpi                                vpi_iterate returned NULL for type vpiInstance for object NULL
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774930026
+     0.00ns INFO     cocotb                             Initialized cocotb v2.0.0 from /home/josephluke/Program-Synthesis-for-Efficient-ML/.venv/lib64/python3.11/site-packages/cocotb
+     0.00ns INFO     cocotb                             Running tests
+     0.00ns INFO     cocotb.regression                  running tests.multiplication.test_fp32_multiplier.fp32_multiplier_accuracy_subcomponents (1/4)
+     0.00ns INFO     cocotb.fp32_full_mul               Skipping subcomponents variant (FP32_MUL_VARIANT filter).
+     0.00ns INFO     cocotb.regression                  tests.multiplication.test_fp32_multiplier.fp32_multiplier_accuracy_subcomponents passed
+     0.00ns INFO     cocotb.regression                  running tests.multiplication.test_fp32_multiplier.fp32_multiplier_accuracy_v2 (2/4)
+     0.00ns INFO     cocotb.fp32_full_mul               Starting FP32 multiplier accuracy test (v2)
+     0.00ns INFO     cocotb.fp32_full_mul               Random operand sampler mode: normal_full (seed=7)
+     1.00ns INFO     cocotb.fp32_full_mul               [DIRECTED] a=0.5 b=0.5 got=0x3E800000 ref=0x3E800000 exact=True
+     2.00ns INFO     cocotb.fp32_full_mul               [DIRECTED] a=1.0 b=1.0 got=0x3F800000 ref=0x3F800000 exact=True
+     3.00ns INFO     cocotb.fp32_full_mul               [DIRECTED] a=2.0 b=0.5 got=0x3F800000 ref=0x3F800000 exact=True
+     4.00ns INFO     cocotb.fp32_full_mul               [DIRECTED] a=1.5 b=2.0 got=0x40400000 ref=0x40400000 exact=True
+     5.00ns INFO     cocotb.fp32_full_mul               [DIRECTED] a=0.25 b=4.0 got=0x3F800000 ref=0x3F800000 exact=True
+     6.00ns INFO     cocotb.fp32_full_mul               [DIRECTED] a=-0.5 b=0.5 got=0xBE800000 ref=0xBE800000 exact=True
+     7.00ns WARNING  py.warnings                        /home/josephluke/Program-Synthesis-for-Efficient-ML/accuracy_tests/tests/multiplication/test_fp32_multiplier.py:151: RuntimeWarning: overflow encountered in scalar multiply
+                                                          ref_bits = float_to_uint32(np.float32(uint32_to_float(a)) * np.float32(uint32_to_float(b)))
+100006.00ns WARNING  py.warnings                        /home/josephluke/Program-Synthesis-for-Efficient-ML/.venv/lib64/python3.11/site-packages/numpy/lib/_function_base_impl.py:4596: RuntimeWarning: invalid value encountered in scalar subtract
+                                                          diff_b_a = b - a
+100006.00ns INFO     cocotb.fp32_full_mul               Directed cases run: 6
+100006.00ns INFO     cocotb.fp32_full_mul               Ran 82957 cases (skipped 17049). Exact match: 90.46%. Within 5% relative error: 90.46% (avg=inf%, p99=nan%)
+100006.00ns INFO     cocotb.fp32_full_mul               Saved per-sample error dump: /home/josephluke/Program-Synthesis-for-Efficient-ML/results/relaxation_sweep/run1_normal_full/error_samples/fp32_mul_v2_32b_r02.npz
+100006.00ns INFO     cocotb.regression                  tests.multiplication.test_fp32_multiplier.fp32_multiplier_accuracy_v2 passed
+100006.00ns INFO     cocotb.regression                  running tests.multiplication.test_fp32_multiplier.fp32_multiplier_accuracy_v1 (3/4)
+100006.00ns INFO     cocotb.fp32_full_mul               Skipping v1 variant (FP32_MUL_VARIANT filter).
+100006.00ns INFO     cocotb.regression                  tests.multiplication.test_fp32_multiplier.fp32_multiplier_accuracy_v1 passed
+100006.00ns INFO     cocotb.regression                  running tests.multiplication.test_fp32_multiplier.fp32_multiplier_accuracy_flopoco (4/4)
+100006.00ns INFO     cocotb.fp32_full_mul               Skipping flopoco variant (FP32_MUL_VARIANT filter).
+100006.00ns INFO     cocotb.regression                  tests.multiplication.test_fp32_multiplier.fp32_multiplier_accuracy_flopoco passed
+100006.00ns INFO     cocotb.regression                  ******************************************************************************************************************************************
+                                                        ** TEST                                                                              STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ******************************************************************************************************************************************
+                                                        ** tests.multiplication.test_fp32_multiplier.fp32_multiplier_accuracy_subcomponents   PASS           0.00           0.00          0.00  **
+                                                        ** tests.multiplication.test_fp32_multiplier.fp32_multiplier_accuracy_v2              PASS      100006.00           2.56      39107.14  **
+                                                        ** tests.multiplication.test_fp32_multiplier.fp32_multiplier_accuracy_v1              PASS           0.00           0.00          0.00  **
+                                                        ** tests.multiplication.test_fp32_multiplier.fp32_multiplier_accuracy_flopoco         PASS           0.00           0.00          0.00  **
+                                                        ******************************************************************************************************************************************
+                                                        ** TESTS=4 PASS=4 FAIL=0 SKIP=0                                                                 100006.00           2.56      39070.94  **
+                                                        ******************************************************************************************************************************************
+make[1]: Leaving directory '/home/josephluke/Program-Synthesis-for-Efficient-ML/accuracy_tests'
+
+/home/josephluke/Program-Synthesis-for-Efficient-ML/.venv/lib/python3.11/site-packages/cocotb_tools/makefiles/simulators/Makefile.icarus:66: Using MODULE is deprecated, please use COCOTB_TEST_MODULES instead.
+[SUCCESS] Accuracy run completed successfully.

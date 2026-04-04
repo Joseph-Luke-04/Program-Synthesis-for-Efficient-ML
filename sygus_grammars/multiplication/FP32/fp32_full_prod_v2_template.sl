@@ -1,11 +1,10 @@
 (set-logic BV)
 
 ; ===============================================================
-; Monolithic FP32 multiplier — V2 "structural sketch" grammar.
+; Monolithic FP32 multiplier (V2)
 ; Encodes the pipeline stages (unpack → multiply → renorm →
 ; GRS rounding → exponent bias) but leaves implementation choices
 ; at each stage open for the solver to discover.
-; Search space ≈ 27 000 combinations (vs V1 ≈ many millions).
 ; ===============================================================
 
 (synth-fun fp32_full_mul ((a (_ BitVec 32)) (b (_ BitVec 32))) (_ BitVec 32)

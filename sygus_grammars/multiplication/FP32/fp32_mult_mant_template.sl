@@ -1,12 +1,9 @@
 (set-logic BV)
 
 ; ===============================================================
-; FP32 multiplication mantissa — "in-between" structural sketch.
+; FP32 multiplication mantissa
 ; Multiplies two 24-bit mantissas (with hidden bit), conditionally
 ; shifts based on renorm flag, and extracts the 23-bit fraction.
-; Solver discovers: extraction window, rounding strategy.
-; Search space ≈ 1458 combinations.
-; Prod48(1) × ShiftedProd48(3) × Extract24(3) × Guard1(3) × Round1(3) × RoundUp(3) × Rounded24(3) × Out23(2) = 1458
 ; ===============================================================
 
 ; Structural helper: the raw product (definitional, not synthesised).
@@ -29,24 +26,24 @@
     (Out23         (_ BitVec 23))
   )
   (
-    ; --- Output ---
+    ; Output 
     (Start23 (_ BitVec 23) (
       Out23
     ))
 
-    ; --- Stage 1: Raw product ---
+    ; Raw product
     (Prod48 (_ BitVec 48) (
       (fp32_mult_raw48 Ma Mb)
     ))
 
-    ; --- Stage 2: Conditional shift for renormalisation ---
+    ; Conditional shift for renormalisation
     (ShiftedProd48 (_ BitVec 48) (
       (ite (= renorm #b1) (bvlshr Prod48 (_ bv1 48)) Prod48)
       (bvlshr Prod48 ((_ zero_extend 47) renorm))
       Prod48
     ))
 
-    ; --- Stage 3: Extract 24-bit mantissa (including hidden bit) ---
+    ; Extract 24-bit mantissa (including hidden bit)
     ; Different extraction windows depending on product format.
     (Extract24 (_ BitVec 24) (
       ((_ extract 46 23) ShiftedProd48)
@@ -54,7 +51,7 @@
       ((_ extract 47 24) ShiftedProd48)
     ))
 
-    ; --- Stage 4: Rounding bits ---
+    ; Rounding bits
     (Guard1 (_ BitVec 1) (
       ((_ extract 22 22) ShiftedProd48)
       ((_ extract 22 22) Prod48)
@@ -67,21 +64,21 @@
       ((_ extract 22 22) ShiftedProd48)
     ))
 
-    ; --- Stage 5: Rounding decision ---
+    ; Rounding decision
     (RoundUp Bool (
       (= Guard1 #b1)
       (and (= Guard1 #b1) (= Round1 #b1))
       (and (= Guard1 #b1) (or (= Round1 #b1) (= ((_ extract 0 0) Extract24) #b1)))
     ))
 
-    ; --- Stage 6: Apply rounding ---
+    ; Apply rounding 
     (Rounded24 (_ BitVec 24) (
       (ite RoundUp (bvadd Extract24 (_ bv1 24)) Extract24)
       Extract24
       (bvadd Extract24 ((_ zero_extend 23) Guard1))
     ))
 
-    ; --- Stage 7: Strip hidden bit ---
+    ; Strip hidden bit
     (Out23 (_ BitVec 23) (
       ((_ extract 22 0) Rounded24)
       ((_ extract 22 0) Extract24)

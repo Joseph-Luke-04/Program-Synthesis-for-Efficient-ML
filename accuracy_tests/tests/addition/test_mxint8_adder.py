@@ -104,12 +104,16 @@ async def _run_mxint8_adder_accuracy(dut, label: str):
     num_samples = 100000
     errors_quant = []
     errors_full = []
+    exact_matches = []
     tested = 0
     skipped = 0
 
     # Sampling mode: controls the float range used to generate inputs.
+    # MXINT8 evaluation only supports in-range regimes; "wide" is intentionally
+    # excluded because it mostly probes values outside the native representable
+    # dynamic range of the 4/4 format.
     sample_mode = os.getenv("MXINT8_ADD_MODE", "normal_full").strip().lower()
-    valid_modes = {"normal_full", "small", "wide"}
+    valid_modes = {"normal_full", "small"}
     if sample_mode not in valid_modes:
         dut._log.warning(f"Unknown MXINT8_ADD_MODE='{sample_mode}', falling back to 'normal_full'.")
         sample_mode = "normal_full"
@@ -120,8 +124,6 @@ async def _run_mxint8_adder_accuracy(dut, label: str):
 
     if sample_mode == "small":
         lo, hi = 0.0, 1.0
-    elif sample_mode == "wide":
-        lo, hi = -1024.0, 1024.0
     else:  # normal_full
         lo, hi = -default_max, default_max
 
@@ -149,7 +151,9 @@ async def _run_mxint8_adder_accuracy(dut, label: str):
         # Quantized oracle: add quantized inputs then re-quantize.
         sum_dequant = dequant1 + dequant2
         _, m_or_t, e_or_t = mxint_hardware(sum_dequant, Q_CONFIG, PARALLELISM)
-        oracle_quant = dequantize_mxint8(int(m_or_t.item()), int(e_or_t.item()))
+        m_or = int(m_or_t.item())
+        e_or = int(e_or_t.item())
+        oracle_quant = dequantize_mxint8(m_or, e_or)
 
         # 2. Drive the DUT (Device Under Test) inputs
         dut.m1.value = m1
@@ -196,6 +200,7 @@ async def _run_mxint8_adder_accuracy(dut, label: str):
         # 6. Compare and store absolute error vs both oracles
         errors_full.append(abs(oracle_full - dut_float))
         errors_quant.append(abs(oracle_quant - dut_float))
+        exact_matches.append(int(m_dut == m_or and e_dut == e_or))
         tested += 1
 
     def summarize(errors):
@@ -209,8 +214,11 @@ async def _run_mxint8_adder_accuracy(dut, label: str):
     max_q, avg_q, p99_q, p95_q, pct_q = summarize(errors_quant)
     max_f, avg_f, p99_f, p95_f, pct_f = summarize(errors_full)
     
+    exact_pct = 100.0 * (sum(exact_matches) / len(exact_matches)) if exact_matches else 0.0
+
     dut._log.info("--- Test Finished ---")
     dut._log.info(f"Ran {tested} test cases (skipped {skipped}).")
+    dut._log.info(f"Exact match (quantized oracle): {exact_pct:.2f}%")
     dut._log.info("Quantized oracle:")
     dut._log.info(f"Max Absolute Error: {max_q}")
     dut._log.info(f"Average Absolute Error: {avg_q}")

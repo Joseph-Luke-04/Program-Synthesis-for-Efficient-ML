@@ -1,10 +1,12 @@
 (set-logic BV)
 
+; ===============================================================
 ; Monolithic FP32 multiplier baseline grammar (V1).
 ; Broader than the current guided V2 grammar:
 ;   - more renorm-bit choices,
 ;   - more shifted-product and GRS slice choices,
 ;   - weaker exponent and packing alternatives.
+; ===============================================================
 
 (synth-fun fp32_full_mul ((a (_ BitVec 32)) (b (_ BitVec 32))) (_ BitVec 32)
   (

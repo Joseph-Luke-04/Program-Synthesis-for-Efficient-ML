@@ -1,0 +1,175 @@
+[INFO] Target: MXINT8MultiplicationTarget | Component: full_product_v2
+[INFO] NUM_ITERATIONS=10, TIMEOUT=60s, RUN_IMPLEMENTATION=True, DIRECTED_IO=True, RUN_ACCURACY=True, SYNTH_FP32_MUL_MODE=default, SYNTH_FP32_ADD_MODE=default, SYGUS_DUMP=False, SYGUS_FAST_ENUM=False, SYGUS_PBE=True, SYGUS_SYM_BREAK_PBE=True, MXINT8_OUTPUT_MATCH_BITS=8, MXINT8_AUTO_RELAX_OUTPUT_MATCH=False, MXINT8_MIN_OUTPUT_MATCH_BITS=4, MXINT8_STAGE_MANTISSA_BITS=2, FP32_OUTPUT_MATCH_MSB_BITS=32, FP32_AUTO_RELAX_OUTPUT_MATCH=False, FP32_RESET_MSB_PER_SAMPLE=True, FP32_RELAX_ON_TIMEOUT=False, FP32_TIMEOUT_RETRY_ONCE=False, FP32_TIMEOUT_RETRY_MULTIPLIER=4, FP32_RELAX_ON_INFEASIBLE=False, FP32_RELAX_ON_FAIL=False, FP32_RELAX_SCHEDULE=staged, FP32_STAGE_MANTISSA_BITS=15, FP32_MIN_OUTPUT_MATCH_MSB_BITS=24, FP32_OUTPUT_MATCH_STEP=1, RANDOM_SEED=12345
+--- Starting Synthesis for [MXINT8MultiplicationTarget -> full_product_v2] ---
+
+--- Iteration 1/10 ---
+Generating new constraint with inputs: (-1.7648246522391702, -10.36776449687055)
+(constraint (= (mult_mxint_full_product #b1000 #b0001 #b1010 #b0100 #b0) #b01010110))
+SUCCESS: accepted (bits = 8). Total constraints: 1
+
+--- Iteration 2/10 ---
+Generating new constraint with inputs: (6.883324385798641, -4.261990936814666)
+(constraint (= (mult_mxint_full_product #b0110 #b0011 #b1011 #b0011 #b1) #b01011000))
+[INFO] Not relaxable (status=fail); not relaxing further for this sample.
+SKIPPED: (6.883, -4.262) could not be added (even after relaxation).
+
+--- Iteration 3/10 ---
+Generating new constraint with inputs: (-2.785199560453119, -6.483967099150022)
+(constraint (= (mult_mxint_full_product #b1010 #b0010 #b1001 #b0011 #b0) #b01010101))
+SUCCESS: accepted (bits = 8). Total constraints: 2
+
+--- Iteration 4/10 ---
+Generating new constraint with inputs: (1.3971295916428605, -7.16071906710391)
+(constraint (= (mult_mxint_full_product #b0101 #b0001 #b1000 #b0011 #b0) #b01001011))
+SUCCESS: accepted (bits = 8). Total constraints: 3
+
+--- Iteration 5/10 ---
+Generating new constraint with inputs: (-7.952771068137869, -1.4194716547011943)
+(constraint (= (mult_mxint_full_product #b1000 #b0011 #b1010 #b0001 #b0) #b01000110))
+SUCCESS: accepted (bits = 8). Total constraints: 4
+
+--- Iteration 6/10 ---
+Generating new constraint with inputs: (1.3139539297245513, -6.892847609374503)
+(constraint (= (mult_mxint_full_product #b0101 #b0001 #b1001 #b0011 #b0) #b01001011))
+SUCCESS: accepted (bits = 8). Total constraints: 5
+
+--- Iteration 7/10 ---
+Generating new constraint with inputs: (1.126478055370681, -3.0711587786687877)
+(constraint (= (mult_mxint_full_product #b0100 #b0001 #b1001 #b0010 #b1) #b00101001))
+[INFO] Not relaxable (status=fail); not relaxing further for this sample.
+SKIPPED: (1.126, -3.071) could not be added (even after relaxation).
+
+--- Iteration 8/10 ---
+Generating new constraint with inputs: (9.695404045837208, -8.650673389893704)
+(constraint (= (mult_mxint_full_product #b0100 #b0100 #b1011 #b0100 #b1) #b01111011))
+[INFO] Not relaxable (status=fail); not relaxing further for this sample.
+SKIPPED: (9.695, -8.651) could not be added (even after relaxation).
+
+--- Iteration 9/10 ---
+Generating new constraint with inputs: (10.130899166466897, -1.8600818507839723)
+(constraint (= (mult_mxint_full_product #b0101 #b0100 #b1000 #b0001 #b0) #b01011011))
+SUCCESS: accepted (bits = 8). Total constraints: 6
+
+--- Iteration 10/10 ---
+Generating new constraint with inputs: (0.08329604269322743, -7.447341878848408)
+(constraint (= (mult_mxint_full_product #b0101 #b1101 #b1000 #b0011 #b0) #b00001011))
+SUCCESS: accepted (bits = 8). Total constraints: 7
+
+
+--- Synthesis Complete! ---
+
+Constraints accepted: 7/10
+
+--- Final Synthesized Program ---
+(define-fun mult_mxint_full_product ((m1 (_ BitVec 4)) (e1 (_ BitVec 4)) (m2 (_ BitVec 4)) (e2 (_ BitVec 4)) (renorm_flag (_ BitVec 1))) (_ BitVec 8) (concat ((_ extract 3 0) (bvadd ((_ sign_extend 1) e1) ((_ sign_extend 1) e2))) ((_ extract 3 0) (bvashr (bvmul ((_ sign_extend 4) m1) ((_ sign_extend 4) m2)) (ite (= #b1 #b1) #b00000011 #b00000010)))))
+
+ Solution saved to: results/smt2/relaxsweep_mxint8_mul_v2_8b_stress_r01.smt2
+
+Translating SMT output to C using smt2c...
+[INFO] Found 1 define-fun block(s). Order passed to smt2c:
+    - mult_mxint_full_product
+C file saved to: results/c/relaxsweep_mxint8_mul_v2_8b_stress_r01.c
+
+Generated C code:
+
+unsigned char mult_mxint_full_product(ap_uint<4> m1, ap_uint<4> e1, ap_uint<4> m2, ap_uint<4> e2, ap_uint<1> renorm_flag) {
+  ap_uint<5> __smt2c_src_0 = (ap_uint<5>)(ap_int<5>)(ap_int<4>)e1 + (ap_uint<5>)(ap_int<5>)(ap_int<4>)e2;
+  ap_uint<4> __smt2c_ext_1 = ((ap_uint<5>)__smt2c_src_0).range(3, 0);
+  unsigned char __smt2c_src_2 = (unsigned char)((signed char)((unsigned char)(signed char)(ap_int<4>)m1 * (unsigned char)(signed char)(ap_int<4>)m2) >> (signed char)(1 == 1 ? (unsigned char)  3 : (unsigned char)  2));
+  ap_uint<4> __smt2c_ext_3 = ((ap_uint<8>)__smt2c_src_2).range(3, 0);
+  return (unsigned char)__smt2c_ext_1 << 4 | (unsigned char)__smt2c_ext_3;
+}
+
+Converting C output to HLS-compatible C++...
+
+HLS C++ file saved to: /home/josephluke/Program-Synthesis-for-Efficient-ML/results/cpp/relaxsweep_mxint8_mul_v2_8b_stress_r01.cpp
+Generated HLS-ready C++ code:
+
+#include <ap_int.h>
+
+ap_uint<8> mult_mxint_full_product(ap_uint<4> m1, ap_uint<4> e1, ap_uint<4> m2, ap_uint<4> e2, ap_uint<1> renorm_flag) {
+  ap_uint<5> __smt2c_src_0 = (ap_uint<5>)(ap_int<5>)(ap_int<4>)e1 + (ap_uint<5>)(ap_int<5>)(ap_int<4>)e2;
+  ap_uint<4> __smt2c_ext_1 = ((ap_uint<5>)__smt2c_src_0).range(3, 0);
+  ap_uint<8> __smt2c_src_2 = (ap_uint<8>)((ap_int<8>)((ap_uint<8>)(ap_int<8>)(ap_int<4>)m1 * (ap_uint<8>)(ap_int<8>)(ap_int<4>)m2) >> (ap_int<8>)(1 == 1 ? (ap_uint<8>)  3 : (ap_uint<8>)  2));
+  ap_uint<4> __smt2c_ext_3 = ((ap_uint<8>)__smt2c_src_2).range(3, 0);
+  return (ap_uint<8>)__smt2c_ext_1 << 4 | (ap_uint<8>)__smt2c_ext_3;
+}
+
+[INFO] Auto-detected top function: mult_mxint_full_product
+[INFO] Generated HLS TCL script: /home/josephluke/Program-Synthesis-for-Efficient-ML/results/HLS/relaxsweep_mxint8_mul_v2_8b_stress_r01/hls.tcl
+[INFO] Running Vitis HLS synthesis...
+
+[SUCCESS] Vitis HLS run completed successfully.
+[INFO] Staged 2 Verilog files into: /home/josephluke/Program-Synthesis-for-Efficient-ML/results/HLS/relaxsweep_mxint8_mul_v2_8b_stress_r01/verilog_out
+[INFO] Candidate RTL modules: ['mult_mxint_full_product', 'mult_mxint_full_product_mul_4s_4s_8_1_1']
+[INFO] Generated Vivado TCL script: /home/josephluke/Program-Synthesis-for-Efficient-ML/results/HLS/relaxsweep_mxint8_mul_v2_8b_stress_r01/vivado.tcl
+[INFO] Cleaning up previous Vivado log and journal files...
+[INFO] Running Vivado implementation (this will take several minutes)...
+
+[SUCCESS] Vivado implementation completed successfully.
+
+--- Hardware Results ---
+{
+    "LUTs": 23,
+    "FFs": 0,
+    "DSPs": 0,
+    "BRAMs": 0,
+    "Cycles": 0,
+    "Fmax_MHz": 427.35,
+    "Latency_ns": 2.34
+}
+[ACC-CMD] MXINT8_MUL_VARIANT=v2 PYTHON=/home/josephluke/Program-Synthesis-for-Efficient-ML/.venv/bin/python make HLS_BASE=/home/josephluke/Program-Synthesis-for-Efficient-ML/results/HLS HLS_SOLN=relaxsweep_mxint8_mul_v2_8b_stress_r01 TOPLEVEL=mult_mxint_full_product MODULE=tests.multiplication.test_mxint8_multiplier TOPLEVEL_LANG=verilog
+rm -f results.xml
+"make" -f Makefile results.xml
+make[1]: Entering directory '/home/josephluke/Program-Synthesis-for-Efficient-ML/accuracy_tests'
+/home/josephluke/.conda/pkgs/iverilog-11.0-hd56c0c9_0/bin/iverilog -o /home/josephluke/Program-Synthesis-for-Efficient-ML/accuracy_tests/sim_build/mult_mxint_full_product_relaxsweep_mxint8_mul_v2_8b_stress_r01/sim.vvp -s mult_mxint_full_product -g2012 -f /home/josephluke/Program-Synthesis-for-Efficient-ML/accuracy_tests/sim_build/mult_mxint_full_product_relaxsweep_mxint8_mul_v2_8b_stress_r01/cmds.f  /home/josephluke/Program-Synthesis-for-Efficient-ML/results/HLS/relaxsweep_mxint8_mul_v2_8b_stress_r01/verilog_out/mult_mxint_full_product_mul_4s_4s_8_1_1.v /home/josephluke/Program-Synthesis-for-Efficient-ML/results/HLS/relaxsweep_mxint8_mul_v2_8b_stress_r01/verilog_out/mult_mxint_full_product.v
+rm -f results.xml
+COCOTB_TEST_MODULES=tests.multiplication.test_mxint8_multiplier COCOTB_TESTCASE= COCOTB_TEST_FILTER= COCOTB_TOPLEVEL=mult_mxint_full_product TOPLEVEL_LANG=verilog \
+         /home/josephluke/.conda/pkgs/iverilog-11.0-hd56c0c9_0/bin/vvp -M /home/josephluke/Program-Synthesis-for-Efficient-ML/.venv/lib/python3.11/site-packages/cocotb/libs -m libcocotbvpi_icarus   /home/josephluke/Program-Synthesis-for-Efficient-ML/accuracy_tests/sim_build/mult_mxint_full_product_relaxsweep_mxint8_mul_v2_8b_stress_r01/sim.vvp  -none 
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:93   in _embed_init_python              Using Python 3.11.9 interpreter at /home/josephluke/Program-Synthesis-for-Efficient-ML/.venv/bin/python
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:79   in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 11.0 (stable)
+     0.00ns WARNING  gpi                                vpi_iterate returned NULL for type vpiInstance for object NULL
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774925596
+     0.00ns INFO     cocotb                             Initialized cocotb v2.0.0 from /home/josephluke/Program-Synthesis-for-Efficient-ML/.venv/lib64/python3.11/site-packages/cocotb
+     0.00ns INFO     cocotb                             Running tests
+     0.00ns INFO     cocotb.regression                  running tests.multiplication.test_mxint8_multiplier.mxint8_multiplier_accuracy_subcomponents (1/3)
+     0.00ns INFO     cocotb.mult_mxint_full_product     Skipping subcomponents variant (MXINT8_MUL_VARIANT filter).
+     0.00ns INFO     cocotb.regression                  tests.multiplication.test_mxint8_multiplier.mxint8_multiplier_accuracy_subcomponents passed
+     0.00ns INFO     cocotb.regression                  running tests.multiplication.test_mxint8_multiplier.mxint8_multiplier_accuracy_v2 (2/3)
+     0.00ns INFO     cocotb.mult_mxint_full_product     Starting MXINT8 multiplier accuracy test (v2)
+     0.00ns WARNING  cocotb.mult_mxint_full_product     Unknown MXINT8_MUL_MODE='wide', falling back to 'normal_full'.
+     0.00ns INFO     cocotb.mult_mxint_full_product     Random operand sampler mode: normal_full
+100000.00ns INFO     cocotb.mult_mxint_full_product     --- Test Finished ---
+100000.00ns INFO     cocotb.mult_mxint_full_product     Ran 100000 test cases (skipped 4).
+100000.00ns INFO     cocotb.mult_mxint_full_product     Exact match (quantized oracle): 45.47%
+100000.00ns INFO     cocotb.mult_mxint_full_product     Quantized oracle:
+100000.00ns INFO     cocotb.mult_mxint_full_product     Max Absolute Error: 128.0
+100000.00ns INFO     cocotb.mult_mxint_full_product     Average Absolute Error: 6.721400625
+100000.00ns INFO     cocotb.mult_mxint_full_product     99th Percentile Error: 111.998046875
+100000.00ns INFO     cocotb.mult_mxint_full_product     95th Percentile Absolute Error: 79.99853515625
+100000.00ns INFO     cocotb.mult_mxint_full_product     Percent Within 5.00% Full-Scale Error: 86.05%
+100000.00ns INFO     cocotb.mult_mxint_full_product     Full-precision oracle:
+100000.00ns INFO     cocotb.mult_mxint_full_product     Max Absolute Error: 127.50037792021276
+100000.00ns INFO     cocotb.mult_mxint_full_product     Average Absolute Error: 9.305718423565684
+100000.00ns INFO     cocotb.mult_mxint_full_product     99th Percentile Error: 98.6558127782747
+100000.00ns INFO     cocotb.mult_mxint_full_product     95th Percentile Absolute Error: 77.05191748206379
+100000.00ns INFO     cocotb.mult_mxint_full_product     Percent Within 5.00% Full-Scale Error: 69.73%
+100000.00ns INFO     cocotb.mult_mxint_full_product     Saved per-sample error dump: /home/josephluke/Program-Synthesis-for-Efficient-ML/results/relaxation_sweep/run1_wide/error_samples/mxint8_mul_v2_8b_stress_r01.npz
+100000.00ns INFO     cocotb.regression                  tests.multiplication.test_mxint8_multiplier.mxint8_multiplier_accuracy_v2 passed
+100000.00ns INFO     cocotb.regression                  running tests.multiplication.test_mxint8_multiplier.mxint8_multiplier_accuracy_v1 (3/3)
+100000.00ns INFO     cocotb.mult_mxint_full_product     Skipping v1 variant (MXINT8_MUL_VARIANT filter).
+100000.00ns INFO     cocotb.regression                  tests.multiplication.test_mxint8_multiplier.mxint8_multiplier_accuracy_v1 passed
+100000.00ns INFO     cocotb.regression                  **********************************************************************************************************************************************
+                                                        ** TEST                                                                                  STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        **********************************************************************************************************************************************
+                                                        ** tests.multiplication.test_mxint8_multiplier.mxint8_multiplier_accuracy_subcomponents   PASS           0.00           0.00          0.00  **
+                                                        ** tests.multiplication.test_mxint8_multiplier.mxint8_multiplier_accuracy_v2              PASS      100000.00          27.56       3627.86  **
+                                                        ** tests.multiplication.test_mxint8_multiplier.mxint8_multiplier_accuracy_v1              PASS           0.00           0.00          0.00  **
+                                                        **********************************************************************************************************************************************
+                                                        ** TESTS=3 PASS=3 FAIL=0 SKIP=0                                                                     100000.00          27.57       3627.75  **
+                                                        **********************************************************************************************************************************************
+make[1]: Leaving directory '/home/josephluke/Program-Synthesis-for-Efficient-ML/accuracy_tests'
+
+/home/josephluke/Program-Synthesis-for-Efficient-ML/.venv/lib/python3.11/site-packages/cocotb_tools/makefiles/simulators/Makefile.icarus:66: Using MODULE is deprecated, please use COCOTB_TEST_MODULES instead.
+[SUCCESS] Accuracy run completed successfully.
